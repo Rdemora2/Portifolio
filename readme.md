@@ -11,7 +11,7 @@ A aplicação consiste em exibir alguns de meus projetos de minha autoria e tem 
 > :construction: Em construção :construction:
 
 ## Layout web
-> :construction: Em construção :construction:
+![image](https://github.com/Rdemora2/Portifolio/assets/103211332/b34b669f-c71e-4bac-b41b-7aa46310f63e)
 
 # Tecnologias utilizadas
 ## Back end
