@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+
+  react:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app/frontend
+    depends_on:
+      - django
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: portifolio_db
+      POSTGRES_USER: rdemora2
+      POSTGRES_PASSWORD: rdemora2dbpassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
