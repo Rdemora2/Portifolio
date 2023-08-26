@@ -6,41 +6,18 @@ import projImg3 from "../assets/img/project-img3.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import React, { useState, useEffect } from "react";  // Importando o useState e useEffect
 
 export const Projects = () => {
+  const [projects, setProjects] = useState([]);  // Estado para armazenar os projetos
 
-  const projects = [
-    {
-      title: "Espaço do titulo",
-      description: "Espaço da descrição",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Espaço do titulo",
-      description: "Espaço da descrição",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Espaço do titulo",
-      description: "Espaço da descrição",
-      imgUrl: projImg3,
-    },
-    {
-      title: "Espaço do titulo",
-      description: "Espaço da descrição",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Espaço do titulo",
-      description: "Espaço da descrição",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Espaço do titulo",
-      description: "Espaço da descrição",
-      imgUrl: projImg3,
-    },
-  ];
+  useEffect(() => {
+    // Fetch projects from API
+    fetch("http://localhost:8000/api/projects/")  // Substitua com a URL correta da sua API
+      .then((response) => response.json())
+      .then((data) => setProjects(data))
+      .catch((error) => console.error("Error fetching projects:", error));
+  }, []);
 
   return (
     <section className="project" id="projects">
@@ -72,8 +49,10 @@ export const Projects = () => {
                             return (
                               <ProjectCard
                                 key={index}
-                                {...project}
-                                />
+                                title={project.title}
+                                description={project.description}
+                                image={project.image}
+                              />
                             )
                           })
                         }
@@ -92,7 +71,7 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      <img className="background-image-right" src={colorSharp2}></img>
+      <img className="background-image-right" src={colorSharp2} alt="background"></img>
     </section>
   )
 }
