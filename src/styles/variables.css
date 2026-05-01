@@ -1,0 +1,25 @@
+:root {
+  --color-void: #020408;
+  --color-deep: #080d14;
+  --color-structure: #0d1520;
+  --color-edge: #1a2840;
+  --color-signal: #00d4ff;
+  --color-pulse: #0088cc;
+  --color-matrix: #00ff88;
+  --color-alert: #ff6b35;
+  --color-text-primary: #e8f4f8;
+  --color-text-secondary: #6b8fa8;
+  --color-text-muted: #2a4560;
+
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --transition-fast: 150ms var(--ease-out-expo);
+  --transition-base: 300ms var(--ease-out-expo);
+  --transition-slow: 600ms var(--ease-out-expo);
+}
