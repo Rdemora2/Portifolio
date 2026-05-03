@@ -54,7 +54,7 @@ export function CustomCursor() {
       outerPos.current.x += (mousePos.current.x - outerPos.current.x) * 0.12
       outerPos.current.y += (mousePos.current.y - outerPos.current.y) * 0.12
       if (outerRef.current) {
-        outerRef.current.style.transform = `translate(${outerPos.current.x - 12}px, ${outerPos.current.y - 12}px)`
+        outerRef.current.style.transform = `translate(${outerPos.current.x - 12}px, ${outerPos.current.y - 12}px) scale(${outerRef.current.dataset.scale || 1})`
       }
       rafId = requestAnimationFrame(lerp)
     }
@@ -82,8 +82,6 @@ export function CustomCursor() {
   }
 
   const outerScale = scaleMap[cursorState]
-  const outerSize = 24 * outerScale
-  const outerOffset = -(outerSize - 24) / 2
 
   return (
     <>
@@ -102,15 +100,14 @@ export function CustomCursor() {
       <div
         ref={outerRef}
         className="pointer-events-none fixed top-0 left-0 z-[10000] rounded-full border"
+        data-scale={outerScale}
         style={{
-          width: outerSize,
-          height: outerSize,
+          width: 24,
+          height: 24,
           borderColor: cursorState === "hover-link" ? "var(--color-signal)" : "var(--color-signal)",
           backgroundColor: cursorState === "hover-link" ? "rgba(99,102,241,0.08)" : "transparent",
           opacity: isVisible ? 0.5 : 0,
-          transition: "opacity 0.3s, width 0.3s, height 0.3s, margin 0.3s, border-color 0.3s, background-color 0.3s",
-          marginLeft: outerOffset,
-          marginTop: outerOffset,
+          transition: "opacity 0.3s, border-color 0.3s, background-color 0.3s",
           mixBlendMode: cursorState === "hover-button" ? "difference" : "normal",
         }}
         aria-hidden="true"

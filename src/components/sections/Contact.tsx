@@ -116,7 +116,7 @@ export function Contact() {
           <ScrollReveal animation="slide-right" delay={0.2}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
               <div className="grid gap-6 sm:grid-cols-2">
-                <FormField label="Nome" error={errors.name?.message}>
+                <FormField label="Nome" htmlFor="contact-name" error={errors.name?.message}>
                   <input
                     {...register("name")}
                     type="text"
@@ -125,7 +125,7 @@ export function Contact() {
                     placeholder=" "
                   />
                 </FormField>
-                <FormField label="Email" error={errors.email?.message}>
+                <FormField label="Email" htmlFor="contact-email" error={errors.email?.message}>
                   <input
                     {...register("email")}
                     type="email"
@@ -137,7 +137,7 @@ export function Contact() {
               </div>
 
               <div className="grid gap-6 sm:grid-cols-2">
-                <FormField label="Empresa (opcional)">
+                <FormField label="Empresa (opcional)" htmlFor="contact-company">
                   <input
                     {...register("company")}
                     type="text"
@@ -146,7 +146,7 @@ export function Contact() {
                     placeholder=" "
                   />
                 </FormField>
-                <FormField label="Tipo de projeto" error={errors.projectType?.message}>
+                <FormField label="Tipo de projeto" htmlFor="contact-project-type" error={errors.projectType?.message}>
                   <select
                     {...register("projectType")}
                     id="contact-project-type"
@@ -161,7 +161,7 @@ export function Contact() {
                 </FormField>
               </div>
 
-              <FormField label="Mensagem" error={errors.message?.message}>
+              <FormField label="Mensagem" htmlFor="contact-message" error={errors.message?.message}>
                 <textarea
                   {...register("message")}
                   id="contact-message"
@@ -171,7 +171,7 @@ export function Contact() {
                 />
               </FormField>
 
-              <FormField label="Budget estimado (opcional)">
+              <FormField label="Budget estimado (opcional)" htmlFor="contact-budget">
                 <input
                   {...register("budget")}
                   type="text"
@@ -241,16 +241,19 @@ export function Contact() {
 
 function FormField({
   label,
+  htmlFor,
   error,
   children,
 }: {
   label: string
+  htmlFor: string
   error?: string
   children: React.ReactNode
 }) {
   return (
     <div className="relative">
       <label
+        htmlFor={htmlFor}
         className="mb-1.5 block text-xs font-medium uppercase tracking-wider"
         style={{
           fontFamily: "var(--font-mono)",

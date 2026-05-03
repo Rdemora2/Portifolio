@@ -6,10 +6,14 @@ import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { GradientBorder } from "@/components/shared/GradientBorder"
 import { AnimatedText } from "@/components/shared/AnimatedText"
-import { NeuralBackground } from "@/components/shared/NeuralBackground"
 
 const FloatingGridCanvas = dynamic(
   () => import("@/components/three/FloatingGrid").then((m) => ({ default: m.FloatingGridCanvas })),
+  { ssr: false }
+)
+
+const NeuralBackground = dynamic(
+  () => import("@/components/shared/NeuralBackground").then((m) => ({ default: m.NeuralBackground })),
   { ssr: false }
 )
 
