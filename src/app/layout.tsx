@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { SuppressWarnings } from "@/components/shared/SuppressWarnings";
 import "./globals.css";
 
 const syne = Syne({
@@ -108,6 +109,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <SuppressWarnings />
         <a href="#main-content" className="sr-only focus:not-sr-only">
           Pular para o conteúdo principal
         </a>

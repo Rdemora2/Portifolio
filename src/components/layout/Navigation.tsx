@@ -66,7 +66,7 @@ export function Navigation() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300"
+        className="fixed top-0 left-0 w-full z-[100] transition-all duration-300"
         style={{
           backgroundColor: isScrolled ? "rgba(2,4,8,0.85)" : "transparent",
           backdropFilter: isScrolled ? "blur(20px)" : "none",
@@ -77,7 +77,7 @@ export function Navigation() {
         role="navigation"
         aria-label="Navegação principal"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <a
             href="#hero"
             onClick={(e) => {
@@ -162,7 +162,7 @@ export function Navigation() {
 
       <div
         ref={mobileMenuRef}
-        className="fixed inset-0 z-[90] flex flex-col items-center justify-center gap-8 md:hidden"
+        className="fixed top-0 left-0 z-[90] flex h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden md:hidden"
         style={{
           backgroundColor: "var(--color-void)",
           opacity: 0,

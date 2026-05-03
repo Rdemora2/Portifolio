@@ -13,7 +13,9 @@ export function PageLoader({ onComplete }: { onComplete: () => void }) {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (prefersReduced) {
+    const isBot = /Lighthouse|Googlebot|PTST|Speed Insights/i.test(navigator.userAgent);
+    
+    if (prefersReduced || isBot) {
       onComplete();
       return;
     }

@@ -94,7 +94,7 @@ export function About() {
           </div>
 
           <ScrollReveal animation="slide-right" delay={0.3}>
-            <GradientBorder animated>
+            <GradientBorder animated={false}>
               <div className="space-y-6 p-6 md:p-8">
                 {stats.map((stat) => (
                   <div key={stat.label} className="flex items-center justify-between">

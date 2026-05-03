@@ -26,12 +26,15 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
     background-color: var(--color-void);
     color: var(--color-text-primary);
     overflow-x: hidden;
+    max-width: 100vw;
   }
 
   /* Noise texture overlay for depth perception */

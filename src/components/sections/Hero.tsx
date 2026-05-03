@@ -106,15 +106,33 @@ export function Hero() {
         if (nameRef.current) {
           const text = nameRef.current.textContent ?? "";
           nameRef.current.innerHTML = "";
-          text.split("").forEach((char) => {
-            const span = document.createElement("span");
-            span.style.display = "inline-block";
-            span.style.willChange = "transform, opacity";
-            span.textContent = char === " " ? "\u00A0" : char;
-            nameRef.current?.appendChild(span);
+          text.split(" ").forEach((word, wordIdx, words) => {
+            const wordSpan = document.createElement("span");
+            wordSpan.style.display = "inline-block";
+            wordSpan.style.whiteSpace = "nowrap"; // Keep word together
+
+            word.split("").forEach((char) => {
+              const charSpan = document.createElement("span");
+              charSpan.style.display = "inline-block";
+              charSpan.style.willChange = "transform, opacity";
+              charSpan.className = "hero-char";
+              charSpan.textContent = char;
+              wordSpan.appendChild(charSpan);
+            });
+
+            nameRef.current?.appendChild(wordSpan);
+
+            if (wordIdx < words.length - 1) {
+              const spaceSpan = document.createElement("span");
+              spaceSpan.style.display = "inline-block";
+              spaceSpan.textContent = "\u00A0";
+              nameRef.current?.appendChild(spaceSpan);
+            }
           });
+          
+          const chars = nameRef.current.querySelectorAll(".hero-char");
           tl.fromTo(
-            nameRef.current.children,
+            chars,
             { y: 120, opacity: 0 },
             {
               y: 0,
