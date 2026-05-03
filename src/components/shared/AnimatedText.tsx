@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef, useEffect } from "react"
-import { gsap } from "@/lib/gsap"
 
 interface AnimatedTextProps {
   children: string
@@ -34,9 +33,12 @@ export function AnimatedText({
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced) return
 
-    const animate = () => {
+    const animate = async () => {
       if (hasAnimated.current) return
       hasAnimated.current = true
+
+      const mod = await import("@/lib/gsap")
+      const { gsap } = mod
 
       if (type === "reveal-line") {
         gsap.fromTo(
@@ -91,14 +93,14 @@ export function AnimatedText({
     }
 
     if (trigger === "load") {
-      animate()
+      void animate()
       return
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          animate()
+          void animate()
           observer.disconnect()
         }
       },

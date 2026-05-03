@@ -2,7 +2,6 @@
 
 import { useRef, useState, useEffect, useCallback } from "react"
 import dynamic from "next/dynamic"
-import { gsap } from "@/lib/gsap"
 import { personalInfo } from "@/data/portfolio"
 import { MagneticButton } from "@/components/shared/MagneticButton"
 
@@ -17,6 +16,7 @@ export function Hero() {
   const titleRef = useRef<HTMLParagraphElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
+  const rectRef = useRef<DOMRect | null>(null)
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [showCanvas, setShowCanvas] = useState(false)
 
@@ -25,12 +25,44 @@ export function Hero() {
   }, [])
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const rect = sectionRef.current?.getBoundingClientRect()
+    const rect = rectRef.current
     if (!rect) return
     setMouse({
       x: ((e.clientX - rect.left) / rect.width - 0.5) * 2,
       y: -((e.clientY - rect.top) / rect.height - 0.5) * 2,
     })
+  }, [])
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    let rafId = 0
+    const updateRect = () => {
+      rectRef.current = section.getBoundingClientRect()
+    }
+
+    updateRect()
+
+    const handleScroll = () => {
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        rafId = 0
+        updateRect()
+      })
+    }
+
+    const resizeObserver = new ResizeObserver(() => updateRect())
+    resizeObserver.observe(section)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("resize", updateRect)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", updateRect)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   useEffect(() => {
@@ -48,13 +80,20 @@ export function Hero() {
       return
     }
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        delay: 2,
-        onComplete: () => {
-          sessionStorage.setItem("hero-animated", "true")
-        },
-      })
+    let ctx: { revert: () => void } | null = null
+    let isActive = true
+
+    const run = async () => {
+      const mod = await import("@/lib/gsap")
+      if (!isActive) return
+      const { gsap } = mod
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          delay: 2,
+          onComplete: () => {
+            sessionStorage.setItem("hero-animated", "true")
+          },
+        })
 
       if (nameRef.current) {
         const text = nameRef.current.textContent ?? ""
@@ -90,9 +129,15 @@ export function Hero() {
       if (ctaRef.current) {
         tl.fromTo(ctaRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.5)
       }
-    }, sectionRef)
+      }, sectionRef)
+    }
 
-    return () => ctx.revert()
+    run()
+
+    return () => {
+      isActive = false
+      ctx?.revert()
+    }
   }, [])
 
   return (

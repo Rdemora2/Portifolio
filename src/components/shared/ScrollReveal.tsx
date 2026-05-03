@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef, useEffect, type ReactNode } from "react"
-import { gsap } from "@/lib/gsap"
 
 interface ScrollRevealProps {
   children: ReactNode
@@ -37,21 +36,35 @@ export function ScrollReveal({
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced) return
 
+    let isActive = true
     const config = ANIMATION_CONFIG[animation]
-    gsap.set(el, config.from)
+
+    const setup = async () => {
+      const mod = await import("@/lib/gsap")
+      if (!isActive) return
+      mod.gsap.set(el, config.from)
+    }
+
+    setup()
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          gsap.to(el, { ...config.to, duration, delay, ease: "power3.out" })
-          observer.disconnect()
+          import("@/lib/gsap").then((mod) => {
+            if (!isActive) return
+            mod.gsap.to(el, { ...config.to, duration, delay, ease: "power3.out" })
+            observer.disconnect()
+          })
         }
       },
       { threshold }
     )
 
     observer.observe(el)
-    return () => observer.disconnect()
+    return () => {
+      isActive = false
+      observer.disconnect()
+    }
   }, [animation, delay, duration, threshold])
 
   return (

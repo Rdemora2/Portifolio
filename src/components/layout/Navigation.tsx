@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { gsap } from "@/lib/gsap"
 import { navLinks } from "@/data/portfolio"
 import { useActiveSection } from "@/hooks/useActiveSection"
 
@@ -19,18 +18,29 @@ export function Navigation() {
   }, [])
 
   useEffect(() => {
-    if (!mobileMenuRef.current) return
-    if (isMobileOpen) {
-      gsap.to(mobileMenuRef.current, { opacity: 1, visibility: "visible", duration: 0.3 })
-      linksRef.current.forEach((link, i) => {
-        if (link) {
-          gsap.fromTo(link, { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, delay: i * 0.06 })
-        }
-      })
-    } else {
-      gsap.to(mobileMenuRef.current, { opacity: 0, duration: 0.3, onComplete: () => {
-        if (mobileMenuRef.current) mobileMenuRef.current.style.visibility = "hidden"
-      }})
+    let isActive = true
+    const run = async () => {
+      if (!mobileMenuRef.current) return
+      const mod = await import("@/lib/gsap")
+      if (!isActive) return
+      const { gsap } = mod
+      if (isMobileOpen) {
+        gsap.to(mobileMenuRef.current, { opacity: 1, visibility: "visible", duration: 0.3 })
+        linksRef.current.forEach((link, i) => {
+          if (link) {
+            gsap.fromTo(link, { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, delay: i * 0.06 })
+          }
+        })
+      } else {
+        gsap.to(mobileMenuRef.current, { opacity: 0, duration: 0.3, onComplete: () => {
+          if (mobileMenuRef.current) mobileMenuRef.current.style.visibility = "hidden"
+        }})
+      }
+    }
+
+    run()
+    return () => {
+      isActive = false
     }
   }, [isMobileOpen])
 

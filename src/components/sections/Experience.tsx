@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef, useEffect } from "react"
-import { gsap, ScrollTrigger } from "@/lib/gsap"
 import { experience } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 
@@ -15,24 +14,37 @@ export function Experience() {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced) return
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        lineRef.current,
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 60%",
-            end: "bottom 40%",
-            scrub: 1,
-          },
-        }
-      )
-    }, sectionRef)
+    let ctx: { revert: () => void } | null = null
+    let isActive = true
 
-    return () => ctx.revert()
+    const run = async () => {
+      const mod = await import("@/lib/gsap")
+      if (!isActive) return
+      const { gsap } = mod
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          lineRef.current,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 60%",
+              end: "bottom 40%",
+              scrub: 1,
+            },
+          }
+        )
+      }, sectionRef)
+    }
+
+    run()
+
+    return () => {
+      isActive = false
+      ctx?.revert()
+    }
   }, [])
 
   return (

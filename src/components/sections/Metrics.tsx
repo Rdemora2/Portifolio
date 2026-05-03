@@ -98,6 +98,7 @@ export function Metrics() {
 
 function DataflowBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const sizeRef = useRef({ width: 0, height: 0 })
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -112,20 +113,22 @@ function DataflowBackground() {
     const resize = () => {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
+      sizeRef.current = { width: canvas.width, height: canvas.height }
     }
     resize()
     window.addEventListener("resize", resize)
 
     let rafId: number
     const lines = Array.from({ length: 15 }, () => ({
-      y: Math.random() * canvas.height,
+      y: Math.random() * sizeRef.current.height,
       speed: 0.3 + Math.random() * 0.8,
       width: 50 + Math.random() * 200,
-      x: Math.random() * canvas.width,
+      x: Math.random() * sizeRef.current.width,
     }))
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const { width, height } = sizeRef.current
+      ctx.clearRect(0, 0, width, height)
       ctx.strokeStyle = "rgba(99, 102, 241, 0.04)"
       ctx.lineWidth = 1
 
@@ -135,9 +138,9 @@ function DataflowBackground() {
         ctx.lineTo(line.x + line.width, line.y)
         ctx.stroke()
         line.x += line.speed
-        if (line.x > canvas.width) {
+        if (line.x > sizeRef.current.width) {
           line.x = -line.width
-          line.y = Math.random() * canvas.height
+          line.y = Math.random() * sizeRef.current.height
         }
       })
 

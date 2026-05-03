@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react"
 
 export function SectionDivider() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const sizeRef = useRef({ width: 0, height: 0, ratio: 1 })
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -16,9 +17,14 @@ export function SectionDivider() {
     if (!ctx) return
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+      const ratio = window.devicePixelRatio || 1
+      const width = canvas.offsetWidth
+      const height = canvas.offsetHeight
+      canvas.width = width * ratio
+      canvas.height = height * ratio
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
+      ctx.scale(ratio, ratio)
+      sizeRef.current = { width, height, ratio }
     }
     resize()
     window.addEventListener("resize", resize)
@@ -28,8 +34,7 @@ export function SectionDivider() {
 
     const draw = () => {
       time += 0.015
-      const w = canvas.offsetWidth
-      const h = canvas.offsetHeight
+      const { width: w, height: h } = sizeRef.current
       ctx.clearRect(0, 0, w, h)
 
       ctx.beginPath()

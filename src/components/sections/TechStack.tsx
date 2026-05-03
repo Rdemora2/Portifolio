@@ -28,7 +28,8 @@ export function TechStack() {
   const containerRef = useRef<HTMLDivElement>(null)
   const mouseRef = useRef({ x: 0, y: 0 })
   const tagRefs = useRef<(HTMLSpanElement | null)[]>([])
-  const tagPositions = useRef<{ x: number; y: number }[]>([])
+  const tagRectsRef = useRef<(DOMRect | null)[]>([])
+  const containerRectRef = useRef<DOMRect | null>(null)
   const currentOffsets = useRef<{ x: number; y: number }[]>([])
   const rafRef = useRef<number>(0)
 
@@ -49,8 +50,14 @@ export function TechStack() {
       currentOffsets.current = Array.from({ length: allTags }, () => ({ x: 0, y: 0 }))
     }
 
+    const updateRects = () => {
+      containerRectRef.current = container.getBoundingClientRect()
+      tagRectsRef.current = tagRefs.current.map((tag) => (tag ? tag.getBoundingClientRect() : null))
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect()
+      const rect = containerRectRef.current
+      if (!rect) return
       mouseRef.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
@@ -63,10 +70,9 @@ export function TechStack() {
 
       tags.forEach((tag, i) => {
         if (!tag) return
-
-        const rect = tag.getBoundingClientRect()
-        const containerRect = containerRef.current?.getBoundingClientRect()
-        if (!containerRect) return
+        const rect = tagRectsRef.current[i]
+        const containerRect = containerRectRef.current
+        if (!rect || !containerRect) return
 
         const tagCenterX = rect.left - containerRect.left + rect.width / 2
         const tagCenterY = rect.top - containerRect.top + rect.height / 2
@@ -98,11 +104,19 @@ export function TechStack() {
       rafRef.current = requestAnimationFrame(animate)
     }
 
+    updateRects()
+    const resizeObserver = new ResizeObserver(() => updateRects())
+    resizeObserver.observe(container)
+    tagRefs.current.forEach((tag) => {
+      if (tag) resizeObserver.observe(tag)
+    })
+
     container.addEventListener("mousemove", handleMouseMove)
     rafRef.current = requestAnimationFrame(animate)
 
     return () => {
       container.removeEventListener("mousemove", handleMouseMove)
+      resizeObserver.disconnect()
       cancelAnimationFrame(rafRef.current)
     }
   }, [prefersReduced, isTouch])

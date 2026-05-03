@@ -18,6 +18,7 @@ interface NeuralConnection {
 export function NeuralBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const sizeRef = useRef({ width: 0, height: 0, ratio: 1 })
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -34,16 +35,21 @@ export function NeuralBackground() {
     if (!ctx) return
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+      const ratio = window.devicePixelRatio || 1
+      const width = canvas.offsetWidth
+      const height = canvas.offsetHeight
+      canvas.width = width * ratio
+      canvas.height = height * ratio
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
+      ctx.scale(ratio, ratio)
+      sizeRef.current = { width, height, ratio }
     }
     resize()
     window.addEventListener("resize", resize)
 
     // Generate neural network topology
-    const w = canvas.offsetWidth
-    const h = canvas.offsetHeight
+    const w = sizeRef.current.width
+    const h = sizeRef.current.height
     const layers = [4, 6, 8, 6, 4, 3]
     const nodes: NeuralNode[] = []
     const connections: NeuralConnection[] = []
@@ -85,8 +91,7 @@ export function NeuralBackground() {
 
     if (prefersReduced || isTouch) {
       // Static render
-      const cw = canvas.offsetWidth
-      const ch = canvas.offsetHeight
+      const { width: cw, height: ch } = sizeRef.current
       ctx.clearRect(0, 0, cw, ch)
 
       connections.forEach((conn) => {
@@ -119,8 +124,7 @@ export function NeuralBackground() {
 
     const draw = () => {
       time += 0.008
-      const cw = canvas.offsetWidth
-      const ch = canvas.offsetHeight
+      const { width: cw, height: ch } = sizeRef.current
       ctx.clearRect(0, 0, cw, ch)
 
       // Animate node positions subtly

@@ -139,8 +139,8 @@
 }
 
 @keyframes gradient-rotate {
-  from { --angle: 0deg; }
-  to { --angle: 360deg; }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes scroll-indicator {
@@ -155,18 +155,13 @@
   20%, 40%, 60%, 80% { transform: translateX(4px); }
 }
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
 
 .animate-gradient-rotate {
   animation: gradient-rotate 3s linear infinite;
+  transform-origin: center;
 }
 
 .animate-scroll-indicator {

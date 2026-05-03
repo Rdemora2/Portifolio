@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { gsap } from "@/lib/gsap"
 import { projects } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { CountUp } from "@/components/shared/CountUp"
@@ -50,31 +49,42 @@ export function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all")
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const listRef = useRef<HTMLDivElement>(null)
+  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null)
 
   const filtered = projects.filter((p) => matchesFilter(p, activeFilter))
 
-  const handleFilterChange = (filter: FilterType) => {
-    if (listRef.current) {
-      gsap.to(listRef.current.children, {
-        opacity: 0,
-        y: 20,
-        duration: 0.2,
-        stagger: 0.03,
-        onComplete: () => {
-          setActiveFilter(filter)
-          setExpandedId(null)
-          if (listRef.current) {
-            gsap.fromTo(
-              listRef.current.children,
-              { opacity: 0, y: 20 },
-              { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power3.out" }
-            )
-          }
-        },
-      })
-    } else {
+  const loadGsap = async () => {
+    if (gsapRef.current) return gsapRef.current
+    const mod = await import("@/lib/gsap")
+    gsapRef.current = mod
+    return mod
+  }
+
+  const handleFilterChange = async (filter: FilterType) => {
+    const mod = await loadGsap()
+    const gsap = mod?.gsap
+    if (!gsap || !listRef.current) {
       setActiveFilter(filter)
+      return
     }
+
+    gsap.to(listRef.current.children, {
+      opacity: 0,
+      y: 20,
+      duration: 0.2,
+      stagger: 0.03,
+      onComplete: () => {
+        setActiveFilter(filter)
+        setExpandedId(null)
+        if (listRef.current) {
+          gsap.fromTo(
+            listRef.current.children,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power3.out" }
+          )
+        }
+      },
+    })
   }
 
   const toggleExpand = (id: string) => {
@@ -154,17 +164,33 @@ function ProjectItem({
 }) {
   const detailsRef = useRef<HTMLDivElement>(null)
   const itemRef = useRef<HTMLDivElement>(null)
+  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null)
 
   useEffect(() => {
     if (!detailsRef.current) return
-    if (isExpanded) {
-      gsap.fromTo(
-        detailsRef.current,
-        { height: 0, opacity: 0 },
-        { height: "auto", opacity: 1, duration: 0.6, ease: "power3.out" }
-      )
-    } else {
-      gsap.to(detailsRef.current, { height: 0, opacity: 0, duration: 0.4, ease: "power3.inOut" })
+    let isActive = true
+
+    const run = async () => {
+      if (!gsapRef.current) {
+        gsapRef.current = await import("@/lib/gsap")
+      }
+      if (!isActive || !gsapRef.current) return
+      const { gsap } = gsapRef.current
+      if (isExpanded) {
+        gsap.fromTo(
+          detailsRef.current,
+          { height: 0, opacity: 0 },
+          { height: "auto", opacity: 1, duration: 0.6, ease: "power3.out" }
+        )
+      } else {
+        gsap.to(detailsRef.current, { height: 0, opacity: 0, duration: 0.4, ease: "power3.inOut" })
+      }
+    }
+
+    run()
+
+    return () => {
+      isActive = false
     }
   }, [isExpanded])
 
