@@ -44,7 +44,7 @@
   --text-6xl: 4.3125rem;    /* 69px */
   --text-7xl: 5.1875rem;    /* 83px */
   --text-8xl: 6.1875rem;    /* 99px */
-  --text-hero: clamp(3rem, 5vw + 1.5rem, 6.1875rem);
+  --text-hero: clamp(2.5rem, 4vw + 1rem, 5.1875rem);
 
   /* ── Easing ── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

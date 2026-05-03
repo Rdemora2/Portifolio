@@ -48,7 +48,7 @@ export function Metrics() {
           {metrics.map((metric, idx) => (
             <ScrollReveal key={metric.label} delay={idx * 0.15}>
               <div
-                className="rounded-2xl border p-10 text-center transition-all duration-500 hover:border-[var(--color-signal)]"
+                className="rounded-2xl border p-6 md:p-8 text-center transition-all duration-500 hover:border-[var(--color-signal)]"
                 style={{
                   borderColor: "var(--color-edge)",
                   backgroundColor: "rgba(10,16,24,0.6)",
@@ -56,7 +56,7 @@ export function Metrics() {
                 }}
               >
                 <div
-                  className="text-6xl font-extrabold leading-none md:text-7xl lg:text-8xl"
+                  className="text-5xl font-extrabold leading-none md:text-6xl lg:text-7xl"
                   style={{
                     fontFamily: "var(--font-display)",
                     color: "var(--color-signal)",
