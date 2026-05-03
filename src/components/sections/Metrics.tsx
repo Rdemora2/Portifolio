@@ -13,7 +13,7 @@ export function Metrics() {
     <section
       id="metrics"
       ref={sectionRef as React.RefObject<HTMLElement>}
-      className="relative overflow-hidden py-32"
+      className="relative overflow-hidden py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
       <DataflowBackground />
@@ -24,7 +24,7 @@ export function Metrics() {
             className="mb-2 text-center text-sm font-medium uppercase tracking-widest"
             style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
           >
-            Performance em Produção
+            Números reais
           </p>
           <h2
             className="mb-4 text-center text-3xl font-bold md:text-5xl"
@@ -33,10 +33,10 @@ export function Metrics() {
             Hospital Sírio-Libanês
           </h2>
           <p
-            className="mx-auto mb-16 max-w-xl text-center text-base"
+            className="mx-auto mb-16 max-w-xl text-center text-sm md:text-base"
             style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}
           >
-            Métricas reais de um sistema em produção de missão crítica
+            Dados de produção do sistema que eu construí e mantenho
           </p>
         </ScrollReveal>
 

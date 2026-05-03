@@ -7,6 +7,12 @@ import { contactSchema, type ContactSchema } from "@/lib/validations"
 import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { MagneticButton } from "@/components/shared/MagneticButton"
+import dynamic from "next/dynamic"
+
+const WaveCanvas = dynamic(
+  () => import("@/components/three/WaveCanvas").then((m) => ({ default: m.WaveCanvas })),
+  { ssr: false }
+)
 
 const PROJECT_TYPES = [
   { value: "web", label: "Aplicação Web" },
@@ -50,10 +56,11 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-32"
+      className="relative overflow-hidden py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <WaveCanvas />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-[2fr_3fr]">
           <ScrollReveal>
             <div>
@@ -67,13 +74,13 @@ export function Contact() {
                 className="mb-6 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl"
                 style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
               >
-                Vamos construir algo extraordinário.
+                Bora conversar?
               </h2>
               <p
-                className="mb-8 text-lg leading-relaxed"
+                className="mb-8 text-base leading-relaxed md:text-lg"
                 style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}
               >
-                Sinta-se à vontade para entrar em contato para discutir projetos que demandam excelência técnica e liderança estratégica.
+                Se você tem um projeto interessante ou quer trocar uma ideia, manda uma mensagem.
               </p>
 
               <div className="space-y-4">

@@ -13,6 +13,7 @@ import { TechStack } from "@/components/sections/TechStack"
 import { Metrics } from "@/components/sections/Metrics"
 import { Experience } from "@/components/sections/Experience"
 import { Contact } from "@/components/sections/Contact"
+import { SectionDivider } from "@/components/shared/SectionDivider"
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -30,11 +31,17 @@ export default function Home() {
       <Navigation />
       <main id="main-content">
         <Hero />
+        <SectionDivider />
         <About />
+        <SectionDivider />
         <Projects />
+        <SectionDivider />
         <TechStack />
+        <SectionDivider />
         <Metrics />
+        <SectionDivider />
         <Experience />
+        <SectionDivider />
         <Contact />
       </main>
       <Footer />

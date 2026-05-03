@@ -23,24 +23,24 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://robertozarzur.dev"),
   title: {
-    default: "Roberto de Moraes Zarzur — Gestor de TI & Engenheiro de Software",
+    default: "Roberto Zarzur | Gestor de TI & Engenheiro de Software",
     template: "%s | Roberto Zarzur",
   },
-  description: "Gestor de TI e Engenheiro de Software especializado em arquiteturas de missão crítica, ultra-baixa latência e liderança de times de alto desempenho.",
-  keywords: ["Gestor de TI", "Engenheiro de Software", "Go", "Golang", "Next.js", "Arquitetura de Software", "Backend", "Cloud", "AWS", "GCP"],
+  description: "Gestor de TI e engenheiro de software. Lidero times, construo backends de alta performance em Go, e cuido de infra cloud na AWS e GCP.",
+  keywords: ["Gestor de TI", "Engenheiro de Software", "Go", "Golang", "Next.js", "Backend", "Cloud", "AWS", "GCP", "Kotlin"],
   authors: [{ name: "Roberto de Moraes Zarzur" }],
   creator: "Roberto de Moraes Zarzur",
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    title: "Roberto de Moraes Zarzur — Gestor de TI & Engenheiro de Software",
-    description: "Arquiteturas de missão crítica. Liderança de alto desempenho. Ultra-baixa latência.",
+    title: "Roberto Zarzur | Gestor de TI & Engenheiro de Software",
+    description: "Lidero times de tecnologia, codifico backends pesados em Go e cuido de infra cloud.",
     siteName: "Roberto Zarzur",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Roberto de Moraes Zarzur",
-    description: "Gestor de TI & Engenheiro de Software — Arquiteturas de Missão Crítica",
+    title: "Roberto Zarzur",
+    description: "Gestor de TI & Engenheiro de Software: Go, Next.js, Kotlin, AWS, GCP",
   },
   robots: {
     index: true,
@@ -54,13 +54,13 @@ const jsonLd = {
   "@type": "Person",
   name: "Roberto de Moraes Zarzur",
   jobTitle: "Gestor de TI & Engenheiro de Software",
-  description: "Especializado em arquiteturas de missão crítica e liderança de times de alto desempenho",
+  description: "Líder técnico e engenheiro com foco em backend de alta performance, cloud e gestão de times",
   url: "https://robertozarzur.dev",
   sameAs: [
     "https://www.linkedin.com/in/robertomoraeszarzur/",
     "https://github.com/Rdemora2",
   ],
-  knowsAbout: ["Go", "Golang", "Next.js", "TypeScript", "AWS", "GCP", "Kotlin", "Gestão de TI", "Arquitetura de Software"],
+  knowsAbout: ["Go", "Golang", "Next.js", "TypeScript", "AWS", "GCP", "Kotlin", "Gestão de TI"],
   worksFor: {
     "@type": "Organization",
     name: "Valiant Group",

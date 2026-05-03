@@ -38,7 +38,7 @@ export function TechStack() {
   return (
     <section
       id="tech"
-      className="relative py-32"
+      className="relative py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -47,13 +47,13 @@ export function TechStack() {
             className="mb-2 text-sm font-medium uppercase tracking-widest"
             style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
           >
-            Stack Técnica
+            O que eu uso
           </p>
           <h2
             className="mb-16 text-3xl font-bold md:text-5xl"
             style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
           >
-            Tecnologias & Ferramentas
+            Tecnologias
           </h2>
         </ScrollReveal>
 

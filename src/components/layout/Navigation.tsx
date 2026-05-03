@@ -58,7 +58,7 @@ export function Navigation() {
             onClick={(e) => { e.preventDefault(); handleNavClick("hero") }}
             className="text-lg font-bold tracking-tight"
             style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
-            aria-label="Roberto Zarzur — Ir ao início"
+            aria-label="Roberto Zarzur, ir ao início"
           >
             RZ<span style={{ color: "var(--color-signal)" }}>.</span>
           </a>

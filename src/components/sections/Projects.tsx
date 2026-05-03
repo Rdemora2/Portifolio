@@ -83,7 +83,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative py-32"
+      className="relative py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -98,7 +98,7 @@ export function Projects() {
             className="mb-12 text-3xl font-bold md:text-5xl"
             style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
           >
-            Trabalhos selecionados
+            O que eu fiz
           </h2>
         </ScrollReveal>
 
