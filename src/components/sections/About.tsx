@@ -84,11 +84,11 @@ export function About() {
                   color: "var(--color-text-secondary)",
                 }}
               >
-                Já trabalhei em projetos pro{" "}
-                <span style={{ color: "var(--color-signal)" }}>Grupo Bandeirantes</span>,{" "}
-                <span style={{ color: "var(--color-signal)" }}>Hospital Sírio-Libanês</span> e{" "}
-                <span style={{ color: "var(--color-signal)" }}>Fiesta Americana Resorts</span>.
-                Faço as coisas funcionarem, do código à gestão.
+                Com um histórico focado em sistemas de missão crítica, entreguei soluções escaláveis para gigantes corporativos como o{" "}
+                <span style={{ color: "var(--color-signal)", fontWeight: "600" }}>Grupo Bandeirantes</span>,{" "}
+                <span style={{ color: "var(--color-signal)", fontWeight: "600" }}>Hospital Sírio-Libanês</span> e a rede global{" "}
+                <span style={{ color: "var(--color-signal)", fontWeight: "600" }}>Fiesta Americana Resorts</span>. 
+                Minha entrega abrange desde a concepção de infraestruturas resilientes até a governança impecável da tecnologia.
               </p>
             </ScrollReveal>
           </div>
