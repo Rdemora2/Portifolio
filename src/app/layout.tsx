@@ -23,24 +23,24 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://robertozarzur.dev"),
   title: {
-    default: "Roberto Zarzur | Gestor de TI & Engenheiro de Software",
+    default: "Roberto Zarzur | Gerente de TI & Engenheiro de Software",
     template: "%s | Roberto Zarzur",
   },
-  description: "Gestor de TI e engenheiro de software. Lidero times, construo backends de alta performance em Go, e cuido de infra cloud na AWS e GCP.",
-  keywords: ["Gestor de TI", "Engenheiro de Software", "Go", "Golang", "Next.js", "Backend", "Cloud", "AWS", "GCP", "Kotlin"],
+  description: "Gerente de TI e engenheiro de software. Lidero times, construo backends de alta performance em Go, e cuido de infra cloud na AWS e GCP.",
+  keywords: ["Gerente de TI", "Engenheiro de Software", "Go", "Golang", "Next.js", "Backend", "Cloud", "AWS", "GCP", "Kotlin"],
   authors: [{ name: "Roberto de Moraes Zarzur" }],
   creator: "Roberto de Moraes Zarzur",
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    title: "Roberto Zarzur | Gestor de TI & Engenheiro de Software",
+    title: "Roberto Zarzur | Gerente de TI & Engenheiro de Software",
     description: "Lidero times de tecnologia, codifico backends pesados em Go e cuido de infra cloud.",
     siteName: "Roberto Zarzur",
   },
   twitter: {
     card: "summary_large_image",
     title: "Roberto Zarzur",
-    description: "Gestor de TI & Engenheiro de Software: Go, Next.js, Kotlin, AWS, GCP",
+    description: "Gerente de TI & Engenheiro de Software: Go, Next.js, Kotlin, AWS, GCP",
   },
   robots: {
     index: true,
@@ -53,7 +53,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Roberto de Moraes Zarzur",
-  jobTitle: "Gestor de TI & Engenheiro de Software",
+  jobTitle: "Gerente de TI & Engenheiro de Software",
   description: "Líder técnico e engenheiro com foco em backend de alta performance, cloud e gestão de times",
   url: "https://robertozarzur.dev",
   sameAs: [

@@ -2,9 +2,9 @@ import type { PersonalInfo, Project, TechItem, ExperienceEntry } from "@/types"
 
 export const personalInfo: PersonalInfo = {
   name: "Roberto de Moraes Zarzur",
-  title: "Gestor de TI & Engenheiro de Software",
+  title: "Gerente de TI & Engenheiro de Software",
   subtitle: "Go · Next.js · Kotlin · AWS · GCP",
-  bio: "Sou gestor de TI e engenheiro de software. Lidero times, codifico sistemas de backend pesado e cuido de infra cloud, tudo ao mesmo tempo. Gosto de resolver problemas difíceis, especialmente quando envolvem performance e escala de verdade.",
+  bio: "Sou Gerente de TI e engenheiro de software. Lidero times, codifico sistemas de backend pesado e cuido de infra cloud, tudo ao mesmo tempo. Gosto de resolver problemas difíceis, especialmente quando envolvem performance e escala de verdade.",
   location: "São Paulo, Brasil",
   availability: "open",
   contacts: [
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     roleType: "hybrid",
     client: "Grupo Bandeirantes",
     period: "2024",
-    role: "Gestor de TI",
+    role: "Gerente de TI",
     shortDescription: "Coordenei a modernização completa dos portais de notícias do Grupo Bandeirantes, do legado para uma stack nova com Next.js e Go.",
     description: "Conduzi a migração tecnológica dos portais Band News e BandSports. Na prática: coordenei os times de design, front, back e infra ao mesmo tempo, alinhei tudo com o C-Level do grupo e garanti que saísse no prazo sem derrubar nada no ar.",
     challenge: "Os portais rodavam em cima de uma stack antiga e precisavam ser modernizados sem tirar do ar. O desafio maior foi orquestrar times com backgrounds técnicos bem diferentes e manter todo mundo alinhado.",

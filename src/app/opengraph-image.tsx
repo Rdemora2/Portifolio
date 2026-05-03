@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
-export const alt = "Roberto Zarzur | Gestor de TI & Engenheiro de Software"
+export const alt = "Roberto Zarzur | Gerente de TI & Engenheiro de Software"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -40,7 +40,7 @@ export default async function Image() {
             marginBottom: "24px",
           }}
         >
-          Gestor de TI & Engenheiro de Software
+          Gerente de TI & Engenheiro de Software
         </p>
         <p
           style={{
