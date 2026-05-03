@@ -15,11 +15,11 @@ export const SECTION_IDS = {
 export const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&"
 
 export const TECH_CATEGORY_COLORS: Record<string, string> = {
-  cloud: "#00d4ff",
+  cloud: "#6366f1",
   backend: "#00ff88",
-  frontend: "#00d4ff",
+  frontend: "#6366f1",
   mobile: "#ff6b35",
-  devops: "#0088cc",
+  devops: "#4f46e5",
   ai: "#a855f7",
   video: "#f59e0b",
 }

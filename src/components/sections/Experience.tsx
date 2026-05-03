@@ -45,8 +45,12 @@ export function Experience() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
           <p
-            className="mb-2 text-sm font-medium uppercase tracking-widest"
-            style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
+            className="mb-2 text-xs font-normal uppercase"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-muted)",
+              letterSpacing: "0.25em",
+            }}
           >
             Onde trabalhei
           </p>
@@ -98,10 +102,10 @@ export function Experience() {
                     className="rounded-2xl border p-8 transition-all duration-500 hover:border-[var(--color-signal)]"
                     style={{
                       borderColor: "var(--color-edge)",
-                      backgroundColor: "rgba(8,13,20,0.5)",
+                      backgroundColor: "rgba(10,16,24,0.5)",
                     }}
                   >
-                    <div className="mb-4 flex flex-wrap items-center gap-3">
+                    <div className="mb-4 flex flex-wrap items-center gap-2">
                       <span
                         className="text-xs uppercase tracking-widest"
                         style={{

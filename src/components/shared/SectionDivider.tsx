@@ -46,11 +46,11 @@ export function SectionDivider() {
       }
 
       const gradient = ctx.createLinearGradient(0, 0, w, 0)
-      gradient.addColorStop(0, "rgba(0, 212, 255, 0)")
-      gradient.addColorStop(0.2, "rgba(0, 212, 255, 0.4)")
+      gradient.addColorStop(0, "rgba(99, 102, 241, 0)")
+      gradient.addColorStop(0.2, "rgba(99, 102, 241, 0.4)")
       gradient.addColorStop(0.5, "rgba(0, 255, 136, 0.6)")
-      gradient.addColorStop(0.8, "rgba(0, 212, 255, 0.4)")
-      gradient.addColorStop(1, "rgba(0, 212, 255, 0)")
+      gradient.addColorStop(0.8, "rgba(99, 102, 241, 0.4)")
+      gradient.addColorStop(1, "rgba(99, 102, 241, 0)")
 
       ctx.strokeStyle = gradient
       ctx.lineWidth = 1.5
@@ -58,7 +58,7 @@ export function SectionDivider() {
 
       // glow pass
       ctx.shadowBlur = 8
-      ctx.shadowColor = "rgba(0, 212, 255, 0.3)"
+      ctx.shadowColor = "rgba(99, 102, 241, 0.3)"
       ctx.stroke()
       ctx.shadowBlur = 0
 

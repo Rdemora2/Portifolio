@@ -43,7 +43,7 @@ export function GeometricCore({ mouse }: { mouse: { x: number; y: number } }) {
     () => ({
       uTime: { value: 0 },
       uMouse: { value: new THREE.Vector2(0, 0) },
-      uColor: { value: new THREE.Color(0x00d4ff) },
+      uColor: { value: new THREE.Color(0x6366f1) },
     }),
     []
   )

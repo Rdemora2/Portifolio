@@ -2,12 +2,13 @@
 @import "../styles/variables.css";
 
 @theme {
-  --color-void: #020408;
-  --color-deep: #080d14;
+  --color-void: #050a12;
+  --color-deep: #0a1018;
   --color-structure: #0d1520;
   --color-edge: #1a2840;
-  --color-signal: #00d4ff;
-  --color-pulse: #0088cc;
+  --color-signal: #6366f1;
+  --color-pulse: #4f46e5;
+  --color-highlight: #00d4ff;
   --color-matrix: #00ff88;
   --color-alert: #ff6b35;
 }
@@ -33,14 +34,42 @@
     overflow-x: hidden;
   }
 
+  /* Noise texture overlay for depth perception */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    mix-blend-mode: overlay;
+  }
+
+  @media (prefers-contrast: more) {
+    body::after {
+      display: none;
+    }
+  }
+
   ::selection {
-    background-color: rgba(0, 212, 255, 0.2);
+    background-color: rgba(99, 102, 241, 0.2);
     color: var(--color-text-primary);
   }
 
   :focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 2px;
+  }
+
+  /* Hide native cursor when custom cursor is active */
+  @media (pointer: fine) {
+    .custom-cursor-active,
+    .custom-cursor-active * {
+      cursor: none !important;
+    }
   }
 }
 
@@ -82,7 +111,7 @@
     background-color: transparent;
     border: 1px solid var(--color-edge);
     border-radius: 0.75rem;
-    padding: 0.875rem 1rem;
+    padding: 1rem;
     font-family: var(--font-body);
     font-size: 0.875rem;
     color: var(--color-text-primary);

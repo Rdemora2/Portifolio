@@ -11,7 +11,7 @@ function GridPlane() {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColor: { value: new THREE.Color(0x00d4ff) },
+      uColor: { value: new THREE.Color(0x6366f1) },
     }),
     []
   )
@@ -100,7 +100,7 @@ function FloatingOrbs() {
       {orbs.map((orb, i) => (
         <mesh key={i} position={orb.pos} scale={orb.scale}>
           <sphereGeometry args={[1, 16, 16]} />
-          <meshBasicMaterial color="#00d4ff" transparent opacity={0.25} />
+          <meshBasicMaterial color="#6366f1" transparent opacity={0.25} />
         </mesh>
       ))}
     </group>

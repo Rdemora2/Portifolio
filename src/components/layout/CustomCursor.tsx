@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useCallback } from "react"
 
 export function CustomCursor() {
   const innerRef = useRef<HTMLDivElement>(null)
@@ -9,14 +9,21 @@ export function CustomCursor() {
   const outerPos = useRef({ x: 0, y: 0 })
   const [cursorState, setCursorState] = useState<"default" | "hover-link" | "hover-button">("default")
   const [isVisible, setIsVisible] = useState(false)
+  const isVisibleRef = useRef(false)
 
   useEffect(() => {
     const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0
     if (isTouchDevice) return
 
+    // Add cursor-hide class to body
+    document.body.classList.add("custom-cursor-active")
+
     const onMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY }
-      if (!isVisible) setIsVisible(true)
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true
+        setIsVisible(true)
+      }
       if (innerRef.current) {
         innerRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`
       }
@@ -33,8 +40,14 @@ export function CustomCursor() {
       }
     }
 
-    const onMouseLeave = () => setIsVisible(false)
-    const onMouseEnter = () => setIsVisible(true)
+    const onMouseLeave = () => {
+      isVisibleRef.current = false
+      setIsVisible(false)
+    }
+    const onMouseEnter = () => {
+      isVisibleRef.current = true
+      setIsVisible(true)
+    }
 
     let rafId: number
     const lerp = () => {
@@ -58,8 +71,9 @@ export function CustomCursor() {
       document.removeEventListener("mouseover", onMouseOver)
       document.removeEventListener("mouseleave", onMouseLeave)
       document.removeEventListener("mouseenter", onMouseEnter)
+      document.body.classList.remove("custom-cursor-active")
     }
-  }, [isVisible])
+  }, [])
 
   const scaleMap = {
     default: 1,
@@ -91,9 +105,10 @@ export function CustomCursor() {
         style={{
           width: outerSize,
           height: outerSize,
-          borderColor: "var(--color-signal)",
+          borderColor: cursorState === "hover-link" ? "var(--color-signal)" : "var(--color-signal)",
+          backgroundColor: cursorState === "hover-link" ? "rgba(99,102,241,0.08)" : "transparent",
           opacity: isVisible ? 0.5 : 0,
-          transition: "opacity 0.3s, width 0.3s, height 0.3s, margin 0.3s, border-color 0.3s",
+          transition: "opacity 0.3s, width 0.3s, height 0.3s, margin 0.3s, border-color 0.3s, background-color 0.3s",
           marginLeft: outerOffset,
           marginTop: outerOffset,
           mixBlendMode: cursorState === "hover-button" ? "difference" : "normal",

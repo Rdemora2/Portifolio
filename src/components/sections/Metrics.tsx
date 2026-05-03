@@ -21,8 +21,12 @@ export function Metrics() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
           <p
-            className="mb-2 text-center text-sm font-medium uppercase tracking-widest"
-            style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
+            className="mb-2 text-center text-xs font-normal uppercase"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-muted)",
+              letterSpacing: "0.25em",
+            }}
           >
             Números reais
           </p>
@@ -47,7 +51,7 @@ export function Metrics() {
                 className="rounded-2xl border p-10 text-center transition-all duration-500 hover:border-[var(--color-signal)]"
                 style={{
                   borderColor: "var(--color-edge)",
-                  backgroundColor: "rgba(8,13,20,0.6)",
+                  backgroundColor: "rgba(10,16,24,0.6)",
                   backdropFilter: "blur(10px)",
                 }}
               >
@@ -122,7 +126,7 @@ function DataflowBackground() {
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.strokeStyle = "rgba(0, 212, 255, 0.04)"
+      ctx.strokeStyle = "rgba(99, 102, 241, 0.04)"
       ctx.lineWidth = 1
 
       lines.forEach((line) => {

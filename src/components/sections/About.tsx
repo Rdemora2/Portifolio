@@ -6,6 +6,7 @@ import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { GradientBorder } from "@/components/shared/GradientBorder"
 import { AnimatedText } from "@/components/shared/AnimatedText"
+import { NeuralBackground } from "@/components/shared/NeuralBackground"
 
 const FloatingGridCanvas = dynamic(
   () => import("@/components/three/FloatingGrid").then((m) => ({ default: m.FloatingGridCanvas })),
@@ -26,13 +27,15 @@ export function About() {
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       <FloatingGridCanvas />
+      <NeuralBackground />
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
           <p
-            className="mb-2 text-sm font-medium uppercase tracking-widest"
+            className="mb-2 text-xs font-normal uppercase"
             style={{
               fontFamily: "var(--font-mono)",
-              color: "var(--color-signal)",
+              color: "var(--color-text-muted)",
+              letterSpacing: "0.25em",
             }}
           >
             Sobre

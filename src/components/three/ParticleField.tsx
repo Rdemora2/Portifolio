@@ -29,7 +29,7 @@ export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColor: { value: new THREE.Color(0x00d4ff) },
+      uColor: { value: new THREE.Color(0x6366f1) },
     }),
     []
   )

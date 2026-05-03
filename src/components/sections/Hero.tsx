@@ -37,10 +37,24 @@ export function Hero() {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced) return
 
+    // Only animate once per session
+    const hasAnimated = sessionStorage.getItem("hero-animated")
+    if (hasAnimated) {
+      // Show final state immediately
+      if (nameRef.current) nameRef.current.style.opacity = "1"
+      if (titleRef.current) titleRef.current.style.clipPath = "inset(0 0% 0 0)"
+      if (subtitleRef.current) subtitleRef.current.style.opacity = "1"
+      if (ctaRef.current) ctaRef.current.style.opacity = "1"
+      return
+    }
+
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 2 })
-
-
+      const tl = gsap.timeline({
+        delay: 2,
+        onComplete: () => {
+          sessionStorage.setItem("hero-animated", "true")
+        },
+      })
 
       if (nameRef.current) {
         const text = nameRef.current.textContent ?? ""
@@ -48,13 +62,14 @@ export function Hero() {
         text.split("").forEach((char) => {
           const span = document.createElement("span")
           span.style.display = "inline-block"
+          span.style.willChange = "transform, opacity"
           span.textContent = char === " " ? "\u00A0" : char
           nameRef.current?.appendChild(span)
         })
         tl.fromTo(
           nameRef.current.children,
           { y: 120, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.2, stagger: 0.035, ease: "power3.out" },
+          { y: 0, opacity: 1, duration: 1.2, stagger: 0.035, ease: "power4.out" },
           0.2
         )
       }
@@ -63,7 +78,7 @@ export function Hero() {
         tl.fromTo(
           titleRef.current,
           { clipPath: "inset(0 100% 0 0)" },
-          { clipPath: "inset(0 0% 0 0)", duration: 1, ease: "power3.out" },
+          { clipPath: "inset(0 0% 0 0)", duration: 1, ease: "power4.out" },
           0.8
         )
       }
@@ -92,7 +107,7 @@ export function Hero() {
 
       <div
         className="absolute inset-0 z-[1]"
-        style={{ background: "radial-gradient(ellipse at 60% 50%, rgba(2,4,8,0.5) 0%, rgba(2,4,8,0.85) 60%, rgba(2,4,8,0.95) 100%)" }}
+        style={{ background: "radial-gradient(ellipse at 60% 50%, rgba(5,10,18,0.5) 0%, rgba(5,10,18,0.85) 60%, rgba(5,10,18,0.95) 100%)" }}
         aria-hidden="true"
       />
 
@@ -101,10 +116,12 @@ export function Hero() {
 
           <h1
             ref={nameRef}
-            className="mb-4 text-5xl font-extrabold leading-none tracking-tight md:text-7xl lg:text-8xl"
+            className="mb-4 font-extrabold leading-none"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
+              fontSize: "var(--text-hero)",
+              letterSpacing: "-0.03em",
             }}
           >
             {personalInfo.name}
@@ -112,11 +129,13 @@ export function Hero() {
 
           <p
             ref={titleRef}
-            className="mb-4 text-xl font-medium md:text-2xl lg:text-3xl"
+            className="mb-4 font-semibold uppercase"
             style={{
               fontFamily: "var(--font-body)",
               color: "var(--color-signal)",
               clipPath: "inset(0 100% 0 0)",
+              fontSize: "var(--text-lg)",
+              letterSpacing: "0.15em",
             }}
           >
             {personalInfo.title}

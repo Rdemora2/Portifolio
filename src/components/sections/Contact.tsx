@@ -65,8 +65,12 @@ export function Contact() {
           <ScrollReveal>
             <div>
               <p
-                className="mb-2 text-sm font-medium uppercase tracking-widest"
-                style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
+                className="mb-2 text-xs font-normal uppercase"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  color: "var(--color-text-muted)",
+                  letterSpacing: "0.25em",
+                }}
               >
                 Contato
               </p>

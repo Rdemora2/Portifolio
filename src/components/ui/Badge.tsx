@@ -8,7 +8,7 @@ interface BadgeProps {
 
 const VARIANT_STYLES = {
   default: { borderColor: "var(--color-edge)", color: "var(--color-text-muted)", bg: "transparent" },
-  signal: { borderColor: "var(--color-signal)", color: "var(--color-signal)", bg: "rgba(0,212,255,0.1)" },
+  signal: { borderColor: "var(--color-signal)", color: "var(--color-signal)", bg: "rgba(99,102,241,0.1)" },
   matrix: { borderColor: "var(--color-matrix)", color: "var(--color-matrix)", bg: "rgba(0,255,136,0.1)" },
   alert: { borderColor: "var(--color-alert)", color: "var(--color-alert)", bg: "rgba(255,107,53,0.1)" },
 }

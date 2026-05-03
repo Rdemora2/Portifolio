@@ -49,7 +49,7 @@ function WaveMesh() {
             float fade = smoothstep(0.0, 0.3, vUv.x) * smoothstep(1.0, 0.7, vUv.x) *
                          smoothstep(0.0, 0.2, vUv.y) * smoothstep(1.0, 0.6, vUv.y);
             float intensity = (vWave + 0.3) * 1.5;
-            vec3 color = mix(vec3(0.0, 0.83, 1.0), vec3(0.0, 1.0, 0.53), vUv.x);
+            vec3 color = mix(vec3(0.39, 0.4, 0.95), vec3(0.0, 1.0, 0.53), vUv.x);
             gl_FragColor = vec4(color * line * fade * 0.15 * intensity, line * fade * 0.12);
           }
         `}

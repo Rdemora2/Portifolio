@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import dynamic from "next/dynamic"
 import { techStack } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
@@ -24,16 +24,96 @@ const CATEGORY_LABELS: Record<TechCategory, string> = {
 
 export function TechStack() {
   const [prefersReduced, setPrefersReduced] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const mouseRef = useRef({ x: 0, y: 0 })
+  const tagRefs = useRef<(HTMLSpanElement | null)[]>([])
+  const tagPositions = useRef<{ x: number; y: number }[]>([])
+  const currentOffsets = useRef<{ x: number; y: number }[]>([])
+  const rafRef = useRef<number>(0)
 
   useEffect(() => {
     setPrefersReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0)
   }, [])
+
+  // Mouse-reactive parallax for tech tags
+  useEffect(() => {
+    if (prefersReduced || isTouch) return
+
+    const container = containerRef.current
+    if (!container) return
+
+    const allTags = techStack.length
+    if (currentOffsets.current.length === 0) {
+      currentOffsets.current = Array.from({ length: allTags }, () => ({ x: 0, y: 0 }))
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect()
+      mouseRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      }
+    }
+
+    const animate = () => {
+      const tags = tagRefs.current
+      const mouse = mouseRef.current
+
+      tags.forEach((tag, i) => {
+        if (!tag) return
+
+        const rect = tag.getBoundingClientRect()
+        const containerRect = containerRef.current?.getBoundingClientRect()
+        if (!containerRect) return
+
+        const tagCenterX = rect.left - containerRect.left + rect.width / 2
+        const tagCenterY = rect.top - containerRect.top + rect.height / 2
+
+        const dx = mouse.x - tagCenterX
+        const dy = mouse.y - tagCenterY
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        const maxDist = 300
+        const maxOffset = 6
+
+        let targetX = 0
+        let targetY = 0
+
+        if (dist < maxDist && dist > 0) {
+          const force = (1 - dist / maxDist) * maxOffset
+          targetX = -(dx / dist) * force
+          targetY = -(dy / dist) * force
+        }
+
+        const current = currentOffsets.current[i]
+        if (!current) return
+
+        current.x += (targetX - current.x) * 0.08
+        current.y += (targetY - current.y) * 0.08
+
+        tag.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`
+      })
+
+      rafRef.current = requestAnimationFrame(animate)
+    }
+
+    container.addEventListener("mousemove", handleMouseMove)
+    rafRef.current = requestAnimationFrame(animate)
+
+    return () => {
+      container.removeEventListener("mousemove", handleMouseMove)
+      cancelAnimationFrame(rafRef.current)
+    }
+  }, [prefersReduced, isTouch])
 
   const grouped = techStack.reduce<Record<string, typeof techStack>>((acc, tech) => {
     if (!acc[tech.category]) acc[tech.category] = []
     acc[tech.category]?.push(tech)
     return acc
   }, {})
+
+  let tagIndex = 0
 
   return (
     <section
@@ -44,8 +124,12 @@ export function TechStack() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
           <p
-            className="mb-2 text-sm font-medium uppercase tracking-widest"
-            style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
+            className="mb-2 text-xs font-normal uppercase"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-muted)",
+              letterSpacing: "0.25em",
+            }}
           >
             O que eu uso
           </p>
@@ -64,7 +148,7 @@ export function TechStack() {
               style={{
                 borderColor: "var(--color-edge)",
                 height: "400px",
-                backgroundColor: "rgba(8,13,20,0.5)",
+                backgroundColor: "rgba(10,16,24,0.5)",
               }}
             >
               <TechGraph techStack={techStack} />
@@ -72,7 +156,7 @@ export function TechStack() {
           </ScrollReveal>
         )}
 
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <div ref={containerRef} className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {Object.entries(grouped).map(([category, items], idx) => (
             <ScrollReveal key={category} delay={idx * 0.1}>
               <div>
@@ -82,30 +166,35 @@ export function TechStack() {
                 >
                   <span
                     className="h-2 w-2 rounded-full"
-                    style={{ backgroundColor: TECH_CATEGORY_COLORS[category] ?? "#00d4ff" }}
+                    style={{ backgroundColor: TECH_CATEGORY_COLORS[category] ?? "#6366f1" }}
                   />
-                  <span style={{ color: TECH_CATEGORY_COLORS[category] ?? "#00d4ff" }}>
+                  <span style={{ color: TECH_CATEGORY_COLORS[category] ?? "#6366f1" }}>
                     {CATEGORY_LABELS[category as TechCategory] ?? category}
                   </span>
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {items.map((tech) => (
-                    <span
-                      key={tech.name}
-                      className="rounded-full border px-3 py-1.5 text-xs transition-all duration-300 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        borderColor: tech.featured ? "var(--color-edge)" : "rgba(26,40,64,0.5)",
-                        color: tech.featured ? "var(--color-text-primary)" : "var(--color-text-secondary)",
-                        backgroundColor: tech.featured ? "rgba(0,212,255,0.05)" : "transparent",
-                      }}
-                    >
-                      {tech.name}
-                      {tech.proficiency === 5 && (
-                        <span className="ml-1" style={{ color: "var(--color-matrix)" }}>★</span>
-                      )}
-                    </span>
-                  ))}
+                  {items.map((tech) => {
+                    const currentIndex = tagIndex++
+                    return (
+                      <span
+                        key={tech.name}
+                        ref={(el) => { tagRefs.current[currentIndex] = el }}
+                        className="rounded-full border px-3 py-1.5 text-xs transition-all duration-300 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          borderColor: tech.featured ? "var(--color-edge)" : "rgba(26,40,64,0.5)",
+                          color: tech.featured ? "var(--color-text-primary)" : "var(--color-text-secondary)",
+                          backgroundColor: tech.featured ? "rgba(99,102,241,0.05)" : "transparent",
+                          willChange: "transform",
+                        }}
+                      >
+                        {tech.name}
+                        {tech.proficiency === 5 && (
+                          <span className="ml-1" style={{ color: "var(--color-matrix)" }}>★</span>
+                        )}
+                      </span>
+                    )
+                  })}
                 </div>
               </div>
             </ScrollReveal>

@@ -1,24 +1,57 @@
 :root {
-  --color-void: #020408;
-  --color-deep: #080d14;
+  /* ── Colors ── */
+  --color-void: #050a12;
+  --color-deep: #0a1018;
   --color-structure: #0d1520;
   --color-edge: #1a2840;
-  --color-signal: #00d4ff;
-  --color-pulse: #0088cc;
+  --color-signal: #6366f1;
+  --color-pulse: #4f46e5;
+  --color-highlight: #00d4ff;
   --color-matrix: #00ff88;
   --color-alert: #ff6b35;
   --color-text-primary: #e8f4f8;
   --color-text-secondary: #6b8fa8;
-  --color-text-muted: #2a4560;
+  --color-text-muted: #3d5f7a;
 
+  /* ── Fonts ── */
   --font-display: "Syne", sans-serif;
   --font-body: "DM Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
+  /* ── Spacing (8px grid) ── */
+  --space-1: 0.5rem;   /* 8px  */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-5: 2.5rem;   /* 40px */
+  --space-6: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  --space-10: 5rem;    /* 80px */
+  --space-12: 6rem;    /* 96px */
+  --space-16: 8rem;    /* 128px */
+
+  /* ── Type Scale (Minor Third 1.2 ratio) ── */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;        /* 16px */
+  --text-md: 1.1875rem;     /* 19px */
+  --text-lg: 1.4375rem;     /* 23px */
+  --text-xl: 1.75rem;       /* 28px */
+  --text-2xl: 2.0625rem;    /* 33px */
+  --text-3xl: 2.5rem;       /* 40px */
+  --text-4xl: 3rem;         /* 48px */
+  --text-5xl: 3.5625rem;    /* 57px */
+  --text-6xl: 4.3125rem;    /* 69px */
+  --text-7xl: 5.1875rem;    /* 83px */
+  --text-8xl: 6.1875rem;    /* 99px */
+  --text-hero: clamp(3rem, 5vw + 1.5rem, 6.1875rem);
+
+  /* ── Easing ── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
   --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+  /* ── Transitions ── */
   --transition-fast: 150ms var(--ease-out-expo);
   --transition-base: 300ms var(--ease-out-expo);
   --transition-slow: 600ms var(--ease-out-expo);
