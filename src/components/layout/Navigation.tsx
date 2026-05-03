@@ -1,54 +1,67 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { navLinks } from "@/data/portfolio"
-import { useActiveSection } from "@/hooks/useActiveSection"
+import { useState, useEffect, useRef } from "react";
+import { navLinks } from "@/data/portfolio";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileOpen, setIsMobileOpen] = useState(false)
-  const activeSection = useActiveSection()
-  const mobileMenuRef = useRef<HTMLDivElement>(null)
-  const linksRef = useRef<HTMLAnchorElement[]>([])
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const activeSection = useActiveSection();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const linksRef = useRef<HTMLAnchorElement[]>([]);
 
   useEffect(() => {
-    const handler = () => setIsScrolled(window.scrollY > 80)
-    window.addEventListener("scroll", handler, { passive: true })
-    return () => window.removeEventListener("scroll", handler)
-  }, [])
+    const handler = () => setIsScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   useEffect(() => {
-    let isActive = true
+    let isActive = true;
     const run = async () => {
-      if (!mobileMenuRef.current) return
-      const mod = await import("@/lib/gsap")
-      if (!isActive) return
-      const { gsap } = mod
+      if (!mobileMenuRef.current) return;
+      const mod = await import("@/lib/gsap");
+      if (!isActive) return;
+      const { gsap } = mod;
       if (isMobileOpen) {
-        gsap.to(mobileMenuRef.current, { opacity: 1, visibility: "visible", duration: 0.3 })
+        gsap.to(mobileMenuRef.current, {
+          opacity: 1,
+          visibility: "visible",
+          duration: 0.3,
+        });
         linksRef.current.forEach((link, i) => {
           if (link) {
-            gsap.fromTo(link, { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, delay: i * 0.06 })
+            gsap.fromTo(
+              link,
+              { x: 40, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.4, delay: i * 0.06 },
+            );
           }
-        })
+        });
       } else {
-        gsap.to(mobileMenuRef.current, { opacity: 0, duration: 0.3, onComplete: () => {
-          if (mobileMenuRef.current) mobileMenuRef.current.style.visibility = "hidden"
-        }})
+        gsap.to(mobileMenuRef.current, {
+          opacity: 0,
+          duration: 0.3,
+          onComplete: () => {
+            if (mobileMenuRef.current)
+              mobileMenuRef.current.style.visibility = "hidden";
+          },
+        });
       }
-    }
+    };
 
-    run()
+    run();
     return () => {
-      isActive = false
-    }
-  }, [isMobileOpen])
+      isActive = false;
+    };
+  }, [isMobileOpen]);
 
   const handleNavClick = (id: string) => {
-    setIsMobileOpen(false)
-    const el = document.getElementById(id)
-    el?.scrollIntoView({ behavior: "smooth" })
-  }
+    setIsMobileOpen(false);
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
@@ -57,7 +70,9 @@ export function Navigation() {
         style={{
           backgroundColor: isScrolled ? "rgba(2,4,8,0.85)" : "transparent",
           backdropFilter: isScrolled ? "blur(20px)" : "none",
-          borderBottom: isScrolled ? "1px solid var(--color-edge)" : "1px solid transparent",
+          borderBottom: isScrolled
+            ? "1px solid var(--color-edge)"
+            : "1px solid transparent",
         }}
         role="navigation"
         aria-label="Navegação principal"
@@ -65,9 +80,15 @@ export function Navigation() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <a
             href="#hero"
-            onClick={(e) => { e.preventDefault(); handleNavClick("hero") }}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("hero");
+            }}
             className="text-lg font-bold tracking-tight"
-            style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--color-text-primary)",
+            }}
             aria-label="Roberto Zarzur, ir ao início"
           >
             RZ<span style={{ color: "var(--color-signal)" }}>.</span>
@@ -78,11 +99,17 @@ export function Navigation() {
               <a
                 key={id}
                 href={`#${id}`}
-                onClick={(e) => { e.preventDefault(); handleNavClick(id) }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(id);
+                }}
                 className="relative text-sm font-medium transition-colors"
                 style={{
                   fontFamily: "var(--font-body)",
-                  color: activeSection === id ? "var(--color-signal)" : "var(--color-text-secondary)",
+                  color:
+                    activeSection === id
+                      ? "var(--color-signal)"
+                      : "var(--color-text-secondary)",
                 }}
               >
                 {label}
@@ -108,7 +135,9 @@ export function Navigation() {
               className="block h-[1.5px] w-6 transition-all duration-300"
               style={{
                 backgroundColor: "var(--color-text-primary)",
-                transform: isMobileOpen ? "rotate(45deg) translateY(4px)" : "none",
+                transform: isMobileOpen
+                  ? "rotate(45deg) translateY(4px)"
+                  : "none",
               }}
             />
             <span
@@ -122,7 +151,9 @@ export function Navigation() {
               className="block h-[1.5px] w-6 transition-all duration-300"
               style={{
                 backgroundColor: "var(--color-text-primary)",
-                transform: isMobileOpen ? "rotate(-45deg) translateY(-4px)" : "none",
+                transform: isMobileOpen
+                  ? "rotate(-45deg) translateY(-4px)"
+                  : "none",
               }}
             />
           </button>
@@ -141,13 +172,21 @@ export function Navigation() {
         {navLinks.slice(1).map(({ id, label }, i) => (
           <a
             key={id}
-            ref={(el) => { if (el) linksRef.current[i] = el }}
+            ref={(el) => {
+              if (el) linksRef.current[i] = el;
+            }}
             href={`#${id}`}
-            onClick={(e) => { e.preventDefault(); handleNavClick(id) }}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick(id);
+            }}
             className="text-3xl font-bold"
             style={{
               fontFamily: "var(--font-display)",
-              color: activeSection === id ? "var(--color-signal)" : "var(--color-text-primary)",
+              color:
+                activeSection === id
+                  ? "var(--color-signal)"
+                  : "var(--color-text-primary)",
             }}
           >
             {label}
@@ -155,5 +194,5 @@ export function Navigation() {
         ))}
       </div>
     </>
-  )
+  );
 }

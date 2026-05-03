@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type { ReactNode } from "react"
+import type { ReactNode } from "react";
 
 interface GradientBorderProps {
-  children: ReactNode
-  className?: string
-  borderWidth?: number
-  animated?: boolean
+  children: ReactNode;
+  className?: string;
+  borderWidth?: number;
+  animated?: boolean;
 }
 
 export function GradientBorder({
@@ -23,7 +23,8 @@ export function GradientBorder({
       <div
         className={`absolute inset-0 rounded-2xl ${animated ? "animate-gradient-rotate" : ""}`}
         style={{
-          background: "conic-gradient(from 0deg, var(--color-signal), var(--color-matrix), var(--color-pulse), var(--color-signal))",
+          background:
+            "conic-gradient(from 0deg, var(--color-signal), var(--color-matrix), var(--color-pulse), var(--color-signal))",
           mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           maskComposite: "exclude",
           WebkitMaskComposite: "xor",
@@ -35,5 +36,5 @@ export function GradientBorder({
         {children}
       </div>
     </div>
-  )
+  );
 }

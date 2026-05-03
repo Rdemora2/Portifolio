@@ -2,7 +2,17 @@
 
 import { useState, useEffect, useRef } from "react"
 
-export function useInView(threshold = 0.3): [React.RefObject<HTMLElement | null>, boolean] {
+interface UseInViewOptions {
+  threshold?: number
+  rootMargin?: string
+  triggerOnce?: boolean
+}
+
+export function useInView({ 
+  threshold = 0.3, 
+  rootMargin = "0px",
+  triggerOnce = true
+}: UseInViewOptions = {}): [React.RefObject<HTMLElement | null>, boolean] {
   const ref = useRef<HTMLElement | null>(null)
   const [isInView, setIsInView] = useState(false)
 
@@ -14,15 +24,19 @@ export function useInView(threshold = 0.3): [React.RefObject<HTMLElement | null>
       ([entry]) => {
         if (entry?.isIntersecting) {
           setIsInView(true)
-          observer.unobserve(el)
+          if (triggerOnce) {
+            observer.unobserve(el)
+          }
+        } else if (!triggerOnce) {
+          setIsInView(false)
         }
       },
-      { threshold }
+      { threshold, rootMargin }
     )
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [threshold])
+  }, [threshold, rootMargin, triggerOnce])
 
   return [ref, isInView]
 }

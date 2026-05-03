@@ -6,6 +6,7 @@ import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { GradientBorder } from "@/components/shared/GradientBorder"
 import { AnimatedText } from "@/components/shared/AnimatedText"
+import { useInView } from "@/hooks/useInView"
 
 const FloatingGridCanvas = dynamic(
   () => import("@/components/three/FloatingGrid").then((m) => ({ default: m.FloatingGridCanvas })),
@@ -24,14 +25,17 @@ const stats = [
 ]
 
 export function About() {
+  const [ref, inView] = useInView({ threshold: 0, rootMargin: "400px", triggerOnce: true })
+
   return (
     <section
       id="about"
+      ref={ref as React.RefObject<HTMLElement>}
       className="relative overflow-hidden py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
-      <FloatingGridCanvas />
-      <NeuralBackground />
+      {inView && <FloatingGridCanvas />}
+      {inView && <NeuralBackground />}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
           <p

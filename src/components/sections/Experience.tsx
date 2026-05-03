@@ -1,26 +1,28 @@
-"use client"
+"use client";
 
-import { useRef, useEffect } from "react"
-import { experience } from "@/data/portfolio"
-import { ScrollReveal } from "@/components/shared/ScrollReveal"
+import { useRef, useEffect } from "react";
+import { experience } from "@/data/portfolio";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 export function Experience() {
-  const lineRef = useRef<HTMLDivElement>(null)
-  const sectionRef = useRef<HTMLElement>(null)
+  const lineRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!lineRef.current || !sectionRef.current) return
+    if (!lineRef.current || !sectionRef.current) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (prefersReduced) return
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduced) return;
 
-    let ctx: { revert: () => void } | null = null
-    let isActive = true
+    let ctx: { revert: () => void } | null = null;
+    let isActive = true;
 
     const run = async () => {
-      const mod = await import("@/lib/gsap")
-      if (!isActive) return
-      const { gsap } = mod
+      const mod = await import("@/lib/gsap");
+      if (!isActive) return;
+      const { gsap } = mod;
       ctx = gsap.context(() => {
         gsap.fromTo(
           lineRef.current,
@@ -34,18 +36,18 @@ export function Experience() {
               end: "bottom 40%",
               scrub: 1,
             },
-          }
-        )
-      }, sectionRef)
-    }
+          },
+        );
+      }, sectionRef);
+    };
 
-    run()
+    run();
 
     return () => {
-      isActive = false
-      ctx?.revert()
-    }
-  }, [])
+      isActive = false;
+      ctx?.revert();
+    };
+  }, []);
 
   return (
     <section
@@ -68,7 +70,10 @@ export function Experience() {
           </p>
           <h2
             className="mb-20 text-3xl font-bold md:text-5xl"
-            style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--color-text-primary)",
+            }}
           >
             Experiência
           </h2>
@@ -97,15 +102,22 @@ export function Experience() {
                   <div
                     className="absolute top-6 hidden h-4 w-4 rounded-full border-2 md:block"
                     style={{
-                      borderColor: entry.current ? "var(--color-signal)" : "var(--color-edge)",
-                      backgroundColor: entry.current ? "var(--color-signal)" : "var(--color-void)",
+                      borderColor: entry.current
+                        ? "var(--color-signal)"
+                        : "var(--color-edge)",
+                      backgroundColor: entry.current
+                        ? "var(--color-signal)"
+                        : "var(--color-void)",
                       [idx % 2 === 0 ? "right" : "left"]: "-2.1rem",
                     }}
                   >
                     {entry.current && (
                       <span
                         className="absolute inset-0 animate-ping rounded-full"
-                        style={{ backgroundColor: "var(--color-signal)", opacity: 0.3 }}
+                        style={{
+                          backgroundColor: "var(--color-signal)",
+                          opacity: 0.3,
+                        }}
                       />
                     )}
                   </div>
@@ -122,7 +134,9 @@ export function Experience() {
                         className="text-xs uppercase tracking-widest"
                         style={{
                           fontFamily: "var(--font-mono)",
-                          color: entry.current ? "var(--color-signal)" : "var(--color-text-muted)",
+                          color: entry.current
+                            ? "var(--color-signal)"
+                            : "var(--color-text-muted)",
                         }}
                       >
                         {entry.period}
@@ -136,7 +150,10 @@ export function Experience() {
                             fontFamily: "var(--font-mono)",
                           }}
                         >
-                          <span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ backgroundColor: "var(--color-matrix)" }} />
+                          <span
+                            className="h-1.5 w-1.5 animate-pulse rounded-full"
+                            style={{ backgroundColor: "var(--color-matrix)" }}
+                          />
                           Atual
                         </span>
                       )}
@@ -180,7 +197,9 @@ export function Experience() {
                             color: "var(--color-text-secondary)",
                           }}
                         >
-                          <span style={{ color: "var(--color-matrix)" }}>▸</span>
+                          <span style={{ color: "var(--color-matrix)" }}>
+                            ▸
+                          </span>
                           {h}
                         </li>
                       ))}
@@ -209,5 +228,5 @@ export function Experience() {
         </div>
       </div>
     </section>
-  )
+  );
 }

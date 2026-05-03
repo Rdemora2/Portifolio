@@ -1,26 +1,28 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { projects } from "@/data/portfolio"
-import { ScrollReveal } from "@/components/shared/ScrollReveal"
-import { CountUp } from "@/components/shared/CountUp"
-import type { Project, ProjectCategory, RoleType } from "@/types"
+import { useState, useRef, useEffect } from "react";
+import { projects } from "@/data/portfolio";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { CountUp } from "@/components/shared/CountUp";
+import type { Project, ProjectCategory, RoleType } from "@/types";
 
-type FilterType = "all" | "engineering" | "management" | "international"
+type FilterType = "all" | "engineering" | "management" | "international";
 
 const filters: { key: FilterType; label: string }[] = [
   { key: "all", label: "Todos" },
   { key: "engineering", label: "Engenharia" },
   { key: "management", label: "Gestão" },
   { key: "international", label: "Internacional" },
-]
+];
 
 function matchesFilter(project: Project, filter: FilterType): boolean {
-  if (filter === "all") return true
-  if (filter === "international") return project.international === true
-  if (filter === "engineering") return project.roleType === "engineering" || project.roleType === "hybrid"
-  if (filter === "management") return project.roleType === "management" || project.roleType === "hybrid"
-  return true
+  if (filter === "all") return true;
+  if (filter === "international") return project.international === true;
+  if (filter === "engineering")
+    return project.roleType === "engineering" || project.roleType === "hybrid";
+  if (filter === "management")
+    return project.roleType === "management" || project.roleType === "hybrid";
+  return true;
 }
 
 function getCategoryLabel(cat: ProjectCategory): string {
@@ -32,8 +34,8 @@ function getCategoryLabel(cat: ProjectCategory): string {
     fullstack: "Full Stack",
     leadership: "Liderança",
     management: "Gestão",
-  }
-  return map[cat]
+  };
+  return map[cat];
 }
 
 function getRoleLabel(role: RoleType): string {
@@ -41,31 +43,31 @@ function getRoleLabel(role: RoleType): string {
     engineering: "Engenharia",
     management: "Gestão",
     hybrid: "Híbrido",
-  }
-  return map[role]
+  };
+  return map[role];
 }
 
 export function Projects() {
-  const [activeFilter, setActiveFilter] = useState<FilterType>("all")
-  const [expandedId, setExpandedId] = useState<string | null>(null)
-  const listRef = useRef<HTMLDivElement>(null)
-  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null)
+  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
 
-  const filtered = projects.filter((p) => matchesFilter(p, activeFilter))
+  const filtered = projects.filter((p) => matchesFilter(p, activeFilter));
 
   const loadGsap = async () => {
-    if (gsapRef.current) return gsapRef.current
-    const mod = await import("@/lib/gsap")
-    gsapRef.current = mod
-    return mod
-  }
+    if (gsapRef.current) return gsapRef.current;
+    const mod = await import("@/lib/gsap");
+    gsapRef.current = mod;
+    return mod;
+  };
 
   const handleFilterChange = async (filter: FilterType) => {
-    const mod = await loadGsap()
-    const gsap = mod?.gsap
+    const mod = await loadGsap();
+    const gsap = mod?.gsap;
     if (!gsap || !listRef.current) {
-      setActiveFilter(filter)
-      return
+      setActiveFilter(filter);
+      return;
     }
 
     gsap.to(listRef.current.children, {
@@ -74,22 +76,28 @@ export function Projects() {
       duration: 0.2,
       stagger: 0.03,
       onComplete: () => {
-        setActiveFilter(filter)
-        setExpandedId(null)
+        setActiveFilter(filter);
+        setExpandedId(null);
         if (listRef.current) {
           gsap.fromTo(
             listRef.current.children,
             { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power3.out" }
-          )
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              stagger: 0.05,
+              ease: "power3.out",
+            },
+          );
         }
       },
-    })
-  }
+    });
+  };
 
   const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id)
-  }
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   return (
     <section
@@ -111,7 +119,10 @@ export function Projects() {
           </p>
           <h2
             className="mb-12 text-3xl font-bold md:text-5xl"
-            style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--color-text-primary)",
+            }}
           >
             O que eu fiz
           </h2>
@@ -125,9 +136,16 @@ export function Projects() {
               className="rounded-full border px-6 py-2 text-sm font-medium transition-all duration-300"
               style={{
                 fontFamily: "var(--font-mono)",
-                borderColor: activeFilter === key ? "var(--color-signal)" : "var(--color-edge)",
-                backgroundColor: activeFilter === key ? "rgba(99,102,241,0.1)" : "transparent",
-                color: activeFilter === key ? "var(--color-signal)" : "var(--color-text-secondary)",
+                borderColor:
+                  activeFilter === key
+                    ? "var(--color-signal)"
+                    : "var(--color-edge)",
+                backgroundColor:
+                  activeFilter === key ? "rgba(99,102,241,0.1)" : "transparent",
+                color:
+                  activeFilter === key
+                    ? "var(--color-signal)"
+                    : "var(--color-text-secondary)",
               }}
             >
               {label}
@@ -148,7 +166,7 @@ export function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function ProjectItem({
@@ -157,42 +175,47 @@ function ProjectItem({
   isExpanded,
   onToggle,
 }: {
-  project: Project
-  index: number
-  isExpanded: boolean
-  onToggle: () => void
+  project: Project;
+  index: number;
+  isExpanded: boolean;
+  onToggle: () => void;
 }) {
-  const detailsRef = useRef<HTMLDivElement>(null)
-  const itemRef = useRef<HTMLDivElement>(null)
-  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null)
+  const detailsRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
+  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
 
   useEffect(() => {
-    if (!detailsRef.current) return
-    let isActive = true
+    if (!detailsRef.current) return;
+    let isActive = true;
 
     const run = async () => {
       if (!gsapRef.current) {
-        gsapRef.current = await import("@/lib/gsap")
+        gsapRef.current = await import("@/lib/gsap");
       }
-      if (!isActive || !gsapRef.current) return
-      const { gsap } = gsapRef.current
+      if (!isActive || !gsapRef.current) return;
+      const { gsap } = gsapRef.current;
       if (isExpanded) {
         gsap.fromTo(
           detailsRef.current,
           { height: 0, opacity: 0 },
-          { height: "auto", opacity: 1, duration: 0.6, ease: "power3.out" }
-        )
+          { height: "auto", opacity: 1, duration: 0.6, ease: "power3.out" },
+        );
       } else {
-        gsap.to(detailsRef.current, { height: 0, opacity: 0, duration: 0.4, ease: "power3.inOut" })
+        gsap.to(detailsRef.current, {
+          height: 0,
+          opacity: 0,
+          duration: 0.4,
+          ease: "power3.inOut",
+        });
       }
-    }
+    };
 
-    run()
+    run();
 
     return () => {
-      isActive = false
-    }
-  }, [isExpanded])
+      isActive = false;
+    };
+  }, [isExpanded]);
 
   return (
     <ScrollReveal delay={index * 0.1}>
@@ -205,12 +228,12 @@ function ProjectItem({
         }}
         onMouseEnter={() => {
           if (itemRef.current) {
-            itemRef.current.style.backgroundColor = "rgba(99,102,241,0.03)"
+            itemRef.current.style.backgroundColor = "rgba(99,102,241,0.03)";
           }
         }}
         onMouseLeave={() => {
           if (itemRef.current) {
-            itemRef.current.style.backgroundColor = "transparent"
+            itemRef.current.style.backgroundColor = "transparent";
           }
         }}
       >
@@ -220,7 +243,12 @@ function ProjectItem({
           role="button"
           tabIndex={0}
           aria-expanded={isExpanded}
-          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle() } }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onToggle();
+            }
+          }}
         >
           {/* Hover accent bar */}
           <div
@@ -313,12 +341,22 @@ function ProjectItem({
                 transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
               }}
             >
-              <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
         </div>
 
-        <div ref={detailsRef} className="overflow-hidden" style={{ height: 0, opacity: 0 }}>
+        <div
+          ref={detailsRef}
+          className="overflow-hidden"
+          style={{ height: 0, opacity: 0 }}
+        >
           <div className="pb-8 pl-0 lg:pl-[170px]">
             {project.metrics.length > 0 && (
               <div className="mb-8 grid gap-4 sm:grid-cols-3">
@@ -363,22 +401,40 @@ function ProjectItem({
               <div>
                 <h4
                   className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                  style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--color-signal)",
+                  }}
                 >
                   Desafio
                 </h4>
-                <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    color: "var(--color-text-secondary)",
+                  }}
+                >
                   {project.challenge}
                 </p>
               </div>
               <div>
                 <h4
                   className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                  style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--color-signal)",
+                  }}
                 >
                   Solução
                 </h4>
-                <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    color: "var(--color-text-secondary)",
+                  }}
+                >
                   {project.solution}
                 </p>
               </div>
@@ -387,13 +443,23 @@ function ProjectItem({
             <div className="mt-8">
               <h4
                 className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                style={{ fontFamily: "var(--font-mono)", color: "var(--color-signal)" }}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  color: "var(--color-signal)",
+                }}
               >
                 Destaques
               </h4>
               <ul className="space-y-2">
                 {project.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-2 text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}>
+                  <li
+                    key={h}
+                    className="flex items-start gap-2 text-sm"
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      color: "var(--color-text-secondary)",
+                    }}
+                  >
                     <span style={{ color: "var(--color-matrix)" }}>▸</span>
                     {h}
                   </li>
@@ -420,5 +486,5 @@ function ProjectItem({
         </div>
       </div>
     </ScrollReveal>
-  )
+  );
 }

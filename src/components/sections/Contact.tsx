@@ -8,6 +8,7 @@ import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { MagneticButton } from "@/components/shared/MagneticButton"
 import dynamic from "next/dynamic"
+import { useInView } from "@/hooks/useInView"
 
 const WaveCanvas = dynamic(
   () => import("@/components/three/WaveCanvas").then((m) => ({ default: m.WaveCanvas })),
@@ -25,6 +26,7 @@ const PROJECT_TYPES = [
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [ref, inView] = useInView({ threshold: 0, rootMargin: "400px", triggerOnce: true })
 
   const {
     register,
@@ -56,10 +58,11 @@ export function Contact() {
   return (
     <section
       id="contact"
+      ref={ref as React.RefObject<HTMLElement>}
       className="relative overflow-hidden py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
-      <WaveCanvas />
+      {inView && <WaveCanvas />}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-[2fr_3fr]">
           <ScrollReveal>

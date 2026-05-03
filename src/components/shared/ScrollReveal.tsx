@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useRef, useEffect, type ReactNode } from "react"
+import { useRef, useEffect, type ReactNode } from "react";
 
 interface ScrollRevealProps {
-  children: ReactNode
-  animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale"
-  delay?: number
-  duration?: number
-  threshold?: number
-  className?: string
+  children: ReactNode;
+  animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale";
+  delay?: number;
+  duration?: number;
+  threshold?: number;
+  className?: string;
 }
 
 const ANIMATION_CONFIG = {
@@ -16,8 +16,8 @@ const ANIMATION_CONFIG = {
   "fade-in": { from: { opacity: 0 }, to: { opacity: 1 } },
   "slide-left": { from: { x: -60, opacity: 0 }, to: { x: 0, opacity: 1 } },
   "slide-right": { from: { x: 60, opacity: 0 }, to: { x: 0, opacity: 1 } },
-  "scale": { from: { scale: 0.8, opacity: 0 }, to: { scale: 1, opacity: 1 } },
-}
+  scale: { from: { scale: 0.8, opacity: 0 }, to: { scale: 1, opacity: 1 } },
+};
 
 export function ScrollReveal({
   children,
@@ -27,49 +27,56 @@ export function ScrollReveal({
   threshold = 0.2,
   className = "",
 }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
+    const el = ref.current;
+    if (!el) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (prefersReduced) return
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduced) return;
 
-    let isActive = true
-    const config = ANIMATION_CONFIG[animation]
+    let isActive = true;
+    const config = ANIMATION_CONFIG[animation];
 
     const setup = async () => {
-      const mod = await import("@/lib/gsap")
-      if (!isActive) return
-      mod.gsap.set(el, config.from)
-    }
+      const mod = await import("@/lib/gsap");
+      if (!isActive) return;
+      mod.gsap.set(el, config.from);
+    };
 
-    setup()
+    setup();
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
           import("@/lib/gsap").then((mod) => {
-            if (!isActive) return
-            mod.gsap.to(el, { ...config.to, duration, delay, ease: "power3.out" })
-            observer.disconnect()
-          })
+            if (!isActive) return;
+            mod.gsap.to(el, {
+              ...config.to,
+              duration,
+              delay,
+              ease: "power3.out",
+            });
+            observer.disconnect();
+          });
         }
       },
-      { threshold }
-    )
+      { threshold },
+    );
 
-    observer.observe(el)
+    observer.observe(el);
     return () => {
-      isActive = false
-      observer.disconnect()
-    }
-  }, [animation, delay, duration, threshold])
+      isActive = false;
+      observer.disconnect();
+    };
+  }, [animation, delay, duration, threshold]);
 
   return (
     <div ref={ref} className={className}>
       {children}
     </div>
-  )
+  );
 }
