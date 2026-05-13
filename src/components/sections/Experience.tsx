@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { experience } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import BorderGlow from "@/components/shared/BorderGlow";
 
 export function Experience() {
   const lineRef = useRef<HTMLDivElement>(null);
@@ -122,105 +123,117 @@ export function Experience() {
                     )}
                   </div>
 
-                  <div
-                    className="rounded-2xl border p-8 transition-all duration-500 hover:border-[var(--color-signal)]"
-                    style={{
-                      borderColor: "var(--color-edge)",
-                      backgroundColor: "rgba(10,16,24,0.5)",
-                    }}
+                  <BorderGlow
+                    className="rounded-2xl"
+                    edgeSensitivity={30}
+                    glowColor="40 80 80"
+                    backgroundColor="#120F17"
+                    borderRadius={28}
+                    glowRadius={40}
+                    glowIntensity={1}
+                    coneSpread={25}
+                    animated={false}
+                    colors={["#c084fc", "#f472b6", "#38bdf8"]}
                   >
-                    <div className="mb-4 flex flex-wrap items-center gap-2">
-                      <span
-                        className="text-xs uppercase tracking-widest"
+                    <div
+                      className="p-8 transition-all duration-500"
+                      style={{
+                        borderColor: "var(--color-edge)",
+                      }}
+                    >
+                      <div className="mb-4 flex flex-wrap items-center gap-2">
+                        <span
+                          className="text-xs uppercase tracking-widest"
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            color: entry.current
+                              ? "var(--color-signal)"
+                              : "var(--color-text-muted)",
+                          }}
+                        >
+                          {entry.period}
+                        </span>
+                        {entry.current && (
+                          <span
+                            className="flex items-center gap-1.5 rounded-full px-3 py-0.5 text-xs"
+                            style={{
+                              backgroundColor: "rgba(0,255,136,0.1)",
+                              color: "var(--color-matrix)",
+                              fontFamily: "var(--font-mono)",
+                            }}
+                          >
+                            <span
+                              className="h-1.5 w-1.5 animate-pulse rounded-full"
+                              style={{ backgroundColor: "var(--color-matrix)" }}
+                            />
+                            Atual
+                          </span>
+                        )}
+                      </div>
+
+                      <h3
+                        className="mb-1 text-xl font-bold"
                         style={{
-                          fontFamily: "var(--font-mono)",
-                          color: entry.current
-                            ? "var(--color-signal)"
-                            : "var(--color-text-muted)",
+                          fontFamily: "var(--font-display)",
+                          color: "var(--color-text-primary)",
                         }}
                       >
-                        {entry.period}
-                      </span>
-                      {entry.current && (
-                        <span
-                          className="flex items-center gap-1.5 rounded-full px-3 py-0.5 text-xs"
-                          style={{
-                            backgroundColor: "rgba(0,255,136,0.1)",
-                            color: "var(--color-matrix)",
-                            fontFamily: "var(--font-mono)",
-                          }}
-                        >
+                        {entry.role}
+                      </h3>
+                      <p
+                        className="mb-4 text-sm font-medium"
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          color: "var(--color-signal)",
+                        }}
+                      >
+                        {entry.company}
+                      </p>
+                      <p
+                        className="mb-6 text-sm leading-relaxed"
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          color: "var(--color-text-secondary)",
+                        }}
+                      >
+                        {entry.description}
+                      </p>
+
+                      <ul className="mb-6 space-y-2">
+                        {entry.highlights.map((h) => (
+                          <li
+                            key={h}
+                            className="flex items-start gap-2 text-sm"
+                            style={{
+                              fontFamily: "var(--font-body)",
+                              color: "var(--color-text-secondary)",
+                            }}
+                          >
+                            <span style={{ color: "var(--color-matrix)" }}>
+                              ▸
+                            </span>
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="flex flex-wrap gap-2">
+                        {entry.stack.map((tech) => (
                           <span
-                            className="h-1.5 w-1.5 animate-pulse rounded-full"
-                            style={{ backgroundColor: "var(--color-matrix)" }}
-                          />
-                          Atual
-                        </span>
-                      )}
-                    </div>
-
-                    <h3
-                      className="mb-1 text-xl font-bold"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        color: "var(--color-text-primary)",
-                      }}
-                    >
-                      {entry.role}
-                    </h3>
-                    <p
-                      className="mb-4 text-sm font-medium"
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        color: "var(--color-signal)",
-                      }}
-                    >
-                      {entry.company}
-                    </p>
-                    <p
-                      className="mb-6 text-sm leading-relaxed"
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        color: "var(--color-text-secondary)",
-                      }}
-                    >
-                      {entry.description}
-                    </p>
-
-                    <ul className="mb-6 space-y-2">
-                      {entry.highlights.map((h) => (
-                        <li
-                          key={h}
-                          className="flex items-start gap-2 text-sm"
-                          style={{
-                            fontFamily: "var(--font-body)",
-                            color: "var(--color-text-secondary)",
-                          }}
-                        >
-                          <span style={{ color: "var(--color-matrix)" }}>
-                            ▸
+                            key={tech}
+                            className="rounded-full border px-3 py-1 text-xs"
+                            style={{
+                              fontFamily: "var(--font-mono)",
+                              borderColor: "var(--color-edge)",
+                              color: "var(--color-text-muted)",
+                            }}
+                          >
+                            {tech}
                           </span>
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="flex flex-wrap gap-2">
-                      {entry.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full border px-3 py-1 text-xs"
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            borderColor: "var(--color-edge)",
-                            color: "var(--color-text-muted)",
-                          }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  </BorderGlow>
                 </div>
               </ScrollReveal>
             ))}

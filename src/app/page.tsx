@@ -1,17 +1,18 @@
 "use client"
 
 import { useState, useCallback } from "react"
+import dynamic from "next/dynamic"
 import { PageLoader } from "@/components/layout/PageLoader"
 import { Hero } from "@/components/sections/Hero"
-import { About } from "@/components/sections/About"
-import { Projects } from "@/components/sections/Projects"
-import { TechStack } from "@/components/sections/TechStack"
-import { Metrics } from "@/components/sections/Metrics"
-import { Experience } from "@/components/sections/Experience"
-
-import { Insights } from "@/components/sections/Insights"
-import { Contact } from "@/components/sections/Contact"
 import { SectionDivider } from "@/components/shared/SectionDivider"
+
+const About = dynamic(() => import("@/components/sections/About").then(mod => mod.About), { ssr: true })
+const Projects = dynamic(() => import("@/components/sections/Projects").then(mod => mod.Projects), { ssr: true })
+const TechStack = dynamic(() => import("@/components/sections/TechStack").then(mod => mod.TechStack), { ssr: true })
+const Metrics = dynamic(() => import("@/components/sections/Metrics").then(mod => mod.Metrics), { ssr: true })
+const Experience = dynamic(() => import("@/components/sections/Experience").then(mod => mod.Experience), { ssr: true })
+const Insights = dynamic(() => import("@/components/sections/Insights").then(mod => mod.Insights), { ssr: true })
+const Contact = dynamic(() => import("@/components/sections/Contact").then(mod => mod.Contact), { ssr: true })
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)

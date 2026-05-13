@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { projects } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { CountUp } from "@/components/shared/CountUp";
+import BorderGlow from "@/components/shared/BorderGlow";
 import type { Project, ProjectCategory, RoleType } from "@/types";
 
 type FilterType = "all" | "engineering" | "management" | "international";
@@ -219,37 +220,49 @@ function ProjectItem({
 
   return (
     <ScrollReveal delay={index * 0.1}>
-      <div
-        ref={itemRef}
-        className="border-b cursor-pointer group"
-        style={{
-          borderColor: "var(--color-edge)",
-          transition: "background-color 0.4s ease",
-        }}
-        onMouseEnter={() => {
-          if (itemRef.current) {
-            itemRef.current.style.backgroundColor = "rgba(99,102,241,0.03)";
-          }
-        }}
-        onMouseLeave={() => {
-          if (itemRef.current) {
-            itemRef.current.style.backgroundColor = "transparent";
-          }
-        }}
+      <BorderGlow
+        className="w-full mb-4"
+        edgeSensitivity={30}
+        glowColor="40 80 80"
+        backgroundColor="#120F17"
+        borderRadius={28}
+        glowRadius={40}
+        glowIntensity={1}
+        coneSpread={25}
+        animated={false}
+        colors={["#c084fc", "#f472b6", "#38bdf8"]}
       >
         <div
-          className="relative flex items-center gap-6 py-8 transition-all lg:gap-10"
-          onClick={onToggle}
-          role="button"
-          tabIndex={0}
-          aria-expanded={isExpanded}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              onToggle();
+          ref={itemRef}
+          className="border-b cursor-pointer group px-6 bg-void/30 backdrop-blur-sm rounded-2xl"
+          style={{
+            borderColor: "var(--color-edge)",
+            transition: "background-color 0.4s ease",
+          }}
+          onMouseEnter={() => {
+            if (itemRef.current) {
+              itemRef.current.style.backgroundColor = "rgba(99,102,241,0.08)";
+            }
+          }}
+          onMouseLeave={() => {
+            if (itemRef.current) {
+              itemRef.current.style.backgroundColor = "transparent";
             }
           }}
         >
+          <div
+            className="relative flex items-center gap-6 py-8 transition-all lg:gap-10"
+            onClick={onToggle}
+            role="button"
+            tabIndex={0}
+            aria-expanded={isExpanded}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onToggle();
+              }
+            }}
+          >
           {/* Hover accent bar */}
           <div
             className="absolute left-0 top-0 h-full w-[2px] origin-top transition-transform duration-500 group-hover:scale-y-100"
@@ -370,7 +383,7 @@ function ProjectItem({
                     }}
                   >
                     <div
-                      className="text-4xl font-extrabold md:text-5xl"
+                      className="text-2xl font-extrabold md:text-3xl"
                       style={{
                         fontFamily: "var(--font-display)",
                         color: "var(--color-signal)",
@@ -578,7 +591,8 @@ function ProjectItem({
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </BorderGlow>
     </ScrollReveal>
   );
 }

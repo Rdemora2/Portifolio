@@ -1,20 +1,42 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import dynamic from "next/dynamic";
 import { techStack } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { TECH_CATEGORY_COLORS } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
 import type { TechCategory } from "@/types";
+import LogoLoop from "@/components/shared/LogoLoop";
+import { FaAws } from "react-icons/fa";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiGo,
+  SiNodedotjs,
+  SiPython,
+  SiDocker,
+  SiKubernetes,
+  SiPostgresql,
+  SiGraphql,
+} from "react-icons/si";
 
-const TechGraph = dynamic(
-  () =>
-    import("@/components/three/TechGraph").then((m) => ({
-      default: m.TechGraph,
-    })),
-  { ssr: false },
-);
+const techLogos = [
+  { node: <SiReact size={36} color="#61DAFB" /> },
+  { node: <SiNextdotjs size={36} color="#ffffff" /> },
+  { node: <SiTypescript size={36} color="#3178C6" /> },
+  { node: <SiTailwindcss size={36} color="#06B6D4" /> },
+  { node: <SiGo size={36} color="#00ADD8" /> },
+  { node: <SiNodedotjs size={36} color="#339933" /> },
+  { node: <SiPython size={36} color="#3776AB" /> },
+  { node: <SiDocker size={36} color="#2496ED" /> },
+  { node: <SiKubernetes size={36} color="#326CE5" /> },
+  { node: <FaAws size={36} color="#232F3E" /> },
+  { node: <SiPostgresql size={36} color="#4169E1" /> },
+  { node: <SiGraphql size={36} color="#E10098" /> },
+];
+
 
 const CATEGORY_LABELS: Record<TechCategory, string> = {
   cloud: "Cloud",
@@ -164,7 +186,7 @@ export function TechStack() {
             O que eu uso
           </p>
           <h2
-            className="mb-16 text-3xl font-bold md:text-5xl"
+            className="mb-12 text-3xl font-bold md:text-5xl"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
@@ -174,20 +196,20 @@ export function TechStack() {
           </h2>
         </ScrollReveal>
 
-        {!prefersReduced && (
-          <ScrollReveal>
-            <div
-              className="mb-20 overflow-hidden rounded-2xl border"
-              style={{
-                borderColor: "var(--color-edge)",
-                height: "400px",
-                backgroundColor: "rgba(10,16,24,0.5)",
-              }}
-            >
-              {inView && <TechGraph techStack={techStack} />}
-            </div>
-          </ScrollReveal>
-        )}
+        <div className="mb-20">
+          <LogoLoop
+            logos={techLogos}
+            speed={60}
+            direction="left"
+            logoHeight={48}
+            gap={40}
+            fadeOut={true}
+            fadeOutColor="var(--color-deep)"
+            scaleOnHover={true}
+            pauseOnHover={true}
+          />
+        </div>
+
 
         <div
           ref={containerRef}
