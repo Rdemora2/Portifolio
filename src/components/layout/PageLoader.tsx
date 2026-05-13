@@ -14,14 +14,15 @@ export function PageLoader({ onComplete }: { onComplete: () => void }) {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     const isBot = /Lighthouse|Googlebot|PTST|Speed Insights/i.test(navigator.userAgent);
+    const hasAnimated = sessionStorage.getItem("hero-animated");
     
-    if (prefersReduced || isBot) {
+    if (prefersReduced || isBot || hasAnimated) {
       onComplete();
       return;
     }
 
     let frame = 0;
-    const totalFrames = 80;
+    const totalFrames = 40;
     let rafId = 0;
 
     const tick = () => {
@@ -46,7 +47,7 @@ export function PageLoader({ onComplete }: { onComplete: () => void }) {
           tl.to(counterRef.current, {
             scale: 25,
             opacity: 0,
-            duration: 0.8,
+            duration: 0.4,
             ease: "power3.in"
           });
           
@@ -54,17 +55,17 @@ export function PageLoader({ onComplete }: { onComplete: () => void }) {
           tl.to(barRef.current, {
             scaleX: 0,
             opacity: 0,
-            duration: 0.4
+            duration: 0.2
           }, "<");
 
           // Step 2: Background folds backwards in 3D
           tl.to(wrapperRef.current, {
-            rotationX: 45,
-            scale: 0.8,
-            yPercent: -120,
+            rotationX: -90,
+            transformOrigin: "top",
             opacity: 0,
-            duration: 1.2,
-          }, "-=0.4");
+            duration: 0.4,
+            ease: "power2.inOut"
+          }, "-=0.2");
         });
       }
     };

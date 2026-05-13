@@ -25,7 +25,7 @@ export default function Home() {
     <>
       {!isLoaded && <PageLoader onComplete={handleLoadComplete} />}
       <main id="main-content">
-        <Hero />
+        <Hero isLoaded={isLoaded} />
         <SectionDivider topColor="var(--color-void)" bottomColor="var(--color-deep)" />
         <About />
         <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-void)" />

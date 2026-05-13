@@ -5,7 +5,7 @@ import { personalInfo } from "@/data/portfolio";
 import FaultyTerminal from "../shared/FaultyTerminal";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 
-export function Hero() {
+export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
@@ -15,7 +15,7 @@ export function Hero() {
   const [showCanvas, setShowCanvas] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowCanvas(true), 800);
+    const timer = setTimeout(() => setShowCanvas(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -52,6 +52,8 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
+    if (!isLoaded) return;
+    
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -98,7 +100,7 @@ export function Hero() {
       const { gsap } = mod;
       ctx = gsap.context(() => {
         const tl = gsap.timeline({
-          delay: 2,
+          delay: 0.1,
           onComplete: () => {
             sessionStorage.setItem("hero-animated", "true");
           },
@@ -183,7 +185,7 @@ export function Hero() {
       isActive = false;
       ctx?.revert();
     };
-  }, []);
+  }, [isLoaded]);
 
   return (
     <section
