@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
   headers: async () => [
     {
@@ -16,8 +18,20 @@ const nextConfig: NextConfig = {
         { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
       ],
     },
+    {
+      source: "/favicon.ico",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=86400, stale-while-revalidate=604800",
+        },
+      ],
+    },
   ],
   turbopack: {},
+  experimental: {
+    optimizePackageImports: ["three", "gsap", "lenis", "@react-three/fiber", "@react-three/drei"],
+  },
 }
 
 export default nextConfig

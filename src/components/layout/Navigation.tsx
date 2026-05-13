@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/data/portfolio";
 import { useActiveSection } from "@/hooks/useActiveSection";
 
@@ -10,6 +11,7 @@ export function Navigation() {
   const activeSection = useActiveSection();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handler = () => setIsScrolled(window.scrollY > 80);
@@ -62,6 +64,8 @@ export function Navigation() {
     const el = document.getElementById(id);
     el?.scrollIntoView({ behavior: "smooth" });
   };
+
+  if (pathname?.startsWith("/insights")) return null;
 
   return (
     <>

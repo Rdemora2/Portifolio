@@ -1,17 +1,9 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
-import dynamic from "next/dynamic";
 import { personalInfo } from "@/data/portfolio";
+import FaultyTerminal from "../shared/FaultyTerminal";
 import { MagneticButton } from "@/components/shared/MagneticButton";
-
-const HeroCanvas = dynamic(
-  () =>
-    import("@/components/three/HeroCanvas").then((m) => ({
-      default: m.HeroCanvas,
-    })),
-  { ssr: false },
-);
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,23 +12,11 @@ export function Hero() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const rectRef = useRef<DOMRect | null>(null);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [showCanvas, setShowCanvas] = useState(false);
 
   useEffect(() => {
-    // Delay canvas mounting slightly to prevent blocking the main thread during hydration,
-    // which drastically improves TBT (Total Blocking Time) and LCP/FCP.
     const timer = setTimeout(() => setShowCanvas(true), 800);
     return () => clearTimeout(timer);
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const rect = rectRef.current;
-    if (!rect) return;
-    setMouse({
-      x: ((e.clientX - rect.left) / rect.width - 0.5) * 2,
-      y: -((e.clientY - rect.top) / rect.height - 0.5) * 2,
-    });
   }, []);
 
   useEffect(() => {
@@ -80,8 +60,31 @@ export function Hero() {
     // Only animate once per session
     const hasAnimated = sessionStorage.getItem("hero-animated");
     if (hasAnimated) {
-      // Show final state immediately
-      if (nameRef.current) nameRef.current.style.opacity = "1";
+      // Show final state immediately with gradient chars
+      if (nameRef.current) {
+        const text = nameRef.current.textContent ?? "";
+        nameRef.current.innerHTML = "";
+        text.split(" ").forEach((word, wordIdx, words) => {
+          const wordSpan = document.createElement("span");
+          wordSpan.style.display = "inline-block";
+          wordSpan.style.whiteSpace = "nowrap";
+          word.split("").forEach((char) => {
+            const charSpan = document.createElement("span");
+            charSpan.style.display = "inline-block";
+            charSpan.style.background = "linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-signal) 50%, var(--color-highlight) 100%)";
+            charSpan.style.backgroundSize = "200% 200%";
+            charSpan.style.webkitBackgroundClip = "text";
+            charSpan.style.webkitTextFillColor = "transparent";
+            (charSpan.style as unknown as Record<string, string>).backgroundClip = "text";
+            charSpan.textContent = char;
+            wordSpan.appendChild(charSpan);
+          });
+          nameRef.current?.appendChild(wordSpan);
+          if (wordIdx < words.length - 1) {
+            nameRef.current?.appendChild(document.createTextNode(" "));
+          }
+        });
+      }
       if (titleRef.current) titleRef.current.style.clipPath = "inset(0 0% 0 0)";
       if (subtitleRef.current) subtitleRef.current.style.opacity = "1";
       if (ctaRef.current) ctaRef.current.style.opacity = "1";
@@ -115,6 +118,11 @@ export function Hero() {
               const charSpan = document.createElement("span");
               charSpan.style.display = "inline-block";
               charSpan.style.willChange = "transform, opacity";
+              charSpan.style.background = "linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-signal) 50%, var(--color-highlight) 100%)";
+              charSpan.style.backgroundSize = "200% 200%";
+              charSpan.style.webkitBackgroundClip = "text";
+              charSpan.style.webkitTextFillColor = "transparent";
+              (charSpan.style as unknown as Record<string, string>).backgroundClip = "text";
               charSpan.className = "hero-char";
               charSpan.textContent = char;
               wordSpan.appendChild(charSpan);
@@ -123,10 +131,7 @@ export function Hero() {
             nameRef.current?.appendChild(wordSpan);
 
             if (wordIdx < words.length - 1) {
-              const spaceSpan = document.createElement("span");
-              spaceSpan.style.display = "inline-block";
-              spaceSpan.textContent = "\u00A0";
-              nameRef.current?.appendChild(spaceSpan);
+              nameRef.current?.appendChild(document.createTextNode(" "));
             }
           });
           
@@ -186,11 +191,29 @@ export function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      onMouseMove={handleMouseMove}
       className="relative flex min-h-dvh items-center overflow-hidden"
-      style={{ backgroundColor: "var(--color-void)" }}
     >
-      {showCanvas && <HeroCanvas mouse={mouse} />}
+      <div className="absolute inset-0 z-0">
+        <FaultyTerminal
+          scale={1.5}
+          gridMul={[2, 1]}
+          digitSize={1.2}
+          timeScale={0.5}
+          pause={false}
+          scanlineIntensity={0.5}
+          glitchAmount={1}
+          flickerAmount={1}
+          noiseAmp={1}
+          chromaticAberration={0}
+          dither={0}
+          curvature={0.1}
+          tint="#6366f1" // var(--color-signal)
+          mouseReact
+          mouseStrength={0.5}
+          pageLoadAnimation
+          brightness={0.6}
+        />
+      </div>
 
       <div
         className="absolute inset-0 z-[1]"
@@ -203,14 +226,16 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
         <div className="max-w-3xl">
+
+
           <h1
             ref={nameRef}
             className="mb-4 font-extrabold leading-none"
             style={{
               fontFamily: "var(--font-display)",
-              color: "var(--color-text-primary)",
               fontSize: "var(--text-hero)",
               letterSpacing: "-0.03em",
+              color: "var(--color-text-primary)",
             }}
           >
             {personalInfo.name}

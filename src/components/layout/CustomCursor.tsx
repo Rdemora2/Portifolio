@@ -25,7 +25,7 @@ export function CustomCursor() {
         setIsVisible(true)
       }
       if (innerRef.current) {
-        innerRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`
+        innerRef.current.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`
       }
     }
 
@@ -54,7 +54,7 @@ export function CustomCursor() {
       outerPos.current.x += (mousePos.current.x - outerPos.current.x) * 0.12
       outerPos.current.y += (mousePos.current.y - outerPos.current.y) * 0.12
       if (outerRef.current) {
-        outerRef.current.style.transform = `translate(${outerPos.current.x - 12}px, ${outerPos.current.y - 12}px) scale(${outerRef.current.dataset.scale || 1})`
+        outerRef.current.style.transform = `translate(${outerPos.current.x - 20}px, ${outerPos.current.y - 20}px) scale(${outerRef.current.dataset.scale || 1})`
       }
       rafId = requestAnimationFrame(lerp)
     }
@@ -87,11 +87,11 @@ export function CustomCursor() {
     <>
       <div
         ref={innerRef}
-        className="pointer-events-none fixed top-0 left-0 z-[10000] rounded-full"
+        className="pointer-events-none fixed top-0 left-0 z-[10000] rounded-full mix-blend-difference"
         style={{
-          width: 8,
-          height: 8,
-          backgroundColor: "var(--color-signal)",
+          width: 10,
+          height: 10,
+          backgroundColor: "#ffffff",
           opacity: isVisible ? 1 : 0,
           transition: "opacity 0.3s",
         }}
@@ -99,16 +99,15 @@ export function CustomCursor() {
       />
       <div
         ref={outerRef}
-        className="pointer-events-none fixed top-0 left-0 z-[10000] rounded-full border"
+        className="pointer-events-none fixed top-0 left-0 z-[10000] rounded-full border mix-blend-difference"
         data-scale={outerScale}
         style={{
-          width: 24,
-          height: 24,
-          borderColor: cursorState === "hover-link" ? "var(--color-signal)" : "var(--color-signal)",
-          backgroundColor: cursorState === "hover-link" ? "rgba(99,102,241,0.08)" : "transparent",
-          opacity: isVisible ? 0.5 : 0,
-          transition: "opacity 0.3s, border-color 0.3s, background-color 0.3s",
-          mixBlendMode: cursorState === "hover-button" ? "difference" : "normal",
+          width: 40,
+          height: 40,
+          borderColor: "#ffffff",
+          backgroundColor: cursorState === "hover-link" ? "rgba(255,255,255,1)" : "transparent",
+          opacity: isVisible ? 1 : 0,
+          transition: "opacity 0.3s, border-color 0.3s, background-color 0.3s, transform 0.15s ease-out",
         }}
         aria-hidden="true"
       />

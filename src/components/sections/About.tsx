@@ -19,9 +19,10 @@ const NeuralBackground = dynamic(
 )
 
 const stats = [
-  { label: "Anos de experiência", value: "3+" },
+  { label: "Anos de experiência", value: "4+" },
   { label: "Projetos entregues", value: "10+" },
   { label: "Países", value: "2" },
+  { label: "Usuários impactados", value: "100k+" },
 ]
 
 export function About() {
@@ -61,7 +62,7 @@ export function About() {
                 color: "var(--color-text-primary)",
               }}
             >
-              Quem eu sou e o que eu faço
+              De dev a gestor sem largar o terminal
             </AnimatedText>
 
             <ScrollReveal delay={0.2}>
@@ -78,18 +79,34 @@ export function About() {
 
             <ScrollReveal delay={0.4}>
               <p
-                className="text-base leading-relaxed md:text-lg"
+                className="mb-6 text-base leading-relaxed md:text-lg"
                 style={{
                   fontFamily: "var(--font-body)",
                   color: "var(--color-text-secondary)",
                 }}
               >
-                Com um histórico focado em sistemas de missão crítica, entreguei soluções escaláveis para gigantes corporativos como o{" "}
-                <span style={{ color: "var(--color-signal)", fontWeight: "600" }}>Grupo Bandeirantes</span>,{" "}
-                <span style={{ color: "var(--color-signal)", fontWeight: "600" }}>Hospital Sírio-Libanês</span> e a rede global{" "}
-                <span style={{ color: "var(--color-signal)", fontWeight: "600" }}>Fiesta Americana Resorts</span>. 
-                Minha entrega abrange desde a concepção de infraestruturas resilientes até a governança impecável da tecnologia.
+                {personalInfo.bioExtended}
               </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.5}>
+              <div className="flex flex-wrap gap-3">
+                {["Cloud & DevOps", "Backend de Alta Performance", "Gestão de Times", "Observabilidade"].map(
+                  (pillar) => (
+                    <span
+                      key={pillar}
+                      className="rounded-full border px-4 py-1.5 text-xs font-medium transition-colors duration-300 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        borderColor: "var(--color-edge)",
+                        color: "var(--color-text-secondary)",
+                      }}
+                    >
+                      {pillar}
+                    </span>
+                  ),
+                )}
+              </div>
             </ScrollReveal>
           </div>
 

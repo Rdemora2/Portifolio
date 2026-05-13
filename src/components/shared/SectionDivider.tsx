@@ -2,7 +2,15 @@
 
 import { useRef, useEffect } from "react";
 
-export function SectionDivider() {
+export function SectionDivider({ 
+  topColor = "var(--color-void)", 
+  bottomColor = "var(--color-deep)",
+  height = 40
+}: { 
+  topColor?: string; 
+  bottomColor?: string;
+  height?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sizeRef = useRef({ width: 0, height: 0, ratio: 1 });
 
@@ -33,41 +41,59 @@ export function SectionDivider() {
 
     let rafId: number;
     let time = 0;
+    
+    // Create an offscreen canvas or resolve CSS variables
+    const getCssVar = (name: string) => {
+      if (name.startsWith("var(")) {
+        const varName = name.slice(4, -1);
+        return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      }
+      return name;
+    };
 
     const draw = () => {
-      time += 0.015;
+      time += 0.01;
       const { width: w, height: h } = sizeRef.current;
       ctx.clearRect(0, 0, w, h);
 
+      // Draw Top Background
+      ctx.fillStyle = getCssVar(topColor);
+      ctx.fillRect(0, 0, w, h);
+
+      // Draw Wavy Bottom Background
       ctx.beginPath();
-      ctx.moveTo(0, h / 2);
+      ctx.moveTo(0, h);
+      ctx.lineTo(0, h / 2);
 
       for (let x = 0; x <= w; x += 2) {
         const nx = x / w;
         const y =
           h / 2 +
-          Math.sin(nx * Math.PI * 4 + time * 2) * 3 +
-          Math.sin(nx * Math.PI * 8 + time * 1.5) * 1.5 +
-          Math.sin(nx * Math.PI * 2 + time * 0.8) * 2;
+          Math.sin(nx * Math.PI * 2 + time) * (h * 0.15) +
+          Math.sin(nx * Math.PI * 4 + time * 1.5) * (h * 0.1);
         ctx.lineTo(x, y);
       }
+      ctx.lineTo(w, h);
+      ctx.closePath();
+      
+      ctx.fillStyle = getCssVar(bottomColor);
+      ctx.fill();
 
-      const gradient = ctx.createLinearGradient(0, 0, w, 0);
-      gradient.addColorStop(0, "rgba(99, 102, 241, 0)");
-      gradient.addColorStop(0.2, "rgba(99, 102, 241, 0.4)");
-      gradient.addColorStop(0.5, "rgba(0, 255, 136, 0.6)");
-      gradient.addColorStop(0.8, "rgba(99, 102, 241, 0.4)");
-      gradient.addColorStop(1, "rgba(99, 102, 241, 0)");
-
-      ctx.strokeStyle = gradient;
-      ctx.lineWidth = 1.5;
+      // Subtle border on the wave
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 2) {
+        const nx = x / w;
+        const y =
+          h / 2 +
+          Math.sin(nx * Math.PI * 2 + time) * (h * 0.15) +
+          Math.sin(nx * Math.PI * 4 + time * 1.5) * (h * 0.1);
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      
+      ctx.strokeStyle = "rgba(99, 102, 241, 0.15)";
+      ctx.lineWidth = 1;
       ctx.stroke();
-
-      // glow pass
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = "rgba(99, 102, 241, 0.3)";
-      ctx.stroke();
-      ctx.shadowBlur = 0;
 
       rafId = requestAnimationFrame(draw);
     };
@@ -78,13 +104,13 @@ export function SectionDivider() {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [topColor, bottomColor]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="h-[20px] w-full"
-      style={{ backgroundColor: "transparent" }}
+      className="w-full"
+      style={{ height: `${height}px`, display: "block" }}
       aria-hidden="true"
     />
   );

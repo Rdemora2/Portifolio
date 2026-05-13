@@ -22,6 +22,7 @@ export interface PersonalInfo {
   title: string
   subtitle: string
   bio: string
+  bioExtended: string
   location: string
   availability: Availability
   contacts: Contact[]
@@ -34,6 +35,15 @@ export interface Metric {
   suffix: string
   prefix?: string
   description: string
+}
+
+export interface CaseStudyDetail {
+  problem: string
+  solution: string
+  robertoRole: string
+  keyDecisions: string[]
+  lessonsLearned: string[]
+  results: string[]
 }
 
 export interface Project {
@@ -56,6 +66,7 @@ export interface Project {
   featured: boolean
   order: number
   international?: boolean
+  caseStudy?: CaseStudyDetail
 }
 
 export interface TechItem {
@@ -76,6 +87,27 @@ export interface ExperienceEntry {
   description: string
   highlights: string[]
   stack: string[]
+}
+
+export interface Testimonial {
+  id: string
+  name: string
+  role: string
+  company: string
+  quote: string
+  project?: string
+}
+
+export interface Insight {
+  id: string
+  title: string
+  summary: string
+  category: "cloud" | "devops" | "leadership" | "architecture" | "observability"
+  readTime: string
+  date: string
+  tags: string[]
+  slug?: string
+  hasFullArticle?: boolean
 }
 
 export interface ContactFormData {

@@ -397,6 +397,40 @@ function ProjectItem({
               </div>
             )}
 
+            {/* Case Study - Roberto's Role */}
+            {project.caseStudy && (
+              <div
+                className="mb-8 rounded-xl border p-6 md:p-8"
+                style={{
+                  borderColor: "rgba(99,102,241,0.2)",
+                  backgroundColor: "rgba(99,102,241,0.03)",
+                }}
+              >
+                <h4
+                  className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest"
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--color-signal)",
+                  }}
+                >
+                  <span
+                    className="inline-block h-1.5 w-1.5 rounded-full"
+                    style={{ backgroundColor: "var(--color-signal)" }}
+                  />
+                  Meu papel neste projeto
+                </h4>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    color: "var(--color-text-secondary)",
+                  }}
+                >
+                  {project.caseStudy.robertoRole}
+                </p>
+              </div>
+            )}
+
             <div className="grid gap-8 md:grid-cols-2">
               <div>
                 <h4
@@ -440,6 +474,36 @@ function ProjectItem({
               </div>
             </div>
 
+            {/* Key Decisions */}
+            {project.caseStudy?.keyDecisions && (
+              <div className="mt-8">
+                <h4
+                  className="mb-4 text-xs font-semibold uppercase tracking-widest"
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--color-signal)",
+                  }}
+                >
+                  Decisões-chave
+                </h4>
+                <ul className="space-y-2">
+                  {project.caseStudy.keyDecisions.map((d) => (
+                    <li
+                      key={d}
+                      className="flex items-start gap-2 text-sm"
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        color: "var(--color-text-secondary)",
+                      }}
+                    >
+                      <span style={{ color: "var(--color-highlight)" }}>◆</span>
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="mt-8">
               <h4
                 className="mb-4 text-xs font-semibold uppercase tracking-widest"
@@ -466,6 +530,36 @@ function ProjectItem({
                 ))}
               </ul>
             </div>
+
+            {/* Lessons Learned */}
+            {project.caseStudy?.lessonsLearned && (
+              <div className="mt-8">
+                <h4
+                  className="mb-4 text-xs font-semibold uppercase tracking-widest"
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--color-text-muted)",
+                  }}
+                >
+                  Lições aprendidas
+                </h4>
+                <ul className="space-y-2">
+                  {project.caseStudy.lessonsLearned.map((l) => (
+                    <li
+                      key={l}
+                      className="flex items-start gap-2 text-sm italic"
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        color: "var(--color-text-muted)",
+                      }}
+                    >
+                      <span style={{ color: "var(--color-text-muted)" }}>→</span>
+                      {l}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="mt-6 flex flex-wrap gap-2">
               {project.stack.map((tech) => (
