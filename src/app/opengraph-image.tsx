@@ -98,7 +98,7 @@ export default async function Image() {
             letterSpacing: "-1px",
           }}
         >
-          Roberto de Moraes Zarzur
+          Roberto de Moraes
         </h1>
         <p
           style={{

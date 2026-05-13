@@ -55,8 +55,8 @@ export const metadata: Metadata = {
     "Infraestrutura Cloud",
     "Arquitetura de Software",
   ],
-  authors: [{ name: "Roberto de Moraes Zarzur" }],
-  creator: "Roberto de Moraes Zarzur",
+  authors: [{ name: "Roberto de Moraes" }],
+  creator: "Roberto de Moraes",
   alternates: {
     canonical: "https://robertozarzur.dev",
   },
@@ -88,7 +88,7 @@ const jsonLd = {
     {
       "@type": "Person",
       "@id": "https://robertozarzur.dev/#person",
-      name: "Roberto de Moraes Zarzur",
+      name: "Roberto de Moraes",
       jobTitle: "Gerente de TI & Engenheiro de Software",
       description:
         "Gerente de TI com perfil hands-on, atuando na interseção entre liderança estratégica e engenharia de software avançada. Especialista em backends de alta performance, infraestrutura cloud e DevOps.",

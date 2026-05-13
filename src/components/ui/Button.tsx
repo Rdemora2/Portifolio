@@ -33,7 +33,7 @@ export function Button({
   disabled,
   type = "button",
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 rounded-full border font-semibold uppercase tracking-wider transition-all duration-300 disabled:opacity-50 ${VARIANTS[variant]} ${SIZES[size]} ${className}`
+  const classes = `inline-flex items-center justify-center gap-2 rounded-full border font-semibold uppercase tracking-wider cursor-pointer transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${VARIANTS[variant]} ${SIZES[size]} ${className}`
   const style = { fontFamily: "var(--font-body)" }
 
   if (href) {

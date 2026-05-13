@@ -59,12 +59,12 @@ export function Contact() {
     <section
       id="contact"
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative overflow-hidden py-20 md:py-32"
+      className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
       {inView && <WaveCanvas />}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-[2fr_3fr]">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 sm:gap-16 lg:grid-cols-[2fr_3fr]">
           <ScrollReveal>
             <div>
               <p
@@ -78,14 +78,22 @@ export function Contact() {
                 Contato
               </p>
               <h2
-                className="mb-6 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl"
-                style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
+                className="mb-6 font-bold leading-tight"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--color-text-primary)",
+                  fontSize: "var(--text-3xl)",
+                }}
               >
                 Bora conversar?
               </h2>
               <p
-                className="mb-8 text-base leading-relaxed md:text-lg"
-                style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}
+                className="mb-8 leading-relaxed"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  color: "var(--color-text-secondary)",
+                  fontSize: "var(--text-md)",
+                }}
               >
                 Se você tem um projeto interessante ou quer trocar uma ideia, manda uma mensagem.
               </p>
@@ -97,11 +105,11 @@ export function Contact() {
                     href={contact.href}
                     target={contact.type !== "email" ? "_blank" : undefined}
                     rel={contact.type !== "email" ? "noopener noreferrer" : undefined}
-                    className="flex items-center gap-3 text-sm transition-colors hover:text-[var(--color-signal)]"
+                    className="flex items-center gap-3 text-sm transition-colors duration-200 hover:text-[var(--color-signal)]"
                     style={{ fontFamily: "var(--font-mono)", color: "var(--color-text-secondary)" }}
                   >
                     <span
-                      className="flex h-8 w-8 items-center justify-center rounded-full border"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border transition-colors duration-200"
                       style={{ borderColor: "var(--color-edge)" }}
                     >
                       {contact.type === "email" && "✉"}
@@ -117,8 +125,8 @@ export function Contact() {
           </ScrollReveal>
 
           <ScrollReveal animation="slide-right" delay={0.2}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
-              <div className="grid gap-6 sm:grid-cols-2">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" noValidate>
+              <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                 <FormField label="Nome" htmlFor="contact-name" error={errors.name?.message}>
                   <input
                     {...register("name")}
@@ -139,7 +147,7 @@ export function Contact() {
                 </FormField>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                 <FormField label="Empresa (opcional)" htmlFor="contact-company">
                   <input
                     {...register("company")}
@@ -187,10 +195,8 @@ export function Contact() {
               <MagneticButton
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full rounded-full border py-4 text-sm font-semibold uppercase tracking-wider transition-all hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] disabled:opacity-50"
+                className="w-full cursor-pointer rounded-full border border-[var(--color-signal)] text-[var(--color-signal)] py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] disabled:cursor-not-allowed disabled:opacity-50 sm:py-4"
                 style={{
-                  borderColor: "var(--color-signal)",
-                  color: "var(--color-signal)",
                   fontFamily: "var(--font-body)",
                 }}
               >
@@ -205,7 +211,7 @@ export function Contact() {
 
               {status === "success" && (
                 <div
-                  className="flex items-center gap-2 rounded-xl border p-4 text-sm"
+                  className="flex items-center gap-2 rounded-xl border p-3 text-sm sm:p-4"
                   style={{
                     borderColor: "var(--color-matrix)",
                     backgroundColor: "rgba(0,255,136,0.05)",
@@ -223,7 +229,7 @@ export function Contact() {
 
               {status === "error" && (
                 <div
-                  className="flex items-center gap-2 rounded-xl border p-4 text-sm animate-shake"
+                  className="flex items-center gap-2 rounded-xl border p-3 text-sm animate-shake sm:p-4"
                   style={{
                     borderColor: "var(--color-alert)",
                     backgroundColor: "rgba(255,107,53,0.05)",

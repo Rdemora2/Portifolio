@@ -54,10 +54,10 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <p
             className="mb-2 text-xs font-normal uppercase"
@@ -70,10 +70,11 @@ export function Experience() {
             Onde trabalhei
           </p>
           <h2
-            className="mb-20 text-3xl font-bold md:text-5xl"
+            className="mb-12 font-bold sm:mb-20"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
+              fontSize: "var(--text-3xl)",
             }}
           >
             Experiência
@@ -90,7 +91,7 @@ export function Experience() {
             }}
           />
 
-          <div className="space-y-16 md:space-y-24">
+          <div className="space-y-12 sm:space-y-16 md:space-y-24">
             {experience.map((entry, idx) => (
               <ScrollReveal
                 key={entry.id}
@@ -136,7 +137,7 @@ export function Experience() {
                     colors={["#c084fc", "#f472b6", "#38bdf8"]}
                   >
                     <div
-                      className="p-8 transition-all duration-500"
+                      className="p-5 transition-all duration-500 sm:p-6 md:p-8"
                       style={{
                         borderColor: "var(--color-edge)",
                       }}
@@ -172,7 +173,7 @@ export function Experience() {
                       </div>
 
                       <h3
-                        className="mb-1 text-xl font-bold"
+                        className="mb-1 text-lg font-bold sm:text-xl"
                         style={{
                           fontFamily: "var(--font-display)",
                           color: "var(--color-text-primary)",
@@ -221,7 +222,7 @@ export function Experience() {
                         {entry.stack.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded-full border px-3 py-1 text-xs"
+                            className="rounded-full border px-3 py-1 text-xs transition-colors duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
                             style={{
                               fontFamily: "var(--font-mono)",
                               borderColor: "var(--color-edge)",

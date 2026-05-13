@@ -81,14 +81,14 @@ export function Navigation() {
         role="navigation"
         aria-label="Navegação principal"
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <a
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick("hero");
             }}
-            className="text-lg font-bold tracking-tight"
+            className="text-lg font-bold tracking-tight transition-colors duration-200"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
@@ -107,7 +107,7 @@ export function Navigation() {
                   e.preventDefault();
                   handleNavClick(id);
                 }}
-                className="relative text-sm font-medium transition-colors"
+                className="relative text-sm font-medium transition-colors duration-200"
                 style={{
                   fontFamily: "var(--font-body)",
                   color:
@@ -130,13 +130,13 @@ export function Navigation() {
           </div>
 
           <button
-            className="relative z-[110] flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden"
+            className="relative z-[110] flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label={isMobileOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMobileOpen}
           >
             <span
-              className="block h-[1.5px] w-6 transition-all duration-300"
+              className="block h-[1.5px] w-6 transition-all duration-200"
               style={{
                 backgroundColor: "var(--color-text-primary)",
                 transform: isMobileOpen
@@ -145,14 +145,14 @@ export function Navigation() {
               }}
             />
             <span
-              className="block h-[1.5px] w-6 transition-all duration-300"
+              className="block h-[1.5px] w-6 transition-all duration-200"
               style={{
                 backgroundColor: "var(--color-text-primary)",
                 opacity: isMobileOpen ? 0 : 1,
               }}
             />
             <span
-              className="block h-[1.5px] w-6 transition-all duration-300"
+              className="block h-[1.5px] w-6 transition-all duration-200"
               style={{
                 backgroundColor: "var(--color-text-primary)",
                 transform: isMobileOpen
@@ -184,7 +184,7 @@ export function Navigation() {
               e.preventDefault();
               handleNavClick(id);
             }}
-            className="text-3xl font-bold"
+            className="text-2xl font-bold transition-colors duration-200 sm:text-3xl"
             style={{
               fontFamily: "var(--font-display)",
               color:

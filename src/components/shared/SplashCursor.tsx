@@ -1145,7 +1145,7 @@ function SplashCursor({
     function hexToRGB(hex: string) {
       let val = hex.replace("#", "");
       if (val.length === 3)
-        val = val[0] + val[0] + val[1] + val[1] + val[2] + val[2];
+        val = val[0]! + val[0]! + val[1]! + val[1]! + val[2]! + val[2]!;
       const r = parseInt(val.slice(0, 2), 16) / 255;
       const g = parseInt(val.slice(2, 4), 16) / 255;
       const b = parseInt(val.slice(4, 6), 16) / 255;

@@ -1,5 +1,4 @@
 :root {
-  /* ── Colors ── */
   --color-void: #050a12;
   --color-deep: #0a1018;
   --color-structure: #0d1520;
@@ -11,47 +10,42 @@
   --color-alert: #ff6b35;
   --color-text-primary: #e8f4f8;
   --color-text-secondary: #a1c1d8;
-  --color-text-muted: #6b8fa8;
+  --color-text-muted: #7a8da3;
 
-  /* ── Fonts ── */
   --font-display: "Syne", sans-serif;
   --font-body: "DM Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  /* ── Spacing (8px grid) ── */
-  --space-1: 0.5rem;   /* 8px  */
-  --space-2: 1rem;     /* 16px */
-  --space-3: 1.5rem;   /* 24px */
-  --space-4: 2rem;     /* 32px */
-  --space-5: 2.5rem;   /* 40px */
-  --space-6: 3rem;     /* 48px */
-  --space-8: 4rem;     /* 64px */
-  --space-10: 5rem;    /* 80px */
-  --space-12: 6rem;    /* 96px */
-  --space-16: 8rem;    /* 128px */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-10: 5rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
 
-  /* ── Type Scale (Minor Third 1.2 ratio) ── */
-  --text-xs: 0.75rem;       /* 12px */
-  --text-sm: 0.875rem;      /* 14px */
-  --text-base: 1rem;        /* 16px */
-  --text-md: 1.1875rem;     /* 19px */
-  --text-lg: 1.4375rem;     /* 23px */
-  --text-xl: 1.75rem;       /* 28px */
-  --text-2xl: 2.0625rem;    /* 33px */
-  --text-3xl: 2.5rem;       /* 40px */
-  --text-4xl: 3rem;         /* 48px */
-  --text-5xl: 3.5625rem;    /* 57px */
-  --text-6xl: 4.3125rem;    /* 69px */
-  --text-7xl: 5.1875rem;    /* 83px */
-  --text-8xl: 6.1875rem;    /* 99px */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: clamp(1rem, 0.5vw + 0.9rem, 1.1875rem);
+  --text-lg: clamp(1.125rem, 0.8vw + 0.9rem, 1.4375rem);
+  --text-xl: clamp(1.25rem, 1vw + 0.9rem, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.5vw + 0.9rem, 2.0625rem);
+  --text-3xl: clamp(1.75rem, 2vw + 0.9rem, 2.5rem);
+  --text-4xl: clamp(2rem, 2.5vw + 0.9rem, 3rem);
+  --text-5xl: clamp(2.25rem, 3vw + 0.9rem, 3.5625rem);
+  --text-6xl: clamp(2.5rem, 4vw + 0.9rem, 4.3125rem);
+  --text-7xl: clamp(2.75rem, 5vw + 0.9rem, 5.1875rem);
+  --text-8xl: clamp(3rem, 6vw + 0.9rem, 6.1875rem);
   --text-hero: clamp(2.5rem, 4vw + 1rem, 5.1875rem);
 
-  /* ── Easing ── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
   --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-  /* ── Transitions ── */
   --transition-fast: 150ms var(--ease-out-expo);
   --transition-base: 300ms var(--ease-out-expo);
   --transition-slow: 600ms var(--ease-out-expo);

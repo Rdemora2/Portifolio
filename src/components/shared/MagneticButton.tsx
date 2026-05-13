@@ -25,12 +25,13 @@ export function MagneticButton({
   disabled = false,
   ariaLabel,
 }: MagneticButtonProps) {
-  const ref = useRef<HTMLElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLElement>(null);
   const rectRef = useRef<DOMRect | null>(null);
   const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = wrapperRef.current;
     if (!el) return;
 
     let rafId = 0;
@@ -69,19 +70,19 @@ export function MagneticButton({
   };
 
   const handleMouseMove = async (e: React.MouseEvent) => {
-    if (!ref.current || disabled) return;
+    if (!buttonRef.current || disabled) return;
     const rect = rectRef.current;
     if (!rect) return;
     const x = (e.clientX - rect.left - rect.width / 2) * strength;
     const y = (e.clientY - rect.top - rect.height / 2) * strength;
     const mod = await ensureGsap();
-    mod?.gsap.to(ref.current, { x, y, duration: 0.3, ease: "power2.out" });
+    mod?.gsap.to(buttonRef.current, { x, y, duration: 0.3, ease: "power2.out" });
   };
 
   const handleMouseLeave = async () => {
-    if (!ref.current) return;
+    if (!buttonRef.current) return;
     const mod = await ensureGsap();
-    mod?.gsap.to(ref.current, {
+    mod?.gsap.to(buttonRef.current, {
       x: 0,
       y: 0,
       duration: 0.6,
@@ -92,26 +93,20 @@ export function MagneticButton({
   const commonProps = {
     className: `inline-flex items-center justify-center gap-2 transition-colors ${className}`,
     style,
-    onMouseMove: handleMouseMove,
-    onMouseLeave: handleMouseLeave,
     "aria-label": ariaLabel,
   };
 
-  if (href) {
-    return (
-      <a
-        ref={ref as React.RefObject<HTMLAnchorElement>}
-        href={href}
-        {...commonProps}
-      >
-        {children}
-      </a>
-    );
-  }
-
-  return (
+  const innerElement = href ? (
+    <a
+      ref={buttonRef as React.RefObject<HTMLAnchorElement>}
+      href={href}
+      {...commonProps}
+    >
+      {children}
+    </a>
+  ) : (
     <button
-      ref={ref as React.RefObject<HTMLButtonElement>}
+      ref={buttonRef as React.RefObject<HTMLButtonElement>}
       type={type}
       onClick={onClick}
       disabled={disabled}
@@ -119,5 +114,17 @@ export function MagneticButton({
     >
       {children}
     </button>
+  );
+
+  return (
+    <div
+      ref={wrapperRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="inline-flex items-center justify-center relative"
+      style={{ cursor: disabled ? "not-allowed" : "pointer" }}
+    >
+      {innerElement}
+    </div>
   );
 }

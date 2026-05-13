@@ -41,10 +41,10 @@ function Particles() {
 
     for (let i = 0; i < count; i++) {
       const ix = i * 3, iy = i * 3 + 1, iz = i * 3 + 2
-      arr[ix] += velocities[ix] + Math.sin(t * 0.2 + i * 0.1) * 0.003
-      arr[iy] += velocities[iy]
-      arr[iz] += velocities[iz] + Math.cos(t * 0.15 + i * 0.05) * 0.002
-      if (arr[iy] > 15) { arr[iy] = -15; arr[ix] = (Math.random() - 0.5) * 30 }
+      arr[ix]! += velocities[ix]! + Math.sin(t * 0.2 + i * 0.1) * 0.003
+      arr[iy]! += velocities[iy]!
+      arr[iz]! += velocities[iz]! + Math.cos(t * 0.15 + i * 0.05) * 0.002
+      if (arr[iy]! > 15) { arr[iy] = -15; arr[ix] = (Math.random() - 0.5) * 30 }
     }
     posAttr.needsUpdate = true
     meshRef.current.rotation.y = t * 0.015
@@ -168,9 +168,7 @@ function DataStreams() {
   return (
     <group ref={groupRef}>
       {lines.map((geo, i) => (
-        <line key={i} geometry={geo}>
-          <lineBasicMaterial color={i % 2 === 0 ? "#6366f1" : "#00d4ff"} transparent opacity={0.06} />
-        </line>
+        <primitive key={i} object={new THREE.Line(geo, new THREE.LineBasicMaterial({ color: i % 2 === 0 ? "#6366f1" : "#00d4ff", transparent: true, opacity: 0.06 }))} />
       ))}
     </group>
   )

@@ -32,12 +32,12 @@ export function About() {
     <section
       id="about"
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative overflow-hidden py-20 md:py-32"
+      className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       {inView && <FloatingGridCanvas />}
       {inView && <NeuralBackground />}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <p
             className="mb-2 text-xs font-normal uppercase"
@@ -51,15 +51,16 @@ export function About() {
           </p>
         </ScrollReveal>
 
-        <div className="grid gap-12 lg:gap-16 lg:grid-cols-[1.5fr_1fr]">
-          <div>
+        <div className="grid gap-10 lg:gap-16 lg:grid-cols-[1.5fr_1fr]">
+          <div className="min-w-0">
             <AnimatedText
               as="h2"
               type="split-words"
-              className="mb-8 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl"
+              className="mb-6 font-bold leading-tight sm:mb-8"
               style={{
                 fontFamily: "var(--font-display)",
                 color: "var(--color-text-primary)",
+                fontSize: "var(--text-3xl)",
               }}
             >
               De dev a gestor sem largar o terminal
@@ -67,10 +68,11 @@ export function About() {
 
             <ScrollReveal delay={0.2}>
               <p
-                className="mb-6 text-base leading-relaxed md:text-lg"
+                className="mb-6 leading-relaxed"
                 style={{
                   fontFamily: "var(--font-body)",
                   color: "var(--color-text-secondary)",
+                  fontSize: "var(--text-md)",
                 }}
               >
                 {personalInfo.bio}
@@ -79,10 +81,11 @@ export function About() {
 
             <ScrollReveal delay={0.4}>
               <p
-                className="mb-6 text-base leading-relaxed md:text-lg"
+                className="mb-6 leading-relaxed"
                 style={{
                   fontFamily: "var(--font-body)",
                   color: "var(--color-text-secondary)",
+                  fontSize: "var(--text-md)",
                 }}
               >
                 {personalInfo.bioExtended}
@@ -90,12 +93,12 @@ export function About() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.5}>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {["Cloud & DevOps", "Backend de Alta Performance", "Gestão de Times", "Observabilidade"].map(
                   (pillar) => (
                     <span
                       key={pillar}
-                      className="rounded-full border px-4 py-1.5 text-xs font-medium transition-colors duration-300 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+                      className="cursor-default rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)] sm:px-4 sm:py-1.5"
                       style={{
                         fontFamily: "var(--font-mono)",
                         borderColor: "var(--color-edge)",
@@ -112,11 +115,11 @@ export function About() {
 
           <ScrollReveal animation="slide-right" delay={0.3}>
             <GradientBorder animated={false}>
-              <div className="space-y-6 p-6 md:p-8">
+              <div className="space-y-6 p-5 sm:p-6 md:p-8">
                 {stats.map((stat) => (
-                  <div key={stat.label} className="flex items-center justify-between">
+                  <div key={stat.label} className="flex items-center justify-between gap-4">
                     <span
-                      className="text-xs md:text-sm uppercase tracking-wider"
+                      className="text-xs uppercase tracking-wider sm:text-sm"
                       style={{
                         fontFamily: "var(--font-mono)",
                         color: "var(--color-text-muted)",
@@ -125,7 +128,7 @@ export function About() {
                       {stat.label}
                     </span>
                     <span
-                      className="text-xl md:text-2xl font-bold"
+                      className="text-xl font-bold sm:text-2xl"
                       style={{
                         fontFamily: "var(--font-display)",
                         color: "var(--color-text-primary)",

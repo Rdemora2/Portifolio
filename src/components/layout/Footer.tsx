@@ -4,13 +4,12 @@ export function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer
-      className="relative border-t px-6 py-16"
+      className="relative border-t px-4 py-12 sm:px-6 sm:py-16"
       style={{
         backgroundColor: "var(--color-void)",
         borderColor: "var(--color-edge)",
       }}
     >
-      {/* Gradient accent line */}
       <div
         className="absolute top-0 left-0 right-0 h-[1px]"
         style={{
@@ -20,8 +19,7 @@ export function Footer() {
       />
 
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-12 md:grid-cols-3">
-          {/* Brand */}
+        <div className="grid gap-8 sm:gap-12 md:grid-cols-3">
           <div>
             <p
               className="mb-2 text-lg font-bold tracking-tight"
@@ -45,7 +43,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
             <p
               className="mb-4 text-xs font-semibold uppercase tracking-widest"
@@ -62,7 +59,7 @@ export function Footer() {
                   <li key={id}>
                     <a
                       href={`#${id}`}
-                      className="text-sm transition-colors duration-300 hover:text-[var(--color-signal)]"
+                      className="text-sm transition-colors duration-200 hover:text-[var(--color-signal)]"
                       style={{
                         fontFamily: "var(--font-body)",
                         color: "var(--color-text-secondary)",
@@ -76,7 +73,6 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Contact & Social */}
           <div>
             <p
               className="mb-4 text-xs font-semibold uppercase tracking-widest"
@@ -94,7 +90,7 @@ export function Footer() {
                   href={contact.href}
                   target={contact.type !== "email" ? "_blank" : undefined}
                   rel={contact.type !== "email" ? "noopener noreferrer" : undefined}
-                  className="block text-sm transition-colors duration-300 hover:text-[var(--color-signal)]"
+                  className="block text-sm transition-colors duration-200 hover:text-[var(--color-signal)]"
                   style={{
                     fontFamily: "var(--font-mono)",
                     color: "var(--color-text-secondary)",
@@ -107,9 +103,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div
-          className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 md:flex-row"
+          className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:mt-12 md:flex-row"
           style={{ borderColor: "var(--color-edge)" }}
         >
           <p

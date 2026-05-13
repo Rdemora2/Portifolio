@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { techStack } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { TECH_CATEGORY_COLORS } from "@/lib/constants";
@@ -32,7 +32,7 @@ const techLogos = [
   { node: <SiPython size={36} color="#3776AB" /> },
   { node: <SiDocker size={36} color="#2496ED" /> },
   { node: <SiKubernetes size={36} color="#326CE5" /> },
-  { node: <FaAws size={36} color="#232F3E" /> },
+  { node: <FaAws size={36} color="#FF9900" /> },
   { node: <SiPostgresql size={36} color="#4169E1" /> },
   { node: <SiGraphql size={36} color="#E10098" /> },
 ];
@@ -67,7 +67,6 @@ export function TechStack() {
     setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
 
-  // Mouse-reactive parallax for tech tags
   useEffect(() => {
     if (prefersReduced || isTouch) return;
 
@@ -170,10 +169,10 @@ export function TechStack() {
     <section
       id="tech"
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <p
             className="mb-2 text-xs font-normal uppercase"
@@ -186,17 +185,18 @@ export function TechStack() {
             O que eu uso
           </p>
           <h2
-            className="mb-12 text-3xl font-bold md:text-5xl"
+            className="mb-8 font-bold sm:mb-12"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
+              fontSize: "var(--text-3xl)",
             }}
           >
             Tecnologias
           </h2>
         </ScrollReveal>
 
-        <div className="mb-20">
+        <div className="mb-12 sm:mb-20">
           <LogoLoop
             logos={techLogos}
             speed={60}
@@ -213,7 +213,7 @@ export function TechStack() {
 
         <div
           ref={containerRef}
-          className="grid gap-12 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3"
         >
           {Object.entries(grouped).map(([category, items], idx) => (
             <ScrollReveal key={category} delay={idx * 0.1}>
@@ -246,7 +246,7 @@ export function TechStack() {
                         ref={(el) => {
                           tagRefs.current[currentIndex] = el;
                         }}
-                        className="rounded-full border px-3 py-1.5 text-xs transition-all duration-300 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+                        className="cursor-default rounded-full border px-3 py-1.5 text-xs transition-all duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
                         style={{
                           fontFamily: "var(--font-mono)",
                           borderColor: tech.featured

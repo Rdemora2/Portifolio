@@ -103,10 +103,10 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <p
             className="mb-2 text-xs font-normal uppercase"
@@ -119,22 +119,23 @@ export function Projects() {
             Projetos
           </p>
           <h2
-            className="mb-12 text-3xl font-bold md:text-5xl"
+            className="mb-8 font-bold sm:mb-12"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
+              fontSize: "var(--text-3xl)",
             }}
           >
             O que eu fiz
           </h2>
         </ScrollReveal>
 
-        <div className="mb-12 flex flex-wrap gap-2">
+        <div className="mb-8 flex flex-wrap gap-2 sm:mb-12">
           {filters.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => handleFilterChange(key)}
-              className="rounded-full border px-6 py-2 text-sm font-medium transition-all duration-300"
+              className="cursor-pointer rounded-full border px-4 py-1.5 text-xs font-medium transition-all duration-200 sm:px-6 sm:py-2 sm:text-sm"
               style={{
                 fontFamily: "var(--font-mono)",
                 borderColor:
@@ -234,10 +235,10 @@ function ProjectItem({
       >
         <div
           ref={itemRef}
-          className="border-b cursor-pointer group px-6 bg-void/30 backdrop-blur-sm rounded-2xl"
+          className="border-b cursor-pointer group px-4 bg-void/30 backdrop-blur-sm rounded-2xl sm:px-6"
           style={{
             borderColor: "var(--color-edge)",
-            transition: "background-color 0.4s ease",
+            transition: "background-color 0.3s ease",
           }}
           onMouseEnter={() => {
             if (itemRef.current) {
@@ -251,7 +252,7 @@ function ProjectItem({
           }}
         >
           <div
-            className="relative flex items-center gap-6 py-8 transition-all lg:gap-10"
+            className="relative flex items-center gap-4 py-6 transition-all sm:gap-6 sm:py-8 lg:gap-10"
             onClick={onToggle}
             role="button"
             tabIndex={0}
@@ -263,7 +264,6 @@ function ProjectItem({
               }
             }}
           >
-          {/* Hover accent bar */}
           <div
             className="absolute left-0 top-0 h-full w-[2px] origin-top transition-transform duration-500 group-hover:scale-y-100"
             style={{
@@ -274,7 +274,7 @@ function ProjectItem({
           />
 
           <span
-            className="hidden text-[80px] font-extrabold leading-none transition-all duration-500 lg:block lg:text-[120px]"
+            className="hidden text-[60px] font-extrabold leading-none transition-all duration-500 lg:block lg:text-[120px]"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-muted)",
@@ -285,21 +285,21 @@ function ProjectItem({
             {String(index + 1).padStart(2, "0")}
           </span>
 
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <h3
-                className="text-xl font-bold md:text-2xl lg:text-3xl transition-all duration-300 group-hover:translate-x-2"
+                className="text-lg font-bold transition-all duration-200 group-hover:translate-x-2 sm:text-xl md:text-2xl lg:text-3xl"
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--color-text-primary)",
                 }}
               >
-                <span className="group-hover:text-[var(--color-signal)] transition-colors duration-300">
+                <span className="group-hover:text-[var(--color-signal)] transition-colors duration-200">
                   {project.title}
                 </span>
               </h3>
               <span
-                className="rounded-full border px-3 py-0.5 text-xs uppercase tracking-wider"
+                className="rounded-full border px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
                 style={{
                   fontFamily: "var(--font-mono)",
                   borderColor: "var(--color-edge)",
@@ -309,7 +309,7 @@ function ProjectItem({
                 {project.client}
               </span>
               <span
-                className="rounded-full px-3 py-0.5 text-xs uppercase tracking-wider"
+                className="rounded-full px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
                 style={{
                   fontFamily: "var(--font-mono)",
                   backgroundColor: "rgba(99,102,241,0.1)",
@@ -320,7 +320,7 @@ function ProjectItem({
               </span>
               {project.international && (
                 <span
-                  className="rounded-full px-3 py-0.5 text-xs uppercase tracking-wider"
+                  className="rounded-full px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
                   style={{
                     fontFamily: "var(--font-mono)",
                     backgroundColor: "rgba(255,107,53,0.1)",
@@ -348,7 +348,7 @@ function ProjectItem({
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              className="transition-transform duration-300"
+              className="transition-transform duration-200"
               style={{
                 color: "var(--color-text-secondary)",
                 transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
@@ -370,20 +370,20 @@ function ProjectItem({
           className="overflow-hidden"
           style={{ height: 0, opacity: 0 }}
         >
-          <div className="pb-8 pl-0 lg:pl-[170px]">
+          <div className="pb-6 pl-0 sm:pb-8 lg:pl-[170px]">
             {project.metrics.length > 0 && (
-              <div className="mb-8 grid gap-4 sm:grid-cols-3">
+              <div className="mb-6 grid gap-3 sm:mb-8 sm:gap-4 sm:grid-cols-3">
                 {project.metrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="rounded-xl border p-6 text-center"
+                    className="rounded-xl border p-4 text-center sm:p-6"
                     style={{
                       borderColor: "var(--color-edge)",
                       backgroundColor: "rgba(99,102,241,0.03)",
                     }}
                   >
                     <div
-                      className="text-2xl font-extrabold md:text-3xl"
+                      className="text-xl font-extrabold sm:text-2xl md:text-3xl"
                       style={{
                         fontFamily: "var(--font-display)",
                         color: "var(--color-signal)",
@@ -397,7 +397,7 @@ function ProjectItem({
                       />
                     </div>
                     <p
-                      className="mt-2 text-xs uppercase tracking-wider"
+                      className="mt-2 text-[0.625rem] uppercase tracking-wider sm:text-xs"
                       style={{
                         fontFamily: "var(--font-mono)",
                         color: "var(--color-text-muted)",
@@ -410,17 +410,16 @@ function ProjectItem({
               </div>
             )}
 
-            {/* Case Study - Roberto's Role */}
             {project.caseStudy && (
               <div
-                className="mb-8 rounded-xl border p-6 md:p-8"
+                className="mb-6 rounded-xl border p-4 sm:mb-8 sm:p-6 md:p-8"
                 style={{
                   borderColor: "rgba(99,102,241,0.2)",
                   backgroundColor: "rgba(99,102,241,0.03)",
                 }}
               >
                 <h4
-                  className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest"
+                  className="mb-4 flex items-center gap-2 text-[0.625rem] font-semibold uppercase tracking-widest sm:text-xs"
                   style={{
                     fontFamily: "var(--font-mono)",
                     color: "var(--color-signal)",
@@ -444,7 +443,7 @@ function ProjectItem({
               </div>
             )}
 
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
               <div>
                 <h4
                   className="mb-4 text-xs font-semibold uppercase tracking-widest"
@@ -487,9 +486,8 @@ function ProjectItem({
               </div>
             </div>
 
-            {/* Key Decisions */}
             {project.caseStudy?.keyDecisions && (
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
                 <h4
                   className="mb-4 text-xs font-semibold uppercase tracking-widest"
                   style={{
@@ -517,7 +515,7 @@ function ProjectItem({
               </div>
             )}
 
-            <div className="mt-8">
+            <div className="mt-6 sm:mt-8">
               <h4
                 className="mb-4 text-xs font-semibold uppercase tracking-widest"
                 style={{
@@ -544,9 +542,8 @@ function ProjectItem({
               </ul>
             </div>
 
-            {/* Lessons Learned */}
             {project.caseStudy?.lessonsLearned && (
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
                 <h4
                   className="mb-4 text-xs font-semibold uppercase tracking-widest"
                   style={{

@@ -357,7 +357,7 @@ export default function GoEmProducaoPage() {
         {/* Bottom CTA */}
         <RevealBlock>
           <div className="border-t py-20 text-center" style={{ borderColor: "var(--color-edge)", backgroundColor: "var(--color-deep)" }}>
-            <p className="mb-2 text-xs uppercase tracking-[0.3em]" style={{ fontFamily: "var(--font-mono)", color: "var(--color-text-muted)" }}>Roberto de Moraes Zarzur</p>
+            <p className="mb-2 text-xs uppercase tracking-[0.3em]" style={{ fontFamily: "var(--font-mono)", color: "var(--color-text-muted)" }}>Roberto de Moraes</p>
             <p className="mb-8 text-sm" style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}>Gerente de TI & Engenheiro de Software · Go · Next.js · Kotlin · AWS · GCP</p>
             <Link href="/#contact" className="inline-flex rounded-full border px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] hover:shadow-[0_0_30px_rgba(99,102,241,0.3)]" style={{ borderColor: "var(--color-signal)", color: "var(--color-signal)", fontFamily: "var(--font-body)" }}>
               Entrar em contato

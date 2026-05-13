@@ -60,7 +60,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       </div>
       
       {/* Conteúdo da Página */}
-      <div ref={contentRef} className="will-change-transform bg-[var(--color-void)] min-h-screen">
+      <div ref={contentRef} className="will-change-transform bg-[var(--color-void)] min-h-dvh">
         {children}
       </div>
     </>

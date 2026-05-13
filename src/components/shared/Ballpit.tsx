@@ -531,7 +531,7 @@ class W {
       const base = 3 * idx;
       I.fromArray(s, base);
       B.fromArray(o, base);
-      B.y -= e.delta * t.gravity * n[idx];
+      B.y -= e.delta * t.gravity * n[idx]!;
       B.multiplyScalar(t.friction);
       B.clampLength(0, t.maxVelocity);
       I.add(B);
@@ -542,12 +542,12 @@ class W {
       const base = 3 * idx;
       I.fromArray(s, base);
       B.fromArray(o, base);
-      const radius = n[idx];
+      const radius = n[idx]!;
       for (let jdx = idx + 1; jdx < t.count; jdx++) {
         const otherBase = 3 * jdx;
         O.fromArray(s, otherBase);
         N.fromArray(o, otherBase);
-        const otherRadius = n[jdx];
+        const otherRadius = n[jdx]!;
         _.copy(O).sub(I);
         const dist = _.length();
         const sumRadius = radius + otherRadius;
@@ -571,7 +571,7 @@ class W {
       if (t.controlSphere0) {
         _.copy(F).sub(I);
         const dist = _.length();
-        const sumRadius0 = radius + n[0];
+        const sumRadius0 = radius + n[0]!;
         if (dist < sumRadius0) {
           const diff = sumRadius0 - dist;
           j.copy(_.normalize()).multiplyScalar(diff);
@@ -649,7 +649,7 @@ class Z extends d {
   constructor(e: any, t: Partial<BallpitConfig> = {}) {
     const i = { ...X, ...t };
     const s = new z();
-    const n = new p(e, 0.04).fromScene(s).texture;
+    const n = new p(e).fromScene(s).texture;
     const o = new g();
     const r = new Y({ envMap: n, ...i.materialParams });
     r.envMapRotation.x = -Math.PI / 2;
@@ -686,12 +686,12 @@ class Z extends d {
             const scaled = Math.max(0, Math.min(1, ratio)) * (t.length - 1);
             const idx = Math.floor(scaled);
             const start = i[idx];
-            if (idx >= t.length - 1) return start.clone();
+            if (idx >= t.length - 1) return start!.clone();
             const alpha = scaled - idx;
-            const end = i[idx + 1];
-            out.r = start.r + alpha * (end.r - start.r);
-            out.g = start.g + alpha * (end.g - start.g);
-            out.b = start.b + alpha * (end.b - start.b);
+            const end = i[idx + 1]!;
+            out.r = start!.r + alpha * (end.r - start!.r);
+            out.g = start!.g + alpha * (end.g - start!.g);
+            out.b = start!.b + alpha * (end.b - start!.b);
             return out;
           },
         };
@@ -712,7 +712,7 @@ class Z extends d {
       if (idx === 0 && this.config.followCursor === false) {
         U.scale.setScalar(0);
       } else {
-        U.scale.setScalar(this.physics.sizeData[idx]);
+        U.scale.setScalar(this.physics.sizeData[idx]!);
       }
       U.updateMatrix();
       this.setMatrixAt(idx, U.matrix);

@@ -24,10 +24,10 @@ export function Insights() {
   return (
     <section
       id="insights"
-      className="relative py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <p
             className="mb-2 text-xs font-normal uppercase"
@@ -40,16 +40,17 @@ export function Insights() {
             Pensamento técnico
           </p>
           <h2
-            className="mb-4 text-3xl font-bold md:text-5xl"
+            className="mb-4 font-bold"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
+              fontSize: "var(--text-3xl)",
             }}
           >
             Insights Estratégicos
           </h2>
           <p
-            className="mb-16 max-w-xl text-sm md:text-base"
+            className="mb-12 max-w-xl text-sm sm:mb-16 md:text-base"
             style={{
               fontFamily: "var(--font-body)",
               color: "var(--color-text-secondary)",
@@ -59,17 +60,16 @@ export function Insights() {
           </p>
         </ScrollReveal>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
           {insights.map((insight, idx) => {
             const CardContent = (
               <article
-                className="group relative overflow-hidden rounded-2xl border p-8 transition-all duration-500 hover:border-[var(--color-signal)]"
+                className="group relative overflow-hidden rounded-2xl border p-5 transition-all duration-200 hover:border-[var(--color-signal)] sm:p-6 md:p-8"
                 style={{
                   borderColor: "var(--color-edge)",
                   backgroundColor: "rgba(5,10,18,0.6)",
                 }}
               >
-                {/* Category accent */}
                 <div
                   className="absolute top-0 left-0 h-full w-[3px] origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100"
                   style={{
@@ -101,7 +101,7 @@ export function Insights() {
                 </div>
 
                 <h3
-                  className="mb-3 text-lg font-bold transition-colors duration-300 group-hover:text-[var(--color-signal)] md:text-xl"
+                  className="mb-3 text-base font-bold transition-colors duration-200 group-hover:text-[var(--color-signal)] sm:text-lg md:text-xl"
                   style={{
                     fontFamily: "var(--font-display)",
                     color: "var(--color-text-primary)",
@@ -147,9 +147,8 @@ export function Insights() {
                   )}
                 </div>
 
-                {/* Hover arrow */}
                 <div
-                  className="absolute bottom-8 right-8 translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                  className="absolute bottom-6 right-6 translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 sm:bottom-8 sm:right-8"
                   style={{ color: "var(--color-signal)" }}
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">

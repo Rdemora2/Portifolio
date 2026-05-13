@@ -1,7 +1,7 @@
 import type { PersonalInfo, Project, TechItem, ExperienceEntry, Testimonial, Insight } from "@/types"
 
 export const personalInfo: PersonalInfo = {
-  name: "Roberto de Moraes Zarzur",
+  name: "Roberto de Moraes",
   title: "Gerente de TI & Engenheiro de Software",
   subtitle: "Go · Next.js · Kotlin · AWS · GCP",
   bio: "Comecei como desenvolvedor full-stack e hoje lidero a área de tecnologia de uma empresa com operações internacionais. No caminho, aprendi que gestão de verdade exige mão na massa, por isso continuo construindo backends, configurando infraestrutura cloud e garantindo que cada sistema aguenta a pressão de produção. Minha entrega vai do código ao deploy final.",

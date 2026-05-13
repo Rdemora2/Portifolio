@@ -8,10 +8,10 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <p
             className="mb-2 text-xs font-normal uppercase"
@@ -24,28 +24,28 @@ export function Testimonials() {
             O que dizem
           </p>
           <h2
-            className="mb-16 text-3xl font-bold md:text-5xl"
+            className="mb-12 font-bold sm:mb-16"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
+              fontSize: "var(--text-3xl)",
             }}
           >
             Depoimentos
           </h2>
         </ScrollReveal>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, idx) => (
             <ScrollReveal key={testimonial.id} delay={idx * 0.15}>
               <div
-                className="group relative rounded-2xl border p-8 transition-all duration-500 hover:border-[var(--color-signal)]"
+                className="group relative rounded-2xl border p-5 transition-all duration-200 hover:border-[var(--color-signal)] sm:p-6 md:p-8"
                 style={{
                   borderColor: "var(--color-edge)",
                   backgroundColor: "rgba(10,16,24,0.5)",
                   backdropFilter: "blur(10px)",
                 }}
               >
-                {/* Quote mark */}
                 <span
                   className="absolute -top-3 left-6 text-4xl font-bold leading-none"
                   style={{
@@ -58,7 +58,6 @@ export function Testimonials() {
                   &ldquo;
                 </span>
 
-                {/* Gradient accent line */}
                 <div
                   className="absolute top-0 left-8 right-8 h-[1px] origin-left scale-x-0 transition-transform duration-700 group-hover:scale-x-100"
                   style={{
@@ -78,7 +77,6 @@ export function Testimonials() {
                 </blockquote>
 
                 <div className="flex items-center gap-3">
-                  {/* Avatar placeholder */}
                   <div
                     className="flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold"
                     style={{
@@ -89,7 +87,7 @@ export function Testimonials() {
                   >
                     {testimonial.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p
                       className="text-sm font-semibold"
                       style={{
@@ -100,7 +98,7 @@ export function Testimonials() {
                       {testimonial.name}
                     </p>
                     <p
-                      className="text-xs"
+                      className="truncate text-xs"
                       style={{
                         fontFamily: "var(--font-mono)",
                         color: "var(--color-text-muted)",
