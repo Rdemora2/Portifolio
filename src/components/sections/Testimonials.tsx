@@ -2,7 +2,6 @@
 
 import { testimonials } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
-import { AnimatedText } from "@/components/shared/AnimatedText"
 
 export function Testimonials() {
   return (

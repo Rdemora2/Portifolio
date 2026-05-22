@@ -1,9 +1,26 @@
 "use client"
 
-import { useRef, useMemo } from "react"
+import { useId, useMemo, useRef } from "react"
 import { useFrame, Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import * as THREE from "three"
+
+const hashStringToSeed = (value: string) => {
+  let hash = 0
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash << 5) - hash + value.charCodeAt(i)
+    hash |= 0
+  }
+  return hash >>> 0
+}
+
+const createSeededRandom = (seed: number) => {
+  let state = seed
+  return () => {
+    state = (state * 1664525 + 1013904223) >>> 0
+    return state / 4294967296
+  }
+}
 
 function GridPlane() {
   const meshRef = useRef<THREE.Mesh>(null)
@@ -17,11 +34,15 @@ function GridPlane() {
   )
 
   useFrame((state) => {
-    if (!meshRef.current) return
-    uniforms.uTime.value = state.clock.elapsedTime
-    meshRef.current.rotation.x = -Math.PI / 3 + Math.sin(state.clock.elapsedTime * 0.15) * 0.05
-    meshRef.current.rotation.z = state.clock.elapsedTime * 0.03
-    meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.2
+    const mesh = meshRef.current
+    if (!mesh) return
+    const material = mesh.material as THREE.ShaderMaterial
+    const timeUniform = material.uniforms.uTime
+    if (!timeUniform) return
+    timeUniform.value = state.clock.elapsedTime
+    mesh.rotation.x = -Math.PI / 3 + Math.sin(state.clock.elapsedTime * 0.15) * 0.05
+    mesh.rotation.z = state.clock.elapsedTime * 0.03
+    mesh.position.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.2
   })
 
   return (
@@ -72,18 +93,21 @@ function GridPlane() {
 function FloatingOrbs() {
   const groupRef = useRef<THREE.Group>(null)
 
+  const id = useId()
+  const seed = useMemo(() => hashStringToSeed(id), [id])
   const orbs = useMemo(() => {
-    return Array.from({ length: 12 }, (_, i) => ({
+    const rand = createSeededRandom(seed)
+    return Array.from({ length: 12 }, () => ({
       pos: [
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 4,
-        (Math.random() - 0.5) * 6,
+        (rand() - 0.5) * 10,
+        (rand() - 0.5) * 4,
+        (rand() - 0.5) * 6,
       ] as [number, number, number],
-      scale: 0.03 + Math.random() * 0.06,
-      speed: 0.2 + Math.random() * 0.5,
-      offset: Math.random() * Math.PI * 2,
+      scale: 0.03 + rand() * 0.06,
+      speed: 0.2 + rand() * 0.5,
+      offset: rand() * Math.PI * 2,
     }))
-  }, [])
+  }, [seed])
 
   useFrame((state) => {
     if (!groupRef.current) return

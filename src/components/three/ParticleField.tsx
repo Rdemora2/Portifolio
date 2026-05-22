@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo, useEffect, useState } from "react"
+import { useId, useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import * as THREE from "three"
 
@@ -9,36 +9,56 @@ const MOBILE_PARTICLE_COUNT = 1200
 const CONNECTION_DISTANCE = 1.2
 const MAX_CONNECTIONS = 200
 
+const hashStringToSeed = (value: string) => {
+  let hash = 0
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash << 5) - hash + value.charCodeAt(i)
+    hash |= 0
+  }
+  return hash >>> 0
+}
+
+const createSeededRandom = (seed: number) => {
+  let state = seed
+  return () => {
+    state = (state * 1664525 + 1013904223) >>> 0
+    return state / 4294967296
+  }
+}
+
 export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
   const pointsRef = useRef<THREE.Points>(null)
   const linesRef = useRef<THREE.LineSegments>(null)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 768 || "ontouchstart" in window)
+  const isMobile = useMemo(() => {
+    if (typeof window === "undefined") return false
+    return window.innerWidth < 768 || "ontouchstart" in window
   }, [])
 
   const count = isMobile ? MOBILE_PARTICLE_COUNT : PARTICLE_COUNT
 
+  const id = useId()
+  const seed = useMemo(() => hashStringToSeed(id), [id])
+
   const [positions, velocities, sizes] = useMemo(() => {
+    const rand = createSeededRandom(seed)
     const pos = new Float32Array(count * 3)
     const vel = new Float32Array(count * 3)
     const sz = new Float32Array(count)
     for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2
-      const phi = Math.acos(2 * Math.random() - 1)
-      const r = 3 + Math.random() * 2
+      const theta = rand() * Math.PI * 2
+      const phi = Math.acos(2 * rand() - 1)
+      const r = 3 + rand() * 2
       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta)
       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
       pos[i * 3 + 2] = r * Math.cos(phi)
-      vel[i * 3] = (Math.random() - 0.5) * 0.002
-      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.002
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.002
+      vel[i * 3] = (rand() - 0.5) * 0.002
+      vel[i * 3 + 1] = (rand() - 0.5) * 0.002
+      vel[i * 3 + 2] = (rand() - 0.5) * 0.002
       // Depth-based size variation
-      sz[i] = 0.5 + Math.random() * 1.5
+      sz[i] = 0.5 + rand() * 1.5
     }
     return [pos, vel, sz]
-  }, [count])
+  }, [count, seed])
 
   // Connection line buffer
   const linePositions = useMemo(() => {
@@ -59,12 +79,16 @@ export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
   )
 
   useFrame((state) => {
-    if (!pointsRef.current) return
-    const geo = pointsRef.current.geometry
+    const points = pointsRef.current
+    if (!points) return
+    const geo = points.geometry
     const posAttr = geo.attributes.position as THREE.BufferAttribute | undefined
     if (!posAttr) return
 
-    uniforms.uTime.value = state.clock.elapsedTime
+    const material = points.material as THREE.ShaderMaterial
+    const timeUniform = material.uniforms.uTime
+    if (!timeUniform) return
+    timeUniform.value = state.clock.elapsedTime
 
     const arr = posAttr.array as Float32Array
     for (let i = 0; i < count; i++) {

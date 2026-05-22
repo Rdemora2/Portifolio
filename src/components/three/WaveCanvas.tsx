@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo } from "react"
+import { useMemo, useRef } from "react"
 import { useFrame, Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import * as THREE from "three"
@@ -16,7 +16,12 @@ function WaveMesh() {
   )
 
   useFrame((state) => {
-    uniforms.uTime.value = state.clock.elapsedTime
+    const mesh = meshRef.current
+    if (!mesh) return
+    const material = mesh.material as THREE.ShaderMaterial
+    const timeUniform = material.uniforms.uTime
+    if (!timeUniform) return
+    timeUniform.value = state.clock.elapsedTime
   })
 
   return (

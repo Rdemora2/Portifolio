@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 import { SCRAMBLE_CHARS } from "@/lib/constants"
 
 interface TextScrambleProps {
@@ -18,16 +18,15 @@ export function TextScramble({
 }: TextScrambleProps) {
   const [display, setDisplay] = useState(text)
   const hasRun = useRef(false)
+  const prefersReduced = useMemo(() => {
+    if (typeof window === "undefined") return false
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  }, [])
+  const displayValue = !trigger || prefersReduced ? text : display
 
   useEffect(() => {
-    if (!trigger || hasRun.current) return
+    if (!trigger || hasRun.current || prefersReduced) return
     hasRun.current = true
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (prefersReduced) {
-      setDisplay(text)
-      return
-    }
 
     let frame = 0
     const totalFrames = text.length * 2
@@ -63,7 +62,7 @@ export function TextScramble({
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
     }
-  }, [trigger, text, speed])
+  }, [trigger, text, speed, prefersReduced])
 
-  return <span className={className}>{display}</span>
+  return <span className={className}>{displayValue}</span>
 }

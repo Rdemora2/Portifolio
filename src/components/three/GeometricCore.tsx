@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo } from "react"
+import { useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import * as THREE from "three"
 
@@ -72,15 +72,20 @@ export function GeometricCore({ mouse }: { mouse: { x: number; y: number } }) {
   )
 
   useFrame((state) => {
-    if (!meshRef.current) return
-    uniforms.uTime.value = state.clock.elapsedTime
-    uniforms.uMouse.value.set(mouse.x, mouse.y)
+    const mesh = meshRef.current
+    if (!mesh) return
+    const material = mesh.material as THREE.ShaderMaterial
+    const timeUniform = material.uniforms.uTime
+    const mouseUniform = material.uniforms.uMouse
+    if (!timeUniform || !mouseUniform) return
+    timeUniform.value = state.clock.elapsedTime
+    mouseUniform.value.set(mouse.x, mouse.y)
     
     // Enhanced mouse reactivity with smooth interpolation
     const targetRotX = mouse.y * 0.15
     const targetRotY = mouse.x * 0.15
-    meshRef.current.rotation.x += (targetRotX - meshRef.current.rotation.x) * 0.02 + 0.001
-    meshRef.current.rotation.y += (targetRotY - meshRef.current.rotation.y) * 0.02 + 0.002
+    mesh.rotation.x += (targetRotX - mesh.rotation.x) * 0.02 + 0.001
+    mesh.rotation.y += (targetRotY - mesh.rotation.y) * 0.02 + 0.002
   })
 
   return (

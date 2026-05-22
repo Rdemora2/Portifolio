@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { personalInfo } from "@/data/portfolio";
 import FaultyTerminal from "../shared/FaultyTerminal";
 import { MagneticButton } from "@/components/shared/MagneticButton";
@@ -12,12 +12,6 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const rectRef = useRef<DOMRect | null>(null);
-  const [showCanvas, setShowCanvas] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowCanvas(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;

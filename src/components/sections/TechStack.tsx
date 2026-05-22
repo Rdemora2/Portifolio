@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { techStack } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { TECH_CATEGORY_COLORS } from "@/lib/constants";
@@ -49,9 +49,15 @@ const CATEGORY_LABELS: Record<TechCategory, string> = {
 };
 
 export function TechStack() {
-  const [prefersReduced, setPrefersReduced] = useState(false);
-  const [ref, inView] = useInView({ threshold: 0, rootMargin: "400px", triggerOnce: true });
-  const [isTouch, setIsTouch] = useState(false);
+  const [ref] = useInView({ threshold: 0, rootMargin: "400px", triggerOnce: true });
+  const prefersReduced = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+  const isTouch = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  }, []);
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const tagRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -59,13 +65,6 @@ export function TechStack() {
   const containerRectRef = useRef<DOMRect | null>(null);
   const currentOffsets = useRef<{ x: number; y: number }[]>([]);
   const rafRef = useRef<number>(0);
-
-  useEffect(() => {
-    setPrefersReduced(
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    );
-    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
 
   useEffect(() => {
     if (prefersReduced || isTouch) return;

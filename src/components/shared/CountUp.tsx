@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 
 interface CountUpProps {
   end: number
@@ -28,16 +28,15 @@ export function CountUp({
   const [display, setDisplay] = useState("0")
   const hasRun = useRef(false)
   const rafRef = useRef<number>(0)
+  const prefersReduced = useMemo(() => {
+    if (typeof window === "undefined") return false
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  }, [])
+  const displayValue = prefersReduced && trigger ? end.toFixed(decimals) : display
 
   useEffect(() => {
-    if (!trigger || hasRun.current) return
+    if (!trigger || hasRun.current || prefersReduced) return
     hasRun.current = true
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (prefersReduced) {
-      setDisplay(end.toFixed(decimals))
-      return
-    }
 
     const startTime = performance.now()
     const durationMs = duration * 1000
@@ -59,11 +58,11 @@ export function CountUp({
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [trigger, end, duration, decimals])
+  }, [trigger, end, duration, decimals, prefersReduced])
 
   return (
     <span className={className}>
-      {prefix}{display}{suffix}
+      {prefix}{displayValue}{suffix}
     </span>
   )
 }

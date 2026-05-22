@@ -272,7 +272,7 @@ export default function FaultyTerminal({
   const frozenTimeRef = useRef(0);
   const rafRef = useRef<number>(0);
   const loadAnimationStartRef = useRef<number>(0);
-  const timeOffsetRef = useRef<number>(Math.random() * 100);
+  const timeOffsetRef = useRef<number | null>(null);
 
   const tintVec = useMemo(() => hexToRgb(tint), [tint]);
 
@@ -290,6 +290,10 @@ export default function FaultyTerminal({
   useEffect(() => {
     const ctn = containerRef.current;
     if (!ctn) return;
+
+    if (timeOffsetRef.current === null) {
+      timeOffsetRef.current = Math.random() * 100;
+    }
 
     const renderer = new Renderer({ dpr });
     rendererRef.current = renderer;
@@ -354,7 +358,8 @@ export default function FaultyTerminal({
       }
 
       if (!pause) {
-        const elapsed = (t * 0.001 + timeOffsetRef.current) * timeScale;
+        const timeOffset = timeOffsetRef.current ?? 0;
+        const elapsed = (t * 0.001 + timeOffset) * timeScale;
         program.uniforms.iTime.value = elapsed;
         frozenTimeRef.current = elapsed;
       } else {

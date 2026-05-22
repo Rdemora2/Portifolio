@@ -9,6 +9,7 @@ import {
   memo,
   ReactNode,
 } from "react";
+import Image from "next/image";
 import "./LogoLoop.css";
 
 const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25, MIN_COPIES: 2, COPY_HEADROOM: 2 };
@@ -16,10 +17,19 @@ const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25, MIN_COPIES: 2, COPY_HEADROOM: 2 };
 const toCssLength = (value: string | number | undefined) =>
   typeof value === "number" ? `${value}px` : value ?? undefined;
 
+const toNumber = (value: number | string | undefined, fallback: number) => {
+  if (typeof value === "number") return value;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : fallback;
+  }
+  return fallback;
+};
+
 const useResizeObserver = (
   callback: () => void,
   elements: React.RefObject<HTMLElement | null>[],
-  dependencies: any[]
+  dependencies: ReadonlyArray<unknown>
 ) => {
   useEffect(() => {
     if (!window.ResizeObserver) {
@@ -44,7 +54,7 @@ const useResizeObserver = (
 const useImageLoader = (
   seqRef: React.RefObject<HTMLElement | null>,
   onLoad: () => void,
-  dependencies: any[]
+  dependencies: ReadonlyArray<unknown>
 ) => {
   useEffect(() => {
     const images = seqRef.current?.querySelectorAll("img") ?? [];
@@ -334,20 +344,19 @@ export const LogoLoop = memo(
           >
             {item.node}
           </span>
-        ) : (
-          <img
+        ) : item.src ? (
+          <Image
             src={item.src}
-            srcSet={item.srcSet}
             sizes={item.sizes}
-            width={item.width}
-            height={item.height}
+            width={toNumber(item.width, logoHeight)}
+            height={toNumber(item.height, logoHeight)}
             alt={item.alt ?? ""}
             title={item.title}
             loading="lazy"
-            decoding="async"
             draggable={false}
+            unoptimized
           />
-        );
+        ) : null;
         const itemAriaLabel = isNodeItem
           ? item.ariaLabel ?? item.title
           : item.alt ?? item.title;
@@ -370,7 +379,7 @@ export const LogoLoop = memo(
           </li>
         );
       },
-      [renderItem]
+      [renderItem, logoHeight]
     );
 
     const logoLists = useMemo(

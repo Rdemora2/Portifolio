@@ -5,7 +5,7 @@ import { projects } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { CountUp } from "@/components/shared/CountUp";
 import BorderGlow from "@/components/shared/BorderGlow";
-import type { Project, ProjectCategory, RoleType } from "@/types";
+import type { Project, RoleType } from "@/types";
 
 type FilterType = "all" | "engineering" | "management" | "international";
 
@@ -24,19 +24,6 @@ function matchesFilter(project: Project, filter: FilterType): boolean {
   if (filter === "management")
     return project.roleType === "management" || project.roleType === "hybrid";
   return true;
-}
-
-function getCategoryLabel(cat: ProjectCategory): string {
-  const map: Record<ProjectCategory, string> = {
-    infrastructure: "Infraestrutura",
-    backend: "Backend",
-    frontend: "Frontend",
-    mobile: "Mobile",
-    fullstack: "Full Stack",
-    leadership: "Liderança",
-    management: "Gestão",
-  };
-  return map[cat];
 }
 
 function getRoleLabel(role: RoleType): string {

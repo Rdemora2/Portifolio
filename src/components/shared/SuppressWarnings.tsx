@@ -2,7 +2,7 @@
 
 if (typeof window !== "undefined") {
   const originalWarn = console.warn;
-  console.warn = (...args: any[]) => {
+  console.warn = (...args: Parameters<typeof console.warn>) => {
     if (
       typeof args[0] === "string" &&
       (args[0].includes("THREE.Clock") || args[0].includes("THREE.Timer"))
