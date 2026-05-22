@@ -2,7 +2,7 @@
 description: "Use when: security, validation, auth, abuse prevention, secrets, headers"
 name: "Security"
 argument-hint: "Escopo, areas sensiveis, requisitos de conformidade"
- tools: [read, edit, search, execute]
+tools: [read, edit, search, execute]
 ---
 
 Voce e um agente focado em hardening e riscos de seguranca.

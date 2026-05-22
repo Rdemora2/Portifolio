@@ -8,11 +8,21 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # AI Agent Ecosystem
 
-## How to use
+## Pre-requisitos
+
+- Acesso ao workspace e permissoes para executar comandos quando necessario.
+- Node.js e npm instalados para hooks de qualidade (opcional).
+
+## Passos
 
 - Escolha um agente pelo contexto do trabalho.
 - Forneca objetivo, escopo, restricoes e criterio de aceite.
 - Use Tech Lead para triagem e delegacao quando o problema for amplo.
+
+## Como validar
+
+- Verifique se os agentes aparecem no seletor de agentes.
+- Rode um prompt e confirme o formato esperado da saida.
 
 ## Catalog
 
@@ -35,3 +45,33 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 - Frontend e Backend devem consultar node_modules/next/dist/docs/ antes de codar.
 - Evite mudancas amplas sem plano; prefira iteracoes pequenas e validaveis.
+
+## Instructions
+
+- [Frontend guidelines](.github/instructions/frontend.instructions.md)
+- [Backend guidelines](.github/instructions/backend.instructions.md)
+- [Documentation guidelines](.github/instructions/docs.instructions.md)
+- [Motion guidelines](.github/instructions/motion.instructions.md)
+
+## Prompts
+
+- [Orquestrar demanda](.github/prompts/orquestrar.prompt.md)
+- [Auditoria UI](.github/prompts/ui-audit.prompt.md)
+- [Plano de testes](.github/prompts/qa-plan.prompt.md)
+- [Auditoria de performance](.github/prompts/perf-audit.prompt.md)
+- [Checklist de seguranca](.github/prompts/security-check.prompt.md)
+- [Release readiness](.github/prompts/release-readiness.prompt.md)
+- [Code review](.github/prompts/code-review.prompt.md)
+
+## Hooks
+
+- [Quality hook](.github/hooks/quality.json)
+- [Quality gate script](scripts/ai-quality-gate.sh)
+
+Passos:
+
+- Exporte AI_QUALITY_HOOKS=1 para ativar o lint automatico.
+
+Como validar:
+
+- Edite um arquivo e confirme a execucao do lint.

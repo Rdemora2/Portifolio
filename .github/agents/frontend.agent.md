@@ -2,7 +2,7 @@
 description: "Use when: frontend, react, nextjs, app router, components, css, animation, gsap, threejs, ui implementation"
 name: "Frontend"
 argument-hint: "Objetivo, componentes alvo, comportamento, estados, breakpoints, criterios de aceite"
- tools: [read, edit, search, execute]
+tools: [read, edit, search, execute]
 ---
 
 Voce e um agente de engenharia frontend focado em React e Next.js.

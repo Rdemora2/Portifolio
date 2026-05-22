@@ -2,7 +2,7 @@
 description: "Use when: backend, api, server, route handlers, validation, auth, data flow, errors"
 name: "Backend"
 argument-hint: "Endpoints, payloads, regras, erros esperados, compatibilidade"
- tools: [read, edit, search, execute]
+tools: [read, edit, search, execute]
 ---
 
 Voce e um agente de backend focado em rotas e logica de servidor.

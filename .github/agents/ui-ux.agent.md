@@ -2,7 +2,7 @@
 description: "Use when: ui, ux, interface, layout, wireframe, design system, visual design, typography, color, accessibility, usability"
 name: "UI and UX"
 argument-hint: "Objetivo da pagina, publico, brand, restricoes, referencias, componentes alvo"
- tools: [read, edit, search, execute]
+tools: [read, edit, search, execute]
 ---
 
 Voce e um agente de UI/UX para interfaces web.
