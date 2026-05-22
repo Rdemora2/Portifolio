@@ -32,6 +32,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["three", "gsap", "lenis", "@react-three/fiber", "@react-three/drei"],
   },
+  output: "standalone",
 }
 
 export default nextConfig
