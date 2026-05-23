@@ -12,7 +12,6 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
     rootMargin: "200px",
     triggerOnce: false,
   });
-  const sectionRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -159,7 +158,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             1.5,
           );
         }
-      }, sectionRef);
+      }, sectionInViewRef as React.RefObject<HTMLElement>);
     };
 
     run();
@@ -168,37 +167,34 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
       isActive = false;
       ctx?.revert();
     };
-  }, [isLoaded]);
+  }, [isLoaded, sectionInViewRef]);
 
   return (
     <section
       id="hero"
-      ref={(el) => {
-        sectionRef.current = el;
-        (sectionInViewRef as { current: HTMLElement | null }).current = el;
-      }}
+      ref={sectionInViewRef as React.RefObject<HTMLElement>}
       className="relative flex min-h-dvh items-center overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
         <FaultyTerminal
-          scale={1.5}
-          gridMul={[2, 1]}
+          scale={1.2}
+          gridMul={[1.5, 1]}
           digitSize={1.2}
-          timeScale={0.5}
+          timeScale={0.25}
           pause={!isInView}
-          scanlineIntensity={0.5}
-          glitchAmount={1}
-          flickerAmount={1}
-          noiseAmp={1}
+          scanlineIntensity={0.35}
+          glitchAmount={0.7}
+          flickerAmount={0.6}
+          noiseAmp={0.7}
           chromaticAberration={0}
           dither={0}
           curvature={0.1}
           tint="#6366f1"
           mouseReact={isInView && !perf.prefersReduced}
           mouseStrength={0.5}
-          pageLoadAnimation={isInView}
+          pageLoadAnimation={false}
           brightness={0.6}
-          dpr={perf.dpr}
+          dpr={1}
         />
       </div>
 
