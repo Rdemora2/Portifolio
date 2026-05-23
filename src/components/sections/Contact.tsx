@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { contactSchema, type ContactSchema } from "@/lib/validations"
@@ -26,7 +26,15 @@ const PROJECT_TYPES = [
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-  const [ref, inView] = useInView({ threshold: 0, rootMargin: "400px", triggerOnce: true })
+  const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: true })
+  const isMounted = useRef(true)
+
+  useEffect(() => {
+    isMounted.current = true
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
 
   const {
     register,
@@ -46,19 +54,27 @@ export function Contact() {
         body: JSON.stringify(data),
       })
       if (!res.ok) throw new Error("Falha no envio")
-      setStatus("success")
-      reset()
-      setTimeout(() => setStatus("idle"), 5000)
+      if (isMounted.current) {
+        setStatus("success")
+        reset()
+        setTimeout(() => {
+          if (isMounted.current) setStatus("idle")
+        }, 5000)
+      }
     } catch {
-      setStatus("error")
-      setTimeout(() => setStatus("idle"), 4000)
+      if (isMounted.current) {
+        setStatus("error")
+        setTimeout(() => {
+          if (isMounted.current) setStatus("idle")
+        }, 4000)
+      }
     }
   }
 
   return (
     <section
       id="contact"
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={ref}
       className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
@@ -125,7 +141,7 @@ export function Contact() {
           </ScrollReveal>
 
           <ScrollReveal animation="slide-right" delay={0.2}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" noValidate>
+            <form onSubmit={(e) => void handleSubmit(onSubmit)(e)} className="space-y-4 sm:space-y-6" noValidate>
               <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                 <FormField label="Nome" htmlFor="contact-name" error={errors.name?.message}>
                   <input
@@ -211,6 +227,8 @@ export function Contact() {
 
               {status === "success" && (
                 <div
+                  role="alert"
+                  aria-live="polite"
                   className="flex items-center gap-2 rounded-xl border p-3 text-sm sm:p-4"
                   style={{
                     borderColor: "var(--color-matrix)",
@@ -229,6 +247,8 @@ export function Contact() {
 
               {status === "error" && (
                 <div
+                  role="alert"
+                  aria-live="assertive"
                   className="flex items-center gap-2 rounded-xl border p-3 text-sm animate-shake sm:p-4"
                   style={{
                     borderColor: "var(--color-alert)",

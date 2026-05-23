@@ -43,12 +43,14 @@ export function SectionDivider({
     let time = 0;
     
     // Create an offscreen canvas or resolve CSS variables
+    const cssColorCache = new Map<string, string>();
     const getCssVar = (name: string) => {
-      if (name.startsWith("var(")) {
-        const varName = name.slice(4, -1);
-        return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-      }
-      return name;
+      if (!name.startsWith("var(")) return name;
+      if (cssColorCache.has(name)) return cssColorCache.get(name)!;
+      const varName = name.slice(4, -1);
+      const val = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      cssColorCache.set(name, val);
+      return val;
     };
 
     const draw = () => {

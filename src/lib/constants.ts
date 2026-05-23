@@ -1,3 +1,5 @@
+import type { TechCategory } from "@/types"
+
 export const SITE_URL = "https://robertozarzur.dev"
 export const SITE_NAME = "Roberto Zarzur"
 export const AUTHOR_NAME = "Roberto de Moraes"
@@ -16,7 +18,7 @@ export const SECTION_IDS = {
 
 export const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&"
 
-export const TECH_CATEGORY_COLORS: Record<string, string> = {
+export const TECH_CATEGORY_COLORS: Record<TechCategory, string> = {
   cloud: "#6366f1",
   backend: "#00ff88",
   frontend: "#6366f1",

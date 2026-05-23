@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { createSeededRandom, hashStringToSeed } from "@/lib/three-utils";
 
 interface NeuralNode {
   x: number;
@@ -50,6 +51,7 @@ export function NeuralBackground() {
     window.addEventListener("resize", resize);
 
     // Generate neural network topology
+    const rand = createSeededRandom(hashStringToSeed("neural"));
     const w = sizeRef.current.width;
     const h = sizeRef.current.height;
     const layers = [4, 6, 8, 6, 4, 3];
@@ -77,11 +79,11 @@ export function NeuralBackground() {
       for (let i = 0; i < currentCount; i++) {
         for (let j = 0; j < nextCount; j++) {
           // Only connect some nodes for sparsity (attention-like)
-          if (Math.random() < 0.6) {
+          if (rand() < 0.6) {
             connections.push({
               from: nodeOffset + i,
               to: nextOffset + j,
-              weight: 0.2 + Math.random() * 0.8,
+              weight: 0.2 + rand() * 0.8,
             });
           }
         }

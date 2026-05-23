@@ -244,6 +244,7 @@ function ProjectItem({
             role="button"
             tabIndex={0}
             aria-expanded={isExpanded}
+            aria-controls={`project-details-${project.id}`}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
@@ -353,6 +354,7 @@ function ProjectItem({
         </div>
 
         <div
+          id={`project-details-${project.id}`}
           ref={detailsRef}
           className="overflow-hidden"
           style={{ height: 0, opacity: 0 }}

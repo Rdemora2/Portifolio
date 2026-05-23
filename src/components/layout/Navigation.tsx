@@ -78,7 +78,6 @@ export function Navigation() {
             ? "1px solid var(--color-edge)"
             : "1px solid transparent",
         }}
-        role="navigation"
         aria-label="Navegação principal"
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -172,6 +171,9 @@ export function Navigation() {
           opacity: 0,
           visibility: "hidden",
         }}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu de navegação"
       >
         {navLinks.slice(1).map(({ id, label }, i) => (
           <a

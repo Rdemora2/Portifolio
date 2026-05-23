@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo, useState } from "react"
+import { useRef, useMemo, useId } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Canvas } from "@react-three/fiber"
 import { Line } from "@react-three/drei"
@@ -8,6 +8,8 @@ import { Suspense } from "react"
 import * as THREE from "three"
 import type { TechItem } from "@/types"
 import { TECH_CATEGORY_COLORS } from "@/lib/constants"
+import { useAdaptiveDpr } from "@/hooks/useAdaptiveDpr"
+import { createSeededRandom, hashStringToSeed } from "@/lib/three-utils"
 
 interface TechNodeProps {
   tech: TechItem
@@ -80,6 +82,8 @@ function TechConnections({ positions, colors }: { positions: [number, number, nu
 
 function TechGraphScene({ techStack }: { techStack: TechItem[] }) {
   const groupRef = useRef<THREE.Group>(null)
+  const id = useId()
+  const seed = useMemo(() => hashStringToSeed(id), [id])
 
   const { positions, colors } = useMemo(() => {
     const categoryGroups: Record<string, TechItem[]> = {}
@@ -98,14 +102,15 @@ function TechGraphScene({ techStack }: { techStack: TechItem[] }) {
       const angle = (catIdx / categories.length) * Math.PI * 2
       const baseX = Math.cos(angle) * 3
       const baseZ = Math.sin(angle) * 3
-      const color = TECH_CATEGORY_COLORS[category] ?? "#00d4ff"
+      const color = TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#00d4ff"
 
+      const rand = createSeededRandom(seed + catIdx)
       items.forEach((_, itemIdx) => {
         const itemAngle = (itemIdx / items.length) * Math.PI * 2
-        const r = 0.8 + Math.random() * 0.5
+        const r = 0.8 + rand() * 0.5
         posArr.push([
           baseX + Math.cos(itemAngle) * r,
-          (Math.random() - 0.5) * 2,
+          (rand() - 0.5) * 2,
           baseZ + Math.sin(itemAngle) * r,
         ])
         colArr.push(color)
@@ -113,7 +118,7 @@ function TechGraphScene({ techStack }: { techStack: TechItem[] }) {
     })
 
     return { positions: posArr, colors: colArr }
-  }, [techStack])
+  }, [techStack, seed])
 
   useFrame((state) => {
     if (!groupRef.current) return
@@ -134,24 +139,11 @@ function TechGraphScene({ techStack }: { techStack: TechItem[] }) {
 }
 
 export function TechGraph({ techStack }: { techStack: TechItem[] }) {
-  const [dpr] = useState<[number, number]>(() => {
-    if (typeof window === "undefined") return [1, 1.5]
-    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
-      .deviceMemory
-    const isLowPower =
-      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
-      (deviceMemory !== undefined && deviceMemory <= 4)
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches
-    const isSmall = window.innerWidth < 768
-    const maxDpr = isLowPower || prefersReduced || isSmall ? 1 : 1.5
-    return [1, maxDpr]
-  })
+  const dpr = useAdaptiveDpr()
 
   return (
     <Canvas
-      dpr={dpr}
+      dpr={[1, dpr]}
       camera={{ position: [0, 0, 10], fov: 50 }}
       style={{ width: "100%", height: "100%" }}
       gl={{ antialias: true, alpha: true }}

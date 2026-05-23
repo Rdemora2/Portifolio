@@ -52,6 +52,13 @@ export function CustomCursor() {
       setIsVisible(true)
     }
 
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        isVisibleRef.current = false
+        setIsVisible(false)
+      }
+    }
+
     let rafId: number
     const lerp = () => {
       if (document.hidden) {
@@ -71,6 +78,7 @@ export function CustomCursor() {
     document.addEventListener("mouseover", onMouseOver)
     document.addEventListener("mouseleave", onMouseLeave)
     document.addEventListener("mouseenter", onMouseEnter)
+    document.addEventListener("visibilitychange", onVisibilityChange)
 
     return () => {
       cancelAnimationFrame(rafId)
@@ -78,6 +86,7 @@ export function CustomCursor() {
       document.removeEventListener("mouseover", onMouseOver)
       document.removeEventListener("mouseleave", onMouseLeave)
       document.removeEventListener("mouseenter", onMouseEnter)
+      document.removeEventListener("visibilitychange", onVisibilityChange)
       document.body.classList.remove("custom-cursor-active")
     }
   }, [])

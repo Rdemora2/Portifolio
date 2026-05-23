@@ -119,8 +119,7 @@ const jsonLd = {
       ],
       worksFor: {
         "@type": "Organization",
-        name: "Empresa atual",
-        url: "https://robertozarzur.dev",
+        name: "Valiant Group do Brasil",
       },
       hasOccupation: [
         {
@@ -186,13 +185,13 @@ export default function RootLayout({
       </head>
       <body>
         <GlobalProviders>
+          <a href="#main-content" className="sr-only focus:not-sr-only">
+            Pular para o conteúdo principal
+          </a>
           <SuppressWarnings />
           <Noise />
           <CustomCursor />
           <Navigation />
-          <a href="#main-content" className="sr-only focus:not-sr-only">
-            Pular para o conteúdo principal
-          </a>
           {children}
           <Footer />
         </GlobalProviders>

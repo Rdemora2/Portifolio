@@ -49,7 +49,7 @@ const CATEGORY_LABELS: Record<TechCategory, string> = {
 };
 
 export function TechStack() {
-  const [sectionRef, inView] = useInView({
+  const [sectionRef, inView] = useInView<HTMLElement>({
     threshold: 0,
     rootMargin: "200px",
     triggerOnce: false,
@@ -166,12 +166,12 @@ export function TechStack() {
     {},
   );
 
-  let tagIndex = 0;
+  // deterministic index mapping instead of mutable tagIndex
 
   return (
     <section
       id="tech"
-      ref={sectionRef as React.RefObject<HTMLElement>}
+      ref={sectionRef}
       className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
@@ -229,12 +229,12 @@ export function TechStack() {
                     className="h-2 w-2 rounded-full"
                     style={{
                       backgroundColor:
-                        TECH_CATEGORY_COLORS[category] ?? "#6366f1",
+                        TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
                     }}
                   />
                   <span
                     style={{
-                      color: TECH_CATEGORY_COLORS[category] ?? "#6366f1",
+                      color: TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
                     }}
                   >
                     {CATEGORY_LABELS[category as TechCategory] ?? category}
@@ -242,7 +242,7 @@ export function TechStack() {
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {items.map((tech) => {
-                    const currentIndex = tagIndex++;
+                    const currentIndex = techStack.findIndex((t) => t.name === tech.name);
                     return (
                       <span
                         key={tech.name}

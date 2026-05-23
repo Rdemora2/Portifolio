@@ -201,9 +201,9 @@ export function Experience() {
                       </p>
 
                       <ul className="mb-6 space-y-2">
-                        {entry.highlights.map((h) => (
+                        {entry.highlights.map((h, i) => (
                           <li
-                            key={h}
+                            key={`${idx}-${i}`}
                             className="flex items-start gap-2 text-sm"
                             style={{
                               fontFamily: "var(--font-body)",

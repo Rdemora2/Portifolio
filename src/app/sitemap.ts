@@ -1,12 +1,19 @@
-import { MetadataRoute } from "next"
+import type { MetadataRoute } from "next"
+import { SITE_URL } from "@/lib/constants"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://robertozarzur.dev",
+      url: SITE_URL,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/insights/go-em-producao`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.7,
     },
   ]
 }

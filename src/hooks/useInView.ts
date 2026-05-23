@@ -8,12 +8,19 @@ interface UseInViewOptions {
   triggerOnce?: boolean
 }
 
-export function useInView({ 
+/**
+ * Observes element visibility via IntersectionObserver.
+ *
+ * Generic over the element type to eliminate unsafe casts at call sites.
+ * @example
+ * const [ref, inView] = useInView<HTMLDivElement>({ threshold: 0.3 })
+ */
+export function useInView<T extends HTMLElement = HTMLElement>({ 
   threshold = 0.3, 
   rootMargin = "0px",
   triggerOnce = true
-}: UseInViewOptions = {}): [React.RefObject<HTMLElement | null>, boolean] {
-  const ref = useRef<HTMLElement | null>(null)
+}: UseInViewOptions = {}): [React.RefObject<T | null>, boolean] {
+  const ref = useRef<T | null>(null)
   const [isInView, setIsInView] = useState(false)
 
   useEffect(() => {

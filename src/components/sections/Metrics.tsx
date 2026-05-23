@@ -7,12 +7,12 @@ import { useInView } from "@/hooks/useInView";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 export function Metrics() {
-  const [sectionRef, isInView] = useInView({ threshold: 0.3 });
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.3 });
 
   return (
     <section
       id="metrics"
-      ref={sectionRef as React.RefObject<HTMLElement>}
+      ref={sectionRef}
       className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
@@ -123,12 +123,19 @@ function DataflowBackground({ isActive }: { isActive: boolean }) {
     if (!ctx) return;
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      sizeRef.current = { width: canvas.width, height: canvas.height };
+      sizeRef.current.width = canvas.clientWidth;
+      sizeRef.current.height = canvas.clientHeight;
+      canvas.width = sizeRef.current.width;
+      canvas.height = sizeRef.current.height;
+    };
+
+    let resizeTimer: NodeJS.Timeout;
+    const debouncedResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
     };
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", debouncedResize);
 
     let rafId: number;
     const lines = Array.from({ length: 15 }, () => ({
@@ -163,7 +170,8 @@ function DataflowBackground({ isActive }: { isActive: boolean }) {
 
     return () => {
       cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", debouncedResize);
+      clearTimeout(resizeTimer);
     };
   }, [isActive]);
 

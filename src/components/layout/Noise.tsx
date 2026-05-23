@@ -65,7 +65,7 @@ export function Noise() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-[99999]"
+      className="pointer-events-none fixed inset-0 z-[50]"
       style={{
         opacity: 0.04, // Very subtle
         mixBlendMode: "overlay"

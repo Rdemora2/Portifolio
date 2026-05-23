@@ -3,6 +3,7 @@
 import { useId, useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import * as THREE from "three"
+import { createSeededRandom, hashStringToSeed } from "@/lib/three-utils"
 
 const PARTICLE_COUNT = 3000
 const MOBILE_PARTICLE_COUNT = 1200
@@ -10,22 +11,6 @@ const CONNECTION_DISTANCE = 1.2
 const CONNECTION_DISTANCE_SQ = CONNECTION_DISTANCE * CONNECTION_DISTANCE
 const MAX_CONNECTIONS = 200
 
-const hashStringToSeed = (value: string) => {
-  let hash = 0
-  for (let i = 0; i < value.length; i++) {
-    hash = (hash << 5) - hash + value.charCodeAt(i)
-    hash |= 0
-  }
-  return hash >>> 0
-}
-
-const createSeededRandom = (seed: number) => {
-  let state = seed
-  return () => {
-    state = (state * 1664525 + 1013904223) >>> 0
-    return state / 4294967296
-  }
-}
 
 export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
   const pointsRef = useRef<THREE.Points>(null)

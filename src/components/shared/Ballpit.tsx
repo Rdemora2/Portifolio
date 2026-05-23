@@ -201,29 +201,29 @@ class x {
   }
   #g() {
     if (!(this.#e.size instanceof Object)) {
-      window.addEventListener("resize", this.#f.bind(this));
+      window.addEventListener("resize", this.#f);
       if (this.#e.size === "parent" && this.canvas?.parentNode) {
-        this.#r = new ResizeObserver(this.#f.bind(this));
+        this.#r = new ResizeObserver(this.#f);
         this.#r.observe(this.canvas.parentNode as Element);
       }
     }
     if (this.canvas) {
-      this.#o = new IntersectionObserver(this.#u.bind(this), {
+      this.#o = new IntersectionObserver(this.#u, {
         root: null,
         rootMargin: "0px",
         threshold: 0,
       });
       this.#o.observe(this.canvas);
     }
-    document.addEventListener("visibilitychange", this.#v.bind(this));
+    document.addEventListener("visibilitychange", this.#v);
   }
   #y() {
-    window.removeEventListener("resize", this.#f.bind(this));
+    window.removeEventListener("resize", this.#f);
     this.#r?.disconnect();
     this.#o?.disconnect();
-    document.removeEventListener("visibilitychange", this.#v.bind(this));
+    document.removeEventListener("visibilitychange", this.#v);
   }
-  #u(entries: IntersectionObserverEntry[]) {
+  #u = (entries: IntersectionObserverEntry[]) => {
     this.#s = entries[0]?.isIntersecting ?? false;
     if (this.#s) {
       this.#w();
@@ -231,7 +231,7 @@ class x {
       this.#z();
     }
   }
-  #v() {
+  #v = () => {
     if (this.#s) {
       if (document.hidden) {
         this.#z();
@@ -240,7 +240,7 @@ class x {
       }
     }
   }
-  #f() {
+  #f = () => {
     if (this.#a) clearTimeout(this.#a);
     this.#a = setTimeout(this.resize.bind(this), 100);
   }

@@ -1,26 +1,12 @@
 "use client"
 
-import { useId, useMemo, useRef, useState } from "react"
+import { useId, useMemo, useRef } from "react"
 import { useFrame, Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import * as THREE from "three"
+import { useAdaptiveDpr } from "@/hooks/useAdaptiveDpr"
+import { createSeededRandom, hashStringToSeed } from "@/lib/three-utils"
 
-const hashStringToSeed = (value: string) => {
-  let hash = 0
-  for (let i = 0; i < value.length; i++) {
-    hash = (hash << 5) - hash + value.charCodeAt(i)
-    hash |= 0
-  }
-  return hash >>> 0
-}
-
-const createSeededRandom = (seed: number) => {
-  let state = seed
-  return () => {
-    state = (state * 1664525 + 1013904223) >>> 0
-    return state / 4294967296
-  }
-}
 
 function GridPlane() {
   const meshRef = useRef<THREE.Mesh>(null)
@@ -132,24 +118,11 @@ function FloatingOrbs() {
 }
 
 export function FloatingGridCanvas() {
-  const [dpr] = useState<[number, number]>(() => {
-    if (typeof window === "undefined") return [1, 1.5]
-    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
-      .deviceMemory
-    const isLowPower =
-      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
-      (deviceMemory !== undefined && deviceMemory <= 4)
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches
-    const isSmall = window.innerWidth < 768
-    const maxDpr = isLowPower || prefersReduced || isSmall ? 1 : 1.5
-    return [1, maxDpr]
-  })
+  const dpr = useAdaptiveDpr()
 
   return (
     <Canvas
-      dpr={dpr}
+      dpr={[1, dpr]}
       camera={{ position: [0, 3, 7], fov: 60 }}
       style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}
       gl={{ antialias: true, alpha: true }}

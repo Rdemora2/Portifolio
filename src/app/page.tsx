@@ -1,8 +1,5 @@
-"use client"
-
-import { useState, useCallback } from "react"
 import dynamic from "next/dynamic"
-import { PageLoader } from "@/components/layout/PageLoader"
+import { HomeClient } from "@/components/layout/HomeClient"
 import { Hero } from "@/components/sections/Hero"
 import { SectionDivider } from "@/components/shared/SectionDivider"
 
@@ -15,32 +12,23 @@ const Insights = dynamic(() => import("@/components/sections/Insights").then(mod
 const Contact = dynamic(() => import("@/components/sections/Contact").then(mod => mod.Contact), { ssr: true })
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  const handleLoadComplete = useCallback(() => {
-    setIsLoaded(true)
-  }, [])
-
   return (
-    <>
-      {!isLoaded && <PageLoader onComplete={handleLoadComplete} />}
-      <main id="main-content">
-        <Hero isLoaded={isLoaded} />
-        <SectionDivider topColor="var(--color-void)" bottomColor="var(--color-deep)" />
-        <About />
-        <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-void)" />
-        <Projects />
-        <SectionDivider topColor="var(--color-void)" bottomColor="var(--color-deep)" />
-        <TechStack />
-        <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-void)" />
-        <Metrics />
-        <SectionDivider topColor="var(--color-void)" bottomColor="var(--color-deep)" />
-        <Experience />
-        <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-deep)" />
-        <Insights />
-        <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-void)" />
-        <Contact />
-      </main>
-    </>
+    <HomeClient>
+      <Hero isLoaded />
+      <SectionDivider topColor="var(--color-void)" bottomColor="var(--color-deep)" />
+      <About />
+      <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-void)" />
+      <Projects />
+      <SectionDivider topColor="var(--color-void)" bottomColor="var(--color-deep)" />
+      <TechStack />
+      <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-void)" />
+      <Metrics />
+      <SectionDivider topColor="var(--color-void)" bottomColor="var(--color-deep)" />
+      <Experience />
+      <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-deep)" />
+      <Insights />
+      <SectionDivider topColor="var(--color-deep)" bottomColor="var(--color-void)" />
+      <Contact />
+    </HomeClient>
   )
 }

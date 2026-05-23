@@ -8,8 +8,7 @@ export function useLenis() {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
-      .deviceMemory;
+    const deviceMemory = navigator.deviceMemory;
     const isLowPower =
       (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
       (deviceMemory !== undefined && deviceMemory <= 4);

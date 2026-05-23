@@ -3,8 +3,9 @@
 import Link from "next/link"
 import { insights } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
+import { type Insight } from "@/types"
 
-const CATEGORY_LABELS: Record<string, string> = {
+const CATEGORY_LABELS: Record<Insight["category"], string> = {
   cloud: "Cloud",
   devops: "DevOps",
   leadership: "Liderança",
@@ -12,7 +13,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   observability: "Observabilidade",
 }
 
-const CATEGORY_COLORS: Record<string, string> = {
+const CATEGORY_COLORS: Record<Insight["category"], string> = {
   cloud: "#6366f1",
   devops: "#4f46e5",
   leadership: "#00ff88",

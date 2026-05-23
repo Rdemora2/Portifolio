@@ -100,6 +100,8 @@ export function MagneticButton({
     <a
       ref={buttonRef as React.RefObject<HTMLAnchorElement>}
       href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       {...commonProps}
     >
       {children}

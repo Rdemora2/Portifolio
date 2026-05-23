@@ -26,12 +26,12 @@ const stats = [
 ]
 
 export function About() {
-  const [ref, inView] = useInView({ threshold: 0, rootMargin: "400px", triggerOnce: true })
+  const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: true })
 
   return (
     <section
       id="about"
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={ref}
       className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >

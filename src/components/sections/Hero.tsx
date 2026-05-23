@@ -2,12 +2,12 @@
 
 import { useMemo, useRef, useEffect } from "react";
 import { personalInfo } from "@/data/portfolio";
-import FaultyTerminal from "../shared/FaultyTerminal";
+import FaultyTerminal from "@/components/shared/FaultyTerminal";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { useInView } from "@/hooks/useInView";
 
 export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
-  const [sectionInViewRef, isInView] = useInView({
+  const [sectionInViewRef, isInView] = useInView<HTMLElement>({
     threshold: 0.1,
     rootMargin: "200px",
     triggerOnce: false,
@@ -23,8 +23,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
-      .deviceMemory;
+    const deviceMemory = navigator.deviceMemory;
     const isLowPower =
       (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
       (deviceMemory !== undefined && deviceMemory <= 4);
@@ -57,7 +56,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             charSpan.style.backgroundSize = "200% 200%";
             charSpan.style.webkitBackgroundClip = "text";
             charSpan.style.webkitTextFillColor = "transparent";
-            (charSpan.style as unknown as Record<string, string>).backgroundClip = "text";
+            charSpan.style.backgroundClip = "text";
             charSpan.textContent = char;
             wordSpan.appendChild(charSpan);
           });
@@ -158,7 +157,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             1.5,
           );
         }
-      }, sectionInViewRef as React.RefObject<HTMLElement>);
+      }, sectionInViewRef);
     };
 
     run();
@@ -172,7 +171,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   return (
     <section
       id="hero"
-      ref={sectionInViewRef as React.RefObject<HTMLElement>}
+      ref={sectionInViewRef}
       className="relative flex min-h-dvh items-center overflow-hidden"
     >
       <div className="absolute inset-0 z-0">

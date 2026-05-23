@@ -110,11 +110,14 @@ export interface Insight {
   hasFullArticle?: boolean
 }
 
+export type ProjectType = "web" | "mobile" | "backend" | "architecture" | "leadership" | "other"
+
 export interface ContactFormData {
   name: string
   email: string
   company?: string
-  projectType: string
+  projectType: ProjectType
   message: string
   budget?: string
 }
+

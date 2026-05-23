@@ -1440,6 +1440,11 @@ function SplashCursor({
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
+
+      const webglLoseContext = gl.getExtension("WEBGL_lose_context");
+      if (webglLoseContext) {
+        webglLoseContext.loseContext();
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

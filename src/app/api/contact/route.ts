@@ -1,19 +1,47 @@
 import { NextRequest, NextResponse } from "next/server"
-import { z } from "zod"
+import { contactSchema } from "@/lib/validations"
 
-const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  company: z.string().optional(),
-  projectType: z.enum(["web", "mobile", "backend", "architecture", "leadership", "other"]),
-  message: z.string().min(20),
-  budget: z.string().optional(),
-})
+/** Simple in-memory rate limiter (per-IP, 5 requests per minute). */
+const rateLimit = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_WINDOW_MS = 60_000
+const RATE_LIMIT_MAX = 5
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimit.get(ip)
+
+  if (!entry || now > entry.resetAt) {
+    rateLimit.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return false
+  }
+
+  entry.count++
+  return entry.count > RATE_LIMIT_MAX
+}
+
+/** Escapes HTML entities to prevent XSS in email templates. */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+}
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    const parsed = schema.safeParse(body)
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Muitas requisições. Tente novamente em breve." },
+        { status: 429 }
+      )
+    }
+
+    const body: unknown = await req.json()
+    const parsed = contactSchema.safeParse(body)
 
     if (!parsed.success) {
       return NextResponse.json(
@@ -39,17 +67,17 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: "portfolio@robertozarzur.dev",
       to: "robertomoraeszar@gmail.com",
-      subject: `[Portfolio] Nova mensagem de ${name}`,
+      subject: `[Portfolio] Nova mensagem de ${escapeHtml(name)}`,
       html: `
         <h2>Nova mensagem do portfolio</h2>
-        <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        ${company ? `<p><strong>Empresa:</strong> ${company}</p>` : ""}
-        <p><strong>Tipo de projeto:</strong> ${projectType}</p>
-        ${budget ? `<p><strong>Budget:</strong> ${budget}</p>` : ""}
+        <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        ${company ? `<p><strong>Empresa:</strong> ${escapeHtml(company)}</p>` : ""}
+        <p><strong>Tipo de projeto:</strong> ${escapeHtml(projectType)}</p>
+        ${budget ? `<p><strong>Budget:</strong> ${escapeHtml(budget)}</p>` : ""}
         <hr />
         <p><strong>Mensagem:</strong></p>
-        <p>${message}</p>
+        <p>${escapeHtml(message)}</p>
       `,
     })
 

@@ -275,9 +275,10 @@ export const LogoLoop = memo(
       }
     }, [isVertical]);
 
+    const elementsToObserve = useMemo(() => [containerRef, seqRef], []);
     useResizeObserver(
       updateDimensions,
-      [containerRef, seqRef],
+      elementsToObserve,
       [logos, gap, logoHeight, isVertical]
     );
 
