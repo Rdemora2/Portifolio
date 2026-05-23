@@ -12,8 +12,11 @@ export function CustomCursor() {
   const isVisibleRef = useRef(false)
 
   useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches
     const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0
-    if (isTouchDevice) return
+    if (prefersReduced || isTouchDevice) return
 
     // Add cursor-hide class to body
     document.body.classList.add("custom-cursor-active")
@@ -51,6 +54,10 @@ export function CustomCursor() {
 
     let rafId: number
     const lerp = () => {
+      if (document.hidden) {
+        rafId = requestAnimationFrame(lerp)
+        return
+      }
       outerPos.current.x += (mousePos.current.x - outerPos.current.x) * 0.12
       outerPos.current.y += (mousePos.current.y - outerPos.current.y) * 0.12
       if (outerRef.current) {

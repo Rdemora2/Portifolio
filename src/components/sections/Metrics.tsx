@@ -16,7 +16,7 @@ export function Metrics() {
       className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
-      <DataflowBackground />
+      <DataflowBackground isActive={isInView} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
@@ -104,11 +104,13 @@ export function Metrics() {
   );
 }
 
-function DataflowBackground() {
+function DataflowBackground({ isActive }: { isActive: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sizeRef = useRef({ width: 0, height: 0 });
 
   useEffect(() => {
+    if (!isActive) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -163,7 +165,7 @@ function DataflowBackground() {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [isActive]);
 
   return (
     <canvas

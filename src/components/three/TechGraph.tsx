@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo } from "react"
+import { useRef, useMemo, useState } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Canvas } from "@react-three/fiber"
 import { Line } from "@react-three/drei"
@@ -134,9 +134,24 @@ function TechGraphScene({ techStack }: { techStack: TechItem[] }) {
 }
 
 export function TechGraph({ techStack }: { techStack: TechItem[] }) {
+  const [dpr] = useState<[number, number]>(() => {
+    if (typeof window === "undefined") return [1, 1.5]
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
+      .deviceMemory
+    const isLowPower =
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      (deviceMemory !== undefined && deviceMemory <= 4)
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches
+    const isSmall = window.innerWidth < 768
+    const maxDpr = isLowPower || prefersReduced || isSmall ? 1 : 1.5
+    return [1, maxDpr]
+  })
+
   return (
     <Canvas
-      dpr={[1, 1.5]}
+      dpr={dpr}
       camera={{ position: [0, 0, 10], fov: 50 }}
       style={{ width: "100%", height: "100%" }}
       gl={{ antialias: true, alpha: true }}

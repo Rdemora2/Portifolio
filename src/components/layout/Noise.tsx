@@ -8,15 +8,24 @@ export function Noise() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
+
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches
+    if (prefersReduced) return
     
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
     let animationFrameId: number
+    let lastFrameTime = 0
+    const frameInterval = 1000 / 15
+    const noiseDensity = 0.08
+    const resolutionScale = 0.6
 
     const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      canvas.width = Math.max(1, Math.floor(window.innerWidth * resolutionScale))
+      canvas.height = Math.max(1, Math.floor(window.innerHeight * resolutionScale))
     }
 
     const drawNoise = () => {
@@ -27,7 +36,7 @@ export function Noise() {
       const len = buffer32.length
 
       for (let i = 0; i < len; i++) {
-        if (Math.random() < 0.1) {
+        if (Math.random() < noiseDensity) {
           buffer32[i] = 0xffffffff // white dot
         }
       }
@@ -35,14 +44,17 @@ export function Noise() {
       ctx.putImageData(idata, 0, 0)
     }
 
-    const loop = () => {
-      drawNoise()
+    const loop = (time: number) => {
+      if (time - lastFrameTime >= frameInterval) {
+        drawNoise()
+        lastFrameTime = time
+      }
       animationFrameId = requestAnimationFrame(loop)
     }
 
     resize()
     window.addEventListener("resize", resize)
-    loop()
+    animationFrameId = requestAnimationFrame(loop)
 
     return () => {
       window.removeEventListener("resize", resize)

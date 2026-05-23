@@ -1,48 +1,37 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useMemo, useRef, useEffect } from "react";
 import { personalInfo } from "@/data/portfolio";
 import FaultyTerminal from "../shared/FaultyTerminal";
 import { MagneticButton } from "@/components/shared/MagneticButton";
+import { useInView } from "@/hooks/useInView";
 
 export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
+  const [sectionInViewRef, isInView] = useInView({
+    threshold: 0.1,
+    rootMargin: "200px",
+    triggerOnce: false,
+  });
   const sectionRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const rectRef = useRef<DOMRect | null>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    let rafId = 0;
-    const updateRect = () => {
-      rectRef.current = section.getBoundingClientRect();
-    };
-
-    updateRect();
-
-    const handleScroll = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = 0;
-        updateRect();
-      });
-    };
-
-    const resizeObserver = new ResizeObserver(() => updateRect());
-    resizeObserver.observe(section);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", updateRect);
-
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", updateRect);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
+  const perf = useMemo(() => {
+    if (typeof window === "undefined") {
+      return { prefersReduced: false, isLowPower: false, dpr: 1 };
+    }
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
+      .deviceMemory;
+    const isLowPower =
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      (deviceMemory !== undefined && deviceMemory <= 4);
+    const isSmall = window.innerWidth < 768;
+    const dpr = prefersReduced || isLowPower || isSmall ? 1 : 1.5;
+    return { prefersReduced, isLowPower, dpr };
   }, []);
 
   useEffect(() => {
@@ -184,7 +173,10 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   return (
     <section
       id="hero"
-      ref={sectionRef}
+      ref={(el) => {
+        sectionRef.current = el;
+        (sectionInViewRef as { current: HTMLElement | null }).current = el;
+      }}
       className="relative flex min-h-dvh items-center overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
@@ -193,7 +185,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
           gridMul={[2, 1]}
           digitSize={1.2}
           timeScale={0.5}
-          pause={false}
+          pause={!isInView}
           scanlineIntensity={0.5}
           glitchAmount={1}
           flickerAmount={1}
@@ -202,10 +194,11 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
           dither={0}
           curvature={0.1}
           tint="#6366f1"
-          mouseReact
+          mouseReact={isInView && !perf.prefersReduced}
           mouseStrength={0.5}
-          pageLoadAnimation
+          pageLoadAnimation={isInView}
           brightness={0.6}
+          dpr={perf.dpr}
         />
       </div>
 

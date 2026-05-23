@@ -7,6 +7,7 @@ import * as THREE from "three"
 const PARTICLE_COUNT = 3000
 const MOBILE_PARTICLE_COUNT = 1200
 const CONNECTION_DISTANCE = 1.2
+const CONNECTION_DISTANCE_SQ = CONNECTION_DISTANCE * CONNECTION_DISTANCE
 const MAX_CONNECTIONS = 200
 
 const hashStringToSeed = (value: string) => {
@@ -29,6 +30,8 @@ const createSeededRandom = (seed: number) => {
 export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
   const pointsRef = useRef<THREE.Points>(null)
   const linesRef = useRef<THREE.LineSegments>(null)
+  const lastUpdateRef = useRef(0)
+  const lastLineUpdateRef = useRef(0)
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return false
     return window.innerWidth < 768 || "ontouchstart" in window
@@ -88,7 +91,12 @@ export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
     const material = points.material as THREE.ShaderMaterial
     const timeUniform = material.uniforms.uTime
     if (!timeUniform) return
-    timeUniform.value = state.clock.elapsedTime
+    const elapsed = state.clock.elapsedTime
+    timeUniform.value = elapsed
+
+    const updateInterval = isMobile ? 1 / 30 : 1 / 45
+    if (elapsed - lastUpdateRef.current < updateInterval) return
+    lastUpdateRef.current = elapsed
 
     const arr = posAttr.array as Float32Array
     for (let i = 0; i < count; i++) {
@@ -120,6 +128,10 @@ export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
 
     // Update constellation connections (only check subset for performance)
     if (linesRef.current) {
+      const lineInterval = isMobile ? 1 / 10 : 1 / 15
+      if (elapsed - lastLineUpdateRef.current < lineInterval) return
+      lastLineUpdateRef.current = elapsed
+
       const lineGeo = linesRef.current.geometry
       const linePosAttr = lineGeo.attributes.position as THREE.BufferAttribute
       const lineColAttr = lineGeo.attributes.color as THREE.BufferAttribute
@@ -127,16 +139,17 @@ export function ParticleField({ mouse }: { mouse: { x: number; y: number } }) {
       const lCol = lineColAttr.array as Float32Array
 
       let connectionCount = 0
-      const checkCount = Math.min(count, 300) // Only check first N particles for connections
+      const checkCount = Math.min(count, isMobile ? 160 : 240)
 
       for (let i = 0; i < checkCount && connectionCount < MAX_CONNECTIONS; i++) {
         for (let j = i + 1; j < checkCount && connectionCount < MAX_CONNECTIONS; j++) {
           const dx = arr[i * 3]! - arr[j * 3]!
           const dy = arr[i * 3 + 1]! - arr[j * 3 + 1]!
           const dz = arr[i * 3 + 2]! - arr[j * 3 + 2]!
-          const d = Math.sqrt(dx * dx + dy * dy + dz * dz)
+          const d2 = dx * dx + dy * dy + dz * dz
 
-          if (d < CONNECTION_DISTANCE) {
+          if (d2 < CONNECTION_DISTANCE_SQ) {
+            const d = Math.sqrt(d2)
             const alpha = 1.0 - d / CONNECTION_DISTANCE
             const idx = connectionCount * 6
 

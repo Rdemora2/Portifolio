@@ -175,7 +175,20 @@ function DataStreams() {
 }
 
 export function ArticleCanvas() {
-  const [dpr] = useState<[number, number]>([1, 1.5])
+  const [dpr] = useState<[number, number]>(() => {
+    if (typeof window === "undefined") return [1, 1.5]
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
+      .deviceMemory
+    const isLowPower =
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      (deviceMemory !== undefined && deviceMemory <= 4)
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches
+    const isSmall = window.innerWidth < 768
+    const maxDpr = isLowPower || prefersReduced || isSmall ? 1 : 1.5
+    return [1, maxDpr]
+  })
 
   return (
     <div className="absolute inset-0 z-0" style={{ pointerEvents: "none" }}>

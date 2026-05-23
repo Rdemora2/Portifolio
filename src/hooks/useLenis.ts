@@ -5,6 +5,17 @@ import { useEffect } from "react";
 
 export function useLenis() {
   useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number })
+      .deviceMemory;
+    const isLowPower =
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      (deviceMemory !== undefined && deviceMemory <= 4);
+
+    if (prefersReduced || isLowPower) return;
+
     let isActive = true;
     let cleanupGsap: (() => void) | null = null;
 

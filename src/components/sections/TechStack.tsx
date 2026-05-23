@@ -49,7 +49,11 @@ const CATEGORY_LABELS: Record<TechCategory, string> = {
 };
 
 export function TechStack() {
-  const [ref] = useInView({ threshold: 0, rootMargin: "400px", triggerOnce: true });
+  const [sectionRef, inView] = useInView({
+    threshold: 0,
+    rootMargin: "200px",
+    triggerOnce: false,
+  });
   const prefersReduced = useMemo(() => {
     if (typeof window === "undefined") return false;
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -67,7 +71,7 @@ export function TechStack() {
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    if (prefersReduced || isTouch) return;
+    if (prefersReduced || isTouch || !inView) return;
 
     const container = containerRef.current;
     if (!container) return;
@@ -151,7 +155,7 @@ export function TechStack() {
       resizeObserver.disconnect();
       cancelAnimationFrame(rafRef.current);
     };
-  }, [prefersReduced, isTouch]);
+  }, [prefersReduced, isTouch, inView]);
 
   const grouped = techStack.reduce<Record<string, typeof techStack>>(
     (acc, tech) => {
@@ -167,7 +171,7 @@ export function TechStack() {
   return (
     <section
       id="tech"
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={sectionRef as React.RefObject<HTMLElement>}
       className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >

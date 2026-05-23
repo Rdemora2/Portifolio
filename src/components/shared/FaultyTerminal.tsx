@@ -387,7 +387,15 @@ export default function FaultyTerminal({
 
       renderer.render({ scene: mesh });
     };
-    rafRef.current = requestAnimationFrame(update);
+    if (!pause) {
+      rafRef.current = requestAnimationFrame(update);
+    } else {
+      const timeOffset = timeOffsetRef.current ?? 0;
+      const elapsed = timeOffset * timeScale;
+      program.uniforms.iTime.value = elapsed;
+      program.uniforms.uPageLoadProgress.value = 1;
+      renderer.render({ scene: mesh });
+    }
     ctn.appendChild(gl.canvas);
 
     if (mouseReact) window.addEventListener('mousemove', handleMouseMove);

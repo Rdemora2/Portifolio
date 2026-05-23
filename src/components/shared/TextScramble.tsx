@@ -30,9 +30,17 @@ export function TextScramble({
 
     let frame = 0
     const totalFrames = text.length * 2
-    let rafId: number
+    let rafId = 0
+    let lastTime = 0
 
-    const tick = () => {
+    const tick = (time: number) => {
+      if (!lastTime) lastTime = time
+      if (time - lastTime < speed) {
+        rafId = requestAnimationFrame(tick)
+        return
+      }
+
+      lastTime = time
       const progress = frame / totalFrames
       const resolved = Math.floor(progress * text.length)
 
@@ -49,18 +57,16 @@ export function TextScramble({
       frame++
 
       if (frame <= totalFrames) {
-        rafId = requestAnimationFrame(() => {
-          setTimeout(tick, speed)
-        })
+        rafId = requestAnimationFrame(tick)
       } else {
         setDisplay(text)
       }
     }
 
-    tick()
+    rafId = requestAnimationFrame(tick)
 
     return () => {
-      if (rafId) cancelAnimationFrame(rafId)
+      cancelAnimationFrame(rafId)
     }
   }, [trigger, text, speed, prefersReduced])
 
