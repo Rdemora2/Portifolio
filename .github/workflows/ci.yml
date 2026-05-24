@@ -27,5 +27,12 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run Next.js Build
-        run: npm run build
+      - name: Run Next.js Build with Bundle Analysis
+        run: ANALYZE=true npm run build
+
+      - name: Upload Bundle Analysis
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea23f723f50446b8f1690f930 # v4.4.3
+        if: always()
+        with:
+          name: bundle-analysis
+          path: .next/analyze/

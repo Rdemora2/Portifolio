@@ -317,5 +317,10 @@
       "success": "Mensagem enviada com sucesso!",
       "error": "Ocorreu um erro ao enviar a mensagem."
     }
+  },
+  "Error": {
+    "title": "Algo deu errado!",
+    "message": "Ocorreu um erro ao carregar esta seção. Por favor, tente novamente.",
+    "retry": "Tentar novamente"
   }
 }

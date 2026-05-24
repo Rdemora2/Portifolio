@@ -260,10 +260,16 @@
       "email": "Correo electrónico",
       "subject": "Asunto",
       "message": "Mensaje",
-      "send": "Enviar Mensaje",
+      "send": "Enviar Mensagem",
       "sending": "Enviando...",
       "success": "¡Mensaje enviado con éxito!",
       "error": "Ocurrió un error al enviar el mensaje."
     }
+  },
+  "Error": {
+    "title": "¡Algo salió mal!",
+    "message": "Ocurrió un error al cargar esta sección. Por favor, inténtelo de nuevo.",
+    "retry": "Reintentar"
   }
-}
+  }
+
