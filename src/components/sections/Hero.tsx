@@ -1,12 +1,14 @@
 "use client";
 
 import { useMemo, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { personalInfo } from "@/data/portfolio";
 import FaultyTerminal from "@/components/shared/FaultyTerminal";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { useInView } from "@/hooks/useInView";
 
 export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
+  const t = useTranslations("Hero");
   const [sectionInViewRef, isInView] = useInView<HTMLElement>({
     threshold: 0.1,
     rootMargin: "200px",
@@ -234,7 +236,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               letterSpacing: "0.15em",
             }}
           >
-            {personalInfo.title}
+            {t("title")}
           </p>
 
           <p
@@ -246,7 +248,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               fontSize: "clamp(0.75rem, 0.5vw + 0.625rem, 1rem)",
             }}
           >
-            <span className="typewriter">{personalInfo.subtitle}</span>
+            <span className="typewriter">{t("subtitle")}</span>
             <span
               className="ml-0.5 inline-block h-5 w-[2px] animate-blink align-text-bottom"
               style={{ backgroundColor: "var(--color-signal)" }}
@@ -260,9 +262,9 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               style={{
                 fontFamily: "var(--font-body)",
               }}
-              ariaLabel="Ver projetos"
+              ariaLabel={t("viewProjects")}
             >
-              Ver projetos
+              {t("viewProjects")}
             </MagneticButton>
             <MagneticButton
               href="#contact"
@@ -270,9 +272,9 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               style={{
                 fontFamily: "var(--font-body)",
               }}
-              ariaLabel="Entrar em contato"
+              ariaLabel={t("contact")}
             >
-              Contato
+              {t("contact")}
             </MagneticButton>
           </div>
         </div>
