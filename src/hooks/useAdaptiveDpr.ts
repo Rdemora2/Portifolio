@@ -20,6 +20,5 @@ export function useAdaptiveDpr(min = 1, max = 2): number {
 
     const effectiveMax = isLowPower ? Math.min(max, 1.5) : max
     return Math.min(Math.max(window.devicePixelRatio, min), effectiveMax)
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- hardware capabilities don't change at runtime
   }, [min, max])
 }

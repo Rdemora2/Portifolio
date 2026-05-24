@@ -1,7 +1,6 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { useRef, useEffect } from "react";
 import { Suspense } from "react"
 import { GeometricCore } from "./GeometricCore"
 import { ParticleField } from "./ParticleField"
