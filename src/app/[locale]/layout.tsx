@@ -6,6 +6,8 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Noise } from "@/components/layout/Noise";
 import { GlobalProviders } from "@/components/layout/GlobalProviders";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import "../globals.css";
 
 const syne = Syne({
@@ -174,6 +176,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const messages = await getMessages();
 
   return (
     <html
@@ -188,17 +191,19 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        <GlobalProviders>
-          <a href="#main-content" className="sr-only focus:not-sr-only">
-            Pular para o conteúdo principal
-          </a>
-          <SuppressWarnings />
-          <Noise />
-          <CustomCursor />
-          <Navigation />
-          {children}
-          <Footer />
-        </GlobalProviders>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <GlobalProviders>
+            <a href="#main-content" className="sr-only focus:not-sr-only">
+              Pular para o conteúdo principal
+            </a>
+            <SuppressWarnings />
+            <Noise />
+            <CustomCursor />
+            <Navigation />
+            {children}
+            <Footer />
+          </GlobalProviders>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
