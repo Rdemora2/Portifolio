@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Noise } from "@/components/layout/Noise";
 import { GlobalProviders } from "@/components/layout/GlobalProviders";
-import "./globals.css";
+import "../globals.css";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -166,14 +166,18 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   return (
     <html
-      lang="pt-BR"
+      lang={locale}
       data-scroll-behavior="smooth"
       className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
     >
