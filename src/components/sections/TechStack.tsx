@@ -7,6 +7,7 @@ import { TECH_CATEGORY_COLORS } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
 import type { TechCategory } from "@/types";
 import LogoLoop from "@/components/shared/LogoLoop";
+import { useTranslations } from "next-intl";
 import { FaAws } from "react-icons/fa";
 import {
   SiReact,
@@ -37,18 +38,9 @@ const techLogos = [
   { node: <SiGraphql size={36} color="#E10098" /> },
 ];
 
-
-const CATEGORY_LABELS: Record<TechCategory, string> = {
-  cloud: "Cloud",
-  backend: "Backend",
-  frontend: "Frontend",
-  mobile: "Mobile",
-  devops: "DevOps",
-  ai: "AI",
-  video: "Vídeo",
-};
-
 export function TechStack() {
+  const t = useTranslations("About.pillars");
+  const tn = useTranslations("Nav");
   const [sectionRef, inView] = useInView<HTMLElement>({
     threshold: 0,
     rootMargin: "200px",
@@ -166,8 +158,6 @@ export function TechStack() {
     {},
   );
 
-  // deterministic index mapping instead of mutable tagIndex
-
   return (
     <section
       id="tech"
@@ -185,7 +175,7 @@ export function TechStack() {
               letterSpacing: "0.25em",
             }}
           >
-            O que eu uso
+            {tn("tech_small") || "O que eu uso"}
           </p>
           <h2
             className="mb-8 font-bold sm:mb-12"
@@ -195,7 +185,7 @@ export function TechStack() {
               fontSize: "var(--text-3xl)",
             }}
           >
-            Tecnologias
+            {tn("tech")}
           </h2>
         </ScrollReveal>
 
@@ -212,7 +202,6 @@ export function TechStack() {
             pauseOnHover={true}
           />
         </div>
-
 
         <div
           ref={containerRef}
@@ -237,7 +226,7 @@ export function TechStack() {
                       color: TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
                     }}
                   >
-                    {CATEGORY_LABELS[category as TechCategory] ?? category}
+                    {t(category) || category}
                   </span>
                 </h3>
                 <div className="flex flex-wrap gap-2">

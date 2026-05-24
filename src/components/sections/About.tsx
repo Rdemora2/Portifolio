@@ -1,8 +1,8 @@
 "use client"
 
 import dynamic from "next/dynamic"
+import { useTranslations } from "next-intl"
 
-import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { GradientBorder } from "@/components/shared/GradientBorder"
 import { AnimatedText } from "@/components/shared/AnimatedText"
@@ -18,15 +18,24 @@ const NeuralBackground = dynamic(
   { ssr: false }
 )
 
-const stats = [
-  { label: "Anos de experiência", value: "4+" },
-  { label: "Projetos entregues", value: "10+" },
-  { label: "Países", value: "2" },
-  { label: "Usuários impactados", value: "100k+" },
-]
-
 export function About() {
+  const t = useTranslations("About")
+  const ts = useTranslations("Stats")
   const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: true })
+
+  const stats = [
+    { label: ts("yearsOfExperience"), value: "4+" },
+    { label: ts("projectsDelivered"), value: "10+" },
+    { label: ts("countries"), value: "2" },
+    { label: ts("usersImpacted"), value: "100k+" },
+  ]
+
+  const pillars = [
+    t("pillars.cloud"),
+    t("pillars.backend"),
+    t("pillars.management"),
+    t("pillars.observability"),
+  ]
 
   return (
     <section
@@ -47,7 +56,7 @@ export function About() {
               letterSpacing: "0.25em",
             }}
           >
-            Sobre
+            {t("title")}
           </p>
         </ScrollReveal>
 
@@ -63,7 +72,7 @@ export function About() {
                 fontSize: "var(--text-3xl)",
               }}
             >
-              De dev a gestor sem largar o terminal
+              {t("mainTitle")}
             </AnimatedText>
 
             <ScrollReveal delay={0.2}>
@@ -75,7 +84,7 @@ export function About() {
                   fontSize: "var(--text-md)",
                 }}
               >
-                {personalInfo.bio}
+                {t("bio")}
               </p>
             </ScrollReveal>
 
@@ -88,27 +97,25 @@ export function About() {
                   fontSize: "var(--text-md)",
                 }}
               >
-                {personalInfo.bioExtended}
+                {t("bioExtended")}
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={0.5}>
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                {["Cloud & DevOps", "Backend de Alta Performance", "Gestão de Times", "Observabilidade"].map(
-                  (pillar) => (
-                    <span
-                      key={pillar}
-                      className="cursor-default rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)] sm:px-4 sm:py-1.5"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        borderColor: "var(--color-edge)",
-                        color: "var(--color-text-secondary)",
-                      }}
-                    >
-                      {pillar}
-                    </span>
-                  ),
-                )}
+                {pillars.map((pillar) => (
+                  <span
+                    key={pillar}
+                    className="cursor-default rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)] sm:px-4 sm:py-1.5"
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      borderColor: "var(--color-edge)",
+                      color: "var(--color-text-secondary)",
+                    }}
+                  >
+                    {pillar}
+                  </span>
+                ))}
               </div>
             </ScrollReveal>
           </div>

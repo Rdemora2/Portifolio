@@ -9,6 +9,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { MagneticButton } from "@/components/shared/MagneticButton"
 import dynamic from "next/dynamic"
 import { useInView } from "@/hooks/useInView"
+import { useTranslations } from "next-intl"
 
 const WaveCanvas = dynamic(
   () => import("@/components/three/WaveCanvas").then((m) => ({ default: m.WaveCanvas })),
@@ -25,6 +26,8 @@ const PROJECT_TYPES = [
 ] as const
 
 export function Contact() {
+  const t = useTranslations("Contact")
+  const tNav = useTranslations("Nav")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: true })
   const isMounted = useRef(true)
@@ -91,7 +94,7 @@ export function Contact() {
                   letterSpacing: "0.25em",
                 }}
               >
-                Contato
+                {tNav("contact")}
               </p>
               <h2
                 className="mb-6 font-bold leading-tight"
@@ -101,7 +104,7 @@ export function Contact() {
                   fontSize: "var(--text-3xl)",
                 }}
               >
-                Bora conversar?
+                {t("title")}
               </h2>
               <p
                 className="mb-8 leading-relaxed"
@@ -111,7 +114,7 @@ export function Contact() {
                   fontSize: "var(--text-md)",
                 }}
               >
-                Se você tem um projeto interessante ou quer trocar uma ideia, manda uma mensagem.
+                {t("subtitle")}
               </p>
 
               <div className="space-y-4">
@@ -143,7 +146,7 @@ export function Contact() {
           <ScrollReveal animation="slide-right" delay={0.2}>
             <form onSubmit={(e) => void handleSubmit(onSubmit)(e)} className="space-y-4 sm:space-y-6" noValidate>
               <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
-                <FormField label="Nome" htmlFor="contact-name" error={errors.name?.message}>
+                <FormField label={t("form.name")} htmlFor="contact-name" error={errors.name?.message}>
                   <input
                     {...register("name")}
                     type="text"
@@ -152,7 +155,7 @@ export function Contact() {
                     placeholder=" "
                   />
                 </FormField>
-                <FormField label="Email" htmlFor="contact-email" error={errors.email?.message}>
+                <FormField label={t("form.email")} htmlFor="contact-email" error={errors.email?.message}>
                   <input
                     {...register("email")}
                     type="email"
@@ -164,7 +167,7 @@ export function Contact() {
               </div>
 
               <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
-                <FormField label="Empresa (opcional)" htmlFor="contact-company">
+                <FormField label={t("form.company") || "Empresa (opcional)"} htmlFor="contact-company">
                   <input
                     {...register("company")}
                     type="text"
@@ -173,7 +176,7 @@ export function Contact() {
                     placeholder=" "
                   />
                 </FormField>
-                <FormField label="Tipo de projeto" htmlFor="contact-project-type" error={errors.projectType?.message}>
+                <FormField label={t("form.projectType") || "Tipo de projeto"} htmlFor="contact-project-type" error={errors.projectType?.message}>
                   <select
                     {...register("projectType")}
                     id="contact-project-type"
@@ -188,7 +191,7 @@ export function Contact() {
                 </FormField>
               </div>
 
-              <FormField label="Mensagem" htmlFor="contact-message" error={errors.message?.message}>
+              <FormField label={t("form.message")} htmlFor="contact-message" error={errors.message?.message}>
                 <textarea
                   {...register("message")}
                   id="contact-message"
@@ -198,7 +201,7 @@ export function Contact() {
                 />
               </FormField>
 
-              <FormField label="Budget estimado (opcional)" htmlFor="contact-budget">
+              <FormField label={t("form.budget") || "Budget estimado (opcional)"} htmlFor="contact-budget">
                 <input
                   {...register("budget")}
                   type="text"
@@ -222,7 +225,7 @@ export function Contact() {
                     <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 )}
-                {status === "loading" ? "Enviando..." : "Enviar mensagem"}
+                {status === "loading" ? t("form.sending") : t("form.send")}
               </MagneticButton>
 
               {status === "success" && (
@@ -241,7 +244,7 @@ export function Contact() {
                     <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" />
                     <path d="M6 10l3 3 5-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  Mensagem enviada com sucesso!
+                  {t("form.success")}
                 </div>
               )}
 
@@ -257,7 +260,7 @@ export function Contact() {
                     fontFamily: "var(--font-mono)",
                   }}
                 >
-                  Erro ao enviar. Tente novamente ou use contato direto.
+                  {t("form.error") || "Erro ao enviar. Tente novamente ou use contato direto."}
                 </div>
               )}
             </form>

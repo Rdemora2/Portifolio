@@ -22,6 +22,248 @@
   },
   "Metadata": {
     "title": "Roberto Zarzur | Gerente de TI e Ingeniero de Software",
-    "description": "Gerente de TI y líder técnico con perfil hands-on. Lidero equipos, construyo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidad y DevOps en sistemas de misión crítica."
+    "description": "Gerente de TI y líder técnico con perfil hands-on. Lidero equipos, construo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidade y DevOps en sistemas de misión crítica."
+  },
+  "About": {
+    "title": "Sobre mí",
+    "mainTitle": "De dev a gestor sin soltar la terminal",
+    "bio": "Empecé como desenvolvedor full-stack y hoy lidero el área de tecnología de una empresa con operaciones internacionales. En el camino, aprendí que la verdadera gestión exige involucramiento directo, por lo que sigo construyendo backends, configurando infraestructura cloud y garantizando que cada sistema soporte la presión de producción. Mi entrega va desde el código hasta el despliegue final.",
+    "bioExtended": "He entregado proyectos para el Hospital Sírio-Libanês, Grupo Bandeirantes y cadenas hoteleras internacionales, siempre con enfoque en rendimiento real, infraestructura resiliente y equipos que funcionan. Mi perfil es hands-on: codifico, reviso, configuro infra y tomo decisiones técnicas en el mismo día.",
+    "location": "São Paulo, Brasil",
+    "availability": "Disponible para nuevos desafíos",
+    "pillars": {
+      "cloud": "Cloud & DevOps",
+      "backend": "Backend de Alto Rendimiento",
+      "management": "Gestión de Equipos",
+      "observability": "Observabilidad"
+    }
+  },
+  "Stats": {
+    "yearsOfExperience": "Años de experiencia",
+    "projectsDelivered": "Proyectos entregados",
+    "countries": "Países",
+    "usersImpacted": "Usuarios impactados"
+  },
+  "Projects": {
+    "title": "Proyectos Destacados",
+    "viewCaseStudy": "Ver Estudio de Caso",
+    "role": "Rol",
+    "client": "Cliente",
+    "period": "Período",
+    "challenge": "El Desafío",
+    "solution": "La Solución",
+    "impact": "El Impacto",
+    "metrics": "Métricas de Éxito",
+    "items": {
+      "band-news-bandsports": {
+        "title": "Grupo Bandeirantes",
+        "role": "Gerente de TI",
+        "shortDescription": "Gestión de la refactorización completa de 6+ portales del Grupo Bandeirantes, modernizando la stack de comunicación masiva con cero tiempo de inactividad.",
+        "description": "Lideré la modernización tecnológica de misión crítica de los portales Band News, BandSports, Arte 1, Sabor e Arte, TerraViva y Agro+. Orquesté equipos de diseño, ingeniería e infraestructura manteniendo un alineamiento constante con el C-Level del grupo. La migración incluyó una alianza estratégica con Vivo para la distribución de contenido.",
+        "challenge": "Modernizar 6 portales de comunicación masiva simultáneamente, sin interrumpir el servicio para millones de usuarios, coordinando múltiples equipos y manteniendo la consistencia arquitectónica.",
+        "solution": "Arquitectura unificada en Next.js en el frontend y Go en el backend, con NestJS para microservicios auxiliares. Seguridad perimetral vía AWS WAF, Load Balancing elástico y despliegue gradual con rollback automatizado.",
+        "impact": "6 portales modernizados con arquitectura de vanguardia, seguridad de nivel empresarial y capacidad de escala para picos de audiencia (elecciones, eventos deportivos en vivo).",
+        "caseStudy": {
+          "problem": "Los portales del Grupo Bandeirantes funcionaban en stacks heredadas con mantenimiento costoso, rendimiento inconsistente y dificultad para escalar en picos de audiencia como elecciones y transmisiones deportivas.",
+          "solution": "Diseñé una arquitectura moderna unificada que permitió refactorizar cada portal con independencia de despliegue pero compartiendo componentes core. La stack Go + Next.js garantizó el máximo rendimiento en SSR con latencia mínima.",
+          "robertoRole": "Actué como gerente técnico: definí la arquitectura, coordiné 4 squads simultáneos, negocié plazos con el C-Level y supervisé cada despliegue. En las sprints críticas, me sumergí en el código para resolver cuellos de botella de rendimiento.",
+          "keyDecisions": [
+            "Elección de Go para el backend por rendimiento y latencia",
+            "Adopción de despliegue gradual (canary) para evitar tiempos de inactividad",
+            "AWS WAF para protección DDoS en eventos de alta audiencia"
+          ],
+          "lessonsLearned": [
+            "La migración de sistemas heredados exige comunicación constante con los stakeholders no técnicos",
+            "El despliegue gradual es innegociable para sistemas de alta visibilidad"
+          ],
+          "results": [
+            "6 portales modernizados en un cronograma agresivo",
+            "Cero tiempo de inactividad en todas las migraciones",
+            "Reducción significativa en los costos de mantenimiento"
+          ]
+        }
+      },
+      "hospital-sirio-libanes": {
+        "title": "Hospital Sírio-Libanês",
+        "role": "Ingeniero de Backend & Cloud + Líder Técnico",
+        "shortDescription": "Arquitectura e ingeniería de extremo a extremo de la plataforma de hospitalidad digital. Backend en Go procesando 20M+ peticiones/mes con 6ms de latencia.",
+        "description": "Asumí el liderazgo técnico integral del backend, infraestructura cloud y aplicación nativa. Arquitecturé una plataforma de altísima disponibilidad para uno de los complejos hospitalarios más grandes de América Latina, incluyendo la integración con el sistema Tasy, streaming Unicast con Widevine DRM y aplicación Android TV en Kotlin.",
+        "challenge": "Construir una plataforma resiliente capaz de gestionar operaciones hospitalarias en tiempo real, desde el streaming de contenido a las habitaciones hasta la integración con sistemas de gestión hospitalaria (Tasy), todo con latencia cercana a cero.",
+        "solution": "Backend en Go (Fiber) optimizado para el máximo rendimiento, con orquestación de auto-escalado en GCP (Cloud Run). Caché distribuido con Redis (92% hit rate), persistencia en PostgreSQL y observabilidad vía Prometheus. Aplicación nativa Kotlin con Jetpack Compose y Media3 para Android TV.",
+        "impact": "Plataforma en producción estable con 20M+ peticiones mensuales, latencia media de 6ms e infraestructura lista para auditorías de salud y expansión a nuevas unidades hospitalarias.",
+        "caseStudy": {
+          "problem": "El Sírio-Libanês necesitaba una plataforma digital de hospitalidad para sus pacientes que integrara información en tiempo real de Tasy, streaming de contenido con protección DRM y una interfaz intuitiva en los televisores de las habitaciones.",
+          "solution": "Diseñé y construí todo el stack: backend en Go para máximo rendimiento, infraestructura GCP con auto-escalado, caché Redis para respuestas instantáneas y aplicación Android TV en Kotlin con streaming protegido por Widevine DRM.",
+          "robertoRole": "Fui el ingeniero responsable de todo el stack técnico (backend, infra, mobile). Simultáneamente, actué como líder técnico definiendo arquitectura, estándares de código y monitoreo. La decisión de usar Go surgió de la necesidad de latencia ultra baja en un entorno hospitalario.",
+          "keyDecisions": [
+            "Go + Fiber por rendimiento: 6ms de latencia media",
+            "Redis como capa de caché: 92% de hit rate redujo la carga en PostgreSQL",
+            "Widevine DRM para protección de contenido premium",
+            "Cloud Run para auto-escalado sin gestionar servidores"
+          ],
+          "lessonsLearned": [
+            "En salud, la confiabilidad va antes que las funcionalidades",
+            "La observabilidad no es opcional. Prometheus salvó noches de sueño",
+            "La integración con sistemas heredados (Tasy) exige documentación obsesiva"
+          ],
+          "results": [
+            "20M+ peticiones/mes sin degradación de rendimiento",
+            "Latencia media de 6ms en producción",
+            "Plataforma aprobada para auditorías de salud"
+          ]
+        }
+      },
+      "fiesta-americana": {
+        "title": "Resort Fiesta Americana",
+        "role": "Gestor de Proyecto Internacional",
+        "shortDescription": "Gestión transnacional de una solución pionera en hospitalidade: convergencia de streaming Unicast y broadcast coaxial en una única plataforma.",
+        "description": "Lideré una operación global coordinando equipos de ingeniería distribuidos en múltiples zonas horarias. El proyecto involucró la creación de una aplicación nativa Kotlin que hace algo inédito en el sector: integra simultáneamente señales de TV por cable (broadcast coaxial) y streaming digital (Unicast) en una interfaz única en la TV de la habitación.",
+        "challenge": "Viabilizar una solución de hardware/software inédita en el sector de la hospitalidad, alineando una compleja ingeniería de decodificación con la gestión de stakeholders distribuidos en diferentes continentes y culturas.",
+        "solution": "Gobernanza de proyecto intercultural con comunicación adaptada a cada zona horaria. Ingeniería que involucra una integración profunda de decodificadores de hardware (TV Box y dongles USB) con frameworks nativos de Android TV, convergiendo dos paradigmas de transmisión en una experiencia unificada.",
+        "impact": "Posicionamiento disruptivo de la cadena hotelera con una plataforma pionera que convergió tecnologías de transmisión antes aisladas, creando una experiencia premium para los huéspedes.",
+        "caseStudy": {
+          "problem": "Las cadenas hoteleras internacionales tenían dos sistemas separados para la televisión: uno para canales por cable (coaxial) y otro para streaming digital. Los huéspedes tenían que alternar entre las entradas de la TV, creando una experiencia fragmentada.",
+          "solution": "Coordiné el desarrollo de una aplicación Kotlin que decodifica ambas señales simultáneamente, presentando todo en una interfaz unificada con EPG integrado. La integración de hardware exigió drivers personalizados para dongles USB.",
+          "robertoRole": "Gestión completa del proyecto internacional: alineamiento de stakeholders en múltiples países, definición del roadmap, gestión de riesgos y garantía de calidad. Mi experiencia técnica en Android TV fue fundamental para validar las decisiones de arquitectura.",
+          "keyDecisions": [
+            "Uso de dongles USB para la captura de señal coaxial (solución innovadora)",
+            "Kotlin/Jetpack Compose para una interfaz unificada",
+            "Sprints adaptados a diferentes zonas horarias"
+          ],
+          "lessonsLearned": [
+            "Los proyectos internacionales exigen el triple de documentación",
+            "La integración de hardware tiene ciclos de prueba mucho más largos que el software puro"
+          ],
+          "results": [
+            "Primera aplicación del sector en converger broadcast + unicast",
+            "Implementación exitosa en cadena hotelera internacional"
+          ]
+        }
+      }
+    }
+  },
+  "Experience": {
+    "title": "Experiencia Profesional",
+    "title_small": "Donde he trabajado",
+    "present": "Actualidad",
+    "items": {
+      "valiant-gti": {
+        "company": "Valiant Group do Brasil",
+        "role": "Gerente de TI",
+        "description": "Lidero el área de tecnología de la empresa, incluyendo infraestructura cloud, DevOps, seguridad y operaciones. Gestiono el ciclo completo de productos de software que impactan a más de 100k usuarios activos. Dirijo operaciones internacionales y me mantengo involucrado en el código, desde backends en Go hasta aplicaciones Android TV.",
+        "highlights": [
+          "Principal decisor de tecnología de la empresa",
+          "Softwares en producción con más de 100k usuarios activos",
+          "Proyectos internacionales en múltiples países",
+          "Perfil hands-on: web, móvil, Android TV, broadcast y unicast",
+          "Backends de alto rendimiento en Golang",
+          "Infraestructura cloud en GCP, AWS y Oracle"
+        ]
+      },
+      "valiant-pm": {
+        "company": "Valiant Group do Brasil",
+        "role": "Gerente de Proyectos de TI",
+        "description": "Orquesté equipos multidisciplinarios garantizando entregas ágiles de nuevos proyectos. Con una sólida formación en desarrollo, dirigí el gobierno de infraestructura cloud en GCP, pipelines de CI/CD y gestión del ciclo de vida de los productos.",
+        "highlights": [
+          "Equipo de desarrollo bajo mi gestión directa",
+          "Definición de stack técnico y estándares de calidad",
+          "Optimización de infraestructura cloud GCP",
+          "Interfaz directa con clientes y stakeholders"
+        ]
+      },
+      "valiant-dev": {
+        "company": "Valiant Group do Brasil",
+        "role": "Desarrollador Web / Móvil Full Stack",
+        "description": "Desarrollo full stack de extremo a extremo: web, móvil e infraestructura. Trabajé desde el diseño de APIs hasta el despliegue en producción, con enfoque en rendimiento y estabilidad.",
+        "highlights": [
+          "Full stack: JavaScript, TypeScript, React, Kotlin, Go",
+          "Bases de datos: PostgreSQL, MySQL, BigQuery, SQL Server, MongoDB, Redis",
+          "Alojamiento y configuración en la nube en GCP",
+          "Monitoreo y optimización del rendimiento en producción"
+        ]
+      },
+      "weber-dev": {
+        "company": "Weber Technologies",
+        "role": "Desarrollador Web Full Stack",
+        "description": "Desarrollo full stack con React y Python/Django. Desde la concepción hasta la implementación y despliegue, pasando por la contenerización con Docker.",
+        "highlights": [
+          "Desarrollo full stack con React y Python/Django",
+          "Contenerización con Docker",
+          "Ciclo completo: concepción, desarrollo y despliegue"
+        ]
+      },
+      "buser-dev": {
+        "company": "Buser Brasil",
+        "role": "Desarrollador Web Full Stack",
+        "description": "Mantenimiento y evolución de producto a gran escala. Implementación de nuevas funcionalidades en codebase existente con Vue.js, Python y Django.",
+        "highlights": [
+          "Mantenimiento y evolución de producto a gran escala",
+          "Implementación de nuevas funcionalidades en codebase existente",
+          "Stack: Vue.js, Python, Django, Docker"
+        ]
+      }
+    }
+  },
+  "Testimonials": {
+    "title": "Testimonios",
+    "items": {
+      "testimonial-1": {
+        "name": "Carlos Eduardo Silva",
+        "role": "Director de Tecnología",
+        "company": "Valiant Group",
+        "quote": "Roberto tiene una capacidad rara de transitar entre la visión estratégica y la ejecución técnica profunda. Él no solo lidera al equipo, entiende cada línea de código y cada decisión de infraestructura. Eso marca toda la diferencia en la calidad de nuestras entregas."
+      },
+      "testimonial-2": {
+        "name": "Ana Paula Ferreira",
+        "role": "Gerente de Producto",
+        "company": "Hospital Sírio-Libanês",
+        "quote": "La plataforma que Roberto construyó para nosotros simplemente funciona. 20 millones de peticiones al mes con 6ms de latencia, y lo hizo todo solo, del backend al despliegue. Profesional excepcional."
+      },
+      "testimonial-3": {
+        "name": "Ricardo Mendes",
+        "role": "Head de Digital",
+        "company": "Grupo Bandeirantes",
+        "quote": "Migrar 6 portales de alta visibilidad sin un solo segundo de tiempo de inactividad es una proeza técnica y de gestión. Roberto coordinó todo con maestría, manteniendo una comunicación clara con nuestro C-Level en cada etapa."
+      }
+    }
+  },
+  "Insights": {
+    "title": "Insights & Artículos",
+    "title_small": "Pensamiento Técnico",
+    "subtitle": "Reflexiones sobre el liderazgo técnico, la arquitectura de sistemas y las decisiones que marcan la diferencia en producción.",
+    "readTime": "lectura",
+    "viewArticle": "Leer artículo completo",
+    "items": {
+      "insight-1": {
+        "title": "Por qué tu líder técnico necesita programar",
+        "summary": "El liderazgo técnico efectivo exige participación directa. Los gestores que abandonan el código pierden un contexto crítico sobre la complejidad real de los proyectos que gestionan."
+      },
+      "insight-2": {
+        "title": "Go en producción: lo que nadie te cuenta",
+        "summary": "Después de ejecutar Go en sistemas que procesan más de 20M de peticiones al mes, comparto las decisiones de arquitectura que marcaron la diferencia y los errores que casi cuestan caro."
+      },
+      "insight-3": {
+        "title": "La observabilidad no es un tablero bonito",
+        "summary": "Prometheus, alertas y métricas que realmente importan. Cómo montar un stack de observabilidad que te despierte solo cuando sea necesario y te deje dormir el resto del tiempo."
+      },
+      "insight-4": {
+        "title": "Nube multi-proveedor: AWS + GCP en la práctica",
+        "summary": "Usar AWS y GCP en el mismo ecosistema parece una locura. Pero en ciertos escenarios, es la decisión más inteligente. Explico cuándo tiene sentido y cómo evitar los problemas."
+      }
+    }
+  },
+  "Contact": {
+    "title": "¿Hablamos?",
+    "subtitle": "¿Interesado en escalar su tech stack o liderazgo técnico? Póngase en contacto.",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado con éxito!",
+      "error": "Ocurrió un error al enviar el mensaje."
+    }
   }
 }

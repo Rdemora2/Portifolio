@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { projects } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { CountUp } from "@/components/shared/CountUp";
@@ -8,13 +9,6 @@ import BorderGlow from "@/components/shared/BorderGlow";
 import type { Project, RoleType } from "@/types";
 
 type FilterType = "all" | "engineering" | "management" | "international";
-
-const filters: { key: FilterType; label: string }[] = [
-  { key: "all", label: "Todos" },
-  { key: "engineering", label: "Engenharia" },
-  { key: "management", label: "Gestão" },
-  { key: "international", label: "Internacional" },
-];
 
 function matchesFilter(project: Project, filter: FilterType): boolean {
   if (filter === "all") return true;
@@ -26,20 +20,19 @@ function matchesFilter(project: Project, filter: FilterType): boolean {
   return true;
 }
 
-function getRoleLabel(role: RoleType): string {
-  const map: Record<RoleType, string> = {
-    engineering: "Engenharia",
-    management: "Gestão",
-    hybrid: "Híbrido",
-  };
-  return map[role];
-}
-
 export function Projects() {
+  const t = useTranslations("Projects");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
+
+  const filters: { key: FilterType; label: string }[] = [
+    { key: "all", label: t("filters.all") },
+    { key: "engineering", label: t("filters.engineering") },
+    { key: "management", label: t("filters.management") },
+    { key: "international", label: t("filters.international") },
+  ];
 
   const filtered = projects.filter((p) => matchesFilter(p, activeFilter));
 
@@ -103,7 +96,7 @@ export function Projects() {
               letterSpacing: "0.25em",
             }}
           >
-            Projetos
+            {t("navLabel")}
           </p>
           <h2
             className="mb-8 font-bold sm:mb-12"
@@ -113,7 +106,7 @@ export function Projects() {
               fontSize: "var(--text-3xl)",
             }}
           >
-            O que eu fiz
+            {t("title")}
           </h2>
         </ScrollReveal>
 
@@ -169,6 +162,7 @@ function ProjectItem({
   isExpanded: boolean;
   onToggle: () => void;
 }) {
+  const t = useTranslations("Projects");
   const detailsRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLDivElement>(null);
   const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
@@ -205,6 +199,15 @@ function ProjectItem({
       isActive = false;
     };
   }, [isExpanded]);
+
+  const getRoleLabel = (role: RoleType): string => {
+    const map: Record<RoleType, string> = {
+      engineering: t("roles.engineering"),
+      management: t("roles.management"),
+      hybrid: t("roles.hybrid"),
+    };
+    return map[role];
+  };
 
   return (
     <ScrollReveal delay={index * 0.1}>
@@ -283,7 +286,7 @@ function ProjectItem({
                 }}
               >
                 <span className="group-hover:text-[var(--color-signal)] transition-colors duration-200">
-                  {project.title}
+                  {t(`items.${project.id}.title`)}
                 </span>
               </h3>
               <span
@@ -315,7 +318,7 @@ function ProjectItem({
                     color: "var(--color-alert)",
                   }}
                 >
-                  Internacional 🌍
+                  {t("internationalTag")} 🌍
                 </span>
               )}
             </div>
@@ -326,7 +329,7 @@ function ProjectItem({
                 color: "var(--color-text-secondary)",
               }}
             >
-              {project.shortDescription}
+              {t(`items.${project.id}.shortDescription`)}
             </p>
           </div>
 
@@ -392,7 +395,7 @@ function ProjectItem({
                         color: "var(--color-text-muted)",
                       }}
                     >
-                      {metric.label}
+                      {t(`items.${project.id}.metrics.${metric.label.replace(/\s+/g, "").toLowerCase()}`, { defaultValue: metric.label })}
                     </p>
                   </div>
                 ))}
@@ -418,7 +421,7 @@ function ProjectItem({
                     className="inline-block h-1.5 w-1.5 rounded-full"
                     style={{ backgroundColor: "var(--color-signal)" }}
                   />
-                  Meu papel neste projeto
+                  {t("caseStudyLabel")}
                 </h4>
                 <p
                   className="text-sm leading-relaxed"
@@ -427,7 +430,7 @@ function ProjectItem({
                     color: "var(--color-text-secondary)",
                   }}
                 >
-                  {project.caseStudy.robertoRole}
+                  {t(`items.${project.id}.caseStudy.robertoRole`)}
                 </p>
               </div>
             )}
@@ -441,7 +444,7 @@ function ProjectItem({
                     color: "var(--color-signal)",
                   }}
                 >
-                  Desafio
+                  {t("challenge")}
                 </h4>
                 <p
                   className="text-sm leading-relaxed"
@@ -450,7 +453,7 @@ function ProjectItem({
                     color: "var(--color-text-secondary)",
                   }}
                 >
-                  {project.challenge}
+                  {t(`items.${project.id}.challenge`)}
                 </p>
               </div>
               <div>
@@ -461,7 +464,7 @@ function ProjectItem({
                     color: "var(--color-signal)",
                   }}
                 >
-                  Solução
+                  {t("solution")}
                 </h4>
                 <p
                   className="text-sm leading-relaxed"
@@ -470,7 +473,7 @@ function ProjectItem({
                     color: "var(--color-text-secondary)",
                   }}
                 >
-                  {project.solution}
+                  {t(`items.${project.id}.solution`)}
                 </p>
               </div>
             </div>
@@ -484,12 +487,12 @@ function ProjectItem({
                     color: "var(--color-signal)",
                   }}
                 >
-                  Decisões-chave
+                  {t("keyDecisions")}
                 </h4>
                 <ul className="space-y-2">
-                  {project.caseStudy.keyDecisions.map((d) => (
+                  {project.caseStudy.keyDecisions.map((d, idx) => (
                     <li
-                      key={d}
+                      key={idx}
                       className="flex items-start gap-2 text-sm"
                       style={{
                         fontFamily: "var(--font-body)",
@@ -497,7 +500,7 @@ function ProjectItem({
                       }}
                     >
                       <span style={{ color: "var(--color-highlight)" }}>◆</span>
-                      {d}
+                      {t(`items.${project.id}.caseStudy.keyDecisions.${idx}`)}
                     </li>
                   ))}
                 </ul>
@@ -512,12 +515,12 @@ function ProjectItem({
                   color: "var(--color-signal)",
                 }}
               >
-                Destaques
+                {t("highlights")}
               </h4>
               <ul className="space-y-2">
-                {project.highlights.map((h) => (
+                {project.highlights.map((h, idx) => (
                   <li
-                    key={h}
+                    key={idx}
                     className="flex items-start gap-2 text-sm"
                     style={{
                       fontFamily: "var(--font-body)",
@@ -525,7 +528,7 @@ function ProjectItem({
                     }}
                   >
                     <span style={{ color: "var(--color-matrix)" }}>▸</span>
-                    {h}
+                    {t(`items.${project.id}.highlights.${idx}`, { defaultValue: h })}
                   </li>
                 ))}
               </ul>
@@ -540,12 +543,12 @@ function ProjectItem({
                     color: "var(--color-text-muted)",
                   }}
                 >
-                  Lições aprendidas
+                  {t("lessonsLearned")}
                 </h4>
                 <ul className="space-y-2">
-                  {project.caseStudy.lessonsLearned.map((l) => (
+                  {project.caseStudy.lessonsLearned.map((l, idx) => (
                     <li
-                      key={l}
+                      key={idx}
                       className="flex items-start gap-2 text-sm italic"
                       style={{
                         fontFamily: "var(--font-body)",
@@ -553,7 +556,7 @@ function ProjectItem({
                       }}
                     >
                       <span style={{ color: "var(--color-text-muted)" }}>→</span>
-                      {l}
+                      {t(`items.${project.id}.caseStudy.lessonsLearned.${idx}`)}
                     </li>
                   ))}
                 </ul>

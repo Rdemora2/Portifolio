@@ -2,8 +2,11 @@
 
 import { testimonials } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
+import { useTranslations } from "next-intl"
 
 export function Testimonials() {
+  const t = useTranslations("Testimonials")
+
   return (
     <section
       id="testimonials"
@@ -20,7 +23,7 @@ export function Testimonials() {
               letterSpacing: "0.25em",
             }}
           >
-            O que dizem
+            {t("title_small") || "O que dizem"}
           </p>
           <h2
             className="mb-12 font-bold sm:mb-16"
@@ -30,7 +33,7 @@ export function Testimonials() {
               fontSize: "var(--text-3xl)",
             }}
           >
-            Depoimentos
+            {t("title")}
           </h2>
         </ScrollReveal>
 
@@ -72,7 +75,7 @@ export function Testimonials() {
                     color: "var(--color-text-secondary)",
                   }}
                 >
-                  {testimonial.quote}
+                  {t(`items.${testimonial.id}.quote`)}
                 </blockquote>
 
                 <div className="flex items-center gap-3">
@@ -84,7 +87,7 @@ export function Testimonials() {
                       fontFamily: "var(--font-display)",
                     }}
                   >
-                    {testimonial.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                    {t(`items.${testimonial.id}.name`).split(" ").map(n => n[0]).join("").slice(0, 2)}
                   </div>
                   <div className="min-w-0">
                     <p
@@ -94,7 +97,7 @@ export function Testimonials() {
                         color: "var(--color-text-primary)",
                       }}
                     >
-                      {testimonial.name}
+                      {t(`items.${testimonial.id}.name`)}
                     </p>
                     <p
                       className="truncate text-xs"
@@ -103,7 +106,7 @@ export function Testimonials() {
                         color: "var(--color-text-muted)",
                       }}
                     >
-                      {testimonial.role} · {testimonial.company}
+                      {t(`items.${testimonial.id}.role`)} · {t(`items.${testimonial.id}.company`)}
                     </p>
                   </div>
                 </div>

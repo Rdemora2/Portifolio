@@ -5,9 +5,12 @@ import { metrics } from "@/data/portfolio";
 import { CountUp } from "@/components/shared/CountUp";
 import { useInView } from "@/hooks/useInView";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { useTranslations } from "next-intl";
 
 export function Metrics() {
   const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.3 });
+  const t = useTranslations("Projects.items.hospital-sirio-libanes");
+  const ts = useTranslations("Stats");
 
   return (
     <section
@@ -28,7 +31,7 @@ export function Metrics() {
               letterSpacing: "0.25em",
             }}
           >
-            Números reais
+            {ts("title_small") || "Números reais"}
           </p>
           <h2
             className="mb-4 text-center font-bold"
@@ -38,7 +41,7 @@ export function Metrics() {
               fontSize: "var(--text-3xl)",
             }}
           >
-            Hospital Sírio-Libanês
+            {t("title")}
           </h2>
           <p
             className="mx-auto mb-12 max-w-xl text-center text-sm sm:mb-16 md:text-base"
@@ -47,57 +50,60 @@ export function Metrics() {
               color: "var(--color-text-secondary)",
             }}
           >
-            Dados de produção do sistema que eu construí e mantenho
+            {t("shortDescription")}
           </p>
         </ScrollReveal>
 
         <div className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-3">
-          {metrics.map((metric, idx) => (
-            <ScrollReveal key={metric.label} delay={idx * 0.15}>
-              <div
-                className="rounded-2xl border p-5 text-center transition-all duration-500 hover:border-[var(--color-signal)] sm:p-6 md:p-8"
-                style={{
-                  borderColor: "var(--color-edge)",
-                  backgroundColor: "rgba(10,16,24,0.6)",
-                  backdropFilter: "blur(10px)",
-                }}
-              >
+          {metrics.map((metric, idx) => {
+            const metricKey = metric.label.toLowerCase().replace(/[^a-z]/g, "");
+            return (
+              <ScrollReveal key={metric.label} delay={idx * 0.15}>
                 <div
-                  className="font-extrabold leading-none"
+                  className="rounded-2xl border p-5 text-center transition-all duration-500 hover:border-[var(--color-signal)] sm:p-6 md:p-8"
                   style={{
-                    fontFamily: "var(--font-display)",
-                    color: "var(--color-signal)",
-                    fontSize: "var(--text-5xl)",
+                    borderColor: "var(--color-edge)",
+                    backgroundColor: "rgba(10,16,24,0.6)",
+                    backdropFilter: "blur(10px)",
                   }}
                 >
-                  <CountUp
-                    end={metric.value}
-                    suffix={metric.suffix}
-                    trigger={isInView}
-                    duration={2.5}
-                  />
+                  <div
+                    className="font-extrabold leading-none"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      color: "var(--color-signal)",
+                      fontSize: "var(--text-5xl)",
+                    }}
+                  >
+                    <CountUp
+                      end={metric.value}
+                      suffix={metric.suffix}
+                      trigger={isInView}
+                      duration={2.5}
+                    />
+                  </div>
+                  <p
+                    className="mt-4 text-[0.625rem] uppercase tracking-widest sm:text-xs"
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      color: "var(--color-text-muted)",
+                    }}
+                  >
+                    {t(`metrics.${metricKey}`) || metric.label}
+                  </p>
+                  <p
+                    className="mt-2 text-sm"
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      color: "var(--color-text-secondary)",
+                    }}
+                  >
+                    {metric.description}
+                  </p>
                 </div>
-                <p
-                  className="mt-4 text-[0.625rem] uppercase tracking-widest sm:text-xs"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    color: "var(--color-text-muted)",
-                  }}
-                >
-                  {metric.label}
-                </p>
-                <p
-                  className="mt-2 text-sm"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    color: "var(--color-text-secondary)",
-                  }}
-                >
-                  {metric.description}
-                </p>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>
