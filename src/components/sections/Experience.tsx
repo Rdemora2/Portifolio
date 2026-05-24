@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import { experience } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import BorderGlow from "@/components/shared/BorderGlow";
+
 import { useTranslations } from "next-intl";
 
 export function Experience() {

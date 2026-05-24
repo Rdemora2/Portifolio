@@ -5,7 +5,7 @@ import { techStack } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { TECH_CATEGORY_COLORS } from "@/lib/constants";
 import { useInView } from "@/hooks/useInView";
-import type { TechCategory } from "@/types";
+
 import LogoLoop from "@/components/shared/LogoLoop";
 import { useTranslations } from "next-intl";
 import { FaAws } from "react-icons/fa";
