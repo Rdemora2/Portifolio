@@ -1,6 +1,27 @@
 {
   "Nav": {
     "hero": "Início",
-    "about": "Sobre"
+    "about": "Sobre",
+    "projects": "Projetos",
+    "tech": "Stack",
+    "metrics": "Métricas",
+    "experience": "Experiência",
+    "insights": "Insights",
+    "contact": "Contato",
+    "skipToContent": "Pular para o conteúdo principal",
+    "ariaLabel": "Navegação principal",
+    "mobileMenuLabel": "Menu de navegação",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
+  },
+  "Hero": {
+    "title": "Gerente de TI & Engenheiro de Software",
+    "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
+    "viewProjects": "Ver projetos",
+    "contact": "Contato"
+  },
+  "Metadata": {
+    "title": "Roberto Zarzur | Gerente de TI & Engenheiro de Software",
+    "description": "Gerente de TI e líder técnico com perfil hands-on. Lidero times, construo backends de alta performance em Go, gerencio infraestrutura cloud (AWS, GCP) e garanto observabilidade e DevOps em sistemas de missão crítica."
   }
 }

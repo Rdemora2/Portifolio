@@ -1,6 +1,27 @@
 {
   "Nav": {
     "hero": "Home",
-    "about": "About"
+    "about": "About",
+    "projects": "Projects",
+    "tech": "Stack",
+    "metrics": "Metrics",
+    "experience": "Experience",
+    "insights": "Insights",
+    "contact": "Contact",
+    "skipToContent": "Skip to content",
+    "ariaLabel": "Main navigation",
+    "mobileMenuLabel": "Navigation menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "Hero": {
+    "title": "IT Manager & Software Engineer",
+    "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
+    "viewProjects": "View Projects",
+    "contact": "Contact"
+  },
+  "Metadata": {
+    "title": "Roberto Zarzur | IT Manager & Software Engineer",
+    "description": "IT Manager and tech lead with a hands-on profile. I lead teams, build high-performance backends in Go, manage cloud infrastructure (AWS, GCP) and ensure observability and DevOps in mission-critical systems."
   }
 }
