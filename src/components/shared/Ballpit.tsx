@@ -8,8 +8,6 @@ import {
   Clock as e,
   AmbientLight as f,
   SphereGeometry as g,
-  // @ts-expect-error - ShaderChunk might be missing in some three types
-  ShaderChunk as h,
   Scene as i,
   Color as l,
   Object3D as m,
@@ -25,6 +23,8 @@ import {
   Raycaster as y,
   WebGLRendererParameters,
 } from "three";
+// @ts-expect-error - ShaderChunk access in newer three versions
+import { ShaderChunk as h } from "three/src/renderers/shaders/ShaderChunk.js";
 import { RoomEnvironment as z } from "three/examples/jsm/environments/RoomEnvironment.js";
 
 interface BallpitConfig {
