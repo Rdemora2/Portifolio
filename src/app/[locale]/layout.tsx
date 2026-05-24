@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Syne, DM_Sans, JetBrains_Mono } from "next/font/google";
 import { SuppressWarnings } from "@/components/shared/SuppressWarnings";
 import { Navigation } from "@/components/layout/Navigation";
@@ -7,7 +6,7 @@ import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Noise } from "@/components/layout/Noise";
 import { GlobalProviders } from "@/components/layout/GlobalProviders";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import "../globals.css";
 
 const syne = Syne({
@@ -28,145 +27,72 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://robertozarzur.dev"),
-  title: {
-    default: "Roberto Zarzur | Gerente de TI & Engenheiro de Software",
-    template: "%s | Roberto Zarzur",
-  },
-  description:
-    "Gerente de TI e líder técnico com perfil hands-on. Lidero times, construo backends de alta performance em Go, gerencio infraestrutura cloud (AWS, GCP) e garanto observabilidade e DevOps em sistemas de missão crítica.",
-  keywords: [
-    "Gerente de TI",
-    "Líder Técnico",
-    "IT Manager",
-    "Tech Lead",
-    "Engenheiro de Software",
-    "Go",
-    "Golang",
-    "Next.js",
-    "Backend de Alta Performance",
-    "Cloud",
-    "AWS",
-    "GCP",
-    "DevOps",
-    "Observabilidade",
-    "Kotlin",
-    "Gestão de Times",
-    "Liderança Técnica",
-    "Infraestrutura Cloud",
-    "Arquitetura de Software",
-  ],
-  authors: [{ name: "Roberto de Moraes" }],
-  creator: "Roberto de Moraes",
-  alternates: {
-    canonical: "https://robertozarzur.dev",
-  },
-  openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    title: "Roberto Zarzur | Gerente de TI & Engenheiro de Software",
-    description:
-      "Lidero times de tecnologia com perfil hands-on: backends em Go, infra cloud AWS/GCP e sistemas de missão crítica para empresas como Hospital Sírio-Libanês e Grupo Bandeirantes.",
-    siteName: "Roberto Zarzur",
-    url: "https://robertozarzur.dev",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Roberto Zarzur | Gerente de TI & Engenheiro de Software",
-    description:
-      "Gerente de TI & Engenheiro de Software: Go, Next.js, Kotlin, AWS, GCP. Hands-on em produção.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true },
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://robertozarzur.dev/#person",
-      name: "Roberto de Moraes",
-      jobTitle: "Gerente de TI & Engenheiro de Software",
-      description:
-        "Gerente de TI com perfil hands-on, atuando na interseção entre liderança estratégica e engenharia de software avançada. Especialista em backends de alta performance, infraestrutura cloud e DevOps.",
-      url: "https://robertozarzur.dev",
-      image: "https://robertozarzur.dev/opengraph-image",
-      sameAs: [
-        "https://www.linkedin.com/in/robertomoraeszarzur/",
-        "https://github.com/Rdemora2",
-      ],
-      knowsAbout: [
-        "Go (Golang)",
-        "Next.js",
-        "TypeScript",
-        "Kotlin",
-        "AWS",
-        "GCP",
-        "Cloud Architecture",
-        "DevOps",
-        "Observabilidade",
-        "Prometheus",
-        "PostgreSQL",
-        "Redis",
-        "Gestão de TI",
-        "Liderança Técnica",
-        "Arquitetura de Software",
-        "Android TV",
-        "Widevine DRM",
-      ],
-      worksFor: {
-        "@type": "Organization",
-        name: "Valiant Group do Brasil",
-      },
-      hasOccupation: [
-        {
-          "@type": "Occupation",
-          name: "Gerente de TI",
-          occupationLocation: {
-            "@type": "City",
-            name: "São Paulo",
-          },
-          skills: "Go, AWS, GCP, Kotlin, Next.js, DevOps, Cloud Architecture",
-        },
-      ],
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "São Paulo",
-        addressRegion: "SP",
-        addressCountry: "BR",
+  return {
+    metadataBase: new URL("https://robertozarzur.dev"),
+    title: {
+      default: t("title"),
+      template: "%s | Roberto Zarzur",
+    },
+    description: t("description"),
+    keywords: [
+      "Gerente de TI",
+      "Líder Técnico",
+      "IT Manager",
+      "Tech Lead",
+      "Engenheiro de Software",
+      "Go",
+      "Golang",
+      "Next.js",
+      "Backend de Alta Performance",
+      "Cloud",
+      "AWS",
+      "GCP",
+      "DevOps",
+      "Observabilidade",
+      "Kotlin",
+      "Gestão de Times",
+      "Liderança Técnica",
+      "Infraestrutura Cloud",
+      "Arquitetura de Software",
+    ],
+    authors: [{ name: "Roberto de Moraes" }],
+    creator: "Roberto de Moraes",
+    alternates: {
+      canonical: `https://robertozarzur.dev/${locale}`,
+      languages: {
+        pt: "https://robertozarzur.dev/pt",
+        en: "https://robertozarzur.dev/en",
+        es: "https://robertozarzur.dev/es",
       },
     },
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://robertozarzur.dev/#service",
-      name: "Roberto Zarzur | Consultoria Técnica",
-      provider: { "@id": "https://robertozarzur.dev/#person" },
-      description:
-        "Consultoria em arquitetura de software, infraestrutura cloud, DevOps e liderança técnica para projetos de larga escala.",
-      areaServed: ["BR", "US", "MX"],
-      serviceType: [
-        "Arquitetura de Software",
-        "Infraestrutura Cloud",
-        "DevOps",
-        "Backend Engineering",
-        "Liderança Técnica",
-      ],
+    openGraph: {
+      type: "website",
+      locale: locale === "pt" ? "pt_BR" : locale === "es" ? "es_ES" : "en_US",
+      title: t("title"),
+      description: t("description"),
+      siteName: "Roberto Zarzur",
+      url: `https://robertozarzur.dev/${locale}`,
     },
-    {
-      "@type": "WebSite",
-      "@id": "https://robertozarzur.dev/#website",
-      url: "https://robertozarzur.dev",
-      name: "Roberto Zarzur | Portfólio",
-      author: { "@id": "https://robertozarzur.dev/#person" },
-      inLanguage: "pt-BR",
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
     },
-  ],
-};
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -177,6 +103,91 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
   const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: "Nav" });
+  const tm = await getTranslations({ locale, namespace: "Metadata" });
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `https://robertozarzur.dev/${locale}#person`,
+        name: "Roberto de Moraes",
+        jobTitle: tm("title"),
+        description: tm("description"),
+        url: `https://robertozarzur.dev/${locale}`,
+        image: "https://robertozarzur.dev/opengraph-image",
+        sameAs: [
+          "https://www.linkedin.com/in/robertomoraeszarzur/",
+          "https://github.com/Rdemora2",
+        ],
+        knowsAbout: [
+          "Go (Golang)",
+          "Next.js",
+          "TypeScript",
+          "Kotlin",
+          "AWS",
+          "GCP",
+          "Cloud Architecture",
+          "DevOps",
+          "Observabilidade",
+          "Prometheus",
+          "PostgreSQL",
+          "Redis",
+          "Gestão de TI",
+          "Liderança Técnica",
+          "Arquitetura de Software",
+          "Android TV",
+          "Widevine DRM",
+        ],
+        worksFor: {
+          "@type": "Organization",
+          name: "Valiant Group do Brasil",
+        },
+        hasOccupation: [
+          {
+            "@type": "Occupation",
+            name: "Gerente de TI",
+            occupationLocation: {
+              "@type": "City",
+              name: "São Paulo",
+            },
+            skills: "Go, AWS, GCP, Kotlin, Next.js, DevOps, Cloud Architecture",
+          },
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "São Paulo",
+          addressRegion: "SP",
+          addressCountry: "BR",
+        },
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `https://robertozarzur.dev/${locale}#service`,
+        name: `${tm("title")} | Consultoria Técnica`,
+        provider: { "@id": `https://robertozarzur.dev/${locale}#person` },
+        description:
+          "Consultoria em arquitetura de software, infraestrutura cloud, DevOps e liderança técnica para projetos de larga escala.",
+        areaServed: ["BR", "US", "MX"],
+        serviceType: [
+          "Arquitetura de Software",
+          "Infraestrutura Cloud",
+          "DevOps",
+          "Backend Engineering",
+          "Liderança Técnica",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `https://robertozarzur.dev/${locale}#website`,
+        url: `https://robertozarzur.dev/${locale}`,
+        name: `Roberto Zarzur | ${locale === "pt" ? "Portfólio" : locale === "es" ? "Portafolio" : "Portfolio"}`,
+        author: { "@id": `https://robertozarzur.dev/${locale}#person` },
+        inLanguage: locale,
+      },
+    ],
+  };
 
   return (
     <html
@@ -194,7 +205,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <GlobalProviders>
             <a href="#main-content" className="sr-only focus:not-sr-only">
-              Pular para o conteúdo principal
+              {t("skipToContent")}
             </a>
             <SuppressWarnings />
             <Noise />

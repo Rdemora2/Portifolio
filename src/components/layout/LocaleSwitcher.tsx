@@ -2,16 +2,16 @@
 
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/navigation";
-import { locales } from "@/i18n.config";
+import { locales, type Locale } from "@/i18n.config";
 
 export function LocaleSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleLocaleChange = (newLocale: string) => {
+  const handleLocaleChange = (newLocale: Locale) => {
     // router.replace is localized and will handle the prefix
-    router.replace(pathname, { locale: newLocale as any });
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (

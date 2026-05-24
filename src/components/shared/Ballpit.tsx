@@ -8,6 +8,7 @@ import {
   Clock as e,
   AmbientLight as f,
   SphereGeometry as g,
+  // @ts-expect-error - ShaderChunk might be missing in some three types
   ShaderChunk as h,
   Scene as i,
   Color as l,
