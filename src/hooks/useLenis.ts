@@ -19,9 +19,9 @@ export function useLenis() {
     let cleanupGsap: (() => void) | null = null;
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1, // Padrão
       smoothWheel: true,
+      wheelMultiplier: 1.0,
     });
 
     const run = async () => {

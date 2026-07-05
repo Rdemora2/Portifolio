@@ -133,7 +133,97 @@
     background-color: var(--color-deep);
     color: var(--color-text-primary);
   }
-}
+
+  /* ─── LIQUID GLASS COMPONENT CLASSES ───────────────────────────────────────
+   * Three archetypes: nav (fixed bar), card (content), panel (overlay).
+   * Each uses ::before for the specular top-edge highlight.
+   * pointer:coarse fallback strips backdrop-filter to save ~3ms/frame.
+   * ───────────────────────────────────────────────────────────────────────── */
+
+  /* Shared base: isolation for compositing, position for ::before */
+  .glass-nav,
+  .glass-card,
+  .glass-panel {
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* Specular top-edge highlight via ::before */
+  .glass-nav::before,
+  .glass-card::before,
+  .glass-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      var(--glass-specular-end),
+      var(--glass-specular-start) 30%,
+      var(--glass-specular-start) 70%,
+      var(--glass-specular-end)
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* glass-nav — navigation bar (lighter surface, no inset shadow) */
+  .glass-nav {
+    background-color: var(--glass-nav-bg);
+    backdrop-filter: var(--glass-nav-blur);
+    -webkit-backdrop-filter: var(--glass-nav-blur);
+    border-bottom: 1px solid var(--glass-nav-border);
+  }
+
+  /* glass-card — content cards (balanced, with inset + shadow) */
+  .glass-card {
+    background-color: var(--glass-card-bg);
+    backdrop-filter: var(--glass-card-blur);
+    -webkit-backdrop-filter: var(--glass-card-blur);
+    border: 1px solid var(--glass-card-border);
+    box-shadow:
+      var(--glass-inset-shadow),
+      var(--glass-card-shadow);
+  }
+
+  .glass-card:hover {
+    border-color: var(--glass-border-focused);
+    transition: border-color var(--transition-base);
+  }
+
+  /* glass-panel — drawers and overlays (maximum depth) */
+  .glass-panel {
+    background-color: var(--glass-panel-bg);
+    backdrop-filter: var(--glass-panel-blur);
+    -webkit-backdrop-filter: var(--glass-panel-blur);
+    border: 1px solid var(--glass-panel-border);
+    box-shadow:
+      var(--glass-inset-shadow),
+      var(--glass-panel-shadow);
+  }
+
+  /* ─── MOBILE FALLBACK (pointer:coarse) ─────────────────────────────────────
+   * Strip backdrop-filter on touch devices to save compositing cost.
+   * Surface + border remain so the glass shape is still visible.
+   * ───────────────────────────────────────────────────────────────────────── */
+  @media (pointer: coarse) {
+    .glass-nav,
+    .glass-card,
+    .glass-panel {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    /* Replace with slightly more opaque surface to maintain legibility */
+    .glass-nav    { background-color: rgba(5, 10, 18, 0.88); }
+    .glass-card   { background-color: rgba(10, 16, 24, 0.72); }
+    .glass-panel  { background-color: rgba(10, 16, 24, 0.88); }
+  }
+} /* end @layer components */
 
 @keyframes blink {
   0%,
