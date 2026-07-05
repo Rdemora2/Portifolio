@@ -53,14 +53,10 @@ export function Insights() {
 
         <div className="grid gap-6 md:grid-cols-2">
           {insights.map((insight, idx) => (
-            <ScrollReveal key={insight.id} delay={idx * 0.1}>
+            <ScrollReveal key={insight.id} animation="card" delay={idx * 0.1}>
               <div
-                className="group flex h-full flex-col rounded-2xl border p-6 transition-all duration-300 hover:border-[var(--color-signal)] sm:p-8"
-                style={{
-                  borderColor: "var(--color-edge)",
-                  backgroundColor: "rgba(10,16,24,0.4)",
-                  backdropFilter: "blur(10px)",
-                }}
+                className="glass-card group flex h-full flex-col rounded-2xl p-6 transition-all duration-300 sm:p-8"
+                style={{ borderRadius: "1.5rem" }}
               >
                 <div className="mb-4 flex items-center justify-between">
                   <span

@@ -8,16 +8,24 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const activeSection = useActiveSection();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
   const pathname = usePathname();
   const t = useTranslations("Nav");
 
+  // Interpolate glass blur across first 120px of scroll (no snap)
   useEffect(() => {
-    const handler = () => setIsScrolled(window.scrollY > 80);
+    const handler = () => {
+      const progress = Math.min(window.scrollY / 120, 1);
+      setScrollProgress(progress);
+      if (navRef.current) {
+        navRef.current.style.setProperty("--nav-progress", String(progress));
+      }
+    };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -73,13 +81,13 @@ export function Navigation() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full z-[100] transition-all duration-300"
+        ref={navRef}
+        className="fixed top-0 left-0 w-full z-[100] transition-all duration-500 glass-nav"
         style={{
-          backgroundColor: isScrolled ? "rgba(2,4,8,0.85)" : "transparent",
-          backdropFilter: isScrolled ? "blur(20px)" : "none",
-          borderBottom: isScrolled
-            ? "1px solid var(--color-edge)"
-            : "1px solid transparent",
+          // Progressive border opacity driven by --nav-progress CSS variable
+          borderBottomColor: `rgba(255, 255, 255, ${scrollProgress * 0.07})`,
+          // Allow glass-nav to handle backdrop-filter; supplement with bg opacity
+          backgroundColor: `rgba(5, 10, 18, ${scrollProgress * 0.72})`,
         }}
         aria-label={t("ariaLabel")}
       >

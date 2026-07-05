@@ -140,56 +140,59 @@ const BorderGlow = ({
 }: BorderGlowProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const getCenterOfElement = useCallback((el: HTMLElement) => {
-    const { width, height } = el.getBoundingClientRect();
-    return [width / 2, height / 2] as const;
-  }, []);
-
-  const getEdgeProximity = useCallback(
-    (el: HTMLElement, x: number, y: number) => {
-      const [cx, cy] = getCenterOfElement(el);
-      const dx = x - cx;
-      const dy = y - cy;
-      let kx = Infinity;
-      let ky = Infinity;
-      if (dx !== 0) kx = cx / Math.abs(dx);
-      if (dy !== 0) ky = cy / Math.abs(dy);
-      return Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
-    },
-    [getCenterOfElement]
-  );
-
-  const getCursorAngle = useCallback(
-    (el: HTMLElement, x: number, y: number) => {
-      const [cx, cy] = getCenterOfElement(el);
-      const dx = x - cx;
-      const dy = y - cy;
-      if (dx === 0 && dy === 0) return 0;
-      const radians = Math.atan2(dy, dx);
-      let degrees = radians * (180 / Math.PI) + 90;
-      if (degrees < 0) degrees += 360;
-      return degrees;
-    },
-    [getCenterOfElement]
-  );
+  const rafRef = useRef<number | null>(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const isHovered = useRef(false);
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
-      const card = cardRef.current;
-      if (!card) return;
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+      
+      if (!isHovered.current) {
+        isHovered.current = true;
+        const card = cardRef.current;
+        if (!card) return;
 
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+        const loop = () => {
+          if (!isHovered.current) return;
+          
+          // Lemos (read)
+          const rect = card.getBoundingClientRect();
+          const x = mouseRef.current.x - rect.left;
+          const y = mouseRef.current.y - rect.top;
+          const cx = rect.width / 2;
+          const cy = rect.height / 2;
+          
+          const dx = x - cx;
+          const dy = y - cy;
+          let kx = Infinity;
+          let ky = Infinity;
+          if (dx !== 0) kx = cx / Math.abs(dx);
+          if (dy !== 0) ky = cy / Math.abs(dy);
+          const edge = Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
+          
+          let angle = 0;
+          if (dx !== 0 || dy !== 0) {
+            angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+            if (angle < 0) angle += 360;
+          }
 
-      const edge = getEdgeProximity(card, x, y);
-      const angle = getCursorAngle(card, x, y);
+          // Escrevemos (write) - agrupado para evitar read-write-read trashing
+          card.style.setProperty("--edge-proximity", `${(edge * 100).toFixed(3)}`);
+          card.style.setProperty("--cursor-angle", `${angle.toFixed(3)}deg`);
 
-      card.style.setProperty("--edge-proximity", `${(edge * 100).toFixed(3)}`);
-      card.style.setProperty("--cursor-angle", `${angle.toFixed(3)}deg`);
+          rafRef.current = requestAnimationFrame(loop);
+        };
+        rafRef.current = requestAnimationFrame(loop);
+      }
     },
-    [getEdgeProximity, getCursorAngle]
+    []
   );
+
+  const handlePointerLeave = useCallback(() => {
+    isHovered.current = false;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  }, []);
 
   useEffect(() => {
     if (!animated || !cardRef.current) return;
@@ -248,6 +251,7 @@ const BorderGlow = ({
     <div
       ref={cardRef}
       onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
       className={`border-glow-card ${className}`}
       style={
         {

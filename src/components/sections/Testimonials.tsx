@@ -38,15 +38,11 @@ export function Testimonials() {
         </ScrollReveal>
 
         <div className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial, idx) => (
-            <ScrollReveal key={testimonial.id} delay={idx * 0.15}>
+          {testimonials.map((testimonial) => (
+            <ScrollReveal key={testimonial.id} animation="card" delay={0.1}>
               <div
-                className="group relative rounded-2xl border p-5 transition-all duration-200 hover:border-[var(--color-signal)] sm:p-6 md:p-8"
-                style={{
-                  borderColor: "var(--color-edge)",
-                  backgroundColor: "rgba(10,16,24,0.5)",
-                  backdropFilter: "blur(10px)",
-                }}
+                className="glass-card relative rounded-2xl p-6 sm:p-8 md:p-10"
+                style={{ borderRadius: "1rem" }}
               >
                 <span
                   className="absolute -top-3 left-6 text-4xl font-bold leading-none"

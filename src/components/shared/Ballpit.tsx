@@ -23,7 +23,7 @@ import {
   Raycaster as y,
   WebGLRendererParameters,
 } from "three";
-// @ts-expect-error - ShaderChunk access in newer three versions
+
 import { ShaderChunk as h } from "three/src/renderers/shaders/ShaderChunk.js";
 import { RoomEnvironment as z } from "three/examples/jsm/environments/RoomEnvironment.js";
 

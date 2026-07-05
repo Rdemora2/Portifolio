@@ -84,7 +84,7 @@ export function Contact() {
       {inView && <WaveCanvas />}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:gap-16 lg:grid-cols-[2fr_3fr]">
-          <ScrollReveal>
+          <ScrollReveal animation="title">
             <div>
               <p
                 className="mb-2 text-xs font-normal uppercase"
@@ -143,7 +143,8 @@ export function Contact() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal animation="slide-right" delay={0.2}>
+          <ScrollReveal animation="card" delay={0.2}>
+            <div className="glass-panel rounded-2xl p-6 sm:p-8" style={{ borderRadius: "1.5rem" }}>
             <form onSubmit={(e) => void handleSubmit(onSubmit)(e)} className="space-y-4 sm:space-y-6" noValidate>
               <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                 <FormField label={t("form.name")} htmlFor="contact-name" error={errors.name?.message}>
@@ -264,6 +265,7 @@ export function Contact() {
                 </div>
               )}
             </form>
+            </div>
           </ScrollReveal>
         </div>
       </div>

@@ -58,14 +58,10 @@ export function Metrics() {
           {metrics.map((metric, idx) => {
             const metricKey = metric.label.toLowerCase().replace(/[^a-z]/g, "");
             return (
-              <ScrollReveal key={metric.label} delay={idx * 0.15}>
+              <ScrollReveal key={metric.label} animation="stat" delay={idx * 0.15}>
                 <div
-                  className="rounded-2xl border p-5 text-center transition-all duration-500 hover:border-[var(--color-signal)] sm:p-6 md:p-8"
-                  style={{
-                    borderColor: "var(--color-edge)",
-                    backgroundColor: "rgba(10,16,24,0.6)",
-                    backdropFilter: "blur(10px)",
-                  }}
+                  className="glass-card rounded-2xl p-5 text-center transition-all duration-500 sm:p-6 md:p-8"
+                  style={{ borderRadius: "1rem" }}
                 >
                   <div
                     className="font-extrabold leading-none"
