@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { experience } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { FiberTimeline } from "@/components/three/FiberTimeline";
 
 import { useTranslations } from "next-intl";
 
@@ -81,14 +82,17 @@ export function Experience() {
           >
             {t("title")}
           </h2>
-        </ScrollReveal>
+          </ScrollReveal>
+
+        <FiberTimeline />
 
         <div className="relative">
           <div
             ref={lineRef}
-            className="absolute left-0 top-0 hidden h-full w-[2px] origin-top md:left-1/2 md:block md:-translate-x-1/2"
+            className="absolute left-0 top-0 hidden h-full w-[1.5px] origin-top md:left-1/2 md:block md:-translate-x-1/2"
             style={{
-              backgroundColor: "var(--color-edge)",
+              backgroundColor: "var(--color-signal)",
+              opacity: 0.25,
               transformOrigin: "top center",
             }}
           />
@@ -97,7 +101,7 @@ export function Experience() {
             {experience.map((entry, idx) => (
               <ScrollReveal
                 key={entry.id}
-                animation={idx % 2 === 0 ? "slide-left" : "slide-right"}
+                animation="card"
                 delay={0.1}
               >
                 <div
@@ -107,14 +111,10 @@ export function Experience() {
                 >
                   <div className="flex flex-1 justify-center md:justify-start">
                     <div
-                      className={`relative w-full max-w-lg rounded-2xl border p-6 transition-all duration-300 hover:border-[var(--color-signal)] sm:p-8 ${
+                      className={`glass-card relative w-full max-w-lg rounded-2xl p-6 transition-all duration-300 sm:p-8 ${
                         idx % 2 === 0 ? "md:mr-12" : "md:ml-12"
                       }`}
-                      style={{
-                        borderColor: "var(--color-edge)",
-                        backgroundColor: "rgba(10,16,24,0.4)",
-                        backdropFilter: "blur(10px)",
-                      }}
+                      style={{ borderRadius: "1rem" }}
                     >
                       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                         <h3
