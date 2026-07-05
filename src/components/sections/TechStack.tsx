@@ -12,25 +12,23 @@ import { FaAws } from "react-icons/fa";
 import {
   SiReact,
   SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
   SiGo,
-  SiNodedotjs,
-  SiPython,
+  SiKotlin,
+  SiGooglecloud,
   SiDocker,
   SiKubernetes,
   SiPostgresql,
   SiGraphql,
+  SiVuedotjs,
 } from "react-icons/si";
 
 const techLogos = [
   { node: <SiReact size={36} color="#61DAFB" /> },
-  { node: <SiNextdotjs size={36} color="#ffffff" /> },
-  { node: <SiTypescript size={36} color="#3178C6" /> },
-  { node: <SiTailwindcss size={36} color="#06B6D4" /> },
+  { node: <SiNextdotjs size={36} color="var(--color-text-primary)" /> },
+  { node: <SiVuedotjs size={36} color="#4FC08D" /> },
   { node: <SiGo size={36} color="#00ADD8" /> },
-  { node: <SiNodedotjs size={36} color="#339933" /> },
-  { node: <SiPython size={36} color="#3776AB" /> },
+  { node: <SiKotlin size={36} color="#7F52FF" /> },
+  { node: <SiGooglecloud size={36} color="#4285F4" /> },
   { node: <SiDocker size={36} color="#2496ED" /> },
   { node: <SiKubernetes size={36} color="#326CE5" /> },
   { node: <FaAws size={36} color="#FF9900" /> },
@@ -46,14 +44,17 @@ export function TechStack() {
     rootMargin: "200px",
     triggerOnce: false,
   });
+  
   const prefersReduced = useMemo(() => {
     if (typeof window === "undefined") return false;
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
+  
   const isTouch = useMemo(() => {
     if (typeof window === "undefined") return false;
     return "ontouchstart" in window || navigator.maxTouchPoints > 0;
   }, []);
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const tagRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -166,7 +167,7 @@ export function TechStack() {
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal>
+        <ScrollReveal animation="title">
           <p
             className="mb-2 text-xs font-normal uppercase"
             style={{
@@ -189,6 +190,7 @@ export function TechStack() {
           </h2>
         </ScrollReveal>
 
+        {/* Endless Logo Loop */}
         <div className="mb-12 sm:mb-20">
           <LogoLoop
             logos={techLogos}
@@ -203,6 +205,7 @@ export function TechStack() {
           />
         </div>
 
+        {/* Static Grid with Mouse Physics */}
         <div
           ref={containerRef}
           className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3"
