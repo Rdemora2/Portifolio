@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { projects } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import { CountUp } from "@/components/shared/CountUp";
 import BorderGlow from "@/components/shared/BorderGlow";
+import { ProjectDrawer } from "@/components/shared/ProjectDrawer";
 import type { Project, RoleType } from "@/types";
 
 type FilterType = "all" | "engineering" | "management" | "international";
@@ -23,7 +23,8 @@ function matchesFilter(project: Project, filter: FilterType): boolean {
 export function Projects() {
   const t = useTranslations("Projects");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [drawerProject, setDrawerProject] = useState<Project | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
 
@@ -58,7 +59,8 @@ export function Projects() {
       stagger: 0.03,
       onComplete: () => {
         setActiveFilter(filter);
-        setExpandedId(null);
+        setDrawerProject(null);
+        setIsDrawerOpen(false);
         if (listRef.current) {
           gsap.fromTo(
             listRef.current.children,
@@ -76,8 +78,15 @@ export function Projects() {
     });
   };
 
-  const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
+  const openDrawer = (project: Project) => {
+    setDrawerProject(project);
+    setIsDrawerOpen(true);
+  };
+
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
+    // Keep project in state during exit animation, clear after
+    setTimeout(() => setDrawerProject(null), 500);
   };
 
   return (
@@ -87,7 +96,7 @@ export function Projects() {
       style={{ backgroundColor: "var(--color-void)" }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal>
+        <ScrollReveal animation="title">
           <p
             className="mb-2 text-xs font-normal uppercase"
             style={{
@@ -110,43 +119,57 @@ export function Projects() {
           </h2>
         </ScrollReveal>
 
+        {/* Filter buttons with glass-card active state */}
         <div className="mb-8 flex flex-wrap gap-2 sm:mb-12">
           {filters.map(({ key, label }) => (
             <button
               key={key}
+              id={`project-filter-${key}`}
               onClick={() => handleFilterChange(key)}
-              className="cursor-pointer rounded-full border px-4 py-1.5 text-xs font-medium transition-all duration-200 sm:px-6 sm:py-2 sm:text-sm"
+              className="cursor-pointer rounded-full border px-4 py-1.5 text-xs font-medium transition-all duration-300 sm:px-6 sm:py-2 sm:text-sm"
               style={{
                 fontFamily: "var(--font-mono)",
                 borderColor:
                   activeFilter === key
                     ? "var(--color-signal)"
-                    : "var(--color-edge)",
+                    : "var(--glass-border)",
                 backgroundColor:
-                  activeFilter === key ? "rgba(99,102,241,0.1)" : "transparent",
+                  activeFilter === key
+                    ? "rgba(99,102,241,0.12)"
+                    : "var(--glass-surface-subtle)",
+                backdropFilter:
+                  activeFilter === key ? "var(--glass-blur-xs)" : "none",
                 color:
                   activeFilter === key
                     ? "var(--color-signal)"
                     : "var(--color-text-secondary)",
               }}
+              aria-pressed={activeFilter === key}
             >
               {label}
             </button>
           ))}
         </div>
 
+        {/* Project list */}
         <div ref={listRef} className="space-y-0">
           {filtered.map((project, idx) => (
             <ProjectItem
               key={project.id}
               project={project}
               index={idx}
-              isExpanded={expandedId === project.id}
-              onToggle={() => toggleExpand(project.id)}
+              onOpen={() => openDrawer(project)}
             />
           ))}
         </div>
       </div>
+
+      {/* Glass drawer — portal-like fixed overlay */}
+      <ProjectDrawer
+        project={drawerProject}
+        isOpen={isDrawerOpen}
+        onClose={closeDrawer}
+      />
     </section>
   );
 }
@@ -154,51 +177,14 @@ export function Projects() {
 function ProjectItem({
   project,
   index,
-  isExpanded,
-  onToggle,
+  onOpen,
 }: {
   project: Project;
   index: number;
-  isExpanded: boolean;
-  onToggle: () => void;
+  onOpen: () => void;
 }) {
   const t = useTranslations("Projects");
-  const detailsRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLDivElement>(null);
-  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
-
-  useEffect(() => {
-    if (!detailsRef.current) return;
-    let isActive = true;
-
-    const run = async () => {
-      if (!gsapRef.current) {
-        gsapRef.current = await import("@/lib/gsap");
-      }
-      if (!isActive || !gsapRef.current) return;
-      const { gsap } = gsapRef.current;
-      if (isExpanded) {
-        gsap.fromTo(
-          detailsRef.current,
-          { height: 0, opacity: 0 },
-          { height: "auto", opacity: 1, duration: 0.6, ease: "power3.out" },
-        );
-      } else {
-        gsap.to(detailsRef.current, {
-          height: 0,
-          opacity: 0,
-          duration: 0.4,
-          ease: "power3.inOut",
-        });
-      }
-    };
-
-    run();
-
-    return () => {
-      isActive = false;
-    };
-  }, [isExpanded]);
 
   const getRoleLabel = (role: RoleType): string => {
     const map: Record<RoleType, string> = {
@@ -210,12 +196,12 @@ function ProjectItem({
   };
 
   return (
-    <ScrollReveal delay={index * 0.1}>
+    <ScrollReveal animation="card" delay={index * 0.08}>
       <BorderGlow
         className="w-full mb-4"
         edgeSensitivity={30}
         glowColor="40 80 80"
-        backgroundColor="#120F17"
+        backgroundColor="#0a1018"
         borderRadius={28}
         glowRadius={40}
         glowIntensity={1}
@@ -225,14 +211,11 @@ function ProjectItem({
       >
         <div
           ref={itemRef}
-          className="border-b cursor-pointer group px-4 bg-void/30 backdrop-blur-sm rounded-2xl sm:px-6"
-          style={{
-            borderColor: "var(--color-edge)",
-            transition: "background-color 0.3s ease",
-          }}
+          className="cursor-pointer group px-4 rounded-2xl sm:px-6"
+          style={{ transition: "background-color 0.3s ease" }}
           onMouseEnter={() => {
             if (itemRef.current) {
-              itemRef.current.style.backgroundColor = "rgba(99,102,241,0.08)";
+              itemRef.current.style.backgroundColor = "rgba(99,102,241,0.06)";
             }
           }}
           onMouseLeave={() => {
@@ -243,343 +226,113 @@ function ProjectItem({
         >
           <div
             className="relative flex items-center gap-4 py-6 transition-all sm:gap-6 sm:py-8 lg:gap-10"
-            onClick={onToggle}
+            onClick={onOpen}
             role="button"
             tabIndex={0}
-            aria-expanded={isExpanded}
-            aria-controls={`project-details-${project.id}`}
+            aria-haspopup="dialog"
+            aria-label={`${t(`items.${project.id}.title`)} — ${t("openDrawer") || "Abrir detalhes"}`}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                onToggle();
+                onOpen();
               }
             }}
           >
-          <div
-            className="absolute left-0 top-0 h-full w-[2px] origin-top transition-transform duration-500 group-hover:scale-y-100"
-            style={{
-              backgroundColor: "var(--color-signal)",
-              transform: isExpanded ? "scaleY(1)" : "scaleY(0)",
-            }}
-            aria-hidden="true"
-          />
+            {/* Signal bar — slides in on hover */}
+            <div
+              className="absolute left-0 top-1/4 bottom-1/4 w-[4px] origin-center scale-y-0 rounded-r-full opacity-0 shadow-[0_0_15px_var(--color-signal)] transition-all duration-500 ease-out group-hover:scale-y-100 group-hover:opacity-100"
+              style={{ backgroundColor: "var(--color-signal)" }}
+              aria-hidden="true"
+            />
 
-          <span
-            className="hidden text-[60px] font-extrabold leading-none transition-all duration-500 lg:block lg:text-[120px]"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--color-text-muted)",
-              WebkitTextStroke: isExpanded ? "1px var(--color-signal)" : "none",
-              transition: "color 0.5s ease, -webkit-text-stroke 0.5s ease",
-            }}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </span>
+            {/* Index number */}
+            <span
+              className="ml-2 hidden text-[60px] font-extrabold leading-none transition-colors duration-500 lg:block lg:text-[100px]"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "var(--color-text-muted)",
+                transition: "color 0.5s ease",
+              }}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
 
-          <div className="flex-1 min-w-0">
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <h3
-                className="text-lg font-bold transition-all duration-200 group-hover:translate-x-2 sm:text-xl md:text-2xl lg:text-3xl"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--color-text-primary)",
-                }}
-              >
-                <span className="group-hover:text-[var(--color-signal)] transition-colors duration-200">
-                  {t(`items.${project.id}.title`)}
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <h3
+                  className="text-lg font-bold transition-all duration-200 group-hover:translate-x-2 sm:text-xl md:text-2xl lg:text-3xl"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    color: "var(--color-text-primary)",
+                  }}
+                >
+                  <span className="group-hover:text-[var(--color-signal)] transition-colors duration-200">
+                    {t(`items.${project.id}.title`)}
+                  </span>
+                </h3>
+                <span
+                  className="rounded-full border px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    borderColor: "var(--glass-border)",
+                    color: "var(--color-text-muted)",
+                  }}
+                >
+                  {project.client}
                 </span>
-              </h3>
-              <span
-                className="rounded-full border px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  borderColor: "var(--color-edge)",
-                  color: "var(--color-text-muted)",
-                }}
-              >
-                {project.client}
-              </span>
-              <span
-                className="rounded-full px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  backgroundColor: "rgba(99,102,241,0.1)",
-                  color: "var(--color-signal)",
-                }}
-              >
-                {getRoleLabel(project.roleType)}
-              </span>
-              {project.international && (
                 <span
                   className="rounded-full px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
                   style={{
                     fontFamily: "var(--font-mono)",
-                    backgroundColor: "rgba(255,107,53,0.1)",
-                    color: "var(--color-alert)",
-                  }}
-                >
-                  {t("internationalTag")} 🌍
-                </span>
-              )}
-            </div>
-            <p
-              className="text-sm md:text-base"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "var(--color-text-secondary)",
-              }}
-            >
-              {t(`items.${project.id}.shortDescription`)}
-            </p>
-          </div>
-
-          <div className="flex-shrink-0">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="transition-transform duration-200"
-              style={{
-                color: "var(--color-text-secondary)",
-                transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-              }}
-            >
-              <path
-                d="M6 9l6 6 6-6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div
-          id={`project-details-${project.id}`}
-          ref={detailsRef}
-          className="overflow-hidden"
-          style={{ height: 0, opacity: 0 }}
-        >
-          <div className="pb-6 pl-0 sm:pb-8 lg:pl-[170px]">
-            {project.metrics.length > 0 && (
-              <div className="mb-6 grid gap-3 sm:mb-8 sm:gap-4 sm:grid-cols-3">
-                {project.metrics.map((metric) => (
-                  <div
-                    key={metric.label}
-                    className="rounded-xl border p-4 text-center sm:p-6"
-                    style={{
-                      borderColor: "var(--color-edge)",
-                      backgroundColor: "rgba(99,102,241,0.03)",
-                    }}
-                  >
-                    <div
-                      className="text-xl font-extrabold sm:text-2xl md:text-3xl"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        color: "var(--color-signal)",
-                      }}
-                    >
-                      <CountUp
-                        end={metric.value}
-                        suffix={metric.suffix}
-                        trigger={isExpanded}
-                        duration={2}
-                      />
-                    </div>
-                    <p
-                      className="mt-2 text-[0.625rem] uppercase tracking-wider sm:text-xs"
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        color: "var(--color-text-muted)",
-                      }}
-                    >
-                      {t(`items.${project.id}.metrics.${metric.label.replace(/\s+/g, "").toLowerCase()}`, { defaultValue: metric.label })}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {project.caseStudy && (
-              <div
-                className="mb-6 rounded-xl border p-4 sm:mb-8 sm:p-6 md:p-8"
-                style={{
-                  borderColor: "rgba(99,102,241,0.2)",
-                  backgroundColor: "rgba(99,102,241,0.03)",
-                }}
-              >
-                <h4
-                  className="mb-4 flex items-center gap-2 text-[0.625rem] font-semibold uppercase tracking-widest sm:text-xs"
-                  style={{
-                    fontFamily: "var(--font-mono)",
+                    backgroundColor: "rgba(99,102,241,0.1)",
                     color: "var(--color-signal)",
                   }}
                 >
+                  {getRoleLabel(project.roleType)}
+                </span>
+                {project.international && (
                   <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ backgroundColor: "var(--color-signal)" }}
-                  />
-                  {t("caseStudyLabel")}
-                </h4>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    color: "var(--color-text-secondary)",
-                  }}
-                >
-                  {t(`items.${project.id}.caseStudy.robertoRole`)}
-                </p>
-              </div>
-            )}
-
-            <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
-              <div>
-                <h4
-                  className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    color: "var(--color-signal)",
-                  }}
-                >
-                  {t("challenge")}
-                </h4>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    color: "var(--color-text-secondary)",
-                  }}
-                >
-                  {t(`items.${project.id}.challenge`)}
-                </p>
-              </div>
-              <div>
-                <h4
-                  className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    color: "var(--color-signal)",
-                  }}
-                >
-                  {t("solution")}
-                </h4>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    color: "var(--color-text-secondary)",
-                  }}
-                >
-                  {t(`items.${project.id}.solution`)}
-                </p>
-              </div>
-            </div>
-
-            {project.caseStudy?.keyDecisions && (
-              <div className="mt-6 sm:mt-8">
-                <h4
-                  className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    color: "var(--color-signal)",
-                  }}
-                >
-                  {t("keyDecisions")}
-                </h4>
-                <ul className="space-y-2">
-                  {project.caseStudy.keyDecisions.map((d, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-2 text-sm"
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        color: "var(--color-text-secondary)",
-                      }}
-                    >
-                      <span style={{ color: "var(--color-highlight)" }}>◆</span>
-                      {t(`items.${project.id}.caseStudy.keyDecisions.${idx}`)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div className="mt-6 sm:mt-8">
-              <h4
-                className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  color: "var(--color-signal)",
-                }}
-              >
-                {t("highlights")}
-              </h4>
-              <ul className="space-y-2">
-                {project.highlights.map((h, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-start gap-2 text-sm"
+                    className="rounded-full px-2 py-0.5 text-[0.625rem] uppercase tracking-wider sm:px-3 sm:text-xs"
                     style={{
-                      fontFamily: "var(--font-body)",
-                      color: "var(--color-text-secondary)",
+                      fontFamily: "var(--font-mono)",
+                      backgroundColor: "rgba(255,107,53,0.1)",
+                      color: "var(--color-alert)",
                     }}
                   >
-                    <span style={{ color: "var(--color-matrix)" }}>▸</span>
-                    {t(`items.${project.id}.highlights.${idx}`, { defaultValue: h })}
-                  </li>
-                ))}
-              </ul>
+                    {t("internationalTag")} 🌍
+                  </span>
+                )}
+              </div>
+              <p
+                className="text-sm md:text-base"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  color: "var(--color-text-secondary)",
+                }}
+              >
+                {t(`items.${project.id}.shortDescription`)}
+              </p>
             </div>
 
-            {project.caseStudy?.lessonsLearned && (
-              <div className="mt-6 sm:mt-8">
-                <h4
-                  className="mb-4 text-xs font-semibold uppercase tracking-widest"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    color: "var(--color-text-muted)",
-                  }}
-                >
-                  {t("lessonsLearned")}
-                </h4>
-                <ul className="space-y-2">
-                  {project.caseStudy.lessonsLearned.map((l, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-2 text-sm italic"
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        color: "var(--color-text-muted)",
-                      }}
-                    >
-                      <span style={{ color: "var(--color-text-muted)" }}>→</span>
-                      {t(`items.${project.id}.caseStudy.lessonsLearned.${idx}`)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border px-3 py-1 text-xs"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    borderColor: "var(--color-edge)",
-                    color: "var(--color-text-muted)",
-                  }}
-                >
-                  {tech}
-                </span>
-              ))}
+            {/* Arrow icon — "open" cue */}
+            <div className="flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                style={{ color: "var(--color-text-muted)" }}
+              >
+                <path
+                  d="M4 10h12M10 4l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
           </div>
-        </div>
         </div>
       </BorderGlow>
     </ScrollReveal>
