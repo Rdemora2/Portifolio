@@ -1,4 +1,4 @@
-ARG NODE_VERSION=20.18.0
+ARG NODE_VERSION=22
 
 FROM node:${NODE_VERSION}-bookworm-slim AS base
 WORKDIR /app
@@ -6,7 +6,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS deps
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
@@ -33,5 +33,5 @@ CMD ["node", "server.js"]
 FROM base AS dev
 ENV NODE_ENV=development
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0", "-p", "3000"]
