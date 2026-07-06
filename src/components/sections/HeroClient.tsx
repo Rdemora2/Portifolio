@@ -303,7 +303,10 @@ export function HeroCompanionInjector() {
     return () => observer.disconnect();
   }, []);
 
-  if (!perf.isDesktop || isDrawerOpen || !inView) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
+  if (!isMounted || !perf.isDesktop || isDrawerOpen || !inView) {
     return <div ref={ref} className="hidden lg:block flex-shrink-0" style={{ width: "340px", height: "340px" }} aria-hidden="true" />;
   }
 
