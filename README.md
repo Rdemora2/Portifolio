@@ -1,8 +1,8 @@
 <div align="center">
-  <h1>Roberto Zarzur | Portfolio</h1>
-  <p><strong>Next.js 16 • React 19 • Three.js • GSAP</strong></p>
+  <h1>Roberto Zarzur | Portfólio</h1>
+  <p><strong>Next.js 16 • React 19 • Three.js • GSAP • Next-Intl</strong></p>
   
-  [![Build Status](https://github.com/robertozarzur/portifolio/actions/workflows/ci.yml/badge.svg)](https://github.com/robertozarzur/portifolio/actions)
+  [![CI](https://github.com/robertozarzur/portifolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/robertozarzur/portifolio/actions/workflows/ci.yml)
   [![Next.js](https://img.shields.io/badge/Next.js-16.2-black?logo=next.js)](https://nextjs.org/)
   [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
@@ -11,95 +11,88 @@
 
 <br />
 
-> Portfólio de Engenharia de Software desenvolvido com o estado da arte do ecossistema React. Foco extremo em **performance visual (60fps)**, renderização 3D orientada a shaders, arquitetura componentizada rigorosa e CI/CD contínuo.
+> Código-fonte do meu portfólio pessoal. A ideia aqui foi construir algo além de uma página estática simples, unindo performance (60fps), componentes 3D integrados e uma arquitetura limpa que eu utilizaria em projetos reais no dia a dia.
 
-## 🚀 Visão Geral da Arquitetura
+## 🚀 Visão Geral
 
-O projeto foi meticulosamente desenhado para servir não apenas como uma vitrine profissional, mas como uma prova técnica viva de conceitos avançados de engenharia de Front-end:
+O projeto foi estruturado com foco em ser rápido, acessível e fácil de dar manutenção. Principais pontos técnicos da arquitetura:
 
-* **App Router State-of-the-art**: Estruturado sob o Next.js 16.2 usando Turbopack, com rotas estáticas pré-renderizadas, metadados semânticos e JSON-LD para pontuação perfeita em SEO.
-* **Motor Gráfico WebGL Customizado**: Integração nativa de `Three.js` via `@react-three/fiber`. Os shaders (GLSL) utilizam hooks de `useAdaptiveDpr` para escalonamento dinâmico de resolução em hardwares de baixo poder de fogo (mobile-friendly sem frames drops) e matemáticas preditivas puras para evitar overhead de memória (Garbage Collection thrashing).
-* **Coreografia de Motion**: Layouts complexos acionados por scroll (com `Lenis` via hooks), micro-interações vetoriais otimizadas via `GSAP` e isolamento estrito de renders utilizando `useSyncExternalStore` (para states dinâmicos globais sem renderização em cascata) dentro do React 19.
-* **Controle Estrito & CI/CD**: Código 100% tipado. O repositório conta com uma Integração Contínua (CI) customizada via GitHub Actions (`.github/workflows/ci.yml`) que bloqueia o merge caso haja *type errors*, regras quebradas do ESLint (incluindo dependências do React Compiler) ou falha na compilação estrutural.
+* **App Router (Next.js 16.2)**: Base da aplicação rodando com Turbopack. O foco foi priorizar páginas e componentes estáticos (SSG/SSR) para garantir um load rápido e não prejudicar o SEO.
+* **Internacionalização (i18n)**: Suporte nativo a Português, Inglês e Espanhol utilizando `next-intl`. Os dicionários e as rotas são tratados no lado do servidor para evitar overhead no client.
+* **Experiência 3D (WebGL)**: Utilização do `Three.js` de forma declarativa (via `@react-three/fiber`). Tive o cuidado de implementar hooks customizados como o `useAdaptiveDpr` para detectar hardwares ou conexões mais limitadas, reduzindo a qualidade ou desativando efeitos pesados automaticamente para não travar o celular do usuário.
+* **Animações e Scroll**: Para não ter dor de cabeça com performance, as animações e o smooth scroll usam `Lenis`, `GSAP` e CSS Transforms nativos. O objetivo foi isolar ao máximo essas mudanças visuais dos re-renders do React 19.
+* **Pipelines e CI/CD**: O repositório tem um workflow no GitHub Actions (`.github/workflows/ci.yml`) que roda o build rigoroso e o linter do projeto. A pipeline barra qualquer PR que quebre regras do ESLint, tipagens do TypeScript ou hooks do React.
 
 ---
 
 ## 🛠 Tech Stack
 
-| Camada | Tecnologia | Propósito |
+| Camada | Tecnologia | O que faz no projeto |
 | :--- | :--- | :--- |
-| **Framework & Engine** | Next.js 16.2, React 19 | Renderização SSR/SSG (App Router) e concorrência nativa. |
-| **Linguagem** | TypeScript 5 | Tipagem estática rigorosa (`strict: true`). |
-| **Estilização** | Tailwind CSS 4 | Layout reativo e Design System customizado via CSS Variables puras. |
-| **Motion & 3D** | GSAP, Three.js, R3F, Drei | Ambientes gráficos, shaders e animações DOM em altíssima fluidez. |
-| **Validação & API** | Zod, React Hook Form, Resend | Validações schema-driven e entrega backendless de email via edge. |
+| **Framework** | Next.js 16.2, React 19 | Estrutura base, App Router e SSR. |
+| **Linguagem** | TypeScript 5 | Tipagem estrita ativada (`strict: true`) em toda a base de código. |
+| **Estilização** | Tailwind CSS 4 | Classes utilitárias padronizadas e mapeamento de variáveis CSS para o tema. |
+| **Animações & 3D** | GSAP, Three.js, R3F | Renderização de Canvas, shaders customizados e animações fluidas no DOM. |
+| **Forms & i18n** | Zod, React Hook Form, Next-Intl | Validação estrita de schemas do contato e tradução server-side. |
 
 ---
 
-## 📂 Organização do Repositório
+## 📂 Estrutura do Repositório
 
 ```text
-├── .github/             # CI/CD Actions, guidelines p/ Agentes AI (hooks)
+├── .github/             # Workflows do GitHub Actions
+├── messages/            # Dicionários de tradução (pt, en, es)
 ├── src/
-│   ├── app/             # Rotas estáticas, API handlers e Layouts Root
-│   ├── components/      # (1) UI System, (2) Sections unificadas, (3) Three.js Core
-│   ├── data/            # Single Source of Truth (SSOT) p/ conteúdo dinâmico do portfolio
-│   ├── hooks/           # Hooks focados em performance (useAdaptiveDpr, useLenis, etc)
-│   ├── lib/             # Helpers GLSL unificados, motores randômicos estocásticos e validadões
-│   └── styles/          # Tokens CSS nativos (Bridged com o framework)
-├── public/              # Assets estáticos 
-└── Dockerfile           # Imagem multi-stage ultra enxuta (runner pattern)
+│   ├── app/             # Rotas do Next.js e layouts principais
+│   ├── components/      # Componentes UI (genéricos, seções da home e elementos 3D)
+│   ├── data/            # Dados estáticos do portfólio (experiências, projetos)
+│   ├── hooks/           # Hooks customizados (useInView, useAdaptiveDpr, etc)
+│   ├── lib/             # Utilitários, validações globais e setup do GSAP
+│   └── styles/          # Diretivas do Tailwind e variáveis CSS puras
+├── public/              # Imagens e fontes estáticas
+└── Dockerfile           # Imagem multi-stage (standalone) para deploy em containers
 ```
 
 ---
 
-## ⚙️ Inicialização Local (Ambiente de Desenvolvimento)
+## ⚙️ Como rodar localmente
 
-A stack foi desenhada para ser "Plug-and-play" usando os binários nativos do seu SO, ou encapsulada puramente em contêineres otimizados.
+A stack permite rodar nativamente via Node ou encapsulada no Docker se você preferir não instalar dependências locais.
 
-### Requisitos Mínimos
-- Node.js 20+
-- Docker 24+ (Opcional, para orquestração isolada)
+### Requisitos
+- Node.js 20+ ou Docker 24+
 
-### 1. Inicializando Nativamente (Recomendado)
+### 1. Rodando nativamente (Recomendado)
 ```bash
-# Sincroniza e garante locks do projeto
+# Instala as dependências de acordo com o lockfile
 npm ci
 
-# Sobe o core em ambiente local com Turbopack habilitado
+# Inicia o servidor de desenvolvimento com o Turbopack
 npm run dev
 ```
-> O app estará imediatamente rodando e escutando modificações em `http://localhost:3000`
+> O app vai subir em `http://localhost:3000`.
 
-### 2. Inicializando via Docker Compose (Com Hot-Reload)
-Volumes pré-configurados com suporte à injeção direta:
+### 2. Rodando via Docker Compose
+Se preferir isolar tudo no container, inclusive o ambiente de dev (suporta hot-reload):
 ```bash
 docker compose -f docker-compose.dev.yml up --build
 ```
-> **Nota de Manutenção:** Caso precise destruir a layer de cache isolado do `node_modules` gerada pelo docker: `docker compose -f docker-compose.dev.yml down -v`
+> Nota: Se precisar resetar o cache do `node_modules` gerenciado pelo volume do Docker, rode `docker compose -f docker-compose.dev.yml down -v`.
 
 ---
 
-## 🚢 Teste Local de Produção & Deploy
+## 🚢 Build & Deploy de Produção
 
-O Next.js foi configurado para gerar `output: "standalone"`. Ou seja, o deploy consiste de um pacote Node microscópico com 100% de autonomia e autossuficiência (sem dependência extra do framework).
+O projeto foi configurado com `output: "standalone"`, gerando um build super enxuto e autossuficiente (não depende de pastas de cache soltas do framework).
 
-Para realizar um teste do build estático localmente:
-
+Para testar o build de produção na sua máquina:
 ```bash
 npm run build
 npm run start
 ```
 
-### Docker (Produção Pura)
-A mesma arquitetura standalone é embalada em uma imagem Multi-stage final:
+### Produção com Docker
+Se for fazer o deploy em nuvem (GCP, AWS, VPS), basta utilizar o `docker-compose.yml` raiz que usa o `Dockerfile` multi-stage focado em produção:
 ```bash
-# Build e execução do runner final na sua máquina local ou servidor em Cloud
 docker compose up --build
 ```
-
----
-
-<div align="center">
-  <p>Feito com paixão, código denso, shaders e perfeccionismo. <br/> <strong>Arquitetado para as fronteiras do Front-end web moderno.</strong></p>
-</div>
