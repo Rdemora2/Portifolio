@@ -1,7 +1,7 @@
 import type { PersonalInfo, Project, TechItem, ExperienceEntry, Testimonial, Insight } from "@/types"
 
 export const personalInfo: PersonalInfo = {
-  name: "Roberto de Moraes",
+  name: "Roberto Moraes",
   title: "Gerente de TI & Engenheiro de Software",
   subtitle: "Go · Next.js · Kotlin · AWS · GCP",
   bio: "Comecei como desenvolvedor full-stack e hoje lidero a área de tecnologia de uma empresa com operações internacionais. No caminho, aprendi que gestão de verdade exige mão na massa, por isso continuo construindo backends, configurando infraestrutura cloud e garantindo que cada sistema aguenta a pressão de produção. Minha entrega vai do código ao deploy final.",
@@ -11,11 +11,11 @@ export const personalInfo: PersonalInfo = {
   contacts: [
     { type: "email", label: "robertomoraeszar@gmail.com", href: "mailto:robertomoraeszar@gmail.com" },
     { type: "whatsapp", label: "WhatsApp", href: "https://api.whatsapp.com/send?phone=5511973874345" },
-    { type: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/robertomoraeszarzur/" },
+    { type: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/robertomoraes/" },
     { type: "github", label: "GitHub", href: "https://github.com/Rdemora2" },
   ],
   social: [
-    { platform: "LinkedIn", href: "https://www.linkedin.com/in/robertomoraeszarzur/", label: "LinkedIn" },
+    { platform: "LinkedIn", href: "https://www.linkedin.com/in/robertomoraes/", label: "LinkedIn" },
     { platform: "GitHub", href: "https://github.com/Rdemora2", label: "GitHub" },
   ],
 }

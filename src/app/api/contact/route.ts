@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
     }
 
     await resend.emails.send({
-      from: "portfolio@robertozarzur.dev",
+      from: "portfolio@robertomoraes.dev",
       to: "robertomoraeszar@gmail.com",
       subject: `[Portfolio] Nova mensagem de ${escapeHtml(name)}`,
       html: `

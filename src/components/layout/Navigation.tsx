@@ -103,7 +103,7 @@ export function Navigation() {
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
             }}
-            aria-label={`Roberto Zarzur, ${t("hero").toLowerCase()}`}
+            aria-label={`Roberto Moraes, ${t("hero").toLowerCase()}`}
           >
             RZ<span style={{ color: "var(--color-signal)" }}>.</span>
           </a>

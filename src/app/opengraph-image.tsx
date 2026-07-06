@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "Roberto Zarzur | Gerente de TI & Engenheiro de Software"
+export const alt = "Roberto Moraes | Gerente de TI & Engenheiro de Software"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -97,7 +97,7 @@ export default async function Image() {
             letterSpacing: "-1px",
           }}
         >
-          Roberto de Moraes
+          Roberto Moraes
         </h1>
         <p
           style={{
@@ -141,7 +141,7 @@ export default async function Image() {
               textTransform: "uppercase" as const,
             }}
           >
-            robertozarzur.dev
+            robertomoraes.dev
           </span>
         </div>
       </div>

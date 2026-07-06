@@ -1,8 +1,8 @@
 import type { TechCategory } from "@/types"
 
-export const SITE_URL = "https://robertozarzur.dev"
-export const SITE_NAME = "Roberto Zarzur"
-export const AUTHOR_NAME = "Roberto de Moraes"
+export const SITE_URL = "https://robertomoraes.dev"
+export const SITE_NAME = "Roberto Moraes"
+export const AUTHOR_NAME = "Roberto Moraes"
 
 export const SECTION_IDS = {
   hero: "hero",
