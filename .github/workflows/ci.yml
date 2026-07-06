@@ -27,6 +27,9 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Run Typecheck
+        run: npm run typecheck
+
       - name: Run Next.js Build with Bundle Analysis
         run: ANALYZE=true npm run build
 
