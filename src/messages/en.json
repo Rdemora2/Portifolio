@@ -310,6 +310,9 @@
     "form": {
       "name": "Name",
       "email": "Email",
+      "company": "Company (optional)",
+      "projectType": "Project Type",
+      "budget": "Estimated Budget (optional)",
       "subject": "Subject",
       "message": "Message",
       "send": "Send Message",

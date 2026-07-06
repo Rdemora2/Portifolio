@@ -84,7 +84,7 @@ export function Contact() {
       {inView && <WaveCanvas />}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:gap-16 lg:grid-cols-[2fr_3fr]">
-          <ScrollReveal animation="title">
+          <ScrollReveal animation="fade-up">
             <div>
               <p
                 className="mb-2 text-xs font-normal uppercase"
