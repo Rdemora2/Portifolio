@@ -7,6 +7,7 @@ export const contactSchema = z.object({
   projectType: z.enum(["web", "mobile", "backend", "architecture", "leadership", "other"]),
   message: z.string().min(20, "Mensagem muito curta"),
   budget: z.string().optional(),
+  botCheck: z.string().max(0).optional(),
 })
 
 export type ContactSchema = z.infer<typeof contactSchema>

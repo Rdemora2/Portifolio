@@ -162,7 +162,9 @@ export function LiquidPortal() {
 
   return (
     <div className="absolute inset-0 z-0 pointer-events-auto">
+      <span className="sr-only">Interactive liquid portal animation</span>
       <Canvas
+        aria-hidden="true"
         dpr={[1, dpr]}
         camera={{ position: [0, 0, 1] }}
         gl={{ antialias: false, alpha: true }}

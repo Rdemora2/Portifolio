@@ -137,8 +137,11 @@ export function HeroCompanion() {
   }, []);
 
   return (
-    <Canvas
-      dpr={[1, dpr]}
+    <>
+      <span className="sr-only">Interactive 3D geometric core</span>
+      <Canvas
+        aria-hidden="true"
+        dpr={[1, dpr]}
       camera={{ position: [0, 0, 8], fov: 45 }}
       style={{ width: "100%", height: "100%" }}
       gl={{ antialias: false, alpha: true }}
@@ -154,5 +157,6 @@ export function HeroCompanion() {
         )}
       </Suspense>
     </Canvas>
+    </>
   );
 }

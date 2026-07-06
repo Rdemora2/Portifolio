@@ -192,7 +192,9 @@ export function ArticleCanvas() {
 
   return (
     <div className="absolute inset-0 z-0" style={{ pointerEvents: "none" }}>
+      <span className="sr-only">Interactive 3D Go Gopher</span>
       <Canvas
+        aria-hidden="true"
         camera={{ position: [0, 0, 10], fov: 55 }}
         gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
         dpr={dpr}

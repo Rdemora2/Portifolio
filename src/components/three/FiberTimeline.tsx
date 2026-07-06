@@ -221,14 +221,18 @@ export function FiberTimeline() {
   return (
     <div ref={sectionRef} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       {isInView && !isDrawerOpen && !isLowPower && (
-        <Canvas
-          dpr={[1, dpr]}
+        <>
+          <span className="sr-only">3D Fiber timeline animation</span>
+          <Canvas
+            aria-hidden="true"
+            dpr={[1, dpr]}
           camera={{ position: [0, 0, 22], fov: 50 }}
           gl={{ antialias: false, alpha: true }}
         >
           <FiberThread />
           <FiberParticles />
         </Canvas>
+        </>
       )}
     </div>
   );

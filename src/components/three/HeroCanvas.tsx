@@ -14,8 +14,11 @@ export function HeroCanvas({ mouse }: HeroCanvasProps) {
   const dpr = useAdaptiveDpr()
 
   return (
-    <Canvas
-      dpr={[1, dpr]}
+    <>
+      <span className="sr-only">3D Interactive hero graphic</span>
+      <Canvas
+        aria-hidden="true"
+        dpr={[1, dpr]}
       camera={{ position: [0, 0, 6], fov: 55 }}
       style={{ position: "absolute", inset: 0, zIndex: 0 }}
       gl={{ antialias: true, alpha: true }}
@@ -26,5 +29,6 @@ export function HeroCanvas({ mouse }: HeroCanvasProps) {
         <ParticleField mouse={mouse} />
       </Suspense>
     </Canvas>
+    </>
   )
 }

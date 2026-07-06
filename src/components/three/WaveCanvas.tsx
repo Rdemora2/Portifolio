@@ -71,8 +71,11 @@ export function WaveCanvas() {
   const dpr = useAdaptiveDpr()
 
   return (
-    <Canvas
-      dpr={[1, dpr]}
+    <>
+      <span className="sr-only">3D Interactive wave graphic</span>
+      <Canvas
+        aria-hidden="true"
+        dpr={[1, dpr]}
       camera={{ position: [0, 0, 4], fov: 55 }}
       style={{ position: "absolute", inset: 0, zIndex: 0 }}
       gl={{ antialias: true, alpha: true }}
@@ -81,5 +84,6 @@ export function WaveCanvas() {
         <WaveMesh />
       </Suspense>
     </Canvas>
+    </>
   )
 }

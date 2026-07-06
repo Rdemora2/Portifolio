@@ -131,6 +131,18 @@ export function ContactForm() {
         />
       </FormField>
 
+      {/* Honeypot anti-spam field */}
+      <div className="absolute opacity-0 -z-10 w-0 h-0 overflow-hidden" aria-hidden="true">
+        <label htmlFor="botCheck">Don&apos;t fill this out if you&apos;re human:</label>
+        <input
+          {...register("botCheck")}
+          type="text"
+          id="botCheck"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <MagneticButton
         type="submit"
         disabled={status === "loading"}

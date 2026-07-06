@@ -63,7 +63,13 @@ export async function POST(req: NextRequest) {
     const { Resend } = await import("resend")
     const resend = new Resend(resendKey)
 
-    const { name, email, company, projectType, message, budget } = parsed.data
+    const { name, email, company, projectType, message, budget, botCheck } = parsed.data
+
+    if (botCheck && botCheck.length > 0) {
+      console.warn(`[Honeypot Triggered] Blocked spam submission from IP: ${ip}`);
+      // Simulate success so the bot doesn't retry with different patterns
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
 
     await resend.emails.send({
       from: "portfolio@robertozarzur.dev",

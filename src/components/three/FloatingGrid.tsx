@@ -121,8 +121,11 @@ export function FloatingGridCanvas() {
   const dpr = useAdaptiveDpr()
 
   return (
-    <Canvas
-      dpr={[1, dpr]}
+    <>
+      <span className="sr-only">3D Floating grid background</span>
+      <Canvas
+        aria-hidden="true"
+        dpr={[1, dpr]}
       camera={{ position: [0, 3, 7], fov: 60 }}
       style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}
       gl={{ antialias: true, alpha: true }}
@@ -132,5 +135,6 @@ export function FloatingGridCanvas() {
         <FloatingOrbs />
       </Suspense>
     </Canvas>
+    </>
   )
 }
