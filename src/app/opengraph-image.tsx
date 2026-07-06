@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "Roberto Moraes | Gerente de TI & Engenheiro de Software"
+export const alt = "Roberto Moraes | Engenheiro de Software & Gerente de TI"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -109,7 +109,7 @@ export default async function Image() {
             textTransform: "uppercase" as const,
           }}
         >
-          Gerente de TI & Engenheiro de Software
+          Engenheiro de Software & Gerente de TI
         </p>
         <p
           style={{

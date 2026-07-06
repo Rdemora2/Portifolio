@@ -43,7 +43,7 @@ export async function generateMetadata({
     },
     description: t("description"),
     keywords: [
-      "Gerente de TI",
+      "Engenheiro de Software & Gerente de TI",
       "Líder Técnico",
       "IT Manager",
       "Tech Lead",
@@ -147,7 +147,7 @@ export default async function RootLayout({
         hasOccupation: [
           {
             "@type": "Occupation",
-            name: "Gerente de TI",
+            name: "Engenheiro de Software & Gerente de TI",
             occupationLocation: {
               "@type": "City",
               name: "São Paulo",

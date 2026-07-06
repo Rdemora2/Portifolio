@@ -2,7 +2,7 @@ import type { PersonalInfo, Project, TechItem, ExperienceEntry, Testimonial, Ins
 
 export const personalInfo: PersonalInfo = {
   name: "Roberto Moraes",
-  title: "Gerente de TI & Engenheiro de Software",
+  title: "Engenheiro de Software & Gerente de TI",
   subtitle: "Go · Next.js · Kotlin · AWS · GCP",
   bio: "Comecei como desenvolvedor full-stack e hoje lidero a área de tecnologia de uma empresa com operações internacionais. No caminho, aprendi que gestão de verdade exige mão na massa, por isso continuo construindo backends, configurando infraestrutura cloud e garantindo que cada sistema aguenta a pressão de produção. Minha entrega vai do código ao deploy final.",
   bioExtended: "Já entreguei projetos para o Hospital Sírio-Libanês, Grupo Bandeirantes e redes hoteleiras internacionais, sempre com foco em performance real, infraestrutura resiliente e times que funcionam. Meu perfil é hands-on: codifico, reviso, configuro infra e tomo decisões técnicas no mesmo dia.",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     roleType: "hybrid",
     client: "Grupo Bandeirantes",
     period: "2024",
-    role: "Gerente de TI",
+    role: "Engenheiro de Software & Gerente de TI",
     shortDescription: "Gestão da refatoração completa de 6+ portais do Grupo Bandeirantes, modernizando a stack de comunicação de massa com zero downtime.",
     description: "Liderei a modernização tecnológica de missão crítica dos portais Band News, BandSports, Arte 1, Sabor e Arte, TerraViva e Agro+. Orquestrei equipes de design, engenharia e infraestrutura enquanto mantinha alinhamento constante com o C-Level do grupo. A migração incluiu parceria estratégica com a Vivo para distribuição de conteúdo.",
     challenge: "Modernizar 6 portais de comunicação de massa simultaneamente, sem interromper o serviço para milhões de usuários, coordenando múltiplos times e mantendo consistência arquitetural.",
@@ -201,7 +201,7 @@ export const experience: ExperienceEntry[] = [
   {
     id: "valiant-gti",
     company: "Valiant Group do Brasil",
-    role: "Gerente de TI",
+    role: "Engenheiro de Software & Gerente de TI",
     period: "Jan 2026 · Presente",
     current: true,
     description: "Lidero a área de tecnologia da empresa, incluindo infraestrutura cloud, DevOps, segurança e operações. Gerencio o ciclo completo de produtos de software que impactam 100k+ usuários ativos. Conduzo operações internacionais e mantenho o pé no código, de backends em Go a apps Android TV.",

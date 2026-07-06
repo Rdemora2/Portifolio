@@ -16,14 +16,14 @@
     "closeMenu": "Fechar menu"
   },
   "Hero": {
-    "title": "Gerente de TI & Engenheiro de Software",
+    "title": "Engenheiro de Software & Gerente de TI",
     "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
     "viewProjects": "Ver projetos",
     "contact": "Contato"
   },
   "Metadata": {
-    "title": "Roberto Moraes | Gerente de TI & Engenheiro de Software",
-    "description": "Gerente de TI e líder técnico com perfil hands-on. Lidero times, construo backends de alta performance em Go, gerencio infraestrutura cloud (AWS, GCP) e garanto observabilidade e DevOps em sistemas de missão crítica."
+    "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI",
+    "description": "Engenheiro de software e líder técnico com perfil hands-on. Lidero times, construo backends de alta performance em Go, gerencio infraestrutura cloud (AWS, GCP) e garanto observabilidade e DevOps em sistemas de missão crítica."
   },
   "About": {
     "title": "Sobre",
@@ -83,7 +83,7 @@
     "items": {
       "band-news-bandsports": {
         "title": "Grupo Bandeirantes",
-        "role": "Gerente de TI",
+        "role": "Engenheiro de Software & Gerente de TI",
         "shortDescription": "Gestão da refatoração completa de 6+ portais do Grupo Bandeirantes, modernizando a stack de comunicação de massa com zero downtime.",
         "description": "Liderei a modernização tecnológica de missão crítica dos portais Band News, BandSports, Arte 1, Sabor e Arte, TerraViva e Agro+. Orquestrei equipes de design, engenharia e infraestrutura enquanto mantinha alinhamento constante com o C-Level do grupo. A migração incluiu parceria estratégica com a Vivo para distribuição de conteúdo.",
         "challenge": "Modernizar 6 portais de comunicação de massa simultaneamente, sem interromper o serviço para milhões de usuários, coordenando múltiplos times e mantendo consistência arquitetural.",
@@ -212,7 +212,7 @@
     "items": {
       "valiant-gti": {
         "company": "Valiant Group do Brasil",
-        "role": "Gerente de TI",
+        "role": "Engenheiro de Software & Gerente de TI",
         "description": "Lidero a área de tecnologia da empresa, incluindo infraestrutura cloud, DevOps, segurança e operações. Gerencio o ciclo completo de produtos de software que impactam 100k+ usuários ativos. Conduzo operações internacionais e mantenho o pé no código, de backends em Go a apps Android TV.",
         "highlights": [
           "Decisor principal de tecnologia da empresa",

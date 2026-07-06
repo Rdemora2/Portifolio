@@ -16,14 +16,14 @@
     "closeMenu": "Close menu"
   },
   "Hero": {
-    "title": "IT Manager & Software Engineer",
+    "title": "Software Engineer & IT Manager",
     "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
     "viewProjects": "View Projects",
     "contact": "Contact"
   },
   "Metadata": {
-    "title": "Roberto Moraes | IT Manager & Software Engineer",
-    "description": "IT Manager and tech lead with a hands-on profile. I lead teams, build high-performance backends in Go, manage cloud infrastructure (AWS, GCP) and ensure observability and DevOps in mission-critical systems."
+    "title": "Roberto Moraes | Software Engineer & IT Manager",
+    "description": "Software engineer and tech lead with a hands-on profile. I lead teams, build high-performance backends in Go, manage cloud infrastructure (AWS, GCP) and ensure observability and DevOps in mission-critical systems."
   },
   "About": {
     "title": "About",
@@ -83,7 +83,7 @@
     "items": {
       "band-news-bandsports": {
         "title": "Grupo Bandeirantes",
-        "role": "IT Manager",
+        "role": "Software Engineer & IT Manager",
         "shortDescription": "Management of the complete refactoring of 6+ portals of Grupo Bandeirantes, modernizing the mass communication stack with zero downtime.",
         "description": "I led the mission-critical technological modernization of the Band News, BandSports, Arte 1, Sabor e Arte, TerraViva, and Agro+ portals. I orchestrated design, engineering, and infrastructure teams while maintaining constant alignment with the group's C-Level. The migration included a strategic partnership with Vivo for content distribution.",
         "challenge": "Modernize 6 mass communication portals simultaneously, without interrupting service for millions of users, coordinating multiple teams and maintaining architectural consistency.",
@@ -212,7 +212,7 @@
     "items": {
       "valiant-gti": {
         "company": "Valiant Group do Brasil",
-        "role": "IT Manager",
+        "role": "Software Engineer & IT Manager",
         "description": "I lead the company's technology area, including cloud infrastructure, DevOps, security, and operations. I manage the complete cycle of software products that impact 100k+ active users. I conduct international operations and stay hands-on with the code, from Go backends to Android TV apps.",
         "highlights": [
           "Primary technology decision-maker for the company",

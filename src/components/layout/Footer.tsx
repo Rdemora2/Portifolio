@@ -37,7 +37,7 @@ export function Footer() {
                 color: "var(--color-text-muted)",
               }}
             >
-              Gerente de TI & Engenheiro de Software.
+              Engenheiro de Software & Gerente de TI.
               <br />
               Construindo software que aguenta a pressão de produção.
             </p>
