@@ -40,7 +40,15 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
                 letterSpacing: "0.15em",
               }}
             >
-              {t("title")}
+              {t("title").includes(" & ") ? (
+                <>
+                  {t("title").split(" & ")[0]} &<br className="md:hidden" />
+                  <span className="hidden md:inline"> </span>
+                  {t("title").split(" & ")[1]}
+                </>
+              ) : (
+                t("title")
+              )}
             </p>
 
             <p
