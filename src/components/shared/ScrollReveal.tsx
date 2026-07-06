@@ -162,7 +162,8 @@ export function ScrollReveal({
     };
   }, [animation, delay, duration, threshold]);
 
-  const Component = Tag as React.ElementType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Component = Tag as any;
   return (
     <Component ref={ref} className={className}>
       {children}
