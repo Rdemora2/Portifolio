@@ -146,7 +146,7 @@ export function ContactForm() {
       <MagneticButton
         type="submit"
         disabled={status === "loading"}
-        className="w-full cursor-pointer rounded-full border border-[var(--color-signal)] text-[var(--color-signal)] py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] disabled:cursor-not-allowed disabled:opacity-50 sm:py-4"
+        className="w-full cursor-pointer rounded-full border border-[var(--color-signal)] text-[var(--color-signal)] px-4 py-3 text-xs font-semibold uppercase tracking-widest transition-all duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] disabled:cursor-not-allowed disabled:opacity-50 sm:py-4 sm:text-sm"
         style={{
           fontFamily: "var(--font-body)",
         }}

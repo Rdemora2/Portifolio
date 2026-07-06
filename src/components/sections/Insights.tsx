@@ -2,6 +2,7 @@ import { insights } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Link } from "@/navigation";
 import { getTranslations } from "next-intl/server";
+import { SpotlightCard } from "@/components/shared/SpotlightCard";
 
 export async function Insights() {
   const t = await getTranslations("Insights");
@@ -52,7 +53,7 @@ export async function Insights() {
         <div className="grid gap-6 md:grid-cols-2">
           {insights.map((insight, idx) => (
             <ScrollReveal key={insight.id} animation="card" delay={idx * 0.1}>
-              <div
+              <SpotlightCard
                 className="glass-card group flex h-full flex-col rounded-2xl p-6 transition-all duration-300 sm:p-8"
                 style={{ borderRadius: "1.5rem" }}
               >
@@ -123,7 +124,7 @@ export async function Insights() {
                     <span>→</span>
                   </Link>
                 )}
-              </div>
+              </SpotlightCard>
             </ScrollReveal>
           ))}
         </div>
