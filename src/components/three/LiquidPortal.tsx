@@ -145,6 +145,7 @@ export function LiquidPortal() {
   useEffect(() => {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const isWeakGPU = (navigator.hardwareConcurrency || 4) <= 4;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLowPower(isTouch || isWeakGPU);
   }, []);
 

@@ -5,8 +5,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useAdaptiveDpr } from "@/hooks/useAdaptiveDpr";
 import { useInView } from "@/hooks/useInView";
+/* eslint-disable react-hooks/purity */
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import gsap from "gsap";
 
 function FiberThread() {
   const lineRef = useRef<THREE.Line>(null);
@@ -214,6 +214,7 @@ export function FiberTimeline() {
   useEffect(() => {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const isWeakGPU = (navigator.hardwareConcurrency || 4) <= 4;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLowPower(isTouch || isWeakGPU);
   }, []);
 

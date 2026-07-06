@@ -54,7 +54,10 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
     : false;
 
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   // ── Scroll lock & Global State ─────────────────────────────────────────────
   useEffect(() => {

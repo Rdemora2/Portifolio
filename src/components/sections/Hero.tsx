@@ -75,7 +75,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
     const run = async () => {
       const mod = await import("@/lib/gsap");
       if (!isActive) return;
-      const { gsap, ScrollTrigger } = mod;
+      const { gsap } = mod;
       ctx = gsap.context(() => {
         gsap.to(terminal, {
           yPercent: -15, // translate up 15% of section height as user scrolls

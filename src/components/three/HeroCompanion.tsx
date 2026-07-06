@@ -9,7 +9,7 @@
  */
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Suspense, useMemo, useRef, useState, useEffect } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
 import { useAdaptiveDpr } from "@/hooks/useAdaptiveDpr";
 import { Float, Icosahedron, Torus, Edges, Sparkles, Trail, Sphere } from "@react-three/drei";
 import * as THREE from "three";
@@ -132,6 +132,7 @@ export function HeroCompanion() {
   useEffect(() => {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const isWeakGPU = (navigator.hardwareConcurrency || 4) <= 4;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLowPower(isTouch || isWeakGPU);
   }, []);
 

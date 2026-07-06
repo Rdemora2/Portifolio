@@ -162,7 +162,7 @@ export function ScrollReveal({
     };
   }, [animation, delay, duration, threshold]);
 
-  const Component = Tag as any;
+  const Component = Tag as React.ElementType;
   return (
     <Component ref={ref} className={className}>
       {children}
