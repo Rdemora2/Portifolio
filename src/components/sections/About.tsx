@@ -21,7 +21,7 @@ const NeuralBackground = dynamic(
 export function About() {
   const t = useTranslations("About")
   const ts = useTranslations("Stats")
-  const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: true })
+  const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: false })
 
   const stats = [
     { label: ts("yearsOfExperience"), value: "4+" },

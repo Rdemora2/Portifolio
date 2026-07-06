@@ -29,7 +29,7 @@ export function Contact() {
   const t = useTranslations("Contact")
   const tNav = useTranslations("Nav")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-  const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: true })
+  const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: false })
   const isMounted = useRef(true)
 
   useEffect(() => {
