@@ -42,8 +42,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             >
               {t("title").includes(" & ") ? (
                 <>
-                  {t("title").split(" & ")[0]} &<br className="md:hidden" />
-                  <span className="hidden md:inline"> </span>
+                  {t("title").split(" & ")[0]} &<br />
                   {t("title").split(" & ")[1]}
                 </>
               ) : (
