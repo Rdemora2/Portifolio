@@ -1,27 +1,13 @@
-"use client"
-
-import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { GradientBorder } from "@/components/shared/GradientBorder"
 import { AnimatedText } from "@/components/shared/AnimatedText"
-import { useInView } from "@/hooks/useInView"
-
-const FloatingGridCanvas = dynamic(
-  () => import("@/components/three/FloatingGrid").then((m) => ({ default: m.FloatingGridCanvas })),
-  { ssr: false }
-)
-
-const NeuralBackground = dynamic(
-  () => import("@/components/shared/NeuralBackground").then((m) => ({ default: m.NeuralBackground })),
-  { ssr: false }
-)
+import { AboutBackground } from "./AboutBackground"
 
 export function About() {
   const t = useTranslations("About")
   const ts = useTranslations("Stats")
-  const [ref, inView] = useInView<HTMLElement>({ threshold: 0, rootMargin: "400px", triggerOnce: false })
 
   const stats = [
     { label: ts("yearsOfExperience"), value: "4+" },
@@ -40,12 +26,10 @@ export function About() {
   return (
     <section
       id="about"
-      ref={ref}
       className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
-      {inView && <FloatingGridCanvas />}
-      {inView && <NeuralBackground />}
+      <AboutBackground />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <p
