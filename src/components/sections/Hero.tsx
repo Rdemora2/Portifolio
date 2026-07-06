@@ -169,7 +169,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               charSpan.style.backgroundSize = "200% 200%";
               charSpan.style.webkitBackgroundClip = "text";
               charSpan.style.webkitTextFillColor = "transparent";
-              (charSpan.style as unknown as Record<string, string>).backgroundClip = "text";
+              charSpan.style.backgroundClip = "text";
               charSpan.className = "hero-char";
               charSpan.textContent = char;
               wordSpan.appendChild(charSpan);
