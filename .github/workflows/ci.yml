@@ -31,7 +31,7 @@ jobs:
         run: npm run typecheck
 
       - name: Run Next.js Build with Bundle Analysis
-        run: ANALYZE=true npm run build
+        run: ANALYZE=true npm run build -- --webpack
 
       - name: Upload Bundle Analysis
         uses: actions/upload-artifact@v4

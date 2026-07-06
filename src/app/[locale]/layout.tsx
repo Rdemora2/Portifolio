@@ -7,6 +7,7 @@ import { Noise } from "@/components/layout/Noise";
 import { GlobalProviders } from "@/components/layout/GlobalProviders";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
+import { locales } from "@/i18n.config";
 import "../globals.css";
 
 const syne = Syne({
@@ -26,6 +27,10 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   display: "swap",
 });
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({
   params,
