@@ -1,13 +1,10 @@
-"use client";
-
-import { useEffect, useMemo, useRef } from "react";
 import { techStack } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { TECH_CATEGORY_COLORS } from "@/lib/constants";
-import { useInView } from "@/hooks/useInView";
+import { getTranslations } from "next-intl/server";
 
 import LogoLoop from "@/components/shared/LogoLoop";
-import { useTranslations } from "next-intl";
+import { TechStackPhysicsWrapper } from "./TechStackClient";
 import { FaAws } from "react-icons/fa";
 import {
   SiReact,
@@ -36,119 +33,9 @@ const techLogos = [
   { node: <SiGraphql size={36} color="#E10098" /> },
 ];
 
-export function TechStack() {
-  const t = useTranslations("About.pillars");
-  const tn = useTranslations("Nav");
-  const [sectionRef, inView] = useInView<HTMLElement>({
-    threshold: 0,
-    rootMargin: "200px",
-    triggerOnce: false,
-  });
-  
-  const prefersReduced = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
-  
-  const isTouch = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
-  }, []);
-  
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const tagRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const tagRectsRef = useRef<(DOMRect | null)[]>([]);
-  const containerRectRef = useRef<DOMRect | null>(null);
-  const currentOffsets = useRef<{ x: number; y: number }[]>([]);
-  const rafRef = useRef<number>(0);
-
-  useEffect(() => {
-    if (prefersReduced || isTouch || !inView) return;
-
-    const container = containerRef.current;
-    if (!container) return;
-
-    const allTags = techStack.length;
-    if (currentOffsets.current.length === 0) {
-      currentOffsets.current = Array.from({ length: allTags }, () => ({
-        x: 0,
-        y: 0,
-      }));
-    }
-
-    const updateRects = () => {
-      containerRectRef.current = container.getBoundingClientRect();
-      tagRectsRef.current = tagRefs.current.map((tag) =>
-        tag ? tag.getBoundingClientRect() : null,
-      );
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = containerRectRef.current;
-      if (!rect) return;
-      mouseRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      };
-    };
-
-    const animate = () => {
-      const tags = tagRefs.current;
-      const mouse = mouseRef.current;
-
-      tags.forEach((tag, i) => {
-        if (!tag) return;
-        const rect = tagRectsRef.current[i];
-        const containerRect = containerRectRef.current;
-        if (!rect || !containerRect) return;
-
-        const tagCenterX = rect.left - containerRect.left + rect.width / 2;
-        const tagCenterY = rect.top - containerRect.top + rect.height / 2;
-
-        const dx = mouse.x - tagCenterX;
-        const dy = mouse.y - tagCenterY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = 300;
-        const maxOffset = 6;
-
-        let targetX = 0;
-        let targetY = 0;
-
-        if (dist < maxDist && dist > 0) {
-          const force = (1 - dist / maxDist) * maxOffset;
-          targetX = -(dx / dist) * force;
-          targetY = -(dy / dist) * force;
-        }
-
-        const current = currentOffsets.current[i];
-        if (!current) return;
-
-        current.x += (targetX - current.x) * 0.08;
-        current.y += (targetY - current.y) * 0.08;
-
-        tag.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
-      });
-
-      rafRef.current = requestAnimationFrame(animate);
-    };
-
-    updateRects();
-    const resizeObserver = new ResizeObserver(() => updateRects());
-    resizeObserver.observe(container);
-    tagRefs.current.forEach((tag) => {
-      if (tag) resizeObserver.observe(tag);
-    });
-
-    container.addEventListener("mousemove", handleMouseMove);
-    rafRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      container.removeEventListener("mousemove", handleMouseMove);
-      resizeObserver.disconnect();
-      cancelAnimationFrame(rafRef.current);
-    };
-  }, [prefersReduced, isTouch, inView]);
+export async function TechStack() {
+  const t = await getTranslations("About.pillars");
+  const tn = await getTranslations("Nav");
 
   const grouped = techStack.reduce<Record<string, typeof techStack>>(
     (acc, tech) => {
@@ -162,7 +49,6 @@ export function TechStack() {
   return (
     <section
       id="tech"
-      ref={sectionRef}
       className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
@@ -206,42 +92,35 @@ export function TechStack() {
         </div>
 
         {/* Static Grid with Mouse Physics */}
-        <div
-          ref={containerRef}
-          className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {Object.entries(grouped).map(([category, items], idx) => (
-            <ScrollReveal key={category} delay={idx * 0.1}>
-              <div>
-                <h3
-                  className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-widest"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  <span
-                    className="h-2 w-2 rounded-full"
-                    style={{
-                      backgroundColor:
-                        TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
-                    }}
-                  />
-                  <span
-                    style={{
-                      color: TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
-                    }}
+        <TechStackPhysicsWrapper>
+          <div className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3">
+            {Object.entries(grouped).map(([category, items], idx) => (
+              <ScrollReveal key={category} delay={idx * 0.1}>
+                <div>
+                  <h3
+                    className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-widest"
+                    style={{ fontFamily: "var(--font-mono)" }}
                   >
-                    {t(category) || category}
-                  </span>
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((tech) => {
-                    const currentIndex = techStack.findIndex((t) => t.name === tech.name);
-                    return (
+                    <span
+                      className="h-2 w-2 rounded-full"
+                      style={{
+                        backgroundColor:
+                          TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
+                      }}
+                    />
+                    <span
+                      style={{
+                        color: TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
+                      }}
+                    >
+                      {t(category) || category}
+                    </span>
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((tech) => (
                       <span
                         key={tech.name}
-                        ref={(el) => {
-                          tagRefs.current[currentIndex] = el;
-                        }}
-                        className="cursor-default rounded-full border px-3 py-1.5 text-xs transition-all duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+                        className="tech-tag cursor-default rounded-full border px-3 py-1.5 text-xs transition-all duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
                         style={{
                           fontFamily: "var(--font-mono)",
                           borderColor: tech.featured
@@ -266,13 +145,13 @@ export function TechStack() {
                           </span>
                         )}
                       </span>
-                    );
-                  })}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </TechStackPhysicsWrapper>
       </div>
     </section>
   );

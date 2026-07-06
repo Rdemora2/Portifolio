@@ -1,62 +1,15 @@
-"use client";
-
-import { useRef, useEffect } from "react";
 import { experience } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { FiberTimeline } from "@/components/three/FiberTimeline";
-
+import { ExperienceTimelineLine } from "./ExperienceTimelineLine";
 import { useTranslations } from "next-intl";
 
 export function Experience() {
-  const lineRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
   const t = useTranslations("Experience");
-
-  useEffect(() => {
-    if (!lineRef.current || !sectionRef.current) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReduced) return;
-
-    let ctx: { revert: () => void } | null = null;
-    let isActive = true;
-
-    const run = async () => {
-      const mod = await import("@/lib/gsap");
-      if (!isActive) return;
-      const { gsap } = mod;
-      ctx = gsap.context(() => {
-        gsap.fromTo(
-          lineRef.current,
-          { scaleY: 0 },
-          {
-            scaleY: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 60%",
-              end: "bottom 40%",
-              scrub: 1,
-            },
-          },
-        );
-      }, sectionRef);
-    };
-
-    run();
-
-    return () => {
-      isActive = false;
-      ctx?.revert();
-    };
-  }, []);
 
   return (
     <section
       id="experience"
-      ref={sectionRef}
       className="relative py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
@@ -82,20 +35,12 @@ export function Experience() {
           >
             {t("title")}
           </h2>
-          </ScrollReveal>
+        </ScrollReveal>
 
         <FiberTimeline />
 
         <div className="relative">
-          <div
-            ref={lineRef}
-            className="absolute left-0 top-0 hidden h-full w-[1.5px] origin-top md:left-1/2 md:block md:-translate-x-1/2"
-            style={{
-              backgroundColor: "var(--color-signal)",
-              opacity: 0.25,
-              transformOrigin: "top center",
-            }}
-          />
+          <ExperienceTimelineLine />
 
           <div className="space-y-12 sm:space-y-16 md:space-y-24">
             {experience.map((entry, idx) => (

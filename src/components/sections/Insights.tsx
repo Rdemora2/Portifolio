@@ -1,12 +1,10 @@
-"use client";
-
 import { insights } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Link } from "@/navigation";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export function Insights() {
-  const t = useTranslations("Insights");
+export async function Insights() {
+  const t = await getTranslations("Insights");
 
   return (
     <section
