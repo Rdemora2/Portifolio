@@ -92,7 +92,7 @@ function FluidMesh() {
     uMouse: { value: new THREE.Vector2(0.5, 0.5) },
     uResolution: { value: new THREE.Vector2(1000, 1000) },
     uColor1: { value: new THREE.Color("#4f46e5") }, // indigo-600
-    uColor2: { value: new THREE.Color("#ec4899") }, // pink-500
+    uColor2: { value: new THREE.Color("#00d4ff") }, // cyan
   }), []);
 
   useEffect(() => {

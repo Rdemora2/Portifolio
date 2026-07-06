@@ -218,7 +218,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
         }}
       >
         {/* Fixed Background Layer (won't scroll) */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundColor: "var(--color-void)" }}>
           <LiquidPortal />
           {/* Dark Overlay for readability */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />

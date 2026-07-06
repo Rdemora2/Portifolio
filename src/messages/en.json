@@ -55,6 +55,7 @@
     "title": "What I've done",
     "navLabel": "Projects",
     "openDrawer": "View details",
+    "closeDrawer": "Close details",
     "viewCaseStudy": "View Case Study",
     "caseStudyLabel": "My role in this project",
     "internationalTag": "International",
@@ -89,7 +90,7 @@
         "solution": "Unified architecture in Next.js on the frontend and Go on the backend, with NestJS for auxiliary microservices. Edge security via AWS WAF, elastic Load Balancing, and gradual deployment with automated rollback.",
         "impact": "6 portals modernized with cutting-edge architecture, enterprise-grade security, and scale capacity for audience peaks (elections, live sporting events).",
         "metrics": {
-          "portais-migrados": "Portals migrated",
+          "portaismigrados": "Portals migrated",
           "downtime": "Downtime",
           "parceria": "Partnership"
         },

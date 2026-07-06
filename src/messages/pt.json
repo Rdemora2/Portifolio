@@ -55,6 +55,7 @@
     "title": "O que eu fiz",
     "navLabel": "Projetos",
     "openDrawer": "Ver detalhes",
+    "closeDrawer": "Fechar detalhes",
     "viewCaseStudy": "Ver Estudo de Caso",
     "caseStudyLabel": "Meu papel neste projeto",
     "internationalTag": "Internacional",
@@ -89,7 +90,7 @@
         "solution": "Arquitetura unificada em Next.js no frontend e Go no backend, com NestJS para microsserviços auxiliares. Segurança de borda via WAF da AWS, Load Balancing elástico e deploy gradual com rollback automatizado.",
         "impact": "6 portais modernizados com arquitetura de vanguarda, segurança enterprise-grade e capacidade de escala para picos de audiência (eleições, eventos esportivos ao vivo).",
         "metrics": {
-          "pormaismigrados": "Portais migrados",
+          "portaismigrados": "Portais migrados",
           "downtime": "Downtime",
           "parceria": "Parceria"
         },
