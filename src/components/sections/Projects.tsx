@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { projects } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -78,10 +78,10 @@ export function Projects() {
     });
   };
 
-  const openDrawer = (project: Project) => {
+  const openDrawer = useCallback((project: Project) => {
     setDrawerProject(project);
     setIsDrawerOpen(true);
-  };
+  }, []);
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
@@ -158,7 +158,7 @@ export function Projects() {
               key={project.id}
               project={project}
               index={idx}
-              onOpen={() => openDrawer(project)}
+              onOpen={openDrawer}
             />
           ))}
         </div>
@@ -174,14 +174,16 @@ export function Projects() {
   );
 }
 
-function ProjectItem({
+import { memo } from "react";
+
+const ProjectItem = memo(function ProjectItem({
   project,
   index,
   onOpen,
 }: {
   project: Project;
   index: number;
-  onOpen: () => void;
+  onOpen: (project: Project) => void;
 }) {
   const t = useTranslations("Projects");
   const itemRef = useRef<HTMLDivElement>(null);
@@ -226,7 +228,7 @@ function ProjectItem({
         >
           <div
             className="relative flex items-center gap-4 py-6 transition-all sm:gap-6 sm:py-8 lg:gap-10"
-            onClick={onOpen}
+            onClick={() => onOpen(project)}
             role="button"
             tabIndex={0}
             aria-haspopup="dialog"
@@ -234,7 +236,7 @@ function ProjectItem({
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                onOpen();
+                onOpen(project);
               }
             }}
           >
@@ -337,4 +339,4 @@ function ProjectItem({
       </BorderGlow>
     </ScrollReveal>
   );
-}
+});
