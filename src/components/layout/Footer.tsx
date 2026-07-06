@@ -28,7 +28,7 @@ export function Footer() {
                 color: "var(--color-text-primary)",
               }}
             >
-              RZ<span style={{ color: "var(--color-signal)" }}>.</span>
+              RM<span style={{ color: "var(--color-signal)" }}>.</span>
             </p>
             <p
               className="text-sm leading-relaxed"

@@ -105,7 +105,7 @@ export function Navigation() {
             }}
             aria-label={`Roberto Moraes, ${t("hero").toLowerCase()}`}
           >
-            RZ<span style={{ color: "var(--color-signal)" }}>.</span>
+            RM<span style={{ color: "var(--color-signal)" }}>.</span>
           </a>
 
           <div className="hidden items-center gap-8 md:flex">
