@@ -4,6 +4,7 @@
     "about": "Sobre",
     "projects": "Projetos",
     "tech": "Stack",
+    "tech_small": "Tecnologias",
     "metrics": "Métricas",
     "experience": "Experiência",
     "insights": "Insights",
@@ -35,18 +36,25 @@
       "cloud": "Cloud & DevOps",
       "backend": "Backend de Alta Performance",
       "management": "Gestão de Times",
-      "observability": "Observabilidade"
+      "observability": "Observabilidade",
+      "frontend": "Frontend Avançado",
+      "mobile": "Desenvolvimento Mobile",
+      "devops": "Cloud & DevOps",
+      "video": "Streaming & Vídeo",
+      "ai": "Inteligência Artificial"
     }
   },
   "Stats": {
     "yearsOfExperience": "Anos de experiência",
     "projectsDelivered": "Projetos entregues",
     "countries": "Países",
-    "usersImpacted": "Usuários impactados"
+    "usersImpacted": "Usuários impactados",
+    "title_small": "Números"
   },
   "Projects": {
     "title": "O que eu fiz",
     "navLabel": "Projetos",
+    "openDrawer": "Ver detalhes",
     "viewCaseStudy": "Ver Estudo de Caso",
     "caseStudyLabel": "Meu papel neste projeto",
     "internationalTag": "Internacional",
@@ -124,7 +132,9 @@
         "metrics": {
           "requisições/mês": "Requisições/mês",
           "respostamédia": "Resposta média",
-          "cachehitrate": "Cache hit rate"
+          "cachehitrate": "Cache hit rate",
+          "requisiesms": "Requisições/mês",
+          "respostamdia": "Resposta média"
         },
         "highlights": [
           "100% do backend e cloud feitos por mim, sem terceiros",

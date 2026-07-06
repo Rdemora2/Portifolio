@@ -4,6 +4,7 @@
     "about": "Sobre mí",
     "projects": "Proyectos",
     "tech": "Stack",
+    "tech_small": "Tecnologías",
     "metrics": "Métricas",
     "experience": "Experiencia",
     "insights": "Insights",
@@ -35,17 +36,24 @@
       "cloud": "Cloud & DevOps",
       "backend": "Backend de Alto Rendimiento",
       "management": "Gestión de Equipos",
-      "observability": "Observabilidad"
+      "observability": "Observabilidad",
+      "frontend": "Frontend Avanzado",
+      "mobile": "Desarrollo Móvil",
+      "devops": "Cloud & DevOps",
+      "video": "Streaming & Video",
+      "ai": "Inteligencia Artificial"
     }
   },
   "Stats": {
     "yearsOfExperience": "Años de experiencia",
     "projectsDelivered": "Proyectos entregados",
     "countries": "Países",
-    "usersImpacted": "Usuarios impactados"
+    "usersImpacted": "Usuarios impactados",
+    "title_small": "Números"
   },
   "Projects": {
     "title": "Proyectos Destacados",
+    "openDrawer": "Ver detalles",
     "viewCaseStudy": "Ver Estudio de Caso",
     "role": "Rol",
     "client": "Cliente",
@@ -91,6 +99,22 @@
         "challenge": "Construir una plataforma resiliente capaz de gestionar operaciones hospitalarias en tiempo real, desde el streaming de contenido a las habitaciones hasta la integración con sistemas de gestión hospitalaria (Tasy), todo con latencia cercana a cero.",
         "solution": "Backend en Go (Fiber) optimizado para el máximo rendimiento, con orquestación de auto-escalado en GCP (Cloud Run). Caché distribuido con Redis (92% hit rate), persistencia en PostgreSQL y observabilidad vía Prometheus. Aplicación nativa Kotlin con Jetpack Compose y Media3 para Android TV.",
         "impact": "Plataforma en producción estable con 20M+ peticiones mensuales, latencia media de 6ms e infraestructura lista para auditorías de salud y expansión a nuevas unidades hospitalarias.",
+        "metrics": {
+          "requisições/mês": "Peticiones/mes",
+          "resposta-média": "Respuesta media",
+          "cache-hit-rate": "Cache hit rate",
+          "requisiesms": "Peticiones/mes",
+          "respostamdia": "Respuesta media"
+        },
+        "highlights": [
+          "100% del backend y cloud hechos por mí, sin terceros",
+          "Go + Fiber: elegidos por baja latencia y alto rendimiento",
+          "Integración con sistema hospitalario Tasy para datos del paciente",
+          "Streaming Unicast con DRM Widevine (protección de contenido premium)",
+          "App nativa Kotlin/Jetpack Compose para Android TV",
+          "Monitoreo con Prometheus y alertas en tiempo real",
+          "Cloud Run con auto-scaling en GCP"
+        ],
         "caseStudy": {
           "problem": "El Sírio-Libanês necesitaba una plataforma digital de hospitalidad para sus pacientes que integrara información en tiempo real de Tasy, streaming de contenido con protección DRM y una interfaz intuitiva en los televisores de las habitaciones.",
           "solution": "Diseñé y construí todo el stack: backend en Go para máximo rendimiento, infraestructura GCP con auto-escalado, caché Redis para respuestas instantáneas y aplicación Android TV en Kotlin con streaming protegido por Widevine DRM.",
@@ -121,6 +145,14 @@
         "challenge": "Viabilizar una solución de hardware/software inédita en el sector de la hospitalidad, alineando una compleja ingeniería de decodificación con la gestión de stakeholders distribuidos en diferentes continentes y culturas.",
         "solution": "Gobernanza de proyecto intercultural con comunicación adaptada a cada zona horaria. Ingeniería que involucra una integración profunda de decodificadores de hardware (TV Box y dongles USB) con frameworks nativos de Android TV, convergiendo dos paradigmas de transmisión en una experiencia unificada.",
         "impact": "Posicionamiento disruptivo de la cadena hotelera con una plataforma pionera que convergió tecnologías de transmisión antes aisladas, creando una experiencia premium para los huéspedes.",
+        "highlights": [
+          "Equipos distribuidos en múltiples países y zonas horarias",
+          "Comunicación intercultural con stakeholders internacionales",
+          "Responsabilidad total sobre plazos, calidad y entregas",
+          "Solución inédita: Unicast + Broadcast simultáneamente en app nativa",
+          "Integración de hardware: TV Box + señal coaxial vía USB Dongle",
+          "TV abierta y cable en la misma interfaz de la app de hospitalidad"
+        ],
         "caseStudy": {
           "problem": "Las cadenas hoteleras internacionales tenían dos sistemas separados para la televisión: uno para canales por cable (coaxial) y otro para streaming digital. Los huéspedes tenían que alternar entre las entradas de la TV, creando una experiencia fragmentada.",
           "solution": "Coordiné el desarrollo de una aplicación Kotlin que decodifica ambas señales simultáneamente, presentando todo en una interfaz unificada con EPG integrado. La integración de hardware exigió drivers personalizados para dongles USB.",

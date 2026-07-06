@@ -4,6 +4,7 @@
     "about": "About",
     "projects": "Projects",
     "tech": "Stack",
+    "tech_small": "Technologies",
     "metrics": "Metrics",
     "experience": "Experience",
     "insights": "Insights",
@@ -35,18 +36,25 @@
       "cloud": "Cloud & DevOps",
       "backend": "High Performance Backend",
       "management": "Team Management",
-      "observability": "Observability"
+      "observability": "Observability",
+      "frontend": "Advanced Frontend",
+      "mobile": "Mobile Development",
+      "devops": "Cloud & DevOps",
+      "video": "Streaming & Video",
+      "ai": "Artificial Intelligence"
     }
   },
   "Stats": {
     "yearsOfExperience": "Years of experience",
     "projectsDelivered": "Projects delivered",
     "countries": "Countries",
-    "usersImpacted": "Impacted users"
+    "usersImpacted": "Impacted users",
+    "title_small": "Numbers"
   },
   "Projects": {
     "title": "What I've done",
     "navLabel": "Projects",
+    "openDrawer": "View details",
     "viewCaseStudy": "View Case Study",
     "caseStudyLabel": "My role in this project",
     "internationalTag": "International",
@@ -124,7 +132,9 @@
         "metrics": {
           "requisições/mês": "Requests/month",
           "resposta-média": "Average response",
-          "cache-hit-rate": "Cache hit rate"
+          "cache-hit-rate": "Cache hit rate",
+          "requisiesms": "Requests/month",
+          "respostamdia": "Average response"
         },
         "highlights": [
           "100% of backend and cloud built by me, no third parties",
