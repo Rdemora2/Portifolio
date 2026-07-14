@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { navLinks } from "@/data/portfolio";
@@ -8,6 +8,11 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { isLocale } from "@/i18n.config";
 import { Link } from "@/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import styles from "./Navigation.module.css";
+
+type MobileNavItemStyle = CSSProperties & {
+  "--nav-item-delay": string;
+};
 
 export function Navigation() {
   const pathname = usePathname();
@@ -36,7 +41,7 @@ function ArticleNavigation() {
         <Link
           href="/"
           prefetch={false}
-          className="inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight text-[var(--color-text-primary)]"
+          className={`${styles.brand} inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight text-[var(--color-text-primary)]`}
           style={{ fontFamily: "var(--font-display)" }}
           aria-label={`RM. — Roberto Moraes, ${t("hero").toLowerCase()}`}
         >
@@ -255,7 +260,7 @@ function HomeNavigation() {
               e.preventDefault();
               handleNavClick("hero");
             }}
-            className="inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight transition-colors duration-200"
+            className={`${styles.brand} inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight`}
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
@@ -275,25 +280,13 @@ function HomeNavigation() {
                   e.preventDefault();
                   handleNavClick(id);
                 }}
-                className="relative flex min-h-11 items-center text-sm font-medium transition-colors duration-200"
+                className={`${styles.desktopLink} flex min-h-11 items-center text-sm font-medium`}
                 aria-current={activeSection === id ? "location" : undefined}
                 style={{
                   fontFamily: "var(--font-body)",
-                  color:
-                    activeSection === id
-                      ? "var(--color-signal)"
-                      : "var(--color-text-secondary)",
                 }}
               >
                 {t(id)}
-                <span
-                  className="absolute -bottom-1 left-0 h-[1px] origin-left transition-transform duration-300"
-                  style={{
-                    backgroundColor: "var(--color-signal)",
-                    width: "100%",
-                    transform: activeSection === id ? "scaleX(1)" : "scaleX(0)",
-                  }}
-                />
               </a>
             ))}
             <div className="ml-4 h-4 w-[1px] bg-[var(--color-edge)]" aria-hidden="true" />
@@ -306,7 +299,7 @@ function HomeNavigation() {
             </div>
             <button
               ref={menuButtonRef}
-              className={`relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 ${
+              className={`${styles.menuButton} relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 ${
                 isMobileOpen ? "invisible" : ""
               }`}
               onClick={() => setIsMobileOpen((current) => !current)}
@@ -349,7 +342,8 @@ function HomeNavigation() {
       <div
         id="mobile-navigation-menu"
         ref={mobileMenuRef}
-        className={`fixed left-0 top-0 z-[120] flex h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none md:hidden ${
+        data-open={isMobileOpen ? "true" : "false"}
+        className={`${styles.mobileMenu} fixed left-0 top-0 z-[120] flex h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none md:hidden ${
           isMobileOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
         style={{
@@ -363,7 +357,7 @@ function HomeNavigation() {
         <button
           ref={dialogCloseButtonRef}
           type="button"
-          className="absolute right-4 top-4 z-[130] flex h-11 w-11 flex-col items-center justify-center gap-1.5"
+          className={`${styles.menuCloseButton} absolute right-4 top-4 z-[130] flex h-11 w-11 flex-col items-center justify-center gap-1.5`}
           onClick={() => setIsMobileOpen(false)}
           aria-label={t("closeMenu")}
         >
@@ -388,18 +382,14 @@ function HomeNavigation() {
               e.preventDefault();
               handleNavClick(id);
             }}
-            className="inline-flex min-h-11 items-center text-2xl font-bold transition-[color,opacity,transform] duration-300 ease-out motion-reduce:transition-none sm:text-3xl"
+            className={`${styles.mobileLink} inline-flex min-h-11 items-center text-2xl font-bold sm:text-3xl`}
             aria-current={activeSection === id ? "location" : undefined}
-            style={{
-              fontFamily: "var(--font-display)",
-              color:
-                activeSection === id
-                  ? "var(--color-signal)"
-                  : "var(--color-text-primary)",
-              opacity: isMobileOpen ? 1 : 0,
-              transform: isMobileOpen ? "translateX(0)" : "translateX(2rem)",
-              transitionDelay: isMobileOpen ? `${i * 45}ms` : "0ms",
-            }}
+            style={
+              {
+                fontFamily: "var(--font-display)",
+                "--nav-item-delay": isMobileOpen ? `${i * 45}ms` : "0ms",
+              } as MobileNavItemStyle
+            }
           >
             {t(id)}
           </a>

@@ -1,0 +1,300 @@
+.brand,
+.desktopLink,
+.menuButton,
+.menuCloseButton,
+.mobileLink {
+  position: relative;
+  isolation: isolate;
+}
+
+.brand {
+  border-radius: 0.75rem;
+  transition:
+    color 180ms ease,
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand::before,
+.menuButton::before,
+.menuCloseButton::before {
+  content: "";
+  position: absolute;
+  inset: 0.2rem;
+  z-index: -1;
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  border-radius: 0.7rem;
+  background: radial-gradient(
+    circle at 50% 38%,
+    rgba(129, 140, 248, 0.16),
+    rgba(79, 70, 229, 0.04) 68%,
+    transparent 70%
+  );
+  opacity: 0;
+  transform: scale(0.76);
+  transition:
+    opacity 180ms ease,
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease;
+}
+
+.brand[aria-current="location"]::before {
+  border-color: rgba(129, 140, 248, 0.3);
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+.desktopLink {
+  border-radius: 999px;
+  color: var(--color-text-secondary);
+  transform: translate3d(0, 0, 0);
+  transition:
+    color 180ms ease,
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.desktopLink::before {
+  content: "";
+  position: absolute;
+  inset: 0.38rem -0.7rem;
+  z-index: -1;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background:
+    linear-gradient(rgba(11, 18, 29, 0.88), rgba(7, 13, 22, 0.82)) padding-box,
+    linear-gradient(
+        115deg,
+        rgba(129, 140, 248, 0.66),
+        rgba(0, 212, 255, 0.28),
+        rgba(0, 255, 136, 0.16)
+      )
+      border-box;
+  box-shadow:
+    0 0.55rem 1.6rem rgba(0, 0, 0, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.035);
+  opacity: 0;
+  transform: scale(0.78);
+  transition:
+    opacity 180ms ease,
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.desktopLink::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.18rem;
+  left: 0;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-signal) 22% 78%,
+    transparent
+  );
+  box-shadow: 0 0 0.7rem rgba(129, 140, 248, 0.55);
+  opacity: 0;
+  transform: scaleX(0.24);
+  transition:
+    opacity 180ms ease,
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.desktopLink[aria-current="location"] {
+  color: var(--color-signal);
+}
+
+.desktopLink[aria-current="location"]::before {
+  opacity: 0.48;
+  transform: scale(1);
+}
+
+.desktopLink[aria-current="location"]::after {
+  opacity: 1;
+  transform: scaleX(0.52);
+}
+
+.menuButton,
+.menuCloseButton {
+  border-radius: 0.75rem;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobileLink {
+  border-radius: 0.65rem;
+  color: var(--color-text-primary);
+  opacity: 0;
+  transform: translate3d(2rem, 0, 0);
+  transition:
+    color 180ms ease,
+    opacity 300ms ease-out,
+    transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobileLink::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -1.2rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1px solid var(--color-signal);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate3d(-0.6rem, -50%, 0) scale(0.7);
+  transition:
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.mobileMenu[data-open="true"] .mobileLink {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: var(--nav-item-delay, 0ms);
+}
+
+.mobileLink[aria-current="location"] {
+  color: var(--color-signal);
+}
+
+.mobileLink[aria-current="location"]::before {
+  background: var(--color-signal);
+  box-shadow: 0 0 1rem rgba(129, 140, 248, 0.7);
+  opacity: 1;
+  transform: translate3d(0, -50%, 0) scale(1);
+}
+
+.brand:focus-visible::before,
+.desktopLink:focus-visible::before,
+.menuButton:focus-visible::before,
+.menuCloseButton:focus-visible::before {
+  border-color: var(--color-signal);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.desktopLink:focus-visible {
+  color: var(--color-text-primary);
+  transform: translate3d(0, -1px, 0);
+}
+
+.desktopLink:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.mobileLink:focus-visible {
+  color: var(--color-signal);
+  transform: translate3d(0.35rem, 0, 0);
+}
+
+.mobileLink:focus-visible::before {
+  opacity: 1;
+  transform: translate3d(0, -50%, 0) scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brand:hover,
+  .menuButton:hover,
+  .menuCloseButton:hover {
+    transform: translate3d(0, -1px, 0);
+  }
+
+  .brand:hover::before,
+  .menuButton:hover::before,
+  .menuCloseButton:hover::before {
+    border-color: rgba(129, 140, 248, 0.48);
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .desktopLink:hover {
+    color: var(--color-text-primary);
+    transform: translate3d(0, -2px, 0);
+  }
+
+  .desktopLink:hover::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .desktopLink:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .mobileLink:hover {
+    color: var(--color-signal);
+    transform: translate3d(0.35rem, 0, 0);
+  }
+
+  .mobileLink:hover::before {
+    opacity: 1;
+    transform: translate3d(0, -50%, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand,
+  .desktopLink,
+  .menuButton,
+  .menuCloseButton,
+  .mobileLink,
+  .brand::before,
+  .desktopLink::before,
+  .desktopLink::after,
+  .menuButton::before,
+  .menuCloseButton::before,
+  .mobileLink::before {
+    transition: none;
+  }
+
+  .brand,
+  .desktopLink,
+  .menuButton,
+  .menuCloseButton,
+  .mobileLink,
+  .brand:hover,
+  .desktopLink:hover,
+  .menuButton:hover,
+  .menuCloseButton:hover,
+  .mobileLink:hover,
+  .desktopLink:focus-visible,
+  .mobileLink:focus-visible {
+    transform: none;
+  }
+
+  .brand::before,
+  .desktopLink::before,
+  .menuButton::before,
+  .menuCloseButton::before {
+    transform: scale(1) !important;
+  }
+
+  .desktopLink::after {
+    transform: scaleX(1) !important;
+  }
+
+  .mobileLink::before {
+    transform: translate3d(0, -50%, 0) scale(1) !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .desktopLink::before,
+  .brand::before,
+  .menuButton::before,
+  .menuCloseButton::before {
+    background: Canvas;
+    border-color: LinkText;
+    box-shadow: none;
+  }
+
+  .desktopLink::after,
+  .mobileLink::before {
+    background: LinkText;
+    box-shadow: none;
+  }
+}
