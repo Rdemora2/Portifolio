@@ -13,7 +13,9 @@
     "test:watch": "vitest",
     "test:quality-hook": "bash scripts/ai-quality-gate.test.sh",
     "check:bundle": "node scripts/check-bundle-budget.mjs",
-    "analyze": "next experimental-analyze --output"
+    "analyze": "next experimental-analyze --output",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install chromium"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
