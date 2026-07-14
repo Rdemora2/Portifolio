@@ -1,0 +1,28 @@
+# Roberto Moraes — Portfolio
+
+> Multilingual professional portfolio of Roberto Moraes, a software engineer and IT manager focused on high-performance backend systems, cloud architecture, technical leadership, and digital products.
+
+This site is available in Portuguese, English, and Spanish. Portuguese is the canonical default language. Prefer the localized URLs below when presenting or summarizing its content.
+
+## Portfolio
+
+- [Português](https://robertomoraes.dev/): Professional experience, selected projects, technical stack, metrics, insights, and contact information in Portuguese.
+- [English](https://robertomoraes.dev/en): English version of the complete portfolio.
+- [Español](https://robertomoraes.dev/es): Spanish version of the complete portfolio.
+
+## Technical insights
+
+- [Go em produção](https://robertomoraes.dev/insights/go-em-producao): Portuguese article about operating a Go API under real production load, covering architecture, performance, cache, observability, security, incidents, and deployment practices.
+- [Go in production](https://robertomoraes.dev/en/insights/go-em-producao): English version of the production engineering article.
+- [Go en producción](https://robertomoraes.dev/es/insights/go-em-producao): Spanish version of the production engineering article.
+
+## Author profiles
+
+- [GitHub](https://github.com/Rdemora2): Public source-code profile.
+- [LinkedIn](https://www.linkedin.com/in/robertomoraes/): Professional profile.
+
+## Usage notes
+
+- Treat project metrics and professional experience as portfolio claims attributed to Roberto Moraes.
+- Preserve the original language and source URL when quoting or summarizing content.
+- Use the canonical pages above instead of inferred or generated URLs.
