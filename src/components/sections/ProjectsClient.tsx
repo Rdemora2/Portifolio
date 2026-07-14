@@ -1,16 +1,18 @@
 "use client";
 
-import { useState, useRef, useCallback, memo } from "react";
+import { useState, useRef, useCallback, useEffect, memo } from "react";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import { projects } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import BorderGlow from "@/components/shared/BorderGlow";
-import { ProjectDrawer } from "@/components/shared/ProjectDrawer";
-import type { Project, RoleType } from "@/types";
+import type { ProjectViewModel, RoleType } from "@/types";
+
+const ProjectDrawer = dynamic(() =>
+  import("@/components/shared/ProjectDrawer").then((module) => module.ProjectDrawer),
+);
 
 type FilterType = "all" | "engineering" | "management" | "international";
 
-function matchesFilter(project: Project, filter: FilterType): boolean {
+function matchesFilter(project: ProjectViewModel, filter: FilterType): boolean {
   if (filter === "all") return true;
   if (filter === "international") return project.international === true;
   if (filter === "engineering")
@@ -25,12 +27,11 @@ const ProjectItem = memo(function ProjectItem({
   index,
   onOpen,
 }: {
-  project: Project;
+  project: ProjectViewModel;
   index: number;
-  onOpen: (project: Project) => void;
+  onOpen: (project: ProjectViewModel) => void;
 }) {
   const t = useTranslations("Projects");
-  const itemRef = useRef<HTMLDivElement>(null);
 
   const getRoleLabel = (role: RoleType): string => {
     const map: Record<RoleType, string> = {
@@ -42,47 +43,17 @@ const ProjectItem = memo(function ProjectItem({
   };
 
   return (
-    <ScrollReveal animation="card" delay={index * 0.08}>
-      <BorderGlow
-        className="w-full mb-4"
-        edgeSensitivity={30}
-        glowColor="40 80 80"
-        backgroundColor="#0a1018"
-        borderRadius={28}
-        glowRadius={40}
-        glowIntensity={1}
-        coneSpread={25}
-        animated={false}
-        colors={["#c084fc", "#f472b6", "#38bdf8"]}
-      >
+    <ScrollReveal animation="card" delay={index * 0.08} className="mb-4">
+      <div className="glass-card w-full rounded-[28px]">
         <div
-          ref={itemRef}
-          className="cursor-pointer group px-4 rounded-2xl sm:px-6"
-          style={{ transition: "background-color 0.3s ease" }}
-          onMouseEnter={() => {
-            if (itemRef.current) {
-              itemRef.current.style.backgroundColor = "rgba(99,102,241,0.06)";
-            }
-          }}
-          onMouseLeave={() => {
-            if (itemRef.current) {
-              itemRef.current.style.backgroundColor = "transparent";
-            }
-          }}
+          className="group cursor-pointer rounded-2xl px-4 transition-colors duration-300 hover:bg-[rgba(99,102,241,0.06)] sm:px-6"
         >
-          <div
-            className="relative flex items-center gap-4 py-6 transition-all sm:gap-6 sm:py-8 lg:gap-10"
+          <button
+            type="button"
+            className="relative flex w-full items-center gap-4 py-6 text-left transition-all sm:gap-6 sm:py-8 lg:gap-10"
             onClick={() => onOpen(project)}
-            role="button"
-            tabIndex={0}
             aria-haspopup="dialog"
-            aria-label={`${t(`items.${project.id}.title`)} — ${t("openDrawer") || "Abrir detalhes"}`}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onOpen(project);
-              }
-            }}
+            data-project-trigger={project.id}
           >
             {/* Signal bar — slides in on hover */}
             <div
@@ -163,6 +134,8 @@ const ProjectItem = memo(function ProjectItem({
             {/* Arrow icon — "open" cue */}
             <div className="flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1">
               <svg
+                aria-hidden="true"
+                focusable="false"
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"
@@ -178,20 +151,40 @@ const ProjectItem = memo(function ProjectItem({
                 />
               </svg>
             </div>
-          </div>
+            <span className="sr-only"> — {t("openDrawer")}</span>
+          </button>
         </div>
-      </BorderGlow>
+      </div>
     </ScrollReveal>
   );
 });
 
-export function ProjectsClient() {
+export function ProjectsClient({ projects }: { projects: ProjectViewModel[] }) {
   const t = useTranslations("Projects");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
-  const [drawerProject, setDrawerProject] = useState<Project | null>(null);
+  const [drawerProject, setDrawerProject] = useState<ProjectViewModel | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
+  const gsapPromiseRef = useRef<Promise<{ gsap: typeof import("gsap").gsap }> | null>(null);
+  const filterOperationRef = useRef(0);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const entryAnimationFrameRef = useRef(0);
+
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  useEffect(
+    () => () => {
+      clearCloseTimer();
+      cancelAnimationFrame(entryAnimationFrameRef.current);
+    },
+    [clearCloseTimer],
+  );
 
   const filters: { key: FilterType; label: string }[] = [
     { key: "all", label: t("filters.all") },
@@ -204,16 +197,61 @@ export function ProjectsClient() {
 
   const loadGsap = async () => {
     if (gsapRef.current) return gsapRef.current;
-    const mod = await import("@/lib/gsap");
-    gsapRef.current = mod;
-    return mod;
+    if (!gsapPromiseRef.current) {
+      gsapPromiseRef.current = import("@/lib/gsap").then((mod) => {
+        gsapRef.current = mod;
+        return mod;
+      }).catch((error: unknown) => {
+        gsapPromiseRef.current = null;
+        throw error;
+      });
+    }
+    return gsapPromiseRef.current;
   };
 
   const handleFilterChange = async (filter: FilterType) => {
-    const mod = await loadGsap();
+    const operation = ++filterOperationRef.current;
+    clearCloseTimer();
+    cancelAnimationFrame(entryAnimationFrameRef.current);
+
+    const applyFilterWithoutAnimation = () => {
+      if (operation !== filterOperationRef.current) return;
+      setActiveFilter(filter);
+      setDrawerProject(null);
+      setIsDrawerOpen(false);
+    };
+
+    if (filter === activeFilter) {
+      if (listRef.current && gsapRef.current) {
+        const elements = listRef.current.children;
+        gsapRef.current.gsap.killTweensOf(elements);
+        gsapRef.current.gsap.set(elements, {
+          clearProps: "opacity,transform",
+        });
+      }
+      return;
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (listRef.current && gsapRef.current) {
+        gsapRef.current.gsap.killTweensOf(listRef.current.children);
+      }
+      applyFilterWithoutAnimation();
+      return;
+    }
+
+    let mod: { gsap: typeof import("gsap").gsap };
+    try {
+      mod = await loadGsap();
+    } catch {
+      applyFilterWithoutAnimation();
+      return;
+    }
+
+    if (operation !== filterOperationRef.current) return;
     const gsap = mod?.gsap;
     if (!gsap || !listRef.current) {
-      setActiveFilter(filter);
+      applyFilterWithoutAnimation();
       return;
     }
 
@@ -223,10 +261,12 @@ export function ProjectsClient() {
       duration: 0.2,
       stagger: 0.03,
       onComplete: () => {
+        if (operation !== filterOperationRef.current) return;
         setActiveFilter(filter);
         setDrawerProject(null);
         setIsDrawerOpen(false);
-        if (listRef.current) {
+        entryAnimationFrameRef.current = requestAnimationFrame(() => {
+          if (operation !== filterOperationRef.current || !listRef.current) return;
           gsap.fromTo(
             listRef.current.children,
             { opacity: 0, y: 20 },
@@ -238,30 +278,43 @@ export function ProjectsClient() {
               ease: "power3.out",
             },
           );
-        }
+        });
       },
     });
   };
 
-  const openDrawer = useCallback((project: Project) => {
-    setDrawerProject(project);
-    setIsDrawerOpen(true);
-  }, []);
+  const openDrawer = useCallback(
+    (project: ProjectViewModel) => {
+      clearCloseTimer();
+      setDrawerProject(project);
+      setIsDrawerOpen(true);
+    },
+    [clearCloseTimer],
+  );
 
-  const closeDrawer = () => {
+  const closeDrawer = useCallback(() => {
+    clearCloseTimer();
     setIsDrawerOpen(false);
     // Keep project in state during exit animation, clear after
-    setTimeout(() => setDrawerProject(null), 500);
-  };
+    closeTimerRef.current = setTimeout(() => {
+      setDrawerProject(null);
+      closeTimerRef.current = null;
+    }, 500);
+  }, [clearCloseTimer]);
 
   return (
     <>
       {/* Filter buttons with glass-card active state */}
-      <div className="mb-8 flex flex-wrap gap-2 sm:mb-12">
+      <div
+        className="mb-8 flex flex-wrap gap-2 sm:mb-12"
+        role="group"
+        aria-label={t("filters.label")}
+      >
         {filters.map(({ key, label }) => (
           <button
             key={key}
             id={`project-filter-${key}`}
+            aria-controls="project-list"
             onClick={() => handleFilterChange(key)}
             className="cursor-pointer rounded-full border px-4 py-1.5 text-xs font-medium transition-all duration-300 sm:px-6 sm:py-2 sm:text-sm"
             style={{
@@ -289,7 +342,7 @@ export function ProjectsClient() {
       </div>
 
       {/* Project list */}
-      <div ref={listRef} className="space-y-0">
+      <div id="project-list" ref={listRef} className="space-y-0">
         {filtered.map((project, idx) => (
           <ProjectItem
             key={project.id}
@@ -301,11 +354,13 @@ export function ProjectsClient() {
       </div>
 
       {/* Glass drawer — portal-like fixed overlay */}
-      <ProjectDrawer
-        project={drawerProject}
-        isOpen={isDrawerOpen}
-        onClose={closeDrawer}
-      />
+      {drawerProject ? (
+        <ProjectDrawer
+          project={drawerProject}
+          isOpen={isDrawerOpen}
+          onClose={closeDrawer}
+        />
+      ) : null}
     </>
   );
 }

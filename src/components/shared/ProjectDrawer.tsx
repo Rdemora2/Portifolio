@@ -1,22 +1,22 @@
 "use client";
 
 /**
- * ProjectDrawer — Glass overlay that "reveals depth" for a project.
+ * ProjectDrawer — Accessible project detail modal with a responsive surface.
  *
  * Desktop behavior:
- *   - Fixed overlay panel (right 40% of viewport, full height)
- *   - Slides in from right with glass-panel class
+ *   - Centered modal (90% width, max 800px; 85dvh)
+ *   - Enters with a subtle scale/vertical transition
  *   - Background list remains visible (blurred)
  *   - Escape key and backdrop click close it
  *
  * Mobile behavior (pointer:coarse OR width < 768px):
- *   - Bottom sheet that rises from below (max 85dvh)
+ *   - Full-width bottom sheet that rises from below (90dvh)
  *   - Drag handle at top for thumb-reachability cue
  *   - Does NOT use glass-panel backdrop-filter (stripped by CSS @media pointer:coarse)
- *   - Background scrolls to top and is locked (scroll-lock on open)
+ *   - Background is made inert and scroll-locked while open
  *
  * Accessibility:
- *   - role="dialog", aria-modal="true", aria-label from project title
+ *   - role="dialog", aria-modal="true", aria-labelledby from project title
  *   - Focus trapped inside while open (first focusable element auto-focused)
  *   - Escape closes
  *   - Body scroll locked while open via overflow:hidden on <html>
@@ -27,55 +27,123 @@
  *   - CountUp triggers only when drawer is open (trigger=isOpen)
  */
 
-import { useEffect, useRef, useCallback, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { createPortal } from "react-dom";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { CountUp } from "@/components/shared/CountUp";
-import type { Project } from "@/types";
-import { LiquidPortal } from "@/components/three/LiquidPortal";
+import type { ProjectViewModel } from "@/types";
+
+const LiquidPortal = dynamic(
+  () =>
+    import("@/components/shared/LiquidPortal").then((module) => ({
+      default: module.LiquidPortal,
+    })),
+  { ssr: false },
+);
 
 interface ProjectDrawerProps {
-  project: Project | null;
+  project: ProjectViewModel | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
+const mobileDrawerQuery = "(pointer: coarse), (max-width: 767px)";
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+
+function subscribeToMobileDrawer(onChange: () => void) {
+  const query = window.matchMedia(mobileDrawerQuery);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
+function getMobileDrawerSnapshot() {
+  return window.matchMedia(mobileDrawerQuery).matches;
+}
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(reducedMotionQuery);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches;
+}
+
 export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) {
   const t = useTranslations("Projects");
+  const projectTitle = project ? t(`items.${project.id}.title`) : null;
   const drawerRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const isAnimatingRef = useRef(false);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+  const [portalReady, setPortalReady] = useState(false);
 
-  // ── Determine if we're on mobile (bottom-sheet mode) ──────────────────────
-  // Note: this runs client-side only. SSR always returns false (no drawer shown).
-  const isMobile = typeof window !== "undefined"
-    ? window.matchMedia("(pointer: coarse), (max-width: 767px)").matches
-    : false;
-
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
+  const handleDrawerRef = useCallback((node: HTMLDivElement | null) => {
+    drawerRef.current = node;
+    setPortalReady(node !== null);
   }, []);
 
-  // ── Scroll lock & Global State ─────────────────────────────────────────────
+  const isMobile = useSyncExternalStore(
+    subscribeToMobileDrawer,
+    getMobileDrawerSnapshot,
+    () => false,
+  );
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    () => false,
+  );
+  const canRenderPortal =
+    typeof window !== "undefined" &&
+    !isMobile &&
+    !prefersReducedMotion &&
+    !(navigator as Navigator & { connection?: { saveData?: boolean } })
+      .connection?.saveData;
+
   useEffect(() => {
-    const html = document.documentElement;
-    if (isOpen) {
-      html.style.overflow = "hidden";
-    } else {
-      html.style.overflow = "";
-    }
-    
-    // Dispatch global event so WebGL canvases can unmount to save context budget
-    window.dispatchEvent(new CustomEvent("drawerStateChange", { detail: { isOpen } }));
-    
-    return () => { 
-      html.style.overflow = ""; 
-      window.dispatchEvent(new CustomEvent("drawerStateChange", { detail: { isOpen: false } }));
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  // Capture the opener independently from portal readiness. Callback refs can
+  // cause an extra render when the portal mounts, but that must never replace
+  // the original trigger with the drawer's close button.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const activeElement =
+      document.activeElement instanceof HTMLElement &&
+      document.activeElement !== document.body
+        ? document.activeElement
+        : null;
+    const matchingTrigger = project?.id
+      ? Array.from(
+          document.querySelectorAll<HTMLElement>("[data-project-trigger]"),
+        ).find((element) =>
+          element.getAttribute("data-project-trigger") === project.id,
+        )
+      : null;
+
+    previousFocusRef.current = activeElement ?? matchingTrigger ?? null;
+
+    return () => {
+      const focusTarget = previousFocusRef.current;
+      previousFocusRef.current = null;
+      requestAnimationFrame(() => {
+        if (focusTarget?.isConnected) {
+          focusTarget.focus({ preventScroll: true });
+        }
+      });
     };
-  }, [isOpen]);
+  }, [isOpen, project?.id, projectTitle]);
 
   // ── GSAP entrance / exit ──────────────────────────────────────────────────
   useEffect(() => {
@@ -83,33 +151,71 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
     const backdrop = backdropRef.current;
     if (!drawer || !backdrop) return;
 
+    const applyWithoutMotion = () => {
+      drawer.style.opacity = isOpen ? "1" : "0";
+      drawer.style.transform = isMobile
+        ? "none"
+        : "translate(-50%, -50%)";
+      drawer.style.willChange = "";
+      backdrop.style.opacity = isOpen ? "1" : "0";
+      backdrop.style.display = isOpen ? "block" : "none";
+    };
+
+    if (prefersReducedMotion) {
+      applyWithoutMotion();
+      return;
+    }
+
     let isActive = true;
+    let gsapInstance: typeof import("gsap").gsap | null = null;
+    let fallbackApplied = false;
+    const fallbackTimer = window.setTimeout(() => {
+      if (!isActive || gsapInstance) return;
+      fallbackApplied = true;
+      applyWithoutMotion();
+    }, 180);
 
     const run = async () => {
-      const mod = await import("@/lib/gsap");
-      if (!isActive) return;
+      let mod: typeof import("@/lib/gsap");
+      try {
+        mod = await import("@/lib/gsap");
+      } catch {
+        window.clearTimeout(fallbackTimer);
+        if (isActive) applyWithoutMotion();
+        return;
+      }
+      window.clearTimeout(fallbackTimer);
+      if (!isActive || fallbackApplied) return;
       const { gsap } = mod;
+      gsapInstance = gsap;
+      gsap.killTweensOf([drawer, backdrop]);
 
       if (isOpen) {
-        isAnimatingRef.current = true;
         drawer.style.willChange = "transform";
         backdrop.style.display = "block";
 
         if (isMobile) {
           gsap.fromTo(
             drawer,
-            { opacity: 0, scale: 0.95, y: "10%" },
+            {
+              opacity: 0,
+              scale: 0.95,
+              xPercent: 0,
+              yPercent: 0,
+              y: "10%",
+            },
             {
               opacity: 1,
               scale: 1,
+              xPercent: 0,
+              yPercent: 0,
               y: "0%",
               duration: 0.5,
               ease: "power3.out",
               onComplete: () => {
-                isAnimatingRef.current = false;
-                closeButtonRef.current?.focus();
+                drawer.style.willChange = "";
               },
-            }
+            },
           );
         } else {
           gsap.fromTo(
@@ -124,31 +230,42 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
               duration: 0.5,
               ease: "power3.out",
               onComplete: () => {
-                isAnimatingRef.current = false;
-                closeButtonRef.current?.focus();
+                drawer.style.willChange = "";
               },
-            }
+            },
           );
         }
 
         gsap.fromTo(
           backdrop,
           { opacity: 0 },
-          { opacity: 1, duration: 0.4 }
+          { opacity: 1, duration: 0.4 },
         );
       } else {
-        isAnimatingRef.current = true;
-        
-        const exitProps = isMobile 
-          ? { opacity: 0, scale: 0.95, y: "10%" }
-          : { opacity: 0, scale: 0.95, xPercent: -50, yPercent: -50, y: 20 };
+        drawer.style.willChange = "transform";
+
+        const exitProps = isMobile
+          ? {
+              opacity: 0,
+              scale: 0.95,
+              xPercent: 0,
+              yPercent: 0,
+              y: "10%",
+            }
+          : {
+              opacity: 0,
+              scale: 0.95,
+              xPercent: -50,
+              yPercent: -50,
+              y: 20,
+            };
 
         gsap.to(drawer, {
           ...exitProps,
           duration: 0.3,
           ease: "power3.in",
           onComplete: () => {
-            isAnimatingRef.current = false;
+            drawer.style.willChange = "";
           },
         });
 
@@ -162,24 +279,101 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
       }
     };
 
-    run();
-    return () => { isActive = false; };
-  }, [isOpen, isMobile]);
+    void run();
+    return () => {
+      isActive = false;
+      window.clearTimeout(fallbackTimer);
+      gsapInstance?.killTweensOf([drawer, backdrop]);
+    };
+  }, [isOpen, isMobile, portalReady, prefersReducedMotion]);
 
-  // ── Escape key ─────────────────────────────────────────────────────────────
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) onClose();
-    },
-    [isOpen, onClose]
-  );
-
+  // ── Modal focus, inert background, Escape and scroll lock ─────────────────
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
+    if (!isOpen) return;
 
-  if (!project || !mounted) return null;
+    const drawer = drawerRef.current;
+    const backdrop = backdropRef.current;
+    if (!drawer || !backdrop) return;
+
+    const html = document.documentElement;
+    const previousOverflow = html.style.overflow;
+    html.style.overflow = "hidden";
+
+    const modalRoots = [drawer, backdrop];
+    const backgroundElements = Array.from(document.body.children).filter(
+      (element): element is HTMLElement =>
+        element instanceof HTMLElement &&
+        !modalRoots.some(
+          (modalRoot) =>
+            element === modalRoot || element.contains(modalRoot),
+        ),
+    );
+    const previousInert = backgroundElements.map((element) => ({
+      element,
+      inert: element.inert,
+    }));
+    backgroundElements.forEach((element) => {
+      element.inert = true;
+    });
+
+    const focusDrawer = requestAnimationFrame(() => {
+      closeButtonRef.current?.focus({ preventScroll: true });
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onCloseRef.current();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = Array.from(
+        drawer.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter(
+        (element) =>
+          !element.hidden &&
+          element.getAttribute("aria-hidden") !== "true" &&
+          element.getClientRects().length > 0,
+      );
+
+      event.preventDefault();
+
+      if (focusableElements.length === 0) {
+        drawer.focus({ preventScroll: true });
+        return;
+      }
+
+      const currentIndex = focusableElements.indexOf(
+        document.activeElement as HTMLElement,
+      );
+      const nextIndex = event.shiftKey
+        ? currentIndex <= 0
+          ? focusableElements.length - 1
+          : currentIndex - 1
+        : currentIndex < 0 || currentIndex === focusableElements.length - 1
+          ? 0
+          : currentIndex + 1;
+
+      focusableElements[nextIndex]?.focus({ preventScroll: true });
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      cancelAnimationFrame(focusDrawer);
+      document.removeEventListener("keydown", handleKeyDown);
+      html.style.overflow = previousOverflow;
+      previousInert.forEach(({ element, inert }) => {
+        element.inert = inert;
+      });
+    };
+  }, [isOpen, portalReady, project?.id]);
+
+  if (!project) return null;
 
   const drawerContent = (
     <>
@@ -199,10 +393,15 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
 
       {/* Modal panel */}
       <div
-        ref={drawerRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label={t(`items.${project.id}.title`)}
+        ref={handleDrawerRef}
+        role={isOpen ? "dialog" : undefined}
+        aria-modal={isOpen ? "true" : undefined}
+        aria-labelledby={
+          isOpen ? `project-drawer-title-${project.id}` : undefined
+        }
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+        tabIndex={-1}
         className={`
           fixed z-[9999] glass-panel overflow-hidden shadow-2xl
           ${isMobile
@@ -219,7 +418,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
       >
         {/* Fixed Background Layer (won't scroll) */}
         <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundColor: "var(--color-void)" }}>
-          <LiquidPortal />
+          {canRenderPortal && isOpen ? <LiquidPortal /> : null}
           {/* Dark Overlay for readability */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
         </div>
@@ -227,7 +426,6 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
         {/* Scrollable Content Layer */}
         <div 
           className="relative z-10 h-full w-full overflow-y-auto overscroll-contain"
-          data-lenis-prevent="true"
         >
           {/* Drag handle (mobile only) */}
           {isMobile && (
@@ -257,6 +455,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
               {project.client}
             </p>
             <h2
+              id={`project-drawer-title-${project.id}`}
               className="text-xl font-bold leading-tight sm:text-2xl"
               style={{ fontFamily: "var(--font-display)", color: "var(--color-text-primary)" }}
             >
@@ -267,12 +466,12 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
           <button
             ref={closeButtonRef}
             onClick={onClose}
-            className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 hover:border-[var(--color-signal)]"
+            className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-200 hover:border-[var(--color-signal)]"
             style={{
               borderColor: "var(--glass-border)",
               color: "var(--color-text-secondary)",
             }}
-            aria-label={t("closeDrawer") || "Fechar"}
+            aria-label={t("closeDrawer")}
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -288,7 +487,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
             <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
               {project.metrics.map((metric) => (
                 <div
-                  key={metric.label}
+                  key={metric.id}
                   className="rounded-xl border p-4 text-center"
                   style={{
                     borderColor: "var(--glass-border)",
@@ -310,9 +509,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
                     className="mt-2 text-[0.625rem] uppercase tracking-wider sm:text-xs"
                     style={{ fontFamily: "var(--font-mono)", color: "var(--color-text-muted)" }}
                   >
-                    {t(`items.${project.id}.metrics.${metric.label.replace(/\s+/g, "").toLowerCase()}`, {
-                      defaultValue: metric.label,
-                    })}
+                    {t(`items.${project.id}.metrics.${metric.id}`)}
                   </p>
                 </div>
               ))}
@@ -320,7 +517,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
           )}
 
           {/* Case Study */}
-          {project.caseStudy && (
+          {project.hasCaseStudy && (
             <div
               className="rounded-xl border p-4 sm:p-6"
               style={{
@@ -377,7 +574,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
           </div>
 
           {/* Key Decisions */}
-          {project.caseStudy?.keyDecisions && (
+          {project.keyDecisionCount > 0 && (
             <div>
               <h3
                 className="mb-3 text-xs font-semibold uppercase tracking-widest"
@@ -386,13 +583,13 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
                 {t("keyDecisions")}
               </h3>
               <ul className="space-y-2">
-                {project.caseStudy.keyDecisions.map((_, idx) => (
+                {Array.from({ length: project.keyDecisionCount }, (_, idx) => (
                   <li
                     key={idx}
                     className="flex items-start gap-2 text-sm"
                     style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}
                   >
-                    <span style={{ color: "var(--color-highlight)" }}>◆</span>
+                    <span aria-hidden="true" style={{ color: "var(--color-highlight)" }}>◆</span>
                     {t(`items.${project.id}.caseStudy.keyDecisions.${idx}`)}
                   </li>
                 ))}
@@ -409,21 +606,21 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
               {t("highlights")}
             </h3>
             <ul className="space-y-2">
-              {project.highlights.map((h, idx) => (
+              {Array.from({ length: project.highlightCount }, (_, idx) => (
                 <li
                   key={idx}
                   className="flex items-start gap-2 text-sm"
                   style={{ fontFamily: "var(--font-body)", color: "var(--color-text-secondary)" }}
                 >
-                  <span style={{ color: "var(--color-matrix)" }}>▸</span>
-                  {t(`items.${project.id}.highlights.${idx}`, { defaultValue: h })}
+                  <span aria-hidden="true" style={{ color: "var(--color-matrix)" }}>▸</span>
+                  {t(`items.${project.id}.highlights.${idx}`)}
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Lessons Learned */}
-          {project.caseStudy?.lessonsLearned && (
+          {project.lessonsLearnedCount > 0 && (
             <div>
               <h3
                 className="mb-3 text-xs font-semibold uppercase tracking-widest"
@@ -432,13 +629,13 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
                 {t("lessonsLearned")}
               </h3>
               <ul className="space-y-2">
-                {project.caseStudy.lessonsLearned.map((_, idx) => (
+                {Array.from({ length: project.lessonsLearnedCount }, (_, idx) => (
                   <li
                     key={idx}
                     className="flex items-start gap-2 text-sm italic"
                     style={{ fontFamily: "var(--font-body)", color: "var(--color-text-muted)" }}
                   >
-                    <span style={{ color: "var(--color-text-muted)" }}>→</span>
+                    <span aria-hidden="true" style={{ color: "var(--color-text-muted)" }}>→</span>
                     {t(`items.${project.id}.caseStudy.lessonsLearned.${idx}`)}
                   </li>
                 ))}

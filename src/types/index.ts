@@ -30,6 +30,7 @@ export interface PersonalInfo {
 }
 
 export interface Metric {
+  id: string
   label: string
   value: number
   suffix: string
@@ -67,6 +68,19 @@ export interface Project {
   order: number
   international?: boolean
   caseStudy?: CaseStudyDetail
+}
+
+export interface ProjectViewModel {
+  id: string
+  roleType: RoleType
+  client: string
+  international?: boolean
+  metrics: Array<Pick<Metric, "id" | "value" | "suffix">>
+  stack: string[]
+  highlightCount: number
+  keyDecisionCount: number
+  lessonsLearnedCount: number
+  hasCaseStudy: boolean
 }
 
 export interface TechItem {

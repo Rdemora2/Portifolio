@@ -36,9 +36,9 @@ export const projects: Project[] = [
     solution: "Arquitetura unificada em Next.js no frontend e Go no backend, com NestJS para microsserviços auxiliares. Segurança de borda via WAF da AWS, Load Balancing elástico e deploy gradual com rollback automatizado.",
     impact: "6 portais modernizados com arquitetura de vanguarda, segurança enterprise-grade e capacidade de escala para picos de audiência (eleições, eventos esportivos ao vivo).",
     metrics: [
-      { label: "Portais migrados", value: 6, suffix: "+", description: "Portais refatorados simultaneamente" },
-      { label: "Downtime", value: 0, suffix: "s", description: "Zero interrupção durante migração" },
-      { label: "Parceria", value: 1, suffix: "", description: "Parceria Vivo para distribuição" },
+      { id: "portalsMigrated", label: "Portais migrados", value: 6, suffix: "+", description: "Portais refatorados simultaneamente" },
+      { id: "downtime", label: "Downtime", value: 0, suffix: "s", description: "Zero interrupção durante migração" },
+      { id: "partnership", label: "Parceria", value: 1, suffix: "", description: "Parceria Vivo para distribuição" },
     ],
     stack: ["Next.js", "Go", "NestJS", "React", "AWS", "Load Balancing", "WAF", "TypeScript"],
     highlights: [
@@ -86,9 +86,9 @@ export const projects: Project[] = [
     solution: "Backend em Go (Fiber) otimizado para throughput máximo, com orquestração auto-escalável no GCP (Cloud Run). Cache distribuído com Redis (92% hit rate), persistência em PostgreSQL e observabilidade via Prometheus. App nativo Kotlin com Jetpack Compose e Media3 para Android TV.",
     impact: "Plataforma em produção estável com 20M+ requisições mensais, latência média de 6ms e infraestrutura pronta para auditorias de saúde e expansão para novas unidades hospitalares.",
     metrics: [
-      { label: "Requisições/mês", value: 20, suffix: "M", description: "Volume mensal em produção" },
-      { label: "Resposta média", value: 6, suffix: "ms", description: "Latência média da API" },
-      { label: "Cache hit rate", value: 92, suffix: "%", description: "Acerto de cache no Redis" },
+      { id: "requestsPerMonth", label: "Requisições/mês", value: 20, suffix: "M", description: "Volume mensal em produção" },
+      { id: "averageResponse", label: "Resposta média", value: 6, suffix: "ms", description: "Latência média da API" },
+      { id: "cacheHitRate", label: "Cache hit rate", value: 92, suffix: "%", description: "Acerto de cache no Redis" },
     ],
     stack: ["Go", "Fiber", "PostgreSQL", "Redis", "GCP", "Cloud Run", "Prometheus", "Kotlin", "Jetpack Compose", "Media3", "Widevine DRM", "Tasy"],
     highlights: [

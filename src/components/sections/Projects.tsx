@@ -1,9 +1,27 @@
 import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { projects } from "@/data/portfolio";
+import type { ProjectViewModel } from "@/types";
 import { ProjectsClient } from "./ProjectsClient";
 
 export function Projects() {
   const t = useTranslations("Projects");
+  const projectViewModels: ProjectViewModel[] = projects.map((project) => ({
+    id: project.id,
+    roleType: project.roleType,
+    client: project.client,
+    international: project.international,
+    metrics: project.metrics.map(({ id, value, suffix }) => ({
+      id,
+      value,
+      suffix,
+    })),
+    stack: project.stack,
+    highlightCount: project.highlights.length,
+    keyDecisionCount: project.caseStudy?.keyDecisions.length ?? 0,
+    lessonsLearnedCount: project.caseStudy?.lessonsLearned.length ?? 0,
+    hasCaseStudy: Boolean(project.caseStudy),
+  }));
 
   return (
     <section
@@ -35,7 +53,7 @@ export function Projects() {
           </h2>
         </ScrollReveal>
 
-        <ProjectsClient />
+        <ProjectsClient projects={projectViewModels} />
       </div>
     </section>
   );
