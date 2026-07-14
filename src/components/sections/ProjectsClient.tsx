@@ -1,6 +1,13 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect, memo } from "react";
+import {
+  Suspense,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -353,13 +360,15 @@ export function ProjectsClient({ projects }: { projects: ProjectViewModel[] }) {
         ))}
       </div>
 
-      {/* Glass drawer — portal-like fixed overlay */}
+      {/* Keep lazy loading local so the route fallback never replaces the page. */}
       {drawerProject ? (
-        <ProjectDrawer
-          project={drawerProject}
-          isOpen={isDrawerOpen}
-          onClose={closeDrawer}
-        />
+        <Suspense fallback={null}>
+          <ProjectDrawer
+            project={drawerProject}
+            isOpen={isDrawerOpen}
+            onClose={closeDrawer}
+          />
+        </Suspense>
       ) : null}
     </>
   );

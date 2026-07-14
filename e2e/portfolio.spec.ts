@@ -329,6 +329,88 @@ test("enforces the configured production origin on the contact API", async ({ re
 test.describe("normal-motion project drawer", () => {
   test.use({ contextOptions: { reducedMotion: "no-preference" } })
 
+  test("keeps the projects section anchored while the first drawer loads", async ({
+    page,
+  }) => {
+    await page.goto("/en/", { waitUntil: "networkidle" })
+    await page.evaluate(async () => {
+      document.documentElement.style.scrollBehavior = "auto"
+      document.querySelector("#projects")?.scrollIntoView({ block: "start" })
+      await new Promise<void>((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      })
+
+      const main = document.querySelector("main")
+      if (!(main instanceof HTMLElement)) {
+        throw new Error("Portfolio main element was not found")
+      }
+
+      document.documentElement.dataset.mainHiddenDuringDrawerLoad = "false"
+      const visibilityObserver = new MutationObserver(() => {
+        if (getComputedStyle(main).display === "none") {
+          document.documentElement.dataset.mainHiddenDuringDrawerLoad = "true"
+        }
+      })
+      visibilityObserver.observe(main, {
+        attributes: true,
+        attributeFilter: ["style"],
+      })
+    })
+
+    const opener = page.getByRole("button", {
+      name: /Grupo Bandeirantes.*View details/,
+    })
+    await expect(opener).toBeVisible()
+
+    let interceptedChunks = 0
+    let releaseChunks: () => void = () => undefined
+    const chunkGate = new Promise<void>((resolve) => {
+      releaseChunks = resolve
+    })
+    await page.route("**/_next/static/chunks/*.js", async (route) => {
+      interceptedChunks += 1
+      await chunkGate
+      await route.continue()
+    })
+
+    const projectContextIsVisible = async () => {
+      const sectionIsVisible = await page
+        .locator("#projects")
+        .evaluate((element) => {
+          const rect = element.getBoundingClientRect()
+          return rect.bottom > 0 && rect.top < window.innerHeight
+        })
+      const openerIsVisible = await opener.evaluate((element) => {
+        const rect = element.getBoundingClientRect()
+        return rect.bottom > 0 && rect.top < window.innerHeight
+      })
+      return sectionIsVisible && openerIsVisible
+    }
+
+    await expect.poll(projectContextIsVisible).toBe(true)
+
+    const openDrawer = opener.click()
+    await expect.poll(() => interceptedChunks).toBeGreaterThan(0)
+    await expect(page.locator("main")).toHaveCSS("display", "block")
+    await expect(page.locator("html")).toHaveAttribute(
+      "data-main-hidden-during-drawer-load",
+      "false",
+    )
+    await expect.poll(projectContextIsVisible).toBe(true)
+
+    releaseChunks()
+    await openDrawer
+
+    await expect(
+      page.getByRole("dialog", { name: "Grupo Bandeirantes" }),
+    ).toBeVisible()
+    await expect(page.locator("html")).toHaveAttribute(
+      "data-main-hidden-during-drawer-load",
+      "false",
+    )
+    await expect.poll(projectContextIsVisible).toBe(true)
+  })
+
   test("keeps the latest filter intent when an animation import fails", async ({
     page,
   }) => {
