@@ -1,23 +1,22 @@
 import { useTranslations } from "next-intl";
 import { personalInfo } from "@/data/portfolio";
 import { MagneticButton } from "@/components/shared/MagneticButton";
-import { HeroClientWrapper, HeroCompanionInjector } from "./HeroClient";
+import { HeroClientWrapper } from "./HeroClient";
 
-export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
+export function Hero() {
   const t = useTranslations("Hero");
 
   return (
-    <HeroClientWrapper isLoaded={isLoaded}>
-      {/* Main content layout — text left, 3D companion right on desktop */}
+    <HeroClientWrapper>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-8 lg:gap-16">
-          {/* Glass content card — text + CTAs */}
+        <div className="flex items-center">
           <div
-            className="glass-card max-w-2xl rounded-2xl px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+            className="hero-card-enter glass-card max-w-3xl rounded-2xl px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
             style={{ borderRadius: "1.5rem" }}
           >
             <h1
-              className="hero-name mb-4 font-extrabold leading-none"
+              className="hero-name hero-name-enter mb-4 font-extrabold leading-none"
+              aria-label={personalInfo.name}
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "var(--text-hero)",
@@ -31,11 +30,10 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             </h1>
 
             <p
-              className="hero-title mb-4 font-semibold uppercase"
+              className="hero-title hero-copy-enter mb-4 font-semibold uppercase"
               style={{
                 fontFamily: "var(--font-body)",
                 color: "var(--color-signal)",
-                clipPath: "inset(0 100% 0 0)",
                 fontSize: "clamp(0.875rem, 1vw + 0.5rem, var(--text-lg))",
                 letterSpacing: "0.15em",
               }}
@@ -51,7 +49,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             </p>
 
             <p
-              className="hero-subtitle mb-8 tracking-widest opacity-0 sm:mb-10"
+              className="hero-subtitle hero-copy-enter mb-8 tracking-widest sm:mb-10"
               style={{
                 fontFamily: "var(--font-mono)",
                 color: "var(--color-text-secondary)",
@@ -65,7 +63,7 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               />
             </p>
 
-            <div className="hero-cta flex flex-wrap gap-3 opacity-0 sm:gap-4">
+            <div className="hero-cta hero-actions-enter flex flex-wrap gap-3 sm:gap-4">
               <MagneticButton
                 href="#projects"
                 className="rounded-full border border-[var(--color-signal)] text-[var(--color-signal)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] sm:px-8 sm:py-3 sm:text-sm"
@@ -84,8 +82,6 @@ export function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
               </MagneticButton>
             </div>
           </div>
-
-          <HeroCompanionInjector />
         </div>
       </div>
     </HeroClientWrapper>
