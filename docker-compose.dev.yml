@@ -9,22 +9,24 @@ services:
     environment:
       NODE_ENV: development
       NEXT_TELEMETRY_DISABLED: "1"
-      CHOKIDAR_USEPOLLING: "1"
-      WATCHPACK_POLLING: "1"
-      WATCHPACK_POLLING_INTERVAL: "1000"
+      NEXT_DEV_OLD_SPACE_MB: "${NEXT_DEV_OLD_SPACE_MB:-1536}"
+      NEXT_DEV_MEMORY_LIMIT_MB: "${NEXT_DEV_MEMORY_LIMIT_MB:-2048}"
+      NEXT_PUBLIC_SITE_URL: "${NEXT_PUBLIC_SITE_URL:-http://localhost:${PORT:-3000}}"
       PORT: "3000"
       RESEND_API_KEY: ${RESEND_API_KEY:-}
       CONTACT_FROM_EMAIL: ${CONTACT_FROM_EMAIL:-Portfolio <portfolio@example.com>}
       CONTACT_TO_EMAIL: ${CONTACT_TO_EMAIL:-owner@example.com}
       CONTACT_IDEMPOTENCY_SECRET: ${CONTACT_IDEMPOTENCY_SECRET:-development-only-secret}
-      CONTACT_ALLOWED_ORIGINS: ${CONTACT_ALLOWED_ORIGINS:-http://localhost:3000}
-      CONTACT_TRUST_PROXY: "false"
+      CONTACT_ALLOWED_ORIGINS: "${CONTACT_ALLOWED_ORIGINS:-http://localhost:${PORT:-3000}}"
+      CONTACT_TRUST_PROXY: "${CONTACT_TRUST_PROXY:-false}"
     volumes:
       - .:/app
       - node_modules:/app/node_modules
       - next_cache:/app/.next
-    command: npm run dev -- -H 0.0.0.0 -p 3000
     init: true
+    mem_limit: "${DEV_CONTAINER_MEMORY_LIMIT:-2560m}"
+    mem_reservation: "${DEV_CONTAINER_MEMORY_RESERVATION:-1024m}"
+    pids_limit: 256
     tty: true
     stdin_open: true
     security_opt:
