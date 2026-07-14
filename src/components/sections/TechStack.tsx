@@ -4,7 +4,6 @@ import { TECH_CATEGORY_COLORS } from "@/lib/constants";
 import { getTranslations } from "next-intl/server";
 
 import LogoLoop from "@/components/shared/LogoLoop";
-import { TechStackPhysicsWrapper } from "./TechStackClient";
 import { FaAws } from "react-icons/fa";
 import {
   SiReact,
@@ -13,9 +12,7 @@ import {
   SiKotlin,
   SiGooglecloud,
   SiDocker,
-  SiKubernetes,
   SiPostgresql,
-  SiGraphql,
   SiVuedotjs,
 } from "react-icons/si";
 
@@ -27,10 +24,8 @@ const techLogos = [
   { node: <SiKotlin size={36} color="#7F52FF" /> },
   { node: <SiGooglecloud size={36} color="#4285F4" /> },
   { node: <SiDocker size={36} color="#2496ED" /> },
-  { node: <SiKubernetes size={36} color="#326CE5" /> },
   { node: <FaAws size={36} color="#FF9900" /> },
   { node: <SiPostgresql size={36} color="#4169E1" /> },
-  { node: <SiGraphql size={36} color="#E10098" /> },
 ];
 
 export async function TechStack() {
@@ -62,7 +57,7 @@ export async function TechStack() {
               letterSpacing: "0.25em",
             }}
           >
-            {tn("tech_small") || "O que eu uso"}
+            {tn("tech_small")}
           </p>
           <h2
             className="mb-8 font-bold sm:mb-12"
@@ -87,12 +82,11 @@ export async function TechStack() {
             fadeOut={true}
             fadeOutColor="var(--color-deep)"
             scaleOnHover={true}
-            pauseOnHover={true}
           />
         </div>
 
-        {/* Static Grid with Mouse Physics */}
-        <TechStackPhysicsWrapper>
+        {/* Technology groups stay stable; hover feedback is handled in CSS. */}
+        <div>
           <div className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3">
             {Object.entries(grouped).map(([category, items], idx) => (
               <ScrollReveal key={category} delay={idx * 0.1}>
@@ -110,7 +104,7 @@ export async function TechStack() {
                     />
                     <span
                       style={{
-                        color: TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
+                        color: "var(--color-text-primary)",
                       }}
                     >
                       {t(category) || category}
@@ -132,7 +126,6 @@ export async function TechStack() {
                           backgroundColor: tech.featured
                             ? "rgba(99,102,241,0.05)"
                             : "transparent",
-                          willChange: "transform",
                         }}
                       >
                         {tech.name}
@@ -151,7 +144,7 @@ export async function TechStack() {
               </ScrollReveal>
             ))}
           </div>
-        </TechStackPhysicsWrapper>
+        </div>
       </div>
     </section>
   );

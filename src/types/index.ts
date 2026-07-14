@@ -89,7 +89,6 @@ export interface TechItem {
   proficiency: Proficiency
   yearsUsed: number
   featured: boolean
-  icon?: string
 }
 
 export interface ExperienceEntry {
