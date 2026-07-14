@@ -4,11 +4,44 @@ services:
       context: .
       dockerfile: Dockerfile
       target: runner
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:?Set NEXT_PUBLIC_SITE_URL}
+        NEXT_PUBLIC_WEB_VITALS_ENDPOINT: ${NEXT_PUBLIC_WEB_VITALS_ENDPOINT:-}
     ports:
-      - "3000:3000"
+      - "127.0.0.1:${PORT:-3000}:3000"
     environment:
       NODE_ENV: production
       NEXT_TELEMETRY_DISABLED: "1"
-      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:?Set NEXT_PUBLIC_SITE_URL}
+      RESEND_API_KEY: ${RESEND_API_KEY:?Set RESEND_API_KEY}
+      CONTACT_FROM_EMAIL: ${CONTACT_FROM_EMAIL:?Set CONTACT_FROM_EMAIL}
+      CONTACT_TO_EMAIL: ${CONTACT_TO_EMAIL:?Set CONTACT_TO_EMAIL}
+      CONTACT_IDEMPOTENCY_SECRET: ${CONTACT_IDEMPOTENCY_SECRET:?Set CONTACT_IDEMPOTENCY_SECRET}
+      CONTACT_ALLOWED_ORIGINS: ${CONTACT_ALLOWED_ORIGINS:?Set CONTACT_ALLOWED_ORIGINS}
+      CONTACT_MAX_BODY_BYTES: ${CONTACT_MAX_BODY_BYTES:-16384}
+      CONTACT_EMAIL_TIMEOUT_MS: ${CONTACT_EMAIL_TIMEOUT_MS:-8000}
+      CONTACT_RATE_LIMIT_MAX: ${CONTACT_RATE_LIMIT_MAX:-5}
+      CONTACT_RATE_LIMIT_GLOBAL_MAX: ${CONTACT_RATE_LIMIT_GLOBAL_MAX:-100}
+      CONTACT_RATE_LIMIT_WINDOW_SECONDS: ${CONTACT_RATE_LIMIT_WINDOW_SECONDS:-60}
+      CONTACT_RATE_LIMIT_MAX_ENTRIES: ${CONTACT_RATE_LIMIT_MAX_ENTRIES:-5000}
+      CONTACT_TRUST_PROXY: ${CONTACT_TRUST_PROXY:?Set CONTACT_TRUST_PROXY to true or false}
+      CONTACT_CLIENT_IP_HEADER: ${CONTACT_CLIENT_IP_HEADER:-x-forwarded-for}
+      CONTACT_TRUST_PROXY_HOPS: ${CONTACT_TRUST_PROXY_HOPS:-1}
     restart: unless-stopped
     init: true
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m,mode=1770,uid=65532,gid=65532
+      - /app/.next/cache:rw,noexec,nosuid,size=256m,mode=1770,uid=65532,gid=65532
+    pids_limit: 256
+    mem_limit: ${CONTAINER_MEMORY_LIMIT:-768m}
+    cpus: ${CONTAINER_CPU_LIMIT:-1.0}
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
