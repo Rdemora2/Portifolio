@@ -9,8 +9,9 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "vitest run && npm run test:quality-hook",
+    "test:watch": "vitest",
+    "test:quality-hook": "bash scripts/ai-quality-gate.test.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",

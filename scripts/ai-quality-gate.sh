@@ -11,20 +11,30 @@ if ! command -v node >/dev/null 2>&1; then
   exit 0
 fi
 
-tool_name="$(printf '%s' "$payload" | node - <<'NODE'
+tool_name="$(printf '%s' "$payload" | node -e '
 const fs = require("fs");
 const raw = fs.readFileSync(0, "utf8");
 if (!raw) process.exit(0);
 let data;
 try {
   data = JSON.parse(raw);
-} catch (err) {
+} catch {
   process.exit(0);
 }
-const tool = data.tool || {};
-const name = tool.name || data.toolName || data.toolId || data.tool || "";
-if (typeof name === "string") process.stdout.write(name);
-NODE
+const nestedName =
+  data.tool && typeof data.tool === "object" ? data.tool.name : undefined;
+const directTool = typeof data.tool === "string" ? data.tool : undefined;
+const name = [
+  nestedName,
+  data.toolName,
+  data.tool_name,
+  data.toolId,
+  directTool,
+].find(
+  (candidate) => typeof candidate === "string",
+);
+if (name) process.stdout.write(name);
+'
 )"
 
 case "$tool_name" in
