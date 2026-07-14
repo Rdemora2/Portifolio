@@ -122,7 +122,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: [socialImage],
+      images: [{ url: socialImage, alt: t("title") }],
     },
     robots: {
       index: true,

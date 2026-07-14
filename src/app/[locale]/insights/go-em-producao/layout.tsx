@@ -51,7 +51,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${article.seo.title} | ${SITE_NAME}`,
       description: article.seo.description,
-      images: [socialImage],
+      images: [{ url: socialImage, alt: article.seo.title }],
     },
   }
 }
