@@ -2,172 +2,264 @@
 
 [![CI](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml)
 
-Portfólio profissional multilíngue construído com Next.js 16 e React 19. A aplicação prioriza conteúdo server-rendered, acessibilidade, SEO técnico, segurança e efeitos visuais progressivos que não bloqueiam a experiência principal.
+Portfólio profissional multilíngue em Next.js 16 e React 19. A aplicação combina conteúdo pré-renderizado, uma experiência editorial imersiva e efeitos progressivos com limites explícitos de acessibilidade, segurança e performance.
 
-## Arquitetura
+Este README é a porta de entrada operacional. O desenho completo, os fluxos, contratos, decisões e procedimentos de manutenção estão em [docs/TECHNICAL_CONTEXT.md](./docs/TECHNICAL_CONTEXT.md).
 
-- App Router com páginas estáticas para português, inglês e espanhol.
-- Prefixo de idioma apenas para idiomas não padrão: `/`, `/en` e `/es`.
-- Conteúdo e metadata localizados, incluindo canonical, `hreflang`, Open Graph, sitemap e dados estruturados.
-- Client Components restritos a interações que realmente precisam do navegador.
-- Efeitos WebGL em OGL carregados sob demanda, com fallback estático, pausa em abas ocultas e redução ou desativação conforme movimento reduzido, ponteiro, economia de dados e capacidade do dispositivo.
-- API de contato com validação estrita, limite de corpo, proteção de origem, honeypot, rate limiting, timeout e idempotência.
-- Build standalone preparado para execução direta ou em container Node.js 24 distroless não-root, sem shell ou package manager no runtime; as imagens-base são fixadas por versão e digest.
+## Características principais
+
+- Home e artigo localizados e pré-renderizados para português, inglês e espanhol.
+- Prefixo de idioma somente quando necessário: <code>/</code>, <code>/en</code> e <code>/es</code>.
+- Metadata localizada com canonical, <code>hreflang</code>, Open Graph, Twitter Cards, sitemap e JSON-LD.
+- Server Components por padrão e ilhas client-side somente para interação.
+- Artigo legível sem JavaScript, com experiência de scroll aprimorada quando o navegador e as preferências do usuário permitem.
+- WebGL, GSAP e formulário carregados sob demanda, com fallbacks estáticos ou nativos.
+- API de contato com validação estrita, proteção de origem, limites de corpo, rate limiting, honeypot, timeout e idempotência.
+- Build standalone e imagem de produção distroless, não-root e com filesystem somente leitura via Compose.
+- Gates automatizados para testes, lint, tipos, build, bundle, navegadores, dependências e imagem Docker.
 
 ## Stack
 
-| Área | Tecnologias |
+| Área | Implementação atual |
 | --- | --- |
-| Aplicação | Next.js 16.2, React 19, TypeScript 5 |
-| Interface | Tailwind CSS 4, CSS nativo, GSAP sob demanda |
-| Efeitos opcionais | OGL com shaders progressivos e fallback estático |
-| Formulário | React Hook Form, Zod, Resend |
-| Internacionalização | next-intl |
-| Qualidade | ESLint, TypeScript, Vitest, Playwright, axe-core |
-| Entrega | GitHub Actions, Docker, Docker Compose |
+| Aplicação | Next.js 16.2.10, React 19.2.4, TypeScript 5 |
+| Interface | Tailwind CSS 4, CSS Modules, CSS nativo e Web Animations API |
+| Motion opcional | GSAP 3.15.0 e OGL 1.0.11 |
+| Formulário | React Hook Form 7.74.0, Zod 4.4.1 e Resend 6.17.2 |
+| Internacionalização | next-intl 4.12 |
+| Qualidade | ESLint 9, Vitest 4.1, Playwright 1.61 e axe-core |
+| Entrega | GitHub Actions, Docker e Docker Compose |
 
 ## Requisitos
 
-- Node.js 24+ obrigatório (`>=24.0.0`, sem teto de major); `.nvmrc` fixa a versão de referência em 24.18.0
-- npm 11.16.0 é a versão de referência reproduzível declarada em `packageManager`, não um bloqueio de compatibilidade
-- Docker 24+ apenas para execução em container
+- Node.js <code>&gt;=24.0.0</code>, sem teto de major.
+- npm 11.16.0 como versão de referência reproduzível.
+- Docker 24+ somente para os fluxos em container.
 
-O mínimo do runtime é estrito: `engines`, `devEngines` e `engine-strict=true` rejeitam versões anteriores a Node.js 24, mas não bloqueiam majors futuros nem impõem uma faixa adicional de npm. `.nvmrc`, `packageManager`, CI e Docker mantêm Node.js 24.18.0/npm 11.16.0 como toolchain de referência para builds reproduzíveis, sem funcionar como teto de compatibilidade. O runner usa distroless Debian 13. Scripts de lifecycle das dependências são bloqueados por `.npmrc`. Os comandos explicitamente invocados com `npm run` continuam disponíveis, e o build limpo comprova que os artefatos nativos pré-compilados bastam para esta árvore de dependências. A instalação também verifica assinaturas do registry, e o Trivy rejeita vulnerabilidades Critical ou High na imagem final.
+O projeto usa Node.js 24.18.0 em <code>.nvmrc</code>, CI e Docker. Essa versão é referência, não limite: <code>engines</code>, <code>devEngines</code> e <code>engine-strict=true</code> rejeitam Node anterior à versão 24, mas aceitam versões posteriores. O campo <code>packageManager</code> declara npm 11.16.0 como referência reproduzível, sem impor uma faixa adicional de compatibilidade.
 
-O workflow roda em pushes, pull requests, acionamento manual e semanalmente, para detectar novas vulnerabilidades mesmo sem alterações no repositório. O Dependabot verifica semanalmente dependências npm, digests Docker e actions pinadas.
+Scripts de lifecycle de dependências ficam desabilitados por <code>.npmrc</code>. Os scripts do próprio projeto, executados explicitamente com <code>npm run</code>, continuam habilitados.
 
-## Ambiente local
+## Execução local
 
-Ative a versão de referência com `nvm use` ou use qualquer Node.js 24+. Se o Node 24 foi instalado pelo Homebrew e está keg-only, use `export PATH="$(brew --prefix node@24)/bin:$PATH"` antes dos comandos abaixo.
+### Node.js
 
-```bash
-node --version # v24.18.0
-npm --version  # 11.16.0
+Use <code>nvm use</code> para a toolchain de referência ou qualquer Node.js 24+:
+
+~~~bash
+nvm use
+node --version
+npm --version
 npm ci
 cp .env.example .env.development.local
 npm run dev
-```
+~~~
 
-A aplicação fica disponível em `http://localhost:3000`. Use especificamente `.env.development.local`: ao contrário de `.env.local`, ele não é carregado por `next typegen` ou `next build`, evitando que a URL HTTP local contamine uma validação de produção.
+A aplicação fica em [http://localhost:3000](http://localhost:3000).
 
-As credenciais do Resend só são necessárias para enviar mensagens reais. Nunca adicione segredos a variáveis com prefixo `NEXT_PUBLIC_`.
+Use especificamente <code>.env.development.local</code> para o desenvolvimento. O template contém apenas placeholders locais e nunca deve ser promovido para produção. As credenciais do Resend só são necessárias para validar um envio real; os demais conteúdos e links funcionam sem elas.
 
-## Variáveis de ambiente
+O fluxo padrão usa explicitamente Webpack, limita o old space do V8 a 1.536 MiB e, no macOS e Linux, monitora o RSS de toda a árvore do servidor. Se ela ultrapassar 2.048 MiB, o processo é encerrado com uma mensagem explícita em vez de pressionar a memória da máquina. Os limites podem ser ajustados por <code>NEXT_DEV_OLD_SPACE_MB</code> e <code>NEXT_DEV_MEMORY_LIMIT_MB</code>; ambos aceitam de 512 a 4.096 MiB e o old space deve deixar ao menos 256 MiB para o restante do heap, memória nativa e processos filhos. No Windows, o old space continua limitado, mas o teto rígido de memória exige o fluxo Docker. O wrapper lê os dois valores com a mesma precedência de arquivos <code>.env</code> do Next.js sem repassar o estado do loader ao processo filho.
 
-| Variável | Uso |
+Se o Node 24 do Homebrew estiver <em>keg-only</em>:
+
+~~~bash
+export PATH="$(brew --prefix node@24)/bin:$PATH"
+~~~
+
+### Docker de desenvolvimento
+
+O Compose de desenvolvimento monta o repositório, preserva <code>node_modules</code> e <code>.next</code> em volumes nomeados e usa eventos nativos para o hot reload. Além do watchdog da aplicação, o container tem limite rígido padrão de 2.560 MiB e reserva de 1.024 MiB:
+
+~~~bash
+cp .env.example .env.development.local
+docker compose --env-file .env.development.local -f docker-compose.dev.yml up --build
+~~~
+
+O parâmetro <code>--env-file</code> também alimenta a interpolação do Compose; assim, valores server-side definidos no arquivo chegam ao container em vez de serem substituídos pelos defaults do YAML.
+
+O template deriva <code>NEXT_PUBLIC_SITE_URL</code> e <code>CONTACT_ALLOWED_ORIGINS</code> de <code>PORT</code>. Portanto, alterar <code>PORT</code> no arquivo muda em conjunto a porta publicada e as duas origens browser-facing.
+
+Os volumes de dependências e cache são reconciliados por um fingerprint de <code>package-lock.json</code>, <code>package.json</code>, <code>.npmrc</code>, Node.js, plataforma e arquitetura. Ao detectar uma runtime incompatível, o container executa uma instalação limpa com verificação de assinaturas e descarta apenas o cache Next obsoleto; um volume antigo nunca é reutilizado silenciosamente.
+
+Para encerrar e remover os containers:
+
+~~~bash
+docker compose --env-file .env.development.local -f docker-compose.dev.yml down --remove-orphans
+~~~
+
+## Configuração
+
+As configurações públicas são incorporadas ao bundle. Segredos permanecem exclusivamente no runtime do servidor.
+
+| Variável | Fase | Obrigatoriedade |
+| --- | --- | --- |
+| <code>NEXT_PUBLIC_SITE_URL</code> | build e runtime | Origem pública; em produção deve ser HTTPS e pública |
+| <code>NEXT_PUBLIC_WEB_VITALS_ENDPOINT</code> | build | Caminho first-party opcional para telemetria |
+| <code>RESEND_API_KEY</code> | runtime | Obrigatória no bootstrap de produção |
+| <code>CONTACT_FROM_EMAIL</code> | runtime | Remetente com domínio público; deve estar verificado para envio real |
+| <code>CONTACT_TO_EMAIL</code> | runtime | Destino das mensagens |
+| <code>CONTACT_IDEMPOTENCY_SECRET</code> | runtime | Segredo de alta entropia com pelo menos 32 caracteres |
+| <code>CONTACT_ALLOWED_ORIGINS</code> | runtime | Lista de origens HTTPS; deve conter a origem pública |
+| <code>CONTACT_TRUST_PROXY</code> | runtime | Decisão explícita: <code>true</code> ou <code>false</code> |
+
+Limites de request, timeout, rate limiting e proxy estão documentados e exemplificados em [.env.example](./.env.example). O contrato completo, incluindo faixas aceitas e defaults, está no [contexto técnico](./docs/TECHNICAL_CONTEXT.md).
+
+Regras importantes:
+
+- Nunca exponha segredos com prefixo <code>NEXT_PUBLIC_</code>.
+- Alterar uma variável pública exige novo build.
+- Habilite <code>CONTACT_TRUST_PROXY</code> somente se o proxy confiável sobrescrever o header configurado.
+- O endpoint de Web Vitals deve ser um caminho relativo à origem. Este repositório não implementa o coletor; ele precisa existir na mesma origem antes de a variável ser habilitada.
+
+## Comandos
+
+| Comando | Finalidade |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Origem pública compilada no build para metadata, sitemap e links canônicos |
-| `NEXT_PUBLIC_WEB_VITALS_ENDPOINT` | Rota first-party opcional compilada no build para ingestão de Web Vitals |
-| `RESEND_API_KEY` | Credencial server-side do Resend |
-| `CONTACT_FROM_EMAIL` | Remetente verificado |
-| `CONTACT_TO_EMAIL` | Destino das mensagens |
-| `CONTACT_IDEMPOTENCY_SECRET` | Segredo longo usado na chave de idempotência |
-| `CONTACT_ALLOWED_ORIGINS` | Origens aceitas pela API, separadas por vírgula |
+| <code>npm run dev</code> | Servidor de desenvolvimento com Webpack e limites de memória |
+| <code>npm run dev:turbo</code> | Turbopack opt-in, protegido pelos mesmos limites |
+| <code>npm test</code> | Vitest e regressão do quality hook |
+| <code>npm run test:watch</code> | Vitest em modo interativo |
+| <code>npm run lint</code> | ESLint com regras Next.js, Core Web Vitals e TypeScript |
+| <code>npm run typecheck</code> | Gera tipos de rotas e executa TypeScript sem emitir arquivos |
+| <code>npm run build</code> | Build standalone e cópia validada dos assets |
+| <code>npm run check:bundle</code> | Gate de transferência inicial e chunks diferidos |
+| <code>npm run test:e2e:install</code> | Instala Chromium, Firefox e WebKit |
+| <code>npm run test:e2e</code> | Playwright em todos os projetos configurados |
+| <code>npm run analyze</code> | Analyzer oficial do Turbopack |
+| <code>npm run start</code> | Executa <code>.next/standalone/server.js</code> |
 
-Os demais limites e parâmetros de proxy estão documentados em [.env.example](./.env.example). Ative `CONTACT_TRUST_PROXY` somente atrás de um proxy confiável que sobrescreva o header de IP configurado. O Compose exige essa decisão explicitamente para evitar que todos os visitantes compartilhem o mesmo limite de requisições por engano.
+As validações de ambiente não dependem de um comando manual separado: os gates reais são executados pelo <code>next build</code> para variáveis públicas e pelo bootstrap Node.js ao iniciar em produção.
 
-## Validação
+## Validação completa
 
-```bash
+Instale os browsers uma vez:
+
+~~~bash
+npm run test:e2e:install
+~~~
+
+Em uma instalação Linux mínima, instale também as bibliotecas do sistema com <code>npx playwright install --with-deps chromium firefox webkit</code>. A CI já usa essa variante.
+
+Depois execute, nesta ordem:
+
+~~~bash
 npm test
 npm run lint
 npm run typecheck
 npm run build
 npm run check:bundle
-```
-
-`npm run typecheck` executa `next typegen` antes do TypeScript, portanto também valida os tipos gerados para rotas, layouts e handlers. `npm test` inclui os testes Vitest e a regressão shell do quality hook.
-
-Para a primeira execução dos testes de navegador:
-
-```bash
-npm run test:e2e:install
-npm run build
 npm run test:e2e
-```
+~~~
 
-O E2E verifica rotas e idiomas, metadata, headers de segurança, artigo, sitemap, Open Graph, formulário, navegação por teclado, layout mobile e conformidade automatizada WCAG nas superfícies principais.
+O Playwright inicia o standalone em <code>http://localhost:3100</code> por padrão, portanto o build é pré-requisito. O projeto principal faz a regressão detalhada em Chromium; há um cenário dedicado sem WebGL e smokes adicionais em Firefox e WebKit. Falhas preservam trace, screenshot e vídeo conforme a configuração.
 
-Para inspecionar o bundle:
+Para testar uma instância já iniciada:
 
-```bash
+~~~bash
+PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 npm run test:e2e
+~~~
+
+Use essa opção apenas contra um ambiente descartável ou autorizado: os testes exercitam rotas, navegação e a API de contato.
+
+### Budgets de bundle
+
+<code>npm run check:bundle</code> mede HTML, JS e CSS com gzip nível 9; WOFF2 é medido pelo tamanho bruto, pois já é comprimido. Preloads de fonte e inventário alcançável pelo CSS são gates separados.
+
+| Superfície | Limite padrão |
+| --- | ---: |
+| Home JS | 260 KiB |
+| Artigo JS | 250 KiB |
+| Home CSS / artigo CSS | 25 KiB cada |
+| Home HTML | 60 KiB |
+| Artigo HTML | 35 KiB |
+| Fontes preloadadas da home / artigo | 120 KiB cada |
+| Inventário WOFF2 da home / artigo | 210 KiB cada |
+| Cada entry lazy | 100 KiB |
+| Maior chunk diferido | 90 KiB |
+| Total diferido único | 165 KiB |
+
+Os nomes das variáveis de override e o fallback que captura pelo standalone qualquer rota medida sem HTML pré-renderizado estão detalhados no [contexto técnico](./docs/TECHNICAL_CONTEXT.md). Manifestos vazios, rotas sem assets iniciais e ausência de chunks diferidos são tratados como erro.
+
+O analyzer grava uma interface estática em <code>.next/diagnostics/analyze</code>:
+
+~~~bash
 npm run analyze
-```
-
-O analyzer oficial do Turbopack grava a interface estática em `.next/diagnostics/analyze` e não inicia um servidor. O quality gate de bundle mede os assets efetivamente referenciados pelo HTML prerenderizado, além dos imports dinâmicos:
-
-| Superfície | Limite gzip padrão | Motivo |
-| --- | ---: | --- |
-| Home JS | 260 KiB | Limita o runtime e a página principal do build Turbopack com cerca de 10% de margem sobre o baseline |
-| Artigo JS | 250 KiB | Mantém a rota editorial abaixo da página principal |
-| Home CSS / artigo CSS | 25 KiB cada | Evita crescimento global de estilos sem penalizar variações de fontes |
-| Home HTML | 60 KiB | Comporta o payload localizado da página completa |
-| Artigo HTML | 35 KiB | Limite separado para crescimento editorial |
-| Cada entry lazy | 100 KiB | Limita dependências de cada fronteira `next/dynamic`, incluindo o formulário validado |
-| Maior chunk secundário | 90 KiB | Impede que um único arquivo diferido domine a interação |
-| Total secundário único | 165 KiB | Limita todo JS/CSS fora dos HTMLs iniciais da home e do artigo, com cerca de 10% de margem sobre o baseline, inclusive imports dinâmicos transitivos |
-
-Os limites podem ser ajustados em CI pelas variáveis `BUNDLE_BUDGET_HOME_*_KB`, `BUNDLE_BUDGET_ARTICLE_*_KB`, `BUNDLE_BUDGET_LAZY_ENTRY_KB`, `BUNDLE_BUDGET_LAZY_CHUNK_KB` e `BUNDLE_BUDGET_LAZY_TOTAL_KB`. Um manifest ou conjunto de entries vazio é tratado como erro, não como bundle de tamanho zero.
-
-## Segurança de conteúdo
-
-A CSP é estática e centralizada em `next.config.ts`. Em produção, `script-src-attr 'none'` bloqueia handlers JavaScript em atributos HTML; `object-src`, `frame-ancestors`, `base-uri` e `form-action` também permanecem restritos. `Cross-Origin-Resource-Policy: same-origin` limita o uso dos assets à própria origem e `Origin-Agent-Cluster: ?1` solicita isolamento por origem. O modo de desenvolvimento adiciona `unsafe-eval` somente para o diagnóstico do React.
-
-O bootstrap estático do Next.js ainda exige `unsafe-inline` em scripts e estilos. Uma política com nonce por requisição e `strict-dynamic` seria mais rígida, mas no Next.js 16 tornaria as páginas dinâmicas e desativaria as vantagens de SSG, ISR, cache direto em CDN e PPR. Para este portfólio público foi priorizada a geração estática; se o produto passar a exibir dados autenticados ou entrar em um regime de compliance mais estrito, essa decisão deve ser reavaliada conscientemente.
+~~~
 
 ## Produção
 
-O próprio script de build copia `public` e os assets estáticos para `.next/standalone`, deixando o comando abaixo pronto para servir o artefato:
+### Standalone local
 
-```bash
+O build copia <code>public</code> quando existente e <code>.next/static</code> para o artefato standalone. Injete um ambiente de produção válido antes de iniciar:
+
+~~~bash
+set -a
+. ./.env.production
+set +a
 npm run build
 npm run start
-```
+~~~
 
-Com Docker Compose, provisione as variáveis obrigatórias em um `.env.production` exclusivo do ambiente. Não copie `.env.example` para produção: ele é somente um template de desenvolvimento e todos os seus valores sensíveis são deliberadamente inválidos. As variáveis `NEXT_PUBLIC_*` são build-time: qualquer alteração exige reconstruir a imagem. A porta é publicada apenas em loopback por padrão, e o target final da imagem é sempre o runner não-root.
+<code>.env.production</code> é ignorado pelo Git. Use valores reais para validar o formulário; fixtures apenas sintaticamente válidas servem para smoke de páginas, mas não para entrega de email.
 
-Há dois gates nativos e não contornáveis por configuração de CI: `next build` rejeita origem pública insegura ou endpoint de Web Vitals externo; no bootstrap Node.js de produção, `instrumentation.ts` rejeita credenciais ausentes, placeholders, domínios reservados, segredo fraco, origens divergentes, decisão de proxy ambígua e limites inválidos. As mensagens identificam apenas as variáveis, sem imprimir seus valores.
+Ao carregar o arquivo com o shell, mantenha-o compatível com POSIX e coloque entre aspas valores que contenham espaços. O Compose também aceita esses valores entre aspas.
 
-Para subir o ambiente validado:
+### Docker Compose
 
-```bash
+Crie um <code>.env.production</code> exclusivo para o ambiente. Não copie <code>.env.example</code>: seus valores sensíveis são deliberadamente inválidos em produção.
+
+~~~bash
 docker compose --env-file .env.production config --quiet
 docker compose --env-file .env.production up --build --detach
 docker compose --env-file .env.production ps
-```
+curl --fail http://127.0.0.1:3000/robots.txt
+~~~
 
-Além dos gates automatizados, antes de um deploy real:
+A porta é publicada somente em loopback por padrão. Um proxy reverso deve terminar HTTPS e encaminhar o tráfego público. Se <code>PORT</code> for alterada no arquivo de ambiente, ajuste o URL do smoke.
 
-- use a origem HTTPS pública em `NEXT_PUBLIC_SITE_URL` e `CONTACT_ALLOWED_ORIGINS`;
-- informe uma chave Resend válida e um remetente verificado;
-- confirme o destinatário das mensagens;
-- gere um segredo exclusivo e aleatório para `CONTACT_IDEMPOTENCY_SECRET` (por exemplo, `openssl rand -hex 32`);
-- decida explicitamente se há um proxy confiável antes de habilitar `CONTACT_TRUST_PROXY`;
-- reconstrua a imagem e confira canonical, sitemap, envio do formulário e headers no domínio final.
+Para acompanhar logs e encerrar:
 
-Após validar ou se uma execução interrompida mantiver container, rede ou porta ocupados, libere os recursos do projeto com:
-
-```bash
+~~~bash
+docker compose --env-file .env.production logs --follow portfolio
 docker compose --env-file .env.production down --remove-orphans
-```
+~~~
 
-O rate limiter embutido é intencionalmente local ao processo. Em produção com múltiplas réplicas, use Redis/Upstash, WAF ou outro armazenamento distribuído.
+O runner usa Node.js 24.18.0 em uma imagem distroless Debian 13, sem shell, package manager ou toolchain. Ele executa como UID/GID <code>65532:65532</code>; o Compose remove capabilities, proíbe privilege escalation, aplica limites de processo/CPU/memória e disponibiliza somente dois <code>tmpfs</code> graváveis.
 
-## Estrutura principal
+## Segurança e limites deliberados
 
-```text
+- A CSP e os headers defensivos são centralizados em <code>next.config.ts</code>.
+- A API não retorna segredos nem inclui dados pessoais nos logs de erro.
+- Instalações bloqueiam lifecycle scripts e a CI verifica assinaturas e vulnerabilidades.
+- Actions e imagens-base são fixadas por commit ou digest; o Trivy rejeita vulnerabilidades High e Critical da imagem final.
+- A política estática ainda usa <code>unsafe-inline</code> para scripts e estilos exigidos pelo bootstrap atual do App Router. Migrar para nonce por request tornaria as superfícies hoje estáticas dinâmicas; a decisão deve ser reavaliada se surgir autenticação ou requisito formal de compliance.
+- O rate limiter é local ao processo e reinicia com a instância. Múltiplas réplicas exigem Redis/Upstash, WAF ou mecanismo distribuído equivalente.
+- Com <code>CONTACT_TRUST_PROXY=false</code>, nenhum header de IP é confiado e os clientes compartilham o bucket por cliente. Isso é seguro contra spoofing, mas pode gerar contenção sob tráfego real.
+
+Veja o [modelo de segurança completo](./docs/TECHNICAL_CONTEXT.md), inclusive a ordem dos controles da API e os gaps operacionais conhecidos.
+
+## Estrutura
+
+~~~text
 src/
-├── app/                 rotas, metadata, sitemap e APIs
-├── components/          layout, seções, UI compartilhada e efeitos opcionais
-├── content/             artigos editoriais localizados
-├── data/                projetos e experiência profissional
-├── hooks/               hooks de interação e observação
-├── lib/                 validação, constantes e integrações
-└── messages/            catálogos pt, en e es
-e2e/                     testes Playwright
-scripts/                 quality gate e preparação standalone
-```
+├── app/                 rotas, layouts, metadata, imagens sociais e API
+├── components/          layout, seções, componentes compartilhados e artigo
+├── content/             modelos editoriais localizados
+├── data/                estrutura de projetos, experiência, métricas e links
+├── hooks/               observação de viewport e navegação
+├── lib/                 constantes, validações, WebGL e gates de produção
+├── messages/            catálogos pt, en e es
+└── types/               contratos compartilhados
+e2e/                     regressão Playwright
+scripts/                 bundle gate, standalone e quality hook
+docs/                    contexto técnico versionado
+~~~
+
+<code>docs/portifolio/</code> permanece intencionalmente ignorado e não faz parte da documentação versionada.
 
 ## Política de conteúdo
 
-Casos, métricas e experiências publicados devem ser verificáveis e autorizados. Materiais confidenciais, logos, screenshots e depoimentos de terceiros não devem entrar no portfólio sem aprovação explícita.
+Casos, métricas e experiências publicados devem ser verificáveis e autorizados. Logos, screenshots, depoimentos e informações confidenciais de terceiros não devem entrar no portfólio sem aprovação explícita.
+
+Ao alterar conteúdo localizado, arquitetura, ambiente, budgets ou comandos, atualize o README e [docs/TECHNICAL_CONTEXT.md](./docs/TECHNICAL_CONTEXT.md) no mesmo conjunto de mudanças.
