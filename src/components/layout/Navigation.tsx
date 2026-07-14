@@ -5,78 +5,232 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { navLinks } from "@/data/portfolio";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { isLocale } from "@/i18n.config";
+import { Link } from "@/navigation";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 
 export function Navigation() {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const pathname = usePathname();
+  const pathSegments = pathname?.split("/").filter(Boolean) ?? [];
+  const pathWithoutLocale = isLocale(pathSegments[0] ?? "")
+    ? `/${pathSegments.slice(1).join("/")}`
+    : (pathname ?? "");
+
+  if (pathWithoutLocale.startsWith("/insights")) {
+    return <ArticleNavigation />;
+  }
+
+  return <HomeNavigation />;
+}
+
+function ArticleNavigation() {
+  const t = useTranslations("Nav");
+
+  return (
+    <nav
+      className="fixed inset-x-0 top-0 z-[100] border-b border-white/[0.06] bg-[rgba(5,10,18,0.78)] backdrop-blur-xl"
+      aria-label={t("ariaLabel")}
+    >
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <Link
+          href="/"
+          prefetch={false}
+          className="inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight text-[var(--color-text-primary)]"
+          style={{ fontFamily: "var(--font-display)" }}
+          aria-label={`RM. — Roberto Moraes, ${t("hero").toLowerCase()}`}
+        >
+          RM<span className="text-[var(--color-signal)]">.</span>
+        </Link>
+        <LocaleSwitcher />
+      </div>
+    </nav>
+  );
+}
+
+function HomeNavigation() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const activeSection = useActiveSection();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const brandRef = useRef<HTMLAnchorElement>(null);
+  const mobileLocaleRef = useRef<HTMLDivElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
   const t = useTranslations("Nav");
 
   // Interpolate glass blur across first 120px of scroll (no snap)
   useEffect(() => {
+    let animationFrame = 0;
+
     const handler = () => {
-      const progress = Math.min(window.scrollY / 120, 1);
-      setScrollProgress(progress);
-      if (navRef.current) {
-        navRef.current.style.setProperty("--nav-progress", String(progress));
-      }
+      if (animationFrame) return;
+
+      animationFrame = requestAnimationFrame(() => {
+        const progress = Math.min(window.scrollY / 120, 1);
+        const nav = navRef.current;
+        if (nav) {
+          nav.style.setProperty("--nav-progress", String(progress));
+          nav.style.setProperty(
+            "--nav-border-opacity",
+            String(progress * 0.07),
+          );
+          nav.style.setProperty(
+            "--nav-background-opacity",
+            String(progress * 0.72),
+          );
+        }
+        animationFrame = 0;
+      });
     };
+
+    handler();
     window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", handler);
+    };
   }, []);
 
   useEffect(() => {
-    let isActive = true;
-    const run = async () => {
-      if (!mobileMenuRef.current) return;
-      const mod = await import("@/lib/gsap");
-      if (!isActive) return;
-      const { gsap } = mod;
-      if (isMobileOpen) {
-        gsap.to(mobileMenuRef.current, {
-          opacity: 1,
-          visibility: "visible",
-          duration: 0.3,
-        });
-        linksRef.current.forEach((link, i) => {
-          if (link) {
-            gsap.fromTo(
-              link,
-              { x: 40, opacity: 0 },
-              { x: 0, opacity: 1, duration: 0.4, delay: i * 0.06 },
-            );
-          }
-        });
-      } else {
-        gsap.to(mobileMenuRef.current, {
-          opacity: 0,
-          duration: 0.3,
-          onComplete: () => {
-            if (mobileMenuRef.current)
-              mobileMenuRef.current.style.visibility = "hidden";
-          },
-        });
+    if (!isMobileOpen) return;
+
+    const menu = mobileMenuRef.current;
+    const menuButton = menuButtonRef.current;
+    const dialogCloseButton = dialogCloseButtonRef.current;
+    if (!menu || !menuButton || !dialogCloseButton) return;
+
+    // The menu button is the deterministic trigger even when a browser click
+    // does not move DOM focus before React handles the event.
+    lastFocusedRef.current = menuButton;
+
+    const html = document.documentElement;
+    const previousOverflow = html.style.overflow;
+    html.style.overflow = "hidden";
+
+    const backgroundElements = Array.from(
+      new Set(
+        [
+          brandRef.current,
+          mobileLocaleRef.current,
+          document.querySelector<HTMLElement>("main"),
+          document.querySelector<HTMLElement>("footer"),
+          document.querySelector<HTMLElement>('a[href="#main-content"]'),
+        ].filter((element): element is HTMLElement => element !== null),
+      ),
+    );
+    const previousInert = backgroundElements.map((element) => ({
+      element,
+      inert: element.inert,
+    }));
+    backgroundElements.forEach((element) => {
+      element.inert = true;
+    });
+
+    let focusMenuSecondFrame = 0;
+    const focusMenu = requestAnimationFrame(() => {
+      focusMenuSecondFrame = requestAnimationFrame(() => {
+        linksRef.current[0]?.focus({ preventScroll: true });
+      });
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsMobileOpen(false);
+        return;
       }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = [
+        dialogCloseButton,
+        ...linksRef.current,
+      ].filter((element) => element.getClientRects().length > 0);
+      if (focusableElements.length === 0) return;
+
+      event.preventDefault();
+      const currentIndex = focusableElements.indexOf(
+        document.activeElement as HTMLButtonElement | HTMLAnchorElement,
+      );
+      const nextIndex = event.shiftKey
+        ? currentIndex <= 0
+          ? focusableElements.length - 1
+          : currentIndex - 1
+        : currentIndex < 0 || currentIndex === focusableElements.length - 1
+          ? 0
+          : currentIndex + 1;
+
+      focusableElements[nextIndex]?.focus({ preventScroll: true });
     };
 
-    run();
+    document.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      isActive = false;
+      cancelAnimationFrame(focusMenu);
+      cancelAnimationFrame(focusMenuSecondFrame);
+      document.removeEventListener("keydown", handleKeyDown);
+      html.style.overflow = previousOverflow;
+      previousInert.forEach(({ element, inert }) => {
+        element.inert = inert;
+      });
+      const focusTarget = lastFocusedRef.current;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (focusTarget?.isConnected) {
+            focusTarget.focus({ preventScroll: true });
+          }
+        });
+      });
     };
   }, [isMobileOpen]);
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setIsMobileOpen(false);
+    };
+
+    desktopQuery.addEventListener("change", closeOnDesktop);
+    return () => desktopQuery.removeEventListener("change", closeOnDesktop);
+  }, []);
+
+  useEffect(() => {
+    const rawId = window.location.hash.slice(1);
+    let id = rawId;
+    try {
+      id = decodeURIComponent(rawId);
+    } catch {
+      // A malformed external fragment must not break navigation hydration.
+    }
+    if (!id || !navLinks.some((link) => link.id === id)) return;
+
+    let secondFrame = 0;
+    const firstFrame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ block: "start" });
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(secondFrame);
+    };
+  }, [pathname]);
 
   const handleNavClick = (id: string) => {
     setIsMobileOpen(false);
     const el = document.getElementById(id);
-    el?.scrollIntoView({ behavior: "smooth" });
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    el?.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
+    if (window.location.hash !== `#${id}`) {
+      window.history.replaceState(window.history.state, "", `#${id}`);
+    }
   };
-
-  if (pathname?.startsWith("/insights")) return null;
 
   return (
     <>
@@ -84,26 +238,29 @@ export function Navigation() {
         ref={navRef}
         className="fixed top-0 left-0 w-full z-[100] transition-all duration-500 glass-nav"
         style={{
-          // Progressive border opacity driven by --nav-progress CSS variable
-          borderBottomColor: `rgba(255, 255, 255, ${scrollProgress * 0.07})`,
-          // Allow glass-nav to handle backdrop-filter; supplement with bg opacity
-          backgroundColor: `rgba(5, 10, 18, ${scrollProgress * 0.72})`,
+          borderBottomColor:
+            "rgb(255 255 255 / var(--nav-border-opacity, 0))",
+          // Allow glass-nav to handle backdrop-filter; supplement with bg opacity.
+          backgroundColor:
+            "rgb(5 10 18 / var(--nav-background-opacity, 0))",
         }}
         aria-label={t("ariaLabel")}
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <a
+            ref={brandRef}
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick("hero");
             }}
-            className="text-lg font-bold tracking-tight transition-colors duration-200"
+            className="inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight transition-colors duration-200"
             style={{
               fontFamily: "var(--font-display)",
               color: "var(--color-text-primary)",
             }}
-            aria-label={`Roberto Moraes, ${t("hero").toLowerCase()}`}
+            aria-label={`RM. — Roberto Moraes, ${t("hero").toLowerCase()}`}
+            aria-current={activeSection === "hero" ? "location" : undefined}
           >
             RM<span style={{ color: "var(--color-signal)" }}>.</span>
           </a>
@@ -117,7 +274,8 @@ export function Navigation() {
                   e.preventDefault();
                   handleNavClick(id);
                 }}
-                className="relative text-sm font-medium transition-colors duration-200"
+                className="relative flex min-h-11 items-center text-sm font-medium transition-colors duration-200"
+                aria-current={activeSection === id ? "location" : undefined}
                 style={{
                   fontFamily: "var(--font-body)",
                   color:
@@ -142,12 +300,20 @@ export function Navigation() {
           </div>
 
           <div className="flex items-center gap-4 md:hidden">
-            <LocaleSwitcher />
+            <div ref={mobileLocaleRef}>
+              <LocaleSwitcher />
+            </div>
             <button
-              className="relative z-[110] flex h-10 w-10 flex-col items-center justify-center gap-1.5"
-              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              ref={menuButtonRef}
+              className={`relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 ${
+                isMobileOpen ? "invisible" : ""
+              }`}
+              onClick={() => setIsMobileOpen((current) => !current)}
               aria-label={isMobileOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={isMobileOpen}
+              aria-controls="mobile-navigation-menu"
+              aria-hidden={isMobileOpen}
+              tabIndex={isMobileOpen ? -1 : undefined}
             >
               <span
                 className="block h-[1.5px] w-6 transition-all duration-200"
@@ -180,17 +346,36 @@ export function Navigation() {
       </nav>
 
       <div
+        id="mobile-navigation-menu"
         ref={mobileMenuRef}
-        className="fixed top-0 left-0 z-[90] flex h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden md:hidden"
+        className={`fixed left-0 top-0 z-[120] flex h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none md:hidden ${
+          isMobileOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
         style={{
           backgroundColor: "var(--color-void)",
-          opacity: 0,
-          visibility: "hidden",
         }}
         role="dialog"
         aria-modal="true"
         aria-label={t("mobileMenuLabel")}
+        aria-hidden={!isMobileOpen}
       >
+        <button
+          ref={dialogCloseButtonRef}
+          type="button"
+          className="absolute right-4 top-4 z-[130] flex h-11 w-11 flex-col items-center justify-center gap-1.5"
+          onClick={() => setIsMobileOpen(false)}
+          aria-label={t("closeMenu")}
+        >
+          <span
+            className="block h-[1.5px] w-6 rotate-45 translate-y-1"
+            style={{ backgroundColor: "var(--color-text-primary)" }}
+          />
+          <span
+            className="block h-[1.5px] w-6 -rotate-45 -translate-y-1"
+            style={{ backgroundColor: "var(--color-text-primary)" }}
+          />
+        </button>
+
         {navLinks.slice(1).map(({ id }, i) => (
           <a
             key={id}
@@ -202,13 +387,17 @@ export function Navigation() {
               e.preventDefault();
               handleNavClick(id);
             }}
-            className="text-2xl font-bold transition-colors duration-200 sm:text-3xl"
+            className="inline-flex min-h-11 items-center text-2xl font-bold transition-[color,opacity,transform] duration-300 ease-out motion-reduce:transition-none sm:text-3xl"
+            aria-current={activeSection === id ? "location" : undefined}
             style={{
               fontFamily: "var(--font-display)",
               color:
                 activeSection === id
                   ? "var(--color-signal)"
                   : "var(--color-text-primary)",
+              opacity: isMobileOpen ? 1 : 0,
+              transform: isMobileOpen ? "translateX(0)" : "translateX(2rem)",
+              transitionDelay: isMobileOpen ? `${i * 45}ms` : "0ms",
             }}
           >
             {t(id)}

@@ -1,6 +1,13 @@
-import { personalInfo, navLinks } from "@/data/portfolio"
+import { getTranslations } from "next-intl/server"
 
-export function Footer() {
+import { personalInfo, navLinks } from "@/data/portfolio"
+import { Link } from "@/navigation"
+
+export async function Footer() {
+  const [footer, nav] = await Promise.all([
+    getTranslations("Footer"),
+    getTranslations("Nav"),
+  ])
   const year = new Date().getFullYear()
   return (
     <footer
@@ -37,9 +44,9 @@ export function Footer() {
                 color: "var(--color-text-muted)",
               }}
             >
-              Engenheiro de Software & Gerente de TI.
+              {footer("descriptionLine1")}
               <br />
-              Construindo software que aguenta a pressão de produção.
+              {footer("descriptionLine2")}
             </p>
           </div>
 
@@ -51,22 +58,22 @@ export function Footer() {
                 color: "var(--color-text-muted)",
               }}
             >
-              Navegação
+              {footer("navigation")}
             </p>
-            <nav aria-label="Navegação no rodapé">
+            <nav aria-label={footer("navAriaLabel")}>
               <ul className="grid grid-cols-2 gap-2">
-                {navLinks.slice(1).map(({ id, label }) => (
+                {navLinks.slice(1).map(({ id }) => (
                   <li key={id}>
-                    <a
-                      href={`#${id}`}
+                    <Link
+                      href={`/#${id}`}
                       className="text-sm transition-colors duration-200 hover:text-[var(--color-signal)]"
                       style={{
                         fontFamily: "var(--font-body)",
                         color: "var(--color-text-secondary)",
                       }}
                     >
-                      {label}
-                    </a>
+                      {nav(id)}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -81,7 +88,7 @@ export function Footer() {
                 color: "var(--color-text-muted)",
               }}
             >
-              Contato
+              {footer("contact")}
             </p>
             <div className="space-y-2">
               {personalInfo.contacts.slice(0, 3).map((contact) => (
@@ -123,7 +130,7 @@ export function Footer() {
               color: "var(--color-text-muted)",
             }}
           >
-            Feito com código, café e ambição
+            {footer("signature")}
           </p>
         </div>
       </div>
