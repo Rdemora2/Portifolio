@@ -11,7 +11,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Pre-requisitos
 
 - Acesso ao workspace e permissoes para executar comandos quando necessario.
-- Node.js e npm instalados para hooks de qualidade (opcional).
+- Node.js 24+ (`>=24.0.0`) obrigatorio; use o Node.js 24.18.0 e o npm 11.16.0 declarados em `.nvmrc` e `package.json` apenas como toolchain de referencia.
 
 ## Passos
 
