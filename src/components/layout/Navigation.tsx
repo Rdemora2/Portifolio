@@ -28,6 +28,7 @@ function ArticleNavigation() {
 
   return (
     <nav
+      data-article-navigation
       className="fixed inset-x-0 top-0 z-[100] border-b border-white/[0.06] bg-[rgba(5,10,18,0.78)] backdrop-blur-xl"
       aria-label={t("ariaLabel")}
     >

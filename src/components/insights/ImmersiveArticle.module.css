@@ -1,0 +1,2121 @@
+.articleExperience {
+  --hero-progress: 0;
+  --hero-signal: 0;
+  --hero-pulse: 0;
+  --hero-type: 0;
+  --hero-orbit: 0;
+  --hero-handoff: 0;
+  position: relative;
+  background:
+    radial-gradient(circle at 82% 16%, rgba(79, 70, 229, 0.13), transparent 28rem),
+    var(--color-void);
+  color: var(--color-text-primary);
+}
+
+.hero {
+  --hero-rotation: calc(var(--hero-orbit) * 12deg);
+  --hero-counter-rotation: calc(var(--hero-orbit) * -12deg);
+  position: relative;
+  min-block-size: 145svh;
+  border-bottom: 1px solid var(--color-edge);
+}
+
+.heroSticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  block-size: 100svh;
+  min-block-size: 0;
+  overflow: hidden;
+  isolation: isolate;
+  align-items: center;
+  padding: clamp(5.5rem, 12svh, 7.5rem) 1.5rem
+    clamp(1.5rem, 4svh, 3rem);
+  background:
+    radial-gradient(circle at 74% 43%, rgba(99, 102, 241, 0.17), transparent 25rem),
+    radial-gradient(circle at 18% 72%, rgba(0, 212, 255, 0.08), transparent 23rem),
+    linear-gradient(180deg, #050a12 0%, #020408 100%);
+}
+
+.heroGrid {
+  position: absolute;
+  inset: -18% -10%;
+  z-index: -3;
+  opacity: calc(
+    0.24 - var(--hero-signal) * 0.05 - var(--hero-handoff) * 0.07
+  );
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.13) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(ellipse at 60% 45%, black 12%, transparent 68%);
+  transform: perspective(900px) rotateX(66deg)
+    translate3d(
+      0,
+      calc(
+        9rem + var(--hero-signal) * 3rem + var(--hero-handoff) * 4rem
+      ),
+      0
+    )
+    scale(1.45);
+  transform-origin: 50% 60%;
+}
+
+.heroBeam {
+  position: absolute;
+  top: 0;
+  right: 14%;
+  z-index: -2;
+  width: 1px;
+  height: 78%;
+  opacity: calc(
+    0.72 - var(--hero-signal) * 0.24 - var(--hero-handoff) * 0.28
+  );
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(0, 212, 255, 0.9) 45%,
+    rgba(99, 102, 241, 0.3) 72%,
+    transparent
+  );
+  box-shadow: 0 0 36px rgba(0, 212, 255, 0.35);
+  transform: translate3d(
+    0,
+    calc(var(--hero-signal) * -10% + var(--hero-handoff) * -8%),
+    0
+  );
+}
+
+.heroBeam::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: -3rem;
+  width: 6rem;
+  height: 1px;
+  opacity: var(--hero-pulse);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 136, 0.9),
+    transparent
+  );
+  box-shadow: 0 0 18px rgba(0, 255, 136, 0.3);
+  transform: translate3d(0, calc(var(--hero-signal) * 46svh), 0)
+    scaleX(calc(0.65 + var(--hero-pulse) * 0.35));
+}
+
+.heroInner {
+  width: min(100%, 90rem);
+  margin-inline: auto;
+}
+
+.backLink {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: clamp(1.5rem, 4svh, 3.5rem);
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-edge);
+  border-radius: 999px;
+  background: rgba(5, 10, 18, 0.74);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: border-color var(--transition-base), color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.backLink:hover {
+  border-color: var(--color-signal);
+  color: var(--color-text-primary);
+  transform: translateX(-0.2rem);
+}
+
+.backLink:focus-visible,
+.ctaLink:focus-visible,
+.stageNavigation a:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 4px;
+}
+
+.heroComposition {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 30rem);
+  gap: clamp(2rem, 6vw, 7rem);
+}
+
+.heroCopy {
+  min-width: 0;
+  opacity: 1;
+  transform: translate3d(
+      calc(var(--hero-handoff) * -2.5vw),
+      calc(
+        var(--hero-orbit) * -1.5vh + var(--hero-handoff) * -2.5vh
+      ),
+      0
+    )
+    scale(calc(1 - var(--hero-handoff) * 0.04));
+  transform-origin: left center;
+}
+
+.eyebrow,
+.architectureEyebrow {
+  color: var(--color-matrix);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  max-width: 11ch;
+  margin-top: 1.15rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(4rem, min(8.5vw, 15svh), 8.5rem);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+.heroTitle span {
+  display: inline-block;
+  margin-right: 0.15em;
+  transform: translate3d(
+    calc(var(--hero-type) * var(--hero-word-x)),
+    calc(var(--hero-type) * var(--hero-word-y)),
+    0
+  );
+}
+
+.heroTitle span[data-hero-accent="true"] {
+  color: color-mix(
+    in srgb,
+    var(--color-text-primary) calc(100% - var(--hero-type) * 30%),
+    var(--color-highlight)
+  );
+}
+
+.heroSubtitle {
+  max-width: 44rem;
+  margin-top: 2rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.heroRecorder {
+  position: relative;
+  display: grid;
+  width: min(100%, 30rem, 58svh);
+  aspect-ratio: 1;
+  justify-self: center;
+  place-items: center;
+  opacity: calc(
+    0.54 + var(--hero-signal) * 0.3 + var(--hero-orbit) * 0.16
+  );
+  transform: translate3d(
+      calc(
+        var(--hero-signal) * -1.25vw + var(--hero-orbit) * -2vw +
+          var(--hero-handoff) * 0.5vw
+      ),
+      calc(
+        var(--hero-signal) * 0.75vh + var(--hero-orbit) * 2.25vh +
+          var(--hero-handoff) * 1vh
+      ),
+      0
+    )
+    rotate(var(--hero-rotation))
+    scale(
+      calc(
+        0.9 + var(--hero-signal) * 0.06 + var(--hero-orbit) * 0.07 +
+          var(--hero-handoff) * 0.01
+      )
+    );
+  transform-origin: center;
+}
+
+.heroOrbitOuter,
+.heroOrbitInner,
+.heroCore {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.heroOrbitOuter {
+  inset: 7%;
+  border: 1px solid rgba(99, 102, 241, 0.42);
+  background:
+    conic-gradient(
+      from 45deg,
+      transparent 0deg 36deg,
+      rgba(0, 212, 255, 0.9) 38deg 39deg,
+      transparent 41deg 124deg,
+      rgba(0, 255, 136, 0.75) 126deg 127deg,
+      transparent 129deg 272deg,
+      rgba(129, 140, 248, 0.8) 274deg 275deg,
+      transparent 277deg
+    );
+  mask-image: radial-gradient(transparent 67%, black 68%);
+  transform: rotate(
+    calc(
+      var(--hero-signal) * 38deg + var(--hero-orbit) * 76deg +
+        var(--hero-handoff) * 24deg
+    )
+  );
+}
+
+.heroOrbitOuter::before,
+.heroOrbitOuter::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  inset: 13%;
+  border: 1px dashed rgba(0, 212, 255, 0.22);
+}
+
+.heroOrbitOuter::after {
+  inset: 29%;
+  border-style: solid;
+  border-color: rgba(0, 255, 136, 0.16);
+}
+
+.heroOrbitInner {
+  inset: 28%;
+  border: 1px solid rgba(0, 212, 255, 0.28);
+  box-shadow:
+    inset 0 0 40px rgba(0, 212, 255, 0.05),
+    0 0 50px rgba(99, 102, 241, 0.06);
+  transform: rotate(
+    calc(
+      var(--hero-signal) * -26deg + var(--hero-orbit) * -58deg +
+        var(--hero-handoff) * -18deg
+    )
+  );
+}
+
+.heroCore {
+  display: grid;
+  width: 7.5rem;
+  height: 7.5rem;
+  place-content: center;
+  border: 1px solid rgba(0, 212, 255, 0.42);
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.12), rgba(5, 10, 18, 0.94) 68%);
+  box-shadow:
+    inset 0 0 28px rgba(0, 212, 255, 0.09),
+    0 0 42px rgba(0, 212, 255, 0.08);
+  text-align: center;
+  transform: rotate(var(--hero-counter-rotation))
+    scale(calc(0.94 + var(--hero-signal) * 0.06));
+}
+
+.heroCore span {
+  font-family: var(--font-display);
+  font-size: 2.35rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.heroCore small {
+  margin-top: -0.25rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.heroMetric {
+  position: absolute;
+  display: grid;
+  width: min(9.5rem, 31%);
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border-top: 1px solid rgba(129, 140, 248, 0.4);
+  background: linear-gradient(180deg, rgba(13, 21, 32, 0.78), transparent);
+  opacity: calc(0.52 + var(--hero-signal) * 0.48);
+}
+
+.heroMetric[data-hero-metric="0"] {
+  top: 6%;
+  left: -2%;
+  transform: translate3d(
+      calc(1rem - var(--hero-signal) * 1rem),
+      calc(-0.75rem + var(--hero-signal) * 0.75rem),
+      0
+    )
+    rotate(var(--hero-counter-rotation));
+}
+
+.heroMetric[data-hero-metric="1"] {
+  top: 29%;
+  right: -4%;
+  transform: translate3d(
+      calc(-1rem + var(--hero-signal) * 1rem),
+      calc(-0.25rem + var(--hero-signal) * 0.25rem),
+      0
+    )
+    rotate(var(--hero-counter-rotation));
+}
+
+.heroMetric[data-hero-metric="2"] {
+  right: 8%;
+  bottom: 3%;
+  transform: translate3d(
+      calc(0.75rem - var(--hero-signal) * 0.75rem),
+      calc(0.75rem - var(--hero-signal) * 0.75rem),
+      0
+    )
+    rotate(var(--hero-counter-rotation));
+}
+
+.heroMetric strong {
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+}
+
+.heroMetric span {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.heroFooter {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: clamp(1.5rem, 4svh, 3.5rem);
+  opacity: 1;
+  transform: translate3d(0, calc(var(--hero-handoff) * 1.25rem), 0);
+}
+
+.articleMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+}
+
+.articleMeta > span[aria-hidden="true"] {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  background: var(--color-signal);
+}
+
+.scrollCue {
+  display: flex;
+  width: min(20rem, 38vw);
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.scrollCue i {
+  position: relative;
+  height: 1px;
+  flex: 1;
+  overflow: hidden;
+  background: var(--color-edge);
+}
+
+.scrollCue i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--color-highlight), transparent);
+  transform: translateX(calc((var(--hero-signal) * 220%) - 110%));
+}
+
+.hero[data-hero-active="true"] .heroGrid,
+.hero[data-hero-active="true"] .heroBeam,
+.hero[data-hero-active="true"] .heroCopy,
+.hero[data-hero-active="true"] .heroRecorder,
+.hero[data-hero-active="true"] .heroFooter {
+  will-change: transform, opacity;
+}
+
+.telemetrySection {
+  position: relative;
+  border-bottom: 1px solid var(--color-edge);
+  padding: clamp(5rem, 10vw, 9rem) 1.5rem;
+  background:
+    linear-gradient(90deg, transparent 49.9%, rgba(99, 102, 241, 0.08) 50%, transparent 50.1%),
+    #03070d;
+}
+
+.telemetryInner {
+  width: min(100%, 76rem);
+  margin-inline: auto;
+}
+
+.intro {
+  max-width: 61rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: clamp(1.35rem, 2.25vw, 2.15rem);
+  line-height: 1.52;
+  letter-spacing: -0.018em;
+  text-wrap: pretty;
+}
+
+.telemetryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(3.5rem, 8vw, 6.5rem);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-edge);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.telemetryHeader span:last-child {
+  color: var(--color-matrix);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(var(--metric-columns), minmax(0, 1fr));
+  border-left: 1px solid var(--color-edge);
+  border-bottom: 1px solid var(--color-edge);
+}
+
+.metric {
+  position: relative;
+  min-height: 11rem;
+  overflow: hidden;
+  padding: 1.65rem 1.25rem 2rem;
+  border-right: 1px solid var(--color-edge);
+  background: linear-gradient(145deg, rgba(13, 21, 32, 0.5), transparent 68%);
+}
+
+.metric:first-child {
+  border-left: 0;
+}
+
+.metric dt {
+  max-width: 13rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.metric dd {
+  margin-top: 1.5rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.65rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.metric::after {
+  content: "";
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1rem;
+  width: 2.6rem;
+  height: 1rem;
+  opacity: 0.65;
+  background:
+    linear-gradient(135deg, transparent 0 13%, var(--color-signal) 14% 17%, transparent 18% 34%, var(--color-highlight) 35% 38%, transparent 39% 57%, var(--color-matrix) 58% 61%, transparent 62%);
+}
+
+.storySection {
+  position: relative;
+  padding: clamp(4rem, 8vw, 8rem) 1.5rem clamp(7rem, 12vw, 12rem);
+}
+
+.storySection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: linear-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+  background-size: 100% 9rem;
+  mask-image: linear-gradient(transparent, black 10%, black 90%, transparent);
+}
+
+.storyLayout {
+  position: relative;
+  width: min(100%, 88rem);
+  margin-inline: auto;
+}
+
+.storyContent {
+  min-width: 0;
+}
+
+.architecture {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: clamp(7rem, 14vw, 12rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  border: 1px solid var(--color-edge);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.08), transparent 18rem),
+    linear-gradient(145deg, rgba(13, 21, 32, 0.82), rgba(2, 4, 8, 0.72));
+  box-shadow: 0 2rem 7rem rgba(0, 0, 0, 0.24);
+}
+
+.architectureMarker {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  color: rgba(122, 141, 163, 0.48);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.architectureHeading {
+  max-width: 43rem;
+}
+
+.architectureHeading h2 {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 750;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.architectureHeading > p:last-child {
+  margin-top: 1.5rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.topology {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--topology-columns), minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: 3.5rem;
+}
+
+.topologyRail {
+  position: absolute;
+  top: 50%;
+  right: 4%;
+  left: 4%;
+  z-index: 0;
+  height: 1px;
+  overflow: hidden;
+  background: linear-gradient(90deg, transparent, var(--color-edge) 6% 94%, transparent);
+}
+
+.topologyRail span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0 30%, var(--color-highlight) 46% 54%, transparent 70%);
+  transform: translateX(-70%);
+}
+
+.topologyNode {
+  position: relative;
+  z-index: 1;
+  min-height: 7.5rem;
+  padding: 1rem 0.9rem;
+  border: 1px solid var(--color-edge);
+  border-radius: 0.85rem;
+  background: rgba(2, 4, 8, 0.9);
+}
+
+.topologyNode > span {
+  color: var(--color-signal);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+}
+
+.topologyNode strong {
+  display: block;
+  margin-top: 1.5rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.articleBody {
+  position: relative;
+  padding-left: clamp(1.25rem, 4vw, 3rem);
+}
+
+.articleBody::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--color-signal) 6%,
+    rgba(0, 212, 255, 0.2) 56%,
+    var(--color-matrix) 94%,
+    transparent
+  );
+}
+
+.chapter {
+  --chapter-tone: var(--color-signal);
+  position: relative;
+  display: grid;
+  min-height: clamp(42rem, 86svh, 54rem);
+  align-items: center;
+  scroll-margin-top: 8rem;
+}
+
+.chapter[data-scene="hot-path"],
+.chapter[data-scene="release"] {
+  --chapter-tone: var(--color-matrix);
+}
+
+.chapter[data-scene="cache-fallback"] {
+  --chapter-tone: #fbbf24;
+}
+
+.chapter[data-scene="telemetry"] {
+  --chapter-tone: var(--color-highlight);
+}
+
+.chapter[data-scene="security"] {
+  --chapter-tone: #a78bfa;
+}
+
+.chapter[data-scene="recovery"] {
+  --chapter-tone: var(--color-alert);
+}
+
+.chapter::before {
+  content: "";
+  position: absolute;
+  left: calc(clamp(1.25rem, 4vw, 3rem) * -1);
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 2px solid var(--chapter-tone);
+  border-radius: 50%;
+  background: var(--color-void);
+  box-shadow: 0 0 0 0.4rem rgba(5, 10, 18, 0.9), 0 0 1.25rem color-mix(in srgb, var(--chapter-tone) 50%, transparent);
+  transform: translateX(-50%);
+  transition: background-color var(--transition-base), transform var(--transition-base);
+}
+
+.chapter[data-active]::before {
+  background: var(--chapter-tone);
+  transform: translateX(-50%) scale(1.25);
+}
+
+.chapterCoordinate {
+  position: absolute;
+  top: 14%;
+  right: 0;
+  color: rgba(122, 141, 163, 0.34);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.chapterFrame {
+  position: relative;
+  max-width: 47rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1rem, 3vw, 2rem);
+  border-top: 1px solid color-mix(in srgb, var(--chapter-tone) 55%, var(--color-edge));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--chapter-tone) 4%, transparent), transparent 48%);
+  transform-origin: left center;
+  transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.chapter:nth-child(even) .chapterFrame {
+  margin-left: clamp(0rem, 5vw, 4rem);
+}
+
+.chapterHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--chapter-tone);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.chapterHeader > span {
+  color: var(--color-text-muted);
+  font-size: 0.54rem;
+}
+
+.chapter h2 {
+  max-width: 14ch;
+  margin-top: 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 4.75rem);
+  font-weight: 780;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.chapterIntro {
+  max-width: 42rem;
+  margin-top: 1.75rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.45vw, 1.2rem);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.chapterList {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 2rem;
+  list-style: none;
+}
+
+.chapterList li {
+  display: grid;
+  grid-template-columns: 0.65rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(26, 40, 64, 0.58);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.chapterList li > span:first-child {
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 50%;
+  background: var(--chapter-tone);
+  box-shadow: 0 0 0.7rem color-mix(in srgb, var(--chapter-tone) 42%, transparent);
+}
+
+.chapterNote {
+  position: relative;
+  margin-top: 2rem;
+  padding: 1.35rem 1.5rem 1.35rem 2rem;
+  border-left: 2px solid var(--chapter-tone);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--chapter-tone) 8%, transparent), transparent);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  font-style: normal;
+  line-height: 1.75;
+}
+
+.chapterNote > span {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.55rem;
+  color: var(--chapter-tone);
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.progressTrack {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 200;
+  height: 2px;
+  pointer-events: none;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.progressValue {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-signal), var(--color-highlight), var(--color-matrix));
+  box-shadow: 0 0 1.2rem rgba(0, 212, 255, 0.45);
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
+}
+
+.mobileTracker {
+  position: sticky;
+  top: 4.25rem;
+  z-index: 80;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 3.25rem;
+  margin: -1rem -0.25rem 3rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(129, 140, 248, 0.24);
+  border-radius: 999px;
+  background: rgba(5, 10, 18, 0.94);
+  box-shadow: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.3);
+}
+
+.mobileTrackerIndex {
+  color: var(--color-highlight);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.mobileTrackerIndex span {
+  margin-inline: 0.2rem;
+  color: var(--color-text-muted);
+}
+
+.mobileTrackerTitle {
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stage {
+  display: none;
+}
+
+.stagePanel {
+  overflow: hidden;
+  padding: 1rem;
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(180deg, rgba(13, 21, 32, 0.9), rgba(2, 4, 8, 0.92)),
+    var(--color-void);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  contain: layout paint style;
+}
+
+.stageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.15rem 0.25rem 0.85rem;
+  border-bottom: 1px solid var(--color-edge);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.stageHeader > span:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--scene-tone);
+  box-shadow: 0 0 0.8rem color-mix(in srgb, var(--scene-tone) 65%, transparent);
+}
+
+.stageCounter {
+  color: var(--scene-tone);
+  font-variant-numeric: tabular-nums;
+}
+
+.traceVisual {
+  position: relative;
+  height: 15rem;
+  overflow: hidden;
+  margin: 0.7rem -0.5rem 0;
+}
+
+.traceVisual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.11) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+  mask-image: radial-gradient(circle, black, transparent 72%);
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12rem;
+  height: 12rem;
+  margin: -6rem;
+  border: 1px solid rgba(129, 140, 248, 0.26);
+  border-radius: 50%;
+  transform: rotate(var(--active-angle));
+  transition: transform 700ms var(--ease-out-expo), border-color 400ms ease;
+}
+
+.orbit::before,
+.orbit::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.orbit::before {
+  inset: 1.15rem;
+  border: 1px dashed rgba(0, 212, 255, 0.2);
+}
+
+.orbit::after {
+  inset: 3.2rem;
+  border: 1px solid rgba(0, 255, 136, 0.13);
+}
+
+.orbitNode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin: -0.21rem;
+  border: 1px solid var(--color-text-muted);
+  border-radius: 50%;
+  background: var(--color-void);
+  transform: rotate(calc(var(--orbit-index) * var(--orbit-step))) translateY(-6rem);
+  transition: background-color var(--transition-base), border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.orbitNode[data-current="true"] {
+  border-color: var(--scene-tone);
+  background: var(--scene-tone);
+  box-shadow: 0 0 1rem color-mix(in srgb, var(--scene-tone) 70%, transparent);
+}
+
+.core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  width: 4.75rem;
+  height: 4.75rem;
+  place-content: center;
+  margin: -2.375rem;
+  border: 1px solid color-mix(in srgb, var(--scene-tone) 62%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--scene-tone) 12%, #050a12), #050a12 68%);
+  box-shadow: 0 0 2.6rem color-mix(in srgb, var(--scene-tone) 12%, transparent);
+  text-align: center;
+  transform: scale(calc(0.9 + var(--scene-progress, 0) * 0.1));
+  transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.core span {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.core small {
+  margin-top: 0.15rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.34rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.securityRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: 7rem;
+  height: 7rem;
+  margin: -3.5rem;
+  border: 1px solid transparent;
+  border-radius: 38% 38% 48% 48%;
+  opacity: 0;
+  transform: scale(1.25);
+  transition: opacity 400ms ease, transform 600ms var(--ease-out-expo), border-color 400ms ease;
+}
+
+.traceMap {
+  position: absolute;
+  inset: auto 0 0;
+  width: 100%;
+  height: 8rem;
+  overflow: visible;
+  transition: transform 500ms var(--ease-out-expo);
+}
+
+.traceRail,
+.traceSignal,
+.fallbackRail {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.traceRail {
+  stroke: rgba(122, 141, 163, 0.25);
+  stroke-width: 1;
+}
+
+.traceSignal {
+  stroke: var(--scene-tone);
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--scene-progress, 0));
+  transition: stroke 350ms ease, stroke-width 350ms ease;
+}
+
+.fallbackRail {
+  opacity: 0;
+  stroke: #fbbf24;
+  stroke-width: 1.5;
+  stroke-dasharray: 0.08 0.04;
+  transition: opacity 400ms ease;
+}
+
+.traceNode circle:first-child {
+  fill: rgba(5, 10, 18, 0.94);
+  stroke: rgba(122, 141, 163, 0.35);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  transition: fill 350ms ease, stroke 350ms ease;
+}
+
+.traceNode circle:last-child {
+  fill: var(--color-text-muted);
+  transition: fill 350ms ease;
+}
+
+.traceNode[data-current="true"] circle:first-child {
+  fill: color-mix(in srgb, var(--scene-tone) 10%, #050a12);
+  stroke: var(--scene-tone);
+}
+
+.traceNode[data-current="true"] circle:last-child {
+  fill: var(--scene-tone);
+}
+
+.stage[data-scene="hot-path"] .traceSignal {
+  stroke-width: 4;
+}
+
+.stage[data-scene="cache-fallback"] .fallbackRail {
+  opacity: 1;
+}
+
+.stage[data-scene="telemetry"] .orbit {
+  border-color: color-mix(in srgb, var(--scene-tone) 70%, transparent);
+}
+
+.stage[data-scene="security"] .securityRing {
+  border-color: color-mix(in srgb, var(--scene-tone) 74%, transparent);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.stage[data-scene="recovery"] .traceMap {
+  transform: translate3d(0.35rem, 0, 0) skewX(-2deg);
+}
+
+.stage[data-scene="release"] .traceNode circle:last-child {
+  fill: var(--color-matrix);
+}
+
+.stageReadout {
+  min-height: 6.8rem;
+  padding: 1rem 0.25rem 0.8rem;
+  border-top: 1px solid var(--color-edge);
+  animation: refreshReadout 420ms var(--ease-out-expo) both;
+}
+
+.stageEyebrow {
+  display: block;
+  color: var(--scene-tone);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.stageReadout > strong {
+  display: block;
+  max-width: 23rem;
+  margin-top: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.stageSignals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.8rem;
+}
+
+.stageSignals span {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--color-edge);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+}
+
+.stageSignals b {
+  color: var(--scene-tone);
+  font-weight: 700;
+}
+
+.stageProgressLabel {
+  padding: 0.6rem 0.25rem 0.4rem;
+  border-top: 1px solid var(--color-edge);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.stageNavigation {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.stageNavigation a {
+  display: grid;
+  min-height: 2.6rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 0.55rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  line-height: 1.25;
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.stageNavigation a > span:first-child {
+  color: var(--color-signal);
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+}
+
+.stageNavigation a:hover,
+.stageNavigation a[data-current="true"] {
+  border-color: color-mix(in srgb, var(--scene-tone) 38%, transparent);
+  background: color-mix(in srgb, var(--scene-tone) 5%, transparent);
+  color: var(--color-text-primary);
+}
+
+.ctaSection {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100svh;
+  overflow: clip;
+  place-items: center;
+  padding: clamp(1.5rem, 6svh, 4rem) 1.5rem;
+  border-top: 1px solid var(--color-edge);
+  background:
+    radial-gradient(circle at center, rgba(0, 255, 136, 0.08), transparent 24rem),
+    #020408;
+  text-align: center;
+}
+
+.ctaTrace {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.ctaTrace span {
+  position: absolute;
+  width: min(82vw, 58rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(0, 255, 136, 0.12);
+  border-radius: 50%;
+}
+
+.ctaTrace span:nth-child(2) {
+  width: min(58vw, 38rem);
+  border-style: dashed;
+  border-color: rgba(0, 212, 255, 0.16);
+}
+
+.ctaTrace span:nth-child(3) {
+  width: min(34vw, 20rem);
+  border-color: rgba(129, 140, 248, 0.2);
+}
+
+.ctaInner {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  width: min(64rem, 100%);
+}
+
+.ctaInner > p:first-child {
+  color: var(--color-matrix);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ctaInner h2 {
+  max-width: 20ch;
+  margin: clamp(0.75rem, 2.2svh, 1.25rem) auto 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, min(4.4vw, 7.2svh), 4.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.ctaInner > p:nth-of-type(2) {
+  max-width: 41rem;
+  margin: clamp(0.9rem, 2.2svh, 1.4rem) auto 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.ctaLink {
+  display: inline-flex;
+  min-height: clamp(2.9rem, 7svh, 3.35rem);
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: clamp(1.15rem, 2.8svh, 1.8rem);
+  padding: 0.8rem 1.4rem 0.8rem 1.65rem;
+  border: 1px solid var(--color-matrix);
+  border-radius: 999px;
+  background: var(--color-matrix);
+  color: var(--color-void);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 750;
+  box-shadow: 0 1rem 3rem rgba(0, 255, 136, 0.14);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.ctaLink:hover {
+  box-shadow: 0 1.25rem 3.5rem rgba(0, 255, 136, 0.22);
+  transform: translateY(-0.2rem);
+}
+
+.ctaLink > span:last-child {
+  font-size: 1.2rem;
+}
+
+.ctaInner small {
+  display: block;
+  margin-top: clamp(0.7rem, 1.8svh, 1.15rem);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+}
+
+@keyframes revealMetric {
+  from {
+    transform: translate3d(0, 2.5rem, 0) scale(0.96);
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes revealChapter {
+  from {
+    transform: perspective(900px) translate3d(0, 7rem, 0) rotateX(7deg) scale(0.94);
+  }
+  to {
+    transform: perspective(900px) translate3d(0, 0, 0) rotateX(0) scale(1);
+  }
+}
+
+@keyframes travelTopology {
+  from {
+    transform: translateX(-70%);
+  }
+  to {
+    transform: translateX(70%);
+  }
+}
+
+@keyframes refreshReadout {
+  from {
+    transform: translate3d(0, 0.65rem, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .metric {
+    animation-name: revealMetric;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    /* Keep this longhand separate: Next's CSS optimizer currently emits an
+       invalid timeline value when it folds view() into the shorthand. */
+    animation-timeline: view();
+    animation-range: entry 5% cover 34%;
+  }
+
+  .chapterFrame {
+    animation-name: revealChapter;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 43%;
+  }
+
+  .topologyRail span {
+    animation-name: travelTopology;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@media (min-width: 700px) {
+  .heroSticky,
+  .telemetrySection,
+  .storySection,
+  .ctaSection {
+    padding-inline: 2.5rem;
+  }
+
+  .mobileTracker {
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 1120px) {
+  .storyLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 49rem) minmax(20rem, 23rem);
+    justify-content: space-between;
+    gap: clamp(3rem, 6vw, 6.5rem);
+  }
+
+  .storyContent {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .mobileTracker {
+    display: none;
+  }
+
+  .stage {
+    position: sticky;
+    top: 5.5rem;
+    display: block;
+    max-height: calc(100svh - 6.75rem);
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .stagePanel {
+    max-height: calc(100svh - 5.5rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-color: color-mix(in srgb, var(--scene-tone) 45%, transparent)
+      transparent;
+    scrollbar-width: thin;
+  }
+}
+
+@media (min-width: 1120px) and (max-height: 780px) {
+  .stagePanel {
+    padding: 0.875rem;
+  }
+
+  .traceVisual {
+    height: 13.25rem;
+  }
+
+  .stageReadout {
+    min-height: 6.2rem;
+  }
+
+  .stageNavigation a {
+    min-height: 2.4rem;
+  }
+}
+
+@media (min-width: 1120px) and (max-height: 680px) {
+  .stagePanel {
+    padding: 0.75rem;
+    border-radius: 1.25rem;
+  }
+
+  .stageHeader {
+    padding-bottom: 0.55rem;
+  }
+
+  .traceVisual {
+    height: 9.25rem;
+    margin-top: 0.35rem;
+  }
+
+  .orbit {
+    width: 8.25rem;
+    height: 8.25rem;
+    margin: -4.125rem;
+  }
+
+  .orbitNode {
+    transform: rotate(calc(var(--orbit-index) * var(--orbit-step)))
+      translateY(-4.125rem);
+  }
+
+  .core {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: -1.75rem;
+  }
+
+  .core span {
+    font-size: 1rem;
+  }
+
+  .securityRing {
+    width: 5rem;
+    height: 5rem;
+    margin: -2.5rem;
+  }
+
+  .traceMap {
+    height: 5.25rem;
+  }
+
+  .stageReadout {
+    min-height: 4.6rem;
+    padding: 0.55rem 0.25rem 0.45rem;
+  }
+
+  .stageReadout > strong {
+    margin-top: 0.35rem;
+    font-size: 1.02rem;
+  }
+
+  .stageSignals {
+    gap: 0.25rem;
+    margin-top: 0.4rem;
+  }
+
+  .stageSignals span {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.45rem;
+  }
+
+  .stageProgressLabel {
+    padding-block: 0.4rem 0.3rem;
+  }
+
+  .stageNavigation {
+    gap: 0.125rem;
+  }
+
+  .stageNavigation a {
+    min-height: 1.9rem;
+    padding: 0.2rem 0.3rem;
+    font-size: 0.52rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .hero {
+    --hero-rotation: 12deg;
+    --hero-counter-rotation: -12deg;
+    min-block-size: auto;
+  }
+
+  .heroSticky {
+    position: relative;
+    block-size: auto;
+    min-block-size: 100svh;
+    align-items: end;
+    padding-top: 8rem;
+  }
+
+  .heroComposition {
+    display: block;
+  }
+
+  .heroCopy {
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    transform: none;
+  }
+
+  .heroTitle {
+    max-width: 9ch;
+    font-size: clamp(3.6rem, 17vw, 7rem);
+  }
+
+  .heroTitle span {
+    transform: none;
+  }
+
+  .heroRecorder {
+    position: absolute;
+    top: 16%;
+    right: -8rem;
+    width: 25rem;
+    opacity: 0.28;
+    transform: rotate(var(--hero-rotation));
+  }
+
+  .heroFooter {
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+  }
+
+  .scrollCue {
+    display: none;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric:nth-child(2) {
+    border-right: 1px solid var(--color-edge);
+  }
+
+  .metric:nth-child(3) {
+    border-left: 0;
+  }
+
+  .topology {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .topologyRail {
+    display: none;
+  }
+
+  .topologyNode {
+    min-height: 6.5rem;
+  }
+
+  .chapter {
+    min-height: auto;
+    padding-block: clamp(4rem, 14vw, 7rem);
+  }
+
+  .chapter:nth-child(even) .chapterFrame {
+    margin-left: 0;
+  }
+
+  .chapterCoordinate {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .heroSticky,
+  .telemetrySection,
+  .storySection,
+  .ctaSection {
+    padding-inline: 1rem;
+  }
+
+  .backLink {
+    margin-bottom: 2.75rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .articleMeta {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .articleMeta > span[aria-hidden="true"] {
+    display: none;
+  }
+
+  .telemetryHeader > span:last-child {
+    display: none;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .metric,
+  .metric:first-child,
+  .metric:nth-child(2),
+  .metric:nth-child(3) {
+    min-height: 8.5rem;
+    border-right: 1px solid var(--color-edge);
+    border-left: 0;
+  }
+
+  .metric dd {
+    margin-top: 0.85rem;
+  }
+
+  .architecture {
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+  }
+
+  .architectureMarker {
+    display: none;
+  }
+
+  .topology {
+    gap: 0.45rem;
+    margin-top: 2.5rem;
+  }
+
+  .topologyNode {
+    min-height: 5.7rem;
+    padding: 0.75rem;
+  }
+
+  .topologyNode strong {
+    margin-top: 0.9rem;
+    font-size: 0.68rem;
+  }
+
+  .articleBody {
+    padding-left: 1rem;
+  }
+
+  .chapter::before {
+    left: -1rem;
+  }
+
+  .chapterFrame {
+    padding-inline: 0.8rem 0;
+  }
+
+  .chapter h2 {
+    font-size: clamp(2.15rem, 11vw, 3.4rem);
+  }
+
+  .chapterList li {
+    font-size: 0.88rem;
+  }
+
+  .chapterNote {
+    padding-right: 0.75rem;
+  }
+
+  .ctaTrace span {
+    width: 42rem;
+  }
+}
+
+@media (max-height: 560px) {
+  .ctaSection {
+    padding-block: 1rem;
+  }
+
+  .ctaInner > p:first-child {
+    font-size: 0.58rem;
+  }
+
+  .ctaInner h2 {
+    margin-top: 0.6rem;
+    font-size: clamp(1.8rem, min(4vw, 7svh), 3rem);
+  }
+
+  .ctaInner > p:nth-of-type(2) {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .ctaLink {
+    min-height: 2.75rem;
+    margin-top: 1rem;
+    padding-block: 0.6rem;
+  }
+
+  .ctaInner small {
+    margin-top: 0.6rem;
+  }
+}
+
+@media (max-height: 599px), (hover: none), (pointer: coarse), (pointer: none) {
+  .hero,
+  .heroSticky {
+    min-block-size: auto;
+  }
+
+  .heroSticky {
+    position: relative;
+    block-size: auto;
+    min-height: 100svh;
+  }
+
+  .heroCopy,
+  .heroFooter {
+    opacity: 1;
+    transform: none;
+  }
+
+  .heroRecorder {
+    transform: none;
+  }
+
+  .heroCore,
+  .heroMetric,
+  .heroOrbitOuter,
+  .heroOrbitInner {
+    transform: none;
+  }
+
+  .heroGrid,
+  .heroBeam,
+  .heroCopy,
+  .heroRecorder,
+  .heroFooter,
+  .heroCore,
+  .heroMetric {
+    will-change: auto;
+  }
+}
+
+@media (pointer: coarse) {
+  .heroRecorder {
+    opacity: 0.25;
+  }
+}
+
+@media (scripting: none) {
+  .hero {
+    min-block-size: auto;
+  }
+
+  .heroSticky {
+    position: relative;
+    block-size: auto;
+  }
+
+  .progressTrack,
+  .mobileTracker,
+  .stage {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .heroSticky {
+    min-block-size: auto;
+  }
+
+  .heroSticky,
+  .stage {
+    position: relative;
+    top: auto;
+  }
+
+  .heroSticky {
+    block-size: auto;
+  }
+
+  .heroCopy,
+  .heroFooter,
+  .heroTitle span,
+  .heroCore,
+  .heroMetric,
+  .heroOrbitOuter,
+  .heroOrbitInner,
+  .chapterFrame,
+  .metric,
+  .topologyRail span,
+  .orbit,
+  .core,
+  .stageReadout {
+    opacity: 1;
+    animation: none;
+    transform: none;
+    transition: none;
+  }
+
+  .heroRecorder {
+    animation: none;
+    transform: none;
+    transition: none;
+  }
+
+  .heroGrid,
+  .heroBeam,
+  .heroCopy,
+  .heroRecorder,
+  .heroFooter,
+  .heroTitle span,
+  .heroCore,
+  .heroMetric {
+    will-change: auto;
+  }
+
+  .heroBeam::after,
+  .scrollCue i::after,
+  .backLink:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .traceSignal {
+    stroke-dashoffset: 0;
+  }
+
+  .chapter::before,
+  .chapter[data-active]::before {
+    transform: translateX(-50%);
+    transition: none;
+  }
+
+  .orbitNode,
+  .securityRing,
+  .traceMap,
+  .traceSignal,
+  .fallbackRail,
+  .traceNode circle {
+    animation: none;
+    transition: none;
+  }
+
+  .stage[data-scene] .securityRing,
+  .stage[data-scene] .traceMap {
+    transform: none;
+  }
+
+  .progressValue {
+    will-change: auto;
+  }
+
+  .ctaLink,
+  .ctaLink:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .articleExperience {
+    background: #000;
+  }
+
+  .metric,
+  .architecture,
+  .chapterFrame,
+  .stagePanel,
+  .mobileTracker {
+    border-color: currentColor;
+    background: #000;
+  }
+
+  .heroGrid,
+  .storySection::before,
+  .traceVisual::before {
+    display: none;
+  }
+
+  .metric,
+  .chapterFrame,
+  .stageReadout,
+  .topologyRail span {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
+
+@media print {
+  .progressTrack,
+  .mobileTracker,
+  .stage,
+  .heroRecorder,
+  .heroGrid,
+  .heroBeam,
+  .scrollCue,
+  .ctaTrace {
+    display: none;
+  }
+
+  .articleExperience,
+  .heroSticky,
+  .telemetrySection,
+  .storySection,
+  .ctaSection {
+    overflow: visible;
+    background: #fff;
+    color: #111;
+  }
+
+  .articleExperience {
+    --color-text-primary: #111;
+    --color-text-secondary: #303640;
+    --color-text-muted: #505864;
+    --color-edge: #c9ced6;
+    --color-void: #fff;
+    --color-signal: #006a82;
+    --color-highlight: #3048a3;
+    --color-matrix: #00663e;
+  }
+
+  .hero,
+  .heroSticky,
+  .chapter,
+  .ctaSection {
+    min-height: auto;
+  }
+
+  .heroSticky {
+    position: relative;
+    block-size: auto;
+  }
+
+  .heroComposition {
+    display: block;
+  }
+
+  .heroTitle {
+    max-width: 100%;
+    font-size: 3.5rem;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+  }
+
+  .heroTitle span {
+    display: inline;
+    margin-right: 0.12em;
+  }
+
+  .heroCopy,
+  .heroFooter,
+  .chapterFrame,
+  .metric,
+  .topologyRail span {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
+  .chapter,
+  .metric,
+  .architecture {
+    break-inside: avoid;
+  }
+
+  .ctaSection {
+    display: block;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-block: 2.5rem;
+    break-before: page;
+    break-inside: avoid-page;
+  }
+
+  .ctaInner {
+    max-width: none;
+    break-inside: avoid-page;
+  }
+
+  .ctaInner h2 {
+    margin-top: 0.8rem;
+    font-size: 2.75rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .ctaInner > p:nth-of-type(2) {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .ctaLink {
+    margin-top: 1.25rem;
+  }
+
+  .ctaInner small {
+    margin-top: 0.8rem;
+  }
+}
