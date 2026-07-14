@@ -13,7 +13,14 @@
     "ariaLabel": "Navegação principal",
     "mobileMenuLabel": "Menu de navegação",
     "openMenu": "Abrir menu",
-    "closeMenu": "Fechar menu"
+    "closeMenu": "Fechar menu",
+    "languageSelector": "Selecionar idioma",
+    "switchLanguage": "Mudar idioma para {language}",
+    "languages": {
+      "pt": "Português",
+      "en": "Inglês",
+      "es": "Espanhol"
+    }
   },
   "Hero": {
     "title": "Engenheiro de Software & Gerente de TI",
@@ -28,18 +35,18 @@
   "About": {
     "title": "Sobre",
     "mainTitle": "De dev a gestor sem largar o terminal",
-    "bio": "Comecei como desenvolvedor full-stack e hoje lidero a área de tecnologia de uma empresa com operações internacionais. No caminho, aprendi que gestão de verdade exige mão na massa, por isso continuo construindo backends, configurando infraestrutura cloud e garantindo que cada sistema aguenta a pressão de produção. Minha entrega vai do código ao deploy final.",
+    "bio": "Comecei como desenvolvedor full-stack e hoje lidero a área de tecnologia de uma empresa com operações internacionais. No caminho, aprendi que gestão de verdade exige mão na massa, por isso continuo construindo backends, configurando infraestrutura cloud e garantindo que cada sistema opere com confiabilidade sob a pressão de produção. Minha entrega vai do código ao deploy final.",
     "bioExtended": "Já entreguei projetos para o Hospital Sírio-Libanês, Grupo Bandeirantes e redes hoteleiras internacionais, sempre com foco em performance real, infraestrutura resiliente e times que funcionam. Meu perfil é hands-on: codifico, reviso, configuro infra e tomo decisões técnicas no mesmo dia.",
     "location": "São Paulo, Brasil",
     "availability": "Disponível para novos desafios",
     "pillars": {
-      "cloud": "Cloud & DevOps",
+      "cloud": "Cloud",
       "backend": "Backend de Alta Performance",
       "management": "Gestão de Times",
       "observability": "Observabilidade",
       "frontend": "Frontend Avançado",
       "mobile": "Desenvolvimento Mobile",
-      "devops": "Cloud & DevOps",
+      "devops": "DevOps & Observabilidade",
       "video": "Streaming & Vídeo",
       "ai": "Inteligência Artificial"
     }
@@ -49,7 +56,21 @@
     "projectsDelivered": "Projetos entregues",
     "countries": "Países",
     "usersImpacted": "Usuários impactados",
-    "title_small": "Números"
+    "title_small": "Números",
+    "metrics": {
+      "requests": {
+        "label": "Requisições/mês",
+        "description": "Volume mensal em produção"
+      },
+      "latency": {
+        "label": "Resposta média",
+        "description": "Latência média da API"
+      },
+      "cache": {
+        "label": "Cache hit rate",
+        "description": "Acerto de cache no Redis"
+      }
+    }
   },
   "Projects": {
     "title": "O que eu fiz",
@@ -70,6 +91,7 @@
     "keyDecisions": "Decisões-chave",
     "lessonsLearned": "Lições aprendidas",
     "filters": {
+      "label": "Filtrar projetos",
       "all": "Todos",
       "engineering": "Engenharia",
       "management": "Gestão",
@@ -90,9 +112,9 @@
         "solution": "Arquitetura unificada em Next.js no frontend e Go no backend, com NestJS para microsserviços auxiliares. Segurança de borda via WAF da AWS, Load Balancing elástico e deploy gradual com rollback automatizado.",
         "impact": "6 portais modernizados com arquitetura de vanguarda, segurança enterprise-grade e capacidade de escala para picos de audiência (eleições, eventos esportivos ao vivo).",
         "metrics": {
-          "portaismigrados": "Portais migrados",
+          "portalsMigrated": "Portais migrados",
           "downtime": "Downtime",
-          "parceria": "Parceria"
+          "partnership": "Parceria"
         },
         "highlights": [
           "Coordenação direta de times de Design, Frontend, Backend e Infra",
@@ -131,11 +153,9 @@
         "solution": "Backend em Go (Fiber) otimizado para throughput máximo, com orquestração auto-escalável no GCP (Cloud Run). Cache distribuído com Redis (92% hit rate), persistência em PostgreSQL e observabilidade via Prometheus. App nativo Kotlin com Jetpack Compose e Media3 para Android TV.",
         "impact": "Plataforma em produção estável com 20M+ requisições mensais, latência média de 6ms e infraestrutura pronta para auditorias de saúde e expansão para novas unidades hospitalares.",
         "metrics": {
-          "requisições/mês": "Requisições/mês",
-          "respostamédia": "Resposta média",
-          "cachehitrate": "Cache hit rate",
-          "requisiesms": "Requisições/mês",
-          "respostamdia": "Resposta média"
+          "requestsPerMonth": "Requisições/mês",
+          "averageResponse": "Resposta média",
+          "cacheHitRate": "Cache hit rate"
         },
         "highlights": [
           "100% do backend e cloud feitos por mim, sem terceiros",
@@ -143,12 +163,12 @@
           "Integração com sistema hospitalar Tasy para dados do paciente",
           "Streaming Unicast com DRM Widevine (proteção de conteúdo premium)",
           "App nativo Kotlin/Jetpack Compose para Android TV",
-          "Monitoring com Prometheus e alertas em tempo real",
-          "Cloud Run com auto-scaling no GCP"
+          "Monitoramento com Prometheus e alertas em tempo real",
+          "Cloud Run com autoescalabilidade no GCP"
         ],
         "caseStudy": {
           "problem": "O Sírio-Libanês precisava de uma plataforma digital de hospitalidade para seus pacientes que integrasse informações em tempo real do Tasy, streaming de conteúdo com proteção DRM e uma interface intuitiva nas TVs dos quartos.",
-          "solution": "Projetei e construí toda a stack: backend em Go para máxima performance, infraestrutura GCP with auto-scaling, cache Redis para respostas instantâneas e app Android TV em Kotlin com streaming protegido por Widevine DRM.",
+          "solution": "Projetei e construí toda a stack: backend em Go para máxima performance, infraestrutura GCP com autoescalabilidade, cache Redis para respostas instantâneas e app Android TV em Kotlin com streaming protegido por Widevine DRM.",
           "robertoRole": "Fui o engenheiro responsável por toda a stack técnica (backend, infra, mobile). Simultaneamente, atuei como líder técnico definindo arquitetura, padrões de código e monitoramento. A decisão de usar Go veio da necessidade de latência ultra-baixa em ambiente hospitalar.",
           "keyDecisions": [
             "Go + Fiber por performance: 6ms de latência média",
@@ -210,9 +230,10 @@
     "title_small": "Onde trabalhei",
     "present": "Presente",
     "items": {
-      "valiant-gti": {
-        "company": "Valiant Group do Brasil",
-        "role": "Engenheiro de Software & Gerente de TI",
+    "valiant-gti": {
+      "company": "Valiant Group do Brasil",
+      "role": "Engenheiro de Software & Gerente de TI",
+      "period": "Jan 2026 · Presente",
         "description": "Lidero a área de tecnologia da empresa, incluindo infraestrutura cloud, DevOps, segurança e operações. Gerencio o ciclo completo de produtos de software que impactam 100k+ usuários ativos. Conduzo operações internacionais e mantenho o pé no código, de backends em Go a apps Android TV.",
         "highlights": [
           "Decisor principal de tecnologia da empresa",
@@ -223,20 +244,22 @@
           "Infra cloud em GCP, AWS e Oracle"
         ]
       },
-      "valiant-pm": {
-        "company": "Valiant Group do Brasil",
-        "role": "Gerente de Projetos de TI",
+    "valiant-pm": {
+      "company": "Valiant Group do Brasil",
+      "role": "Gerente de Projetos de TI",
+      "period": "Nov 2024 · Dez 2025",
         "description": "Orquestrei equipes multidisciplinares garantindo entregas ágeis de novos projetos. Com background forte em desenvolvimento, conduzi a governança de infra cloud no GCP, pipelines de CI/CD e gestão do ciclo de vida dos produtos.",
         "highlights": [
           "Time de desenvolvimento sob minha gestão direta",
-          "Definição de stack técnico e padrões de qualidade",
+          "Definição da stack técnica e dos padrões de qualidade",
           "Otimização de infraestrutura cloud GCP",
           "Interface direta com clientes e stakeholders"
         ]
       },
-      "valiant-dev": {
-        "company": "Valiant Group do Brasil",
-        "role": "Desenvolvedor Web / Mobile Full Stack",
+    "valiant-dev": {
+      "company": "Valiant Group do Brasil",
+      "role": "Desenvolvedor Web / Mobile Full Stack",
+      "period": "Dez 2023 · Dez 2024",
         "description": "Desenvolvimento full stack end-to-end: web, mobile e infra. Trabalhei desde o desenho de APIs até deploy em produção, com foco em performance e estabilidade.",
         "highlights": [
           "Full stack: JavaScript, TypeScript, React, Kotlin, Go",
@@ -245,9 +268,10 @@
           "Monitoramento e otimização de performance em produção"
         ]
       },
-      "weber-dev": {
-        "company": "Weber Technologies",
-        "role": "Desenvolvedor Web Full Stack",
+    "weber-dev": {
+      "company": "Weber Technologies",
+      "role": "Desenvolvedor Web Full Stack",
+      "period": "Mai 2023 · Dez 2023",
         "description": "Desenvolvimento full stack com React e Python/Django. Da concepção à implementação e deploy, passando por containerização com Docker.",
         "highlights": [
           "Desenvolvimento full stack com React e Python/Django",
@@ -255,9 +279,10 @@
           "Ciclo completo: concepção, desenvolvimento e deploy"
         ]
       },
-      "buser-dev": {
-        "company": "Buser Brasil",
-        "role": "Desenvolvedor Web Full Stack",
+    "buser-dev": {
+      "company": "Buser Brasil",
+      "role": "Desenvolvedor Web Full Stack",
+      "period": "Abr 2022 · Abr 2023",
         "description": "Manutenção e evolução de produto de grande escala. Implementação de features novas em codebase existente com Vue.js, Python e Django.",
         "highlights": [
           "Manutenção e evolução de produto de grande escala",
@@ -267,51 +292,24 @@
       }
     }
   },
-  "Testimonials": {
-    "title": "Depoimentos",
-    "items": {
-      "testimonial-1": {
-        "name": "Carlos Eduardo Silva",
-        "role": "Diretor de Tecnologia",
-        "company": "Valiant Group",
-        "quote": "O Roberto tem uma capacidade rara de transitar entre a visão estratégica e a execução técnica profunda. Ele não só lidera o time, ele entende cada linha de código e cada decisão de infraestrutura. Isso faz toda a diferença na qualidade das nossas entregas."
-      },
-      "testimonial-2": {
-        "name": "Ana Paula Ferreira",
-        "role": "Gerente de Produto",
-        "company": "Hospital Sírio-Libanês",
-        "quote": "A plataforma que o Roberto construiu para nós simplesmente funciona. 20 milhões de requisições por mês com 6ms de latência, e ele fez tudo sozinho, do backend ao deploy. Profissional excepcional."
-      },
-      "testimonial-3": {
-        "name": "Ricardo Mendes",
-        "role": "Head de Digital",
-        "company": "Grupo Bandeirantes",
-        "quote": "Migrar 6 portais de alta visibilidade sem nenhum segundo de downtime é uma proeza técnica e de gestão. O Roberto coordenou tudo com maestria, mantendo comunicação clara com o nosso C-Level em cada etapa."
-      }
-    }
-  },
   "Insights": {
     "title": "Insights & Artigos",
     "title_small": "Pensamento técnico",
     "subtitle": "Reflexões sobre liderança técnica, arquitetura de sistemas e as decisões que fazem a diferença em produção.",
     "readTime": "leitura",
     "viewArticle": "Ler artigo completo",
+    "categories": {
+      "architecture": "Arquitetura"
+    },
+    "tags": {
+      "Go": "Go",
+      "Backend": "Backend",
+      "Performance": "Performance"
+    },
     "items": {
-      "insight-1": {
-        "title": "Por que seu líder técnico precisa codar",
-        "summary": "A liderança técnica efetiva exige hands-on. Gestores que abandonam o código perdem contexto crítico sobre a complexidade real dos projetos que gerenciam."
-      },
       "insight-2": {
         "title": "Go em produção: o que ninguém te conta",
         "summary": "Depois de rodar Go em sistemas que processam 20M+ requests/mês, compartilho as decisões de arquitetura que fizeram a diferença e os erros que quase custaram caro."
-      },
-      "insight-3": {
-        "title": "Observabilidade não é dashboard bonito",
-        "summary": "Prometheus, alertas e métricas que realmente importam. Como montar um stack de observabilidade que te acorda só quando precisa e te deixa dormir o resto do tempo."
-      },
-      "insight-4": {
-        "title": "Cloud multi-provider: AWS + GCP na prática",
-        "summary": "Usar AWS e GCP no mesmo ecossistema parece insanidade. Mas em certos cenários, é a decisão mais inteligente. Explico quando faz sentido e como evitar os problemas."
       }
     }
   },
@@ -329,8 +327,44 @@
       "send": "Enviar Mensagem",
       "sending": "Enviando...",
       "success": "Mensagem enviada com sucesso!",
-      "error": "Ocorreu um erro ao enviar a mensagem."
+      "error": "Ocorreu um erro ao enviar a mensagem.",
+      "selectPlaceholder": "Selecione uma opção",
+      "projectOptions": {
+        "web": "Aplicação web",
+        "mobile": "Aplicativo nativo",
+        "backend": "Backend ou API",
+        "architecture": "Arquitetura de software",
+        "leadership": "Gestão ou liderança técnica",
+        "other": "Outro"
+      },
+      "validation": {
+        "name": "Informe seu nome.",
+        "email": "Informe um e-mail válido.",
+        "projectType": "Selecione o tipo de projeto.",
+        "message": "Conte um pouco mais sobre o desafio."
+      },
+      "serverErrors": {
+        "rateLimited": "Muitas tentativas. Aguarde um momento e tente novamente.",
+        "generic": "Não foi possível enviar agora. Tente novamente ou use o contato direto."
+      }
     }
+  },
+  "Footer": {
+    "descriptionLine1": "Engenheiro de Software & Gerente de TI.",
+    "descriptionLine2": "Construindo software confiável para ambientes de produção exigentes.",
+    "navigation": "Navegação",
+    "navAriaLabel": "Navegação no rodapé",
+    "contact": "Contato",
+    "signature": "Feito com código, café e ambição"
+  },
+  "NotFound": {
+    "eyebrow": "Erro de rota · 404",
+    "title": "Página não encontrada",
+    "description": "Este endereço não existe ou foi movido. Volte ao início para continuar explorando projetos, experiência e artigos.",
+    "back": "Voltar para a home"
+  },
+  "Loading": {
+    "label": "Carregando conteúdo..."
   },
   "Error": {
     "title": "Algo deu errado!",

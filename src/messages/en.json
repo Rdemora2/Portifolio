@@ -13,7 +13,14 @@
     "ariaLabel": "Main navigation",
     "mobileMenuLabel": "Navigation menu",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "languageSelector": "Select language",
+    "switchLanguage": "Switch language to {language}",
+    "languages": {
+      "pt": "Portuguese",
+      "en": "English",
+      "es": "Spanish"
+    }
   },
   "Hero": {
     "title": "Software Engineer & IT Manager",
@@ -23,23 +30,23 @@
   },
   "Metadata": {
     "title": "Roberto Moraes | Software Engineer & IT Manager",
-    "description": "Software engineer and tech lead with a hands-on profile. I lead teams, build high-performance backends in Go, manage cloud infrastructure (AWS, GCP) and ensure observability and DevOps in mission-critical systems."
+    "description": "Hands-on software engineer and technical leader. I lead teams, build high-performance Go backends, manage cloud infrastructure across AWS and GCP, and bring observability and DevOps practices to mission-critical systems."
   },
   "About": {
     "title": "About",
     "mainTitle": "From dev to manager without leaving the terminal",
-    "bio": "I started as a full-stack developer and today I lead the technology area of a company with international operations. Along the way, I learned that true management requires hands-on involvement, which is why I continue to build backends, configure cloud infrastructure, and ensure that every system can handle production pressure. My delivery goes from code to final deployment.",
-    "bioExtended": "I have delivered projects for Hospital Sírio-Libanês, Grupo Bandeirantes, and international hotel chains, always focusing on real performance, resilient infrastructure, and high-performing teams. My profile is hands-on: I code, review, configure infra, and make technical decisions on the same day.",
+    "bio": "I started as a full-stack developer and now lead the technology function at a company with international operations. Along the way, I learned that effective leadership means staying close to the work, so I continue to build backends, configure cloud infrastructure, and make sure every system can withstand production load. I own delivery from code through production deployment.",
+    "bioExtended": "I have delivered projects for Hospital Sírio-Libanês, Grupo Bandeirantes, and international hotel chains, with an emphasis on measurable performance, resilient infrastructure, and effective teams. I stay hands-on: I write and review code, configure infrastructure, and make technical decisions—often on the same day.",
     "location": "São Paulo, Brazil",
     "availability": "Available for new challenges",
     "pillars": {
-      "cloud": "Cloud & DevOps",
-      "backend": "High Performance Backend",
+      "cloud": "Cloud",
+      "backend": "High-Performance Backend",
       "management": "Team Management",
       "observability": "Observability",
       "frontend": "Advanced Frontend",
       "mobile": "Mobile Development",
-      "devops": "Cloud & DevOps",
+      "devops": "DevOps & Observability",
       "video": "Streaming & Video",
       "ai": "Artificial Intelligence"
     }
@@ -48,16 +55,30 @@
     "yearsOfExperience": "Years of experience",
     "projectsDelivered": "Projects delivered",
     "countries": "Countries",
-    "usersImpacted": "Impacted users",
-    "title_small": "Numbers"
+    "usersImpacted": "Users reached",
+    "title_small": "Numbers",
+    "metrics": {
+      "requests": {
+        "label": "Requests/month",
+        "description": "Monthly production traffic"
+      },
+      "latency": {
+        "label": "Average response",
+        "description": "Average API latency"
+      },
+      "cache": {
+        "label": "Cache hit rate",
+        "description": "Redis cache efficiency"
+      }
+    }
   },
   "Projects": {
-    "title": "What I've done",
+    "title": "Selected work",
     "navLabel": "Projects",
     "openDrawer": "View details",
     "closeDrawer": "Close details",
     "viewCaseStudy": "View Case Study",
-    "caseStudyLabel": "My role in this project",
+    "caseStudyLabel": "My contribution",
     "internationalTag": "International",
     "role": "Role",
     "client": "Client",
@@ -70,6 +91,7 @@
     "keyDecisions": "Key Decisions",
     "lessonsLearned": "Lessons Learned",
     "filters": {
+      "label": "Filter projects",
       "all": "All",
       "engineering": "Engineering",
       "management": "Management",
@@ -84,30 +106,30 @@
       "band-news-bandsports": {
         "title": "Grupo Bandeirantes",
         "role": "Software Engineer & IT Manager",
-        "shortDescription": "Management of the complete refactoring of 6+ portals of Grupo Bandeirantes, modernizing the mass communication stack with zero downtime.",
-        "description": "I led the mission-critical technological modernization of the Band News, BandSports, Arte 1, Sabor e Arte, TerraViva, and Agro+ portals. I orchestrated design, engineering, and infrastructure teams while maintaining constant alignment with the group's C-Level. The migration included a strategic partnership with Vivo for content distribution.",
-        "challenge": "Modernize 6 mass communication portals simultaneously, without interrupting service for millions of users, coordinating multiple teams and maintaining architectural consistency.",
-        "solution": "Unified architecture in Next.js on the frontend and Go on the backend, with NestJS for auxiliary microservices. Edge security via AWS WAF, elastic Load Balancing, and gradual deployment with automated rollback.",
-        "impact": "6 portals modernized with cutting-edge architecture, enterprise-grade security, and scale capacity for audience peaks (elections, live sporting events).",
+        "shortDescription": "Led the full rebuild of 6+ Grupo Bandeirantes portals, modernizing a high-traffic media platform with zero downtime.",
+        "description": "I led the mission-critical modernization of the Band News, BandSports, Arte 1, Sabor e Arte, TerraViva, and Agro+ portals. I coordinated design, engineering, and infrastructure teams while keeping the group's executive leadership aligned throughout. The migration also included a strategic content-distribution partnership with Vivo.",
+        "challenge": "Modernize six high-traffic media portals at the same time without disrupting service for millions of users, while coordinating multiple teams and maintaining architectural consistency.",
+        "solution": "A shared architecture with Next.js on the frontend, Go on the backend, and NestJS for supporting microservices. AWS WAF provided edge security, while elastic load balancing and progressive deployments enabled automated rollback.",
+        "impact": "Six portals modernized with a forward-looking architecture, enterprise-grade security, and the capacity to handle audience spikes during elections and live sporting events.",
         "metrics": {
-          "portaismigrados": "Portals migrated",
+          "portalsMigrated": "Portals migrated",
           "downtime": "Downtime",
-          "parceria": "Partnership"
+          "partnership": "Partnership"
         },
         "highlights": [
-          "Direct coordination of Design, Frontend, Backend, and Infra teams",
+          "Direct coordination across design, frontend, backend, and infrastructure teams",
           "Migration of 6 portals without downtime",
           "WAF and edge security configured on AWS",
-          "Constant alignment with directors and C-Level of Grupo Bandeirantes",
+          "Ongoing alignment with Grupo Bandeirantes executives",
           "Strategic partnership with Vivo for content distribution",
           "Final stack: Next.js + Go + NestJS + AWS"
         ],
         "caseStudy": {
-          "problem": "The Grupo Bandeirantes portals ran on legacy stacks with expensive maintenance, inconsistent performance, and difficulty scaling for audience peaks like elections and sports broadcasts.",
-          "solution": "I designed a unified modern architecture that allowed each portal to be refactored with deployment independence while sharing core components. The Go + Next.js stack ensured maximum SSR performance with minimum latency.",
-          "robertoRole": "I acted as technical manager: defined the architecture, coordinated 4 simultaneous squads, negotiated deadlines with the C-Level, and monitored every deployment. In critical sprints, I dove into the code to resolve performance bottlenecks.",
+          "problem": "The Grupo Bandeirantes portals ran on legacy stacks that were costly to maintain, delivered inconsistent performance, and struggled to scale for audience spikes such as elections and sports broadcasts.",
+          "solution": "I designed a modern, shared architecture that allowed each portal to be deployed independently while reusing core components. The Go + Next.js stack delivered fast server rendering with consistently low latency.",
+          "robertoRole": "I served as technical lead: I defined the architecture, coordinated four squads in parallel, negotiated timelines with executive leadership, and tracked every rollout. During critical sprints, I worked directly in the code to resolve performance bottlenecks.",
           "keyDecisions": [
-            "Choice of Go for the backend for throughput and latency",
+            "Selected Go for high throughput and predictable latency",
             "Adoption of gradual (canary) deployment to avoid downtime",
             "AWS WAF for DDoS protection in high-audience events"
           ],
@@ -116,29 +138,27 @@
             "Gradual deployment is non-negotiable for high-visibility systems"
           ],
           "results": [
-            "6 portals modernized in an aggressive timeline",
-            "Zero downtime in all migrations",
+            "Six portals modernized on an accelerated schedule",
+            "Zero downtime across every migration",
             "Significant reduction in maintenance costs"
           ]
         }
       },
       "hospital-sirio-libanes": {
         "title": "Hospital Sírio-Libanês",
-        "role": "Backend & Cloud Engineer + Technical Leader",
-        "shortDescription": "End-to-end architecture and engineering of the digital hospitality platform. Backend in Go processing 20M+ requests/month with 6ms latency.",
-        "description": "I assumed full technical leadership of the backend, cloud infrastructure, and native app. I architected a high-availability platform for one of the largest hospital complexes in Latin America, including integration with the Tasy system, Unicast streaming with Widevine DRM, and an Android TV app in Kotlin.",
-        "challenge": "Build a resilient platform capable of managing hospital operations in real-time, from content streaming to rooms to integration with hospital management systems (Tasy), all with near-zero latency.",
+        "role": "Backend & Cloud Engineer · Technical Lead",
+        "shortDescription": "End-to-end architecture and engineering for a digital hospitality platform. Its Go backend handles 20M+ requests per month at 6ms average latency.",
+        "description": "I led the backend, cloud infrastructure, and native application from architecture through production. I designed a high-availability platform for one of Latin America's largest hospital complexes, integrating the Tasy system, Unicast streaming with Widevine DRM, and a native Kotlin application for Android TV.",
+        "challenge": "Build a resilient platform for real-time hospital operations—from streaming content to patient rooms through integrations with the Tasy hospital management system—while maintaining near-zero latency.",
         "solution": "Backend in Go (Fiber) optimized for maximum throughput, with auto-scaling orchestration in GCP (Cloud Run). Distributed cache with Redis (92% hit rate), persistence in PostgreSQL, and observability via Prometheus. Native Kotlin app with Jetpack Compose and Media3 for Android TV.",
-        "impact": "Stable production platform with 20M+ monthly requests, average latency of 6ms, and infrastructure ready for health audits and expansion to new hospital units.",
+        "impact": "A stable production platform handling 20M+ monthly requests at 6ms average latency, with infrastructure ready for healthcare audits and expansion to additional hospital units.",
         "metrics": {
-          "requisições/mês": "Requests/month",
-          "resposta-média": "Average response",
-          "cache-hit-rate": "Cache hit rate",
-          "requisiesms": "Requests/month",
-          "respostamdia": "Average response"
+          "requestsPerMonth": "Requests/month",
+          "averageResponse": "Average response",
+          "cacheHitRate": "Cache hit rate"
         },
         "highlights": [
-          "100% of backend and cloud built by me, no third parties",
+          "Built the backend and cloud infrastructure end to end without external vendors",
           "Go + Fiber: chosen for low latency and high throughput",
           "Integration with Tasy hospital system for patient data",
           "Unicast streaming with Widevine DRM (premium content protection)",
@@ -148,8 +168,8 @@
         ],
         "caseStudy": {
           "problem": "Sírio-Libanês needed a digital hospitality platform for its patients that integrated real-time information from Tasy, content streaming with DRM protection, and an intuitive interface on room TVs.",
-          "solution": "I designed and built the entire stack: Go backend for maximum performance, GCP infrastructure with auto-scaling, Redis cache for instant responses, and Android TV app in Kotlin with Widevine DRM protected streaming.",
-          "robertoRole": "I was the engineer responsible for the entire technical stack (backend, infra, mobile). Simultaneously, I acted as technical leader defining architecture, code standards, and monitoring. The decision to use Go came from the need for ultra-low latency in a hospital environment.",
+          "solution": "I designed and built the full stack: a high-performance Go backend, auto-scaling infrastructure on GCP, Redis caching for low-latency responses, and a Kotlin Android TV application with Widevine-protected streaming.",
+          "robertoRole": "I owned the entire technical stack across backend, infrastructure, and mobile. As technical lead, I also defined the architecture, coding standards, and observability strategy. The need for ultra-low latency in a hospital environment drove the decision to use Go.",
           "keyDecisions": [
             "Go + Fiber for performance: 6ms average latency",
             "Redis as cache layer: 92% hit rate reduced load on PostgreSQL",
@@ -164,30 +184,30 @@
           "results": [
             "20M+ requests/month without performance degradation",
             "Average latency of 6ms in production",
-            "Platform approved for health audits"
+            "Platform approved for healthcare audits"
           ]
         }
       },
       "fiesta-americana": {
         "title": "Fiesta Americana Resort",
         "role": "International Project Manager",
-        "shortDescription": "Transnational management of a pioneering hospitality solution: convergence of Unicast streaming and coaxial broadcast on a single platform.",
-        "description": "I led a global operation coordinating engineering teams distributed across multiple time zones. The project involved the creation of a native Kotlin app that does something unprecedented in the industry: simultaneously integrates cable TV signals (coaxial broadcast) and digital streaming (Unicast) in a single interface on the room's TV.",
-        "challenge": "Enable an unprecedented hardware/software solution in the hospitality sector, aligning complex decoding engineering with management of stakeholders distributed across different continents and cultures.",
-        "solution": "Cross-cultural project governance with communication adapted to each time zone. Engineering involving deep integration of hardware decoders (TV Box and USB dongles) with native Android TV frameworks, converging two transmission paradigms into a unified experience.",
-        "impact": "Disruptive positioning of the hotel chain with a pioneering platform that converged previously isolated transmission technologies, creating a premium guest experience.",
+        "shortDescription": "Led a cross-border hospitality project that unified Unicast streaming and coaxial broadcast in a single platform.",
+        "description": "I led a global initiative with engineering teams distributed across multiple time zones. The team built a native Kotlin application that brings cable TV signals (coaxial broadcast) and digital Unicast streaming together in a single interface on each guest-room TV.",
+        "challenge": "Deliver a first-of-its-kind hardware-software solution for hospitality while aligning complex decoding engineering with stakeholders across continents and cultures.",
+        "solution": "Cross-cultural project governance tailored to each time zone, combined with deep integration between hardware decoders (TV boxes and USB dongles) and native Android TV frameworks. The result unified two transmission models in one experience.",
+        "impact": "The platform gave the hotel chain a differentiated guest experience by unifying transmission technologies that had previously operated as separate systems.",
         "highlights": [
           "Teams distributed in multiple countries and time zones",
           "Cross-cultural communication with international stakeholders",
-          "Total responsibility for deadlines, quality, and deliveries",
-          "Unprecedented solution: Unicast + Broadcast simultaneously in native app",
+          "End-to-end ownership of schedule, quality, and delivery",
+          "First-of-its-kind native app combining Unicast and broadcast",
           "Hardware integration: TV Box + coaxial signal via USB Dongle",
-          "Open and cable TV in the same hospitality app interface"
+          "Over-the-air and cable TV in the same hospitality app interface"
         ],
         "caseStudy": {
           "problem": "International hotel chains had two separate systems for TV: one for cable channels (coaxial) and another for digital streaming. Guests had to switch between TV inputs, creating a fragmented experience.",
           "solution": "I coordinated the development of a Kotlin app that decodes both signals simultaneously, presenting everything in a unified interface with integrated EPG. Hardware integration required custom drivers for USB dongles.",
-          "robertoRole": "Complete management of the international project: alignment of stakeholders in multiple countries, roadmap definition, risk management, and quality assurance. My technical experience in Android TV was fundamental to validate architecture decisions.",
+          "robertoRole": "I led the international project end to end: aligning stakeholders across countries, defining the roadmap, managing risks, and ensuring quality. My Android TV engineering experience helped the team validate key architecture decisions.",
           "keyDecisions": [
             "Use of USB dongles for coaxial signal capture (innovative solution)",
             "Kotlin/Jetpack Compose for unified interface",
@@ -198,8 +218,8 @@
             "Hardware integration has much longer test cycles than pure software"
           ],
           "results": [
-            "First app in the sector to converge broadcast + unicast",
-            "Successful deployment in international hotel chain"
+            "First hospitality app to unify broadcast and Unicast",
+            "Successfully deployed across an international hotel chain"
           ]
         }
       }
@@ -210,83 +230,65 @@
     "title_small": "Where I've worked",
     "present": "Present",
     "items": {
-      "valiant-gti": {
-        "company": "Valiant Group do Brasil",
-        "role": "Software Engineer & IT Manager",
-        "description": "I lead the company's technology area, including cloud infrastructure, DevOps, security, and operations. I manage the complete cycle of software products that impact 100k+ active users. I conduct international operations and stay hands-on with the code, from Go backends to Android TV apps.",
+    "valiant-gti": {
+      "company": "Valiant Group do Brasil",
+      "role": "Software Engineer & IT Manager",
+      "period": "Jan 2026 · Present",
+        "description": "I lead the company's technology function across cloud infrastructure, DevOps, security, and operations. I oversee the full lifecycle of software products used by 100k+ active users, lead international initiatives, and stay hands-on with the code—from Go backends to Android TV applications.",
         "highlights": [
-          "Primary technology decision-maker for the company",
+          "Primary decision-maker for technology strategy",
           "Production software with 100k+ active users",
           "International projects in multiple countries",
-          "Hands-on profile: web, mobile, Android TV, broadcast and unicast",
+          "Hands-on across web, mobile, Android TV, broadcast, and Unicast",
           "High-performance backends in Golang",
-          "Cloud infra in GCP, AWS and Oracle"
+          "Cloud infrastructure across GCP, AWS, and Oracle Cloud"
         ]
       },
-      "valiant-pm": {
-        "company": "Valiant Group do Brasil",
-        "role": "IT Project Manager",
-        "description": "I orchestrated multidisciplinary teams ensuring agile deliveries of new projects. With a strong development background, I led cloud infra governance on GCP, CI/CD pipelines, and product lifecycle management.",
+    "valiant-pm": {
+      "company": "Valiant Group do Brasil",
+      "role": "IT Project Manager",
+      "period": "Nov 2024 · Dec 2025",
+        "description": "I led multidisciplinary teams and delivered new projects through agile execution. Drawing on my engineering background, I also owned GCP cloud governance, CI/CD pipelines, and the product lifecycle.",
         "highlights": [
           "Development team under my direct management",
-          "Definition of technical stack and quality standards",
+          "Defined the technical stack and quality standards",
           "GCP cloud infrastructure optimization",
-          "Direct interface with clients and stakeholders"
+          "Direct collaboration with clients and stakeholders"
         ]
       },
-      "valiant-dev": {
-        "company": "Valiant Group do Brasil",
-        "role": "Full Stack Web / Mobile Developer",
-        "description": "End-to-end full-stack development: web, mobile, and infra. I worked from API design to production deployment, focusing on performance and stability.",
+    "valiant-dev": {
+      "company": "Valiant Group do Brasil",
+        "role": "Full-Stack Web / Mobile Developer",
+      "period": "Dec 2023 · Dec 2024",
+        "description": "End-to-end development across web, mobile, and infrastructure. I worked across the delivery lifecycle, from API design to production deployment, with a focus on performance and stability.",
         "highlights": [
           "Full stack: JavaScript, TypeScript, React, Kotlin, Go",
           "Databases: PostgreSQL, MySQL, BigQuery, SQL Server, MongoDB, Redis",
           "Cloud hosting and configuration on GCP",
-          "Monitoring and optimization of production performance"
+          "Production performance monitoring and optimization"
         ]
       },
-      "weber-dev": {
-        "company": "Weber Technologies",
-        "role": "Full Stack Web Developer",
-        "description": "Full-stack development with React and Python/Django. From conception to implementation and deployment, including containerization with Docker.",
+    "weber-dev": {
+      "company": "Weber Technologies",
+        "role": "Full-Stack Web Developer",
+      "period": "May 2023 · Dec 2023",
+        "description": "Delivered full-stack applications with React and Python/Django, from initial design through implementation and deployment, including Docker containerization.",
         "highlights": [
           "Full-stack development with React and Python/Django",
           "Containerization with Docker",
-          "Full cycle: conception, development and deployment"
+          "Full delivery cycle: design, development, and deployment"
         ]
       },
-      "buser-dev": {
-        "company": "Buser Brasil",
-        "role": "Full Stack Web Developer",
-        "description": "Maintenance and evolution of a large-scale product. Implementation of new features in existing codebase with Vue.js, Python, and Django.",
+    "buser-dev": {
+      "company": "Buser Brasil",
+        "role": "Full-Stack Web Developer",
+      "period": "Apr 2022 · Apr 2023",
+        "description": "Maintained and evolved a large-scale product, shipping new features into an established Vue.js, Python, and Django codebase.",
         "highlights": [
-          "Maintenance and evolution of a large-scale product",
-          "Implementation of new features in existing codebase",
+          "Maintained and evolved a large-scale product",
+          "Shipped new features in an established codebase",
           "Stack: Vue.js, Python, Django, Docker"
         ]
-      }
-    }
-  },
-  "Testimonials": {
-    "title": "Testimonials",
-    "items": {
-      "testimonial-1": {
-        "name": "Carlos Eduardo Silva",
-        "role": "CTO",
-        "company": "Valiant Group",
-        "quote": "Roberto has a rare ability to move between strategic vision and deep technical execution. He doesn't just lead the team; he understands every line of code and every infrastructure decision. This makes all the difference in the quality of our deliveries."
-      },
-      "testimonial-2": {
-        "name": "Ana Paula Ferreira",
-        "role": "Product Manager",
-        "company": "Hospital Sírio-Libanês",
-        "quote": "The platform Roberto built for us simply works. 20 million requests per month with 6ms latency, and he did it all alone, from backend to deployment. Exceptional professional."
-      },
-      "testimonial-3": {
-        "name": "Ricardo Mendes",
-        "role": "Head of Digital",
-        "company": "Grupo Bandeirantes",
-        "quote": "Migrating 6 high-visibility portals without a single second of downtime is a technical and management feat. Roberto coordinated everything masterfully, maintaining clear communication with our C-Level at every stage."
       }
     }
   },
@@ -296,28 +298,24 @@
     "subtitle": "Reflections on technical leadership, system architecture, and the decisions that make a difference in production.",
     "readTime": "read",
     "viewArticle": "Read full article",
+    "categories": {
+      "architecture": "Architecture"
+    },
+    "tags": {
+      "Go": "Go",
+      "Backend": "Backend",
+      "Performance": "Performance"
+    },
     "items": {
-      "insight-1": {
-        "title": "Why your tech lead needs to code",
-        "summary": "Effective technical leadership requires hands-on involvement. Managers who abandon code lose critical context about the real complexity of the projects they manage."
-      },
       "insight-2": {
         "title": "Go in production: what no one tells you",
-        "summary": "After running Go in systems that process 20M+ requests/month, I share the architecture decisions that made the difference and the errors that almost cost dearly."
-      },
-      "insight-3": {
-        "title": "Observability is not a pretty dashboard",
-        "summary": "Prometheus, alerts, and metrics that really matter. How to set up an observability stack that only wakes you up when needed and lets you sleep the rest of the time."
-      },
-      "insight-4": {
-        "title": "Multi-provider cloud: AWS + GCP in practice",
-        "summary": "Using AWS and GCP in the same ecosystem seems insane. But in certain scenarios, it's the smartest decision. I explain when it makes sense and how to avoid the problems."
+        "summary": "After running Go in systems that handle 20M+ requests per month, I share the architectural decisions that made a real impact—and the mistakes that nearly became costly incidents."
       }
     }
   },
   "Contact": {
-    "title": "Let's Talk?",
-    "subtitle": "Interested in scaling your tech stack or technical leadership? Get in touch.",
+    "title": "Let's talk",
+    "subtitle": "Need to scale your platform or strengthen technical leadership? Get in touch.",
     "form": {
       "name": "Name",
       "email": "Email",
@@ -329,8 +327,44 @@
       "send": "Send Message",
       "sending": "Sending...",
       "success": "Message sent successfully!",
-      "error": "An error occurred while sending the message."
+      "error": "An error occurred while sending the message.",
+      "selectPlaceholder": "Select an option",
+      "projectOptions": {
+        "web": "Web application",
+        "mobile": "Native application",
+        "backend": "Backend or API",
+        "architecture": "Software architecture",
+        "leadership": "Management or technical leadership",
+        "other": "Other"
+      },
+      "validation": {
+        "name": "Enter your name.",
+        "email": "Enter a valid email address.",
+        "projectType": "Select the project type.",
+        "message": "Tell me a little more about the challenge."
+      },
+      "serverErrors": {
+        "rateLimited": "Too many attempts. Wait a moment and try again.",
+        "generic": "The message could not be sent right now. Try again or use a direct contact channel."
+      }
     }
+  },
+  "Footer": {
+    "descriptionLine1": "Software Engineer & IT Manager.",
+    "descriptionLine2": "Building software engineered for demanding production environments.",
+    "navigation": "Navigation",
+    "navAriaLabel": "Footer navigation",
+    "contact": "Contact",
+    "signature": "Built with code, coffee, and ambition"
+  },
+  "NotFound": {
+    "eyebrow": "Route error · 404",
+    "title": "Page not found",
+    "description": "This address does not exist or has moved. Return home to keep exploring projects, experience, and articles.",
+    "back": "Back to home"
+  },
+  "Loading": {
+    "label": "Loading content..."
   },
   "Error": {
     "title": "Something went wrong!",

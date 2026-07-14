@@ -13,7 +13,14 @@
     "ariaLabel": "Navegación principal",
     "mobileMenuLabel": "Menú de navegación",
     "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "languageSelector": "Seleccionar idioma",
+    "switchLanguage": "Cambiar idioma a {language}",
+    "languages": {
+      "pt": "Portugués",
+      "en": "Inglés",
+      "es": "Español"
+    }
   },
   "Hero": {
     "title": "Ingeniero de Software & Gerente de TI",
@@ -23,23 +30,23 @@
   },
   "Metadata": {
     "title": "Roberto Moraes | Ingeniero de Software & Gerente de TI",
-    "description": "Ingeniero de software y líder técnico con perfil hands-on. Lidero equipos, construo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidade y DevOps en sistemas de misión crítica."
+    "description": "Ingeniero de software y líder técnico con perfil hands-on. Lidero equipos, construyo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidad y DevOps en sistemas de misión crítica."
   },
   "About": {
     "title": "Sobre mí",
     "mainTitle": "De dev a gestor sin soltar la terminal",
-    "bio": "Empecé como desenvolvedor full-stack y hoy lidero el área de tecnología de una empresa con operaciones internacionales. En el camino, aprendí que la verdadera gestión exige involucramiento directo, por lo que sigo construyendo backends, configurando infraestructura cloud y garantizando que cada sistema soporte la presión de producción. Mi entrega va desde el código hasta el despliegue final.",
+    "bio": "Empecé como desarrollador full-stack y hoy lidero el área de tecnología de una empresa con operaciones internacionales. En el camino, aprendí que la verdadera gestión exige involucramiento directo, por lo que sigo construyendo backends, configurando infraestructura cloud y garantizando que cada sistema soporte la presión de producción. Mi entrega va desde el código hasta el despliegue final.",
     "bioExtended": "He entregado proyectos para el Hospital Sírio-Libanês, Grupo Bandeirantes y cadenas hoteleras internacionales, siempre con enfoque en rendimiento real, infraestructura resiliente y equipos que funcionan. Mi perfil es hands-on: codifico, reviso, configuro infra y tomo decisiones técnicas en el mismo día.",
     "location": "São Paulo, Brasil",
     "availability": "Disponible para nuevos desafíos",
     "pillars": {
-      "cloud": "Cloud & DevOps",
+      "cloud": "Cloud",
       "backend": "Backend de Alto Rendimiento",
       "management": "Gestión de Equipos",
       "observability": "Observabilidad",
       "frontend": "Frontend Avanzado",
       "mobile": "Desarrollo Móvil",
-      "devops": "Cloud & DevOps",
+      "devops": "DevOps & Observabilidad",
       "video": "Streaming & Video",
       "ai": "Inteligencia Artificial"
     }
@@ -49,19 +56,52 @@
     "projectsDelivered": "Proyectos entregados",
     "countries": "Países",
     "usersImpacted": "Usuarios impactados",
-    "title_small": "Números"
+    "title_small": "Números",
+    "metrics": {
+      "requests": {
+        "label": "Solicitudes/mes",
+        "description": "Tráfico mensual en producción"
+      },
+      "latency": {
+        "label": "Respuesta media",
+        "description": "Latencia media de la API"
+      },
+      "cache": {
+        "label": "Tasa de aciertos de caché",
+        "description": "Eficiencia de caché en Redis"
+      }
+    }
   },
   "Projects": {
     "title": "Proyectos Destacados",
+    "navLabel": "Proyectos",
     "openDrawer": "Ver detalles",
+    "closeDrawer": "Cerrar detalles",
     "viewCaseStudy": "Ver Estudio de Caso",
+    "caseStudyLabel": "Mi papel en este proyecto",
+    "internationalTag": "Internacional",
     "role": "Rol",
     "client": "Cliente",
     "period": "Período",
     "challenge": "El Desafío",
     "solution": "La Solución",
     "impact": "El Impacto",
-    "metrics": "Métricas de Éxito",
+    "metricsLabel": "Métricas de éxito",
+    "highlights": "Puntos destacados",
+    "keyDecisions": "Decisiones clave",
+    "lessonsLearned": "Lecciones aprendidas",
+    "filters": {
+      "label": "Filtrar proyectos",
+      "all": "Todos",
+      "engineering": "Ingeniería",
+      "management": "Gestión",
+      "international": "Internacional"
+    },
+    "roles": {
+      "engineering": "Ingeniería",
+      "management": "Gestión",
+      "hybrid": "Híbrido"
+    },
     "items": {
       "band-news-bandsports": {
         "title": "Grupo Bandeirantes",
@@ -71,6 +111,19 @@
         "challenge": "Modernizar 6 portales de comunicación masiva simultáneamente, sin interrumpir el servicio para millones de usuarios, coordinando múltiples equipos y manteniendo la consistencia arquitectónica.",
         "solution": "Arquitectura unificada en Next.js en el frontend y Go en el backend, con NestJS para microservicios auxiliares. Seguridad perimetral vía AWS WAF, Load Balancing elástico y despliegue gradual con rollback automatizado.",
         "impact": "6 portales modernizados con arquitectura de vanguardia, seguridad de nivel empresarial y capacidad de escala para picos de audiencia (elecciones, eventos deportivos en vivo).",
+        "metrics": {
+          "portalsMigrated": "Portales migrados",
+          "downtime": "Tiempo de inactividad",
+          "partnership": "Alianza"
+        },
+        "highlights": [
+          "Coordinación directa de los equipos de Diseño, Frontend, Backend e Infraestructura",
+          "Migración de 6 portales sin tiempo de inactividad",
+          "WAF y seguridad perimetral configurados en AWS",
+          "Alineamiento constante con la dirección y el C-Level de Grupo Bandeirantes",
+          "Alianza estratégica con Vivo para la distribución de contenido",
+          "Stack final: Next.js + Go + NestJS + AWS"
+        ],
         "caseStudy": {
           "problem": "Los portales del Grupo Bandeirantes funcionaban en stacks heredadas con mantenimiento costoso, rendimiento inconsistente y dificultad para escalar en picos de audiencia como elecciones y transmisiones deportivas.",
           "solution": "Diseñé una arquitectura moderna unificada que permitió refactorizar cada portal con independencia de despliegue pero compartiendo componentes core. La stack Go + Next.js garantizó el máximo rendimiento en SSR con latencia mínima.",
@@ -100,11 +153,9 @@
         "solution": "Backend en Go (Fiber) optimizado para el máximo rendimiento, con orquestación de auto-escalado en GCP (Cloud Run). Caché distribuido con Redis (92% hit rate), persistencia en PostgreSQL y observabilidad vía Prometheus. Aplicación nativa Kotlin con Jetpack Compose y Media3 para Android TV.",
         "impact": "Plataforma en producción estable con 20M+ peticiones mensuales, latencia media de 6ms e infraestructura lista para auditorías de salud y expansión a nuevas unidades hospitalarias.",
         "metrics": {
-          "requisições/mês": "Peticiones/mes",
-          "resposta-média": "Respuesta media",
-          "cache-hit-rate": "Cache hit rate",
-          "requisiesms": "Peticiones/mes",
-          "respostamdia": "Respuesta media"
+          "requestsPerMonth": "Peticiones/mes",
+          "averageResponse": "Respuesta media",
+          "cacheHitRate": "Tasa de aciertos de caché"
         },
         "highlights": [
           "100% del backend y cloud hechos por mí, sin terceros",
@@ -140,7 +191,7 @@
       "fiesta-americana": {
         "title": "Resort Fiesta Americana",
         "role": "Gestor de Proyecto Internacional",
-        "shortDescription": "Gestión transnacional de una solución pionera en hospitalidade: convergencia de streaming Unicast y broadcast coaxial en una única plataforma.",
+        "shortDescription": "Gestión transnacional de una solución pionera en hospitalidad: convergencia de streaming Unicast y broadcast coaxial en una única plataforma.",
         "description": "Lideré una operación global coordinando equipos de ingeniería distribuidos en múltiples zonas horarias. El proyecto involucró la creación de una aplicación nativa Kotlin que hace algo inédito en el sector: integra simultáneamente señales de TV por cable (broadcast coaxial) y streaming digital (Unicast) en una interfaz única en la TV de la habitación.",
         "challenge": "Viabilizar una solución de hardware/software inédita en el sector de la hospitalidad, alineando una compleja ingeniería de decodificación con la gestión de stakeholders distribuidos en diferentes continentes y culturas.",
         "solution": "Gobernanza de proyecto intercultural con comunicación adaptada a cada zona horaria. Ingeniería que involucra una integración profunda de decodificadores de hardware (TV Box y dongles USB) con frameworks nativos de Android TV, convergiendo dos paradigmas de transmisión en una experiencia unificada.",
@@ -179,9 +230,10 @@
     "title_small": "Donde he trabajado",
     "present": "Actualidad",
     "items": {
-      "valiant-gti": {
-        "company": "Valiant Group do Brasil",
-        "role": "Ingeniero de Software & Gerente de TI",
+    "valiant-gti": {
+      "company": "Valiant Group do Brasil",
+      "role": "Ingeniero de Software & Gerente de TI",
+      "period": "Ene 2026 · Actualidad",
         "description": "Lidero el área de tecnología de la empresa, incluyendo infraestructura cloud, DevOps, seguridad y operaciones. Gestiono el ciclo completo de productos de software que impactan a más de 100k usuarios activos. Dirijo operaciones internacionales y me mantengo involucrado en el código, desde backends en Go hasta aplicaciones Android TV.",
         "highlights": [
           "Principal decisor de tecnología de la empresa",
@@ -192,9 +244,10 @@
           "Infraestructura cloud en GCP, AWS y Oracle"
         ]
       },
-      "valiant-pm": {
-        "company": "Valiant Group do Brasil",
-        "role": "Gerente de Proyectos de TI",
+    "valiant-pm": {
+      "company": "Valiant Group do Brasil",
+      "role": "Gerente de Proyectos de TI",
+      "period": "Nov 2024 · Dic 2025",
         "description": "Orquesté equipos multidisciplinarios garantizando entregas ágiles de nuevos proyectos. Con una sólida formación en desarrollo, dirigí el gobierno de infraestructura cloud en GCP, pipelines de CI/CD y gestión del ciclo de vida de los productos.",
         "highlights": [
           "Equipo de desarrollo bajo mi gestión directa",
@@ -203,9 +256,10 @@
           "Interfaz directa con clientes y stakeholders"
         ]
       },
-      "valiant-dev": {
-        "company": "Valiant Group do Brasil",
-        "role": "Desarrollador Web / Móvil Full Stack",
+    "valiant-dev": {
+      "company": "Valiant Group do Brasil",
+      "role": "Desarrollador Web / Móvil Full Stack",
+      "period": "Dic 2023 · Dic 2024",
         "description": "Desarrollo full stack de extremo a extremo: web, móvil e infraestructura. Trabajé desde el diseño de APIs hasta el despliegue en producción, con enfoque en rendimiento y estabilidad.",
         "highlights": [
           "Full stack: JavaScript, TypeScript, React, Kotlin, Go",
@@ -214,9 +268,10 @@
           "Monitoreo y optimización del rendimiento en producción"
         ]
       },
-      "weber-dev": {
-        "company": "Weber Technologies",
-        "role": "Desarrollador Web Full Stack",
+    "weber-dev": {
+      "company": "Weber Technologies",
+      "role": "Desarrollador Web Full Stack",
+      "period": "May 2023 · Dic 2023",
         "description": "Desarrollo full stack con React y Python/Django. Desde la concepción hasta la implementación y despliegue, pasando por la contenerización con Docker.",
         "highlights": [
           "Desarrollo full stack con React y Python/Django",
@@ -224,9 +279,10 @@
           "Ciclo completo: concepción, desarrollo y despliegue"
         ]
       },
-      "buser-dev": {
-        "company": "Buser Brasil",
-        "role": "Desarrollador Web Full Stack",
+    "buser-dev": {
+      "company": "Buser Brasil",
+      "role": "Desarrollador Web Full Stack",
+      "period": "Abr 2022 · Abr 2023",
         "description": "Mantenimiento y evolución de producto a gran escala. Implementación de nuevas funcionalidades en codebase existente con Vue.js, Python y Django.",
         "highlights": [
           "Mantenimiento y evolución de producto a gran escala",
@@ -236,51 +292,24 @@
       }
     }
   },
-  "Testimonials": {
-    "title": "Testimonios",
-    "items": {
-      "testimonial-1": {
-        "name": "Carlos Eduardo Silva",
-        "role": "Director de Tecnología",
-        "company": "Valiant Group",
-        "quote": "Roberto tiene una capacidad rara de transitar entre la visión estratégica y la ejecución técnica profunda. Él no solo lidera al equipo, entiende cada línea de código y cada decisión de infraestructura. Eso marca toda la diferencia en la calidad de nuestras entregas."
-      },
-      "testimonial-2": {
-        "name": "Ana Paula Ferreira",
-        "role": "Gerente de Producto",
-        "company": "Hospital Sírio-Libanês",
-        "quote": "La plataforma que Roberto construyó para nosotros simplemente funciona. 20 millones de peticiones al mes con 6ms de latencia, y lo hizo todo solo, del backend al despliegue. Profesional excepcional."
-      },
-      "testimonial-3": {
-        "name": "Ricardo Mendes",
-        "role": "Head de Digital",
-        "company": "Grupo Bandeirantes",
-        "quote": "Migrar 6 portales de alta visibilidad sin un solo segundo de tiempo de inactividad es una proeza técnica y de gestión. Roberto coordinó todo con maestría, manteniendo una comunicación clara con nuestro C-Level en cada etapa."
-      }
-    }
-  },
   "Insights": {
     "title": "Insights & Artículos",
     "title_small": "Pensamiento Técnico",
     "subtitle": "Reflexiones sobre el liderazgo técnico, la arquitectura de sistemas y las decisiones que marcan la diferencia en producción.",
     "readTime": "lectura",
     "viewArticle": "Leer artículo completo",
+    "categories": {
+      "architecture": "Arquitectura"
+    },
+    "tags": {
+      "Go": "Go",
+      "Backend": "Backend",
+      "Performance": "Rendimiento"
+    },
     "items": {
-      "insight-1": {
-        "title": "Por qué tu líder técnico necesita programar",
-        "summary": "El liderazgo técnico efectivo exige participación directa. Los gestores que abandonan el código pierden un contexto crítico sobre la complejidad real de los proyectos que gestionan."
-      },
       "insight-2": {
         "title": "Go en producción: lo que nadie te cuenta",
         "summary": "Después de ejecutar Go en sistemas que procesan más de 20M de peticiones al mes, comparto las decisiones de arquitectura que marcaron la diferencia y los errores que casi cuestan caro."
-      },
-      "insight-3": {
-        "title": "La observabilidad no es un tablero bonito",
-        "summary": "Prometheus, alertas y métricas que realmente importan. Cómo montar un stack de observabilidad que te despierte solo cuando sea necesario y te deje dormir el resto del tiempo."
-      },
-      "insight-4": {
-        "title": "Nube multi-proveedor: AWS + GCP en la práctica",
-        "summary": "Usar AWS y GCP en el mismo ecosistema parece una locura. Pero en ciertos escenarios, es la decisión más inteligente. Explico cuándo tiene sentido y cómo evitar los problemas."
       }
     }
   },
@@ -295,11 +324,47 @@
       "budget": "Presupuesto estimado (opcional)",
       "subject": "Asunto",
       "message": "Mensaje",
-      "send": "Enviar Mensagem",
+      "send": "Enviar mensaje",
       "sending": "Enviando...",
       "success": "¡Mensaje enviado con éxito!",
-      "error": "Ocurrió un error al enviar el mensaje."
+      "error": "Ocurrió un error al enviar el mensaje.",
+      "selectPlaceholder": "Selecciona una opción",
+      "projectOptions": {
+        "web": "Aplicación web",
+        "mobile": "Aplicación nativa",
+        "backend": "Backend o API",
+        "architecture": "Arquitectura de software",
+        "leadership": "Gestión o liderazgo técnico",
+        "other": "Otro"
+      },
+      "validation": {
+        "name": "Ingresa tu nombre.",
+        "email": "Ingresa un correo electrónico válido.",
+        "projectType": "Selecciona el tipo de proyecto.",
+        "message": "Cuéntame un poco más sobre el desafío."
+      },
+      "serverErrors": {
+        "rateLimited": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+        "generic": "No fue posible enviar el mensaje ahora. Inténtalo de nuevo o usa un canal de contacto directo."
+      }
     }
+  },
+  "Footer": {
+    "descriptionLine1": "Ingeniero de Software & Gerente de TI.",
+    "descriptionLine2": "Construyendo software que resiste la presión de producción.",
+    "navigation": "Navegación",
+    "navAriaLabel": "Navegación del pie de página",
+    "contact": "Contacto",
+    "signature": "Hecho con código, café y ambición"
+  },
+  "NotFound": {
+    "eyebrow": "Error de ruta · 404",
+    "title": "Página no encontrada",
+    "description": "Esta dirección no existe o fue movida. Vuelve al inicio para seguir explorando proyectos, experiencia y artículos.",
+    "back": "Volver al inicio"
+  },
+  "Loading": {
+    "label": "Cargando contenido..."
   },
   "Error": {
     "title": "¡Algo salió mal!",
@@ -307,4 +372,3 @@
     "retry": "Reintentar"
   }
   }
-
