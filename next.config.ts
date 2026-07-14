@@ -4,6 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin"
 import { assertProductionBuildEnv } from "./src/lib/production-env"
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
+
 const isDevelopment = process.env.NODE_ENV === "development"
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -42,6 +43,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  typedRoutes: true,
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
@@ -64,7 +66,9 @@ const nextConfig: NextConfig = {
   ],
   turbopack: {},
   experimental: {
+    globalNotFound: true,
     optimizePackageImports: ["gsap", "ogl"],
+    webVitalsAttribution: ["CLS", "LCP", "INP"],
   },
   output: "standalone",
 }
