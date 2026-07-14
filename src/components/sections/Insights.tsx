@@ -1,11 +1,23 @@
 import { insights } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Link } from "@/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { SpotlightCard } from "@/components/shared/SpotlightCard";
 
 export async function Insights() {
-  const t = await getTranslations("Insights");
+  const [t, locale] = await Promise.all([
+    getTranslations("Insights"),
+    getLocale(),
+  ]);
+  const publishedInsights = insights.filter(
+    (insight) => insight.hasFullArticle && insight.slug,
+  );
+  const categoryLabels = t.raw("categories") as Record<string, string>;
+  const tagLabels = t.raw("tags") as Record<string, string>;
+  const dateFormatter = new Intl.DateTimeFormat(locale, {
+    dateStyle: "medium",
+    timeZone: "UTC",
+  });
 
   return (
     <section
@@ -25,7 +37,7 @@ export async function Insights() {
                   letterSpacing: "0.25em",
                 }}
               >
-                {t("title_small") || "Pensamento técnico"}
+                {t("title_small")}
               </p>
               <h2
                 className="mb-4 font-bold"
@@ -50,8 +62,8 @@ export async function Insights() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {insights.map((insight, idx) => (
+        <div className="grid max-w-4xl gap-6">
+          {publishedInsights.map((insight, idx) => (
             <ScrollReveal key={insight.id} animation="card" delay={idx * 0.1}>
               <SpotlightCard
                 className="glass-card group flex h-full flex-col rounded-2xl p-6 transition-all duration-300 sm:p-8"
@@ -66,7 +78,7 @@ export async function Insights() {
                       fontFamily: "var(--font-mono)",
                     }}
                   >
-                    {insight.category}
+                    {categoryLabels[insight.category] ?? insight.category}
                   </span>
                   <span
                     className="text-[10px]"
@@ -75,7 +87,10 @@ export async function Insights() {
                       color: "var(--color-text-muted)",
                     }}
                   >
-                    {insight.date} · {insight.readTime} {t("readTime")}
+                    <time dateTime={insight.date}>
+                      {dateFormatter.format(new Date(`${insight.date}T00:00:00Z`))}
+                    </time>{" "}
+                    · {insight.readTime} {t("readTime")}
                   </span>
                 </div>
 
@@ -109,7 +124,7 @@ export async function Insights() {
                         color: "var(--color-text-muted)",
                       }}
                     >
-                      #{tag}
+                        #{tagLabels[tag] ?? tag}
                     </span>
                   ))}
                 </div>

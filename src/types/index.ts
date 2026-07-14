@@ -102,15 +102,6 @@ export interface ExperienceEntry {
   stack: string[]
 }
 
-export interface Testimonial {
-  id: string
-  name: string
-  role: string
-  company: string
-  quote: string
-  project?: string
-}
-
 export interface Insight {
   id: string
   title: string

@@ -281,42 +281,8 @@ export const metrics = [
   { id: "cache", value: 92, suffix: "%" },
 ]
 
-export const testimonials: Testimonial[] = [
-  {
-    id: "testimonial-1",
-    name: "Carlos Eduardo Silva",
-    role: "Diretor de Tecnologia",
-    company: "Valiant Group",
-    quote: "O Roberto tem uma capacidade rara de transitar entre a visão estratégica e a execução técnica profunda. Ele não só lidera o time, ele entende cada linha de código e cada decisão de infraestrutura. Isso faz toda a diferença na qualidade das nossas entregas.",
-  },
-  {
-    id: "testimonial-2",
-    name: "Ana Paula Ferreira",
-    role: "Gerente de Produto",
-    company: "Hospital Sírio-Libanês",
-    quote: "A plataforma que o Roberto construiu para nós simplesmente funciona. 20 milhões de requisições por mês com 6ms de latência, e ele fez tudo sozinho, do backend ao deploy. Profissional excepcional.",
-    project: "hospital-sirio-libanes",
-  },
-  {
-    id: "testimonial-3",
-    name: "Ricardo Mendes",
-    role: "Head de Digital",
-    company: "Grupo Bandeirantes",
-    quote: "Migrar 6 portais de alta visibilidade sem nenhum segundo de downtime é uma proeza técnica e de gestão. O Roberto coordenou tudo com maestria, mantendo comunicação clara com o nosso C-Level em cada etapa.",
-    project: "band-news-bandsports",
-  },
-]
 
 export const insights: Insight[] = [
-  {
-    id: "insight-1",
-    title: "Por que seu líder técnico precisa codar",
-    summary: "A liderança técnica efetiva exige hands-on. Gestores que abandonam o código perdem contexto crítico sobre a complexidade real dos projetos que gerenciam.",
-    category: "leadership",
-    readTime: "5 min",
-    date: "2025-04-15",
-    tags: ["Liderança", "Gestão", "Engenharia"],
-  },
   {
     id: "insight-2",
     title: "Go em produção: o que ninguém te conta",
@@ -327,24 +293,6 @@ export const insights: Insight[] = [
     tags: ["Go", "Backend", "Performance"],
     slug: "go-em-producao",
     hasFullArticle: true,
-  },
-  {
-    id: "insight-3",
-    title: "Observabilidade não é dashboard bonito",
-    summary: "Prometheus, alertas e métricas que realmente importam. Como montar um stack de observabilidade que te acorda só quando precisa e te deixa dormir o resto do tempo.",
-    category: "observability",
-    readTime: "6 min",
-    date: "2025-02-10",
-    tags: ["Observabilidade", "Prometheus", "DevOps"],
-  },
-  {
-    id: "insight-4",
-    title: "Cloud multi-provider: AWS + GCP na prática",
-    summary: "Usar AWS e GCP no mesmo ecossistema parece insanidade. Mas em certos cenários, é a decisão mais inteligente. Explico quando faz sentido e como evitar os problemas.",
-    category: "cloud",
-    readTime: "7 min",
-    date: "2025-01-18",
-    tags: ["Cloud", "AWS", "GCP", "Infraestrutura"],
   },
 ]
 
