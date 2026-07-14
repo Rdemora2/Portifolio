@@ -5,6 +5,7 @@ import { useRef, useEffect, type ReactNode } from "react";
 interface MagneticButtonProps {
   children: ReactNode;
   strength?: number;
+  wrapperClassName?: string;
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
@@ -17,6 +18,7 @@ interface MagneticButtonProps {
 export function MagneticButton({
   children,
   strength = 0.3,
+  wrapperClassName = "",
   className = "",
   style,
   onClick,
@@ -28,7 +30,9 @@ export function MagneticButton({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLElement>(null);
   const rectRef = useRef<DOMRect | null>(null);
-  const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
+  const reducedMotionRef = useRef(false);
+  const pointerFrameRef = useRef(0);
+  const targetTransformRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -50,48 +54,75 @@ export function MagneticButton({
     };
 
     const resizeObserver = new ResizeObserver(() => updateRect());
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => {
+      reducedMotionRef.current = motionQuery.matches;
+      if (motionQuery.matches) {
+        cancelAnimationFrame(pointerFrameRef.current);
+        pointerFrameRef.current = 0;
+        targetTransformRef.current = { x: 0, y: 0 };
+        if (buttonRef.current) {
+          buttonRef.current.style.transform = "translate3d(0, 0, 0)";
+        }
+      }
+    };
+    updateMotionPreference();
     resizeObserver.observe(el);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", updateRect);
+    motionQuery.addEventListener("change", updateMotionPreference);
 
     return () => {
       resizeObserver.disconnect();
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", updateRect);
+      motionQuery.removeEventListener("change", updateMotionPreference);
       if (rafId) cancelAnimationFrame(rafId);
+      cancelAnimationFrame(pointerFrameRef.current);
     };
   }, []);
 
-  const ensureGsap = async () => {
-    if (gsapRef.current) return gsapRef.current;
-    const mod = await import("@/lib/gsap");
-    gsapRef.current = mod;
-    return mod;
-  };
+  useEffect(() => {
+    if (!disabled) return;
 
-  const handleMouseMove = async (e: React.MouseEvent) => {
-    if (!buttonRef.current || disabled) return;
+    cancelAnimationFrame(pointerFrameRef.current);
+    pointerFrameRef.current = 0;
+    targetTransformRef.current = { x: 0, y: 0 };
+    if (buttonRef.current) {
+      buttonRef.current.style.transform = "translate3d(0, 0, 0)";
+    }
+  }, [disabled]);
+
+  const handlePointerMove = (event: React.PointerEvent) => {
+    if (!buttonRef.current || disabled || reducedMotionRef.current) return;
     const rect = rectRef.current;
     if (!rect) return;
-    const x = (e.clientX - rect.left - rect.width / 2) * strength;
-    const y = (e.clientY - rect.top - rect.height / 2) * strength;
-    const mod = await ensureGsap();
-    mod?.gsap.to(buttonRef.current, { x, y, duration: 0.3, ease: "power2.out" });
-  };
+    targetTransformRef.current = {
+      x: (event.clientX - rect.left - rect.width / 2) * strength,
+      y: (event.clientY - rect.top - rect.height / 2) * strength,
+    };
+    if (pointerFrameRef.current) return;
 
-  const handleMouseLeave = async () => {
-    if (!buttonRef.current) return;
-    const mod = await ensureGsap();
-    mod?.gsap.to(buttonRef.current, {
-      x: 0,
-      y: 0,
-      duration: 0.6,
-      ease: "elastic.out(1, 0.3)",
+    pointerFrameRef.current = requestAnimationFrame(() => {
+      pointerFrameRef.current = 0;
+      const button = buttonRef.current;
+      if (!button) return;
+      const { x, y } = targetTransformRef.current;
+      button.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     });
   };
 
+  const handlePointerLeave = () => {
+    cancelAnimationFrame(pointerFrameRef.current);
+    pointerFrameRef.current = 0;
+    targetTransformRef.current = { x: 0, y: 0 };
+    const button = buttonRef.current;
+    if (!button) return;
+    button.style.transform = "translate3d(0, 0, 0)";
+  };
+
   const commonProps = {
-    className: `inline-flex items-center justify-center gap-2 transition-colors ${className}`,
+    className: `inline-flex items-center justify-center gap-2 transition-[color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform] duration-200 ease-out motion-reduce:transition-colors ${className}`,
     style,
     "aria-label": ariaLabel,
   };
@@ -121,9 +152,10 @@ export function MagneticButton({
   return (
     <div
       ref={wrapperRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="inline-flex items-center justify-center relative"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onPointerCancel={handlePointerLeave}
+      className={`relative inline-flex items-center justify-center ${wrapperClassName}`}
       style={{ cursor: disabled ? "not-allowed" : "pointer" }}
     >
       {innerElement}
