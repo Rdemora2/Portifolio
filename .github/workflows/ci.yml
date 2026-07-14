@@ -2,14 +2,31 @@ name: CI Validations
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: ["main", "dev"]
   pull_request:
-    branches: [ "main", "devs" ]
+    branches: ["main", "dev"]
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-and-lint:
-    name: Lint & Build Validation
+    name: Test, Lint & Build Validation
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_PUBLIC_SITE_URL: https://robertomoraes.dev
+      CONTACT_FROM_EMAIL: portfolio-ci@robertomoraes.dev
+      CONTACT_TO_EMAIL: quality-ci@robertomoraes.dev
+      CONTACT_ALLOWED_ORIGINS: https://robertomoraes.dev
+      CONTACT_TRUST_PROXY: "false"
 
     steps:
       - name: Checkout repository
@@ -18,24 +35,150 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: "22"
+          node-version: "24.18.0"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Verify reference Node.js and npm versions
+        run: |
+          test "$(node --version)" = "v24.18.0"
+          test "$(npm --version)" = "11.16.0"
+
+      - name: Provision deterministic non-secret validation credentials
+        run: |
+          node --input-type=module <<'NODE' >> "$GITHUB_ENV"
+          import { createHash } from "node:crypto"
+          const digest = (scope) => createHash("sha256").update(`portfolio-ci-${scope}`).digest("hex")
+          console.log(`RESEND_API_KEY=re_${digest("resend")}`)
+          console.log(`CONTACT_IDEMPOTENCY_SECRET=${digest("idempotency")}`)
+          NODE
+
+      - name: Install dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Verify package signatures
+        run: npm audit signatures
+
+      - name: Audit dependencies
+        run: npm audit --audit-level=moderate
+
+      - name: Run tests
+        run: npm test
 
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run Typecheck
+      - name: Run typecheck
         run: npm run typecheck
 
-      - name: Run Next.js Build with Bundle Analysis
-        run: ANALYZE=true npm run build -- --webpack
+      - name: Build the production application
+        run: npm run build
 
-      - name: Upload Bundle Analysis
-        uses: actions/upload-artifact@v4
-        if: always()
+      - name: Enforce bundle budgets
+        run: npm run check:bundle
+
+      - name: Install Chromium for end-to-end tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Run end-to-end tests
+        run: npm run test:e2e
+
+      - name: Validate production Compose configuration
+        run: docker compose -f docker-compose.yml config --quiet
+
+      - name: Build the production container
+        run: docker build --target runner --build-arg NEXT_PUBLIC_SITE_URL="$NEXT_PUBLIC_SITE_URL" --tag portfolio:ci .
+
+      - name: Reject critical and high container vulnerabilities
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
-          name: bundle-analysis
-          path: .next/analyze/
+          version: v0.72.0
+          scan-type: image
+          image-ref: portfolio:ci
+          scanners: vuln
+          format: table
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+
+      - name: Smoke-test the production container
+        run: |
+          test "$(docker image inspect --format '{{.Config.User}}' portfolio:ci)" = "65532:65532"
+          test "$(docker image inspect --format '{{json .Config.Entrypoint}}' portfolio:ci)" = '["/nodejs/bin/node"]'
+          test "$(docker image inspect --format '{{json .Config.Cmd}}' portfolio:ci)" = '["server.js"]'
+
+          docker run --detach --name portfolio-ci \
+            --publish 127.0.0.1:3100:3000 \
+            --init \
+            --read-only \
+            --cap-drop ALL \
+            --security-opt no-new-privileges:true \
+            --health-interval 2s \
+            --health-timeout 3s \
+            --health-start-period 1s \
+            --health-retries 10 \
+            --tmpfs /tmp:rw,noexec,nosuid,size=64m,uid=65532,gid=65532 \
+            --tmpfs /app/.next/cache:rw,noexec,nosuid,size=256m,uid=65532,gid=65532 \
+            --env NEXT_PUBLIC_SITE_URL="$NEXT_PUBLIC_SITE_URL" \
+            --env RESEND_API_KEY="$RESEND_API_KEY" \
+            --env CONTACT_FROM_EMAIL="$CONTACT_FROM_EMAIL" \
+            --env CONTACT_TO_EMAIL="$CONTACT_TO_EMAIL" \
+            --env CONTACT_IDEMPOTENCY_SECRET="$CONTACT_IDEMPOTENCY_SECRET" \
+            --env CONTACT_ALLOWED_ORIGINS="$CONTACT_ALLOWED_ORIGINS" \
+            --env CONTACT_TRUST_PROXY="$CONTACT_TRUST_PROXY" \
+            portfolio:ci
+
+          health="starting"
+          for _ in {1..30}; do
+            health="$(docker inspect --format '{{.State.Health.Status}}' portfolio-ci)"
+            if [ "$health" = "healthy" ]; then
+              break
+            fi
+            if [ "$health" = "unhealthy" ]; then
+              docker logs portfolio-ci
+              exit 1
+            fi
+            sleep 1
+          done
+          if [ "$health" != "healthy" ]; then
+            docker logs portfolio-ci
+            exit 1
+          fi
+
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.env.NODE_ENV')" = "production"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.version')" = "v24.18.0"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.env.NEXT_PUBLIC_SITE_URL')" = "$NEXT_PUBLIC_SITE_URL"
+
+          response_headers="$(curl --fail --show-error --silent --head http://127.0.0.1:3100/)"
+          grep --ignore-case --quiet '^cross-origin-resource-policy: same-origin' <<< "$response_headers"
+          grep --ignore-case --quiet '^origin-agent-cluster: ?1' <<< "$response_headers"
+          grep --ignore-case --quiet "^content-security-policy: .*script-src-attr 'none'" <<< "$response_headers"
+
+          home="$(curl --fail --show-error --silent http://127.0.0.1:3100/)"
+          grep --quiet 'Roberto Moraes' <<< "$home"
+
+          robots="$(curl --fail --show-error --silent http://127.0.0.1:3100/robots.txt)"
+          grep --quiet "Sitemap: ${NEXT_PUBLIC_SITE_URL}/sitemap.xml" <<< "$robots"
+
+          asset_path="$(node -e '
+            const fs = require("node:fs");
+            const html = fs.readFileSync(0, "utf8");
+            const match = html.match(/\/_next\/static\/[^" ]+\.(?:js|css)/);
+            if (!match) {
+              console.error("Could not locate a static Next.js asset in the home page.");
+              process.exit(1);
+            }
+            process.stdout.write(match[0]);
+          ' <<< "$home")"
+          curl --fail --show-error --silent --output /dev/null "http://127.0.0.1:3100${asset_path}"
+
+      - name: Stop the production container
+        if: ${{ always() }}
+        run: docker rm --force portfolio-ci 2>/dev/null || true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
