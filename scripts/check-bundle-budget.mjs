@@ -162,6 +162,10 @@ function readLazyManifest(nextDir) {
   const candidates = [
     resolve(
       nextDir,
+      "server/app/[locale]/(home)/page/react-loadable-manifest.json",
+    ),
+    resolve(
+      nextDir,
       "server/app/[locale]/page/react-loadable-manifest.json",
     ),
     resolve(nextDir, "react-loadable-manifest.json"),
