@@ -2,7 +2,6 @@ import { useTranslations } from "next-intl"
 
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { GradientBorder } from "@/components/shared/GradientBorder"
-import { AnimatedText } from "@/components/shared/AnimatedText"
 import { AboutBackground } from "./AboutBackground"
 
 export function About() {
@@ -46,18 +45,18 @@ export function About() {
 
         <div className="grid gap-10 lg:gap-16 lg:grid-cols-[1.5fr_1fr]">
           <div className="min-w-0">
-            <AnimatedText
-              as="h2"
-              type="split-words"
-              className="mb-6 font-bold leading-tight sm:mb-8"
-              style={{
-                fontFamily: "var(--font-display)",
-                color: "var(--color-text-primary)",
-                fontSize: "var(--text-3xl)",
-              }}
-            >
-              {t("mainTitle")}
-            </AnimatedText>
+            <ScrollReveal animation="title">
+              <h2
+                className="mb-6 font-bold leading-tight sm:mb-8"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--color-text-primary)",
+                  fontSize: "var(--text-3xl)",
+                }}
+              >
+                {t("mainTitle")}
+              </h2>
+            </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
               <p
