@@ -1,0 +1,10 @@
+import createMiddleware from "next-intl/middleware"
+import { routing } from "@/navigation"
+
+export const proxy = createMiddleware(routing)
+
+export const config = {
+  matcher: [
+    "/((?!api|_next|_vercel|opengraph-image|twitter-image|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)",
+  ],
+}
