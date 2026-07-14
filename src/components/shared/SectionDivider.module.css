@@ -1,0 +1,74 @@
+.root {
+  contain: paint;
+  isolation: isolate;
+}
+
+.wave,
+.signal {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.wave {
+  stroke: rgba(99, 102, 241, 0.16);
+  stroke-width: 1;
+}
+
+.signal {
+  opacity: 0;
+  stroke: var(--color-highlight);
+  stroke-width: 1.35;
+  stroke-dasharray: 0.13 0.87;
+  stroke-dashoffset: 0.94;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes travelSignal {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 0.94;
+    transform: translate3d(-0.8%, 0, 0);
+  }
+
+  24%,
+  72% {
+    opacity: 0.82;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -0.94;
+    transform: translate3d(0.8%, 0, 0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .signal {
+    animation-name: travelSignal;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view(block);
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal {
+    animation: none;
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .wave {
+    stroke: CanvasText;
+  }
+
+  .signal {
+    display: none;
+  }
+}

@@ -1,3 +1,5 @@
+import styles from "./SectionDivider.module.css"
+
 interface SectionDividerProps {
   topColor?: string
   bottomColor?: string
@@ -5,8 +7,8 @@ interface SectionDividerProps {
 }
 
 /**
- * Static SVG divider. It keeps the organic section transition without hydrating
- * seven canvases or running seven permanent requestAnimationFrame loops.
+ * Server-rendered SVG divider. Native CSS scroll timelines add a short signal
+ * when supported, without hydrating canvases or running requestAnimationFrame.
  */
 export function SectionDivider({
   topColor = "var(--color-void)",
@@ -16,6 +18,8 @@ export function SectionDivider({
   return (
     <div
       aria-hidden="true"
+      className={styles.root}
+      data-section-divider
       style={{
         backgroundColor: bottomColor,
         display: "block",
@@ -36,10 +40,14 @@ export function SectionDivider({
         />
         <path
           d="M0 44C420 28 600 56 840 40C1080 24 1200 54 1440 42"
-          fill="none"
-          stroke="rgba(99, 102, 241, 0.16)"
-          strokeWidth="1"
-          vectorEffect="non-scaling-stroke"
+          className={styles.wave}
+          pathLength="1"
+        />
+        <path
+          d="M0 44C420 28 600 56 840 40C1080 24 1200 54 1440 42"
+          className={styles.signal}
+          data-section-divider-signal
+          pathLength="1"
         />
       </svg>
     </div>
