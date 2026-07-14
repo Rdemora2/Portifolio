@@ -1,0 +1,66 @@
+.track,
+.progress {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+}
+
+.track {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--color-signal) 38%, transparent) 8%,
+    color-mix(in srgb, var(--color-signal) 22%, transparent) 92%,
+    transparent
+  );
+}
+
+.progress {
+  display: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--color-signal) 82%, transparent) 8%,
+    color-mix(in srgb, var(--color-signal) 58%, transparent) 76%,
+    color-mix(in srgb, var(--color-signal) 34%, transparent) 94%,
+    transparent
+  );
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-signal) 24%, transparent);
+  transform-origin: top;
+}
+
+@keyframes drawExperienceTimeline {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .progress {
+      display: block;
+      animation-name: drawExperienceTimeline;
+      animation-duration: 1ms;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      /* Keep the timeline in a longhand: Next's optimizer currently folds
+         view() incorrectly when it is included in the animation shorthand. */
+      animation-timeline: view(block 55% 44%);
+    }
+  }
+}
+
+@media (prefers-contrast: more) {
+  .track {
+    background: color-mix(in srgb, var(--color-signal) 36%, transparent);
+  }
+
+  .progress {
+    background: var(--color-signal);
+    box-shadow: none;
+  }
+}

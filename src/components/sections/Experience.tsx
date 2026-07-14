@@ -39,27 +39,42 @@ export function Experience() {
         <div className="relative">
           <ExperienceTimelineLine />
 
-          <div className="space-y-12 sm:space-y-16 md:space-y-24">
+          <ol
+            className="list-none space-y-12 sm:space-y-16 md:space-y-24"
+            data-experience-list
+          >
             {experience.map((entry, idx) => (
               <ScrollReveal
                 key={entry.id}
+                as="li"
                 animation="card"
                 delay={0.1}
               >
-                <div
+                <article
+                  aria-labelledby={`experience-${entry.id}-title`}
+                  data-experience-entry
                   className={`relative flex flex-col md:flex-row md:items-center ${
                     idx % 2 === 0 ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  <div className="flex flex-1 justify-center md:justify-start">
+                  <div
+                    className={
+                      idx % 2 === 0
+                        ? "flex flex-1 justify-center md:w-1/2 md:flex-none md:justify-start md:pl-12"
+                        : "flex flex-1 justify-center md:w-1/2 md:flex-none md:justify-end md:pr-12"
+                    }
+                  >
                     <div
-                      className={`glass-card relative w-full max-w-lg rounded-2xl p-6 transition-all duration-300 sm:p-8 ${
-                        idx % 2 === 0 ? "md:mr-12" : "md:ml-12"
-                      }`}
+                      className="glass-card relative w-full max-w-lg rounded-2xl p-6 transition-all duration-300 sm:p-8"
+                      data-experience-card
+                      data-experience-side={
+                        idx % 2 === 0 ? "right" : "left"
+                      }
                       style={{ borderRadius: "1rem" }}
                     >
                       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                         <h3
+                          id={`experience-${entry.id}-title`}
                           className="text-xl font-bold"
                           style={{
                             fontFamily: "var(--font-display)",
@@ -99,10 +114,13 @@ export function Experience() {
                         {t(`items.${entry.id}.description`)}
                       </p>
 
-                      <div className="mb-6 space-y-2">
+                      <ul
+                        className="mb-6 list-none space-y-2"
+                        data-experience-highlights
+                      >
                         {(t.raw(`items.${entry.id}.highlights`) as string[]).map(
                           (highlight: string, hIdx: number) => (
-                            <div
+                            <li
                               key={hIdx}
                               className="flex items-start gap-2 text-xs"
                               style={{
@@ -111,14 +129,15 @@ export function Experience() {
                               }}
                             >
                               <span
+                                aria-hidden="true"
                                 className="mt-1.5 h-1 w-1 shrink-0 rounded-full"
                                 style={{ backgroundColor: "var(--color-signal)" }}
                               />
                               {highlight}
-                            </div>
+                            </li>
                           ),
                         )}
-                      </div>
+                      </ul>
 
                       <div className="flex flex-wrap gap-2">
                         {entry.stack.map((s) => (
@@ -154,11 +173,11 @@ export function Experience() {
                     />
                   </div>
 
-                  <div className="hidden flex-1 md:block" />
-                </div>
+                  <div className="hidden md:block md:w-1/2 md:flex-none" />
+                </article>
               </ScrollReveal>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
 
