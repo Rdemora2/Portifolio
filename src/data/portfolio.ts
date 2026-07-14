@@ -276,9 +276,9 @@ export const experience: ExperienceEntry[] = [
 ]
 
 export const metrics = [
-  { label: "Requisições/mês", value: 20, suffix: "M", description: "Volume mensal em produção" },
-  { label: "Resposta média", value: 6, suffix: "ms", description: "Latência média da API" },
-  { label: "Cache hit rate", value: 92, suffix: "%", description: "Acerto de cache no Redis" },
+  { id: "requests", value: 20, suffix: "M" },
+  { id: "latency", value: 6, suffix: "ms" },
+  { id: "cache", value: 92, suffix: "%" },
 ]
 
 export const testimonials: Testimonial[] = [

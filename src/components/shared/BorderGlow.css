@@ -142,6 +142,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .border-glow-card {
+    --edge-proximity: 0 !important;
+  }
+
   .border-glow-card::before,
   .border-glow-card::after,
   .border-glow-card > .edge-light {

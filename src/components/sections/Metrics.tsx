@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import { metrics } from "@/data/portfolio";
+import BorderGlow from "@/components/shared/BorderGlow";
 import { CountUp } from "@/components/shared/CountUp";
 import { useInView } from "@/hooks/useInView";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -19,7 +19,7 @@ export function Metrics() {
       className="relative overflow-hidden py-16 sm:py-20 md:py-32"
       style={{ backgroundColor: "var(--color-void)" }}
     >
-      <DataflowBackground isActive={isInView} />
+      <DataflowBackground />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
@@ -31,7 +31,7 @@ export function Metrics() {
               letterSpacing: "0.25em",
             }}
           >
-            {ts("title_small") || "Números reais"}
+            {ts("title_small")}
           </p>
           <h2
             className="mb-4 text-center font-bold"
@@ -56,47 +56,60 @@ export function Metrics() {
 
         <div className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-3">
           {metrics.map((metric, idx) => {
-            const metricKey = metric.label.toLowerCase().replace(/[^a-z]/g, "");
             return (
-              <ScrollReveal key={metric.label} animation="stat" delay={idx * 0.15}>
-                <div
-                  className="glass-card rounded-2xl p-5 text-center transition-all duration-500 sm:p-6 md:p-8"
-                  style={{ borderRadius: "1rem" }}
+              <ScrollReveal
+                key={metric.id}
+                animation="stat"
+                delay={idx * 0.15}
+                className="h-full"
+              >
+                <BorderGlow
+                  className="h-full w-full"
+                  edgeSensitivity={30}
+                  glowColor="40 80 80"
+                  backgroundColor="#0a1018"
+                  borderRadius={16}
+                  glowRadius={40}
+                  glowIntensity={1}
+                  coneSpread={25}
+                  colors={["#c084fc", "#f472b6", "#38bdf8"]}
                 >
-                  <div
-                    className="font-extrabold leading-none"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "var(--color-signal)",
-                      fontSize: "var(--text-5xl)",
-                    }}
-                  >
-                    <CountUp
-                      end={metric.value}
-                      suffix={metric.suffix}
-                      trigger={isInView}
-                      duration={2.5}
-                    />
+                  <div className="h-full rounded-2xl p-5 text-center sm:p-6 md:p-8">
+                    <div
+                      className="font-extrabold leading-none"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--color-signal)",
+                        fontSize: "var(--text-5xl)",
+                      }}
+                    >
+                      <CountUp
+                        end={metric.value}
+                        suffix={metric.suffix}
+                        trigger={isInView}
+                        duration={2.5}
+                      />
+                    </div>
+                    <p
+                      className="mt-4 text-[0.625rem] uppercase tracking-widest sm:text-xs"
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        color: "var(--color-text-muted)",
+                      }}
+                    >
+                      {ts(`metrics.${metric.id}.label`)}
+                    </p>
+                    <p
+                      className="mt-2 text-sm"
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        color: "var(--color-text-secondary)",
+                      }}
+                    >
+                      {ts(`metrics.${metric.id}.description`)}
+                    </p>
                   </div>
-                  <p
-                    className="mt-4 text-[0.625rem] uppercase tracking-widest sm:text-xs"
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      color: "var(--color-text-muted)",
-                    }}
-                  >
-                    {t(`metrics.${metricKey}`) || metric.label}
-                  </p>
-                  <p
-                    className="mt-2 text-sm"
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      color: "var(--color-text-secondary)",
-                    }}
-                  >
-                    {metric.description}
-                  </p>
-                </div>
+                </BorderGlow>
               </ScrollReveal>
             );
           })}
@@ -106,81 +119,16 @@ export function Metrics() {
   );
 }
 
-function DataflowBackground({ isActive }: { isActive: boolean }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const sizeRef = useRef({ width: 0, height: 0 });
-
-  useEffect(() => {
-    if (!isActive) return;
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReduced) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resize = () => {
-      sizeRef.current.width = canvas.clientWidth;
-      sizeRef.current.height = canvas.clientHeight;
-      canvas.width = sizeRef.current.width;
-      canvas.height = sizeRef.current.height;
-    };
-
-    let resizeTimer: NodeJS.Timeout;
-    const debouncedResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resize, 150);
-    };
-    resize();
-    window.addEventListener("resize", debouncedResize);
-
-    let rafId: number;
-    const lines = Array.from({ length: 15 }, () => ({
-      y: Math.random() * sizeRef.current.height,
-      speed: 0.3 + Math.random() * 0.8,
-      width: 50 + Math.random() * 200,
-      x: Math.random() * sizeRef.current.width,
-    }));
-
-    const draw = () => {
-      const { width, height } = sizeRef.current;
-      ctx.clearRect(0, 0, width, height);
-      ctx.strokeStyle = "rgba(99, 102, 241, 0.04)";
-      ctx.lineWidth = 1;
-
-      lines.forEach((line) => {
-        ctx.beginPath();
-        ctx.moveTo(line.x, line.y);
-        ctx.lineTo(line.x + line.width, line.y);
-        ctx.stroke();
-        line.x += line.speed;
-        if (line.x > sizeRef.current.width) {
-          line.x = -line.width;
-          line.y = Math.random() * sizeRef.current.height;
-        }
-      });
-
-      rafId = requestAnimationFrame(draw);
-    };
-
-    rafId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", debouncedResize);
-      clearTimeout(resizeTimer);
-    };
-  }, [isActive]);
-
+function DataflowBackground() {
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 h-full w-full"
+    <div
+      className="pointer-events-none absolute inset-0 opacity-35"
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(0deg, transparent 0 42px, rgba(99,102,241,0.07) 43px), linear-gradient(90deg, transparent, rgba(99,102,241,0.07), transparent)",
+        maskImage:
+          "linear-gradient(to right, transparent, black 20%, black 80%, transparent)",
+      }}
       aria-hidden="true"
     />
   );

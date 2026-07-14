@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, useEffect, ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import "./BorderGlow.css";
 
 interface BorderGlowProps {
@@ -13,7 +13,6 @@ interface BorderGlowProps {
   glowRadius?: number;
   glowIntensity?: number;
   coneSpread?: number;
-  animated?: boolean;
   colors?: string[];
   fillOpacity?: number;
 }
@@ -75,55 +74,6 @@ function buildGradientVars(colors: string[]) {
   return vars;
 }
 
-function easeOutCubic(x: number) {
-  return 1 - Math.pow(1 - x, 3);
-}
-function easeInCubic(x: number) {
-  return x * x * x;
-}
-
-function animateValue({
-  start = 0,
-  end = 100,
-  duration = 1000,
-  delay = 0,
-  ease = easeOutCubic,
-  onUpdate,
-  onEnd,
-}: {
-  start?: number;
-  end?: number;
-  duration?: number;
-  delay?: number;
-  ease?: (x: number) => number;
-  onUpdate: (v: number) => void;
-  onEnd?: () => void;
-}) {
-  let rafId: number;
-  let cancelled = false;
-
-  const t0 = performance.now() + delay;
-  function tick() {
-    if (cancelled) return;
-    const elapsed = performance.now() - t0;
-    const t = Math.min(Math.max(elapsed / duration, 0), 1);
-    if (elapsed >= 0) {
-      onUpdate(start + (end - start) * ease(t));
-    }
-    if (t < 1) rafId = requestAnimationFrame(tick);
-    else if (onEnd) onEnd();
-  }
-  const timeoutId = setTimeout(() => {
-    rafId = requestAnimationFrame(tick);
-  }, delay);
-
-  return () => {
-    cancelled = true;
-    clearTimeout(timeoutId);
-    cancelAnimationFrame(rafId);
-  };
-}
-
 const BorderGlow = ({
   children,
   className = "",
@@ -134,116 +84,30 @@ const BorderGlow = ({
   glowRadius = 40,
   glowIntensity = 1.0,
   coneSpread = 25,
-  animated = false,
   colors = ["#c084fc", "#f472b6", "#38bdf8"],
   fillOpacity = 0.5,
 }: BorderGlowProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const rafRef = useRef<number | null>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const isHovered = useRef(false);
-
-  const handlePointerMove = useCallback(
-    (e: React.PointerEvent<HTMLDivElement>) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-      
-      if (!isHovered.current) {
-        isHovered.current = true;
-        const card = cardRef.current;
-        if (!card) return;
-
-        const loop = () => {
-          if (!isHovered.current) return;
-          
-          // Lemos (read)
-          const rect = card.getBoundingClientRect();
-          const x = mouseRef.current.x - rect.left;
-          const y = mouseRef.current.y - rect.top;
-          const cx = rect.width / 2;
-          const cy = rect.height / 2;
-          
-          const dx = x - cx;
-          const dy = y - cy;
-          let kx = Infinity;
-          let ky = Infinity;
-          if (dx !== 0) kx = cx / Math.abs(dx);
-          if (dy !== 0) ky = cy / Math.abs(dy);
-          const edge = Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
-          
-          let angle = 0;
-          if (dx !== 0 || dy !== 0) {
-            angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-            if (angle < 0) angle += 360;
-          }
-
-          // Escrevemos (write) - agrupado para evitar read-write-read trashing
-          card.style.setProperty("--edge-proximity", `${(edge * 100).toFixed(3)}`);
-          card.style.setProperty("--cursor-angle", `${angle.toFixed(3)}deg`);
-
-          rafRef.current = requestAnimationFrame(loop);
-        };
-        rafRef.current = requestAnimationFrame(loop);
-      }
-    },
-    []
-  );
-
-  const handlePointerLeave = useCallback(() => {
-    isHovered.current = false;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-  }, []);
-
-  useEffect(() => {
-    if (!animated || !cardRef.current) return;
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     const card = cardRef.current;
-    const angleStart = 110;
-    const angleEnd = 465;
-    card.classList.add("sweep-active");
-    card.style.setProperty("--cursor-angle", `${angleStart}deg`);
+    if (!card) return;
 
-    const cancels = [
-      animateValue({
-        duration: 500,
-        onUpdate: (v) => card.style.setProperty("--edge-proximity", v.toString()),
-      }),
-      animateValue({
-        ease: easeInCubic,
-        duration: 1500,
-        end: 50,
-        onUpdate: (v) => {
-          card.style.setProperty(
-            "--cursor-angle",
-            `${(angleEnd - angleStart) * (v / 100) + angleStart}deg`
-          );
-        },
-      }),
-      animateValue({
-        ease: easeOutCubic,
-        delay: 1500,
-        duration: 2250,
-        start: 50,
-        end: 100,
-        onUpdate: (v) => {
-          card.style.setProperty(
-            "--cursor-angle",
-            `${(angleEnd - angleStart) * (v / 100) + angleStart}deg`
-          );
-        },
-      }),
-      animateValue({
-        ease: easeInCubic,
-        delay: 2500,
-        duration: 1500,
-        start: 100,
-        end: 0,
-        onUpdate: (v) => card.style.setProperty("--edge-proximity", v.toString()),
-        onEnd: () => card.classList.remove("sweep-active"),
-      })
-    ];
+    const rect = card.getBoundingClientRect();
+    const dx = event.clientX - rect.left - rect.width / 2;
+    const dy = event.clientY - rect.top - rect.height / 2;
+    const edgeX = rect.width > 0 ? Math.abs(dx) / (rect.width / 2) : 0;
+    const edgeY = rect.height > 0 ? Math.abs(dy) / (rect.height / 2) : 0;
+    const edge = Math.min(Math.max(Math.max(edgeX, edgeY), 0), 1);
+    const angle = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
 
-    return () => cancels.forEach(c => c());
-  }, [animated]);
+    card.style.setProperty("--edge-proximity", (edge * 100).toFixed(3));
+    card.style.setProperty("--cursor-angle", `${angle.toFixed(3)}deg`);
+  };
+
+  const handlePointerLeave = () => {
+    cardRef.current?.style.setProperty("--edge-proximity", "0");
+  };
 
   const glowVars = buildGlowVars(glowColor, glowIntensity);
 
