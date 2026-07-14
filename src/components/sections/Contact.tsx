@@ -1,7 +1,7 @@
 import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { useTranslations } from "next-intl"
-import { ContactForm } from "./ContactForm"
+import { ContactFormLoader } from "./ContactFormLoader"
 import { ContactBackground } from "./ContactBackground"
 
 export function Contact() {
@@ -63,6 +63,7 @@ export function Contact() {
                     <span
                       className="flex h-8 w-8 items-center justify-center rounded-full border transition-colors duration-200"
                       style={{ borderColor: "var(--color-edge)" }}
+                      aria-hidden="true"
                     >
                       {contact.type === "email" && "✉"}
                       {contact.type === "whatsapp" && "💬"}
@@ -78,7 +79,7 @@ export function Contact() {
 
           <ScrollReveal animation="card" delay={0.2}>
             <div className="glass-panel rounded-2xl p-6 sm:p-8" style={{ borderRadius: "1.5rem" }}>
-              <ContactForm />
+              <ContactFormLoader />
             </div>
           </ScrollReveal>
         </div>

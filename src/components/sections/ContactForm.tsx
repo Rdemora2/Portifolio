@@ -8,25 +8,39 @@ import { MagneticButton } from "@/components/shared/MagneticButton"
 import { useTranslations } from "next-intl"
 
 const PROJECT_TYPES = [
-  { value: "web", label: "Aplicação Web" },
-  { value: "mobile", label: "Mobile Nativo" },
-  { value: "backend", label: "Backend / API" },
-  { value: "architecture", label: "Arquitetura" },
-  { value: "leadership", label: "Gestão / Liderança" },
-  { value: "other", label: "Outro" },
+  "web",
+  "mobile",
+  "backend",
+  "architecture",
+  "leadership",
+  "other",
 ] as const
+
+type ServerErrorKey = "rateLimited" | "generic"
 
 export function ContactForm() {
   const t = useTranslations("Contact")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [serverError, setServerError] = useState<ServerErrorKey>("generic")
   const isMounted = useRef(true)
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const requestControllerRef = useRef<AbortController | null>(null)
 
   useEffect(() => {
     isMounted.current = true
     return () => {
       isMounted.current = false
+      if (statusTimerRef.current) clearTimeout(statusTimerRef.current)
+      requestControllerRef.current?.abort()
     }
   }, [])
+
+  const clearStatusTimer = () => {
+    if (statusTimerRef.current) {
+      clearTimeout(statusTimerRef.current)
+      statusTimerRef.current = null
+    }
+  }
 
   const {
     register,
@@ -38,90 +52,144 @@ export function ContactForm() {
   })
 
   const onSubmit = async (data: ContactSchema) => {
+    clearStatusTimer()
+    requestControllerRef.current?.abort()
+    const controller = new AbortController()
+    requestControllerRef.current = controller
     setStatus("loading")
+    setServerError("generic")
+    let errorKey: ServerErrorKey = "generic"
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        signal: controller.signal,
       })
-      if (!res.ok) throw new Error("Falha no envio")
+      if (!res.ok) {
+        if (res.status === 429) errorKey = "rateLimited"
+        throw new Error("Contact request failed")
+      }
       if (isMounted.current) {
         setStatus("success")
         reset()
-        setTimeout(() => {
+        statusTimerRef.current = setTimeout(() => {
           if (isMounted.current) setStatus("idle")
+          statusTimerRef.current = null
         }, 5000)
       }
-    } catch {
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return
       if (isMounted.current) {
+        setServerError(errorKey)
         setStatus("error")
-        setTimeout(() => {
+        statusTimerRef.current = setTimeout(() => {
           if (isMounted.current) setStatus("idle")
+          statusTimerRef.current = null
         }, 4000)
+      }
+    } finally {
+      if (requestControllerRef.current === controller) {
+        requestControllerRef.current = null
       }
     }
   }
 
   return (
-    <form onSubmit={(e) => void handleSubmit(onSubmit)(e)} className="space-y-4 sm:space-y-6" noValidate>
+    <form
+      onSubmit={(e) => void handleSubmit(onSubmit)(e)}
+      className="space-y-4 sm:space-y-6"
+      aria-busy={status === "loading"}
+      noValidate
+    >
       <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
-        <FormField label={t("form.name")} htmlFor="contact-name" error={errors.name?.message}>
+        <FormField
+          label={t("form.name")}
+          htmlFor="contact-name"
+          error={errors.name ? t("form.validation.name") : undefined}
+        >
           <input
             {...register("name")}
             type="text"
             id="contact-name"
             className="form-input"
             placeholder=" "
+            autoComplete="name"
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
           />
         </FormField>
-        <FormField label={t("form.email")} htmlFor="contact-email" error={errors.email?.message}>
+        <FormField
+          label={t("form.email")}
+          htmlFor="contact-email"
+          error={errors.email ? t("form.validation.email") : undefined}
+        >
           <input
             {...register("email")}
             type="email"
             id="contact-email"
             className="form-input"
             placeholder=" "
+            autoComplete="email"
+            aria-invalid={errors.email ? true : undefined}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
           />
         </FormField>
       </div>
 
       <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
-        <FormField label={t("form.company") || "Empresa (opcional)"} htmlFor="contact-company">
+        <FormField label={t("form.company")} htmlFor="contact-company">
           <input
             {...register("company")}
             type="text"
             id="contact-company"
             className="form-input"
             placeholder=" "
+            autoComplete="organization"
           />
         </FormField>
-        <FormField label={t("form.projectType") || "Tipo de projeto"} htmlFor="contact-project-type" error={errors.projectType?.message}>
+        <FormField
+          label={t("form.projectType")}
+          htmlFor="contact-project-type"
+          error={
+            errors.projectType ? t("form.validation.projectType") : undefined
+          }
+        >
           <select
             {...register("projectType")}
             id="contact-project-type"
             className="form-input"
             defaultValue=""
+            aria-invalid={errors.projectType ? true : undefined}
+            aria-describedby={errors.projectType ? "contact-project-type-error" : undefined}
           >
-            <option value="" disabled>Selecione</option>
-            {PROJECT_TYPES.map(({ value, label }) => (
-              <option key={value} value={value}>{label}</option>
+            <option value="" disabled>{t("form.selectPlaceholder")}</option>
+            {PROJECT_TYPES.map((value) => (
+              <option key={value} value={value}>
+                {t(`form.projectOptions.${value}`)}
+              </option>
             ))}
           </select>
         </FormField>
       </div>
 
-      <FormField label={t("form.message")} htmlFor="contact-message" error={errors.message?.message}>
+      <FormField
+        label={t("form.message")}
+        htmlFor="contact-message"
+        error={errors.message ? t("form.validation.message") : undefined}
+      >
         <textarea
           {...register("message")}
           id="contact-message"
           rows={5}
           className="form-input resize-none"
           placeholder=" "
+          aria-invalid={errors.message ? true : undefined}
+          aria-describedby={errors.message ? "contact-message-error" : undefined}
         />
       </FormField>
 
-      <FormField label={t("form.budget") || "Budget estimado (opcional)"} htmlFor="contact-budget">
+      <FormField label={t("form.budget")} htmlFor="contact-budget">
         <input
           {...register("budget")}
           type="text"
@@ -132,7 +200,7 @@ export function ContactForm() {
       </FormField>
 
       {/* Honeypot anti-spam field */}
-      <div className="absolute opacity-0 -z-10 w-0 h-0 overflow-hidden" aria-hidden="true">
+      <div hidden>
         <label htmlFor="botCheck">Don&apos;t fill this out if you&apos;re human:</label>
         <input
           {...register("botCheck")}
@@ -146,6 +214,7 @@ export function ContactForm() {
       <MagneticButton
         type="submit"
         disabled={status === "loading"}
+        wrapperClassName="w-full"
         className="w-full cursor-pointer rounded-full border border-[var(--color-signal)] text-[var(--color-signal)] px-4 py-3 text-xs font-semibold uppercase tracking-widest transition-all duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] disabled:cursor-not-allowed disabled:opacity-50 sm:py-4 sm:text-sm"
         style={{
           fontFamily: "var(--font-body)",
@@ -162,8 +231,7 @@ export function ContactForm() {
 
       {status === "success" && (
         <div
-          role="alert"
-          aria-live="polite"
+          role="status"
           className="flex items-center gap-2 rounded-xl border p-3 text-sm sm:p-4"
           style={{
             borderColor: "var(--color-matrix)",
@@ -192,7 +260,7 @@ export function ContactForm() {
             fontFamily: "var(--font-mono)",
           }}
         >
-          {t("form.error") || "Erro ao enviar. Tente novamente ou use contato direto."}
+          {t(`form.serverErrors.${serverError}`)}
         </div>
       )}
     </form>
@@ -225,6 +293,7 @@ function FormField({
       {children}
       {error && (
         <p
+          id={`${htmlFor}-error`}
           className="mt-1 text-xs"
           style={{ fontFamily: "var(--font-mono)", color: "var(--color-alert)" }}
         >
