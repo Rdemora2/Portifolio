@@ -4,7 +4,8 @@
   "private": true,
   "packageManager": "npm@11.16.0",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "node scripts/dev-server.mjs",
+    "dev:turbo": "node scripts/dev-server.mjs --turbopack",
     "build": "next build && node scripts/prepare-standalone.mjs",
     "check:bundle": "node scripts/check-bundle-budget.mjs",
     "start": "node .next/standalone/server.js",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
+    "@next/env": "16.2.10",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "4",
     "@types/node": "^24.13.3",
