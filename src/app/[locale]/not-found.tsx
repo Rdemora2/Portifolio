@@ -1,47 +1,77 @@
-import Link from "next/link";
-import Ballpit from "@/components/shared/Ballpit";
-import SplashCursor from "@/components/shared/SplashCursor";
+import { Link } from "@/navigation"
+import { getTranslations } from "next-intl/server"
 
-export default function NotFound() {
+export default async function NotFound() {
+  const t = await getTranslations("NotFound")
+
   return (
-    <div
-      className="relative w-full overflow-hidden bg-void flex items-center justify-center h-dvh"
+    <main
+      id="main-content"
+      className="relative flex min-h-dvh w-full items-center justify-center overflow-hidden px-6 py-24"
+      style={{ backgroundColor: "var(--color-void)" }}
     >
-      <SplashCursor 
-        COLOR="#4f46e5"
-        RAINBOW_MODE={false}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 18% 24%, rgba(99, 102, 241, 0.2), transparent 30%), radial-gradient(circle at 82% 72%, rgba(129, 140, 248, 0.14), transparent 34%)",
+        }}
       />
-      
-      <div className="absolute inset-0 z-0">
-        <Ballpit
-          count={100}
-          gravity={0.3}
-          friction={0.9975}
-          wallBounce={0.95}
-          followCursor={true}
-          colors={[0x6366f1, 0x4f46e5, 0x818cf8]}
-        />
-      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-30"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.12) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+          maskImage: "radial-gradient(circle at center, black, transparent 72%)",
+        }}
+      />
 
-      <div className="relative z-10 flex flex-col items-center text-center p-6 bg-void/50 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl sm:p-8">
-        <h1 className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-indigo-400 via-purple-400 to-indigo-600 drop-shadow-lg tracking-tighter sm:text-8xl md:text-9xl">
-          404
+      <section className="relative z-10 w-full max-w-2xl text-center">
+        <p
+          className="mb-5 text-xs uppercase"
+          style={{
+            color: "var(--color-signal)",
+            fontFamily: "var(--font-mono)",
+            letterSpacing: "0.28em",
+          }}
+        >
+          {t("eyebrow")}
+        </p>
+        <h1
+          className="text-7xl font-bold tracking-tighter sm:text-8xl md:text-9xl"
+          style={{
+            color: "var(--color-text-primary)",
+            fontFamily: "var(--font-display)",
+          }}
+        >
+          {t("title")}
         </h1>
-        <h2 className="text-xl font-medium text-white/90 mt-4 tracking-tight sm:text-2xl md:text-3xl">
-          Página não encontrada
-        </h2>
-        <p className="text-white/60 mt-4 max-w-md text-base sm:text-lg">
-          A URL que você tentou acessar não existe ou foi movida. 
-          Brinque com a gravidade enquanto estiver por aqui, ou volte para a segurança.
+        <p
+          className="mx-auto mt-6 max-w-xl text-base leading-relaxed sm:text-lg"
+          style={{
+            color: "var(--color-text-secondary)",
+            fontFamily: "var(--font-body)",
+          }}
+        >
+          {t("description")}
         </p>
 
         <Link
           href="/"
-          className="mt-8 px-6 py-3 bg-indigo-600 text-white rounded-full font-medium transition-all duration-200 hover:bg-indigo-500 active:scale-95 shadow-lg hover:shadow-indigo-500/50 sm:px-8 sm:py-4"
+          className="mt-9 inline-flex min-h-11 items-center justify-center rounded-full border px-7 py-3 text-sm font-medium transition-colors hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-4"
+          style={{
+            borderColor: "var(--color-edge-bright)",
+            color: "var(--color-text-primary)",
+            fontFamily: "var(--font-body)",
+            outlineColor: "var(--color-signal)",
+          }}
         >
-          Voltar para Home
+          {t("back")}
         </Link>
-      </div>
-    </div>
-  );
+      </section>
+    </main>
+  )
 }

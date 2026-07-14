@@ -1,33 +1,45 @@
 "use client"
 
+import "./fallback.css"
+
 export default function GlobalError({
   error,
-  reset,
+  unstable_retry,
 }: {
   error: Error & { digest?: string }
-  reset: () => void
+  unstable_retry: () => void
 }) {
   return (
-    <html lang="en">
-      <body className="flex min-h-screen flex-col items-center justify-center bg-[#020408] text-white p-4 text-center font-sans">
-        <h2 className="mb-4 text-3xl font-bold tracking-tight">
-          Critical System Failure
-        </h2>
-        <p className="mb-8 text-gray-400 max-w-md">
-          A critical error occurred at the root level. The application was unable to recover automatically.
-        </p>
-        <button
-          onClick={() => reset()}
-          className="rounded-full bg-[#00f2ff] px-8 py-3 text-sm font-bold text-[#020408] transition-transform hover:scale-105 active:scale-95"
-        >
-          Reboot Application
-        </button>
-        {process.env.NODE_ENV === "development" && (
-          <pre className="mt-8 max-w-full overflow-auto rounded bg-red-950/20 p-4 text-left text-xs text-red-400 border border-red-900/50">
-            {error.message}
-            {error.stack}
-          </pre>
-        )}
+    <html lang="pt">
+      <head>
+        <title>Falha inesperada | Roberto Moraes</title>
+      </head>
+      <body className="fallback-body">
+        <main className="fallback-shell">
+          <div className="fallback-grid" aria-hidden="true" />
+          <section className="fallback-card" aria-labelledby="global-error-title">
+            <p className="fallback-eyebrow">Falha temporária</p>
+            <h1
+              id="global-error-title"
+              className="fallback-title fallback-title--error"
+            >
+              Algo saiu do fluxo
+            </h1>
+            <p className="fallback-copy">
+              Não foi possível concluir esta renderização. Tente novamente; seus
+              dados de navegação permanecem protegidos.
+            </p>
+            <button className="fallback-action" onClick={unstable_retry}>
+              Tentar novamente
+            </button>
+            {process.env.NODE_ENV === "development" ? (
+              <pre className="fallback-debug">
+                {error.message}
+                {error.stack}
+              </pre>
+            ) : null}
+          </section>
+        </main>
       </body>
     </html>
   )
