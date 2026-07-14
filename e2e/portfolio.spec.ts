@@ -758,7 +758,14 @@ test("publishes the article as an indexable, localized document", async ({ page 
 
   await expect(page.locator("html")).toHaveAttribute("lang", "en-US")
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Go")
-  await expect(page.locator("article section")).toHaveCount(8)
+  const editorialArticle = page.getByRole("article", {
+    name: "Go in production",
+  })
+  await expect(editorialArticle).toHaveCount(1)
+  await expect(editorialArticle.getByRole("heading", { level: 1 })).toHaveText(
+    "Go in production",
+  )
+  await expect(page.locator("[data-article-scene]")).toHaveCount(8)
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     "https://robertomoraes.dev/en/insights/go-em-producao",
@@ -771,6 +778,10 @@ test("publishes the article as an indexable, localized document", async ({ page 
     "content",
     "https://robertomoraes.dev/opengraph-image/article/en",
   )
+  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute(
+    "content",
+    "Go in production",
+  )
   await expect(
     page.locator('link[rel="alternate"][hreflang="en-US"]'),
   ).toHaveAttribute(
@@ -780,8 +791,874 @@ test("publishes the article as an indexable, localized document", async ({ page 
   const articleSchema = await page
     .locator('#main-content > script[type="application/ld+json"]')
     .textContent()
-  expect(articleSchema).toContain("TechArticle")
-  expect(articleSchema).toContain('"inLanguage":"en-US"')
+  const parsedArticleSchema = JSON.parse(articleSchema ?? "{}")
+  expect(parsedArticleSchema).toMatchObject({
+    "@type": "TechArticle",
+    inLanguage: "en-US",
+    author: {
+      "@type": "Person",
+      "@id": "https://robertomoraes.dev/#person",
+      name: "Roberto Moraes",
+      url: "https://robertomoraes.dev/en",
+    },
+  })
+})
+
+test("keeps the complete article readable without client JavaScript", async ({
+  browser,
+}, testInfo) => {
+  const noScriptPage = await browser.newPage({
+    baseURL: testInfo.project.use.baseURL,
+    javaScriptEnabled: false,
+  })
+
+  try {
+    await noScriptPage.goto("/en/insights/go-em-producao")
+
+    await expect(
+      noScriptPage.getByRole("heading", {
+        level: 1,
+        name: "Go in production",
+      }),
+    ).toBeVisible()
+    await expect(noScriptPage.locator("#main-content")).toBeVisible()
+    await expect(noScriptPage.locator("[data-article-scene]")).toHaveCount(8)
+    await expect(noScriptPage.getByRole("status")).toHaveCount(0)
+    await expect(noScriptPage.locator("[data-hero-sticky]")).toHaveCSS(
+      "position",
+      "relative",
+    )
+    await expect(noScriptPage.locator("[data-article-progress]")).toBeHidden()
+    await expect(noScriptPage.locator("[data-article-tracker]")).toBeHidden()
+    await expect(noScriptPage.locator("[data-article-stage]")).toBeHidden()
+
+    const staticHeroGeometry = await noScriptPage
+      .locator("[data-article-hero]")
+      .evaluate((hero) => ({
+        height: hero.getBoundingClientRect().height,
+        stickyHeight:
+          hero.querySelector("[data-hero-sticky]")?.getBoundingClientRect()
+            .height ?? 0,
+      }))
+    expect(
+      Math.abs(staticHeroGeometry.height - staticHeroGeometry.stickyHeight),
+    ).toBeLessThanOrEqual(1)
+
+    await noScriptPage.locator("#seguranca").scrollIntoViewIfNeeded()
+    await expect(
+      noScriptPage.getByRole("heading", {
+        level: 2,
+        name: "Controls close to the boundary",
+      }),
+    ).toBeVisible()
+    await expectNoHorizontalOverflow(noScriptPage, "Article without JavaScript")
+  } finally {
+    await noScriptPage.close()
+  }
+})
+
+test.describe("immersive article experience", () => {
+  test.use({ contextOptions: { reducedMotion: "no-preference" } })
+
+  test("keeps the hero choreography viewport-bound, phased and optically level", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.goto("/en/insights/go-em-producao", {
+      waitUntil: "networkidle",
+    })
+    await prepareScrollLinkedMotion(page)
+
+    const hero = page.locator("[data-article-hero]")
+    await expect(hero).toHaveAttribute("data-hero-motion", "scroll")
+    await expect(hero).toHaveAttribute("data-hero-active", "true")
+
+    const initialState = await readArticleHeroState(page)
+    expect(initialState.capability).toBe(true)
+    expect(
+      Math.abs(
+        initialState.geometry.stickyHeight -
+          initialState.geometry.viewportHeight,
+      ),
+    ).toBeLessThanOrEqual(1)
+
+    const rangeInViewports =
+      initialState.geometry.range / initialState.geometry.viewportHeight
+    expect(rangeInViewports).toBeGreaterThanOrEqual(0.44)
+    expect(rangeInViewports).toBeLessThanOrEqual(0.46)
+
+    const fractions = [0, 0.1, 0.2, 0.38, 0.5, 0.68, 0.8, 1] as const
+    const states: Awaited<ReturnType<typeof readArticleHeroState>>[] = []
+
+    for (const fraction of fractions) {
+      await scrollToAndRender(
+        page,
+        initialState.geometry.documentTop +
+          initialState.geometry.range * fraction,
+      )
+      await expect
+        .poll(async () => (await readArticleHeroState(page)).motion.progress)
+        .toBeCloseTo(fraction, 2)
+
+      const state = await readArticleHeroState(page)
+      states.push(state)
+
+      expect(state.dataset).toEqual({ active: "true", motion: "scroll" })
+      expect(
+        Math.abs(state.geometry.stickyHeight - state.geometry.viewportHeight),
+      ).toBeLessThanOrEqual(1)
+      expect(Math.abs(state.geometry.stickyTop)).toBeLessThanOrEqual(1)
+      expect(state.overflow).toEqual({ body: 0, document: 0 })
+      expect(state.opacity).toEqual({ copy: 1, footer: 1 })
+      expect(Math.abs(state.rotation.coreVisual)).toBeLessThanOrEqual(0.05)
+      state.rotation.metricsVisual.forEach((rotation) => {
+        expect(Math.abs(rotation)).toBeLessThanOrEqual(0.05)
+      })
+    }
+
+    const [
+      start,
+      signalPeak,
+      signalSettled,
+      typePeak,
+      orbitMidpoint,
+      orbitSettled,
+      handoffMidpoint,
+      complete,
+    ] = states
+    if (
+      !start ||
+      !signalPeak ||
+      !signalSettled ||
+      !typePeak ||
+      !orbitMidpoint ||
+      !orbitSettled ||
+      !handoffMidpoint ||
+      !complete
+    ) {
+      throw new Error("Hero choreography did not produce every sample")
+    }
+
+    expect(start.motion).toEqual({
+      progress: 0,
+      signal: 0,
+      pulse: 0,
+      type: 0,
+      orbit: 0,
+      handoff: 0,
+    })
+    expect(signalPeak.motion.signal).toBeGreaterThan(0.45)
+    expect(signalPeak.motion.signal).toBeLessThan(0.55)
+    expect(signalPeak.motion.pulse).toBeGreaterThan(0.95)
+    expect(signalPeak.motion.orbit).toBe(0)
+    expect(signalPeak.motion.handoff).toBe(0)
+
+    expect(signalSettled.motion.signal).toBe(1)
+    expect(signalSettled.motion.pulse).toBeGreaterThan(0.95)
+    expect(signalSettled.motion.type).toBeGreaterThan(0.35)
+    expect(signalSettled.motion.type).toBeLessThan(0.42)
+
+    expect(typePeak.motion.pulse).toBe(0)
+    expect(typePeak.motion.type).toBe(1)
+    expect(typePeak.motion.orbit).toBeGreaterThan(0.2)
+    expect(typePeak.motion.orbit).toBeLessThan(0.28)
+    expect(typePeak.motion.handoff).toBe(0)
+
+    expect(orbitMidpoint.motion.orbit).toBeGreaterThan(0.6)
+    expect(orbitMidpoint.motion.orbit).toBeLessThan(0.67)
+    expect(orbitSettled.motion.orbit).toBe(1)
+    expect(orbitSettled.motion.handoff).toBeGreaterThan(0.1)
+    expect(orbitSettled.motion.handoff).toBeLessThan(0.18)
+    expect(orbitSettled.motion.type).toBeGreaterThan(0.82)
+    expect(orbitSettled.motion.type).toBeLessThan(0.9)
+
+    expect(handoffMidpoint.motion.handoff).toBeGreaterThan(0.5)
+    expect(handoffMidpoint.motion.handoff).toBeLessThan(0.57)
+    expect(handoffMidpoint.motion.type).toBeGreaterThan(0.43)
+    expect(handoffMidpoint.motion.type).toBeLessThan(0.5)
+    expect(complete.motion).toEqual({
+      progress: 1,
+      signal: 1,
+      pulse: 0,
+      type: 0,
+      orbit: 1,
+      handoff: 1,
+    })
+
+    for (let index = 1; index < states.length; index += 1) {
+      const previous = states[index - 1]
+      const current = states[index]
+      if (!previous || !current) {
+        throw new Error("Hero choreography samples must remain contiguous")
+      }
+
+      expect(current.motion.progress).toBeGreaterThanOrEqual(
+        previous.motion.progress,
+      )
+      expect(current.motion.signal).toBeGreaterThanOrEqual(
+        previous.motion.signal,
+      )
+      expect(current.motion.orbit).toBeGreaterThanOrEqual(previous.motion.orbit)
+      expect(current.motion.handoff).toBeGreaterThanOrEqual(
+        previous.motion.handoff,
+      )
+    }
+
+    expect(typePeak.transforms.words[2]).not.toBe(start.transforms.words[2])
+    expect(complete.transforms.words[2]).toBe(start.transforms.words[2])
+    expect(complete.transforms.recorder).not.toBe(start.transforms.recorder)
+    expect(Math.abs(complete.rotation.recorder)).toBeGreaterThan(10)
+  })
+
+  test("uses an unclipped static hero on constrained-height desktops", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 500 })
+    await page.goto("/en/insights/go-em-producao", {
+      waitUntil: "networkidle",
+    })
+    await prepareScrollLinkedMotion(page)
+
+    const initialState = await readArticleHeroState(page)
+    expect(initialState.capability).toBe(false)
+    expect(initialState.stickyPosition).toBe("relative")
+    expectStaticHeroMotion(initialState)
+
+    const contentBounds = await page
+      .locator("[data-hero-sticky]")
+      .evaluate((sticky) => {
+        const stickyBounds = sticky.getBoundingClientRect()
+        const content = [
+          sticky.querySelector("a"),
+          sticky.querySelector("[data-hero-copy]"),
+          sticky.querySelector("[data-hero-recorder]"),
+          sticky.querySelector("[data-hero-footer]"),
+        ].filter((element): element is Element => element !== null)
+
+        return {
+          bottom: Math.max(
+            ...content.map((element) => element.getBoundingClientRect().bottom),
+          ),
+          left: Math.min(
+            ...content.map((element) => element.getBoundingClientRect().left),
+          ),
+          right: Math.max(
+            ...content.map((element) => element.getBoundingClientRect().right),
+          ),
+          sticky: {
+            bottom: stickyBounds.bottom,
+            left: stickyBounds.left,
+            right: stickyBounds.right,
+            top: stickyBounds.top,
+          },
+          top: Math.min(
+            ...content.map((element) => element.getBoundingClientRect().top),
+          ),
+        }
+      })
+    expect(contentBounds.top).toBeGreaterThanOrEqual(contentBounds.sticky.top)
+    expect(contentBounds.right).toBeLessThanOrEqual(contentBounds.sticky.right)
+    expect(contentBounds.bottom).toBeLessThanOrEqual(
+      contentBounds.sticky.bottom,
+    )
+    expect(contentBounds.left).toBeGreaterThanOrEqual(contentBounds.sticky.left)
+
+    const initialTransforms = initialState.transforms
+    await scrollToAndRender(
+      page,
+      initialState.geometry.documentTop + initialState.geometry.heroHeight - 1,
+    )
+    const scrolledState = await readArticleHeroState(page)
+
+    expectStaticHeroMotion(scrolledState)
+    expect(scrolledState.stickyPosition).toBe("relative")
+    expect(scrolledState.transforms).toEqual(initialTransforms)
+    scrolledState.motionStyles.forEach(({ willChange }) => {
+      expect(willChange).toBe("auto")
+    })
+  })
+
+  test("keeps the desktop flight recorder synchronized with native navigation", async ({
+    page,
+  }) => {
+    await page.goto("/en/insights/go-em-producao", {
+      waitUntil: "networkidle",
+    })
+
+    const experience = page.locator("[data-article-experience]")
+    const stage = page.locator("[data-article-stage]")
+    const navigation = page.getByRole("navigation", {
+      name: "In this article",
+    })
+    const cacheLink = navigation.getByRole("link", {
+      name: "Caching is an availability strategy",
+      exact: true,
+    })
+    const initialScroll = await page.evaluate(() => window.scrollY)
+
+    await expect(experience).toHaveAttribute("data-motion", "full")
+    await cacheLink.click()
+
+    await expect(page).toHaveURL(/#cache$/)
+    await expect(experience).toHaveAttribute("data-active-scene", "cache")
+    await expect(stage).toHaveAttribute("data-active-scene", "cache")
+    await expect(stage).toHaveAttribute("data-scene", "cache-fallback")
+    await expect(cacheLink).toHaveAttribute("aria-current", "location")
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeGreaterThan(initialScroll)
+    await expect
+      .poll(() =>
+        stage.evaluate((element) => {
+          const bounds = element.getBoundingClientRect()
+          return bounds.bottom > 0 && bounds.top < window.innerHeight
+        }),
+      )
+      .toBe(true)
+
+    const scrollLinkedMotion = await page
+      .locator("[data-article-scene] > div")
+      .evaluateAll((frames) => {
+        const current = getComputedStyle(frames[3] as Element)
+        const future = getComputedStyle(frames.at(-1) as Element)
+
+        return {
+          currentOpacity: Number(current.opacity),
+          futureOpacity: Number(future.opacity),
+          currentTransform: current.transform,
+          futureTransform: future.transform,
+          name: current.animationName,
+          timeline: current.getPropertyValue("animation-timeline"),
+        }
+      })
+
+    expect(scrollLinkedMotion.name).toContain("revealChapter")
+    expect(scrollLinkedMotion.timeline).toMatch(/^view/)
+    expect(scrollLinkedMotion.currentOpacity).toBe(1)
+    expect(scrollLinkedMotion.futureOpacity).toBe(1)
+    expect(scrollLinkedMotion.currentTransform).not.toBe(
+      scrollLinkedMotion.futureTransform,
+    )
+
+    await expectNoHorizontalOverflow(page, "Immersive article on desktop")
+
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) => {
+          document.documentElement.style.scrollBehavior = "auto"
+          let previousY = window.scrollY
+          let stableFrames = 0
+
+          const check = () => {
+            if (Math.abs(window.scrollY - previousY) < 0.5) {
+              stableFrames += 1
+            } else {
+              stableFrames = 0
+              previousY = window.scrollY
+            }
+
+            if (stableFrames >= 4) {
+              resolve()
+            } else {
+              requestAnimationFrame(check)
+            }
+          }
+
+          requestAnimationFrame(check)
+        }),
+    )
+    await stage.evaluate((element) => {
+      const panel = element.firstElementChild
+      if (panel instanceof HTMLElement) panel.scrollTop = panel.scrollHeight
+    })
+    await stage.hover()
+    const scrollBeforeStageWheel = await page.evaluate(() => window.scrollY)
+    await page.mouse.wheel(0, 480)
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeGreaterThan(scrollBeforeStageWheel)
+
+    await page.setViewportSize({ width: 1280, height: 600 })
+    await expect
+      .poll(() =>
+        stage.evaluate((element) => {
+          const panel = element.firstElementChild?.getBoundingClientRect()
+          const links = element.querySelectorAll("a")
+          const lastLink = links
+            .item(links.length - 1)
+            ?.getBoundingClientRect()
+
+          return Boolean(
+            panel &&
+              lastLink &&
+              panel.top >= 0 &&
+              panel.bottom <= window.innerHeight &&
+              lastLink.top >= 0 &&
+              lastLink.bottom <= window.innerHeight,
+          )
+        }),
+      )
+      .toBe(true)
+  })
+
+  test("keeps editorial text fully opaque throughout normal scroll motion", async ({
+    page,
+  }) => {
+    await page.goto("/en/insights/go-em-producao", {
+      waitUntil: "networkidle",
+    })
+    await prepareScrollLinkedMotion(page)
+    await page.locator("#cache").scrollIntoViewIfNeeded()
+
+    const textSurfaceOpacity = await page
+      .locator(
+        "dl > div, [data-article-scene] > div, [data-stage-readout], [data-hero-copy], [data-hero-footer]",
+      )
+      .evaluateAll((elements) =>
+        elements.map((element) => Number(getComputedStyle(element).opacity)),
+      )
+
+    expect(textSurfaceOpacity.length).toBeGreaterThan(12)
+    expect(textSurfaceOpacity.every((opacity) => opacity === 1)).toBe(true)
+    await expectNoAccessibilityViolations(page, "Article during normal scroll motion")
+  })
+
+  test("restores the visual scene from a deep link", async ({ page }) => {
+    await page.goto("/en/insights/go-em-producao#seguranca", {
+      waitUntil: "networkidle",
+    })
+
+    const experience = page.locator("[data-article-experience]")
+    const stage = page.locator("[data-article-stage]")
+    const navigation = page.getByRole("navigation", {
+      name: "In this article",
+    })
+    const securityLink = navigation.getByRole("link", {
+      name: "Controls close to the boundary",
+      exact: true,
+    })
+
+    await expect(page).toHaveURL(/#seguranca$/)
+    await expect(experience).toHaveAttribute("data-active-scene", "seguranca")
+    await expect(stage).toHaveAttribute("data-scene", "security")
+    await expect(securityLink).toHaveAttribute("aria-current", "location")
+    await expect
+      .poll(() =>
+        page.locator("#seguranca").evaluate((element) => {
+          const bounds = element.getBoundingClientRect()
+          return bounds.bottom > 0 && bounds.top < window.innerHeight
+        }),
+      )
+      .toBe(true)
+  })
+})
+
+test.describe("immersive article on a coarse pointer", () => {
+  test.use({
+    viewport: { width: 1024, height: 768 },
+    hasTouch: true,
+    isMobile: true,
+    contextOptions: { reducedMotion: "no-preference" },
+  })
+
+  test("keeps the hero transform stable at the start of touch scrolling", async ({
+    page,
+  }) => {
+    await page.goto("/en/insights/go-em-producao", {
+      waitUntil: "networkidle",
+    })
+
+    const experience = page.locator("[data-article-experience]")
+    const hero = page.locator("[data-article-hero]")
+    const lastTitleWord = page.locator("h1 > span").last()
+
+    await expect(experience).toHaveAttribute("data-motion", "full")
+    await expect
+      .poll(() =>
+        page.evaluate(() => window.matchMedia("(pointer: coarse)").matches),
+      )
+      .toBe(true)
+
+    const initialTransform = await lastTitleWord.evaluate(
+      (element) => getComputedStyle(element).transform,
+    )
+
+    await page.evaluate(() => window.scrollTo(0, 2))
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(2)
+    await expect
+      .poll(() =>
+        hero.evaluate((element) =>
+          element.style.getPropertyValue("--hero-progress"),
+        ),
+      )
+      .toBe("0.0000")
+    await expect
+      .poll(() =>
+        lastTitleWord.evaluate((element) => getComputedStyle(element).transform),
+      )
+      .toBe(initialTransform)
+  })
+
+  test("keeps the hero choreography static through coarse-pointer scrolling", async ({
+    page,
+  }) => {
+    await page.goto("/en/insights/go-em-producao", {
+      waitUntil: "networkidle",
+    })
+    await prepareScrollLinkedMotion(page)
+
+    await expect
+      .poll(() =>
+        page.evaluate(() => window.matchMedia("(pointer: coarse)").matches),
+      )
+      .toBe(true)
+
+    const initialState = await readArticleHeroState(page)
+    expect(initialState.capability).toBe(false)
+    expect(initialState.stickyPosition).toBe("relative")
+    expectStaticHeroMotion(initialState)
+
+    const initialTransforms = initialState.transforms
+    const targets = [
+      initialState.geometry.documentTop,
+      initialState.geometry.documentTop + initialState.geometry.heroHeight * 0.5,
+      initialState.geometry.documentTop + initialState.geometry.heroHeight - 1,
+      initialState.geometry.documentTop +
+        initialState.geometry.heroHeight +
+        initialState.geometry.viewportHeight * 0.5,
+    ]
+
+    for (const target of targets) {
+      await scrollToAndRender(page, target)
+      const state = await readArticleHeroState(page)
+
+      expectStaticHeroMotion(state)
+      expect(state.stickyPosition).toBe("relative")
+      expect(state.transforms).toEqual(initialTransforms)
+      state.motionStyles.forEach(({ willChange }) => {
+        expect(willChange).toBe("auto")
+      })
+    }
+  })
+})
+
+test("keeps the complete article readable with reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/en/insights/go-em-producao", { waitUntil: "networkidle" })
+
+  const experience = page.locator("[data-article-experience]")
+  const stage = page.locator("[data-article-stage]")
+
+  await expect(experience).toHaveAttribute("data-motion", "reduced")
+  await expect(stage).toHaveCSS("position", "relative")
+  await expect(page.locator("[data-article-scene]")).toHaveCount(8)
+
+  const chapterMotion = await page
+    .locator("[data-article-scene] > div")
+    .evaluateAll((chapters) =>
+      chapters.map((chapter) => {
+        const style = getComputedStyle(chapter)
+        return {
+          animationName: style.animationName,
+          opacity: style.opacity,
+          transform: style.transform,
+        }
+      }),
+    )
+
+  expect(chapterMotion).toEqual(
+    Array.from({ length: 8 }, () => ({
+      animationName: "none",
+      opacity: "1",
+      transform: "none",
+    })),
+  )
+
+  const residualStageMotion = await page
+    .locator(
+      "[data-stage-orbit], [data-stage-security-ring], [data-stage-trace-map], [data-stage-trace-signal], [data-stage-fallback-rail]",
+    )
+    .evaluateAll((elements) =>
+      elements.map((element) => {
+        const style = getComputedStyle(element)
+        return {
+          animationName: style.animationName,
+          transitionDuration: style.transitionDuration,
+          transform: style.transform,
+        }
+      }),
+    )
+
+  residualStageMotion.forEach(
+    ({ animationName, transitionDuration, transform }) => {
+      expect(animationName).toBe("none")
+      expect(hasEffectivelyZeroCssDuration(transitionDuration)).toBe(true)
+      expect(transform).toBe("none")
+    },
+  )
+
+  const chapterMarkers = await page
+    .locator("[data-article-scene]")
+    .evaluateAll((chapters) =>
+      chapters.map((chapter) => {
+        const style = getComputedStyle(chapter, "::before")
+        return {
+          transform: style.transform,
+          transitionDuration: style.transitionDuration,
+        }
+      }),
+    )
+  expect(new Set(chapterMarkers.map(({ transform }) => transform)).size).toBe(1)
+  expect(
+    chapterMarkers.every(({ transitionDuration }) =>
+      hasEffectivelyZeroCssDuration(transitionDuration),
+    ),
+  ).toBe(true)
+  await expectNoHorizontalOverflow(page, "Reduced-motion article")
+})
+
+test("keeps the hero choreography static with reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/en/insights/go-em-producao", { waitUntil: "networkidle" })
+  await prepareScrollLinkedMotion(page)
+
+  const experience = page.locator("[data-article-experience]")
+  await expect(experience).toHaveAttribute("data-motion", "reduced")
+
+  const initialState = await readArticleHeroState(page)
+  expect(initialState.capability).toBe(true)
+  expect(initialState.stickyPosition).toBe("relative")
+  expectStaticHeroMotion(initialState)
+  const initialTransforms = initialState.transforms
+
+  const targets = [
+    initialState.geometry.documentTop,
+    initialState.geometry.documentTop + initialState.geometry.heroHeight * 0.5,
+    initialState.geometry.documentTop +
+      initialState.geometry.heroHeight +
+      initialState.geometry.viewportHeight * 0.5,
+  ]
+
+  for (const target of targets) {
+    await scrollToAndRender(page, target)
+    const state = await readArticleHeroState(page)
+
+    expectStaticHeroMotion(state)
+    expect(state.stickyPosition).toBe("relative")
+    expect(state.transforms.copy).toBe("none")
+    expect(state.transforms.recorder).toBe("none")
+    expect(state.transforms.core).toBe("none")
+    expect(state.transforms).toEqual(initialTransforms)
+    state.motionStyles.forEach(
+      ({ animationName, transitionDuration, willChange }) => {
+        expect(animationName).toBe("none")
+        expect(Number.parseFloat(transitionDuration)).toBeLessThanOrEqual(
+          0.00001,
+        )
+        expect(willChange).toBe("auto")
+      },
+    )
+  }
+})
+
+test("fits the article CTA into one viewport across locales and sizes", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+
+  const scenarios = [
+    { locale: "pt", width: 1280, height: 720 },
+    { locale: "pt", width: 1024, height: 600 },
+    { locale: "pt", width: 390, height: 844 },
+    { locale: "en", width: 1280, height: 720 },
+    { locale: "es", width: 1280, height: 720 },
+  ] as const
+
+  for (const scenario of scenarios) {
+    await page.setViewportSize({
+      width: scenario.width,
+      height: scenario.height,
+    })
+    await page.goto(`/${scenario.locale}/insights/go-em-producao`, {
+      waitUntil: "domcontentloaded",
+    })
+    await page.evaluate(() => document.fonts.ready)
+
+    const layout = await page.locator("[data-article-cta]").evaluate((section) => {
+      const content = section.querySelector<HTMLElement>(
+        "[data-article-cta-content]",
+      )
+      const title = section.querySelector<HTMLElement>(
+        "[data-article-cta-title]",
+      )
+
+      if (!content || !title) {
+        throw new Error("Article CTA layout hooks are missing")
+      }
+
+      const sectionRect = section.getBoundingClientRect()
+      const contentRect = content.getBoundingClientRect()
+      const titleRect = title.getBoundingClientRect()
+      const titleStyle = getComputedStyle(title)
+      const titleLineHeight = Number.parseFloat(titleStyle.lineHeight)
+
+      return {
+        viewportHeight: window.innerHeight,
+        sectionHeight: sectionRect.height,
+        sectionWidth: sectionRect.width,
+        contentTop: contentRect.top - sectionRect.top,
+        contentBottom: contentRect.bottom - sectionRect.top,
+        contentLeft: contentRect.left - sectionRect.left,
+        contentRight: contentRect.right - sectionRect.left,
+        titleFontSize: Number.parseFloat(titleStyle.fontSize),
+        titleLines: Math.round(titleRect.height / titleLineHeight),
+      }
+    })
+
+    expect(
+      Math.abs(layout.sectionHeight - layout.viewportHeight),
+      `${scenario.locale} ${scenario.width}x${scenario.height}: CTA height`,
+    ).toBeLessThanOrEqual(1)
+    expect(layout.contentTop).toBeGreaterThanOrEqual(16)
+    expect(layout.contentBottom).toBeLessThanOrEqual(layout.sectionHeight - 16)
+    expect(layout.contentLeft).toBeGreaterThanOrEqual(0)
+    expect(layout.contentRight).toBeLessThanOrEqual(layout.sectionWidth)
+    expect(layout.titleFontSize).toBeGreaterThanOrEqual(34)
+    expect(layout.titleFontSize).toBeLessThanOrEqual(72)
+    expect(layout.titleLines).toBeLessThanOrEqual(7)
+  }
+
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto("/en/insights/go-em-producao", {
+    waitUntil: "domcontentloaded",
+  })
+  await page.evaluate(async () => {
+    await document.fonts.ready
+    document.documentElement.style.fontSize = "200%"
+  })
+
+  const resizedTextLayout = await page
+    .locator("[data-article-cta]")
+    .evaluate((section) => {
+      const content = section.querySelector<HTMLElement>(
+        "[data-article-cta-content]",
+      )
+      if (!content) throw new Error("Article CTA content was not rendered")
+
+      const sectionRect = section.getBoundingClientRect()
+      const contentRect = content.getBoundingClientRect()
+      return {
+        viewportHeight: window.innerHeight,
+        sectionHeight: sectionRect.height,
+        contentTop: contentRect.top - sectionRect.top,
+        contentBottom: contentRect.bottom - sectionRect.top,
+      }
+    })
+
+  expect(resizedTextLayout.sectionHeight).toBeGreaterThanOrEqual(
+    resizedTextLayout.viewportHeight,
+  )
+  expect(resizedTextLayout.contentTop).toBeGreaterThanOrEqual(0)
+  expect(resizedTextLayout.contentBottom).toBeLessThanOrEqual(
+    resizedTextLayout.sectionHeight,
+  )
+  await expect(page.getByRole("link", { name: "Discuss the project" })).toBeVisible()
+})
+
+test("keeps article content fully opaque with increased contrast", async ({
+  page,
+}) => {
+  await page.emulateMedia({ contrast: "more", reducedMotion: "no-preference" })
+  await page.goto("/en/insights/go-em-producao", { waitUntil: "networkidle" })
+
+  const contrastMotion = await page
+    .locator(
+      "dl > div, [data-article-scene] > div, [data-stage-readout]",
+    )
+    .evaluateAll((elements) =>
+      elements.map((element) => {
+        const style = getComputedStyle(element)
+        return {
+          animationName: style.animationName,
+          opacity: style.opacity,
+          transform: style.transform,
+        }
+      }),
+    )
+
+  expect(contrastMotion.length).toBeGreaterThan(8)
+  expect(contrastMotion).toEqual(
+    contrastMotion.map(() => ({
+      animationName: "none",
+      opacity: "1",
+      transform: "none",
+    })),
+  )
+  await expectNoHorizontalOverflow(page, "Increased-contrast article")
+})
+
+test("renders a complete, static print edition of the article", async ({ page }) => {
+  await page.emulateMedia({ media: "print", reducedMotion: "no-preference" })
+  await page.goto("/en/insights/go-em-producao", { waitUntil: "networkidle" })
+
+  const printMotion = await page
+    .locator("dl > div, [data-article-scene] > div, [data-topology-signal]")
+    .evaluateAll((elements) =>
+      elements.map((element) => {
+        const style = getComputedStyle(element)
+        return {
+          animationName: style.animationName,
+          opacity: style.opacity,
+          transform: style.transform,
+        }
+      }),
+    )
+
+  expect(printMotion).toHaveLength(13)
+  expect(printMotion).toEqual(
+    printMotion.map(() => ({
+      animationName: "none",
+      opacity: "1",
+      transform: "none",
+    })),
+  )
+  const articleNavigation = page.locator("[data-article-navigation]")
+  await expect(articleNavigation).toHaveCount(1)
+  await expect(articleNavigation).toBeHidden()
+  expect(
+    await page.locator("body").evaluate(
+      (element) => getComputedStyle(element, "::after").display,
+    ),
+  ).toBe("none")
+  await expect(page.locator("[data-article-scene]")).toHaveCount(8)
+
+  const titleFitsPrintSurface = await page
+    .locator("[data-article-title]")
+    .evaluate((title) => {
+      const titleRect = title.getBoundingClientRect()
+      return Array.from(title.children).every((word) => {
+        const wordRect = word.getBoundingClientRect()
+        return (
+          wordRect.left >= titleRect.left - 1 &&
+          wordRect.right <= titleRect.right + 1
+        )
+      })
+    })
+  expect(titleFitsPrintSurface).toBe(true)
+
+  const ctaPrintLayout = await page
+    .locator("[data-article-cta]")
+    .evaluate((section) => {
+      const style = getComputedStyle(section)
+      return {
+        breakBefore: style.breakBefore,
+        breakInside: style.breakInside,
+      }
+    })
+  expect(ctaPrintLayout).toEqual({
+    breakBefore: "page",
+    breakInside: "avoid-page",
+  })
 })
 
 test("publishes valid social, robots and sitemap endpoints", async ({ request }) => {
