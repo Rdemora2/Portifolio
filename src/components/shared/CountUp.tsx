@@ -44,6 +44,7 @@ export function CountUp({
     () => false,
   )
   const displayValue = prefersReduced && trigger ? end.toFixed(decimals) : display
+  const finalValue = `${prefix}${end.toFixed(decimals)}${suffix}`
 
   useEffect(() => {
     if (!trigger || prefersReduced) return
@@ -75,7 +76,21 @@ export function CountUp({
 
   return (
     <span className={className}>
-      {prefix}{displayValue}{suffix}
+      <span className="sr-only">{finalValue}</span>
+      <span
+        aria-hidden="true"
+        className="count-up-animated"
+        data-count-up-animated
+      >
+        {prefix}{displayValue}{suffix}
+      </span>
+      <span
+        aria-hidden="true"
+        className="count-up-fallback"
+        data-count-up-fallback
+      >
+        {finalValue}
+      </span>
     </span>
   )
 }
