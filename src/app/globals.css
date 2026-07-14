@@ -23,6 +23,7 @@
   }
 
   html {
+    color-scheme: dark;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -33,6 +34,7 @@
   body {
     background-color: var(--color-void);
     color: var(--color-text-primary);
+    font-family: var(--font-body), system-ui, sans-serif;
     overflow-x: hidden;
     max-width: 100vw;
   }
@@ -56,6 +58,12 @@
     }
   }
 
+  @media (pointer: coarse), (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
+    body::after {
+      display: none;
+    }
+  }
+
   ::selection {
     background-color: rgba(99, 102, 241, 0.2);
     color: var(--color-text-primary);
@@ -66,12 +74,6 @@
     outline-offset: 2px;
   }
 
-  @media (pointer: fine) {
-    .custom-cursor-active,
-    .custom-cursor-active * {
-      cursor: none !important;
-    }
-  }
 }
 
 @layer utilities {
@@ -312,6 +314,108 @@
 
 .hero-actions-enter {
   animation: hero-copy-enter 700ms 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/*
+ * Keep the complete portfolio in the document and accessibility tree while
+ * letting the browser skip layout and paint for distant sections. The
+ * intrinsic block sizes mirror the rendered mobile layout closely, preventing
+ * the page from growing as sections approach the viewport. The `auto` value
+ * retains the measured size after a section has been rendered.
+ */
+@supports (content-visibility: auto) {
+  .home-content > section:not(#hero) {
+    content-visibility: auto;
+    contain-intrinsic-block-size: auto var(--section-intrinsic-size, 1000px);
+  }
+
+  .home-content > #about {
+    --section-intrinsic-size: 955px;
+  }
+
+  .home-content > #projects {
+    --section-intrinsic-size: 818px;
+  }
+
+  .home-content > #tech {
+    --section-intrinsic-size: 972px;
+  }
+
+  .home-content > #metrics {
+    --section-intrinsic-size: 633px;
+  }
+
+  .home-content > #experience {
+    --section-intrinsic-size: 2793px;
+  }
+
+  .home-content > #insights {
+    --section-intrinsic-size: 451px;
+  }
+
+  .home-content > #contact {
+    --section-intrinsic-size: 1130px;
+  }
+
+  @media (min-width: 640px) {
+    .home-content > #about {
+      --section-intrinsic-size: 791px;
+    }
+
+    .home-content > #projects {
+      --section-intrinsic-size: 748px;
+    }
+
+    .home-content > #tech {
+      --section-intrinsic-size: 738px;
+    }
+
+    .home-content > #metrics {
+      --section-intrinsic-size: 380px;
+    }
+
+    .home-content > #experience {
+      --section-intrinsic-size: 3351px;
+    }
+
+    .home-content > #insights {
+      --section-intrinsic-size: 492px;
+    }
+
+    .home-content > #contact {
+      --section-intrinsic-size: 1013px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .home-content > #about {
+      --section-intrinsic-size: 543px;
+    }
+
+    .home-content > #projects {
+      --section-intrinsic-size: 776px;
+    }
+
+    .home-content > #tech {
+      --section-intrinsic-size: 602px;
+    }
+
+    .home-content > #metrics {
+      --section-intrinsic-size: 395px;
+    }
+
+    .home-content > #experience {
+      --section-intrinsic-size: 2709px;
+    }
+
+    .home-content > #insights {
+      --section-intrinsic-size: 515px;
+    }
+
+    .home-content > #contact {
+      --section-intrinsic-size: 626px;
+    }
+  }
 }
 
 .animate-blink {
