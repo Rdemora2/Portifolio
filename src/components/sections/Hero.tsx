@@ -1,6 +1,5 @@
 import { useTranslations } from "next-intl";
 import { personalInfo } from "@/data/portfolio";
-import { MagneticButton } from "@/components/shared/MagneticButton";
 import { HeroClientWrapper } from "./HeroClient";
 
 export function Hero() {
@@ -64,22 +63,22 @@ export function Hero() {
             </p>
 
             <div className="hero-cta hero-actions-enter flex flex-wrap gap-3 sm:gap-4">
-              <MagneticButton
+              <a
                 href="#projects"
-                className="rounded-full border border-[var(--color-signal)] text-[var(--color-signal)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] sm:px-8 sm:py-3 sm:text-sm"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--color-signal)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-signal)] transition-colors duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] sm:px-8 sm:py-3 sm:text-sm"
                 style={{ fontFamily: "var(--font-body)" }}
-                ariaLabel={t("viewProjects")}
+                aria-label={t("viewProjects")}
               >
                 {t("viewProjects")}
-              </MagneticButton>
-              <MagneticButton
+              </a>
+              <a
                 href="#contact"
-                className="rounded-full border border-[var(--color-edge)] text-[var(--color-text-secondary)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 hover:border-[var(--color-text-secondary)] sm:px-8 sm:py-3 sm:text-sm"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--color-edge)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-secondary)] transition-colors duration-200 hover:border-[var(--color-text-secondary)] sm:px-8 sm:py-3 sm:text-sm"
                 style={{ fontFamily: "var(--font-body)" }}
-                ariaLabel={t("contact")}
+                aria-label={t("contact")}
               >
                 {t("contact")}
-              </MagneticButton>
+              </a>
             </div>
           </div>
         </div>
