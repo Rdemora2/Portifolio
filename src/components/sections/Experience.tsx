@@ -1,6 +1,5 @@
 import { experience } from "@/data/portfolio";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import { FiberTimeline } from "@/components/three/FiberTimeline";
 import { ExperienceTimelineLine } from "./ExperienceTimelineLine";
 import { useTranslations } from "next-intl";
 
@@ -23,7 +22,7 @@ export function Experience() {
               letterSpacing: "0.25em",
             }}
           >
-            {t("title_small") || "Onde trabalhei"}
+            {t("title_small")}
           </p>
           <h2
             className="mb-12 font-bold sm:mb-20"
@@ -36,8 +35,6 @@ export function Experience() {
             {t("title")}
           </h2>
         </ScrollReveal>
-
-        <FiberTimeline />
 
         <div className="relative">
           <ExperienceTimelineLine />
@@ -78,7 +75,7 @@ export function Experience() {
                             color: "var(--color-signal)",
                           }}
                         >
-                          {entry.period.replace("Presente", t("present"))}
+                          {t(`items.${entry.id}.period`)}
                         </span>
                       </div>
 
