@@ -2209,6 +2209,31 @@ test.describe("mobile experience", () => {
     )
     expect(overflows).toBe(false)
   })
+
+  test("keeps the article linear, synchronized and free of horizontal overflow", async ({
+    page,
+  }) => {
+    await page.goto("/en/insights/go-em-producao", {
+      waitUntil: "networkidle",
+    })
+
+    const experience = page.locator("[data-article-experience]")
+    const stage = page.locator("[data-article-stage]")
+    const tracker = experience.locator(
+      'div[aria-hidden="true"][data-active-scene]',
+    )
+
+    await expect(experience).toHaveAttribute("data-motion", "reduced")
+    await expect(stage).toBeHidden()
+    await expect(tracker).toBeVisible()
+
+    await page.locator("#seguranca").scrollIntoViewIfNeeded()
+
+    await expect(experience).toHaveAttribute("data-active-scene", "seguranca")
+    await expect(tracker).toHaveAttribute("data-active-scene", "seguranca")
+    await expect(tracker).toContainText("Controls close to the boundary")
+    await expectNoHorizontalOverflow(page, "Immersive article on mobile")
+  })
 })
 
 test("loads without uncaught runtime or console errors in reduced motion", async ({
