@@ -1740,9 +1740,39 @@ test.describe("normal-motion project drawer", () => {
   test.use({ contextOptions: { reducedMotion: "no-preference" } })
 
   test("keeps the projects section anchored while the first drawer loads", async ({
+    browser,
     page,
-  }) => {
+  }, testInfo) => {
+    const projectDrawerChunkPaths = await discoverInteractionChunkPaths(
+      browser,
+      testInfo.project.use.baseURL,
+      async (discoveryPage) => {
+        await discoveryPage
+          .getByRole("button", {
+            name: /Grupo Bandeirantes.*View details/,
+          })
+          .dispatchEvent("click")
+        await expect(
+          discoveryPage.getByRole("dialog", { name: "Grupo Bandeirantes" }),
+        ).toBeVisible()
+      },
+    )
+    const deferredChunkRequests = new Set<string>()
+    let releaseChunks: () => void = () => undefined
+    const chunkGate = new Promise<void>((resolve) => {
+      releaseChunks = resolve
+    })
+
     await page.goto("/en/", { waitUntil: "networkidle" })
+    await page.route(
+      (url) => projectDrawerChunkPaths.has(url.pathname),
+      async (route) => {
+        const path = new URL(route.request().url()).pathname
+        deferredChunkRequests.add(path)
+        await chunkGate
+        await route.continue()
+      },
+    )
     await page.evaluate(async () => {
       document.documentElement.style.scrollBehavior = "auto"
       document.querySelector("#projects")?.scrollIntoView({ block: "start" })
@@ -1756,14 +1786,21 @@ test.describe("normal-motion project drawer", () => {
       }
 
       document.documentElement.dataset.mainHiddenDuringDrawerLoad = "false"
-      const visibilityObserver = new MutationObserver(() => {
-        if (getComputedStyle(main).display === "none") {
+      const recordMainVisibility = () => {
+        const currentMain = document.querySelector("main")
+        if (
+          !(currentMain instanceof HTMLElement) ||
+          getComputedStyle(currentMain).display === "none"
+        ) {
           document.documentElement.dataset.mainHiddenDuringDrawerLoad = "true"
         }
-      })
-      visibilityObserver.observe(main, {
+      }
+      const visibilityObserver = new MutationObserver(recordMainVisibility)
+      visibilityObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
         attributes: true,
-        attributeFilter: ["style"],
+        attributeFilter: ["class", "hidden", "style"],
       })
     })
 
@@ -1771,67 +1808,220 @@ test.describe("normal-motion project drawer", () => {
       name: /Grupo Bandeirantes.*View details/,
     })
     await expect(opener).toBeVisible()
+    await opener.scrollIntoViewIfNeeded()
 
-    let interceptedChunks = 0
-    let releaseChunks: () => void = () => undefined
-    const chunkGate = new Promise<void>((resolve) => {
-      releaseChunks = resolve
-    })
-    await page.route("**/_next/static/chunks/*.js", async (route) => {
-      interceptedChunks += 1
-      await chunkGate
-      await route.continue()
-    })
+    const readProjectContext = () =>
+      page.evaluate(() => {
+        const section = document.querySelector("#projects")
+        const trigger = document.querySelector(
+          '[data-project-trigger="band-news-bandsports"]',
+        )
+        if (!(section instanceof HTMLElement) || !(trigger instanceof HTMLElement)) {
+          throw new Error("Project context was not found")
+        }
 
-    const projectContextIsVisible = async () => {
-      const sectionIsVisible = await page
-        .locator("#projects")
-        .evaluate((element) => {
-          const rect = element.getBoundingClientRect()
-          return rect.bottom > 0 && rect.top < window.innerHeight
-        })
-      const openerIsVisible = await opener.evaluate((element) => {
-        const rect = element.getBoundingClientRect()
-        return rect.bottom > 0 && rect.top < window.innerHeight
+        const sectionRect = section.getBoundingClientRect()
+        const triggerRect = trigger.getBoundingClientRect()
+        return {
+          isVisible:
+            sectionRect.bottom > 0 &&
+            sectionRect.top < window.innerHeight &&
+            triggerRect.bottom > 0 &&
+            triggerRect.top < window.innerHeight,
+          scrollY: window.scrollY,
+          sectionTop: sectionRect.top,
+          triggerTop: triggerRect.top,
+          maxScrollDelta: Number.parseFloat(
+            document.documentElement.dataset.maxProjectScrollDelta ?? "0",
+          ),
+        }
       })
-      return sectionIsVisible && openerIsVisible
+
+    const projectContextIsStable = async (
+      baseline: Awaited<ReturnType<typeof readProjectContext>>,
+    ) => {
+      const current = await readProjectContext()
+      return (
+        current.isVisible &&
+        current.maxScrollDelta <= 1 &&
+        Math.abs(current.scrollY - baseline.scrollY) <= 1 &&
+        Math.abs(current.sectionTop - baseline.sectionTop) <= 1 &&
+        Math.abs(current.triggerTop - baseline.triggerTop) <= 1
+      )
     }
 
-    await expect.poll(projectContextIsVisible).toBe(true)
+    await expect.poll(async () => (await readProjectContext()).isVisible).toBe(true)
+    const initialProjectContext = await readProjectContext()
+    await page.evaluate((baselineScrollY) => {
+      const root = document.documentElement
+      root.dataset.maxProjectScrollDelta = "0"
+      const recordScrollDelta = () => {
+        const currentMaximum = Number.parseFloat(
+          root.dataset.maxProjectScrollDelta ?? "0",
+        )
+        const delta = Math.abs(window.scrollY - baselineScrollY)
+        if (delta > currentMaximum) {
+          root.dataset.maxProjectScrollDelta = String(delta)
+        }
+      }
+      window.addEventListener("scroll", recordScrollDelta, { passive: true })
+    }, initialProjectContext.scrollY)
 
-    const openDrawer = opener.click()
-    await expect.poll(() => interceptedChunks).toBeGreaterThan(0)
-    await expect(page.locator("main")).toHaveCSS("display", "block")
-    await expect(page.locator("html")).toHaveAttribute(
-      "data-main-hidden-during-drawer-load",
-      "false",
-    )
-    await expect.poll(projectContextIsVisible).toBe(true)
-
-    releaseChunks()
-    await openDrawer
+    // Dispatch directly so pointer-enter preloading cannot consume the exact
+    // module request this test intentionally holds behind the network gate.
+    const openDrawer = opener.dispatchEvent("click")
+    try {
+      await expect.poll(() => deferredChunkRequests.size).toBeGreaterThan(0)
+      const loadingDialog = page.getByRole("dialog", {
+        name: /Loading details for Grupo Bandeirantes/,
+      })
+      await expect(loadingDialog).toBeVisible()
+      await expect(loadingDialog).toHaveAttribute("aria-busy", "true")
+      await expect(opener).toHaveAttribute("aria-expanded", "true")
+      await expect(
+        loadingDialog.getByRole("button", { name: "Close details" }),
+      ).toBeFocused()
+      await expect
+        .poll(() => page.evaluate(() => document.documentElement.style.overflow))
+        .toBe("hidden")
+      await expect
+        .poll(() =>
+          page
+            .locator("main")
+            .evaluate((element) =>
+              element instanceof HTMLElement ? element.inert : false,
+            ),
+        )
+        .toBe(true)
+      await expect(page.locator("main")).toHaveCSS("display", "block")
+      await expect(page.locator("html")).toHaveAttribute(
+        "data-main-hidden-during-drawer-load",
+        "false",
+      )
+      await expect
+        .poll(() => projectContextIsStable(initialProjectContext))
+        .toBe(true)
+    } finally {
+      releaseChunks()
+      await openDrawer
+    }
 
     await expect(
       page.getByRole("dialog", { name: "Grupo Bandeirantes" }),
     ).toBeVisible()
+    await expect(opener).toHaveAttribute("aria-expanded", "true")
     await expect(page.locator("html")).toHaveAttribute(
       "data-main-hidden-during-drawer-load",
       "false",
     )
-    await expect.poll(projectContextIsVisible).toBe(true)
+    await expect
+      .poll(() => projectContextIsStable(initialProjectContext))
+      .toBe(true)
+  })
+
+  test("contains a failed drawer chunk locally and retries without losing the home", async ({
+    browser,
+    page,
+  }, testInfo) => {
+    const projectDrawerChunkPaths = await discoverInteractionChunkPaths(
+      browser,
+      testInfo.project.use.baseURL,
+      async (discoveryPage) => {
+        await discoveryPage
+          .getByRole("button", {
+            name: /Grupo Bandeirantes.*View details/,
+          })
+          .dispatchEvent("click")
+        await expect(
+          discoveryPage.getByRole("dialog", { name: "Grupo Bandeirantes" }),
+        ).toBeVisible()
+      },
+    )
+    await page.goto("/en/#projects", { waitUntil: "networkidle" })
+
+    let abortDeferredChunks = true
+    const abortedChunkPaths = new Set<string>()
+    const retriedChunkPaths = new Set<string>()
+    await page.route((url) => projectDrawerChunkPaths.has(url.pathname), async (route) => {
+      const path = new URL(route.request().url()).pathname
+      if (!abortDeferredChunks) {
+        if (abortedChunkPaths.has(path)) {
+          retriedChunkPaths.add(path)
+        }
+        await route.continue()
+        return
+      }
+
+      abortedChunkPaths.add(path)
+      await route.abort()
+    })
+
+    const opener = page.getByRole("button", {
+      name: /Grupo Bandeirantes.*View details/,
+    })
+    // Keep the injected failure scoped to the import initiated by opening,
+    // rather than the best-effort pointer-enter preload.
+    await opener.dispatchEvent("click")
+
+    const failure = page.getByRole("alertdialog", {
+      name: "This project could not be opened",
+    })
+    await expect(failure).toBeVisible()
+    expect(
+      abortedChunkPaths.size,
+      "the deferred ProjectDrawer module must be the failed request",
+    ).toBeGreaterThan(0)
+    await expect(page.locator("main")).toHaveCSS("display", "block")
+    await expect(opener).toHaveAttribute("aria-expanded", "true")
+    await expect(
+      failure.getByRole("button", { name: "Try again" }),
+    ).toBeFocused()
+
+    abortDeferredChunks = false
+    const reloaded = page.waitForEvent("framenavigated", (frame) =>
+      frame === page.mainFrame(),
+    )
+    await failure.getByRole("button", { name: "Try again" }).click()
+    await reloaded
+
+    const dialog = page.getByRole("dialog", { name: "Grupo Bandeirantes" })
+    await expect(dialog).toBeVisible()
+    expect(retriedChunkPaths.size).toBeGreaterThan(0)
+    await expect(page).toHaveURL(/\/en\/?#projects$/)
+    await expect(dialog).not.toHaveAttribute("aria-busy", "true")
+    await expect(page.locator("main")).toHaveCSS("display", "block")
+
+    await dialog.getByRole("button", { name: "Close details" }).click()
+    await expect(dialog).toBeHidden()
+    await expect(opener).toBeFocused()
+    await expect(opener).toHaveAttribute("aria-expanded", "false")
   })
 
   test("keeps the latest filter intent when an animation import fails", async ({
+    browser,
     page,
-  }) => {
+  }, testInfo) => {
+    const gsapChunkPaths = await discoverInteractionChunkPaths(
+      browser,
+      testInfo.project.use.baseURL,
+      async (discoveryPage) => {
+        const internationalFilter = discoveryPage.getByRole("button", {
+          name: "International",
+          exact: true,
+        })
+        await internationalFilter.click()
+        await expect(internationalFilter).toHaveAttribute("aria-pressed", "true")
+      },
+    )
     const pageErrors: string[] = []
-    let abortedChunks = 0
+    const abortedChunkPaths = new Set<string>()
     page.on("pageerror", (error) => pageErrors.push(error.message))
 
     await page.goto("/en/#projects", { waitUntil: "networkidle" })
-    await page.route("**/_next/static/chunks/*.js", (route) => {
-      abortedChunks += 1
-      return route.abort()
+    await page.route((url) => gsapChunkPaths.has(url.pathname), async (route) => {
+      const path = new URL(route.request().url()).pathname
+      abortedChunkPaths.add(path)
+      await route.abort()
     })
 
     await page.getByRole("button", { name: "International", exact: true }).click()
@@ -1845,8 +2035,44 @@ test.describe("normal-motion project drawer", () => {
       page.getByRole("button", { name: /Grupo Bandeirantes.*View details/ }),
     ).toHaveCount(0)
 
-    expect(abortedChunks).toBeGreaterThan(0)
+    expect(
+      abortedChunkPaths.size,
+      "the filter fallback must be exercised by failing the deferred GSAP runtime",
+    ).toBeGreaterThan(0)
     expect(pageErrors).toEqual([])
+  })
+
+  test("uses one uniform readability blur across the project drawer", async ({
+    page,
+  }) => {
+    await page.goto("/en/#projects")
+    await page
+      .getByRole("button", { name: /Grupo Bandeirantes.*View details/ })
+      .click()
+
+    const dialog = page.getByRole("dialog", { name: "Grupo Bandeirantes" })
+    const scrim = dialog.locator("[data-project-drawer-scrim]")
+    const header = dialog.locator("[data-project-drawer-header]")
+    const scroller = dialog.locator("[data-project-drawer-scroll]")
+
+    await expect(dialog).toBeVisible()
+    const headerTop = await header.evaluate(
+      (element) => element.getBoundingClientRect().top,
+    )
+    await scroller.evaluate((element) => {
+      element.scrollTop = element.scrollHeight
+    })
+    await expect.poll(() => scroller.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+    await expect
+      .poll(() => header.evaluate((element) => element.getBoundingClientRect().top))
+      .toBeCloseTo(headerTop, 0)
+    await expect(scrim).toHaveCSS("backdrop-filter", "blur(12px)")
+    await expect(header).toHaveCSS("backdrop-filter", "blur(12px)")
+    await expect(dialog).toHaveCSS("backdrop-filter", "blur(12px)")
+    await expect(page.locator("[data-project-drawer-backdrop]")).toHaveCSS(
+      "backdrop-filter",
+      "blur(4px)",
+    )
   })
 
   test("traps and restores focus, survives rapid reopen and completes CountUp", async ({
@@ -1877,14 +2103,40 @@ test.describe("normal-motion project drawer", () => {
     const migratedPortals = dialog
       .getByText("Portals migrated", { exact: true })
       .locator("..")
-      .locator("span")
-      .first()
+      .locator("[data-count-up-animated]")
 
+    await page.evaluate(() => {
+      const root = document.documentElement
+      root.dataset.drawerFocusVisitedBody = "false"
+      root.dataset.trackDrawerExitFocus = "true"
+
+      const trackFocus = () => {
+        if (root.dataset.trackDrawerExitFocus !== "true") return
+        if (document.activeElement === document.body) {
+          root.dataset.drawerFocusVisitedBody = "true"
+        }
+        requestAnimationFrame(trackFocus)
+      }
+      requestAnimationFrame(trackFocus)
+    })
+
+    await armDrawerExitObservation(page)
     await page.keyboard.press("Escape")
-    await expect(dialog).toBeHidden({ timeout: 400 })
+    await expectProtectedDrawerExit(page)
+    await expect(dialog).toBeHidden({ timeout: 1_000 })
+    await expect(opener).toBeFocused({ timeout: 1_000 })
+    await page.evaluate(() => {
+      document.documentElement.dataset.trackDrawerExitFocus = "false"
+    })
+    await expect(page.locator("html")).toHaveAttribute(
+      "data-drawer-focus-visited-body",
+      "false",
+    )
+    await expect
+      .poll(() => page.evaluate(() => document.documentElement.style.overflow))
+      .toBe("")
     await opener.press("Enter")
     await expect(dialog).toBeVisible()
-    await page.waitForTimeout(650)
     await expect(dialog).toBeVisible()
     await expect(migratedPortals).toHaveText("6+", { timeout: 4_000 })
 
@@ -1901,10 +2153,26 @@ test.describe("normal-motion project drawer", () => {
         }),
       )
       .toEqual({ left: 0, right: 390, width: 390 })
+    await expect(
+      dialog.locator("[data-project-drawer-scrim]"),
+    ).toHaveCSS("backdrop-filter", "none")
+    await expect(page.locator("[data-project-drawer-backdrop]")).toHaveCSS(
+      "backdrop-filter",
+      "none",
+    )
+    await expect(
+      dialog.locator("[data-project-drawer-header]"),
+    ).toHaveCSS("backdrop-filter", "none")
+    await expect(dialog).toHaveCSS("backdrop-filter", "none")
+    await expect(
+      dialog.locator("[data-project-drawer-header]"),
+    ).toHaveCSS("background-color", "rgba(5, 10, 18, 0.96)")
 
     if (desktopViewport) await page.setViewportSize(desktopViewport)
 
+    await armDrawerExitObservation(page)
     await dialog.getByRole("button", { name: "Close details" }).click()
+    await expectProtectedDrawerExit(page)
     await expect(dialog).toBeHidden()
     await expect(opener).toBeFocused()
     await expect
