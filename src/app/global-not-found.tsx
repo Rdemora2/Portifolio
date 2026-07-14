@@ -98,11 +98,11 @@ export default async function GlobalNotFound() {
                   className="fallback-locale"
                   href={getLocalizedPath(availableLocale)}
                   hrefLang={getDocumentLanguage(availableLocale)}
-                  lang={getDocumentLanguage(availableLocale)}
                   aria-label={content.languages[availableLocale]}
-                  aria-current={availableLocale === locale ? "page" : undefined}
                 >
-                  {availableLocale.toUpperCase()}
+                  <span lang={getDocumentLanguage(availableLocale)}>
+                    {availableLocale.toUpperCase()}
+                  </span>
                 </a>
               ))}
             </nav>
