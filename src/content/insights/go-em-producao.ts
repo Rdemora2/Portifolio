@@ -1,43 +1,26 @@
 import type { Locale } from "@/i18n.config"
-
-export type ArticleSection = {
-  id: string
-  eyebrow: string
-  title: string
-  intro: string
-  items: string[]
-  note?: string
-}
-
-export type GoProductionArticle = {
-  seo: {
-    title: string
-    description: string
-  }
-  eyebrow: string
-  title: string
-  subtitle: string
-  backLabel: string
-  publishedLabel: string
-  publishedDate: string
-  readTime: string
-  tocLabel: string
-  intro: string
-  metricsLabel: string
-  metrics: Array<{ value: string; label: string }>
-  architectureLabel: string
-  architectureTitle: string
-  architectureDescription: string
-  architectureNodes: string[]
-  sections: ArticleSection[]
-  authorRole: string
-  ctaEyebrow: string
-  ctaTitle: string
-  ctaDescription: string
-  ctaLabel: string
-}
+import type {
+  ArticleSceneVisual,
+  InsightArticle,
+  InsightArticleSectionCopy,
+} from "./types"
 
 const sharedDate = "2025-03-20"
+
+const productionScenes = [
+  { kind: "ingress", focusNode: 0, metricIndex: 0 },
+  { kind: "boundaries", focusNode: 1 },
+  { kind: "hot-path", focusNode: 1, metricIndex: 1 },
+  { kind: "cache-fallback", focusNode: 2, metricIndex: 2 },
+  { kind: "telemetry", focusNode: 5 },
+  { kind: "security", focusNode: 0 },
+  { kind: "recovery", focusNode: 4 },
+  { kind: "release", focusNode: 5, metricIndex: 3 },
+] as const satisfies readonly ArticleSceneVisual[]
+
+type GoProductionArticleCopy = Omit<InsightArticle, "sections"> & {
+  sections: InsightArticleSectionCopy[]
+}
 
 const articles = {
   pt: {
@@ -55,6 +38,16 @@ const articles = {
     publishedDate: sharedDate,
     readTime: "8 min de leitura",
     tocLabel: "Neste artigo",
+    experience: {
+      coreLabel: "GO",
+      coreCaption: "runtime",
+      traceLabel: "Flight recorder · produção",
+      chapterLabel: "Cena",
+      scrollLabel: "Role para acompanhar a requisição",
+      progressLabel: "Progresso de leitura",
+      topologyLabel: "Topologia do sistema",
+      traceCoordinateLabel: "rastro",
+    },
     intro:
       "Este backend nasceu para um domínio sensível de hospitalidade digital em ambiente hospitalar. A plataforma integra serviços externos, streaming protegido e um backoffice com controle granular. O resultado não veio de um truque isolado, mas de limites explícitos, observabilidade útil e decisões operacionais consistentes.",
     metricsLabel: "Escala observada em produção",
@@ -203,6 +196,16 @@ const articles = {
     publishedDate: sharedDate,
     readTime: "8 min read",
     tocLabel: "In this article",
+    experience: {
+      coreLabel: "GO",
+      coreCaption: "runtime",
+      traceLabel: "Production flight recorder",
+      chapterLabel: "Scene",
+      scrollLabel: "Scroll to follow the request",
+      progressLabel: "Reading progress",
+      topologyLabel: "System topology",
+      traceCoordinateLabel: "trace",
+    },
     intro:
       "This backend was built for a sensitive digital hospitality domain in a hospital environment. The platform integrates external services, DRM-protected streaming, and an administrative back office with granular access control. Its performance came from explicit limits, useful observability, and consistent operational decisions—not from a single trick.",
     metricsLabel: "Observed production scale",
@@ -350,6 +353,16 @@ const articles = {
     publishedDate: sharedDate,
     readTime: "8 min de lectura",
     tocLabel: "En este artículo",
+    experience: {
+      coreLabel: "GO",
+      coreCaption: "runtime",
+      traceLabel: "Flight recorder · producción",
+      chapterLabel: "Escena",
+      scrollLabel: "Desplázate para seguir la petición",
+      progressLabel: "Progreso de lectura",
+      topologyLabel: "Topología del sistema",
+      traceCoordinateLabel: "traza",
+    },
     intro:
       "Este backend nació para un dominio sensible de hospitalidad digital en un entorno hospitalario. La plataforma integra servicios externos, streaming protegido y un backoffice con control granular. El resultado no vino de un truco aislado, sino de límites explícitos, observabilidad útil y decisiones operativas consistentes.",
     metricsLabel: "Escala observada en producción",
@@ -482,8 +495,28 @@ const articles = {
       "Puedo ayudar a convertir requisitos de escala, confiabilidad y costo en decisiones de ingeniería medibles.",
     ctaLabel: "Hablar del proyecto",
   },
-} satisfies Record<Locale, GoProductionArticle>
+} satisfies Record<Locale, GoProductionArticleCopy>
 
-export function getGoProductionArticle(locale: Locale): GoProductionArticle {
-  return articles[locale]
+export function getGoProductionArticle(locale: Locale): InsightArticle {
+  const article = articles[locale]
+
+  return {
+    ...article,
+    seo: { ...article.seo },
+    experience: { ...article.experience },
+    metrics: article.metrics.map((metric) => ({ ...metric })),
+    architectureNodes: [...article.architectureNodes],
+    sections: article.sections.map((section, index) => {
+      const visual = productionScenes[index]
+      if (!visual) {
+        throw new Error(`Missing visual scene for article section: ${section.id}`)
+      }
+
+      return {
+        ...section,
+        items: [...section.items],
+        visual: { ...visual },
+      }
+    }),
+  }
 }
