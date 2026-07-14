@@ -1,14 +1,9 @@
 import type { NextConfig } from "next"
 import { PHASE_PRODUCTION_BUILD } from "next/constants"
 import createNextIntlPlugin from "next-intl/plugin"
-import createBundleAnalyzer from "@next/bundle-analyzer"
 import { assertProductionBuildEnv } from "./src/lib/production-env"
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
-const withBundleAnalyzer = createBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-})
-
 const isDevelopment = process.env.NODE_ENV === "development"
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -69,7 +64,7 @@ const nextConfig: NextConfig = {
   ],
   turbopack: {},
   experimental: {
-    optimizePackageImports: ["three", "gsap", "lenis", "@react-three/fiber", "@react-three/drei"],
+    optimizePackageImports: ["gsap", "ogl"],
   },
   output: "standalone",
 }
@@ -79,5 +74,5 @@ export default function createNextConfig(phase: string): NextConfig {
     assertProductionBuildEnv(process.env)
   }
 
-  return withBundleAnalyzer(withNextIntl(nextConfig))
+  return withNextIntl(nextConfig)
 }
