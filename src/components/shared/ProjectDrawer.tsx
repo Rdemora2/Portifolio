@@ -24,12 +24,14 @@
  * Performance:
  *   - GSAP lazy-imported
  *   - will-change:transform applied only during animation, removed after
+ *   - One capability policy controls the backdrop, content and sticky-header blur
  *   - CountUp triggers only when drawer is open (trigger=isOpen)
  */
 
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   useSyncExternalStore,
@@ -52,6 +54,7 @@ interface ProjectDrawerProps {
   project: ProjectViewModel | null;
   isOpen: boolean;
   onClose: () => void;
+  onExitComplete: () => void;
 }
 
 const mobileDrawerQuery = "(pointer: coarse), (max-width: 767px)";
@@ -77,14 +80,19 @@ function getReducedMotionSnapshot() {
   return window.matchMedia(reducedMotionQuery).matches;
 }
 
-export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) {
+export function ProjectDrawer({
+  project,
+  isOpen,
+  onClose,
+  onExitComplete,
+}: ProjectDrawerProps) {
   const t = useTranslations("Projects");
-  const projectTitle = project ? t(`items.${project.id}.title`) : null;
   const drawerRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const onCloseRef = useRef(onClose);
+  const onExitCompleteRef = useRef(onExitComplete);
   const [portalReady, setPortalReady] = useState(false);
 
   const handleDrawerRef = useCallback((node: HTMLDivElement | null) => {
@@ -102,22 +110,37 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
     getReducedMotionSnapshot,
     () => false,
   );
+  const navigatorCapabilities =
+    typeof navigator === "undefined"
+      ? null
+      : (navigator as Navigator & {
+          connection?: { saveData?: boolean };
+          deviceMemory?: number;
+        });
+  const isLowPowerDevice = Boolean(
+    navigatorCapabilities &&
+      ((navigatorCapabilities.hardwareConcurrency || 4) <= 4 ||
+        (navigatorCapabilities.deviceMemory !== undefined &&
+          navigatorCapabilities.deviceMemory <= 4)),
+  );
   const canRenderPortal =
     typeof window !== "undefined" &&
     !isMobile &&
     !prefersReducedMotion &&
-    !(navigator as Navigator & { connection?: { saveData?: boolean } })
-      .connection?.saveData;
+    !isLowPowerDevice &&
+    !navigatorCapabilities?.connection?.saveData;
+  const contentBackdropFilter = canRenderPortal ? "blur(12px)" : "none";
 
   useEffect(() => {
     onCloseRef.current = onClose;
-  }, [onClose]);
+    onExitCompleteRef.current = onExitComplete;
+  }, [onClose, onExitComplete]);
 
   // Capture the opener independently from portal readiness. Callback refs can
   // cause an extra render when the portal mounts, but that must never replace
   // the original trigger with the drawer's close button.
   useEffect(() => {
-    if (!isOpen) return;
+    if (!project) return;
 
     const activeElement =
       document.activeElement instanceof HTMLElement &&
@@ -132,21 +155,11 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
         )
       : null;
 
-    previousFocusRef.current = activeElement ?? matchingTrigger ?? null;
-
-    return () => {
-      const focusTarget = previousFocusRef.current;
-      previousFocusRef.current = null;
-      requestAnimationFrame(() => {
-        if (focusTarget?.isConnected) {
-          focusTarget.focus({ preventScroll: true });
-        }
-      });
-    };
-  }, [isOpen, project?.id, projectTitle]);
+    previousFocusRef.current = matchingTrigger ?? activeElement ?? null;
+  }, [project]);
 
   // ── GSAP entrance / exit ──────────────────────────────────────────────────
-  useEffect(() => {
+  useLayoutEffect(() => {
     const drawer = drawerRef.current;
     const backdrop = backdropRef.current;
     if (!drawer || !backdrop) return;
@@ -159,6 +172,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
       drawer.style.willChange = "";
       backdrop.style.opacity = isOpen ? "1" : "0";
       backdrop.style.display = isOpen ? "block" : "none";
+      if (!isOpen) onExitCompleteRef.current();
     };
 
     if (prefersReducedMotion) {
@@ -266,6 +280,7 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
           ease: "power3.in",
           onComplete: () => {
             drawer.style.willChange = "";
+            onExitCompleteRef.current();
           },
         });
 
@@ -287,13 +302,13 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
     };
   }, [isOpen, isMobile, portalReady, prefersReducedMotion]);
 
-  // ── Modal focus, inert background, Escape and scroll lock ─────────────────
+  // Keep the background locked until the exit animation has fully unmounted
+  // the drawer. Releasing it as soon as isOpen flips would make the page
+  // interactive underneath a still-visible modal.
   useEffect(() => {
-    if (!isOpen) return;
-
     const drawer = drawerRef.current;
     const backdrop = backdropRef.current;
-    if (!drawer || !backdrop) return;
+    if (!project || !portalReady || !drawer || !backdrop) return;
 
     const html = document.documentElement;
     const previousOverflow = html.style.overflow;
@@ -315,6 +330,29 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
     backgroundElements.forEach((element) => {
       element.inert = true;
     });
+
+    return () => {
+      html.style.overflow = previousOverflow;
+      previousInert.forEach(({ element, inert }) => {
+        element.inert = inert;
+      });
+
+      // Restore focus synchronously while the dialog node still exists. A
+      // deferred restoration leaves document.body focused for one frame after
+      // unmount, which is observable to keyboard and assistive-tech users.
+      const focusTarget = previousFocusRef.current;
+      if (focusTarget?.isConnected) {
+        focusTarget.focus({ preventScroll: true });
+      }
+    };
+  }, [portalReady, project]);
+
+  // ── Modal focus trap and keyboard dismissal ───────────────────────────────
+  useEffect(() => {
+    if (!project || !portalReady) return;
+
+    const drawer = drawerRef.current;
+    if (!drawer) return;
 
     const focusDrawer = requestAnimationFrame(() => {
       closeButtonRef.current?.focus({ preventScroll: true });
@@ -366,12 +404,8 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
     return () => {
       cancelAnimationFrame(focusDrawer);
       document.removeEventListener("keydown", handleKeyDown);
-      html.style.overflow = previousOverflow;
-      previousInert.forEach(({ element, inert }) => {
-        element.inert = inert;
-      });
     };
-  }, [isOpen, portalReady, project?.id]);
+  }, [portalReady, project]);
 
   if (!project) return null;
 
@@ -380,12 +414,13 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
       {/* Backdrop — blurs the list behind the panel */}
       <div
         ref={backdropRef}
+        data-project-drawer-backdrop
         className="fixed inset-0 z-[9998]"
         style={{
           display: "none",
           backgroundColor: "rgba(5, 10, 18, 0.6)",
-          backdropFilter: "blur(4px)",
-          WebkitBackdropFilter: "blur(4px)",
+          backdropFilter: canRenderPortal ? "blur(4px)" : "none",
+          WebkitBackdropFilter: canRenderPortal ? "blur(4px)" : "none",
         }}
         onClick={onClose}
         aria-hidden="true"
@@ -394,13 +429,11 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
       {/* Modal panel */}
       <div
         ref={handleDrawerRef}
-        role={isOpen ? "dialog" : undefined}
-        aria-modal={isOpen ? "true" : undefined}
-        aria-labelledby={
-          isOpen ? `project-drawer-title-${project.id}` : undefined
-        }
-        aria-hidden={!isOpen}
-        inert={!isOpen}
+        id="project-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`project-drawer-title-${project.id}`}
+        data-state={isOpen ? "open" : "closing"}
         tabIndex={-1}
         className={`
           fixed z-[9999] glass-panel overflow-hidden shadow-2xl
@@ -414,17 +447,27 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
           maxWidth: isMobile ? "100%" : "800px",
           height: isMobile ? "90dvh" : "85dvh",
           opacity: 0,
+          backdropFilter: contentBackdropFilter,
+          WebkitBackdropFilter: contentBackdropFilter,
         }}
       >
         {/* Fixed Background Layer (won't scroll) */}
         <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundColor: "var(--color-void)" }}>
           {canRenderPortal && isOpen ? <LiquidPortal /> : null}
-          {/* Dark Overlay for readability */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+          {/* The capability-gated scrim keeps the animated surface subdued. */}
+          <div
+            data-project-drawer-scrim
+            className="absolute inset-0 bg-black/60"
+            style={{
+              backdropFilter: contentBackdropFilter,
+              WebkitBackdropFilter: contentBackdropFilter,
+            }}
+          />
         </div>
 
         {/* Scrollable Content Layer */}
-        <div 
+        <div
+          data-project-drawer-scroll
           className="relative z-10 h-full w-full overflow-y-auto overscroll-contain"
         >
           {/* Drag handle (mobile only) */}
@@ -439,12 +482,15 @@ export function ProjectDrawer({ project, isOpen, onClose }: ProjectDrawerProps) 
 
           {/* Header */}
           <div
+            data-project-drawer-header
             className="sticky top-0 z-20 flex items-start justify-between gap-4 px-6 py-4 sm:px-8 sm:py-6"
             style={{
               borderBottom: "1px solid var(--glass-border)",
-              backgroundColor: "rgba(5, 10, 18, 0.4)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
+              backgroundColor: canRenderPortal
+                ? "rgba(5, 10, 18, 0.4)"
+                : "rgba(5, 10, 18, 0.96)",
+              backdropFilter: contentBackdropFilter,
+              WebkitBackdropFilter: contentBackdropFilter,
             }}
           >
           <div className="min-w-0 flex-1">

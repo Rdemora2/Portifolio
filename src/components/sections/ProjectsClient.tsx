@@ -1,21 +1,240 @@
 "use client";
 
 import {
+  Component,
   Suspense,
+  lazy,
   memo,
   useCallback,
   useEffect,
   useRef,
   useState,
+  type ReactNode,
 } from "react";
-import dynamic from "next/dynamic";
+import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import type { ProjectViewModel, RoleType } from "@/types";
 
-const ProjectDrawer = dynamic(() =>
-  import("@/components/shared/ProjectDrawer").then((module) => module.ProjectDrawer),
-);
+type ProjectDrawerModule = typeof import("@/components/shared/ProjectDrawer");
+
+let projectDrawerModulePromise: Promise<ProjectDrawerModule> | null = null;
+const drawerRetryStorageKey = "portfolio:project-drawer-retry";
+
+function requestProjectDrawerModule() {
+  if (!projectDrawerModulePromise) {
+    projectDrawerModulePromise = import("@/components/shared/ProjectDrawer").catch(
+      (error: unknown) => {
+        projectDrawerModulePromise = null;
+        throw error;
+      },
+    );
+  }
+
+  return projectDrawerModulePromise;
+}
+
+function createLazyProjectDrawer() {
+  return lazy(() => requestProjectDrawerModule().then((module) => ({
+    default: module.ProjectDrawer,
+  })));
+}
+
+function preloadProjectDrawer() {
+  void requestProjectDrawerModule().catch(() => undefined);
+}
+
+type ProjectDrawerBoundaryProps = {
+  children: ReactNode;
+  fallback: ReactNode;
+};
+
+class ProjectDrawerBoundary extends Component<
+  ProjectDrawerBoundaryProps,
+  { failed: boolean }
+> {
+  override state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  override render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
+}
+
+type ProjectDrawerShellProps = {
+  mode: "loading" | "error";
+  projectTitle: string;
+  loadingLabel: string;
+  errorTitle: string;
+  errorMessage: string;
+  retryLabel: string;
+  closeLabel: string;
+  onRetry?: () => void;
+  onClose: () => void;
+};
+
+function ProjectDrawerShell({
+  mode,
+  projectTitle,
+  loadingLabel,
+  errorTitle,
+  errorMessage,
+  retryLabel,
+  closeLabel,
+  onRetry,
+  onClose,
+}: ProjectDrawerShellProps) {
+  const shellRef = useRef<HTMLDivElement>(null);
+  const primaryActionRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!shell) return;
+
+    const html = document.documentElement;
+    const previousOverflow = html.style.overflow;
+    const previousInert = Array.from(document.body.children)
+      .filter(
+        (element): element is HTMLElement =>
+          element instanceof HTMLElement && !element.contains(shell),
+      )
+      .map((element) => ({ element, inert: element.inert }));
+
+    html.style.overflow = "hidden";
+    previousInert.forEach(({ element }) => {
+      element.inert = true;
+    });
+
+    const focusFrame = requestAnimationFrame(() => {
+      primaryActionRef.current?.focus({ preventScroll: true });
+    });
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const actions = Array.from(
+        shell.querySelectorAll<HTMLButtonElement>("button:not([disabled])"),
+      );
+      if (actions.length === 0) return;
+
+      const currentIndex = actions.indexOf(
+        document.activeElement as HTMLButtonElement,
+      );
+      const nextIndex = event.shiftKey
+        ? currentIndex <= 0
+          ? actions.length - 1
+          : currentIndex - 1
+        : currentIndex < 0 || currentIndex === actions.length - 1
+          ? 0
+          : currentIndex + 1;
+
+      event.preventDefault();
+      actions[nextIndex]?.focus({ preventScroll: true });
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", handleKeyDown);
+      html.style.overflow = previousOverflow;
+      previousInert.forEach(({ element, inert }) => {
+        element.inert = inert;
+      });
+    };
+  }, [onClose]);
+
+  if (typeof document === "undefined") return null;
+
+  const isError = mode === "error";
+  const titleId = `project-drawer-${mode}-title`;
+  const descriptionId = `project-drawer-${mode}-description`;
+
+  return createPortal(
+    <div
+      ref={shellRef}
+      id="project-drawer"
+      role={isError ? "alertdialog" : "dialog"}
+      aria-modal="true"
+      aria-busy={isError ? undefined : "true"}
+      aria-labelledby={titleId}
+      aria-describedby={isError ? descriptionId : undefined}
+      className="fixed inset-0 z-[9999] grid place-items-center bg-[rgba(5,10,18,0.82)] p-4"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div className="w-full max-w-md rounded-2xl border border-[var(--glass-border)] bg-[rgba(10,16,24,0.98)] p-6 shadow-2xl sm:p-8">
+        <p
+          className="text-xs uppercase tracking-[0.2em] text-[var(--color-signal)]"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          {projectTitle}
+        </p>
+        <h2
+          id={titleId}
+          aria-live={isError ? undefined : "polite"}
+          className="mt-3 text-2xl font-bold text-[var(--color-text-primary)]"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          {isError ? errorTitle : loadingLabel}
+        </h2>
+        {isError ? (
+          <p
+            id={descriptionId}
+            className="mt-3 text-sm leading-6 text-[var(--color-text-secondary)]"
+          >
+            {errorMessage}
+          </p>
+        ) : null}
+
+        {isError ? (
+          <div className="mt-6 flex flex-wrap gap-3">
+            <button
+              ref={primaryActionRef}
+              type="button"
+              onClick={onRetry}
+              className="min-h-11 rounded-full bg-[var(--color-signal)] px-5 py-2 text-sm font-semibold text-[var(--color-void)]"
+            >
+              {retryLabel}
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="min-h-11 rounded-full border border-[var(--glass-border)] px-5 py-2 text-sm font-semibold text-[var(--color-text-secondary)]"
+            >
+              {closeLabel}
+            </button>
+          </div>
+        ) : (
+          <div className="mt-6 flex items-center justify-between gap-4">
+            <span
+              aria-hidden="true"
+              className="h-7 w-7 animate-spin rounded-full border-2 border-[var(--color-edge)] border-t-[var(--color-signal)] motion-reduce:animate-none"
+            />
+            <button
+              ref={primaryActionRef}
+              type="button"
+              onClick={onClose}
+              className="min-h-11 rounded-full border border-[var(--glass-border)] px-5 py-2 text-sm font-semibold text-[var(--color-text-secondary)]"
+            >
+              {closeLabel}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>,
+    document.body,
+  );
+}
 
 type FilterType = "all" | "engineering" | "management" | "international";
 
@@ -32,11 +251,15 @@ function matchesFilter(project: ProjectViewModel, filter: FilterType): boolean {
 const ProjectItem = memo(function ProjectItem({
   project,
   index,
+  isExpanded,
   onOpen,
+  onPreload,
 }: {
   project: ProjectViewModel;
   index: number;
+  isExpanded: boolean;
   onOpen: (project: ProjectViewModel) => void;
+  onPreload: () => void;
 }) {
   const t = useTranslations("Projects");
 
@@ -59,7 +282,11 @@ const ProjectItem = memo(function ProjectItem({
             type="button"
             className="relative flex w-full items-center gap-4 py-6 text-left transition-all sm:gap-6 sm:py-8 lg:gap-10"
             onClick={() => onOpen(project)}
+            onFocus={onPreload}
+            onPointerEnter={onPreload}
             aria-haspopup="dialog"
+            aria-controls="project-drawer"
+            aria-expanded={isExpanded}
             data-project-trigger={project.id}
           >
             {/* Signal bar — slides in on hover */}
@@ -171,27 +398,32 @@ export function ProjectsClient({ projects }: { projects: ProjectViewModel[] }) {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [drawerProject, setDrawerProject] = useState<ProjectViewModel | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [ProjectDrawer, setProjectDrawer] = useState(createLazyProjectDrawer);
+  const [drawerBoundaryKey, setDrawerBoundaryKey] = useState(0);
   const listRef = useRef<HTMLDivElement>(null);
   const gsapRef = useRef<null | { gsap: typeof import("gsap").gsap }>(null);
   const gsapPromiseRef = useRef<Promise<{ gsap: typeof import("gsap").gsap }> | null>(null);
   const filterOperationRef = useRef(0);
-  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const entryAnimationFrameRef = useRef(0);
-
-  const clearCloseTimer = useCallback(() => {
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  }, []);
 
   useEffect(
     () => () => {
-      clearCloseTimer();
       cancelAnimationFrame(entryAnimationFrameRef.current);
     },
-    [clearCloseTimer],
+    [],
   );
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+
+    // A DOM-only hydration sentinel keeps cross-browser E2E synchronization
+    // explicit without introducing state, an extra render, or layout movement.
+    list.dataset.hydrated = "true";
+    return () => {
+      delete list.dataset.hydrated;
+    };
+  }, []);
 
   const filters: { key: FilterType; label: string }[] = [
     { key: "all", label: t("filters.all") },
@@ -218,7 +450,6 @@ export function ProjectsClient({ projects }: { projects: ProjectViewModel[] }) {
 
   const handleFilterChange = async (filter: FilterType) => {
     const operation = ++filterOperationRef.current;
-    clearCloseTimer();
     cancelAnimationFrame(entryAnimationFrameRef.current);
 
     const applyFilterWithoutAnimation = () => {
@@ -292,22 +523,91 @@ export function ProjectsClient({ projects }: { projects: ProjectViewModel[] }) {
 
   const openDrawer = useCallback(
     (project: ProjectViewModel) => {
-      clearCloseTimer();
       setDrawerProject(project);
       setIsDrawerOpen(true);
     },
-    [clearCloseTimer],
+    [],
   );
 
-  const closeDrawer = useCallback(() => {
-    clearCloseTimer();
+  const focusProjectTrigger = useCallback((projectId: string) => {
+    requestAnimationFrame(() => {
+      const trigger = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-project-trigger]"),
+      ).find(
+        (element) => element.getAttribute("data-project-trigger") === projectId,
+      );
+      trigger?.focus({ preventScroll: true });
+    });
+  }, []);
+
+  const resetDrawerLoader = useCallback(() => {
+    projectDrawerModulePromise = null;
+    setProjectDrawer(() => createLazyProjectDrawer());
+    setDrawerBoundaryKey((attempt) => attempt + 1);
+  }, []);
+
+  const retryFailedDrawer = useCallback(() => {
+    if (!drawerProject) return;
+
+    try {
+      sessionStorage.setItem(drawerRetryStorageKey, drawerProject.id);
+    } catch {
+      // Storage can be unavailable in hardened browsing modes. A reload still
+      // clears the failed module map and leaves the user anchored in projects.
+    }
+
+    const retryUrl = new URL(window.location.href);
+    retryUrl.hash = "projects";
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${retryUrl.pathname}${retryUrl.search}${retryUrl.hash}`,
+    );
+    window.location.reload();
+  }, [drawerProject]);
+
+  const closeDeferredDrawer = useCallback(() => {
+    const projectId = drawerProject?.id;
     setIsDrawerOpen(false);
-    // Keep project in state during exit animation, clear after
-    closeTimerRef.current = setTimeout(() => {
-      setDrawerProject(null);
-      closeTimerRef.current = null;
-    }, 500);
-  }, [clearCloseTimer]);
+    setDrawerProject(null);
+    if (projectId) focusProjectTrigger(projectId);
+  }, [drawerProject?.id, focusProjectTrigger]);
+
+  const closeFailedDrawer = useCallback(() => {
+    resetDrawerLoader();
+    closeDeferredDrawer();
+  }, [closeDeferredDrawer, resetDrawerLoader]);
+
+  const closeDrawer = useCallback(() => {
+    setIsDrawerOpen(false);
+  }, []);
+
+  const finishDrawerExit = useCallback(() => {
+    setDrawerProject(null);
+  }, []);
+
+  useEffect(() => {
+    let projectId: string | null = null;
+    try {
+      projectId = sessionStorage.getItem(drawerRetryStorageKey);
+    } catch {
+      return;
+    }
+
+    if (!projectId) return;
+    const project = projects.find(({ id }) => id === projectId);
+    if (!project) return;
+
+    const openFrame = requestAnimationFrame(() => {
+      try {
+        sessionStorage.removeItem(drawerRetryStorageKey);
+      } catch {
+        // The stored retry is best-effort; opening the recovered drawer is not.
+      }
+      openDrawer(project);
+    });
+    return () => cancelAnimationFrame(openFrame);
+  }, [openDrawer, projects]);
 
   return (
     <>
@@ -349,26 +649,74 @@ export function ProjectsClient({ projects }: { projects: ProjectViewModel[] }) {
       </div>
 
       {/* Project list */}
-      <div id="project-list" ref={listRef} className="space-y-0">
+      <div
+        id="project-list"
+        ref={listRef}
+        className="space-y-0"
+        data-projects-client
+      >
         {filtered.map((project, idx) => (
           <ProjectItem
             key={project.id}
             project={project}
             index={idx}
+            isExpanded={
+              isDrawerOpen && drawerProject?.id === project.id
+            }
             onOpen={openDrawer}
+            onPreload={preloadProjectDrawer}
           />
         ))}
       </div>
 
       {/* Keep lazy loading local so the route fallback never replaces the page. */}
       {drawerProject ? (
-        <Suspense fallback={null}>
-          <ProjectDrawer
-            project={drawerProject}
-            isOpen={isDrawerOpen}
-            onClose={closeDrawer}
-          />
-        </Suspense>
+        <ProjectDrawerBoundary
+          key={drawerBoundaryKey}
+          fallback={
+            <ProjectDrawerShell
+              mode="error"
+              projectTitle={t(`items.${drawerProject.id}.title`)}
+              loadingLabel={t("drawerLoading", {
+                project: t(`items.${drawerProject.id}.title`),
+              })}
+              errorTitle={t("drawerLoadErrorTitle")}
+              errorMessage={t("drawerLoadErrorMessage", {
+                project: t(`items.${drawerProject.id}.title`),
+              })}
+              retryLabel={t("retryDrawer")}
+              closeLabel={t("closeDrawer")}
+              onRetry={retryFailedDrawer}
+              onClose={closeFailedDrawer}
+            />
+          }
+        >
+          <Suspense
+            fallback={
+              <ProjectDrawerShell
+                mode="loading"
+                projectTitle={t(`items.${drawerProject.id}.title`)}
+                loadingLabel={t("drawerLoading", {
+                  project: t(`items.${drawerProject.id}.title`),
+                })}
+                errorTitle={t("drawerLoadErrorTitle")}
+                errorMessage={t("drawerLoadErrorMessage", {
+                  project: t(`items.${drawerProject.id}.title`),
+                })}
+                retryLabel={t("retryDrawer")}
+                closeLabel={t("closeDrawer")}
+                onClose={closeDeferredDrawer}
+              />
+            }
+          >
+            <ProjectDrawer
+              project={drawerProject}
+              isOpen={isDrawerOpen}
+              onClose={closeDrawer}
+              onExitComplete={finishDrawerExit}
+            />
+          </Suspense>
+        </ProjectDrawerBoundary>
       ) : null}
     </>
   );

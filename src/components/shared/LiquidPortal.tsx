@@ -192,8 +192,10 @@ export function LiquidPortal() {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches
+    const minimumFrameInterval = lowPower ? 1000 / 30 : 0
     const startedAt = performance.now()
     let animationFrame = 0
+    let lastRenderedAt = 0
     let contextLost = false
 
     const render = (now: number) => {
@@ -218,7 +220,10 @@ export function LiquidPortal() {
     }
 
     const update = (now: number) => {
-      render(now)
+      if (now - lastRenderedAt >= minimumFrameInterval) {
+        render(now)
+        lastRenderedAt = now
+      }
       animationFrame = requestAnimationFrame(update)
     }
 
