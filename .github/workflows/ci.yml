@@ -20,7 +20,7 @@ jobs:
   build-and-lint:
     name: Test, Lint & Build Validation
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     env:
       NEXT_PUBLIC_SITE_URL: https://robertomoraes.dev
       CONTACT_FROM_EMAIL: portfolio-ci@robertomoraes.dev
@@ -76,8 +76,8 @@ jobs:
       - name: Enforce bundle budgets
         run: npm run check:bundle
 
-      - name: Install Chromium for end-to-end tests
-        run: npx playwright install --with-deps chromium
+      - name: Install browser engines for end-to-end tests
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Run end-to-end tests
         run: npm run test:e2e

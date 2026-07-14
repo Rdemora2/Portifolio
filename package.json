@@ -16,7 +16,7 @@
     "test:quality-hook": "bash scripts/ai-quality-gate.test.sh",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:e2e:install": "playwright install chromium"
+    "test:e2e:install": "playwright install chromium firefox webkit"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",

@@ -25,6 +25,7 @@ export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
+  failOnFlakyTests: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
   timeout: 60_000,
@@ -42,7 +43,7 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      testIgnore: /webgl-disabled\.spec\.ts/,
+      testIgnore: /(?:browser-smoke|webgl-disabled)\.spec\.ts/,
       use: { ...devices["Desktop Chrome"] },
     },
     {
@@ -55,6 +56,16 @@ export default defineConfig({
           args: ["--disable-webgl"],
         },
       },
+    },
+    {
+      name: "firefox-smoke",
+      testMatch: /browser-smoke\.spec\.ts/,
+      use: { ...devices["Desktop Firefox"] },
+    },
+    {
+      name: "webkit-smoke",
+      testMatch: /browser-smoke\.spec\.ts/,
+      use: { ...devices["Desktop Safari"] },
     },
   ],
   webServer: startsLocalServer
