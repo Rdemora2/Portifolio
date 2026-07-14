@@ -1,22 +1,12 @@
-import type { PersonalInfo, Project, TechItem, ExperienceEntry, Testimonial, Insight } from "@/types"
+import type { PersonalInfo, Project, TechItem, ExperienceEntry, Insight } from "@/types"
 
 export const personalInfo: PersonalInfo = {
   name: "Roberto Moraes",
-  title: "Engenheiro de Software & Gerente de TI",
-  subtitle: "Go · Next.js · Kotlin · AWS · GCP",
-  bio: "Comecei como desenvolvedor full-stack e hoje lidero a área de tecnologia de uma empresa com operações internacionais. No caminho, aprendi que gestão de verdade exige mão na massa, por isso continuo construindo backends, configurando infraestrutura cloud e garantindo que cada sistema aguenta a pressão de produção. Minha entrega vai do código ao deploy final.",
-  bioExtended: "Já entreguei projetos para o Hospital Sírio-Libanês, Grupo Bandeirantes e redes hoteleiras internacionais, sempre com foco em performance real, infraestrutura resiliente e times que funcionam. Meu perfil é hands-on: codifico, reviso, configuro infra e tomo decisões técnicas no mesmo dia.",
-  location: "São Paulo, Brasil",
-  availability: "open",
   contacts: [
     { type: "email", label: "robertomoraeszar@gmail.com", href: "mailto:robertomoraeszar@gmail.com" },
     { type: "whatsapp", label: "WhatsApp", href: "https://api.whatsapp.com/send?phone=5511973874345" },
     { type: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/robertomoraes/" },
     { type: "github", label: "GitHub", href: "https://github.com/Rdemora2" },
-  ],
-  social: [
-    { platform: "LinkedIn", href: "https://www.linkedin.com/in/robertomoraes/", label: "LinkedIn" },
-    { platform: "GitHub", href: "https://github.com/Rdemora2", label: "GitHub" },
   ],
 }
 
@@ -97,12 +87,12 @@ export const projects: Project[] = [
       "Integração com sistema hospitalar Tasy para dados do paciente",
       "Streaming Unicast com DRM Widevine (proteção de conteúdo premium)",
       "App nativo Kotlin/Jetpack Compose para Android TV",
-      "Monitoring com Prometheus e alertas em tempo real",
-      "Cloud Run com auto-scaling no GCP",
+      "Monitoramento com Prometheus e alertas em tempo real",
+      "Cloud Run com autoescalabilidade no GCP",
     ],
     caseStudy: {
       problem: "O Sírio-Libanês precisava de uma plataforma digital de hospitalidade para seus pacientes que integrasse informações em tempo real do Tasy, streaming de conteúdo com proteção DRM e uma interface intuitiva nas TVs dos quartos.",
-      solution: "Projetei e construí toda a stack: backend em Go para máxima performance, infraestrutura GCP com auto-scaling, cache Redis para respostas instantâneas e app Android TV em Kotlin com streaming protegido por Widevine DRM.",
+      solution: "Projetei e construí toda a stack: backend em Go para máxima performance, infraestrutura GCP com autoescalabilidade, cache Redis para respostas instantâneas e app Android TV em Kotlin com streaming protegido por Widevine DRM.",
       robertoRole: "Fui o engenheiro responsável por toda a stack técnica (backend, infra, mobile). Simultaneamente, atuei como líder técnico definindo arquitetura, padrões de código e monitoramento. A decisão de usar Go veio da necessidade de latência ultra-baixa em ambiente hospitalar.",
       keyDecisions: [
         "Go + Fiber por performance: 6ms de latência média",
@@ -224,7 +214,7 @@ export const experience: ExperienceEntry[] = [
     description: "Orquestrei equipes multidisciplinares garantindo entregas ágeis de novos projetos. Com background forte em desenvolvimento, conduzi a governança de infra cloud no GCP, pipelines de CI/CD e gestão do ciclo de vida dos produtos.",
     highlights: [
       "Time de desenvolvimento sob minha gestão direta",
-      "Definição de stack técnico e padrões de qualidade",
+      "Definição da stack técnica e dos padrões de qualidade",
       "Otimização de infraestrutura cloud GCP",
       "Interface direta com clientes e stakeholders",
     ],
@@ -280,7 +270,6 @@ export const metrics = [
   { id: "latency", value: 6, suffix: "ms" },
   { id: "cache", value: 92, suffix: "%" },
 ]
-
 
 export const insights: Insight[] = [
   {

@@ -1,4 +1,3 @@
-export type Availability = "open" | "selective" | "closed"
 export type ProjectCategory = "infrastructure" | "backend" | "frontend" | "mobile" | "fullstack" | "leadership" | "management"
 export type TechCategory = "cloud" | "backend" | "frontend" | "mobile" | "devops" | "ai" | "video"
 export type Proficiency = 1 | 2 | 3 | 4 | 5
@@ -11,22 +10,9 @@ export interface Contact {
   href: string
 }
 
-export interface Social {
-  platform: string
-  href: string
-  label: string
-}
-
 export interface PersonalInfo {
   name: string
-  title: string
-  subtitle: string
-  bio: string
-  bioExtended: string
-  location: string
-  availability: Availability
   contacts: Contact[]
-  social: Social[]
 }
 
 export interface Metric {
@@ -113,15 +99,3 @@ export interface Insight {
   slug?: string
   hasFullArticle?: boolean
 }
-
-export type ProjectType = "web" | "mobile" | "backend" | "architecture" | "leadership" | "other"
-
-export interface ContactFormData {
-  name: string
-  email: string
-  company?: string
-  projectType: ProjectType
-  message: string
-  budget?: string
-}
-
