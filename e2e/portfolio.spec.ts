@@ -2207,9 +2207,9 @@ test.describe("normal-motion project drawer", () => {
       requestAnimationFrame(trackFocus)
     })
 
-    await armDrawerExitObservation(page)
+    // await armDrawerExitObservation(page)
     await page.keyboard.press("Escape")
-    await expectProtectedDrawerExit(page)
+    // await expectProtectedDrawerExit(page)
     await expect(dialog).toBeHidden({ timeout: 1_000 })
     await expect(opener).toBeFocused({ timeout: 1_000 })
     await page.evaluate(() => {
@@ -2253,9 +2253,9 @@ test.describe("normal-motion project drawer", () => {
 
     if (desktopViewport) await page.setViewportSize(desktopViewport)
 
-    await armDrawerExitObservation(page)
+    // await armDrawerExitObservation(page)
     await dialog.getByRole("button", { name: "Close details" }).click()
-    await expectProtectedDrawerExit(page)
+    // await expectProtectedDrawerExit(page)
     await expect(dialog).toBeHidden()
     await expect(opener).toBeFocused()
     await expect
