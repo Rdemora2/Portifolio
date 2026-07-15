@@ -106,7 +106,7 @@ export function LiquidPortal() {
     const container = containerRef.current
     if (!container) return
 
-    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse|headlesschrome/i.test(
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(
       navigator.userAgent || ""
     )
     if (isBot) return

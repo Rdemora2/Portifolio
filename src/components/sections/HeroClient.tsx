@@ -32,7 +32,7 @@ function canRenderSignatureEffect() {
     (navigator.deviceMemory !== undefined && navigator.deviceMemory <= 4)
   )
 
-  const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse|headlesschrome/i.test(
+  const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(
     navigator.userAgent || ""
   )
 
