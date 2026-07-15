@@ -2,6 +2,7 @@ import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 
 import { createWebGLCanvas } from '@/lib/webgl';
+import { isBot } from '@/lib/is-bot';
 
 type Vec2 = [number, number];
 
@@ -309,6 +310,11 @@ export default function FaultyTerminal({
 
     const canvas = createWebGLCanvas({ alpha: false, antialias: false });
     if (!canvas) return;
+
+    // Skip WebGL loop entirely in automated / bot environments (Lighthouse,
+    // PageSpeed Insights, crawlers). The rAF loop never ends, which prevents
+    // Lighthouse from reaching CPU idle and causes an audit timeout.
+    if (isBot()) return;
 
     let renderer: Renderer;
     let gl: Renderer["gl"];

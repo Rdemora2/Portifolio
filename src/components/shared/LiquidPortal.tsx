@@ -4,6 +4,7 @@ import { Mesh, Program, Renderer, Triangle } from "ogl"
 import { useEffect, useRef } from "react"
 
 import { createWebGLCanvas } from "@/lib/webgl"
+import { isBot } from "@/lib/is-bot"
 
 const vertexShader = `
 attribute vec2 position;
@@ -106,12 +107,9 @@ export function LiquidPortal() {
     const container = containerRef.current
     if (!container) return
 
-    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(
-      navigator.userAgent || ""
-    )
-    if (isBot) return
+    if (isBot()) return
 
-    const isBrave = typeof navigator !== "undefined" && (navigator as any).brave !== undefined
+    const isBrave = typeof navigator !== "undefined" && "brave" in navigator
     const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox")
     const isPrivacyBrowser = isBrave || isFirefox
 

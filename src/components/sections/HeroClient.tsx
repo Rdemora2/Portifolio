@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import { useSyncExternalStore } from "react"
 
 import { useInView } from "@/hooks/useInView"
+import { isBot } from "@/lib/is-bot"
 
 const FaultyTerminal = dynamic(
   () => import("@/components/shared/FaultyTerminal"),
@@ -12,6 +13,7 @@ const FaultyTerminal = dynamic(
 
 type NavigatorWithConnection = Navigator & {
   connection?: EventTarget & { saveData?: boolean }
+  brave?: unknown
 }
 
 const mediaQueries = [
@@ -23,7 +25,7 @@ const mediaQueries = [
 function canRenderSignatureEffect() {
   const connection = (navigator as NavigatorWithConnection).connection
   // Privacy browsers like Brave and Firefox spoof hardware info to prevent fingerprinting
-  const isBrave = typeof navigator !== "undefined" && (navigator as any).brave !== undefined
+  const isBrave = typeof navigator !== "undefined" && "brave" in navigator
   const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox")
   const isPrivacyBrowser = isBrave || isFirefox
 
@@ -32,15 +34,13 @@ function canRenderSignatureEffect() {
     (navigator.deviceMemory !== undefined && navigator.deviceMemory <= 4)
   )
 
-  const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(
-    navigator.userAgent || ""
-  )
+  const _isBot = isBot()
 
   return (
     document.visibilityState === "visible" &&
     !connection?.saveData &&
     !isLowPower &&
-    !isBot &&
+    !_isBot &&
     mediaQueries.every((query) => !window.matchMedia(query).matches)
   )
 }
