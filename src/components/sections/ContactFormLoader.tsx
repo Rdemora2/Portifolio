@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useSyncExternalStore } from "react"
 
 import { useInView } from "@/hooks/useInView"
 
@@ -28,8 +28,18 @@ const ContactForm = dynamic(
   { loading: ContactFormSkeleton, ssr: false },
 )
 
+const subscribeToWebMcpAvailability = () => () => undefined
+const getWebMcpAvailability = () =>
+  "modelContext" in document || "modelContext" in navigator
+const getServerWebMcpAvailability = () => false
+
 export function ContactFormLoader() {
   const [requestedByHash, setRequestedByHash] = useState(false)
+  const webMcpAvailable = useSyncExternalStore(
+    subscribeToWebMcpAvailability,
+    getWebMcpAvailability,
+    getServerWebMcpAvailability,
+  )
   const [ref, shouldLoad] = useInView<HTMLDivElement>({
     threshold: 0,
     rootMargin: "900px 0px",
@@ -48,7 +58,12 @@ export function ContactFormLoader() {
 
   return (
     <div ref={ref} className="min-h-[40rem] sm:min-h-[35rem]">
-      {shouldLoad || requestedByHash ? (
+      {/*
+        Declarative tools only exist while their form is in the DOM. Load the
+        deferred form eagerly for WebMCP agents, while preserving lazy loading
+        for every other browser.
+      */}
+      {shouldLoad || requestedByHash || webMcpAvailable ? (
         <ContactForm />
       ) : (
         <ContactFormSkeleton />

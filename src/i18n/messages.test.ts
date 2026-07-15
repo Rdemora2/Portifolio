@@ -49,5 +49,8 @@ describe("localized message catalogs", () => {
     expect(en.Contact.form.selectPlaceholder).toBe("Select an option")
     expect(es.Contact.form.send).toBe("Enviar mensaje")
     expect(es.Contact.form.serverErrors.rateLimited).not.toMatch(/requisi|tente/i)
+    expect(pt.Contact.form.webMcp.toolDescription).toContain("confirmação manual")
+    expect(en.Contact.form.webMcp.toolDescription).toContain("manual confirmation")
+    expect(es.Contact.form.webMcp.toolDescription).toContain("confirmación manual")
   })
 })

@@ -350,6 +350,17 @@
       "serverErrors": {
         "rateLimited": "Too many attempts. Wait a moment and try again.",
         "generic": "The message could not be sent right now. Try again or use a direct contact channel."
+      },
+      "webMcp": {
+        "toolDescription": "Fills Roberto Moraes's professional contact form for the user's review. Use it to discuss projects, consulting, or opportunities; submission requires manual confirmation.",
+        "parameters": {
+          "name": "Full name of the person who wants to get in touch.",
+          "email": "Valid email address where the person can receive a reply.",
+          "company": "The person's company or organization, when applicable.",
+          "projectType": "Category that best represents the project or opportunity.",
+          "message": "Context about the project, challenge, or opportunity, using at least 20 characters.",
+          "budget": "Estimated budget range, when it is already defined."
+        }
       }
     }
   },

@@ -1722,6 +1722,68 @@ test("keeps form validation localized and keyboard-first", async ({ page }) => {
   await expect(page.locator("#contact-message-error")).toBeVisible()
 })
 
+test("exposes a valid human-confirmed WebMCP contact tool", async ({ page }) => {
+  await page.addInitScript(() => {
+    if (!("modelContext" in document) && !("modelContext" in navigator)) {
+      Object.defineProperty(Document.prototype, "modelContext", {
+        configurable: true,
+        value: {},
+      })
+    }
+  })
+  await page.goto("/en", { waitUntil: "networkidle" })
+
+  const form = page.locator('form[toolname="prepare_portfolio_contact"]')
+  await expect(form).toHaveCount(1)
+
+  const contract = await form.evaluate((element) => {
+    if (!(element instanceof HTMLFormElement)) {
+      throw new Error("The WebMCP tool must be backed by a form")
+    }
+
+    const fields = Array.from(element.elements).filter(
+      (field): field is HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement =>
+        field instanceof HTMLInputElement ||
+        field instanceof HTMLSelectElement ||
+        field instanceof HTMLTextAreaElement,
+    )
+
+    return {
+      description: element.getAttribute("tooldescription"),
+      autoSubmit: element.hasAttribute("toolautosubmit"),
+      fields: fields.map((field) => ({
+        name: field.name,
+        required: field.required,
+        description: field.getAttribute("toolparamdescription"),
+      })),
+    }
+  })
+
+  expect(contract.description).toContain("manual confirmation")
+  expect(contract.autoSubmit).toBe(false)
+  expect(contract.fields.map(({ name }) => name)).toEqual([
+    "name",
+    "email",
+    "company",
+    "projectType",
+    "message",
+    "budget",
+  ])
+  expect(new Set(contract.fields.map(({ name }) => name)).size).toBe(
+    contract.fields.length,
+  )
+  expect(
+    contract.fields
+      .filter(({ required }) => required)
+      .map(({ name }) => name),
+  ).toEqual(["name", "email", "projectType", "message"])
+  expect(
+    contract.fields.every(({ description }) => Boolean(description?.trim())),
+  ).toBe(true)
+  await expect(page.locator("#botCheck")).toHaveCount(1)
+  await expect(form.locator("#botCheck")).toHaveCount(0)
+})
+
 test("enforces the configured production origin on the contact API", async ({ request }) => {
   const allowed = await request.post("/api/contact", {
     headers: { Origin: "https://robertomoraes.dev" },

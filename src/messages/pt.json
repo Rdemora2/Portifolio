@@ -350,6 +350,17 @@
       "serverErrors": {
         "rateLimited": "Muitas tentativas. Aguarde um momento e tente novamente.",
         "generic": "Não foi possível enviar agora. Tente novamente ou use o contato direto."
+      },
+      "webMcp": {
+        "toolDescription": "Preenche o formulário de contato profissional de Roberto Moraes para revisão do usuário. Use para discutir projetos, consultoria ou oportunidades; o envio exige confirmação manual.",
+        "parameters": {
+          "name": "Nome completo da pessoa que deseja entrar em contato.",
+          "email": "Endereço de e-mail válido no qual a pessoa pode receber uma resposta.",
+          "company": "Empresa ou organização da pessoa, quando aplicável.",
+          "projectType": "Categoria que melhor representa o projeto ou oportunidade.",
+          "message": "Contexto do projeto, desafio ou oportunidade, com no mínimo 20 caracteres.",
+          "budget": "Faixa de orçamento estimada, quando já estiver definida."
+        }
       }
     }
   },
