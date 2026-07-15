@@ -16,7 +16,8 @@
     "test:quality-hook": "bash scripts/ai-quality-gate.test.sh",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:e2e:install": "playwright install chromium firefox webkit"
+    "test:e2e:install": "playwright install chromium firefox webkit",
+    "install:hooks": "cp scripts/pre-push-e2e.sh .git/hooks/pre-push && chmod +x .git/hooks/pre-push && echo '✅ pre-push E2E hook installed'"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
