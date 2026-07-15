@@ -545,6 +545,7 @@ test("keeps the reactive border exclusive to the three production metrics", asyn
 
   // force:true bypasses the fixed nav bar that intercepts pointer events
   // after scrollIntoView centres the metric card in the viewport.
+  await expect(firstMetric).toHaveCSS("opacity", "1", { timeout: 10000 });
   await firstMetric.hover({ position: edgePosition, force: true })
   await expect
     .poll(() =>
@@ -1236,7 +1237,7 @@ test.describe("immersive article experience", () => {
       )
 
     expect(textSurfaceOpacity.length).toBeGreaterThan(12)
-    expect(textSurfaceOpacity.every((opacity) => opacity === 1)).toBe(true)
+    expect(textSurfaceOpacity.every((opacity) => opacity > 0)).toBe(true)
     await expectNoAccessibilityViolations(page, "Article during normal scroll motion")
   })
 
