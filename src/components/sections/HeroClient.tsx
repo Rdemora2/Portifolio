@@ -22,7 +22,11 @@ const mediaQueries = [
   "(max-width: 1023px)",
 ] as const
 
-function canRenderSignatureEffect() {
+function canRenderSignatureEffect(isBotHint: boolean) {
+  // The server already detected a bot via the real HTTP User-Agent header.
+  // Short-circuit immediately — no need to evaluate any client-side signals.
+  if (isBotHint) return false
+
   const connection = (navigator as NavigatorWithConnection).connection
   // Privacy browsers like Brave and Firefox spoof hardware info to prevent fingerprinting
   const isBrave = typeof navigator !== "undefined" && "brave" in navigator
@@ -60,7 +64,13 @@ function subscribeToCapabilities(onChange: () => void) {
   }
 }
 
-export function HeroClientWrapper({ children }: { children: React.ReactNode }) {
+export function HeroClientWrapper({
+  children,
+  isBotHint = false,
+}: {
+  children: React.ReactNode
+  isBotHint?: boolean
+}) {
   const [sectionRef, isInView] = useInView<HTMLElement>({
     threshold: 0,
     rootMargin: "0px",
@@ -68,7 +78,7 @@ export function HeroClientWrapper({ children }: { children: React.ReactNode }) {
   })
   const canRender = useSyncExternalStore(
     subscribeToCapabilities,
-    canRenderSignatureEffect,
+    () => canRenderSignatureEffect(isBotHint),
     () => false,
   )
 

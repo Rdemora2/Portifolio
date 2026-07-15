@@ -1,12 +1,14 @@
 import { useTranslations } from "next-intl";
 import { personalInfo } from "@/data/portfolio";
 import { HeroClientWrapper } from "./HeroClient";
+import { isBotFromHeaders } from "@/lib/is-bot";
 
-export function Hero() {
+export async function Hero() {
   const t = useTranslations("Hero");
+  const botHint = await isBotFromHeaders();
 
   return (
-    <HeroClientWrapper>
+    <HeroClientWrapper isBotHint={botHint}>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center">
           <div
