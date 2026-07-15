@@ -106,9 +106,19 @@ export function LiquidPortal() {
     const container = containerRef.current
     if (!container) return
 
-    const lowPower =
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse|headlesschrome/i.test(
+      navigator.userAgent || ""
+    )
+    if (isBot) return
+
+    const isBrave = typeof navigator !== "undefined" && (navigator as any).brave !== undefined
+    const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox")
+    const isPrivacyBrowser = isBrave || isFirefox
+
+    const lowPower = !isPrivacyBrowser && (
       (navigator.hardwareConcurrency || 4) <= 4 ||
       (navigator.deviceMemory !== undefined && navigator.deviceMemory <= 4)
+    )
     const dpr = Math.min(window.devicePixelRatio || 1, lowPower ? 1 : 1.5)
     const canvas = createWebGLCanvas({ alpha: true, antialias: false })
     if (!canvas) return

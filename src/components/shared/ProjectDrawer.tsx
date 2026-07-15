@@ -117,8 +117,12 @@ export function ProjectDrawer({
           connection?: { saveData?: boolean };
           deviceMemory?: number;
         });
+  const isBrave = typeof navigator !== "undefined" && (navigator as any).brave !== undefined;
+  const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox");
+  const isPrivacyBrowser = isBrave || isFirefox;
+
   const isLowPowerDevice = Boolean(
-    navigatorCapabilities &&
+    !isPrivacyBrowser && navigatorCapabilities &&
       ((navigatorCapabilities.hardwareConcurrency || 4) <= 4 ||
         (navigatorCapabilities.deviceMemory !== undefined &&
           navigatorCapabilities.deviceMemory <= 4)),

@@ -22,14 +22,25 @@ const mediaQueries = [
 
 function canRenderSignatureEffect() {
   const connection = (navigator as NavigatorWithConnection).connection
-  const isLowPower =
+  // Privacy browsers like Brave and Firefox spoof hardware info to prevent fingerprinting
+  const isBrave = typeof navigator !== "undefined" && (navigator as any).brave !== undefined
+  const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox")
+  const isPrivacyBrowser = isBrave || isFirefox
+
+  const isLowPower = !isPrivacyBrowser && (
     (navigator.hardwareConcurrency > 0 && navigator.hardwareConcurrency <= 4) ||
     (navigator.deviceMemory !== undefined && navigator.deviceMemory <= 4)
+  )
+
+  const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse|headlesschrome/i.test(
+    navigator.userAgent || ""
+  )
 
   return (
     document.visibilityState === "visible" &&
     !connection?.saveData &&
     !isLowPower &&
+    !isBot &&
     mediaQueries.every((query) => !window.matchMedia(query).matches)
   )
 }
