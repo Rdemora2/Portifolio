@@ -8,6 +8,9 @@ import {
   setRequestLocale,
 } from "next-intl/server"
 
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import { Footer } from "@/components/layout/Footer"
 import { Navigation } from "@/components/layout/Navigation"
 import { WebVitals } from "@/components/layout/WebVitals"
@@ -257,6 +260,8 @@ export default async function LocaleLayout({
           <Navigation />
           {children}
           <Footer />
+          <Analytics />
+          <SpeedInsights />
         </NextIntlClientProvider>
       </body>
     </html>

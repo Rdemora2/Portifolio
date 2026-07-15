@@ -117,7 +117,7 @@ export function ProjectDrawer({
           connection?: { saveData?: boolean };
           deviceMemory?: number;
         });
-  const isBrave = typeof navigator !== "undefined" && (navigator as any).brave !== undefined;
+  const isBrave = typeof navigator !== "undefined" && "brave" in navigator;
   const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox");
   const isPrivacyBrowser = isBrave || isFirefox;
 
