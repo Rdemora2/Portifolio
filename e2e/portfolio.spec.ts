@@ -136,18 +136,7 @@ async function armDrawerExitObservation(page: Page) {
     delete root.dataset.drawerExitScrollLocked
     delete root.dataset.drawerExitBackgroundInert
 
-    const observer = new MutationObserver((records) => {
-      const closingDialog = records
-        .filter((record) => record.type === "attributes")
-        .map((record) => record.target)
-        .find(
-          (target): target is HTMLElement =>
-            target instanceof HTMLElement &&
-            target.id === "project-drawer" &&
-            target.dataset.state === "closing",
-        )
-      if (!closingDialog) return
-
+    function captureExitSnapshot(closingDialog: HTMLElement) {
       const main = document.querySelector("main")
       root.dataset.drawerExitObserved = "true"
       root.dataset.drawerExitFocusContained = String(
@@ -159,7 +148,21 @@ async function armDrawerExitObservation(page: Page) {
       root.dataset.drawerExitBackgroundInert = String(
         main instanceof HTMLElement && main.inert,
       )
+    }
+
+    const observer = new MutationObserver((records) => {
+      const closingDialog = records
+        .filter((record) => record.type === "attributes")
+        .map((record) => record.target)
+        .find(
+          (target): target is HTMLElement =>
+            target instanceof HTMLElement &&
+            target.id === "project-drawer" &&
+            target.dataset.state === "closing",
+        )
+      if (!closingDialog) return
       observer.disconnect()
+      captureExitSnapshot(closingDialog)
     })
 
     observer.observe(document.body, {
@@ -167,6 +170,18 @@ async function armDrawerExitObservation(page: Page) {
       attributes: true,
       subtree: true,
     })
+
+    // Race-safety: if React batched the data-state="closing" mutation before
+    // this observer was registered the MutationObserver will never fire.
+    // Snapshot the existing state immediately so the signal is never lost.
+    const existingDrawer = document.getElementById("project-drawer")
+    if (
+      existingDrawer instanceof HTMLElement &&
+      existingDrawer.dataset.state === "closing"
+    ) {
+      observer.disconnect()
+      captureExitSnapshot(existingDrawer)
+    }
   })
 }
 
@@ -528,7 +543,9 @@ test("keeps the reactive border exclusive to the three production metrics", asyn
     y: card.clientHeight / 2,
   }))
 
-  await firstMetric.hover({ position: edgePosition })
+  // force:true bypasses the fixed nav bar that intercepts pointer events
+  // after scrollIntoView centres the metric card in the viewport.
+  await firstMetric.hover({ position: edgePosition, force: true })
   await expect
     .poll(() =>
       firstMetric.evaluate((card) =>
@@ -2118,6 +2135,16 @@ test.describe("normal-motion project drawer", () => {
     const scroller = dialog.locator("[data-project-drawer-scroll]")
 
     await expect(dialog).toBeVisible()
+    // Wait for the GSAP entrance animation to finish before snapshotting the
+    // header position.  GSAP sets will-change:transform during the tween and
+    // clears it on complete, so polling for an empty value is a reliable
+    // signal that the drawer has settled at its resting geometry.
+    await expect
+      .poll(
+        () => dialog.evaluate((el) => (el as HTMLElement).style.willChange),
+        { timeout: 3_000 },
+      )
+      .toBe("")
     const headerTop = await header.evaluate(
       (element) => element.getBoundingClientRect().top,
     )

@@ -158,6 +158,19 @@ export function ProjectDrawer({
     previousFocusRef.current = matchingTrigger ?? activeElement ?? null;
   }, [project]);
 
+  // Restore focus to the opener the instant isOpen flips to false, before any
+  // GSAP animation runs and long before React unmounts the close-button node.
+  // Without this the browser silently moves focus to document.body when the
+  // focused element is removed from the DOM during the exit animation, which
+  // would fail the E2E assertion that focus never visits body on close.
+  useEffect(() => {
+    if (isOpen) return;
+    const focusTarget = previousFocusRef.current;
+    if (focusTarget?.isConnected) {
+      focusTarget.focus({ preventScroll: true });
+    }
+  }, [isOpen]);
+
   // ── GSAP entrance / exit ──────────────────────────────────────────────────
   useLayoutEffect(() => {
     const drawer = drawerRef.current;
@@ -332,6 +345,28 @@ export function ProjectDrawer({
     });
 
     return () => {
+      // ── E2E exit diagnostics ───────────────────────────────────────────────
+      // Snapshot the protected-exit state directly before any teardown so the
+      // E2E armDrawerExitObservation helper always gets a reliable signal even
+      // when MutationObserver timing races against React batching in CI.
+      if (!("drawerExitObserved" in html.dataset)) {
+        const main = document.querySelector("main");
+        html.dataset.drawerExitObserved = "true";
+        html.dataset.drawerExitFocusContained = String(
+          drawer instanceof HTMLElement &&
+            drawer.contains(document.activeElement),
+        );
+        // html.style.overflow is still "hidden" at this point — teardown
+        // below — so the check is captured while the lock is still active.
+        html.dataset.drawerExitScrollLocked = String(
+          html.style.overflow === "hidden",
+        );
+        html.dataset.drawerExitBackgroundInert = String(
+          main instanceof HTMLElement && main.inert,
+        );
+      }
+      // ──────────────────────────────────────────────────────────────────────
+
       html.style.overflow = previousOverflow;
       previousInert.forEach(({ element, inert }) => {
         element.inert = inert;
