@@ -50,11 +50,13 @@ export function useActiveSection(): string {
       })
     }
 
-    updateActiveSection()
+    // Defer the initial measurement to prevent a forced reflow (layout thrashing) during the critical rendering path.
+    const initialTimeout = setTimeout(updateActiveSection, 100)
     window.addEventListener("scroll", updateActiveSection, { passive: true })
     window.addEventListener("resize", updateActiveSection)
 
     return () => {
+      clearTimeout(initialTimeout)
       cancelAnimationFrame(animationFrame)
       window.removeEventListener("scroll", updateActiveSection)
       window.removeEventListener("resize", updateActiveSection)

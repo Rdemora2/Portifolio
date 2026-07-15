@@ -67,8 +67,9 @@ const nextConfig: NextConfig = {
   turbopack: {},
   experimental: {
     globalNotFound: true,
-    optimizePackageImports: ["gsap", "ogl"],
+    optimizePackageImports: ["gsap", "ogl", "react-icons"],
     webVitalsAttribution: ["CLS", "LCP", "INP"],
+    optimizeCss: true,
   },
   output: "standalone",
 }
