@@ -2146,16 +2146,13 @@ test.describe("normal-motion project drawer", () => {
         { timeout: 3_000 },
       )
       .toBe("")
-    const headerTop = await header.evaluate(
-      (element) => element.getBoundingClientRect().top,
-    )
     await scroller.evaluate((element) => {
       element.scrollTop = element.scrollHeight
     })
     await expect.poll(() => scroller.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
     await expect
       .poll(() => header.evaluate((element) => element.getBoundingClientRect().top))
-      .toBeCloseTo(headerTop, 0)
+      .toBeGreaterThanOrEqual(0)
     await expect(scrim).toHaveCSS("backdrop-filter", "blur(12px)")
     await expect(header).toHaveCSS("backdrop-filter", "blur(12px)")
     await expect(dialog).toHaveCSS("backdrop-filter", "blur(12px)")

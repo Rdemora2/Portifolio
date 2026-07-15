@@ -260,8 +260,12 @@ export default async function LocaleLayout({
           <Navigation />
           {children}
           <Footer />
-          <Analytics />
-          <SpeedInsights />
+          {process.env.VERCEL === "1" && (
+            <>
+              <Analytics />
+              <SpeedInsights />
+            </>
+          )}
         </NextIntlClientProvider>
       </body>
     </html>
