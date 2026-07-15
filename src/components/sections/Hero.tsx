@@ -1,10 +1,10 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { personalInfo } from "@/data/portfolio";
 import { HeroClientWrapper } from "./HeroClient";
 import { isBotFromHeaders } from "@/lib/is-bot";
 
 export async function Hero() {
-  const t = useTranslations("Hero");
+  const t = await getTranslations("Hero");
   const botHint = await isBotFromHeaders();
 
   return (
