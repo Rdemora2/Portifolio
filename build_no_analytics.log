@@ -1,0 +1,52 @@
+
+> portifolio@0.1.0 build
+> next build && node scripts/prepare-standalone.mjs
+
+▲ Next.js 16.2.10 (Turbopack)
+- Experiments (use with caution):
+  ✓ globalNotFound
+  · optimizePackageImports
+  · webVitalsAttribution
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.4s
+  Running TypeScript ...
+  Finished TypeScript in 3.5s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/21) ...
+  Generating static pages using 5 workers (5/21) 
+  Generating static pages using 5 workers (10/21) 
+  Generating static pages using 5 workers (15/21) 
+✓ Generating static pages using 5 workers (21/21) in 941ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /_not-found
+├ ƒ /[locale]
+├ ● /[locale]/insights/go-em-producao
+│ ├ /pt/insights/go-em-producao
+│ ├ /en/insights/go-em-producao
+│ └ /es/insights/go-em-producao
+├ ƒ /api/contact
+├ ○ /apple-icon.png
+├ ○ /icon.svg
+├ ○ /opengraph-image
+├ ● /opengraph-image/[locale]
+│ ├ /opengraph-image/pt
+│ ├ /opengraph-image/en
+│ └ /opengraph-image/es
+├ ● /opengraph-image/article/[locale]
+│ ├ /opengraph-image/article/pt
+│ ├ /opengraph-image/article/en
+│ └ /opengraph-image/article/es
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+Standalone assets prepared.

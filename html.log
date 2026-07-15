@@ -1,0 +1,15 @@
+file:///Users/roberto/Documents/Code/Personal/Portifolio/scripts/check-bundle-budget.mjs:25
+  if (values.length === 0) throw new Error(message)
+                                 ^
+
+Error: HOME route did not expose any preloaded font entries in its initial HTML
+    at requireNonEmpty (file:///Users/roberto/Documents/Code/Personal/Portifolio/scripts/check-bundle-budget.mjs:25:34)
+    at measureRoute (file:///Users/roberto/Documents/Code/Personal/Portifolio/scripts/check-bundle-budget.mjs:153:18)
+    at file:///Users/roberto/Documents/Code/Personal/Portifolio/scripts/check-bundle-budget.mjs:292:7
+    at Array.map (<anonymous>)
+    at collectBundleMetrics (file:///Users/roberto/Documents/Code/Personal/Portifolio/scripts/check-bundle-budget.mjs:290:38)
+    at runBundleBudgetCheck (file:///Users/roberto/Documents/Code/Personal/Portifolio/scripts/check-bundle-budget.mjs:606:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///Users/roberto/Documents/Code/Personal/Portifolio/scripts/check-bundle-budget.mjs:630:12
+
+Node.js v26.0.0

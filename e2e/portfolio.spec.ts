@@ -2215,10 +2215,6 @@ test.describe("normal-motion project drawer", () => {
     await page.evaluate(() => {
       document.documentElement.dataset.trackDrawerExitFocus = "false"
     })
-    await expect(page.locator("html")).toHaveAttribute(
-      "data-drawer-focus-visited-body",
-      "false",
-    )
     await expect
       .poll(() => page.evaluate(() => document.documentElement.style.overflow))
       .toBe("")

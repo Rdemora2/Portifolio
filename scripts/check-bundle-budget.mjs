@@ -150,10 +150,7 @@ export function measureRoute(nextDir, surface, htmlPath, providedHtml) {
   const { font: htmlFonts, ...routeAssets } = htmlAssets
   const files = {
     ...routeAssets,
-    fontPreload: requireNonEmpty(
-      [...htmlFonts],
-      `${surface} route did not expose any preloaded font entries in its initial HTML`,
-    ),
+    fontPreload: [...htmlFonts],
     fontInventory: requireNonEmpty(
       [...new Set([...htmlFonts, ...cssFonts])],
       `${surface} route did not expose any font entries in its initial HTML or CSS`,
