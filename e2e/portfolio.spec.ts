@@ -661,10 +661,18 @@ test("keeps the reactive border exclusive to the three production metrics", asyn
     y: card.clientHeight / 2,
   }))
 
-  // force:true bypasses the fixed nav bar that intercepts pointer events
-  // after scrollIntoView centres the metric card in the viewport.
-  await expect(firstMetric).toHaveCSS("opacity", "1", { timeout: 10000 });
-  await firstMetric.hover({ position: edgePosition, force: true })
+  // Keep the fixed navigation out of this isolated component interaction.
+  // `force: true` would skip Playwright's hit-target check without changing
+  // the browser's real pointer target, which makes the pointermove assertion
+  // race with whichever fixed layer happens to be above the coordinates.
+  await page.locator("nav").first().evaluate((navigation) => {
+    navigation.style.pointerEvents = "none"
+  })
+  await expect(firstMetric).toHaveCSS("opacity", "1", { timeout: 10000 })
+  await firstMetric.hover({ position: edgePosition })
+  await expect
+    .poll(() => firstMetric.evaluate((card) => card.matches(":hover")))
+    .toBe(true)
   await expect
     .poll(() =>
       firstMetric.evaluate((card) =>

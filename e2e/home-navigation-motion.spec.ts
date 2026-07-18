@@ -154,31 +154,32 @@ test.describe("home navigation and restrained motion", () => {
     })
 
     await expect
-      .poll(() => reveal.evaluate((element) => element.getAnimations().length))
-      .toBeGreaterThan(0)
+      .poll(() =>
+        reveal.evaluate((element) => {
+          const ignoredProperties = new Set([
+            "composite",
+            "computedOffset",
+            "easing",
+            "offset",
+          ])
 
-    const animatedProperties = await reveal.evaluate((element) => {
-      const ignoredProperties = new Set([
-        "composite",
-        "computedOffset",
-        "easing",
-        "offset",
-      ])
-
-      return Array.from(
-        new Set(
-          element
-            .getAnimations()
-            .flatMap((animation) => {
-              const effect = animation.effect
-              return effect instanceof KeyframeEffect ? effect.getKeyframes() : []
-            })
-            .flatMap((keyframe) => Object.keys(keyframe))
-            .filter((property) => !ignoredProperties.has(property)),
-        ),
-      ).sort()
-    })
-    expect(animatedProperties).toEqual(["opacity", "transform"])
+          return Array.from(
+            new Set(
+              element
+                .getAnimations()
+                .flatMap((animation) => {
+                  const effect = animation.effect
+                  return effect instanceof KeyframeEffect
+                    ? effect.getKeyframes()
+                    : []
+                })
+                .flatMap((keyframe) => Object.keys(keyframe))
+                .filter((property) => !ignoredProperties.has(property)),
+            ),
+          ).sort()
+        }),
+      )
+      .toEqual(["opacity", "transform"])
 
     await expect
       .poll(() =>
