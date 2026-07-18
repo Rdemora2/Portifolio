@@ -9,6 +9,7 @@ import { Insights } from "@/components/sections/Insights"
 import { Metrics } from "@/components/sections/Metrics"
 import { Projects } from "@/components/sections/Projects"
 import { TechStack } from "@/components/sections/TechStack"
+import { WebsiteShowcase } from "@/components/sections/WebsiteShowcase"
 import { SectionDivider } from "@/components/shared/SectionDivider"
 
 export default async function Home({
@@ -41,6 +42,11 @@ export default async function Home({
         <Projects />
         <SectionDivider
           topColor="var(--color-void)"
+          bottomColor="var(--color-structure)"
+        />
+        <WebsiteShowcase />
+        <SectionDivider
+          topColor="var(--color-structure)"
           bottomColor="var(--color-deep)"
         />
         <TechStack />

@@ -337,6 +337,10 @@
     --section-intrinsic-size: 818px;
   }
 
+  .home-content > #sites {
+    --section-intrinsic-size: 2800px;
+  }
+
   .home-content > #tech {
     --section-intrinsic-size: 972px;
   }
@@ -364,6 +368,10 @@
 
     .home-content > #projects {
       --section-intrinsic-size: 748px;
+    }
+
+    .home-content > #sites {
+      --section-intrinsic-size: 2950px;
     }
 
     .home-content > #tech {
@@ -394,6 +402,10 @@
 
     .home-content > #projects {
       --section-intrinsic-size: 776px;
+    }
+
+    .home-content > #sites {
+      --section-intrinsic-size: 2300px;
     }
 
     .home-content > #tech {
