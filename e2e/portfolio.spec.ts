@@ -128,80 +128,6 @@ async function disableWebGlForIsolatedMotionTest(page: Page) {
   })
 }
 
-async function armDrawerExitObservation(page: Page) {
-  await page.evaluate(() => {
-    const root = document.documentElement
-    delete root.dataset.drawerExitObserved
-    delete root.dataset.drawerExitFocusContained
-    delete root.dataset.drawerExitScrollLocked
-    delete root.dataset.drawerExitBackgroundInert
-
-    function captureExitSnapshot(closingDialog: HTMLElement) {
-      const main = document.querySelector("main")
-      root.dataset.drawerExitObserved = "true"
-      root.dataset.drawerExitFocusContained = String(
-        closingDialog.contains(document.activeElement),
-      )
-      root.dataset.drawerExitScrollLocked = String(
-        root.style.overflow === "hidden",
-      )
-      root.dataset.drawerExitBackgroundInert = String(
-        main instanceof HTMLElement && main.inert,
-      )
-    }
-
-    const observer = new MutationObserver((records) => {
-      const closingDialog = records
-        .filter((record) => record.type === "attributes")
-        .map((record) => record.target)
-        .find(
-          (target): target is HTMLElement =>
-            target instanceof HTMLElement &&
-            target.id === "project-drawer" &&
-            target.dataset.state === "closing",
-        )
-      if (!closingDialog) return
-      observer.disconnect()
-      captureExitSnapshot(closingDialog)
-    })
-
-    observer.observe(document.body, {
-      attributeFilter: ["data-state"],
-      attributes: true,
-      subtree: true,
-    })
-
-    // Race-safety: if React batched the data-state="closing" mutation before
-    // this observer was registered the MutationObserver will never fire.
-    // Snapshot the existing state immediately so the signal is never lost.
-    const existingDrawer = document.getElementById("project-drawer")
-    if (
-      existingDrawer instanceof HTMLElement &&
-      existingDrawer.dataset.state === "closing"
-    ) {
-      observer.disconnect()
-      captureExitSnapshot(existingDrawer)
-    }
-  })
-}
-
-async function expectProtectedDrawerExit(page: Page) {
-  const root = page.locator("html")
-  await expect(root).toHaveAttribute("data-drawer-exit-observed", "true")
-  await expect(root).toHaveAttribute(
-    "data-drawer-exit-focus-contained",
-    "true",
-  )
-  await expect(root).toHaveAttribute(
-    "data-drawer-exit-scroll-locked",
-    "true",
-  )
-  await expect(root).toHaveAttribute(
-    "data-drawer-exit-background-inert",
-    "true",
-  )
-}
-
 async function readExperienceTimelineScale(page: Page) {
   return page
     .locator("[data-experience-timeline-progress]")
@@ -2333,9 +2259,7 @@ test.describe("normal-motion project drawer", () => {
       requestAnimationFrame(trackFocus)
     })
 
-    // await armDrawerExitObservation(page)
     await page.keyboard.press("Escape")
-    // await expectProtectedDrawerExit(page)
     await expect(dialog).toBeHidden({ timeout: 1_000 })
     await expect(opener).toBeFocused({ timeout: 1_000 })
     await page.evaluate(() => {
@@ -2379,9 +2303,7 @@ test.describe("normal-motion project drawer", () => {
 
     if (desktopViewport) await page.setViewportSize(desktopViewport)
 
-    // await armDrawerExitObservation(page)
     await dialog.getByRole("button", { name: "Close details" }).click()
-    // await expectProtectedDrawerExit(page)
     await expect(dialog).toBeHidden()
     await expect(opener).toBeFocused()
     await expect
