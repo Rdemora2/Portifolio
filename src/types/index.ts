@@ -69,6 +69,26 @@ export interface ProjectViewModel {
   hasCaseStudy: boolean
 }
 
+export type WebsiteExperienceTag =
+  | "editorialExperience"
+  | "institutionalStrategy"
+  | "motionDesign"
+  | "responsiveExperience"
+  | "frontendEngineering"
+
+export interface WebsiteExperience {
+  id: string
+  href: string
+  domain: string
+  image: {
+    src: string
+    width: number
+    height: number
+    blurDataURL: string
+  }
+  tagIds: readonly WebsiteExperienceTag[]
+}
+
 export interface TechItem {
   name: string
   category: TechCategory
