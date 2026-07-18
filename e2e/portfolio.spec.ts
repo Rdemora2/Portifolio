@@ -441,6 +441,107 @@ test("preserves the query and hash when switching locales", async ({ page }) => 
   await expect(page.locator("html")).toHaveAttribute("lang", "es-MX")
 })
 
+test("presents published website experiences with secure, responsive links", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto("/en/#sites", { waitUntil: "domcontentloaded" })
+
+  const showcase = page.locator("[data-website-showcase]")
+  const cards = showcase.locator("[data-website-card]")
+  const links = showcase.locator("[data-website-link]")
+  const thumbnails = showcase.locator("[data-website-thumbnail] img")
+  const expectedDestinations = [
+    "https://lp-institucional-vendas.vercel.app/",
+    "https://lp-institucional-advocacia.vercel.app/",
+    "https://front-site-tivix-technologies.vercel.app/",
+  ]
+
+  await expect(showcase).toBeVisible()
+  await expect(
+    showcase.getByRole("heading", {
+      level: 2,
+      name: "Websites that turn positioning into digital presence.",
+    }),
+  ).toBeVisible()
+  await expect(cards).toHaveCount(expectedDestinations.length)
+  await expect(links).toHaveCount(expectedDestinations.length)
+  await expect(thumbnails).toHaveCount(expectedDestinations.length)
+
+  for (const [index, destination] of expectedDestinations.entries()) {
+    const link = links.nth(index)
+
+    await expect(link).toHaveAttribute("href", destination)
+    await expect(link).toHaveAttribute("target", "_blank")
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer external")
+    await expect(link).toHaveAccessibleName(/opens in a new tab/i)
+  }
+
+  for (let index = 0; index < expectedDestinations.length; index += 1) {
+    const thumbnail = thumbnails.nth(index)
+    await thumbnail.scrollIntoViewIfNeeded()
+    await expect
+      .poll(
+        () =>
+          thumbnail.evaluate(
+            (image) =>
+              image instanceof HTMLImageElement &&
+              image.complete &&
+              image.naturalWidth > 0,
+          ),
+        {
+          message: `Local website thumbnail ${index + 1} must decode successfully`,
+          timeout: 15_000,
+        },
+      )
+      .toBe(true)
+  }
+
+  await expectNoHorizontalOverflow(page, "Website showcase on mobile")
+
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await expect(page.getByRole("button", { name: "Open menu" })).toBeVisible()
+  await expectNoHorizontalOverflow(page, "Website showcase on compact desktop")
+
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await expectNoHorizontalOverflow(page, "Website showcase on desktop")
+  await showcase.evaluate((section) => {
+    window.scrollTo({
+      top: (section as HTMLElement).offsetTop,
+      behavior: "instant",
+    })
+  })
+  const [gridBounds, firstCardBounds, tivixCardBounds] = await Promise.all([
+    showcase.locator("[data-website-grid]").boundingBox(),
+    cards.nth(0).boundingBox(),
+    cards.nth(2).boundingBox(),
+  ])
+
+  expect(gridBounds).not.toBeNull()
+  expect(firstCardBounds).not.toBeNull()
+  expect(tivixCardBounds).not.toBeNull()
+
+  if (gridBounds && firstCardBounds && tivixCardBounds) {
+    const gridCenter = gridBounds.x + gridBounds.width / 2
+    const tivixCenter = tivixCardBounds.x + tivixCardBounds.width / 2
+
+    expect(tivixCardBounds.width).toBeCloseTo(firstCardBounds.width, 0)
+    expect(Math.abs(tivixCenter - gridCenter)).toBeLessThanOrEqual(1)
+    expect(tivixCardBounds.y).toBeGreaterThan(
+      firstCardBounds.y + firstCardBounds.height,
+    )
+  }
+
+  const primaryNavigation = page.getByRole("navigation", {
+    name: "Main navigation",
+  })
+  await expect(primaryNavigation.getByRole("link", { name: "Sites" })).toHaveAttribute(
+    "aria-current",
+    "location",
+  )
+})
+
 test("keeps locale navigation and production metrics useful without JavaScript", async ({
   browser,
 }, testInfo) => {
@@ -460,6 +561,23 @@ test("keeps locale navigation and production metrics useful without JavaScript",
     await expect(metricFallbacks.nth(1)).toHaveText("6ms")
     await expect(metricFallbacks.nth(2)).toHaveText("92%")
     await expect(metricFallbacks.nth(0)).toHaveCSS("display", "inline")
+
+    const websiteShowcase = noScriptPage.locator("[data-website-showcase]")
+    await expect(websiteShowcase).toBeAttached()
+    await expect(websiteShowcase).toContainText(
+      "Websites that turn positioning into digital presence.",
+    )
+    await expect(noScriptPage.locator("[data-website-card]")).toHaveCount(3)
+    const websiteLinks = noScriptPage.locator("[data-website-link]")
+    await expect(websiteLinks).toHaveCount(3)
+    await expect(websiteLinks.nth(0)).toHaveAttribute(
+      "href",
+      "https://lp-institucional-vendas.vercel.app/",
+    )
+    await expect(websiteLinks.nth(2)).toHaveAttribute(
+      "href",
+      "https://front-site-tivix-technologies.vercel.app/",
+    )
 
     await noScriptPage
       .getByRole("link", { name: "ES — Switch language to Spanish" })

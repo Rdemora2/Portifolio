@@ -91,6 +91,24 @@ test("renders the localized home without engine-specific regressions", async ({
     page.getByRole("link", { name: "PT — Switch language to Portuguese" }),
   ).toHaveAttribute("href", "/pt")
   await expect(page.locator("[data-experience-list] > li")).toHaveCount(5)
+  const websiteCards = page.locator("[data-website-card]")
+  const websiteLinks = page.locator("[data-website-link]")
+  await expect(websiteCards).toHaveCount(3)
+  await expect(websiteLinks).toHaveCount(3)
+  await expect(websiteLinks.nth(0)).toHaveAttribute(
+    "href",
+    "https://lp-institucional-vendas.vercel.app/",
+  )
+  await expect(websiteLinks.nth(1)).toHaveAttribute(
+    "href",
+    "https://lp-institucional-advocacia.vercel.app/",
+  )
+  await expect(websiteLinks.nth(2)).toHaveAttribute(
+    "href",
+    "https://front-site-tivix-technologies.vercel.app/",
+  )
+  await expect(websiteLinks.nth(0)).toHaveAttribute("target", "_blank")
+  await expect(websiteLinks.nth(0)).toHaveAccessibleName(/opens in a new tab/i)
   await expectNoHorizontalOverflow(page)
   expectNoRuntimeErrors(runtimeErrors, "Localized home")
 })
