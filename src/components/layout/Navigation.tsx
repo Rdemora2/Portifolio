@@ -58,7 +58,6 @@ function HomeNavigation() {
   const activeSection = useActiveSection();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const linksRef = useRef<HTMLAnchorElement[]>([]);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const dialogCloseButtonRef = useRef<HTMLButtonElement>(null);
   const brandRef = useRef<HTMLAnchorElement>(null);
@@ -135,12 +134,33 @@ function HomeNavigation() {
       element.inert = true;
     });
 
-    let focusMenuSecondFrame = 0;
-    const focusMenu = requestAnimationFrame(() => {
-      focusMenuSecondFrame = requestAnimationFrame(() => {
-        linksRef.current[0]?.focus({ preventScroll: true });
-      });
-    });
+    const focusWithinMenu = (
+      element: HTMLButtonElement | HTMLAnchorElement | undefined,
+    ) => {
+      if (!element) return;
+      element.focus();
+    };
+
+    const getMenuLinks = () =>
+      Array.from(menu.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+
+    let focusMenuFrame = 0;
+    let focusAttempts = 0;
+    const focusFirstVisibleLink = () => {
+      const firstLink = getMenuLinks()[0];
+      if (!firstLink) return;
+
+      if (getComputedStyle(firstLink).visibility === "visible") {
+        focusWithinMenu(firstLink);
+        return;
+      }
+
+      focusAttempts += 1;
+      if (focusAttempts < 12) {
+        focusMenuFrame = requestAnimationFrame(focusFirstVisibleLink);
+      }
+    };
+    focusMenuFrame = requestAnimationFrame(focusFirstVisibleLink);
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -153,7 +173,7 @@ function HomeNavigation() {
 
       const focusableElements = [
         dialogCloseButton,
-        ...linksRef.current,
+        ...getMenuLinks(),
       ].filter((element) => element.getClientRects().length > 0);
       if (focusableElements.length === 0) return;
 
@@ -169,14 +189,13 @@ function HomeNavigation() {
           ? 0
           : currentIndex + 1;
 
-      focusableElements[nextIndex]?.focus({ preventScroll: true });
+      focusWithinMenu(focusableElements[nextIndex]);
     };
 
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      cancelAnimationFrame(focusMenu);
-      cancelAnimationFrame(focusMenuSecondFrame);
+      cancelAnimationFrame(focusMenuFrame);
       document.removeEventListener("keydown", handleKeyDown);
       html.style.overflow = previousOverflow;
       previousInert.forEach(({ element, inert }) => {
@@ -194,7 +213,7 @@ function HomeNavigation() {
   }, [isMobileOpen]);
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const desktopQuery = window.matchMedia("(min-width: 1280px)");
     const closeOnDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) setIsMobileOpen(false);
     };
@@ -271,7 +290,7 @@ function HomeNavigation() {
             RM<span style={{ color: "var(--color-signal)" }}>.</span>
           </a>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-5 xl:flex 2xl:gap-8">
             {navLinks.slice(1).map(({ id }) => (
               <a
                 key={id}
@@ -293,7 +312,7 @@ function HomeNavigation() {
             <LocaleSwitcher />
           </div>
 
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 xl:hidden">
             <div ref={mobileLocaleRef}>
               <LocaleSwitcher />
             </div>
@@ -302,7 +321,7 @@ function HomeNavigation() {
               className={`${styles.menuButton} relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 ${
                 isMobileOpen ? "invisible" : ""
               }`}
-              onClick={() => setIsMobileOpen((current) => !current)}
+              onClick={() => setIsMobileOpen(true)}
               aria-label={isMobileOpen ? t("closeMenu") : t("openMenu")}
               aria-expanded={isMobileOpen}
               aria-controls="mobile-navigation-menu"
@@ -343,7 +362,7 @@ function HomeNavigation() {
         id="mobile-navigation-menu"
         ref={mobileMenuRef}
         data-open={isMobileOpen ? "true" : "false"}
-        className={`${styles.mobileMenu} fixed left-0 top-0 z-[120] flex h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none md:hidden ${
+        className={`${styles.mobileMenu} fixed left-0 top-0 z-[120] flex h-dvh w-full flex-col items-center justify-start overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out motion-reduce:transition-none xl:hidden ${
           isMobileOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
         style={{
@@ -357,7 +376,7 @@ function HomeNavigation() {
         <button
           ref={dialogCloseButtonRef}
           type="button"
-          className={`${styles.menuCloseButton} absolute right-4 top-4 z-[130] flex h-11 w-11 flex-col items-center justify-center gap-1.5`}
+          className={`${styles.menuCloseButton} fixed right-4 top-4 z-[130] flex h-11 w-11 flex-col items-center justify-center gap-1.5`}
           onClick={() => setIsMobileOpen(false)}
           aria-label={t("closeMenu")}
         >
@@ -371,29 +390,28 @@ function HomeNavigation() {
           />
         </button>
 
-        {navLinks.slice(1).map(({ id }, i) => (
-          <a
-            key={id}
-            ref={(el) => {
-              if (el) linksRef.current[i] = el;
-            }}
-            href={`#${id}`}
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick(id);
-            }}
-            className={`${styles.mobileLink} inline-flex min-h-11 items-center text-2xl font-bold sm:text-3xl`}
-            aria-current={activeSection === id ? "location" : undefined}
-            style={
-              {
-                fontFamily: "var(--font-display)",
-                "--nav-item-delay": isMobileOpen ? `${i * 45}ms` : "0ms",
-              } as MobileNavItemStyle
-            }
-          >
-            {t(id)}
-          </a>
-        ))}
+        <div className="flex min-h-full w-full shrink-0 flex-col items-center gap-3 px-4 py-20 sm:gap-6 sm:px-6 sm:py-16">
+          {navLinks.slice(1).map(({ id }, i) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(id);
+              }}
+              className={`${styles.mobileLink} inline-flex min-h-11 items-center text-2xl font-bold first:mt-auto last:mb-auto sm:text-3xl`}
+              aria-current={activeSection === id ? "location" : undefined}
+              style={
+                {
+                  fontFamily: "var(--font-display)",
+                  "--nav-item-delay": isMobileOpen ? `${i * 45}ms` : "0ms",
+                } as MobileNavItemStyle
+              }
+            >
+              {t(id)}
+            </a>
+          ))}
+        </div>
       </div>
     </>
   );

@@ -289,6 +289,7 @@ export const navLinks = [
   { id: "hero", label: "Início" },
   { id: "about", label: "Sobre" },
   { id: "projects", label: "Projetos" },
+  { id: "sites", label: "Sites" },
   { id: "tech", label: "Stack" },
   { id: "metrics", label: "Métricas" },
   { id: "experience", label: "Experiência" },

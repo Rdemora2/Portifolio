@@ -2287,6 +2287,38 @@ test.describe("mobile experience", () => {
     await expect(dialog).toBeHidden()
     await expect(trigger).toBeFocused()
 
+    await page.setViewportSize({ width: 844, height: 390 })
+    await trigger.click()
+    await expect(dialog).toBeVisible()
+
+    const links = dialog.getByRole("link")
+    const closeButton = dialog.getByRole("button", { name: "Fechar menu" })
+    await expect(links).toHaveCount(8)
+    await expect(links.first()).toBeFocused()
+
+    for (let index = 0; index < 8; index += 1) {
+      const link = links.nth(index)
+      await expect(link).toBeFocused()
+      await expect
+        .poll(() =>
+          link.evaluate((element) => {
+            const rect = element.getBoundingClientRect()
+            return rect.top >= 0 && rect.bottom <= window.innerHeight
+          }),
+        )
+        .toBe(true)
+
+      if (index < 7) await page.keyboard.press("Tab")
+    }
+
+    await page.keyboard.press("Tab")
+    await expect(closeButton).toBeFocused()
+    await expect(closeButton).toBeInViewport()
+
+    await page.keyboard.press("Escape")
+    await expect(dialog).toBeHidden()
+    await expect(trigger).toBeFocused()
+
     const overflows = await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth + 1,
     )
