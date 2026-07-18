@@ -12,6 +12,7 @@ Este README é a porta de entrada operacional. O desenho completo, os fluxos, co
 - Prefixo de idioma somente quando necessário: <code>/</code>, <code>/en</code> e <code>/es</code>.
 - Metadata localizada com canonical, <code>hreflang</code>, Open Graph, Twitter Cards, sitemap e JSON-LD.
 - Server Components por padrão e ilhas client-side somente para interação.
+- Vitrine de sites publicados com screenshots locais, links externos seguros e conteúdo integralmente localizado.
 - Artigo legível sem JavaScript, com experiência de scroll aprimorada quando o navegador e as preferências do usuário permitem.
 - WebGL, GSAP e formulário carregados sob demanda, com fallbacks estáticos ou nativos.
 - API de contato com validação estrita, proteção de origem, limites de corpo, rate limiting, honeypot, timeout e idempotência.
@@ -246,7 +247,7 @@ src/
 ├── app/                 rotas, layouts, metadata, imagens sociais e API
 ├── components/          layout, seções, componentes compartilhados e artigo
 ├── content/             modelos editoriais localizados
-├── data/                estrutura de projetos, experiência, métricas e links
+├── data/                projetos, sites publicados, experiência, métricas e links
 ├── hooks/               observação de viewport e navegação
 ├── lib/                 constantes, validações, WebGL e gates de produção
 ├── messages/            catálogos pt, en e es
@@ -254,6 +255,7 @@ src/
 e2e/                     regressão Playwright
 scripts/                 bundle gate, standalone e quality hook
 docs/                    contexto técnico versionado
+public/images/sites/     thumbnails locais dos sites publicados
 ~~~
 
 <code>docs/portifolio/</code> permanece intencionalmente ignorado e não faz parte da documentação versionada.

@@ -109,13 +109,14 @@ O provider global envia ao cliente apenas <code>Nav</code>, <code>Error</code> e
 1. Hero;
 2. Sobre;
 3. Projetos;
-4. Stack;
-5. Métricas;
-6. Experiência;
-7. Insights;
-8. Contato.
+4. Sites publicados;
+5. Stack;
+6. Métricas;
+7. Experiência;
+8. Insights;
+9. Contato.
 
-Divisores mantêm a transição entre os fundos. A rota está em um grupo próprio para que seu <code>loading.tsx</code> localizado não afete o artigo. O conteúdo estrutural é renderizado no servidor; filtros, drawers, contadores, menus e efeitos são ilhas client-side.
+Divisores mantêm a transição entre os fundos. A vitrine de sites é um Server Component e entrega títulos, destinos e thumbnails no HTML inicial; somente o reveal progressivo reutiliza uma ilha compartilhada. A rota está em um grupo próprio para que seu <code>loading.tsx</code> localizado não afete o artigo. O conteúdo estrutural é renderizado no servidor; filtros, drawers, contadores, menus e efeitos são ilhas client-side.
 
 ### 2.4 Artigo
 
@@ -171,7 +172,7 @@ src/
 │   ├── sections/                 seções da home
 │   └── shared/                   motion, drawer, WebGL e UI compartilhada
 ├── content/insights/             contratos e conteúdo editorial
-├── data/portfolio.ts             dados estruturais do portfólio
+├── data/                         portfólio e sites publicados
 ├── hooks/                        viewport e seção ativa
 ├── lib/                          configuração, validação e integrações
 ├── messages/                     catálogos pt, en e es
@@ -184,6 +185,7 @@ Outras áreas:
 | Caminho | Responsabilidade |
 | --- | --- |
 | <code>e2e/</code> | Regressão de navegador, a11y e progressive enhancement |
+| <code>public/images/sites/</code> | Screenshots locais, aprovados e dimensionados da vitrine de sites |
 | <code>scripts/</code> | Bundle gate, preparação standalone e quality hook |
 | <code>.github/instructions/</code> | Guardrails de frontend, backend, motion e documentação |
 | <code>.github/workflows/ci.yml</code> | Gate de integração contínua |
@@ -299,7 +301,24 @@ Para adicionar ou alterar um projeto:
 
 Para alterar experiência profissional, mantenha em sincronia os itens estruturais e <code>Experience.items.&lt;id&gt;</code>.
 
-### 6.2 Artigo reutilizável
+### 6.2 Sites publicados
+
+<code>src/data/showcase-sites.ts</code> mantém apenas o contrato estrutural de cada experiência: ID estável, URL HTTPS, domínio, thumbnail com dimensões reservadas e blur placeholder, além dos IDs de tags. Títulos, descrições, textos alternativos e rótulos ficam no namespace <code>WebsiteShowcase</code> dos três catálogos.
+
+<code>WebsiteShowcase.tsx</code> renderiza a seção no servidor, usa <code>next/image</code> com lazy loading e cria um link externo seguro por card. O nome acessível preserva o conteúdo visível do card e acrescenta um aviso oculto de nova aba, mantendo a correspondência entre rótulo visual e falado.
+
+Para publicar outro site:
+
+1. obtenha autorização para publicar o destino e a captura;
+2. salve um screenshot otimizado em <code>public/images/sites/</code>, sem dados pessoais ou confidenciais;
+3. declare URL HTTPS, domínio, dimensões reais, blur placeholder e tags em <code>src/data/showcase-sites.ts</code>;
+4. crie todas as chaves de <code>WebsiteShowcase.items.&lt;id&gt;</code> em português, inglês e espanhol;
+5. valide o asset, o link externo, o nome acessível, a ausência de overflow e o comportamento sem JavaScript;
+6. execute testes unitários, smokes cross-browser, E2E completo e bundle gate.
+
+O teste de dados impede IDs ou destinos duplicados e exige que todo thumbnail local exista. As regressões de navegador verificam todos os destinos publicados, segurança da nova aba, breakpoints móvel/compacto/desktop e renderização server-first sem JavaScript.
+
+### 6.3 Artigo reutilizável
 
 <code>InsightArticle</code> define:
 
@@ -752,6 +771,7 @@ Todos os keyframes ficam restritos a <code>transform</code> e <code>opacity</cod
 - A timeline profissional usa CSS Scroll-Driven Animations dentro de <code>@supports</code>; navegadores sem suporte mantêm o trilho estático.
 - Métricas usam Intersection Observer e <code>requestAnimationFrame</code> para contagem, com valor final separado para tecnologia assistiva.
 - A borda reativa fica restrita aos três cards de métricas.
+- A vitrine de sites combina reveal progressivo com hover restrito a <code>transform</code> e <code>opacity</code>; reduced motion e dispositivos sem hover mantêm os cards estáticos.
 
 ### 12.3 Drawer
 
@@ -819,7 +839,7 @@ Antes de adicionar motion:
 - import do Resend somente após validar o request;
 - <code>next/font</code> com fontes self-hosted no build e <code>display: swap</code>;
 - otimização de imports de GSAP e OGL pelo Turbopack;
-- imagens configuradas para AVIF/WebP, embora <code>public</code> esteja vazio atualmente;
+- thumbnails locais da vitrine com dimensões reservadas, blur placeholder, lazy loading e negociação AVIF/WebP pelo <code>next/image</code>;
 - <code>content-visibility: auto</code> quando suportado para seções fora da viewport;
 - frames, observers e listeners com cleanup;
 - motion reduzido por capacidade e preferência.
@@ -928,6 +948,7 @@ Vitest roda em ambiente Node e inclui <code>src/**/*.test.ts</code> e <code>scri
 | Validação | normalização, unknown fields, controles e limites |
 | i18n | forma idêntica dos catálogos e fluxo de contato |
 | Artigo | edições completas, cenas, labels e cópias isoladas |
+| Sites publicados | IDs e destinos únicos, HTTPS, assets locais e dimensões reservadas |
 | Bundle gate | assets, fallback dinâmico, fontes, manifestos vazios e regressões |
 
 <code>npm test</code> também executa o teste shell do quality hook.
@@ -938,8 +959,8 @@ Vitest roda em ambiente Node e inclui <code>src/**/*.test.ts</code> e <code>scri
 | --- | --- |
 | <code>chromium</code> | Regressão completa de UI, SEO, a11y, artigo, drawer, API e mobile |
 | <code>chromium-webgl-disabled</code> | Drawer funcional sem WebGL |
-| <code>firefox-smoke</code> | Home, artigo e drawer nas invariantes cross-browser |
-| <code>webkit-smoke</code> | Home, artigo e drawer nas invariantes cross-browser |
+| <code>firefox-smoke</code> | Home, sites publicados, artigo e drawer nas invariantes cross-browser |
+| <code>webkit-smoke</code> | Home, sites publicados, artigo e drawer nas invariantes cross-browser |
 
 Configuração:
 
@@ -1492,6 +1513,7 @@ Instruções devem ser reproduzíveis por um revisor sem contexto.
 | --- | --- | --- |
 | Texto localizado | três catálogos ou três edições do artigo | testes i18n/conteúdo, build e E2E da rota |
 | Projeto | dados, tipos e mensagens | Vitest, drawer desktop/mobile, a11y e bundle |
+| Site publicado | dados, três catálogos e thumbnail local | Vitest, link HTTPS, no-JS, cross-browser, overflow e bundle |
 | Experiência profissional | dados e mensagens | semântica da lista, espaçamento, timeline e reduced motion |
 | Artigo | conteúdo, rota, metadata, sitemap e imagem | sem JS, print, reduced motion, SEO, a11y e bundle |
 | Motion | componente, CSS e instruções | reduced motion, touch, low-power, CPU/GPU e E2E |
@@ -1538,7 +1560,8 @@ Prioridade operacional antes de escala horizontal:
 | Layout e metadata | <code>src/app/[locale]/layout.tsx</code> |
 | Home | <code>src/app/[locale]/(home)/page.tsx</code> |
 | Artigo | <code>src/app/[locale]/insights/go-em-producao</code>, <code>src/components/insights</code> |
-| Conteúdo | <code>src/data/portfolio.ts</code>, <code>src/content</code>, <code>src/messages</code> |
+| Conteúdo | <code>src/data/portfolio.ts</code>, <code>src/data/showcase-sites.ts</code>, <code>src/content</code>, <code>src/messages</code> |
+| Vitrine de sites | <code>src/components/sections/WebsiteShowcase.tsx</code>, <code>src/components/sections/WebsiteShowcase.module.css</code>, <code>public/images/sites</code> |
 | Contato | <code>src/app/api/contact/route.ts</code>, <code>src/lib/validations.ts</code> |
 | Ambiente | <code>.env.example</code>, <code>src/lib/production-env.ts</code>, <code>src/instrumentation.ts</code> |
 | Performance | <code>scripts/check-bundle-budget.mjs</code>, <code>src/components/layout/WebVitals.tsx</code> |
