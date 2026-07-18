@@ -3,6 +3,7 @@
     "hero": "Home",
     "about": "About",
     "projects": "Projects",
+    "sites": "Sites",
     "tech": "Stack",
     "tech_small": "Technologies",
     "metrics": "Metrics",
@@ -226,6 +227,44 @@
             "Successfully deployed across an international hotel chain"
           ]
         }
+      }
+    }
+  },
+  "WebsiteShowcase": {
+    "eyebrow": "Web experiences",
+    "title": "Websites that turn positioning into digital presence.",
+    "description": "A selection of complete experiences — from visual direction through development — crafted to communicate value, feel effortless, and stay memorable.",
+    "publishedCount": "{count, plural, one {# published experience} other {# published experiences}}",
+    "live": "Live",
+    "visit": "Explore live website",
+    "newTab": "opens in a new tab",
+    "deliverablesLabel": "Applied capabilities",
+    "inDevelopment": "New digital experiences in development",
+    "tags": {
+      "editorialExperience": "Editorial experience",
+      "institutionalStrategy": "Institutional strategy",
+      "motionDesign": "Motion design",
+      "responsiveExperience": "Responsive UX",
+      "frontendEngineering": "Frontend engineering"
+    },
+    "items": {
+      "luxury": {
+        "category": "Luxury · Fashion · Jewelry",
+        "title": "VESTIGIAL — a digital experience for luxury brands",
+        "description": "An editorial presence created for jewelry, fashion, and premium businesses, combining visual storytelling, expressive typography, and immersive navigation.",
+        "imageAlt": "VESTIGIAL project page featuring a black-and-white photograph of a metal piece beside the title Compression."
+      },
+      "legal": {
+        "category": "Business law",
+        "title": "Almeida Vilar Costa — an institutional legal presence",
+        "description": "A restrained, contemporary experience designed to communicate authority, clarity, and trust for high-complexity legal services.",
+        "imageAlt": "Almeida Vilar Costa homepage with the headline Legal clarity to move business and an architectural composition in green tones."
+      },
+      "tivix": {
+        "category": "Technology · Software · Artificial intelligence",
+        "title": "Tivix Technologies — a digital presence for software and AI",
+        "description": "A high-contrast technology experience presenting full-stack development, artificial intelligence, and automation through a direct, responsive, motion-led narrative.",
+        "imageAlt": "Tivix Technologies homepage with a centered opening section on a black background, white typography, and luminous blue and violet accents."
       }
     }
   },

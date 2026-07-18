@@ -3,6 +3,7 @@
     "hero": "Início",
     "about": "Sobre",
     "projects": "Projetos",
+    "sites": "Sites",
     "tech": "Stack",
     "tech_small": "Tecnologias",
     "metrics": "Métricas",
@@ -226,6 +227,44 @@
             "Implantação bem-sucedida em rede hoteleira internacional"
           ]
         }
+      }
+    }
+  },
+  "WebsiteShowcase": {
+    "eyebrow": "Experiências web",
+    "title": "Sites que transformam posicionamento em presença digital.",
+    "description": "Uma seleção de experiências completas — da direção visual ao desenvolvimento — concebidas para comunicar valor, funcionar com fluidez e permanecer na memória.",
+    "publishedCount": "{count, plural, one {# experiência publicada} other {# experiências publicadas}}",
+    "live": "No ar",
+    "visit": "Explorar site ao vivo",
+    "newTab": "abre em uma nova aba",
+    "deliverablesLabel": "Competências aplicadas",
+    "inDevelopment": "Novas experiências digitais em desenvolvimento",
+    "tags": {
+      "editorialExperience": "Experiência editorial",
+      "institutionalStrategy": "Estratégia institucional",
+      "motionDesign": "Motion design",
+      "responsiveExperience": "UX responsiva",
+      "frontendEngineering": "Engenharia frontend"
+    },
+    "items": {
+      "luxury": {
+        "category": "Luxo · Moda · Joalheria",
+        "title": "VESTIGIAL — experiência digital para marcas de luxo",
+        "description": "Uma presença editorial criada para joalherias, moda e negócios premium, combinando narrativa visual, tipografia expressiva e uma navegação imersiva.",
+        "imageAlt": "Página do projeto VESTIGIAL com fotografia em preto e branco de uma peça metálica e o título Compressão."
+      },
+      "legal": {
+        "category": "Advocacia empresarial",
+        "title": "Almeida Vilar Costa — presença institucional jurídica",
+        "description": "Uma experiência sóbria e contemporânea, estruturada para comunicar autoridade, clareza e confiança em serviços jurídicos de alta complexidade.",
+        "imageAlt": "Página inicial do escritório Almeida Vilar Costa com o título Clareza jurídica para mover negócios e uma composição arquitetônica em tons de verde."
+      },
+      "tivix": {
+        "category": "Tecnologia · Software · Inteligência artificial",
+        "title": "Tivix Technologies — presença digital para software e IA",
+        "description": "Uma experiência tecnológica de alto contraste que apresenta desenvolvimento full stack, inteligência artificial e automação por meio de uma narrativa direta, responsiva e guiada por movimento.",
+        "imageAlt": "Página inicial da Tivix Technologies com seção de abertura centralizada sobre fundo preto, tipografia branca e luzes em azul e violeta."
       }
     }
   },
