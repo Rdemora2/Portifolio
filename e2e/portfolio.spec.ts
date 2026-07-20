@@ -440,23 +440,23 @@ test("presents published website experiences with secure, responsive links", asy
       behavior: "instant",
     })
   })
-  const [gridBounds, firstCardBounds, tivixCardBounds] = await Promise.all([
+  const [gridBounds, firstCardBounds, lastCardBounds] = await Promise.all([
     showcase.locator("[data-website-grid]").boundingBox(),
     cards.nth(0).boundingBox(),
-    cards.nth(2).boundingBox(),
+    cards.nth(4).boundingBox(),
   ])
 
   expect(gridBounds).not.toBeNull()
   expect(firstCardBounds).not.toBeNull()
-  expect(tivixCardBounds).not.toBeNull()
+  expect(lastCardBounds).not.toBeNull()
 
-  if (gridBounds && firstCardBounds && tivixCardBounds) {
+  if (gridBounds && firstCardBounds && lastCardBounds) {
     const gridCenter = gridBounds.x + gridBounds.width / 2
-    const tivixCenter = tivixCardBounds.x + tivixCardBounds.width / 2
+    const lastCardCenter = lastCardBounds.x + lastCardBounds.width / 2
 
-    expect(tivixCardBounds.width).toBeCloseTo(firstCardBounds.width, 0)
-    expect(Math.abs(tivixCenter - gridCenter)).toBeLessThanOrEqual(1)
-    expect(tivixCardBounds.y).toBeGreaterThan(
+    expect(lastCardBounds.width).toBeCloseTo(firstCardBounds.width, 0)
+    expect(Math.abs(lastCardCenter - gridCenter)).toBeLessThanOrEqual(1)
+    expect(lastCardBounds.y).toBeGreaterThan(
       firstCardBounds.y + firstCardBounds.height,
     )
   }
