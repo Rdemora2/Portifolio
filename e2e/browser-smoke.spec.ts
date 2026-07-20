@@ -93,8 +93,8 @@ test("renders the localized home without engine-specific regressions", async ({
   await expect(page.locator("[data-experience-list] > li")).toHaveCount(5)
   const websiteCards = page.locator("[data-website-card]")
   const websiteLinks = page.locator("[data-website-link]")
-  await expect(websiteCards).toHaveCount(3)
-  await expect(websiteLinks).toHaveCount(3)
+  await expect(websiteCards).toHaveCount(5)
+  await expect(websiteLinks).toHaveCount(5)
   await expect(websiteLinks.nth(0)).toHaveAttribute(
     "href",
     "https://lp-institucional-vendas.vercel.app/",

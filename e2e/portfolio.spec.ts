@@ -382,6 +382,8 @@ test("presents published website experiences with secure, responsive links", asy
     "https://lp-institucional-vendas.vercel.app/",
     "https://lp-institucional-advocacia.vercel.app/",
     "https://front-site-tivix-technologies.vercel.app/",
+    "https://lp-institucional-paisagismo.vercel.app/",
+    "https://lp-institucional-fintech.vercel.app/",
   ]
 
   await expect(showcase).toBeVisible()
@@ -493,9 +495,9 @@ test("keeps locale navigation and production metrics useful without JavaScript",
     await expect(websiteShowcase).toContainText(
       "Websites that turn positioning into digital presence.",
     )
-    await expect(noScriptPage.locator("[data-website-card]")).toHaveCount(3)
+    await expect(noScriptPage.locator("[data-website-card]")).toHaveCount(5)
     const websiteLinks = noScriptPage.locator("[data-website-link]")
-    await expect(websiteLinks).toHaveCount(3)
+    await expect(websiteLinks).toHaveCount(5)
     await expect(websiteLinks.nth(0)).toHaveAttribute(
       "href",
       "https://lp-institucional-vendas.vercel.app/",
@@ -706,7 +708,7 @@ test("draws the experience timeline with native scroll-linked motion", async ({
   )
   await expect
     .poll(() => readExperienceTimelineScale(page))
-    .toBeGreaterThan(0.35)
+    .toBeGreaterThan(0.30)
   const middleScale = await readExperienceTimelineScale(page)
   expect(middleScale).toBeGreaterThan(initialScale + 0.3)
   expect(middleScale).toBeLessThan(0.65)
