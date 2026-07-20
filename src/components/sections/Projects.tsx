@@ -21,6 +21,7 @@ export function Projects() {
     keyDecisionCount: project.caseStudy?.keyDecisions.length ?? 0,
     lessonsLearnedCount: project.caseStudy?.lessonsLearned.length ?? 0,
     hasCaseStudy: Boolean(project.caseStudy),
+    managedProductGroups: project.managedProductGroups ?? [],
   }));
 
   return (

@@ -33,6 +33,19 @@ export interface CaseStudyDetail {
   results: string[]
 }
 
+export interface ManagedDigitalProduct {
+  id: string
+  name: string
+  href: string
+}
+
+export type ManagedProductGroupId = "editorialPortals" | "newcoPlay"
+
+export interface ManagedDigitalProductGroup {
+  id: ManagedProductGroupId
+  products: readonly ManagedDigitalProduct[]
+}
+
 export interface Project {
   id: string
   slug: string
@@ -54,6 +67,7 @@ export interface Project {
   order: number
   international?: boolean
   caseStudy?: CaseStudyDetail
+  managedProductGroups?: readonly ManagedDigitalProductGroup[]
 }
 
 export interface ProjectViewModel {
@@ -67,6 +81,7 @@ export interface ProjectViewModel {
   keyDecisionCount: number
   lessonsLearnedCount: number
   hasCaseStudy: boolean
+  managedProductGroups: readonly ManagedDigitalProductGroup[]
 }
 
 export type WebsiteExperienceTag =

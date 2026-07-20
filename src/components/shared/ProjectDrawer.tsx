@@ -40,6 +40,7 @@ import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { CountUp } from "@/components/shared/CountUp";
+import { ProjectManagedProducts } from "@/components/shared/ProjectManagedProducts";
 import type { ProjectViewModel } from "@/types";
 
 const LiquidPortal = dynamic(
@@ -435,7 +436,12 @@ export function ProjectDrawer({
           ? 0
           : currentIndex + 1;
 
-      focusableElements[nextIndex]?.focus({ preventScroll: true });
+      const nextFocusableElement = focusableElements[nextIndex];
+      nextFocusableElement?.focus({ preventScroll: true });
+      nextFocusableElement?.scrollIntoView({
+        block: "nearest",
+        inline: "nearest",
+      });
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -625,6 +631,11 @@ export function ProjectDrawer({
               </p>
             </div>
           )}
+
+          <ProjectManagedProducts
+            projectId={project.id}
+            groups={project.managedProductGroups}
+          />
 
           {/* Challenge & Solution */}
           <div className="grid gap-6 sm:grid-cols-2">

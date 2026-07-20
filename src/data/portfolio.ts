@@ -18,6 +18,63 @@ export const projects: Project[] = [
     category: "leadership",
     roleType: "hybrid",
     client: "Grupo Bandeirantes",
+    managedProductGroups: [
+      {
+        id: "editorialPortals",
+        products: [
+          {
+            id: "bandsports",
+            name: "BandSports",
+            href: "https://bandsports.uol.com.br/",
+          },
+          {
+            id: "bandnews-tv",
+            name: "BandNews TV",
+            href: "https://bandnewstv.uol.com.br/",
+          },
+          {
+            id: "arte-1",
+            name: "Arte 1",
+            href: "https://canalarte1.uol.com.br/",
+          },
+          {
+            id: "terra-viva",
+            name: "Terra Viva",
+            href: "https://terraviva.uol.com.br/",
+          },
+          {
+            id: "agro-mais",
+            name: "Agro+",
+            href: "https://agromais.uol.com.br/",
+          },
+          {
+            id: "sabor-e-arte",
+            name: "Sabor & Arte",
+            href: "https://canalsaborearte.uol.com.br/",
+          },
+        ],
+      },
+      {
+        id: "newcoPlay",
+        products: [
+          {
+            id: "newco-play",
+            name: "Newco Play",
+            href: "https://newcoplay.com.br/",
+          },
+          {
+            id: "vivo-newco-play",
+            name: "Vivo Newco Play",
+            href: "https://vivo.newcoplay.com.br/home",
+          },
+          {
+            id: "surf-newco-play",
+            name: "Surf Play",
+            href: "https://surf.newcoplay.com.br/",
+          },
+        ],
+      },
+    ],
     period: "2024",
     role: "Engenheiro de Software & Gerente de TI",
     shortDescription: "Gestão da refatoração completa de 6+ portais do Grupo Bandeirantes, modernizando a stack de comunicação de massa com zero downtime.",

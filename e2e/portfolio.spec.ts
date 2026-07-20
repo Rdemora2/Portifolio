@@ -1868,6 +1868,68 @@ test("enforces the configured production origin on the contact API", async ({ re
   expect(denied.status()).toBe(403)
 })
 
+test("presents nine securely linked Grupo Bandeirantes products", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/en/#projects", { waitUntil: "domcontentloaded" })
+  await expect(
+    page.locator("[data-projects-client][data-hydrated='true']"),
+  ).toHaveCount(1)
+  await page
+    .getByRole("button", { name: /Grupo Bandeirantes.*View details/ })
+    .click()
+
+  const dialog = page.getByRole("dialog", { name: "Grupo Bandeirantes" })
+  const managedProducts = dialog.locator("[data-managed-products]")
+  const productLinks = managedProducts.locator("[data-managed-product-link]")
+  const expectedProducts = [
+    ["BandSports", "https://bandsports.uol.com.br/"],
+    ["BandNews TV", "https://bandnewstv.uol.com.br/"],
+    ["Arte 1", "https://canalarte1.uol.com.br/"],
+    ["Terra Viva", "https://terraviva.uol.com.br/"],
+    ["Agro+", "https://agromais.uol.com.br/"],
+    ["Sabor & Arte", "https://canalsaborearte.uol.com.br/"],
+    ["Newco Play", "https://newcoplay.com.br/"],
+    ["Vivo Newco Play", "https://vivo.newcoplay.com.br/home"],
+    ["Surf Play", "https://surf.newcoplay.com.br/"],
+  ] as const
+
+  await expect(dialog).toBeVisible()
+  await expect(
+    managedProducts.getByRole("heading", {
+      level: 3,
+      name: "From concept to ongoing support",
+    }),
+  ).toBeVisible()
+  await expect(
+    managedProducts.locator("[data-managed-product-group='editorialPortals']"),
+  ).toContainText("Editorial portals")
+  await expect(
+    managedProducts.locator("[data-managed-product-group='newcoPlay']"),
+  ).toContainText("Newco Play ecosystem")
+  await expect(productLinks).toHaveCount(expectedProducts.length)
+
+  for (const [index, [name, href]] of expectedProducts.entries()) {
+    const link = productLinks.nth(index)
+    const relTokens = (await link.getAttribute("rel"))
+      ?.split(/\s+/)
+      .filter(Boolean)
+      .sort()
+
+    await expect(link).toContainText(name)
+    await expect(link).toHaveAttribute("href", href)
+    await expect(link).toHaveAttribute("target", "_blank")
+    expect(relTokens).toEqual(["external", "noopener", "noreferrer"])
+    await expect(link).toHaveAccessibleName(/opens in a new tab/i)
+  }
+
+  await expectNoAccessibilityViolations(
+    page,
+    "Grupo Bandeirantes managed products",
+  )
+})
+
 test.describe("normal-motion project drawer", () => {
   test.use({ contextOptions: { reducedMotion: "no-preference" } })
 
@@ -2234,9 +2296,15 @@ test.describe("normal-motion project drawer", () => {
       .poll(() => page.evaluate(() => document.documentElement.style.overflow))
       .toBe("hidden")
 
+    const managedProductLinks = dialog.locator("[data-managed-product-link]")
+    await expect(managedProductLinks).toHaveCount(9)
     await page.keyboard.press("Tab")
+    await expect(managedProductLinks.first()).toBeFocused()
+    await page.keyboard.press("Shift+Tab")
     await expect(closeButton).toBeFocused()
     await page.keyboard.press("Shift+Tab")
+    await expect(managedProductLinks.last()).toBeFocused()
+    await page.keyboard.press("Tab")
     await expect(closeButton).toBeFocused()
 
     const migratedPortals = dialog
@@ -2300,6 +2368,43 @@ test.describe("normal-motion project drawer", () => {
     await expect(
       dialog.locator("[data-project-drawer-header]"),
     ).toHaveCSS("background-color", "rgba(5, 10, 18, 0.96)")
+
+    const drawerHeader = dialog.locator("[data-project-drawer-header]")
+    for (let index = 0; index < 9; index += 1) {
+      await page.keyboard.press("Tab")
+      const productLink = managedProductLinks.nth(index)
+      await expect(productLink).toBeFocused()
+      await expect
+        .poll(() =>
+          Promise.all([
+            productLink.boundingBox(),
+            drawerHeader.boundingBox(),
+            dialog.boundingBox(),
+          ]).then(([linkBox, headerBox, dialogBox]) => {
+            if (!linkBox || !headerBox || !dialogBox) return false
+
+            return (
+              linkBox.height >= 44 &&
+              linkBox.y >= headerBox.y + headerBox.height - 1 &&
+              linkBox.y + linkBox.height <= dialogBox.y + dialogBox.height + 1
+            )
+          }),
+        )
+        .toBe(true)
+    }
+    await page.keyboard.press("Tab")
+    await expect(closeButton).toBeFocused()
+    await expectNoHorizontalOverflow(
+      page,
+      "Grupo Bandeirantes drawer on mobile",
+    )
+    await expect
+      .poll(() =>
+        dialog.locator("[data-managed-products]").evaluate((element) =>
+          element.scrollWidth <= element.clientWidth,
+        ),
+      )
+      .toBe(true)
 
     if (desktopViewport) await page.setViewportSize(desktopViewport)
 

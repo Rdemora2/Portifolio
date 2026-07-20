@@ -84,6 +84,23 @@
     "retryDrawer": "Tentar novamente",
     "viewCaseStudy": "Ver Estudo de Caso",
     "caseStudyLabel": "Meu papel neste projeto",
+    "managedProducts": {
+      "eyebrow": "Ecossistema digital em produção",
+      "title": "Da concepção à sustentação",
+      "description": "Atuei diretamente na gestão ponta a ponta destes {count} produtos digitais — da concepção e condução do desenvolvimento ao deploy em produção e à sustentação contínua.",
+      "lifecycleLabel": "Ciclo de atuação ponta a ponta",
+      "stages": {
+        "concept": "Concepção",
+        "development": "Desenvolvimento",
+        "deployment": "Deploy",
+        "support": "Sustentação"
+      },
+      "groups": {
+        "editorialPortals": "Portais editoriais",
+        "newcoPlay": "Ecossistema Newco Play"
+      },
+      "newTab": "site externo, abre em uma nova aba"
+    },
     "internationalTag": "Internacional",
     "role": "Papel",
     "client": "Cliente",
@@ -265,6 +282,18 @@
         "title": "Tivix Technologies — presença digital para software e IA",
         "description": "Uma experiência tecnológica de alto contraste que apresenta desenvolvimento full stack, inteligência artificial e automação por meio de uma narrativa direta, responsiva e guiada por movimento.",
         "imageAlt": "Página inicial da Tivix Technologies com seção de abertura centralizada sobre fundo preto, tipografia branca e luzes em azul e violeta."
+      },
+      "solum": {
+        "category": "Paisagismo · Arquitetura",
+        "title": "Solum Paisagismo — portfólio e presença institucional",
+        "description": "Uma experiência visual focada em natureza e arquitetura, destacando projetos de paisagismo com elegância e responsividade.",
+        "imageAlt": "Página inicial da Solum Paisagismo com fotografia de um jardim e tipografia elegante."
+      },
+      "axenor": {
+        "category": "Fintech · Tecnologia financeira",
+        "title": "Axenor Fintech — presença institucional financeira",
+        "description": "Plataforma digital para serviços financeiros, construída com foco em confiança, clareza e conversão.",
+        "imageAlt": "Página inicial da Axenor Fintech com interface moderna e informações financeiras."
       }
     }
   },

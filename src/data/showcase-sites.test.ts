@@ -9,11 +9,18 @@ const jpegStartOfFrameMarkers = new Set([
   0xcf,
 ])
 
-function readJpegDimensions(path: string) {
+function readImageDimensions(path: string) {
   const image = readFileSync(path)
 
+  if (image.length >= 8 && image.readUInt32BE(0) === 0x89504e47) {
+    return {
+      width: image.readUInt32BE(16),
+      height: image.readUInt32BE(20)
+    }
+  }
+
   if (image.readUInt16BE(0) !== 0xffd8) {
-    throw new Error(`${path} is not a JPEG image`)
+    throw new Error(`${path} is neither a supported JPEG nor a PNG image`)
   }
 
   let offset = 2
@@ -24,7 +31,7 @@ function readJpegDimensions(path: string) {
     }
 
     while (image[offset] === 0xff) offset += 1
-    const marker = image[offset]
+    const marker = image[offset] as number
     offset += 1
 
     if (marker === 0xd8 || marker === 0xd9) continue
@@ -42,7 +49,7 @@ function readJpegDimensions(path: string) {
     offset += segmentLength
   }
 
-  throw new Error(`${path} has no supported JPEG dimensions`)
+  throw new Error(`${path} has no supported image dimensions`)
 }
 
 describe("website showcase data", () => {
@@ -70,7 +77,7 @@ describe("website showcase data", () => {
       expect(image.width).toBeGreaterThan(0)
       expect(image.height).toBeGreaterThan(0)
       expect(image.width / image.height).toBeCloseTo(1410 / 831, 4)
-      expect(readJpegDimensions(localPath)).toEqual({
+      expect(readImageDimensions(localPath)).toEqual({
         width: image.width,
         height: image.height,
       })

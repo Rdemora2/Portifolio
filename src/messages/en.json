@@ -84,6 +84,23 @@
     "retryDrawer": "Try again",
     "viewCaseStudy": "View Case Study",
     "caseStudyLabel": "My contribution",
+    "managedProducts": {
+      "eyebrow": "Live digital ecosystem",
+      "title": "From concept to ongoing support",
+      "description": "I was directly involved in the end-to-end management of these {count} digital products—from concept and development delivery to production deployment and ongoing support.",
+      "lifecycleLabel": "End-to-end delivery lifecycle",
+      "stages": {
+        "concept": "Concept",
+        "development": "Development",
+        "deployment": "Deployment",
+        "support": "Ongoing support"
+      },
+      "groups": {
+        "editorialPortals": "Editorial portals",
+        "newcoPlay": "Newco Play ecosystem"
+      },
+      "newTab": "external website, opens in a new tab"
+    },
     "internationalTag": "International",
     "role": "Role",
     "client": "Client",
@@ -265,6 +282,18 @@
         "title": "Tivix Technologies — a digital presence for software and AI",
         "description": "A high-contrast technology experience presenting full-stack development, artificial intelligence, and automation through a direct, responsive, motion-led narrative.",
         "imageAlt": "Tivix Technologies homepage with a centered opening section on a black background, white typography, and luminous blue and violet accents."
+      },
+      "solum": {
+        "category": "Landscaping · Architecture",
+        "title": "Solum Paisagismo — portfolio and institutional presence",
+        "description": "A visual experience focused on nature and architecture, highlighting landscaping projects with elegance and responsiveness.",
+        "imageAlt": "Solum Paisagismo home page with a garden photograph and elegant typography."
+      },
+      "axenor": {
+        "category": "Fintech · Financial technology",
+        "title": "Axenor Fintech — financial institutional presence",
+        "description": "Digital platform for financial services, built with a focus on trust, clarity, and conversion.",
+        "imageAlt": "Axenor Fintech home page with modern interface and financial information."
       }
     }
   },

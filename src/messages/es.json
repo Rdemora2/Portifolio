@@ -84,6 +84,23 @@
     "retryDrawer": "Reintentar",
     "viewCaseStudy": "Ver Estudio de Caso",
     "caseStudyLabel": "Mi papel en este proyecto",
+    "managedProducts": {
+      "eyebrow": "Ecosistema digital en producción",
+      "title": "De la concepción al soporte continuo",
+      "description": "Participé directamente en la gestión integral de estos {count} productos digitales: desde su concepción y la conducción del desarrollo hasta el despliegue en producción y el soporte continuo.",
+      "lifecycleLabel": "Ciclo de trabajo integral",
+      "stages": {
+        "concept": "Concepción",
+        "development": "Desarrollo",
+        "deployment": "Despliegue",
+        "support": "Soporte continuo"
+      },
+      "groups": {
+        "editorialPortals": "Portales editoriales",
+        "newcoPlay": "Ecosistema Newco Play"
+      },
+      "newTab": "sitio externo, se abre en una nueva pestaña"
+    },
     "internationalTag": "Internacional",
     "role": "Rol",
     "client": "Cliente",
@@ -265,6 +282,18 @@
         "title": "Tivix Technologies — presencia digital para software e IA",
         "description": "Una experiencia tecnológica de alto contraste que presenta desarrollo full stack, inteligencia artificial y automatización mediante una narrativa directa, responsiva y guiada por el movimiento.",
         "imageAlt": "Página inicial de Tivix Technologies con una sección de apertura centrada sobre fondo negro, tipografía blanca y luces en azul y violeta."
+      },
+      "solum": {
+        "category": "Paisajismo · Arquitectura",
+        "title": "Solum Paisagismo — portafolio y presencia institucional",
+        "description": "Una experiencia visual centrada en la naturaleza y la arquitectura, destacando proyectos de paisajismo con elegancia y capacidad de respuesta.",
+        "imageAlt": "Página de inicio de Solum Paisagismo con fotografía de un jardín y tipografía elegante."
+      },
+      "axenor": {
+        "category": "Fintech · Tecnología financiera",
+        "title": "Axenor Fintech — presencia institucional financiera",
+        "description": "Plataforma digital para servicios financieros, construida con enfoque en confianza, claridad y conversión.",
+        "imageAlt": "Página de inicio de Axenor Fintech con interfaz moderna e información financiera."
       }
     }
   },

@@ -55,6 +55,16 @@ describe("localized message catalogs", () => {
     expect(es.Contact.form.webMcp.toolDescription).toContain("confirmación manual")
   })
 
+  it("describes the managed product lifecycle in every locale", () => {
+    expect(pt.Projects.managedProducts.description).toMatch(
+      /concepção.*sustentação/i,
+    )
+    expect(en.Projects.managedProducts.description).toMatch(/concept.*support/i)
+    expect(es.Projects.managedProducts.description).toMatch(
+      /concepción.*soporte/i,
+    )
+  })
+
   it("localizes every published website experience and capability", () => {
     const catalogs = [pt, en, es] as const
 
