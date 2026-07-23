@@ -294,6 +294,12 @@
         "title": "Axenor Fintech — presença institucional financeira",
         "description": "Plataforma digital para serviços financeiros, construída com foco em confiança, clareza e conversão.",
         "imageAlt": "Página inicial da Axenor Fintech com interface moderna e informações financeiras."
+      },
+      "arua": {
+        "category": "Resort · Hospitalidade Premium",
+        "title": "Aruá — site de um resort de alto padrão",
+        "description": "Uma experiência de alto padrão que traduz a exclusividade de um resort, oferecendo navegação elegante e visual sofisticado para os hóspedes.",
+        "imageAlt": "Página inicial do resort Aruá exibindo um ambiente de hospitalidade premium."
       }
     }
   },

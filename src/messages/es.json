@@ -292,8 +292,14 @@
       "axenor": {
         "category": "Fintech · Tecnología financiera",
         "title": "Axenor Fintech — presencia institucional financiera",
-        "description": "Plataforma digital para servicios financieros, construida con enfoque en confianza, claridad y conversión.",
-        "imageAlt": "Página de inicio de Axenor Fintech con interfaz moderna e información financiera."
+        "description": "Plataforma digital para servicios financieros, construida con un enfoque en la confianza, claridad y conversión.",
+        "imageAlt": "Página de inicio de Axenor Fintech con una interfaz moderna e información financiera."
+      },
+      "arua": {
+        "category": "Resort · Hospitalidad Premium",
+        "title": "Aruá — sitio web de un resort de alto estándar",
+        "description": "Una experiencia de alto nivel que traduce la exclusividad de un resort, ofreciendo una navegación elegante y un aspecto sofisticado para los huéspedes.",
+        "imageAlt": "Página de inicio del resort Aruá que muestra un entorno de hospitalidad premium."
       }
     }
   },
