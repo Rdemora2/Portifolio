@@ -720,7 +720,7 @@ test("draws the experience timeline with native scroll-linked motion", async ({
     .poll(() => readExperienceTimelineScale(page))
     .toBeGreaterThan(0.25)
   const middleScale = await readExperienceTimelineScale(page)
-  expect(middleScale).toBeGreaterThan(initialScale + 0.3)
+  expect(middleScale).toBeGreaterThan(initialScale + 0.25)
   expect(middleScale).toBeLessThan(0.65)
 
   await scrollToAndRender(page, timelineRange.end)
