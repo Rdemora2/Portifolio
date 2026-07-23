@@ -26,13 +26,12 @@
   z-index: 0;
   animation: logoloop-scroll var(--logoloop-duration, 20s) linear infinite;
   animation-direction: var(--logoloop-direction, normal);
-  animation-play-state: paused;
+  will-change: transform;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .logoloop:hover .logoloop__track {
-    animation-play-state: running;
-    will-change: transform;
+    animation-play-state: paused;
   }
 }
 
