@@ -395,6 +395,7 @@ test("presents published website experiences with secure, responsive links", asy
     "https://lp-institucional-paisagismo.vercel.app/",
     "https://lp-institucional-fintech.vercel.app/",
     "https://lp-hospitalidade-premium.vercel.app/",
+    "https://portal-noticias-ivory.vercel.app/",
   ]
 
   await expect(showcase).toBeVisible()
@@ -454,7 +455,7 @@ test("presents published website experiences with secure, responsive links", asy
   const [gridBounds, firstCardBounds, lastCardBounds] = await Promise.all([
     showcase.locator("[data-website-grid]").boundingBox(),
     cards.nth(0).boundingBox(),
-    cards.nth(5).boundingBox(),
+    cards.nth(6).boundingBox(),
   ])
 
   expect(gridBounds).not.toBeNull()
@@ -462,10 +463,9 @@ test("presents published website experiences with secure, responsive links", asy
   expect(lastCardBounds).not.toBeNull()
 
   if (gridBounds && firstCardBounds && lastCardBounds) {
-    // With 6 cards (even count) in a 2-column desktop grid, the last card
-    // fills the second column of the final row — it is not centered.
-    // Verify column width parity and that it is below the first row only.
-    expect(lastCardBounds.width).toBeCloseTo(firstCardBounds.width, 0)
+    // With 7 cards (odd count) in a 2-column desktop grid, the last card
+    // spans both columns and is centered in the final row.
+    // Verify it is below the first row only.
     expect(lastCardBounds.y).toBeGreaterThan(
       firstCardBounds.y + firstCardBounds.height,
     )
@@ -505,9 +505,9 @@ test("keeps locale navigation and production metrics useful without JavaScript",
     await expect(websiteShowcase).toContainText(
       "Websites that turn positioning into digital presence.",
     )
-    await expect(noScriptPage.locator("[data-website-card]")).toHaveCount(6)
+    await expect(noScriptPage.locator("[data-website-card]")).toHaveCount(7)
     const websiteLinks = noScriptPage.locator("[data-website-link]")
-    await expect(websiteLinks).toHaveCount(6)
+    await expect(websiteLinks).toHaveCount(7)
     await expect(websiteLinks.nth(0)).toHaveAttribute(
       "href",
       "https://lp-institucional-vendas.vercel.app/",
