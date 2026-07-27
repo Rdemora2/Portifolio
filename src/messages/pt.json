@@ -300,6 +300,12 @@
         "title": "Aruá — site de um resort de alto padrão",
         "description": "Uma experiência de alto padrão que traduz a exclusividade de um resort, oferecendo navegação elegante e visual sofisticado para os hóspedes.",
         "imageAlt": "Página inicial do resort Aruá exibindo um ambiente de hospitalidade premium."
+      },
+      "portal-noticias-atual": {
+        "category": "Jornalismo · Portal de Notícias",
+        "title": "Atual — portal de notícias moderno e editorial",
+        "description": "Um portal de notícias responsivo e editorial, construído com foco em leiturabilidade, performance e uma experiência de navegação fluida para o leitor.",
+        "imageAlt": "Página inicial do portal de notícias Atual exibindo manchetes e layout editorial moderno."
       }
     }
   },
