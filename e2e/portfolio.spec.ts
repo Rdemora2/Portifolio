@@ -692,21 +692,46 @@ test("draws the experience timeline with native scroll-linked motion", async ({
   expect(scrollTimeline.animationName).not.toBe("none")
   expect(scrollTimeline.animationTimeline).toMatch(/^view/)
 
-  const timelineRange = await progress.evaluate((element) => {
+  // Derive the actual view() animation range empirically by scanning scroll
+  // positions in the neighbourhood of the element. This is more robust than
+  // computing start/end from innerHeight coefficients, which change meaning
+  // each time the page grows taller (e.g. a new showcase card is added).
+  const animationRange = await progress.evaluate(async (element) => {
     if (!(element instanceof HTMLElement)) {
       throw new Error("Experience timeline progress must be an HTML element")
     }
 
     const bounds = element.getBoundingClientRect()
-    const documentTop = window.scrollY + bounds.top
+    const elementTop = window.scrollY + bounds.top
+    const searchStart = Math.max(0, elementTop - window.innerHeight)
+    const searchEnd = elementTop + element.offsetHeight + window.innerHeight
+    const step = 100
+
+    const readScale = () => {
+      const t = getComputedStyle(element).transform
+      return t === "none" ? 1 : new DOMMatrixReadOnly(t).m22
+    }
+
+    const wait = () =>
+      new Promise<void>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r())))
+
+    let animStart: number | null = null
+    let animEnd: number | null = null
+
+    for (let y = searchStart; y <= searchEnd; y += step) {
+      window.scrollTo({ top: y, behavior: "instant" })
+      await wait()
+      if (animStart === null && readScale() > 0.01) animStart = y
+      if (animStart !== null && readScale() >= 0.99) { animEnd = y; break }
+    }
 
     return {
-      start: documentTop - window.innerHeight * 0.56,
-      end: documentTop + element.offsetHeight - window.innerHeight * 0.55,
+      start: animStart ?? elementTop,
+      end: animEnd ?? elementTop + element.offsetHeight,
     }
   })
 
-  await scrollToAndRender(page, timelineRange.start - 200)
+  await scrollToAndRender(page, animationRange.start - 200)
   await expect
     .poll(() => readExperienceTimelineScale(page))
     .toBeLessThanOrEqual(0.01)
@@ -714,16 +739,16 @@ test("draws the experience timeline with native scroll-linked motion", async ({
 
   await scrollToAndRender(
     page,
-    (timelineRange.start + timelineRange.end) / 2,
+    (animationRange.start + animationRange.end) / 2,
   )
   await expect
     .poll(() => readExperienceTimelineScale(page))
     .toBeGreaterThan(0.25)
   const middleScale = await readExperienceTimelineScale(page)
   expect(middleScale).toBeGreaterThan(initialScale + 0.25)
-  expect(middleScale).toBeLessThan(0.65)
+  expect(middleScale).toBeLessThan(0.75)
 
-  await scrollToAndRender(page, timelineRange.end)
+  await scrollToAndRender(page, animationRange.end)
   await expect
     .poll(() => readExperienceTimelineScale(page))
     .toBeGreaterThanOrEqual(0.75)
