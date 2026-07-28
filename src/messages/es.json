@@ -1,6 +1,7 @@
 {
   "Nav": {
     "hero": "Inicio",
+    "work": "Proyectos",
     "about": "Sobre mí",
     "projects": "Proyectos",
     "sites": "Sitios",
@@ -10,6 +11,7 @@
     "experience": "Experiencia",
     "insights": "Insights",
     "contact": "Contacto",
+    "navigationLabel": "Navegación",
     "skipToContent": "Saltar al contenido principal",
     "ariaLabel": "Navegación principal",
     "mobileMenuLabel": "Menú de navegación",
@@ -26,7 +28,8 @@
   "Hero": {
     "title": "Ingeniero de Software & Gerente de TI",
     "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
-    "viewProjects": "Ver proyectos",
+    "viewProjects": "Explorar proyectos",
+    "viewExperience": "Ver experiencia",
     "contact": "Contacto"
   },
   "Metadata": {
@@ -39,7 +42,6 @@
     "bio": "Empecé como desarrollador full-stack y hoy lidero el área de tecnología de una empresa con operaciones internacionales. En el camino, aprendí que la verdadera gestión exige involucramiento directo, por lo que sigo construyendo backends, configurando infraestructura cloud y garantizando que cada sistema soporte la presión de producción. Mi entrega va desde el código hasta el despliegue final.",
     "bioExtended": "He entregado proyectos para el Hospital Sírio-Libanês, Grupo Bandeirantes y cadenas hoteleras internacionales, siempre con enfoque en rendimiento real, infraestructura resiliente y equipos que funcionan. Mi perfil es hands-on: codifico, reviso, configuro infra y tomo decisiones técnicas en el mismo día.",
     "location": "São Paulo, Brasil",
-    "availability": "Disponible para nuevos desafíos",
     "pillars": {
       "cloud": "Cloud",
       "backend": "Backend de Alto Rendimiento",

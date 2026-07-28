@@ -1,6 +1,7 @@
 {
   "Nav": {
     "hero": "Home",
+    "work": "Work",
     "about": "About",
     "projects": "Projects",
     "sites": "Sites",
@@ -10,6 +11,7 @@
     "experience": "Experience",
     "insights": "Insights",
     "contact": "Contact",
+    "navigationLabel": "Navigation",
     "skipToContent": "Skip to content",
     "ariaLabel": "Main navigation",
     "mobileMenuLabel": "Navigation menu",
@@ -26,7 +28,8 @@
   "Hero": {
     "title": "Software Engineer & IT Manager",
     "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
-    "viewProjects": "View Projects",
+    "viewProjects": "Explore work",
+    "viewExperience": "View experience",
     "contact": "Contact"
   },
   "Metadata": {
@@ -39,7 +42,6 @@
     "bio": "I started as a full-stack developer and now lead the technology function at a company with international operations. Along the way, I learned that effective leadership means staying close to the work, so I continue to build backends, configure cloud infrastructure, and make sure every system can withstand production load. I own delivery from code through production deployment.",
     "bioExtended": "I have delivered projects for Hospital Sírio-Libanês, Grupo Bandeirantes, and international hotel chains, with an emphasis on measurable performance, resilient infrastructure, and effective teams. I stay hands-on: I write and review code, configure infrastructure, and make technical decisions—often on the same day.",
     "location": "São Paulo, Brazil",
-    "availability": "Available for new challenges",
     "pillars": {
       "cloud": "Cloud",
       "backend": "High-Performance Backend",

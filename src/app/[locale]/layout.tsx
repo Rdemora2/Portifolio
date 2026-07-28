@@ -18,7 +18,6 @@ import {
   getDocumentLanguage,
   isLocale,
   locales,
-  type Locale,
 } from "@/i18n.config"
 import {
   AUTHOR_NAME,
@@ -46,12 +45,6 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   display: "swap",
 })
-
-const localizedServiceDescriptions: Record<Locale, string> = {
-  pt: "Consultoria em arquitetura de software, cloud, DevOps e liderança técnica para produtos de larga escala.",
-  en: "Consulting in software architecture, cloud, DevOps, and technical leadership for large-scale products.",
-  es: "Consultoría en arquitectura de software, cloud, DevOps y liderazgo técnico para productos a gran escala.",
-}
 
 export const dynamicParams = false
 
@@ -209,21 +202,6 @@ export default async function LocaleLayout({
           addressRegion: "SP",
           addressCountry: "BR",
         },
-      },
-      {
-        "@type": "ProfessionalService",
-        "@id": `${canonical}#service`,
-        name: `${metadata("title")} | Consulting`,
-        provider: { "@id": personId },
-        description: localizedServiceDescriptions[locale],
-        areaServed: ["BR", "US", "MX"],
-        serviceType: [
-          "Software Architecture",
-          "Cloud Infrastructure",
-          "DevOps",
-          "Backend Engineering",
-          "Technical Leadership",
-        ],
       },
       {
         "@type": "WebSite",

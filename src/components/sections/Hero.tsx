@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { personalInfo } from "@/data/portfolio";
 import { HeroClientWrapper } from "./HeroClient";
 import { isBotFromHeaders } from "@/lib/is-bot";
+import { Link } from "@/navigation";
 
 export async function Hero() {
   const t = await getTranslations("Hero");
@@ -65,22 +66,22 @@ export async function Hero() {
             </p>
 
             <div className="hero-cta hero-actions-enter flex flex-wrap gap-3 sm:gap-4">
-              <a
-                href="#projects"
+              <Link
+                href="/work"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--color-signal)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-signal)] transition-colors duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] sm:px-8 sm:py-3 sm:text-sm"
                 style={{ fontFamily: "var(--font-body)" }}
                 aria-label={t("viewProjects")}
               >
                 {t("viewProjects")}
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/experience"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--color-edge)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-secondary)] transition-colors duration-200 hover:border-[var(--color-text-secondary)] sm:px-8 sm:py-3 sm:text-sm"
                 style={{ fontFamily: "var(--font-body)" }}
-                aria-label={t("contact")}
+                aria-label={t("viewExperience")}
               >
-                {t("contact")}
-              </a>
+                {t("viewExperience")}
+              </Link>
             </div>
           </div>
         </div>
