@@ -17,8 +17,9 @@ void main() {
 }
 `
 
+// WHY: mediump precision float provides smooth color gradients for the fluid shader while drastically reducing fragment ALU overhead on mobile GPUs.
 const fragmentShader = `
-precision highp float;
+precision mediump float;
 
 varying vec2 vUv;
 
