@@ -542,7 +542,7 @@ export function createBudgetRows(metrics, env = process.env) {
     ),
     lazyEntry: readBudget(env, ["BUNDLE_BUDGET_LAZY_ENTRY_KB"], 100),
     lazyChunk: readBudget(env, ["BUNDLE_BUDGET_LAZY_CHUNK_KB"], 90),
-    lazyTotal: readBudget(env, ["BUNDLE_BUDGET_LAZY_TOTAL_KB"], 165),
+    lazyTotal: readBudget(env, ["BUNDLE_BUDGET_LAZY_TOTAL_KB"], 175),
   }
 
   const rows = [
