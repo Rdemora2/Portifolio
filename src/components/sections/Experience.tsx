@@ -118,8 +118,10 @@ export function Experience() {
                         className="mb-6 list-none space-y-2"
                         data-experience-highlights
                       >
-                        {(t.raw(`items.${entry.id}.highlights`) as string[]).map(
-                          (highlight: string, hIdx: number) => (
+                        {(() => {
+                          const rawHighlights = t.raw(`items.${entry.id}.highlights`);
+                          const highlights = Array.isArray(rawHighlights) ? (rawHighlights as string[]) : [];
+                          return highlights.map((highlight: string, hIdx: number) => (
                             <li
                               key={hIdx}
                               className="flex items-start gap-2 text-xs"
@@ -135,8 +137,8 @@ export function Experience() {
                               />
                               {highlight}
                             </li>
-                          ),
-                        )}
+                          ))
+                        })()}
                       </ul>
 
                       <div className="flex flex-wrap gap-2">

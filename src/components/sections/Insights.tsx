@@ -12,8 +12,10 @@ export async function Insights() {
   const publishedInsights = insights.filter(
     (insight) => insight.hasFullArticle && insight.slug,
   );
-  const categoryLabels = t.raw("categories") as Record<string, string>;
-  const tagLabels = t.raw("tags") as Record<string, string>;
+  const rawCategories = t.raw("categories");
+  const categoryLabels = (typeof rawCategories === "object" && rawCategories !== null ? rawCategories : {}) as Record<string, string>;
+  const rawTags = t.raw("tags");
+  const tagLabels = (typeof rawTags === "object" && rawTags !== null ? rawTags : {}) as Record<string, string>;
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     dateStyle: "medium",
     timeZone: "UTC",
