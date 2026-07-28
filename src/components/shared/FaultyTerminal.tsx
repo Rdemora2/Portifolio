@@ -301,6 +301,11 @@ export default function FaultyTerminal({
   }, []);
 
   useEffect(() => {
+    // WHY: Checking for bots and reduced-motion before calling createWebGLCanvas() prevents
+    // memory and context leaks on the GPU when automated crawlers or assistive modes are active.
+    if (isBot()) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const ctn = containerRef.current;
     if (!ctn) return;
 
@@ -310,11 +315,6 @@ export default function FaultyTerminal({
 
     const canvas = createWebGLCanvas({ alpha: false, antialias: false });
     if (!canvas) return;
-
-    // Skip WebGL loop entirely in automated / bot environments (Lighthouse,
-    // PageSpeed Insights, crawlers). The rAF loop never ends, which prevents
-    // Lighthouse from reaching CPU idle and causes an audit timeout.
-    if (isBot()) return;
 
     let renderer: Renderer;
     let gl: Renderer["gl"];

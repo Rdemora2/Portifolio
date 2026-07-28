@@ -12,12 +12,12 @@
  * Call this function only on the client side (inside useEffect or after a
  * `typeof window !== "undefined"` guard).
  */
+// WHY: Automated auditors like Lighthouse and PageSpeed Insights use headless WebKit/Chromium.
+// Continuous WebGL rAF render loops prevent CPU idle state, causing synthetic performance audits
+// to timeout. Detecting webdriver/bot signals lets us gracefully bypass 3D loops for crawlers.
 export function isBot(): boolean {
   if (typeof navigator === "undefined") return false
 
-  // navigator.webdriver is the authoritative signal for automated browsers.
-  // PageSpeed Insights (web) runs Chrome headless and always sets this to true,
-  // even when the UA does not contain "Chrome-Lighthouse".
   if (navigator.webdriver === true) return true
 
   const ua = navigator.userAgent || ""
