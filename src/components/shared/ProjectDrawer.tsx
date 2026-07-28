@@ -41,8 +41,11 @@ import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { CountUp } from "@/components/shared/CountUp";
 import { ProjectManagedProducts } from "@/components/shared/ProjectManagedProducts";
+import { WebGLErrorBoundary } from "@/components/shared/WebGLErrorBoundary";
 import type { ProjectViewModel } from "@/types";
 
+// WHY: LiquidPortal is dynamically loaded only when the modal opens to conserve GPU memory
+// and ensure we never exceed the 2-context WebGL budget during standard page scrolling.
 const LiquidPortal = dynamic(
   () =>
     import("@/components/shared/LiquidPortal").then((module) => ({
@@ -498,11 +501,15 @@ export function ProjectDrawer({
       >
         {/* Fixed Background Layer (won't scroll) */}
         <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundColor: "var(--color-void)" }}>
-          {canRenderPortal && isOpen ? <LiquidPortal /> : null}
-          {/* The capability-gated scrim keeps the animated surface subdued. */}
+          {canRenderPortal && isOpen ? (
+            <WebGLErrorBoundary>
+              <LiquidPortal />
+            </WebGLErrorBoundary>
+          ) : null}
+          {/* WHY: Dark scrim (bg-black/75) guarantees WCAG AA (4.5:1) text contrast over active fluid WebGL shaders */}
           <div
             data-project-drawer-scrim
-            className="absolute inset-0 bg-black/60"
+            className="absolute inset-0 bg-black/75"
             style={{
               backdropFilter: contentBackdropFilter,
               WebkitBackdropFilter: contentBackdropFilter,

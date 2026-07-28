@@ -5,7 +5,10 @@ import { useSyncExternalStore } from "react"
 
 import { useInView } from "@/hooks/useInView"
 import { isBot } from "@/lib/is-bot"
+import { WebGLErrorBoundary } from "@/components/shared/WebGLErrorBoundary"
 
+// WHY: FaultyTerminal is dynamically imported with ssr:false because WebGL APIs
+// (canvas.getContext) are browser-only and should never execute on Node server workers.
 const FaultyTerminal = dynamic(
   () => import("@/components/shared/FaultyTerminal"),
   { ssr: false },
@@ -22,13 +25,15 @@ const mediaQueries = [
   "(max-width: 1023px)",
 ] as const
 
+// WHY: Privacy-focused browsers like Brave and Firefox randomize or limit navigator.hardwareConcurrency
+// and deviceMemory to mitigate fingerprinting vectors. We check for privacy browser signatures so
+// valid desktop users on these platforms aren't falsely flagged as low-power.
 function canRenderSignatureEffect(isBotHint: boolean) {
   // The server already detected a bot via the real HTTP User-Agent header.
   // Short-circuit immediately — no need to evaluate any client-side signals.
   if (isBotHint) return false
 
   const connection = (navigator as NavigatorWithConnection).connection
-  // Privacy browsers like Brave and Firefox spoof hardware info to prevent fingerprinting
   const isBrave = typeof navigator !== "undefined" && "brave" in navigator
   const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox")
   const isPrivacyBrowser = isBrave || isFirefox
@@ -93,25 +98,27 @@ export function HeroClientWrapper({
         aria-hidden="true"
       >
         {canRender && isInView ? (
-          <FaultyTerminal
-            scale={1.2}
-            gridMul={[1.5, 1]}
-            digitSize={1.2}
-            timeScale={0.22}
-            scanlineIntensity={0.28}
-            glitchAmount={0.45}
-            flickerAmount={0.35}
-            noiseAmp={0.5}
-            chromaticAberration={0}
-            dither={0}
-            curvature={0.08}
-            tint="#6366f1"
-            mouseReact
-            mouseStrength={0.35}
-            pageLoadAnimation={false}
-            brightness={0.55}
-            dpr={1}
-          />
+          <WebGLErrorBoundary>
+            <FaultyTerminal
+              scale={1.2}
+              gridMul={[1.5, 1]}
+              digitSize={1.2}
+              timeScale={0.22}
+              scanlineIntensity={0.28}
+              glitchAmount={0.45}
+              flickerAmount={0.35}
+              noiseAmp={0.5}
+              chromaticAberration={0}
+              dither={0}
+              curvature={0.08}
+              tint="#6366f1"
+              mouseReact
+              mouseStrength={0.35}
+              pageLoadAnimation={false}
+              brightness={0.55}
+              dpr={1}
+            />
+          </WebGLErrorBoundary>
         ) : null}
       </div>
 
