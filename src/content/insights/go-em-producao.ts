@@ -25,14 +25,14 @@ type GoProductionArticleCopy = Omit<InsightArticle, "sections"> & {
 const articles = {
   pt: {
     seo: {
-      title: "Go em produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar",
+      title: "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar",
       description:
-        "Decisões de arquitetura, cache híbrido (Redis + sync.Map), RBAC de 4 níveis, observabilidade e resiliência no backend Go (Fiber/FastHTTP) do Hospital Sírio-Libanês que processa mais de 20 milhões de requisições por mês.",
+        "Decisões de arquitetura, cache híbrido (Redis + memória local), RBAC de 4 níveis, observabilidade e alta disponibilidade no backend Go (Fiber/FastHTTP) do Hospital Sírio-Libanês.",
     },
     eyebrow: "Case técnico · Engenharia de backend",
     title: "Go em produção: o que ninguém te conta",
     subtitle:
-      "Como desenhamos o backend Go (Fiber v2 / FastHTTP) do Hospital Sírio-Libanês para operar sob carga real com latência média de 6ms, cache híbrido resiliente e zero downtime.",
+      "Como projetamos o backend Go (Fiber v2 / FastHTTP) do Hospital Sírio-Libanês para rodar sob carga real com resposta média de 6ms, resiliência no cache e alta disponibilidade.",
     backLabel: "Voltar aos insights",
     publishedLabel: "Publicado em",
     publishedDate: sharedDate,
@@ -49,18 +49,18 @@ const articles = {
       traceCoordinateLabel: "rastro",
     },
     intro:
-      "Este backend foi projetado para sustentar o ecossistema de IPTV e leitos do Hospital Sírio-Libanês (unidades SP e Brasília). Conectando Smart TVs de leito, o ERP hospitalar TASY (via barramento ESB HSL) e o middleware de streaming IPTV, a plataforma precisava responder em milissegundos sem tolerar falhas sistêmicas. O resultado foi alcançado através de Fiber/FastHTTP, cache híbrido de duas camadas com fallback gracioso, pool de conexões otimizado (pgxpool + sqlc) e matriz rigorosa de segurança RBAC.",
+      "Este backend foi desenvolvido para sustentar todo o sistema de IPTV e atendimento nos leitos do Hospital Sírio-Libanês (unidades SP e Brasília). Integrando as Smart TVs dos quartos, o ERP hospitalar TASY (via barramento ESB HSL) e a infraestrutura de streaming, o sistema precisava responder em milissegundos sem margem para quedas. Alcançamos isso combinando Fiber/FastHTTP, cache híbrido em duas camadas com fallback transparente, pools de conexão otimizados (pgxpool + sqlc) e uma política rígida de controle de acesso (RBAC).",
     metricsLabel: "Escala observada em produção",
     metrics: [
       { value: "20M+", label: "requisições por mês" },
-      { value: "6 ms", label: "latência média de resposta" },
-      { value: "92%", label: "cache hit rate sustentado" },
-      { value: "1k+", label: "commits de engenharia backend" },
+      { value: "6 ms", label: "tempo médio de resposta" },
+      { value: "92%", label: "taxa de acerto no cache (hit rate)" },
+      { value: "1k+", label: "commits de engenharia no backend" },
     ],
     architectureLabel: "Visão do sistema",
     architectureTitle: "Uma arquitetura com caminhos de degradação claros",
     architectureDescription:
-      "Cada dependência possui timeout, limite de concorrência e alternativa operacional. Se o Redis falhar, a memória local assume; se o ERP oscilar, o retries com backoff protegem o sistema.",
+      "Cada dependência possui timeout, limite de concorrência e alternativa operacional. Se o Redis oscilar, a memória local assume; se o ERP demorar a responder, retentativas inteligentes protegem o sistema.",
     architectureNodes: [
       "Borda HTTP (Fiber v2)",
       "API Go Core",
@@ -73,42 +73,42 @@ const articles = {
       {
         id: "contexto",
         eyebrow: "01 · Contexto",
-        title: "Desafios reais do ecossistema hospitalar",
+        title: "Desafios de um ambiente hospitalar crítico",
         intro:
-          "Em um ambiente hospitalar crítico, instabilidade na TV de leito gera chamados imediatos e impacto na experiência do paciente. O backend precisava integrar o ERP TASY e o middleware de streaming IPTV garantindo máxima previsibilidade.",
+          "Em um hospital, qualquer instabilidade na TV do quarto vira um chamado imediato e afeta a experiência do paciente. O backend precisava integrar o ERP hospitalar e o streaming de vídeo mantendo o sistema leve, rápido e extremamente previsível.",
         items: [
-          "Integração bidirecional com ERP TASY via ESB HSL para ativação, inativação e troca de leitos.",
-          "Orquestração do middleware IPTV com geração dinâmica de tokens MD5 com salt.",
-          "Navegação contínua de Smart TVs Android TV com cache agressivo por endereço MAC.",
-          "Painel administrativo interno com autenticação por cookie HTTP-only JWT e auditoria completa.",
+          "Integração bidirecional com o ERP TASY (via ESB HSL) para cadastro, ativação e troca de leitos.",
+          "Orquestração de streaming com geração dinâmica de tokens MD5 com salt para liberação de acesso.",
+          "Navegação fluida nas Smart TVs Android TV com cache inteligente por endereço MAC.",
+          "Painel administrativo interno com autenticação segura via cookies JWT HttpOnly e auditoria detalhada.",
         ],
       },
       {
         id: "arquitetura",
         eyebrow: "02 · Arquitetura",
-        title: "Bootstrap previsível e limites rígidos",
+        title: "Inicialização previsível e limites claros",
         intro:
-          "Escolhemos Fiber v2 (FastHTTP) pela altíssima performance e baixíssima alocação de memória. Todo o ciclo de vida da aplicação é configurado de forma determinística antes do servidor aceitar conexões.",
+          "Optamos pelo Fiber v2 (construído sobre FastHTTP) por sua alta capacidade de processamento e baixo consumo de memória. Toda a configuração da aplicação é definida de forma determinística logo na inicialização, antes de abrir o servidor para receber tráfego.",
         items: [
-          "Fiber v2 sobre FastHTTP com otimização de zero-allocation e reaproveitamento de buffers.",
-          "PostgreSQL de alta concorrência via pgx/v5 e pgxpool, utilizando sqlc para queries type-safe no core e GORM no admin.",
-          "Timeouts explícitos em todas as camadas (Read/Write timeout HTTP, DB connection lifetime e timeouts de dial).",
-          "Readiness probes verificando integridade do PostgreSQL e Redis antes de liberar a instância para o tráfego.",
+          "Uso de Fiber v2 e FastHTTP com foco em evitar alocações desnecessárias no heap e reaproveitar buffers.",
+          "Acesso concorrente ao PostgreSQL via pgx/v5 e pgxpool, usando sqlc para queries tipadas no core e GORM no módulo admin.",
+          "Timeouts explícitos em todas as pontas: conexões HTTP, consultas ao banco e chamadas para serviços externos.",
+          "Checagens de prontidão (readiness probes) que validam banco e cache antes de liberar a instância para o tráfego.",
         ],
         note:
-          "Rejeitar requisições rapidamente sob sobrecarga extrema é infinitamente superior a empilhar goroutines até o OOM kill do container.",
+          "Rejeitar requisições de forma rápida sob sobrecarga extrema é muito melhor do que acumular goroutines até estourar a memória do container.",
       },
       {
         id: "performance",
         eyebrow: "03 · Performance",
-        title: "Zero-allocation no caminho crítico",
+        title: "Eficiência máxima na rota principal",
         intro:
-          "O caminho quente da API (servir catálogo e dados de leito para a TV) opera em sub-10ms eliminando alocações desnecessárias no heap e reusando conexões.",
+          "A rota principal da API (que entrega o catálogo e dados do leito para a TV) responde em menos de 10ms. Conseguimos isso reduzindo alocações de memória e mantendo conexões persistentes abertas.",
         items: [
-          "Cliente HTTP de alta performance (FastHTTP) encapsulado com pool de conexões por host e limite de 3 retentativas.",
-          "Parsing otimizado de JSON com Sonic JSON e geradores de código do sqlc para evitar reflexão em runtime.",
-          "Suporte a compressão seletiva e cabeçalhos ETag para economizar largura de banda na rede hospitalar.",
-          "Dashboard de monitoramento e templates HTML embarcados diretamente no binário Go via embed.FS.",
+          "Cliente HTTP customizado (FastHTTP) com pool de conexões por host e limite de 3 tentativas com retentativa inteligente.",
+          "Parsing de JSON otimizado com Sonic JSON e código gerado pelo sqlc, eliminando reflexão (reflection) em tempo de execução.",
+          "Compressão seletiva e cabeçalhos ETag para economizar banda na rede interna do hospital.",
+          "Dashboard de monitoramento e páginas de administração embarcados diretamente no binário compilado do Go via embed.FS.",
         ],
       },
       {
@@ -116,68 +116,68 @@ const articles = {
         eyebrow: "04 · Cache",
         title: "Cache híbrido em duas camadas (Redis + sync.Map)",
         intro:
-          "O Redis atua como camada primária, mas a indisponibilidade do Redis nunca pode derrubar a aplicação. Criamos um sistema de cache híbrido de duas camadas com fallback instantâneo.",
+          "O Redis é a nossa primeira camada de cache, mas uma oscilação no Redis jamais pode derrubar o sistema. Por isso, criamos uma arquitetura híbrida com transição automática para memória local.",
         items: [
-          "Camada primária em Redis (v8) com TTLs ajustados por volatilidade (ex: 4 min para login por MAC).",
-          "Fallback automático para sync.Map local com varredura TTL janitor quando o Redis falha ou excede 500ms.",
-          "Goroutine dedicada em background para purge preventivo diário entre 03:00 e 04:00 da manhã.",
-          "Métricas em tempo real de cache hits, misses e erros segregadas por camada (Redis vs Local).",
+          "Redis v8 como camada principal, com tempos de expiração (TTL) definidos pela volatilidade de cada dado (ex: 4 min para sessão da TV).",
+          "Fallback automático para sync.Map local com rotina de limpeza (janitor) quando o Redis falha ou demora mais de 500ms.",
+          "Processo em segundo plano (goroutine) para limpeza preventiva diária no horário de menor movimento (entre 03h e 04h).",
+          "Métricas em tempo real acompanhando acertos (hits), erros e latência separados por camada (Redis vs Memória local).",
         ],
         note:
-          "Se o servidor Redis cair no meio da madrugada, a TV do leito continua funcionando sem interrupção através do cache em memória local.",
+          "Se o Redis oscilar no meio da madrugada, a TV do leito continua funcionando normalmente usando o cache em memória da própria aplicação.",
       },
       {
         id: "observabilidade",
         eyebrow: "05 · Observabilidade",
-        title: "Métricas normalizadas e Dashboard embutido",
+        title: "Métricas que ajudam a tomar decisões",
         intro:
-          "Telemetria completa exportada nativamente para Prometheus e visualizada em um painel administrativo em tempo real servido pelo próprio binário Go.",
+          "Toda a telemetria é exportada nativamente para o Prometheus e exibida em tempo real em um painel interno servido pelo próprio binário em Go.",
         items: [
-          "Histogramas http_request_duration_seconds com buckets customizados (0.5ms a 30s) e rotas normalizadas.",
-          "Métricas dedicadas de banco de dados (db_query_duration_seconds) e integrações externas (ESB/IPTV).",
-          "Métricas de infraestrutura em tempo real: uso de CPU, memória heap/stack, goroutines e conexões de pool.",
-          "Dashboard web responsivo servido em /pkg/dashboard embarcado via embed.FS sem dependências de infra.",
+          "Histogramas de latência (http_request_duration_seconds) de 0.5ms a 30s com rotas normalizadas.",
+          "Métricas específicas para tempo de consulta no banco (db_query_duration_seconds) e chamadas para APIs externas.",
+          "Acompanhamento de recursos em tempo real: CPU, memória heap/stack, quantidade de goroutines e pausagens do Garbage Collector.",
+          "Painel web responsivo em /pkg/dashboard embutido via embed.FS, sem depender de ferramentas de terceiros.",
         ],
         note:
-          "A normalização obrigatória de parâmetros de rota em middleware impediu a explosão de cardinalidade no Prometheus.",
+          "Normalizar os parâmetros das URLs no middleware foi fundamental para evitar o estouro de métricas (cardinalidade) no Prometheus.",
       },
       {
         id: "seguranca",
         eyebrow: "06 · Segurança",
-        title: "Matriz RBAC de 4 níveis e Trilha de Auditoria",
+        title: "Controle de acesso por papéis (RBAC) e auditoria",
         intro:
-          "O controle de acesso é aplicado via middlewares (JWTMiddleware e AuthorizeMiddleware) com papéis rígidos e registro imutável de ações.",
+          "A segurança é tratada na camada de rotas via middlewares (JWTMiddleware e AuthorizeMiddleware), com papéis de acesso bem definidos e registro imutável de alterações.",
         items: [
-          "Cookies de sessão admin_token protegidos com HttpOnly, Secure, SameSite e assinados via golang-jwt/jwt/v5.",
-          "Matriz RBAC em 4 níveis (Dev, Suporte, Gestor, Analista) com restrição técnica impedindo gestores de promoverem níveis elevados.",
-          "Trilha de auditoria (activity_log) no PostgreSQL registrando o colaborador, ação (CREATE/UPDATE/DELETE), entidade e delta.",
-          "Senhas de colaboradores criptografadas com Bcrypt (golang.org/x/crypto/bcrypt) e rotação de segredos.",
+          "Sessões administrativas protegidas por cookies HTTP-only, Secure e SameSite, assinadas com JWT (golang-jwt/jwt/v5).",
+          "Hierarquia de permissões em 4 níveis (Dev, Suporte, Gestor, Analista) com travas no código para impedir elevação indevida de privilégios.",
+          "Histórico detalhado de auditoria (activity_log) no PostgreSQL registrando quem fez a alteração, o tipo de ação e o valor antigo/novo.",
+          "Senhas criptografadas com Bcrypt (golang.org/x/crypto/bcrypt) e políticas de rotação de chaves.",
         ],
       },
       {
         id: "erros",
         eyebrow: "07 · Incidentes",
-        title: "Lições práticas extraídas de produção",
+        title: "Aprendizados práticos tirados da produção",
         intro:
-          "Cada gargalo encontrado durante a operação do sistema hospitalar resultou em uma refatoração arquitetural conclusiva.",
+          "Cada ajuste na arquitetura foi fruto de observação e aprendizado prático durante a operação em ambiente hospitalar.",
         items: [
-          "Explosão de cardinalidade no Prometheus -> Solução: middleware de normalização rigorosa de endpoints.",
-          "Oscilações de rede no Redis -> Solução: Cache híbrido transparente com fallback instantâneo para sync.Map local.",
-          "Retries desordenados no barramento ESB -> Solução: HTTP client encapsulado com backoff exponencial e limite finito.",
-          "Conflitos de troca de TV -> Solução: Validação atômica de MACs no middleware de streaming antes da persistência.",
+          "Estouro de métricas no Prometheus -> Solução: middleware com padronização rígida do formato das URLs.",
+          "Pequenas quedas de conexão com o Redis -> Solução: cache híbrido transparente com fallback imediato para memória local.",
+          "Tentativas excessivas de conexão com APIs externas -> Solução: cliente HTTP otimizado com limite de retentativas e tempo de espera gradual.",
+          "Inconsistências ao trocar o aparelho de TV -> Solução: verificação prévia do MAC address antes de salvar no banco.",
         ],
       },
       {
         id: "checklist",
         eyebrow: "08 · Checklist",
-        title: "O que validar antes do próximo deploy",
+        title: "O que verificar antes de um novo deploy",
         intro:
-          "Manter uma API Go rodando com latência de 6ms exige disciplina e verificações automatizadas contínuas.",
+          "Manter um serviço em Go respondendo em 6ms exige consistência e testes automatizados a cada entrega.",
         items: [
-          "Pools pgxpool e conexões Redis ajustados para o número de CPU cores disponíveis no container.",
-          "Mecanismo de fallback do cache testado sob injeção de falhas (Redis simulado fora do ar).",
-          "Métricas Prometheus com rotas devidamente normalizadas e sem vazamento de IDs nas labels.",
-          "Build multi-stage compilado com flags -ldflags='-s -w' e testes de carga executados antes da release.",
+          "Limites dos pools de conexão (banco e Redis) ajustados de acordo com os núcleos de CPU alocados no container.",
+          "Teste do mecanismo de fallback do cache simulando a indisponibilidade total do Redis.",
+          "Verificação das métricas do Prometheus para garantir que não há parâmetros dinâmicos vazando nas rotas.",
+          "Compilação Docker multi-estágio otimizada (-ldflags='-s -w') e testes de carga executados antes da publicação.",
         ],
       },
     ],
