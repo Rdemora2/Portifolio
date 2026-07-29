@@ -1,76 +1,48 @@
-import { NextIntlClientProvider } from "next-intl"
-import { getMessages, setRequestLocale } from "next-intl/server"
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
-import { About } from "@/components/sections/About"
-import { Contact } from "@/components/sections/Contact"
-import { Experience } from "@/components/sections/Experience"
+import { HomeSections } from "@/components/portfolio/HomeSections"
+import { LegacyHashRouter } from "@/components/portfolio/LegacyHashRouter"
 import { Hero } from "@/components/sections/Hero"
-import { Insights } from "@/components/sections/Insights"
-import { Metrics } from "@/components/sections/Metrics"
-import { Projects } from "@/components/sections/Projects"
-import { TechStack } from "@/components/sections/TechStack"
-import { WebsiteShowcase } from "@/components/sections/WebsiteShowcase"
-import { SectionDivider } from "@/components/shared/SectionDivider"
+import { isLocale } from "@/i18n.config"
+import { buildPageMetadata } from "@/lib/page-metadata"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale: candidate } = await params
+  if (!isLocale(candidate)) notFound()
+
+  const t = await getTranslations({
+    locale: candidate,
+    namespace: "Metadata",
+  })
+
+  return buildPageMetadata({
+    locale: candidate,
+    pathname: "/",
+    title: t("title"),
+    description: t("description"),
+  })
+}
 
 export default async function Home({
   params,
 }: {
   params: Promise<{ locale: string }>
 }) {
-  const { locale } = await params
-  setRequestLocale(locale)
-  const messages = await getMessages({ locale })
-  const homeMessages = {
-    Projects: messages.Projects,
-    Stats: messages.Stats,
-    Contact: messages.Contact,
-  }
+  const { locale: candidate } = await params
+  if (!isLocale(candidate)) notFound()
+  setRequestLocale(candidate)
 
   return (
-    <NextIntlClientProvider locale={locale} messages={homeMessages}>
-      <main id="main-content" className="home-content relative">
-        <Hero />
-        <SectionDivider
-          topColor="var(--color-void)"
-          bottomColor="var(--color-deep)"
-        />
-        <About />
-        <SectionDivider
-          topColor="var(--color-deep)"
-          bottomColor="var(--color-void)"
-        />
-        <Projects />
-        <SectionDivider
-          topColor="var(--color-void)"
-          bottomColor="var(--color-structure)"
-        />
-        <WebsiteShowcase />
-        <SectionDivider
-          topColor="var(--color-structure)"
-          bottomColor="var(--color-deep)"
-        />
-        <TechStack />
-        <SectionDivider
-          topColor="var(--color-deep)"
-          bottomColor="var(--color-void)"
-        />
-        <Metrics />
-        <SectionDivider
-          topColor="var(--color-void)"
-          bottomColor="var(--color-deep)"
-        />
-        <Experience />
-        <SectionDivider
-          topColor="var(--color-deep)"
-          bottomColor="var(--color-deep)"
-        />
-        <Insights />
-        <SectionDivider
-          topColor="var(--color-deep)"
-          bottomColor="var(--color-void)"
-        />
-        <Contact />
-      </main>
-    </NextIntlClientProvider>
+    <main id="main-content" className="home-content relative">
+      <LegacyHashRouter />
+      <Hero />
+      <HomeSections />
+    </main>
   )
 }
