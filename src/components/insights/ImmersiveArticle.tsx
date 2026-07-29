@@ -75,7 +75,7 @@ export function ImmersiveArticle({
             />
             <div className={styles.heroInner}>
               <Link
-                href="/#insights"
+                href="/insights"
                 prefetch={false}
                 className={styles.backLink}
               >
@@ -315,7 +315,7 @@ export function ImmersiveArticle({
             <p>{article.ctaEyebrow}</p>
             <h2 data-article-cta-title>{article.ctaTitle}</h2>
             <p>{article.ctaDescription}</p>
-            <Link href="/#contact" className={styles.ctaLink}>
+            <Link href="/work" className={styles.ctaLink}>
               <span>{article.ctaLabel}</span>
               <span aria-hidden="true">↗</span>
             </Link>

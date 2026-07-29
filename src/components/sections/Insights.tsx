@@ -133,7 +133,7 @@ export async function Insights() {
 
                 {insight.hasFullArticle && (
                   <Link
-                    href={`/insights/${insight.slug}`}
+                    href="/insights/go-em-producao"
                     className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-signal)] transition-transform duration-200 group-hover:translate-x-1"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >

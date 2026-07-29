@@ -183,10 +183,10 @@ const articles = {
     ],
     authorRole: "Engenheiro de Software & Gerente de TI",
     ctaEyebrow: "Arquitetura precisa funcionar fora do diagrama",
-    ctaTitle: "Quer discutir um sistema que precisa operar com confiabilidade em produção?",
+    ctaTitle: "A arquitetura fica mais clara quando decisões e resultados aparecem juntos.",
     ctaDescription:
-      "Posso ajudar a transformar requisitos de escala, confiabilidade e custo em decisões de engenharia mensuráveis.",
-    ctaLabel: "Conversar sobre o projeto",
+      "Continue pelos estudos de caso para ver como esses mesmos critérios aparecem em outros contextos de produção.",
+    ctaLabel: "Explorar projetos",
   },
   en: {
     seo: {
@@ -348,10 +348,10 @@ const articles = {
     ],
     authorRole: "Software Engineer & IT Manager",
     ctaEyebrow: "Architecture has to work beyond the diagram",
-    ctaTitle: "Need a system that stays reliable under production load?",
+    ctaTitle: "Architecture becomes clearer when decisions and outcomes appear together.",
     ctaDescription:
-      "I can help turn scale, reliability, and cost requirements into measurable engineering decisions.",
-    ctaLabel: "Discuss the project",
+      "Continue through the case studies to see how the same criteria appear across other production contexts.",
+    ctaLabel: "Explore work",
   },
   es: {
     seo: {
@@ -513,10 +513,10 @@ const articles = {
     ],
     authorRole: "Ingeniero de Software & Gerente de TI",
     ctaEyebrow: "La arquitectura debe funcionar fuera del diagrama",
-    ctaTitle: "¿Hablamos de un sistema que debe resistir producción?",
+    ctaTitle: "La arquitectura se vuelve más clara cuando decisiones y resultados aparecen juntos.",
     ctaDescription:
-      "Puedo ayudar a convertir requisitos de escala, confiabilidad y costo en decisiones de ingeniería medibles.",
-    ctaLabel: "Hablar del proyecto",
+      "Continúa por los casos de estudio para ver cómo estos mismos criterios aparecen en otros contextos de producción.",
+    ctaLabel: "Explorar proyectos",
   },
 } satisfies Record<Locale, GoProductionArticleCopy>
 
