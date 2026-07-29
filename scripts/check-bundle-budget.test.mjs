@@ -12,6 +12,7 @@ import {
   extractRouteAssets,
   findBudgetFailures,
   measureLazyGroups,
+  routeDefinitions,
   runBundleBudgetCheck,
 } from "./check-bundle-budget.mjs"
 
@@ -39,18 +40,26 @@ describe("bundle budget collection", () => {
   }
 
   async function createCompleteBuildFixture() {
+    const routeFixtures = Object.entries(routeDefinitions).map(
+      ([key, definition]) =>
+        fixture(
+          definition.htmlPath,
+          key === "article" ? articleHtml : homeHtml,
+        ),
+    )
+
     await Promise.all([
+      ...routeFixtures,
       fixture("static/chunks/runtime.js", "runtime".repeat(200)),
       fixture("static/chunks/article.js", "article".repeat(150)),
       fixture("static/chunks/lazy.js", "deferred".repeat(300)),
+      fixture("static/chunks/contact-lazy.js", "contact".repeat(280)),
       fixture(
         "static/css/app.css",
         '@font-face{font-family:Display;src:url("../media/extended.woff2") format("woff2")} .app{display:block}'.repeat(50),
       ),
       fixture("static/media/display.woff2", "font".repeat(500)),
       fixture("static/media/extended.woff2", "extended-font".repeat(300)),
-      fixture("server/app/en.html", homeHtml),
-      fixture("server/app/en/insights/go-em-producao.html", articleHtml),
       fixture(
         "server/app/[locale]/(home)/page/react-loadable-manifest.json",
         JSON.stringify({
@@ -59,10 +68,18 @@ describe("bundle budget collection", () => {
           },
         }),
       ),
+      fixture(
+        "server/app/[locale]/contact/page/react-loadable-manifest.json",
+        JSON.stringify({
+          "ContactForm -> react-hook-form": {
+            files: ["static/chunks/contact-lazy.js"],
+          },
+        }),
+      ),
     ])
   }
 
-  it("measures home, article and deferred assets independently", async () => {
+  it("measures all primary routes and deferred assets independently", async () => {
     await createCompleteBuildFixture()
 
     const metrics = collectBundleMetrics(nextDir)
@@ -82,10 +99,13 @@ describe("bundle budget collection", () => {
     expect(metrics.home.fontInventory).toBe(
       "font".repeat(500).length + "extended-font".repeat(300).length,
     )
-    expect(metrics.lazy.groups).toHaveLength(1)
-    expect(metrics.deferred.files.map(({ path }) => path)).toEqual([
-      "static/chunks/lazy.js",
-    ])
+    expect(metrics.work.files.js).toEqual(["static/chunks/runtime.js"])
+    expect(metrics.caseStudy.files.js).toEqual(["static/chunks/runtime.js"])
+    expect(metrics.contact.files.js).toEqual(["static/chunks/runtime.js"])
+    expect(metrics.lazy.groups).toHaveLength(2)
+    expect(metrics.deferred.files.map(({ path }) => path).sort()).toEqual(
+      ["static/chunks/contact-lazy.js", "static/chunks/lazy.js"].sort(),
+    )
 
     const rows = createBudgetRows(metrics)
     expect(rows.map(({ surface }) => surface)).toEqual(
@@ -94,24 +114,45 @@ describe("bundle budget collection", () => {
         "ARTICLE HTML",
         "ARTICLE FONT PRELOAD",
         "ARTICLE FONT INVENTORY",
+        "WORK JS",
+        "CASE HTML",
+        "EXPERIENCE JS",
+        "ABOUT CSS",
+        "INSIGHTS HTML",
+        "CONTACT JS",
         "LAZY TOTAL",
-        "LAZY MAX · static/chunks/lazy.js",
-        "LAZY ENTRY · ProjectDrawer -> LiquidPortal",
       ]),
     )
+    expect(
+      rows.some(({ surface }) => surface.startsWith("LAZY MAX · ")),
+    ).toBe(true)
+    expect(
+      rows.some(({ surface }) =>
+        surface.includes("ProjectDrawer -> LiquidPortal"),
+      ),
+    ).toBe(true)
+    expect(
+      rows.some(({ surface }) =>
+        surface.includes("ContactForm -> react-hook-form"),
+      ),
+    ).toBe(true)
   })
 
   it("accepts captured HTML for every measured dynamic route", async () => {
     await createCompleteBuildFixture()
-    await Promise.all([
-      rm(join(nextDir, "server/app/en.html")),
-      rm(join(nextDir, "server/app/en/insights/go-em-producao.html")),
-    ])
+    await Promise.all(
+      Object.values(routeDefinitions).map((definition) =>
+        rm(join(nextDir, definition.htmlPath)),
+      ),
+    )
 
-    const metrics = collectBundleMetrics(nextDir, {
-      home: homeHtml,
-      article: articleHtml,
-    })
+    const capturedHtml = Object.fromEntries(
+      Object.keys(routeDefinitions).map((key) => [
+        key,
+        key === "article" ? articleHtml : homeHtml,
+      ]),
+    )
+    const metrics = collectBundleMetrics(nextDir, capturedHtml)
 
     expect(metrics.home.files.js).toEqual(["static/chunks/runtime.js"])
     expect(metrics.article.files.js).toEqual([
@@ -131,7 +172,7 @@ describe("bundle budget collection", () => {
     const requestedPaths = []
     const server = createServer((request, response) => {
       requestedPaths.push(request.url)
-      if (request.url !== "/en/insights/go-em-producao") {
+      if (request.url !== "/en/insights/go-in-production") {
         response.writeHead(404).end()
         return
       }
@@ -159,7 +200,7 @@ describe("bundle budget collection", () => {
       await once(server, "close")
     }
 
-    expect(requestedPaths).toEqual(["/en/insights/go-em-producao"])
+    expect(requestedPaths).toEqual(["/en/insights/go-in-production"])
   })
 
   it("rejects routes whose initial entries are empty", () => {
@@ -229,8 +270,12 @@ describe("bundle budget collection", () => {
         "ARTICLE FONT INVENTORY",
         "LAZY TOTAL",
         "LAZY MAX · static/chunks/lazy.js",
-        "LAZY ENTRY · ProjectDrawer -> LiquidPortal",
       ]),
     )
+    expect(
+      failures.some(({ surface }) =>
+        surface.includes("ProjectDrawer -> LiquidPortal"),
+      ),
+    ).toBe(true)
   })
 })
