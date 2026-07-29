@@ -54,15 +54,15 @@ export function Experience() {
                 <article
                   aria-labelledby={`experience-${entry.id}-title`}
                   data-experience-entry
-                  className={`relative flex flex-col md:flex-row md:items-center ${
-                    idx % 2 === 0 ? "md:flex-row-reverse" : ""
+                  className={`relative flex flex-col lg:flex-row lg:items-center ${
+                    idx % 2 === 0 ? "lg:flex-row-reverse" : ""
                   }`}
                 >
                   <div
                     className={
                       idx % 2 === 0
-                        ? "flex flex-1 justify-center md:w-1/2 md:flex-none md:justify-start md:pl-12"
-                        : "flex flex-1 justify-center md:w-1/2 md:flex-none md:justify-end md:pr-12"
+                        ? "flex flex-1 justify-center lg:w-1/2 lg:flex-none lg:justify-start lg:pl-12"
+                        : "flex flex-1 justify-center lg:w-1/2 lg:flex-none lg:justify-end lg:pr-12"
                     }
                   >
                     <div
@@ -105,6 +105,7 @@ export function Experience() {
                       </div>
 
                       <p
+                        data-experience-company
                         className="mb-4 text-sm font-semibold uppercase tracking-wider"
                         style={{
                           fontFamily: "var(--font-mono)",
@@ -169,7 +170,7 @@ export function Experience() {
                     </div>
                   </div>
 
-                  <div className="relative z-10 flex h-12 w-12 items-center justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
+                  <div className="relative z-10 hidden h-12 w-12 items-center justify-center lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2">
                     <div
                       className="absolute h-full w-full rounded-full border border-[var(--color-signal)] opacity-20"
                       style={{
@@ -185,7 +186,7 @@ export function Experience() {
                     />
                   </div>
 
-                  <div className="hidden md:block md:w-1/2 md:flex-none" />
+                  <div className="hidden lg:block lg:w-1/2 lg:flex-none" />
                 </article>
               </ScrollReveal>
             ))}

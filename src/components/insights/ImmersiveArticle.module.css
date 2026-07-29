@@ -757,6 +757,7 @@
 
 .chapterFrame {
   position: relative;
+  min-width: 0;
   max-width: 47rem;
   padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1rem, 3vw, 2rem);
   border-top: 1px solid color-mix(in srgb, var(--chapter-tone) 55%, var(--color-edge));
@@ -1622,8 +1623,8 @@
   }
 
   .heroTitle {
-    max-width: 9ch;
-    font-size: clamp(3.6rem, 17vw, 7rem);
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 5rem);
   }
 
   .heroTitle span {
@@ -1768,6 +1769,10 @@
 
   .chapterFrame {
     padding-inline: 0.8rem 0;
+  }
+
+  .chapter:nth-child(even) .chapterFrame {
+    margin-left: 0;
   }
 
   .chapter h2 {

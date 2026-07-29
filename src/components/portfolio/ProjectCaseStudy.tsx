@@ -144,16 +144,16 @@ export async function ProjectCaseStudy({
             <dl className={`${styles.metricGrid} mt-8`}>
               {project.metrics.map((metric) => (
                 <div key={metric.id} className={styles.metricCard}>
-                  <dd className={styles.metricValue}>
-                    {metric.prefix}
-                    {metric.value}
-                    {metric.suffix}
-                  </dd>
                   <dt className={styles.metricLabel}>
                     {projectsTranslations(
                       `${itemPath}.metrics.${metric.id}`,
                     )}
                   </dt>
+                  <dd className={styles.metricValue}>
+                    {metric.prefix}
+                    {metric.value}
+                    {metric.suffix}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -260,6 +260,7 @@ export async function ProjectCaseStudy({
                           href={product.href}
                           target="_blank"
                           rel="noopener noreferrer external"
+                          data-managed-product-link={product.id}
                           className={styles.productLink}
                         >
                           <span>{product.name}</span>

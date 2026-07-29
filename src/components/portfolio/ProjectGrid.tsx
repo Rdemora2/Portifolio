@@ -70,16 +70,16 @@ export async function ProjectGrid() {
               <dl className={styles.projectMetrics}>
                 {project.metrics.map((metric) => (
                   <div key={metric.id} className={styles.projectMetric}>
-                    <dd className={styles.projectMetricValue}>
-                      {metric.prefix}
-                      {metric.value}
-                      {metric.suffix}
-                    </dd>
                     <dt className={styles.projectMetricLabel}>
                       {projectsTranslations(
                         `items.${project.id}.metrics.${metric.id}`,
                       )}
                     </dt>
+                    <dd className={styles.projectMetricValue}>
+                      {metric.prefix}
+                      {metric.value}
+                      {metric.suffix}
+                    </dd>
                   </div>
                 ))}
               </dl>

@@ -4,6 +4,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
   type CSSProperties,
 } from "react"
 import { useTranslations } from "next-intl"
@@ -18,11 +19,20 @@ type MobileNavItemStyle = CSSProperties & {
   "--nav-item-delay": string
 }
 
+const subscribeToHydration = () => () => undefined
+const getHydratedSnapshot = () => true
+const getServerHydrationSnapshot = () => false
+
 function isCurrentRoute(pathname: string, href: string): boolean {
   return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`))
 }
 
 export function Navigation() {
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getHydratedSnapshot,
+    getServerHydrationSnapshot,
+  )
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const navigationRef = useRef<HTMLElement>(null)
@@ -170,6 +180,7 @@ export function Navigation() {
     <>
       <nav
         ref={navigationRef}
+        data-navigation-ready={isHydrated ? "true" : "false"}
         data-article-navigation={isArticle ? "" : undefined}
         className="glass-nav fixed inset-x-0 top-0 z-[100] transition-all duration-500"
         style={{
@@ -216,6 +227,7 @@ export function Navigation() {
           <button
             ref={menuButtonRef}
             type="button"
+            data-navigation-menu-button
             className={`${styles.menuButton} relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden ${
               isMobileOpen ? "invisible" : ""
             }`}
@@ -245,7 +257,10 @@ export function Navigation() {
         aria-label={t("mobileMenuLabel")}
         aria-hidden={!isMobileOpen}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+        <div
+          data-navigation-menu-header
+          className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6"
+        >
           <span
             className="inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
@@ -271,7 +286,9 @@ export function Navigation() {
           </button>
         </div>
 
-        <div className="mx-auto flex min-h-0 w-full max-w-7xl flex-1 flex-col justify-center px-6 py-10 sm:px-10">
+        <div
+          className={`${styles.mobileMenuContent} mx-auto flex min-h-0 w-full max-w-7xl flex-1 flex-col justify-center px-6 py-10 sm:px-10`}
+        >
           <p
             className="mb-7 text-[0.625rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]"
             style={{ fontFamily: "var(--font-mono)" }}
