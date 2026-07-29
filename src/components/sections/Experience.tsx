@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 
 export function Experience() {
   const t = useTranslations("Experience");
+  const page = useTranslations("PortfolioPages.experience");
 
   return (
     <section
@@ -72,6 +73,15 @@ export function Experience() {
                       }
                       style={{ borderRadius: "1rem" }}
                     >
+                      {idx === 0 ? (
+                        <p
+                          className="mb-5 inline-flex min-h-8 items-center rounded-full border border-[rgba(129,140,248,0.24)] bg-[rgba(129,140,248,0.08)] px-3 text-[0.625rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-signal)]"
+                          style={{ fontFamily: "var(--font-mono)" }}
+                          data-company-progression
+                        >
+                          {page("progression")}
+                        </p>
+                      ) : null}
                       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                         <h3
                           id={`experience-${entry.id}-title`}

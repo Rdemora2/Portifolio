@@ -129,14 +129,6 @@ export async function TechStack() {
                         }}
                       >
                         {tech.name}
-                        {tech.proficiency === 5 && (
-                          <span
-                            className="ml-1"
-                            style={{ color: "var(--color-matrix)" }}
-                          >
-                            ★
-                          </span>
-                        )}
                       </span>
                     ))}
                   </div>
