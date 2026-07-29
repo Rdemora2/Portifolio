@@ -31,6 +31,13 @@ export interface CaseStudyDetail {
   keyDecisions: string[]
   lessonsLearned: string[]
   results: string[]
+  images?: {
+    src: string
+    width: number
+    height: number
+    alt: string
+    blurDataURL: string
+  }[]
 }
 
 export interface ManagedDigitalProduct {

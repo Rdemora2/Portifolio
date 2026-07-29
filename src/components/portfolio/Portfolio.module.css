@@ -985,3 +985,100 @@
     outline-offset: 2px;
   }
 }
+
+.gallerySection {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-deep);
+  padding-top: clamp(4rem, 8vw, 7rem);
+}
+
+.galleryHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.galleryControls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.galleryNavBtn {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  background: rgba(10, 16, 24, 0.6);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.galleryNavBtn:hover:not(:disabled) {
+  border-color: var(--color-signal);
+  color: var(--color-signal);
+  background: rgba(10, 16, 24, 0.9);
+}
+
+.galleryNavBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.swiperContainerWrapper {
+  margin-top: 2.5rem;
+  width: 100%;
+  position: relative;
+}
+
+.swiperGallery {
+  width: 100%;
+  padding-top: 1.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
+.swiperSlide {
+  width: 70% !important;
+  max-width: 600px;
+}
+
+@media (min-width: 768px) {
+  .swiperSlide {
+    width: 50% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .swiperSlide {
+    width: 38% !important;
+  }
+}
+
+.galleryItemCard {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.45);
+  background: rgba(10, 16, 24, 0.8);
+  aspect-ratio: 16 / 9;
+}
+
+.galleryImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiperPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}

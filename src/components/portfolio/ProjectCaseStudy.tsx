@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 import type { Project } from "@/types"
 import { Link } from "@/navigation"
 
+import { ProjectGallery } from "./ProjectGallery"
 import styles from "./Portfolio.module.css"
 
 function stringList(value: unknown): string[] {
@@ -91,6 +92,13 @@ export async function ProjectCaseStudy({
           </dl>
         </div>
       </header>
+
+      {project.caseStudy?.images && project.caseStudy.images.length > 0 ? (
+        <ProjectGallery 
+          images={project.caseStudy.images} 
+          title={caseTranslations("gallery")} 
+        />
+      ) : null}
 
       <section className={styles.sectionAlt}>
         <div className={styles.container}>

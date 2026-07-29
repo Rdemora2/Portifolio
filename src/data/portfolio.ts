@@ -167,6 +167,43 @@ export const projects: Project[] = [
         "Latência média de 6ms em produção",
         "Plataforma aprovada para auditorias de saúde",
       ],
+      images: [
+        {
+          src: "/images/hsl app/hsl_app_01.png",
+          width: 1920,
+          height: 1080,
+          alt: "Interface principal do aplicativo Hospital Sírio-Libanês",
+          blurDataURL: "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMFBP/EACQQAAEDAwMEAwAAAAAAAAAAAAECAwQAESEFEyIGMVFhEhRB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAaEQACAwEBAAAAAAAAAAAAAAABAgADESEx/9oADAMBAAIRAxEAPwDLpU+S6Fbkx0nwTeqDktzbJ+0sW/aV1UkRVxzGAZ+SSTt8b59VObkvLiELcUeVsnPehetid2UJaqjMk+Tq88PqCZr1gcc6Ka8tRKcjt49milB5BPs//9k="
+        },
+        {
+          src: "/images/hsl app/hsl_app_02.png",
+          width: 1920,
+          height: 1080,
+          alt: "Canal Sírio-Libanês apresentando conteúdo institucional",
+          blurDataURL: "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAUGA//EACQQAAIBAwQABwAAAAAAAAAAAAECAwAEEQUSITEUJEFRYXGx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAZEQADAAMAAAAAAAAAAAAAAAAAARECMVH/2gAMAwEAAhEDEQA/AEDa5quAHvH2tz6VSWOuDwyLlHf3c99Z/aV3s0MU0ZSxtACvKmPI7+6yhnQI3lbc5cHlOhnofFRt6QhUS6nZnYTOgJUEjng0VIXdzvlBWKGMY6RMDs0VJl0KM//Z"
+        },
+        {
+          src: "/images/hsl app/hsl_app_03.png",
+          width: 1920,
+          height: 1080,
+          alt: "Catálogo de filmes e séries com proteção DRM",
+          blurDataURL: "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUDBAb/xAAoEAABAwMCAwkAAAAAAAAAAAABAgMEABExBSEGEkETFCJRUmFikdH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAQT/xAAbEQEAAgIDAAAAAAAAAAAAAAABABECAxNBUv/aAAwDAQACEQMRAD8AoDi7UQAexiWPwP7T2BqjslguojoW6q2yRYHF8nbNIJfd0vthMKOElB2srzHvUCNQcYikMttIPORcJ6XxQbWhiAC2Ppeqy2nyjlj2GPD0+6Kzkie646VFLdyPTRUMc+2aOXT5n//Z"
+        },
+        {
+          src: "/images/hsl app/hsl_app_04.png",
+          width: 1920,
+          height: 1080,
+          alt: "Grade de programação e canais ao vivo",
+          blurDataURL: "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAF/8QAKBAAAgAEBAQHAAAAAAAAAAAAAQIAAwQRBRIxUSEicdEUMjNBUmHB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAEQABAv/aAAwDAQACEQMRAD8A3cQqBRsiy5Uk5lvzg/W3WBtiBdheTS8Dw829toJWYjOqWXOFWwtyFh+wfxD31bX5tv1hOQi6WdNxN8wtKptB7N2ijLmTWJHM+gHqN3ijRlHb/9k="
+        },
+        {
+          src: "/images/hsl app/hsl_app_05.png",
+          width: 1920,
+          height: 1080,
+          alt: "Transmissão ao vivo integrando múltiplas fontes",
+          blurDataURL: "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAALABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAUHAwb/xAAkEAABAwEHBQAAAAAAAAAAAAABAAIRUgMEBRIxYZEhIjRBcv/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQACITH/2gAMAwEAAhEDEQA/AF2CNAuIJrJ9bJkXA9YbwuhsYiIETpGwW8ClvCjWFfY7SzEfPt/soVKvDGZx2M0pCFYTf//Z"
+        }
+      ]
     },
     featured: true,
     order: 2,

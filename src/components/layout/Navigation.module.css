@@ -14,12 +14,20 @@
     transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.brand::before {
+  inset: -0.1rem;
+}
+
+.menuButton::before,
+.menuCloseButton::before {
+  inset: 0.2rem;
+}
+
 .brand::before,
 .menuButton::before,
 .menuCloseButton::before {
   content: "";
   position: absolute;
-  inset: 0.2rem;
   z-index: -1;
   border: 1px solid rgba(129, 140, 248, 0.2);
   border-radius: 0.7rem;
