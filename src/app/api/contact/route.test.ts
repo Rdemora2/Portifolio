@@ -13,9 +13,8 @@ const validContact = {
   name: "Roberto Moraes",
   email: "roberto@example.com",
   company: "Example",
-  projectType: "web",
-  message: "Quero conversar sobre um projeto completo.",
-  budget: "R$ 20 mil",
+  subject: "Conversa sobre engenharia",
+  message: "Quero conversar sobre engenharia de software.",
   botCheck: "",
 }
 
@@ -153,6 +152,7 @@ describe("POST /api/contact", () => {
         from: "Portfolio <portfolio@example.com>",
         to: "owner@example.com",
         replyTo: "roberto@example.com",
+        subject: expect.stringContaining(validContact.subject),
         text: expect.stringContaining(validContact.message),
         html: expect.stringContaining(validContact.message),
       }),

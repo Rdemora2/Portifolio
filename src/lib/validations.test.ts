@@ -5,9 +5,8 @@ const validContact = {
   name: "Roberto Moraes",
   email: "roberto@example.com",
   company: "Example",
-  projectType: "web" as const,
-  message: "Quero conversar sobre um projeto completo.",
-  budget: "R$ 20 mil",
+  subject: "Conversa sobre engenharia",
+  message: "Quero conversar sobre engenharia de software.",
   botCheck: "",
 }
 

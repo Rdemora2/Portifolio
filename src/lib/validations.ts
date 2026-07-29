@@ -23,11 +23,12 @@ export const contactSchema = z
       .max(254, "Email muito longo")
       .email("Email inválido"),
     company: singleLineText.max(120, "Empresa muito longa").optional(),
-    projectType: z.enum(["web", "mobile", "backend", "architecture", "leadership", "other"]),
+    subject: singleLineText
+      .min(3, "Assunto muito curto")
+      .max(160, "Assunto muito longo"),
     message: multiLineText
       .min(20, "Mensagem muito curta")
       .max(4_000, "Mensagem muito longa"),
-    budget: singleLineText.max(100, "Budget muito longo").optional(),
     botCheck: z.string().max(200).optional(),
   })
   .strict()

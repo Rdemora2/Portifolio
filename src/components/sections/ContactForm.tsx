@@ -7,15 +7,6 @@ import { contactSchema, type ContactSchema } from "@/lib/validations"
 import { MagneticButton } from "@/components/shared/MagneticButton"
 import { useTranslations } from "next-intl"
 
-const PROJECT_TYPES = [
-  "web",
-  "mobile",
-  "backend",
-  "architecture",
-  "leadership",
-  "other",
-] as const
-
 type ServerErrorKey = "rateLimited" | "generic"
 
 export function ContactForm() {
@@ -161,29 +152,26 @@ export function ContactForm() {
             />
           </FormField>
           <FormField
-            label={t("form.projectType")}
-            htmlFor="contact-project-type"
+            label={t("form.subject")}
+            htmlFor="contact-subject"
             error={
-              errors.projectType ? t("form.validation.projectType") : undefined
+              errors.subject ? t("form.validation.subject") : undefined
             }
           >
-            <select
-              {...register("projectType")}
-              id="contact-project-type"
+            <input
+              {...register("subject")}
+              type="text"
+              id="contact-subject"
               className="form-input"
-              defaultValue=""
+              placeholder=" "
+              maxLength={160}
               required
-              toolparamdescription={t("form.webMcp.parameters.projectType")}
-              aria-invalid={errors.projectType ? true : undefined}
-              aria-describedby={errors.projectType ? "contact-project-type-error" : undefined}
-            >
-              <option value="" disabled>{t("form.selectPlaceholder")}</option>
-              {PROJECT_TYPES.map((value) => (
-                <option key={value} value={value}>
-                  {t(`form.projectOptions.${value}`)}
-                </option>
-              ))}
-            </select>
+              toolparamdescription={t("form.webMcp.parameters.subject")}
+              aria-invalid={errors.subject ? true : undefined}
+              aria-describedby={
+                errors.subject ? "contact-subject-error" : undefined
+              }
+            />
           </FormField>
         </div>
 
@@ -204,18 +192,6 @@ export function ContactForm() {
             toolparamdescription={t("form.webMcp.parameters.message")}
             aria-invalid={errors.message ? true : undefined}
             aria-describedby={errors.message ? "contact-message-error" : undefined}
-          />
-        </FormField>
-
-        <FormField label={t("form.budget")} htmlFor="contact-budget">
-          <input
-            {...register("budget")}
-            type="text"
-            id="contact-budget"
-            className="form-input"
-            placeholder=" "
-            maxLength={100}
-            toolparamdescription={t("form.webMcp.parameters.budget")}
           />
         </FormField>
 
