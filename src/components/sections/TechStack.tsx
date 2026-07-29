@@ -29,8 +29,11 @@ const techLogos = [
 ];
 
 export async function TechStack() {
-  const t = await getTranslations("About.pillars");
-  const tn = await getTranslations("Nav");
+  const [t, tn, page] = await Promise.all([
+    getTranslations("About.pillars"),
+    getTranslations("Nav"),
+    getTranslations("PortfolioPages.about"),
+  ])
 
   const grouped = techStack.reduce<Record<string, typeof techStack>>(
     (acc, tech) => {
@@ -75,6 +78,8 @@ export async function TechStack() {
         <div className="mb-12 sm:mb-20">
           <LogoLoop
             logos={techLogos}
+            pauseLabel={page("motionPause")}
+            resumeLabel={page("motionResume")}
             speed={60}
             direction="left"
             logoHeight={48}
