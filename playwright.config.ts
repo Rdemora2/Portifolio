@@ -26,7 +26,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   failOnFlakyTests: Boolean(process.env.CI),
-  retries: process.env.CI ? 2 : 2,
+  retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
   timeout: 60_000,
   expect: { timeout: 7_500 },
@@ -43,7 +43,7 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      testIgnore: /(?:browser-smoke|webgl-disabled)\.spec\.ts/,
+      testIgnore: /(?:browser-smoke|mobile-smoke|webgl-disabled)\.spec\.ts/,
       use: { ...devices["Desktop Chrome"] },
     },
     {
@@ -67,12 +67,22 @@ export default defineConfig({
       testMatch: /browser-smoke\.spec\.ts/,
       use: { ...devices["Desktop Safari"] },
     },
+    {
+      name: "chromium-mobile-smoke",
+      testMatch: /mobile-smoke\.spec\.ts/,
+      use: { ...devices["Pixel 7"] },
+    },
+    {
+      name: "webkit-mobile-smoke",
+      testMatch: /mobile-smoke\.spec\.ts/,
+      use: { ...devices["iPhone 15"] },
+    },
   ],
   webServer: startsLocalServer
     ? {
         command: "npm run start",
         url: localBaseUrl,
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: false,
         timeout: 60_000,
         env: {
           ...process.env,

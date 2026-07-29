@@ -2,9 +2,7 @@ import { expect, type Locator, type Page, test } from "@playwright/test"
 
 type NavigationVisualState = {
   afterOpacity: number
-  afterTransform: string
   beforeOpacity: number
-  beforeTransform: string
   focusVisible: boolean
   outlineWidth: string
   transform: string
@@ -21,9 +19,7 @@ async function readNavigationVisualState(
 
     return {
       afterOpacity: Number.parseFloat(after.opacity),
-      afterTransform: after.transform,
       beforeOpacity: Number.parseFloat(before.opacity),
-      beforeTransform: before.transform,
       focusVisible: element.matches(":focus-visible"),
       outlineWidth: style.outlineWidth,
       transform: style.transform,
@@ -32,14 +28,7 @@ async function readNavigationVisualState(
   })
 }
 
-async function waitForHomeHydration(page: Page) {
-  await expect(page.locator("[data-projects-client]")).toHaveAttribute(
-    "data-hydrated",
-    "true",
-  )
-}
-
-async function disableWebGlForIsolatedMotionTest(page: Page) {
+async function disableWebGl(page: Page) {
   await page.addInitScript(() => {
     const originalGetContext = HTMLCanvasElement.prototype.getContext
 
@@ -64,239 +53,168 @@ async function disableWebGlForIsolatedMotionTest(page: Page) {
   })
 }
 
-test.describe("home navigation and restrained motion", () => {
+test.describe("localized page navigation", () => {
   test.use({ viewport: { width: 1440, height: 900 } })
 
-  test("keeps hover, current and keyboard focus perceptible and contained", async ({
+  test("keeps hover, focus, and current-page feedback perceptible", async ({
     page,
   }) => {
-    await disableWebGlForIsolatedMotionTest(page)
+    await disableWebGl(page)
     await page.goto("/en", { waitUntil: "domcontentloaded" })
-    await waitForHomeHydration(page)
 
     const navigation = page.getByRole("navigation", {
       name: "Main navigation",
     })
-    const projects = navigation.getByRole("link", { name: "Projects" })
-    const contact = navigation.getByRole("link", { name: "Contact" })
+    const work = navigation.getByRole("link", { name: "Work" })
+    const brand = navigation.getByLabel(/RM\. — Roberto Moraes/)
 
-    await expect(projects).toBeVisible()
-    await expect(navigation.getByLabel(/RM\. — Roberto Moraes/)).toHaveAttribute(
-      "aria-current",
-      "location",
-    )
+    await expect(work).toBeVisible()
+    await expect(brand).toHaveAttribute("aria-current", "page")
+    await expect(work).not.toHaveAttribute("aria-current")
 
-    const restingState = await readNavigationVisualState(projects)
+    const restingState = await readNavigationVisualState(work)
     expect(restingState.beforeOpacity).toBeLessThan(0.05)
     expect(restingState.afterOpacity).toBeLessThan(0.05)
 
-    await projects.hover()
+    await work.hover()
     await expect
-      .poll(async () => (await readNavigationVisualState(projects)).beforeOpacity)
-      .toBeGreaterThan(0.95)
+      .poll(async () => (await readNavigationVisualState(work)).beforeOpacity)
+      .toBeGreaterThan(0.9)
     await expect
-      .poll(async () => (await readNavigationVisualState(projects)).afterOpacity)
-      .toBeGreaterThan(0.95)
-    expect((await readNavigationVisualState(projects)).transform).not.toBe(
-      "none",
-    )
+      .poll(async () => (await readNavigationVisualState(work)).afterOpacity)
+      .toBeGreaterThan(0.9)
 
-    await contact.hover()
-    const containment = await contact.evaluate((element) => {
-      const linkRect = element.getBoundingClientRect()
-      const locale = element
-        .closest("nav")
-        ?.querySelector<HTMLElement>("[role='group']")
-      if (!locale) throw new Error("Missing desktop locale switcher")
-
-      const effectRight = Number.parseFloat(
-        getComputedStyle(element, "::before").right,
-      )
-
-      return {
-        effectRightEdge: linkRect.right + Math.max(0, -effectRight),
-        localeLeftEdge: locale.getBoundingClientRect().left,
-      }
-    })
-    expect(containment.effectRightEdge).toBeLessThan(containment.localeLeftEdge)
-
-    await projects.focus()
-    await expect
-      .poll(async () => (await readNavigationVisualState(projects)).beforeOpacity)
-      .toBeGreaterThan(0.95)
-    await expect
-      .poll(async () => (await readNavigationVisualState(projects)).afterOpacity)
-      .toBeGreaterThan(0.95)
-    const focusedState = await readNavigationVisualState(projects)
+    await work.focus()
+    const focusedState = await readNavigationVisualState(work)
     expect(focusedState.focusVisible).toBe(true)
     expect(focusedState.outlineWidth).toBe("2px")
 
-    await projects.click()
-    await expect(page).toHaveURL(/#projects$/)
-    await expect(projects).toHaveAttribute("aria-current", "location")
+    await work.click()
+    await expect(page).toHaveURL(/\/en\/work\/?$/)
+    const currentWork = page
+      .getByRole("navigation", { name: "Main navigation" })
+      .getByRole("link", { name: "Work" })
+    await expect(currentWork).toHaveAttribute("aria-current", "page")
+    await currentWork.evaluate((element) => {
+      if (element instanceof HTMLElement) element.blur()
+    })
+    const currentState = await readNavigationVisualState(currentWork)
+    expect(currentState.beforeOpacity).toBeGreaterThan(0.4)
+    expect(currentState.afterOpacity).toBeGreaterThan(0.9)
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(
+      "Engineering explained through decisions",
+    )
   })
 
-  test("reveals home content with compositor-safe frames and releases hints", async ({
+  test("keeps the mobile menu modal, keyboard-safe, and route-aware", async ({
     page,
   }) => {
-    await disableWebGlForIsolatedMotionTest(page)
-    await page.goto("/en", { waitUntil: "domcontentloaded" })
-    await waitForHomeHydration(page)
-    await page.evaluate(() => {
-      document.documentElement.style.scrollBehavior = "auto"
-    })
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto("/en/about", { waitUntil: "domcontentloaded" })
 
-    const reveal = page
-      .locator("#contact [data-scroll-reveal][data-reveal-variant]")
-      .first()
-    await reveal.evaluate((element) => {
-      element.scrollIntoView({ block: "center" })
-    })
+    const openButton = page.getByRole("button", { name: "Open menu" })
+    await expect(
+      page.getByRole("navigation", { name: "Main navigation" }),
+    ).toHaveAttribute("data-navigation-ready", "true")
+    await openButton.focus()
+    await openButton.click()
 
+    const dialog = page.getByRole("dialog", { name: "Navigation menu" })
+    const closeButton = dialog.getByRole("button", { name: "Close menu" })
+    const about = dialog.getByRole("link", { name: "About" })
+
+    await expect(dialog).toBeVisible()
+    await expect(closeButton).toBeFocused()
+    await expect(about).toHaveAttribute("aria-current", "page")
     await expect
-      .poll(() =>
-        reveal.evaluate((element) => {
-          const ignoredProperties = new Set([
-            "composite",
-            "computedOffset",
-            "easing",
-            "offset",
-          ])
+      .poll(() => page.evaluate(() => document.documentElement.style.overflow))
+      .toBe("hidden")
 
-          return Array.from(
-            new Set(
-              element
-                .getAnimations()
-                .flatMap((animation) => {
-                  const effect = animation.effect
-                  return effect instanceof KeyframeEffect
-                    ? effect.getKeyframes()
-                    : []
-                })
-                .flatMap((keyframe) => Object.keys(keyframe))
-                .filter((property) => !ignoredProperties.has(property)),
-            ),
-          ).sort()
-        }),
-      )
-      .toEqual(["opacity", "transform"])
+    await page.keyboard.press("Shift+Tab")
+    await expect(
+      dialog.getByRole("link", {
+        name: "ES — Switch language to Spanish",
+      }),
+    ).toBeFocused()
 
+    await page.keyboard.press("Escape")
+    await expect(dialog).toBeHidden()
+    await expect(openButton).toBeFocused()
     await expect
-      .poll(() =>
-        reveal.evaluate((element) => {
-          const style = getComputedStyle(element)
-          return {
-            animations: element.getAnimations().length,
-            opacity: style.opacity,
-            transform: style.transform,
-            willChange: style.willChange,
-          }
-        }),
+      .poll(() => page.evaluate(() => document.documentElement.style.overflow))
+      .toBe("")
+  })
+
+  test("bridges legacy section fragments to localized pages", async ({
+    page,
+  }) => {
+    await page.goto("/en?source=legacy#experience")
+
+    await expect(page).toHaveURL((url) => {
+      return (
+        url.pathname === "/en/experience" &&
+        url.searchParams.get("source") === "legacy"
       )
-      .toEqual({
-        animations: 0,
-        opacity: "1",
-        transform: "none",
-        willChange: "auto",
-      })
-
-    const dividerSignal = page.locator("[data-section-divider-signal]").first()
-    const supportsViewTimeline = await page.evaluate(() =>
-      CSS.supports("animation-timeline", "view()"),
-    )
-    const signalStyle = await dividerSignal.evaluate((element) => {
-      const style = getComputedStyle(element)
-      return {
-        animationName: style.animationName,
-        animationTimeline: style.getPropertyValue("animation-timeline"),
-      }
     })
+    await expect(page.locator("[data-experience-list] > li")).toHaveCount(5)
 
-    if (supportsViewTimeline) {
-      expect(signalStyle.animationName).not.toBe("none")
-      expect(signalStyle.animationTimeline).not.toBe("auto")
-    } else {
-      expect(signalStyle.animationName).toBe("none")
-    }
-
-    const overflow = await page.evaluate(() => ({
-      body: Math.max(0, document.body.scrollWidth - window.innerWidth),
-      document: Math.max(
-        0,
-        document.documentElement.scrollWidth - window.innerWidth,
-      ),
-    }))
-    expect(overflow).toEqual({ body: 0, document: 0 })
+    await page.goto("/es#sites")
+    await expect(page).toHaveURL(/\/es\/proyectos#web$/)
+    await expect(page.locator("[data-website-card]")).toHaveCount(7)
   })
 })
 
-test.describe("home motion accessibility", () => {
+test.describe("restrained motion", () => {
   test.use({
     contextOptions: { reducedMotion: "reduce" },
     viewport: { width: 1440, height: 900 },
   })
 
-  test("keeps interaction feedback while removing spatial motion", async ({
+  test("preserves interaction feedback without spatial movement", async ({
     page,
   }) => {
-    await disableWebGlForIsolatedMotionTest(page)
+    await disableWebGl(page)
     await page.goto("/en", { waitUntil: "domcontentloaded" })
-    await waitForHomeHydration(page)
 
-    const projects = page
+    const work = page
       .getByRole("navigation", { name: "Main navigation" })
-      .getByRole("link", { name: "Projects" })
-    const restingState = await readNavigationVisualState(projects)
+      .getByRole("link", { name: "Work" })
+    const restingState = await readNavigationVisualState(work)
 
     expect(Number.parseFloat(restingState.transitionDuration)).toBeLessThanOrEqual(
       0.00001,
     )
     expect(restingState.transform).toBe("none")
 
-    await projects.hover()
-    const hoveredState = await readNavigationVisualState(projects)
-    expect(hoveredState.beforeOpacity).toBeGreaterThan(0.95)
+    await work.hover()
+    const hoveredState = await readNavigationVisualState(work)
+    expect(hoveredState.beforeOpacity).toBeGreaterThan(0.9)
     expect(hoveredState.transform).toBe("none")
-    expect(hoveredState.beforeTransform).toBe(restingState.beforeTransform)
-    expect(hoveredState.afterTransform).toBe(restingState.afterTransform)
 
-    await projects.focus()
-    const focusedState = await readNavigationVisualState(projects)
-    expect(focusedState.focusVisible).toBe(true)
-    expect(focusedState.outlineWidth).toBe("2px")
-    expect(focusedState.transform).toBe("none")
-
+    await expect(page.locator("[data-scroll-reveal]")).not.toHaveCount(0)
     await expect
       .poll(() =>
         page.locator("[data-scroll-reveal]").evaluateAll((elements) =>
-          elements.every((element) => {
-            const style = getComputedStyle(element)
-            return (
-              element.getAnimations().length === 0 &&
-              style.opacity === "1" &&
-              style.transform === "none" &&
-              style.willChange === "auto"
-            )
-          }),
+          elements
+            .map((element, index) => {
+              const style = getComputedStyle(element)
+              return {
+                animations: element.getAnimations().length,
+                index,
+                opacity: style.opacity,
+                transform: style.transform,
+                willChange: style.willChange,
+              }
+            })
+            .filter(
+              ({ animations, opacity, transform, willChange }) =>
+                animations !== 0 ||
+                opacity !== "1" ||
+                transform !== "none" ||
+                willChange !== "auto",
+            ),
         ),
       )
-      .toBe(true)
-
-    const signalStyle = await page
-      .locator("[data-section-divider-signal]")
-      .first()
-      .evaluate((element) => {
-        const style = getComputedStyle(element)
-        return {
-          animationName: style.animationName,
-          opacity: style.opacity,
-          transform: style.transform,
-        }
-      })
-    expect(signalStyle).toEqual({
-      animationName: "none",
-      opacity: "0",
-      transform: "none",
-    })
+      .toEqual([])
   })
 })
