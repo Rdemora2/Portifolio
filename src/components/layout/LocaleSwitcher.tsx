@@ -1,6 +1,6 @@
 "use client"
 
-import { useParams, useSearchParams } from "next/navigation"
+import { useParams } from "next/navigation"
 import { useLocale, useTranslations } from "next-intl"
 import { useSyncExternalStore, type ReactNode } from "react"
 
@@ -11,7 +11,7 @@ import {
 } from "@/i18n.config"
 import { Link, usePathname } from "@/navigation"
 
-function subscribeToHash(onChange: () => void) {
+function subscribeToLocation(onChange: () => void) {
   window.addEventListener("hashchange", onChange)
   window.addEventListener("popstate", onChange)
 
@@ -21,8 +21,8 @@ function subscribeToHash(onChange: () => void) {
   }
 }
 
-function getHash() {
-  return window.location.hash
+function getLocationSuffix() {
+  return `${window.location.search}${window.location.hash}`
 }
 
 type LocaleRouteLinkProps = {
@@ -149,9 +149,16 @@ export function LocaleSwitcher({
   const t = useTranslations("Nav")
   const pathname = usePathname()
   const params = useParams<{ slug?: string | string[] }>()
-  const searchParams = useSearchParams()
-  const hash = useSyncExternalStore(subscribeToHash, getHash, () => "")
-  const query = Object.fromEntries(searchParams.entries())
+  const locationSuffix = useSyncExternalStore(
+    subscribeToLocation,
+    getLocationSuffix,
+    () => "",
+  )
+  const hashIndex = locationSuffix.indexOf("#")
+  const search =
+    hashIndex === -1 ? locationSuffix : locationSuffix.slice(0, hashIndex)
+  const hash = hashIndex === -1 ? "" : locationSuffix.slice(hashIndex)
+  const query = Object.fromEntries(new URLSearchParams(search).entries())
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug
 
   return (
