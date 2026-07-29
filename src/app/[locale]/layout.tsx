@@ -69,7 +69,6 @@ export async function generateMetadata({
   const locale = candidate
   const t = await getTranslations({ locale, namespace: "Metadata" })
   const canonical = getLocalizedUrl(locale)
-  const socialImage = `${SITE_URL}/opengraph-image/${locale}`
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -96,30 +95,6 @@ export async function generateMetadata({
     ],
     authors: [{ name: AUTHOR_NAME, url: canonical }],
     creator: AUTHOR_NAME,
-    alternates: {
-      canonical,
-      languages: {
-        [getDocumentLanguage("pt")]: getLocalizedUrl("pt"),
-        [getDocumentLanguage("en")]: getLocalizedUrl("en"),
-        [getDocumentLanguage("es")]: getLocalizedUrl("es"),
-        "x-default": getLocalizedUrl("pt"),
-      },
-    },
-    openGraph: {
-      type: "website",
-      locale: locale === "pt" ? "pt_BR" : locale === "es" ? "es_MX" : "en_US",
-      title: t("title"),
-      description: t("description"),
-      siteName: SITE_NAME,
-      url: canonical,
-      images: [{ url: socialImage, width: 1200, height: 630, alt: t("title") }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: [{ url: socialImage, alt: t("title") }],
-    },
     robots: {
       index: true,
       follow: true,

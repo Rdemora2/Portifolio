@@ -400,50 +400,207 @@
     }
   },
   "Contact": {
-    "title": "Vamos Conversar?",
-    "subtitle": "Interessado em escalar sua tech stack ou liderança técnica? Entre em contato.",
+    "title": "Contato profissional",
+    "subtitle": "Um espaço direto para trocar ideias sobre engenharia de software, arquitetura, tecnologia e gestão.",
     "form": {
       "name": "Nome",
       "email": "E-mail",
       "company": "Empresa (opcional)",
-      "projectType": "Tipo de projeto",
-      "budget": "Budget estimado (opcional)",
       "subject": "Assunto",
       "message": "Mensagem",
-      "send": "Enviar Mensagem",
+      "send": "Enviar mensagem",
       "sending": "Enviando...",
       "success": "Mensagem enviada com sucesso!",
       "error": "Ocorreu um erro ao enviar a mensagem.",
-      "selectPlaceholder": "Selecione uma opção",
-      "projectOptions": {
-        "web": "Aplicação web",
-        "mobile": "Aplicativo nativo",
-        "backend": "Backend ou API",
-        "architecture": "Arquitetura de software",
-        "leadership": "Gestão ou liderança técnica",
-        "other": "Outro"
-      },
       "validation": {
         "name": "Informe seu nome.",
         "email": "Informe um e-mail válido.",
-        "projectType": "Selecione o tipo de projeto.",
-        "message": "Conte um pouco mais sobre o desafio."
+        "subject": "Informe o assunto da mensagem.",
+        "message": "Escreva uma mensagem com um pouco mais de contexto."
       },
       "serverErrors": {
         "rateLimited": "Muitas tentativas. Aguarde um momento e tente novamente.",
         "generic": "Não foi possível enviar agora. Tente novamente ou use o contato direto."
       },
       "webMcp": {
-        "toolDescription": "Preenche o formulário de contato profissional de Roberto Moraes para revisão do usuário. Use para discutir projetos, consultoria ou oportunidades; o envio exige confirmação manual.",
+        "toolDescription": "Preenche o formulário de contato profissional de Roberto Moraes para revisão do usuário. O envio exige confirmação manual.",
         "parameters": {
           "name": "Nome completo da pessoa que deseja entrar em contato.",
           "email": "Endereço de e-mail válido no qual a pessoa pode receber uma resposta.",
           "company": "Empresa ou organização da pessoa, quando aplicável.",
-          "projectType": "Categoria que melhor representa o projeto ou oportunidade.",
-          "message": "Contexto do projeto, desafio ou oportunidade, com no mínimo 20 caracteres.",
-          "budget": "Faixa de orçamento estimada, quando já estiver definida."
+          "subject": "Assunto principal da mensagem.",
+          "message": "Contexto da conversa, com no mínimo 20 caracteres."
         }
       }
+    }
+  },
+  "PortfolioPages": {
+    "home": {
+      "profile": {
+        "eyebrow": "Perfil",
+        "title": "Engenharia como eixo. Gestão como multiplicador.",
+        "description": "Minha atuação começa no problema técnico e acompanha o produto até a operação. Projeto arquiteturas, escrevo e reviso código, estruturo cloud e observabilidade e, quando o contexto exige, coordeno pessoas, prioridades e riscos para transformar decisões em software confiável.",
+        "pillars": {
+          "endToEnd": {
+            "index": "01",
+            "title": "Construção ponta a ponta",
+            "description": "Backend, web, mobile, integrações e infraestrutura acompanhados até a produção."
+          },
+          "reliability": {
+            "index": "02",
+            "title": "Produção e confiabilidade",
+            "description": "Performance, observabilidade, segurança e operação tratadas como parte do produto."
+          },
+          "leadership": {
+            "index": "03",
+            "title": "Liderança aplicada",
+            "description": "Direção técnica, padrões de qualidade e coordenação de times sustentadas por contexto de engenharia."
+          }
+        }
+      },
+      "projects": {
+        "eyebrow": "Projetos selecionados",
+        "title": "Software em produção. Contexto, decisões e resultado.",
+        "description": "Casos que mostram como arquitetura, código, infraestrutura e coordenação se conectam quando desempenho, confiabilidade e continuidade importam.",
+        "openCase": "Abrir estudo de caso",
+        "viewAll": "Ver todos os projetos"
+      },
+      "practice": {
+        "eyebrow": "Atuação",
+        "title": "Do backend à operação, com o produto sempre no centro.",
+        "description": "Minha experiência combina profundidade de implementação, arquitetura de sistemas e responsabilidade sobre o que acontece depois do deploy.",
+        "areas": {
+          "backend": {
+            "title": "Backend & plataformas",
+            "description": "APIs de alto throughput, integrações, dados e serviços preparados para carga real."
+          },
+          "interfaces": {
+            "title": "Web, mobile & mídia",
+            "description": "Experiências em Next.js, Kotlin e dispositivos conectados, da interface ao streaming."
+          },
+          "operations": {
+            "title": "Cloud, confiabilidade & operações",
+            "description": "AWS, GCP, observabilidade, segurança, CI/CD e resposta operacional."
+          },
+          "leadership": {
+            "title": "Arquitetura, liderança técnica & gestão de TI",
+            "description": "Decisões técnicas, qualidade, prioridades e times alinhados ao contexto do produto."
+          }
+        },
+        "cta": "Explorar competências"
+      },
+      "trajectory": {
+        "eyebrow": "Trajetória",
+        "title": "Uma evolução contínua entre desenvolvimento e liderança.",
+        "description": "Desde 2022, ampliei minha atuação do desenvolvimento full stack à gestão da área de tecnologia, incorporando arquitetura, cloud, operações e liderança sem perder proximidade com o código.",
+        "steps": {
+          "buser": {
+            "period": "2022—2023",
+            "title": "Buser",
+            "description": "Evolução de produto digital em escala."
+          },
+          "weber": {
+            "period": "2023",
+            "title": "Weber Technologies",
+            "description": "Entrega full stack de ponta a ponta."
+          },
+          "valiant": {
+            "period": "2023—atual",
+            "title": "Valiant Group",
+            "description": "Progressão de desenvolvedor a Engenheiro de Software & Gerente de TI."
+          }
+        },
+        "cta": "Ver experiência completa"
+      },
+      "insight": {
+        "eyebrow": "Pensamento técnico",
+        "title": "Aprendizados de produção, sem abstração desnecessária.",
+        "description": "Arquitetura, performance e liderança técnica explicadas a partir de sistemas reais.",
+        "cta": "Ler artigo"
+      }
+    },
+    "work": {
+      "metaTitle": "Projetos de Engenharia de Software",
+      "metaDescription": "Estudos de caso de engenharia, arquitetura, cloud e liderança técnica em sistemas de produção, além de um laboratório autoral de interfaces.",
+      "eyebrow": "Projetos",
+      "title": "Engenharia explicada por decisões, não por uma lista de tecnologias.",
+      "description": "Uma seleção de sistemas e plataformas em que arquitetura, implementação, operação e liderança fazem parte da mesma entrega.",
+      "casesEyebrow": "Cases em produção",
+      "casesTitle": "Problemas complexos, software que sustenta a operação.",
+      "casesDescription": "Cada case registra contexto, responsabilidade, decisões técnicas e evidências de resultado.",
+      "labEyebrow": "Laboratório web",
+      "labTitle": "Interfaces publicadas para explorar engenharia frontend e direção visual.",
+      "labDescription": "Projetos autorais em que investigo arquitetura de frontend, responsividade, acessibilidade e movimento — com execução disponível online."
+    },
+    "case": {
+      "back": "Voltar aos projetos",
+      "productionCase": "Case em produção",
+      "internationalCase": "Contexto internacional",
+      "overview": "Visão geral",
+      "client": "Organização",
+      "role": "Responsabilidade",
+      "period": "Período",
+      "challenge": "Desafio",
+      "solution": "Arquitetura e solução",
+      "impact": "Impacto",
+      "metrics": "Evidências de produção",
+      "contribution": "Minha atuação",
+      "decisions": "Decisões-chave",
+      "results": "Resultados",
+      "lessons": "Aprendizados",
+      "stack": "Tecnologias e plataforma",
+      "managedProducts": "Produtos sob gestão",
+      "next": "Próximo case",
+      "allProjects": "Todos os projetos"
+    },
+    "experience": {
+      "metaTitle": "Experiência Profissional",
+      "metaDescription": "Trajetória completa de Roberto Moraes entre engenharia de software, arquitetura, cloud, operação, liderança técnica e gestão de TI.",
+      "eyebrow": "Experiência",
+      "title": "Uma trajetória construída entre engenharia, operação e liderança.",
+      "description": "Do desenvolvimento full stack à gestão da área de TI, cada etapa ampliou meu escopo sem me afastar do código e da responsabilidade pela produção."
+    },
+    "about": {
+      "metaTitle": "Sobre & Competências",
+      "metaDescription": "Perfil técnico de Roberto Moraes: engenharia de software ponta a ponta, arquitetura, cloud, observabilidade, liderança técnica e gestão de TI.",
+      "eyebrow": "Sobre",
+      "title": "Profundidade técnica para construir. Visão sistêmica para conduzir.",
+      "description": "Minha carreira foi construída acompanhando sistemas de ponta a ponta: entendimento do problema, decisões de arquitetura, implementação, deploy, observabilidade e evolução em produção.",
+      "bridge": "Hoje amplio esse trabalho na gestão de TI, alinhando pessoas, prioridades e risco sem perder proximidade com a engenharia.",
+      "principlesEyebrow": "Princípios de trabalho",
+      "principlesTitle": "Critérios que permanecem quando a tecnologia muda.",
+      "principles": {
+        "production": {
+          "title": "Produção é parte do design",
+          "description": "Operação, falhas, segurança e observabilidade entram na conversa desde o início."
+        },
+        "clarity": {
+          "title": "Clareza antes de complexidade",
+          "description": "A melhor arquitetura é a que o time entende, mantém e evolui com segurança."
+        },
+        "evidence": {
+          "title": "Decisões guiadas por evidência",
+          "description": "Métricas, contexto e impacto orientam escolhas técnicas e prioridades."
+        },
+        "proximity": {
+          "title": "Liderança próxima da engenharia",
+          "description": "Gestão técnica ganha qualidade quando mantém contato real com código e produção."
+        }
+      }
+    },
+    "insights": {
+      "metaTitle": "Insights de Engenharia",
+      "metaDescription": "Artigos sobre arquitetura, performance, sistemas em produção e liderança técnica escritos a partir de experiência prática.",
+      "eyebrow": "Insights",
+      "title": "Engenharia compartilhada com contexto de produção.",
+      "description": "Reflexões diretas sobre decisões técnicas, trade-offs e aprendizados que só aparecem quando o software encontra a operação."
+    },
+    "contact": {
+      "metaTitle": "Contato Profissional",
+      "metaDescription": "Canais profissionais de Roberto Moraes para conversas sobre engenharia de software, arquitetura, tecnologia e gestão.",
+      "eyebrow": "Contato",
+      "title": "Um canal direto para conversas profissionais.",
+      "description": "Canais para trocar ideias sobre engenharia de software, arquitetura, tecnologia e gestão."
     }
   },
   "Footer": {

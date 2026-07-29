@@ -400,50 +400,207 @@
     }
   },
   "Contact": {
-    "title": "Let's talk",
-    "subtitle": "Need to scale your platform or strengthen technical leadership? Get in touch.",
+    "title": "Professional contact",
+    "subtitle": "A direct space to exchange ideas about software engineering, architecture, technology, and management.",
     "form": {
       "name": "Name",
       "email": "Email",
       "company": "Company (optional)",
-      "projectType": "Project Type",
-      "budget": "Estimated Budget (optional)",
       "subject": "Subject",
       "message": "Message",
-      "send": "Send Message",
+      "send": "Send message",
       "sending": "Sending...",
       "success": "Message sent successfully!",
       "error": "An error occurred while sending the message.",
-      "selectPlaceholder": "Select an option",
-      "projectOptions": {
-        "web": "Web application",
-        "mobile": "Native application",
-        "backend": "Backend or API",
-        "architecture": "Software architecture",
-        "leadership": "Management or technical leadership",
-        "other": "Other"
-      },
       "validation": {
         "name": "Enter your name.",
         "email": "Enter a valid email address.",
-        "projectType": "Select the project type.",
-        "message": "Tell me a little more about the challenge."
+        "subject": "Enter a subject.",
+        "message": "Write a message with a little more context."
       },
       "serverErrors": {
         "rateLimited": "Too many attempts. Wait a moment and try again.",
         "generic": "The message could not be sent right now. Try again or use a direct contact channel."
       },
       "webMcp": {
-        "toolDescription": "Fills Roberto Moraes's professional contact form for the user's review. Use it to discuss projects, consulting, or opportunities; submission requires manual confirmation.",
+        "toolDescription": "Fills Roberto Moraes's professional contact form for the user's review. Submission requires manual confirmation.",
         "parameters": {
           "name": "Full name of the person who wants to get in touch.",
           "email": "Valid email address where the person can receive a reply.",
           "company": "The person's company or organization, when applicable.",
-          "projectType": "Category that best represents the project or opportunity.",
-          "message": "Context about the project, challenge, or opportunity, using at least 20 characters.",
-          "budget": "Estimated budget range, when it is already defined."
+          "subject": "Primary subject of the message.",
+          "message": "Context for the conversation, using at least 20 characters."
         }
       }
+    }
+  },
+  "PortfolioPages": {
+    "home": {
+      "profile": {
+        "eyebrow": "Profile",
+        "title": "Engineering at the core. Management as a multiplier.",
+        "description": "My work starts with the technical problem and follows the product into operation. I design architectures, write and review code, shape cloud and observability, and—when the context calls for it—coordinate people, priorities, and risk to turn decisions into reliable software.",
+        "pillars": {
+          "endToEnd": {
+            "index": "01",
+            "title": "End-to-end delivery",
+            "description": "Backend, web, mobile, integrations, and infrastructure followed through to production."
+          },
+          "reliability": {
+            "index": "02",
+            "title": "Production & reliability",
+            "description": "Performance, observability, security, and operations treated as part of the product."
+          },
+          "leadership": {
+            "index": "03",
+            "title": "Applied leadership",
+            "description": "Technical direction, quality standards, and team coordination grounded in engineering context."
+          }
+        }
+      },
+      "projects": {
+        "eyebrow": "Selected work",
+        "title": "Production software. Context, decisions, and outcomes.",
+        "description": "Cases showing how architecture, code, infrastructure, and coordination connect when performance, reliability, and continuity matter.",
+        "openCase": "Open case study",
+        "viewAll": "View all work"
+      },
+      "practice": {
+        "eyebrow": "Practice",
+        "title": "From backend to operations, always centered on the product.",
+        "description": "My experience combines implementation depth, systems architecture, and accountability for what happens after deployment.",
+        "areas": {
+          "backend": {
+            "title": "Backend & platforms",
+            "description": "High-throughput APIs, integrations, data, and services designed for real load."
+          },
+          "interfaces": {
+            "title": "Web, mobile & media",
+            "description": "Next.js, Kotlin, and connected-device experiences, from interface to streaming."
+          },
+          "operations": {
+            "title": "Cloud, reliability & operations",
+            "description": "AWS, GCP, observability, security, CI/CD, and operational response."
+          },
+          "leadership": {
+            "title": "Architecture, technical leadership & IT management",
+            "description": "Technical decisions, quality, priorities, and teams aligned with product context."
+          }
+        },
+        "cta": "Explore capabilities"
+      },
+      "trajectory": {
+        "eyebrow": "Career",
+        "title": "Continuous growth across development and leadership.",
+        "description": "Since 2022, I have expanded from full-stack development into leading the technology function, adding architecture, cloud, operations, and leadership without losing proximity to the code.",
+        "steps": {
+          "buser": {
+            "period": "2022—2023",
+            "title": "Buser",
+            "description": "Evolving a digital product at scale."
+          },
+          "weber": {
+            "period": "2023",
+            "title": "Weber Technologies",
+            "description": "End-to-end full-stack delivery."
+          },
+          "valiant": {
+            "period": "2023—present",
+            "title": "Valiant Group",
+            "description": "Progression from developer to Software Engineer & IT Manager."
+          }
+        },
+        "cta": "View complete experience"
+      },
+      "insight": {
+        "eyebrow": "Engineering thinking",
+        "title": "Production lessons, without unnecessary abstraction.",
+        "description": "Architecture, performance, and technical leadership explained through real systems.",
+        "cta": "Read article"
+      }
+    },
+    "work": {
+      "metaTitle": "Software Engineering Work",
+      "metaDescription": "Case studies in engineering, architecture, cloud, and technical leadership across production systems, plus an independent interface lab.",
+      "eyebrow": "Work",
+      "title": "Engineering explained through decisions—not a list of technologies.",
+      "description": "A selection of systems and platforms where architecture, implementation, operations, and leadership are part of the same delivery.",
+      "casesEyebrow": "Production cases",
+      "casesTitle": "Complex problems, software that sustains the operation.",
+      "casesDescription": "Each case documents context, responsibility, technical decisions, and evidence of outcomes.",
+      "labEyebrow": "Web lab",
+      "labTitle": "Published interfaces exploring frontend engineering and visual direction.",
+      "labDescription": "Independent projects where I explore frontend architecture, responsiveness, accessibility, and motion—with working executions available online."
+    },
+    "case": {
+      "back": "Back to work",
+      "productionCase": "Production case",
+      "internationalCase": "International context",
+      "overview": "Overview",
+      "client": "Organization",
+      "role": "Responsibility",
+      "period": "Period",
+      "challenge": "Challenge",
+      "solution": "Architecture & solution",
+      "impact": "Impact",
+      "metrics": "Production evidence",
+      "contribution": "My contribution",
+      "decisions": "Key decisions",
+      "results": "Outcomes",
+      "lessons": "Lessons learned",
+      "stack": "Technology & platform",
+      "managedProducts": "Products under management",
+      "next": "Next case",
+      "allProjects": "All work"
+    },
+    "experience": {
+      "metaTitle": "Professional Experience",
+      "metaDescription": "Roberto Moraes's complete career across software engineering, architecture, cloud, operations, technical leadership, and IT management.",
+      "eyebrow": "Experience",
+      "title": "A career built across engineering, operations, and leadership.",
+      "description": "From full-stack development to leading the IT function, every stage expanded my scope without moving me away from code and production accountability."
+    },
+    "about": {
+      "metaTitle": "About & Capabilities",
+      "metaDescription": "Roberto Moraes's technical profile: end-to-end software engineering, architecture, cloud, observability, technical leadership, and IT management.",
+      "eyebrow": "About",
+      "title": "Technical depth to build. Systems thinking to lead.",
+      "description": "My career has been shaped by following systems end to end: understanding the problem, architecture decisions, implementation, deployment, observability, and production evolution.",
+      "bridge": "Today I extend that work through IT management, aligning people, priorities, and risk while staying close to engineering.",
+      "principlesEyebrow": "Working principles",
+      "principlesTitle": "Criteria that remain when the technology changes.",
+      "principles": {
+        "production": {
+          "title": "Production is part of the design",
+          "description": "Operations, failure modes, security, and observability enter the conversation from the start."
+        },
+        "clarity": {
+          "title": "Clarity before complexity",
+          "description": "The best architecture is one the team can understand, maintain, and evolve safely."
+        },
+        "evidence": {
+          "title": "Decisions led by evidence",
+          "description": "Metrics, context, and impact guide technical choices and priorities."
+        },
+        "proximity": {
+          "title": "Leadership close to engineering",
+          "description": "Technical management improves when it maintains real contact with code and production."
+        }
+      }
+    },
+    "insights": {
+      "metaTitle": "Engineering Insights",
+      "metaDescription": "Articles on architecture, performance, production systems, and technical leadership grounded in practical experience.",
+      "eyebrow": "Insights",
+      "title": "Engineering shared with production context.",
+      "description": "Direct reflections on technical decisions, trade-offs, and lessons that only appear when software meets operations."
+    },
+    "contact": {
+      "metaTitle": "Professional Contact",
+      "metaDescription": "Roberto Moraes's professional channels for conversations about software engineering, architecture, technology, and management.",
+      "eyebrow": "Contact",
+      "title": "A direct channel for professional conversations.",
+      "description": "Channels for exchanging ideas about software engineering, architecture, technology, and management."
     }
   },
   "Footer": {
