@@ -308,6 +308,12 @@
         "title": "Atual — modern editorial news portal",
         "description": "A responsive and editorial news portal built with a focus on readability, performance, and a smooth reading experience.",
         "imageAlt": "Home page of the Atual news portal displaying headlines and a modern editorial layout."
+      },
+      "lp-estudio-musica": {
+        "category": "Music · Studio · Education",
+        "title": "Music Studio — digital presence for a music school",
+        "description": "An immersive and expressive landing page built for a music studio, conveying a passion for sound through modern, responsive design oriented toward conversion.",
+        "imageAlt": "Home page of the Music Studio displaying a modern visual experience with instruments and sonic elements highlighted."
       }
     }
   },
@@ -568,6 +574,8 @@
       "title": "Technical depth to build. Systems thinking to lead.",
       "description": "My career has been shaped by following systems end to end: understanding the problem, architecture decisions, implementation, deployment, observability, and production evolution.",
       "bridge": "Today I extend that work through IT management, aligning people, priorities, and risk while staying close to engineering.",
+      "motionPause": "Pause motion",
+      "motionResume": "Resume motion",
       "principlesEyebrow": "Working principles",
       "principlesTitle": "Criteria that remain when the technology changes.",
       "principles": {

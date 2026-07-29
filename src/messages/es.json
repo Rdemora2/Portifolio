@@ -308,6 +308,12 @@
         "title": "Atual — portal de noticias editorial moderno",
         "description": "Un portal de noticias responsivo y editorial, construido con enfoque en legibilidad, rendimiento y una experiencia de navegación fluida para el lector.",
         "imageAlt": "Página de inicio del portal de noticias Atual mostrando titulares y un diseño editorial moderno."
+      },
+      "lp-estudio-musica": {
+        "category": "Música · Estudio · Educación",
+        "title": "Estudio de Música — presencia digital para una escuela de música",
+        "description": "Una landing page inmersiva y expresiva desarrollada para un estudio de música, transmitiendo pasión por el arte sonoro a través de un diseño moderno, responsivo y orientado a la conversión.",
+        "imageAlt": "Página de inicio del Estudio de Música mostrando una experiencia visual moderna con instrumentos y elementos sonoros destacados."
       }
     }
   },
@@ -568,6 +574,8 @@
       "title": "Profundidad técnica para construir. Visión sistémica para conducir.",
       "description": "Mi carrera se construyó acompañando sistemas de punta a punta: comprensión del problema, decisiones de arquitectura, implementación, despliegue, observabilidad y evolución en producción.",
       "bridge": "Hoy amplío ese trabajo desde la gestión de TI, alineando personas, prioridades y riesgos sin perder cercanía con la ingeniería.",
+      "motionPause": "Pausar movimiento",
+      "motionResume": "Reanudar movimiento",
       "principlesEyebrow": "Principios de trabajo",
       "principlesTitle": "Criterios que permanecen cuando cambia la tecnología.",
       "principles": {
