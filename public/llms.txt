@@ -6,15 +6,24 @@ This site is available in Portuguese, English, and Spanish. Portuguese is the ca
 
 ## Portfolio
 
-- [Português](https://robertomoraes.dev/): Professional experience, selected projects, technical stack, metrics, insights, and contact information in Portuguese.
-- [English](https://robertomoraes.dev/en): English version of the complete portfolio.
-- [Español](https://robertomoraes.dev/es): Spanish version of the complete portfolio.
+- [Português](https://robertomoraes.dev/): Executive introduction to Roberto Moraes's software engineering and IT management profile.
+- [English](https://robertomoraes.dev/en): English version of the professional introduction.
+- [Español](https://robertomoraes.dev/es): Spanish version of the professional introduction.
+
+## Engineering work
+
+- [Projetos](https://robertomoraes.dev/projetos): Portuguese index of production case studies and independent frontend experiments.
+- [Work](https://robertomoraes.dev/en/work): English project index.
+- [Proyectos](https://robertomoraes.dev/es/proyectos): Spanish project index.
+- [Experiência](https://robertomoraes.dev/experiencia): Complete professional timeline in Portuguese.
+- [Experience](https://robertomoraes.dev/en/experience): Complete professional timeline in English.
+- [Experiencia](https://robertomoraes.dev/es/experiencia): Complete professional timeline in Spanish.
 
 ## Technical insights
 
 - [Go em produção](https://robertomoraes.dev/insights/go-em-producao): Portuguese article about operating a Go API under real production load, covering architecture, performance, cache, observability, security, incidents, and deployment practices.
-- [Go in production](https://robertomoraes.dev/en/insights/go-em-producao): English version of the production engineering article.
-- [Go en producción](https://robertomoraes.dev/es/insights/go-em-producao): Spanish version of the production engineering article.
+- [Go in production](https://robertomoraes.dev/en/insights/go-in-production): English version of the production engineering article.
+- [Go en producción](https://robertomoraes.dev/es/insights/go-en-produccion): Spanish version of the production engineering article.
 
 ## Author profiles
 
