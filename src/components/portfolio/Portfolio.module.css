@@ -626,6 +626,7 @@
   font-size: 0.68rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+  padding-top: 0.25rem;
 }
 
 .storyText {
@@ -903,16 +904,13 @@
   }
 
   .caseStory {
-    grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
-    gap: 6rem;
+    gap: 3.5rem;
   }
 
   .storyBlock {
-    grid-column: 2;
-  }
-
-  .storyBlock:first-child {
-    grid-column: 1 / -1;
+    grid-template-columns: 14rem 1fr;
+    gap: 2rem;
+    align-items: start;
   }
 
   .metricGrid {
