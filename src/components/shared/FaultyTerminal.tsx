@@ -284,6 +284,14 @@ export default function FaultyTerminal({
 
   const ditherValue = useMemo(() => (typeof dither === 'boolean' ? (dither ? 1 : 0) : dither), [dither]);
 
+  // WHY: gridMul is a Vec2 (array) prop. Callers often pass inline literals like
+  // [1.5, 1], which creates a new reference on every render and causes the
+  // useEffect below to teardown/rebuild the entire WebGL renderer unnecessarily.
+  // Memoizing on the serialised values produces a stable Float32Array reference.
+  const gridMulKey = gridMul.join(',');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const stableGridMul = useMemo(() => new Float32Array(gridMul), [gridMulKey]);
+
   const handleMouseMove = useCallback((e: MouseEvent) => {
     pendingPointerRef.current = { x: e.clientX, y: e.clientY };
     if (pointerFrameRef.current) return;
@@ -343,7 +351,7 @@ export default function FaultyTerminal({
           },
           uScale: { value: scale },
 
-          uGridMul: { value: new Float32Array(gridMul) },
+          uGridMul: { value: stableGridMul },
           uDigitSize: { value: digitSize },
           uScanlineIntensity: { value: scanlineIntensity },
           uGlitchAmount: { value: glitchAmount },
@@ -499,7 +507,7 @@ export default function FaultyTerminal({
     pause,
     timeScale,
     scale,
-    gridMul,
+    stableGridMul,
     digitSize,
     scanlineIntensity,
     glitchAmount,

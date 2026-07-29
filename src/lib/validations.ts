@@ -1,5 +1,9 @@
 import { z } from "zod"
 
+// The site ships a strict CSP without unsafe-eval. Opt out of Zod's JIT probe
+// before any schema parses so Firefox does not report a blocked Function call.
+z.config({ jitless: true })
+
 const singleLineText = z
   .string()
   .trim()
