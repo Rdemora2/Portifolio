@@ -1,5 +1,6 @@
 import { expect, type Page, test } from "@playwright/test"
 
+import { websiteExperiences } from "../src/data/showcase-sites"
 import { expectNoContentClipping } from "./helpers/layout"
 import { bridgeUpgradedLoopbackRequests } from "./helpers/network"
 
@@ -47,7 +48,9 @@ test("renders the multipage portfolio without engine-specific regressions", asyn
   await expect(page.locator("[data-work-cases] [data-project-card]")).toHaveCount(
     3,
   )
-  await expect(page.locator("[data-website-card]")).toHaveCount(7)
+  await expect(page.locator("[data-website-card]")).toHaveCount(
+    websiteExperiences.length,
+  )
   await expectNoContentClipping(page, "Work")
 
   await page.goto("/en/experience", { waitUntil: "domcontentloaded" })

@@ -1,5 +1,7 @@
 import { expect, type Locator, type Page, test } from "@playwright/test"
 
+import { websiteExperiences } from "../src/data/showcase-sites"
+
 type NavigationVisualState = {
   afterOpacity: number
   beforeOpacity: number
@@ -160,7 +162,9 @@ test.describe("localized page navigation", () => {
 
     await page.goto("/es#sites")
     await expect(page).toHaveURL(/\/es\/proyectos#web$/)
-    await expect(page.locator("[data-website-card]")).toHaveCount(7)
+    await expect(page.locator("[data-website-card]")).toHaveCount(
+      websiteExperiences.length,
+    )
   })
 })
 

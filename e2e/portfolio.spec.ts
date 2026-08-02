@@ -1,7 +1,10 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, type Page, test } from "@playwright/test"
 
+import { websiteExperiences } from "../src/data/showcase-sites"
 import { expectNoContentClipping } from "./helpers/layout"
+
+test.use({ contextOptions: { reducedMotion: "reduce" } })
 
 const routeMatrix = [
   {
@@ -146,8 +149,8 @@ test("presents production cases before the independent web lab", async ({
   const websiteCards = page.locator("[data-website-card]")
   const websiteLinks = page.locator("[data-website-link]")
   await expect(cases).toHaveCount(3)
-  await expect(websiteCards).toHaveCount(7)
-  await expect(websiteLinks).toHaveCount(7)
+  await expect(websiteCards).toHaveCount(websiteExperiences.length)
+  await expect(websiteLinks).toHaveCount(websiteExperiences.length)
   await expect(cases.nth(0)).toContainText("Hospital Sírio-Libanês")
   await expect(cases.nth(1)).toContainText("Grupo Bandeirantes")
   await expect(cases.nth(2)).toContainText("Fiesta Americana")
