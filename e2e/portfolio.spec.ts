@@ -4,8 +4,6 @@ import { expect, type Page, test } from "@playwright/test"
 import { websiteExperiences } from "../src/data/showcase-sites"
 import { expectNoContentClipping } from "./helpers/layout"
 
-test.use({ contextOptions: { reducedMotion: "reduce" } })
-
 const routeMatrix = [
   {
     surface: "home",
@@ -155,7 +153,7 @@ test("presents production cases before the independent web lab", async ({
   await expect(cases.nth(1)).toContainText("Grupo Bandeirantes")
   await expect(cases.nth(2)).toContainText("Fiesta Americana")
 
-  for (let index = 0; index < 7; index += 1) {
+  for (let index = 0; index < websiteExperiences.length; index += 1) {
     const link = websiteLinks.nth(index)
     await expect(link).toHaveAttribute("target", "_blank")
     await expect(link).toHaveAttribute(
@@ -226,6 +224,54 @@ test("publishes complete, shareable case studies with contextual evidence", asyn
       "noopener noreferrer external",
     )
   }
+})
+
+test.describe("case gallery", () => {
+  test.use({ contextOptions: { reducedMotion: "reduce" } })
+
+  test("progressively enhances the case gallery with an accessible lightbox", async ({
+    page,
+  }) => {
+    await page.goto("/en/work/hospital-sirio-libanes", {
+      waitUntil: "domcontentloaded",
+    })
+
+    const gallery = page.locator('[data-project-gallery="true"]')
+    await gallery.scrollIntoViewIfNeeded()
+
+    const activeSlide = gallery.locator(".swiper-slide-active button")
+    await expect(activeSlide).toBeVisible()
+    await activeSlide.evaluate((button) => {
+      if (button instanceof HTMLButtonElement) button.click()
+    })
+
+    const dialog = page.getByRole("dialog", {
+      name: "Enlarged gallery view",
+    })
+    const closeButton = dialog.getByRole("button", {
+      name: "Close enlarged image",
+    })
+    await expect(dialog).toBeVisible()
+    await expect(closeButton).toBeFocused()
+    await expect(page.locator("body")).toHaveCSS("overflow", "hidden")
+
+    const initialCaption = await dialog.locator("p").textContent()
+    expect(initialCaption).toBeTruthy()
+    await closeButton.press("ArrowRight")
+    await expect(dialog.locator("p")).not.toHaveText(initialCaption ?? "")
+    await expect(dialog.getByRole("img")).toBeVisible()
+    await expect(closeButton).toBeFocused()
+
+    await closeButton.press("Shift+Tab")
+    await expect(
+      dialog.getByRole("button", { name: "Next image" }),
+    ).toBeFocused()
+
+    await page.keyboard.press("Escape")
+    await expect(dialog).toHaveCount(0)
+    await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden")
+    await expect(activeSlide).toBeFocused()
+  })
 })
 
 test("preserves the complete professional chronology and company progression", async ({
