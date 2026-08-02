@@ -557,6 +557,11 @@
       "stack": "Tecnologias e plataforma",
       "managedProducts": "Produtos sob gestão",
       "gallery": "Galeria do Projeto",
+      "galleryClose": "Fechar imagem ampliada",
+      "galleryDialog": "Visualização ampliada da galeria",
+      "galleryNext": "Próxima imagem",
+      "galleryOpen": "Ampliar imagem",
+      "galleryPrevious": "Imagem anterior",
       "next": "Próximo case",
       "allProjects": "Todos os projetos"
     },

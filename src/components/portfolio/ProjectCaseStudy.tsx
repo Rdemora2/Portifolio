@@ -94,9 +94,16 @@ export async function ProjectCaseStudy({
       </header>
 
       {project.caseStudy?.images && project.caseStudy.images.length > 0 ? (
-        <ProjectGallery 
-          images={project.caseStudy.images} 
-          title={caseTranslations("gallery")} 
+        <ProjectGallery
+          images={project.caseStudy.images}
+          title={caseTranslations("gallery")}
+          labels={{
+            close: caseTranslations("galleryClose"),
+            dialog: caseTranslations("galleryDialog"),
+            next: caseTranslations("galleryNext"),
+            open: caseTranslations("galleryOpen"),
+            previous: caseTranslations("galleryPrevious"),
+          }}
         />
       ) : null}
 

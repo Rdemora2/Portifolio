@@ -1,210 +1,122 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { EffectCoverflow, Autoplay, Navigation, Pagination } from "swiper/modules"
 import Image from "next/image"
-
-// Swiper styles
-import "swiper/css"
-import "swiper/css/effect-coverflow"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
+import { lazy, Suspense, useEffect, useRef, useState } from "react"
 
 import styles from "./Portfolio.module.css"
 
+export interface ProjectGalleryImage {
+  src: string
+  width: number
+  height: number
+  alt: string
+  blurDataURL: string
+}
+
+export interface ProjectGalleryLabels {
+  close: string
+  dialog: string
+  next: string
+  open: string
+  previous: string
+}
+
 interface ProjectGalleryProps {
-  images: {
-    src: string
-    width: number
-    height: number
-    alt: string
-    blurDataURL: string
-  }[]
+  images: ProjectGalleryImage[]
+  labels: ProjectGalleryLabels
   title: string
 }
 
-export function ProjectGallery({ images, title }: ProjectGalleryProps) {
-  const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null)
+const ProjectGalleryCarousel = lazy(
+  () =>
+    import("./ProjectGalleryCarousel").then(
+      (module) => ({ default: module.ProjectGalleryCarousel }),
+    ),
+)
 
-  // Handle escape key and arrows to control modal navigation
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      setActiveModalIndex(null)
-    } else if (e.key === "ArrowLeft" && activeModalIndex !== null) {
-      setActiveModalIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : images.length - 1))
-    } else if (e.key === "ArrowRight" && activeModalIndex !== null) {
-      setActiveModalIndex((prev) => (prev !== null && prev < images.length - 1 ? prev + 1 : 0))
-    }
-  }, [activeModalIndex, images.length])
+function ProjectGalleryPreview({
+  images,
+  labels,
+  title,
+}: ProjectGalleryProps) {
+  return (
+    <section className={styles.gallerySection} aria-label={title}>
+      <div className={styles.container}>
+        <div className={styles.galleryHeader}>
+          <h2 className={styles.storyLabel}>{title}</h2>
+        </div>
+      </div>
+
+      <div className={styles.galleryPreviewViewport}>
+        <ul className={styles.galleryPreviewTrack}>
+          {images.map((image, index) => (
+            <li key={image.src} className={styles.galleryPreviewSlide}>
+              <a
+                href={image.src}
+                className={styles.galleryItemCard}
+                aria-label={`${labels.open}: ${image.alt}`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  placeholder="blur"
+                  blurDataURL={image.blurDataURL}
+                  className={styles.galleryImage}
+                  loading="lazy"
+                  sizes="(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw"
+                />
+                <span className={styles.galleryExpandBadge} aria-hidden="true">
+                  +
+                </span>
+                <span className={styles.galleryImageIndex} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+export function ProjectGallery(props: ProjectGalleryProps) {
+  const rootRef = useRef<HTMLDivElement>(null)
+  const [shouldEnhance, setShouldEnhance] = useState(false)
 
   useEffect(() => {
-    if (activeModalIndex !== null) {
-      document.body.style.overflow = "hidden"
-      window.addEventListener("keydown", handleKeyDown)
-    } else {
-      document.body.style.overflow = ""
+    const root = rootRef.current
+    if (!root || !("IntersectionObserver" in window)) {
+      setShouldEnhance(true)
+      return
     }
-    return () => {
-      document.body.style.overflow = ""
-      window.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [activeModalIndex, handleKeyDown])
 
-  if (!images || images.length === 0) return null
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return
+        setShouldEnhance(true)
+        observer.disconnect()
+      },
+      { rootMargin: "900px 0px" },
+    )
 
-  const selectedImage = activeModalIndex !== null ? images[activeModalIndex] : null
+    observer.observe(root)
+    return () => observer.disconnect()
+  }, [])
 
-  // Duplicate images if less than 8 so Swiper 3D coverflow always has enough slides on both sides for seamless looping
-  const displayImages = images.length < 8 ? [...images, ...images] : images
+  if (props.images.length === 0) return null
 
   return (
-    <>
-      <section className={styles.gallerySection}>
-        <div className={styles.container}>
-          <div className={styles.galleryHeader}>
-            <h2 className={styles.storyLabel}>{title}</h2>
-            
-            <div className={styles.galleryControls}>
-              <button 
-                className={`swiper-button-prev-custom ${styles.galleryNavBtn}`}
-                aria-label="Anterior"
-              >
-                <span aria-hidden="true">←</span>
-              </button>
-              <button 
-                className={`swiper-button-next-custom ${styles.galleryNavBtn}`}
-                aria-label="Próxima"
-              >
-                <span aria-hidden="true">→</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.swiperContainerWrapper}>
-          <Swiper
-            modules={[EffectCoverflow, Autoplay, Navigation, Pagination]}
-            effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView="auto"
-            loop={true}
-            loopAdditionalSlides={4}
-            watchSlidesProgress={true}
-            speed={600}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 140,
-              modifier: 1.4,
-              slideShadows: true,
-            }}
-            navigation={{
-              prevEl: ".swiper-button-prev-custom",
-              nextEl: ".swiper-button-next-custom",
-            }}
-            pagination={{
-              clickable: true,
-              el: ".swiper-pagination-custom",
-            }}
-            className={styles.swiperGallery}
-          >
-            {displayImages.map((image, i) => {
-              const originalIndex = i % images.length
-              return (
-                <SwiperSlide key={i} className={styles.swiperSlide}>
-                  <div 
-                    className={styles.galleryItemCard}
-                    onClick={() => setActiveModalIndex(originalIndex)}
-                    title="Clique para ampliar"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={image.width}
-                      height={image.height}
-                      placeholder="blur"
-                      blurDataURL={image.blurDataURL}
-                      className={styles.galleryImage}
-                      priority={i === 0}
-                    />
-                    <div className={styles.galleryExpandBadge}>
-                      <span aria-hidden="true">🔍</span>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              )
-            })}
-          </Swiper>
-          <div className={`swiper-pagination-custom ${styles.swiperPagination}`} />
-        </div>
-      </section>
-
-      {/* Fullscreen Lightbox Modal */}
-      {selectedImage && (
-        <div 
-          className={styles.modalOverlay}
-          onClick={() => setActiveModalIndex(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Imagem ampliada"
-        >
-          <button
-            className={styles.modalCloseBtn}
-            onClick={() => setActiveModalIndex(null)}
-            aria-label="Fechar galeria"
-          >
-            ✕
-          </button>
-
-          <button
-            className={`${styles.modalNavBtn} ${styles.modalNavPrev}`}
-            onClick={(e) => {
-              e.stopPropagation()
-              setActiveModalIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : images.length - 1))
-            }}
-            aria-label="Imagem anterior"
-          >
-            ←
-          </button>
-
-          <div 
-            className={styles.modalContent}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              width={selectedImage.width}
-              height={selectedImage.height}
-              placeholder="blur"
-              blurDataURL={selectedImage.blurDataURL}
-              className={styles.modalImage}
-              priority
-            />
-            <p className={styles.modalCaption}>
-              {selectedImage.alt}
-            </p>
-          </div>
-
-          <button
-            className={`${styles.modalNavBtn} ${styles.modalNavNext}`}
-            onClick={(e) => {
-              e.stopPropagation()
-              setActiveModalIndex((prev) => (prev !== null && prev < images.length - 1 ? prev + 1 : 0))
-            }}
-            aria-label="Próxima imagem"
-          >
-            →
-          </button>
-        </div>
+    <div ref={rootRef} data-project-gallery="true">
+      {shouldEnhance ? (
+        <Suspense fallback={<ProjectGalleryPreview {...props} />}>
+          <ProjectGalleryCarousel {...props} />
+        </Suspense>
+      ) : (
+        <ProjectGalleryPreview {...props} />
       )}
-    </>
+    </div>
   )
 }
