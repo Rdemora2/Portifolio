@@ -114,11 +114,7 @@ export function Navigation() {
         ),
       ).filter((element) => element.getClientRects().length > 0)
 
-    const focusFrame = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        getFocusableElements()[0]?.focus()
-      })
-    })
+    closeButton.focus({ preventScroll: true })
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -150,15 +146,12 @@ export function Navigation() {
     document.addEventListener("keydown", handleKeyDown)
 
     return () => {
-      cancelAnimationFrame(focusFrame)
       document.removeEventListener("keydown", handleKeyDown)
       html.style.overflow = previousOverflow
       previousInert.forEach(({ element, inert }) => {
         element.inert = inert
       })
-      requestAnimationFrame(() => {
-        trigger.focus({ preventScroll: true })
-      })
+      trigger.focus({ preventScroll: true })
     }
   }, [isMobileOpen])
 
