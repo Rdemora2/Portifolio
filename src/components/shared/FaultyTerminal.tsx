@@ -1,7 +1,6 @@
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 
-import { createWebGLCanvas } from '@/lib/webgl';
 import { isBot } from '@/lib/is-bot';
 
 type Vec2 = [number, number];
@@ -268,6 +267,7 @@ export default function FaultyTerminal({
   ...rest
 }: FaultyTerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const programRef = useRef<Program>(null);
   const rendererRef = useRef<Renderer>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
@@ -302,27 +302,26 @@ export default function FaultyTerminal({
       if (!rect || rect.width === 0 || rect.height === 0) return;
 
       const pointer = pendingPointerRef.current;
-      const x = (pointer.x - rect.left) / rect.width;
-      const y = 1 - (pointer.y - rect.top) / rect.height;
+      const x = Math.min(Math.max((pointer.x - rect.left) / rect.width, 0), 1);
+      const y = Math.min(Math.max(1 - (pointer.y - rect.top) / rect.height, 0), 1);
       mouseRef.current = { x, y };
     });
   }, []);
 
   useEffect(() => {
-    // WHY: Checking for bots and reduced-motion before calling createWebGLCanvas() prevents
-    // memory and context leaks on the GPU when automated crawlers or assistive modes are active.
+    // WHY: Avoid allocating a GPU context for crawlers or assistive motion modes.
     if (isBot()) return;
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctn = containerRef.current;
-    if (!ctn) return;
+    const canvas = canvasRef.current;
+    if (!ctn || !canvas) return;
+
+    canvas.style.display = "block";
 
     if (timeOffsetRef.current === null) {
       timeOffsetRef.current = Math.random() * 100;
     }
-
-    const canvas = createWebGLCanvas({ alpha: false, antialias: false });
-    if (!canvas) return;
 
     let renderer: Renderer;
     let gl: Renderer["gl"];
@@ -336,7 +335,10 @@ export default function FaultyTerminal({
         canvas,
         dpr,
       });
-      rendererRef.current = renderer;
+      if (!renderer || !renderer.gl) {
+        if (canvas) canvas.style.display = 'none';
+        return;
+      }
       gl = renderer.gl;
       gl.clearColor(0, 0, 0, 1);
 
@@ -371,21 +373,29 @@ export default function FaultyTerminal({
           uBrightness: { value: brightness }
         }
       });
+
+      if (!program.uniformLocations) {
+        throw new Error("Shader program failed to link");
+      }
+
       mesh = new Mesh(gl, { geometry, program });
+      programRef.current = program;
+      rendererRef.current = renderer;
     } catch {
-      const context =
-        canvas.getContext('webgl2') ?? canvas.getContext('webgl');
+      canvas.style.display = 'none';
+      const context = canvas.getContext('webgl2') ?? canvas.getContext('webgl');
       context?.getExtension('WEBGL_lose_context')?.loseContext();
+      programRef.current = null;
       rendererRef.current = null;
       return;
     }
 
-    programRef.current = program;
-
     function resize() {
-      if (!ctn || !renderer) return;
+      if (!ctn || !renderer || !canvas) return;
       boundsRef.current = ctn.getBoundingClientRect();
       renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       program.uniforms.iResolution.value = new Color(
         gl.canvas.width,
         gl.canvas.height,
@@ -414,7 +424,7 @@ export default function FaultyTerminal({
     };
 
     const update = (t: number) => {
-      if (contextLost) {
+      if (contextLost || !rendererRef.current || !programRef.current || !mesh) {
         rafRef.current = 0;
         return;
       }
@@ -477,7 +487,6 @@ export default function FaultyTerminal({
       program.uniforms.uPageLoadProgress.value = 1;
       renderer.render({ scene: mesh });
     }
-    ctn.appendChild(canvas);
     startAnimation();
 
     if (mouseReact) window.addEventListener('mousemove', handleMouseMove);
@@ -485,6 +494,7 @@ export default function FaultyTerminal({
     canvas.addEventListener('webglcontextlost', handleContextLost);
 
     return () => {
+      contextLost = true;
       stopAnimation();
       cancelAnimationFrame(pointerFrameRef.current);
       cancelAnimationFrame(boundsFrame);
@@ -495,8 +505,8 @@ export default function FaultyTerminal({
       window.removeEventListener('scroll', updateBoundsAfterScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       canvas.removeEventListener('webglcontextlost', handleContextLost);
-      if (canvas.parentElement === ctn) ctn.removeChild(canvas);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      // React owns this canvas. Do not lose its context during an effect rerun;
+      // Strict Mode intentionally performs a setup-cleanup-setup cycle in dev.
       programRef.current = null;
       rendererRef.current = null;
       loadAnimationStartRef.current = 0;
@@ -525,6 +535,8 @@ export default function FaultyTerminal({
   ]);
 
   return (
-    <div ref={containerRef} className={`w-full h-full relative overflow-hidden ${className}`} style={style} {...rest} />
+    <div ref={containerRef} className={`w-full h-full relative overflow-hidden ${className}`} style={style} {...rest}>
+      <canvas ref={canvasRef} className="w-full h-full block relative z-0" aria-hidden="true" />
+    </div>
   );
 }

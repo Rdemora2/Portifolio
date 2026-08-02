@@ -3,7 +3,6 @@
 import { Mesh, Program, Renderer, Triangle } from "ogl"
 import { useEffect, useRef } from "react"
 
-import { createWebGLCanvas } from "@/lib/webgl"
 import { isBot } from "@/lib/is-bot"
 
 const vertexShader = `
@@ -103,10 +102,14 @@ void main() {
 
 export function LiquidPortal() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     const container = containerRef.current
-    if (!container) return
+    const canvas = canvasRef.current
+    if (!container || !canvas) return
+
+    canvas.style.display = "block"
 
     if (isBot()) return
 
@@ -119,9 +122,6 @@ export function LiquidPortal() {
       (navigator.deviceMemory !== undefined && navigator.deviceMemory <= 4)
     )
     const dpr = Math.min(window.devicePixelRatio || 1, lowPower ? 1 : 1.5)
-    const canvas = createWebGLCanvas({ alpha: true, antialias: false })
-    if (!canvas) return
-
     let renderer: Renderer
     let gl: Renderer["gl"]
     let program: Program
@@ -136,6 +136,10 @@ export function LiquidPortal() {
         canvas,
         dpr,
       })
+      if (!renderer || !renderer.gl) {
+        if (canvas) canvas.style.display = "none"
+        return
+      }
       gl = renderer.gl
       gl.clearColor(0, 0, 0, 0)
 
@@ -152,19 +156,19 @@ export function LiquidPortal() {
           uMouse: { value: mouse },
         },
       })
+
+      if (!program.uniformLocations) {
+        throw new Error("Shader program failed to link")
+      }
+
       mesh = new Mesh(gl, { geometry, program })
     } catch {
+      canvas.style.display = "none"
       const context =
         canvas.getContext("webgl2") ?? canvas.getContext("webgl")
       context?.getExtension("WEBGL_lose_context")?.loseContext()
       return
     }
-
-    canvas.setAttribute("aria-hidden", "true")
-    canvas.style.display = "block"
-    canvas.style.height = "100%"
-    canvas.style.width = "100%"
-    container.appendChild(canvas)
 
     let bounds = container.getBoundingClientRect()
     const pointer = { x: 0, y: 0, dirty: false }
@@ -173,6 +177,8 @@ export function LiquidPortal() {
       const height = Math.max(container.clientHeight, 1)
       bounds = container.getBoundingClientRect()
       renderer.setSize(width, height)
+      canvas.style.width = "100%"
+      canvas.style.height = "100%"
       program.uniforms.uAspect.value = width / height
     }
     const resizeObserver = new ResizeObserver(resize)
@@ -208,7 +214,7 @@ export function LiquidPortal() {
     let contextLost = false
 
     const render = (now: number) => {
-      if (contextLost) return
+      if (contextLost || !mesh || !renderer) return
       if (pointer.dirty && bounds.width > 0 && bounds.height > 0) {
         targetMouse.x = Math.min(
           Math.max((pointer.x - bounds.left) / bounds.width, 0),
@@ -264,6 +270,7 @@ export function LiquidPortal() {
     else start()
 
     return () => {
+      contextLost = true
       stop()
       window.clearTimeout(settleBoundsTimer)
       cancelAnimationFrame(boundsFrame)
@@ -272,8 +279,8 @@ export function LiquidPortal() {
       canvas.removeEventListener("webglcontextlost", handleContextLost)
       window.removeEventListener("pointermove", handlePointerMove)
       resizeObserver.disconnect()
-      if (canvas.parentElement === container) container.removeChild(canvas)
-      gl.getExtension("WEBGL_lose_context")?.loseContext()
+      // React owns this canvas. Preserve its context across Strict Mode's
+      // setup-cleanup-setup cycle; the browser releases it with the element.
     }
   }, [])
 
@@ -282,6 +289,12 @@ export function LiquidPortal() {
       ref={containerRef}
       className="pointer-events-none absolute inset-0 overflow-hidden bg-[radial-gradient(circle_at_68%_34%,rgba(99,102,241,0.16),transparent_34%),radial-gradient(circle_at_28%_72%,rgba(0,212,255,0.08),transparent_30%)]"
       aria-hidden="true"
-    />
+    >
+      <canvas
+        ref={canvasRef}
+        className="block h-full w-full"
+        aria-hidden="true"
+      />
+    </div>
   )
 }
