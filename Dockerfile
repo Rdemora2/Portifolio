@@ -5,7 +5,6 @@ ENV NEXT_TELEMETRY_DISABLED=1
 FROM base AS deps
 COPY package*.json .npmrc ./
 RUN npm ci --ignore-scripts --no-audit --no-fund
-RUN npm audit signatures
 COPY scripts/dev-workspace.mjs ./scripts/dev-workspace.mjs
 RUN node scripts/dev-workspace.mjs --mark-dependencies
 
