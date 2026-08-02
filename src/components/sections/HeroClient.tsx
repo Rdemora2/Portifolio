@@ -7,10 +7,10 @@ import { useInView } from "@/hooks/useInView"
 import { isBot } from "@/lib/is-bot"
 import { WebGLErrorBoundary } from "@/components/shared/WebGLErrorBoundary"
 
-// WHY: FaultyTerminal is dynamically imported with ssr:false because WebGL APIs
+// WHY: LiquidChrome is dynamically imported with ssr:false because WebGL APIs
 // (canvas.getContext) are browser-only and should never execute on Node server workers.
-const FaultyTerminal = dynamic(
-  () => import("@/components/shared/FaultyTerminal"),
+const LiquidChrome = dynamic(
+  () => import("@/components/shared/LiquidChrome"),
   { ssr: false },
 )
 
@@ -99,23 +99,13 @@ export function HeroClientWrapper({
       >
         {canRender && isInView ? (
           <WebGLErrorBoundary>
-            <FaultyTerminal
-              scale={1.2}
-              gridMul={[1.5, 1]}
-              digitSize={1.2}
-              timeScale={0.22}
-              scanlineIntensity={0.28}
-              glitchAmount={0.45}
-              flickerAmount={0.35}
-              noiseAmp={0.5}
-              chromaticAberration={0}
-              dither={0}
-              curvature={0.08}
-              tint="#6366f1"
-              mouseReact
-              mouseStrength={0.35}
-              pageLoadAnimation={false}
-              brightness={0.55}
+            <LiquidChrome
+              baseColor={[0.08, 0.08, 0.22]}
+              speed={0.2}
+              amplitude={0.35}
+              frequencyX={2.5}
+              frequencyY={2.5}
+              interactive
               dpr={1}
             />
           </WebGLErrorBoundary>
@@ -126,7 +116,7 @@ export function HeroClientWrapper({
         className="absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse at 40% 50%, rgba(5,10,18,0.24) 0%, rgba(5,10,18,0.76) 58%, rgba(5,10,18,0.97) 100%)",
+            "radial-gradient(ellipse at 40% 50%, rgba(5,10,18,0.36) 0%, rgba(5,10,18,0.78) 58%, rgba(5,10,18,0.97) 100%)",
         }}
         aria-hidden="true"
       />
