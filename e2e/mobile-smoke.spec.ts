@@ -1,10 +1,8 @@
 import { expect, test } from "@playwright/test"
 
 import { expectNoContentClipping } from "./helpers/layout"
-import { bridgeUpgradedLoopbackRequests } from "./helpers/network"
 
-test.beforeEach(async ({ page }, testInfo) => {
-  await bridgeUpgradedLoopbackRequests(page, testInfo.project.use.baseURL)
+test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" })
 })
 

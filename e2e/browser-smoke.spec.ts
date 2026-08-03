@@ -2,7 +2,6 @@ import { expect, type Page, test } from "@playwright/test"
 
 import { websiteExperiences } from "../src/data/showcase-sites"
 import { expectNoContentClipping } from "./helpers/layout"
-import { bridgeUpgradedLoopbackRequests } from "./helpers/network"
 
 type RuntimeErrors = {
   console: string[]
@@ -25,8 +24,7 @@ function expectNoRuntimeErrors(errors: RuntimeErrors, surface: string) {
   expect(errors.console, `${surface} must not emit console.error`).toEqual([])
 }
 
-test.beforeEach(async ({ page }, testInfo) => {
-  await bridgeUpgradedLoopbackRequests(page, testInfo.project.use.baseURL)
+test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" })
 })
 
@@ -35,7 +33,7 @@ test("renders the multipage portfolio without engine-specific regressions", asyn
 }) => {
   const runtimeErrors = captureRuntimeErrors(page)
 
-  await page.goto("/en", { waitUntil: "domcontentloaded" })
+  await page.goto("/en", { waitUntil: "networkidle" })
   await expect(page.locator("html")).toHaveAttribute("lang", "en-US")
   await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName(
     "Roberto Moraes",
@@ -44,7 +42,7 @@ test("renders the multipage portfolio without engine-specific regressions", asyn
   await expect(page.locator("[data-project-card]")).toHaveCount(3)
   await expectNoContentClipping(page, "Home")
 
-  await page.goto("/en/work", { waitUntil: "domcontentloaded" })
+  await page.goto("/en/work", { waitUntil: "networkidle" })
   await expect(page.locator("[data-work-cases] [data-project-card]")).toHaveCount(
     3,
   )
@@ -53,7 +51,7 @@ test("renders the multipage portfolio without engine-specific regressions", asyn
   )
   await expectNoContentClipping(page, "Work")
 
-  await page.goto("/en/experience", { waitUntil: "domcontentloaded" })
+  await page.goto("/en/experience", { waitUntil: "networkidle" })
   await expect(page.locator("[data-experience-list] > li")).toHaveCount(5)
   await expectNoContentClipping(page, "Experience")
 
@@ -91,10 +89,6 @@ test("keeps project details and article content progressive", async ({
     javaScriptEnabled: false,
   })
   try {
-    await bridgeUpgradedLoopbackRequests(
-      noScriptPage,
-      testInfo.project.use.baseURL,
-    )
     await noScriptPage.goto("/en/insights/go-in-production", {
       waitUntil: "domcontentloaded",
     })
