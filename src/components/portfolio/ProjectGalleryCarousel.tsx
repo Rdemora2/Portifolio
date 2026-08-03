@@ -192,30 +192,40 @@ export function ProjectGalleryCarousel({
           >
             {images.map((image, index) => (
               <SwiperSlide key={image.src} className={styles.swiperSlide}>
-                <button
-                  type="button"
-                  className={styles.galleryItemCard}
-                  onClick={(event) => openGallery(index, event.currentTarget)}
-                  aria-label={`${labels.open}: ${image.alt}`}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    placeholder="blur"
-                    blurDataURL={image.blurDataURL}
-                    className={styles.galleryImage}
-                    loading="lazy"
-                    sizes="(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw"
-                  />
-                  <span className={styles.galleryExpandBadge} aria-hidden="true">
-                    +
-                  </span>
-                  <span className={styles.galleryImageIndex} aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </button>
+                {({ isActive }) => (
+                  <button
+                    type="button"
+                    className={styles.galleryItemCard}
+                    onClick={(event) => openGallery(index, event.currentTarget)}
+                    aria-label={`${labels.open}: ${image.alt}`}
+                    aria-hidden={isActive ? undefined : true}
+                    tabIndex={isActive ? 0 : -1}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.width}
+                      height={image.height}
+                      placeholder="blur"
+                      blurDataURL={image.blurDataURL}
+                      className={styles.galleryImage}
+                      loading="lazy"
+                      sizes="(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw"
+                    />
+                    <span
+                      className={styles.galleryExpandBadge}
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                    <span
+                      className={styles.galleryImageIndex}
+                      aria-hidden="true"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </button>
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
