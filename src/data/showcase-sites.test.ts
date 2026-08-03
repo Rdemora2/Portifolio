@@ -15,12 +15,48 @@ function readImageDimensions(path: string) {
   if (image.length >= 8 && image.readUInt32BE(0) === 0x89504e47) {
     return {
       width: image.readUInt32BE(16),
-      height: image.readUInt32BE(20)
+      height: image.readUInt32BE(20),
+    }
+  }
+
+  if (
+    image.length >= 30 &&
+    image.toString("ascii", 0, 4) === "RIFF" &&
+    image.toString("ascii", 8, 12) === "WEBP"
+  ) {
+    const chunkType = image.toString("ascii", 12, 16)
+
+    if (chunkType === "VP8X") {
+      return {
+        width: image.readUIntLE(24, 3) + 1,
+        height: image.readUIntLE(27, 3) + 1,
+      }
+    }
+
+    if (chunkType === "VP8L" && image[20] === 0x2f) {
+      const dimensions = image.readUInt32LE(21)
+
+      return {
+        width: (dimensions & 0x3fff) + 1,
+        height: ((dimensions >>> 14) & 0x3fff) + 1,
+      }
+    }
+
+    if (
+      chunkType === "VP8 " &&
+      image[23] === 0x9d &&
+      image[24] === 0x01 &&
+      image[25] === 0x2a
+    ) {
+      return {
+        width: image.readUInt16LE(26) & 0x3fff,
+        height: image.readUInt16LE(28) & 0x3fff,
+      }
     }
   }
 
   if (image.readUInt16BE(0) !== 0xffd8) {
-    throw new Error(`${path} is neither a supported JPEG nor a PNG image`)
+    throw new Error(`${path} is not a supported PNG, JPEG, or WebP image`)
   }
 
   let offset = 2

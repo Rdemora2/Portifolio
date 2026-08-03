@@ -86,6 +86,7 @@ export async function WebsiteShowcase({
                         className={styles.image}
                         loading="lazy"
                         decoding="async"
+                        unoptimized={site.image.src.endsWith(".webp")}
                         placeholder="blur"
                         blurDataURL={site.image.blurDataURL}
                       />

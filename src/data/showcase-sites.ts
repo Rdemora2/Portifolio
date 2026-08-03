@@ -6,7 +6,7 @@ export const websiteExperiences = [
     href: "https://lp-hospitalidade-premium.vercel.app/",
     domain: "lp-hospitalidade-premium.vercel.app",
     image: {
-      src: "/images/sites/arua-resort-experience.png",
+      src: "/images/sites/arua-resort-experience.webp",
       width: 1410,
       height: 831,
       blurDataURL:
@@ -23,7 +23,7 @@ export const websiteExperiences = [
     href: "https://portal-noticias-ivory.vercel.app/",
     domain: "portal-noticias-ivory.vercel.app",
     image: {
-      src: "/images/sites/portal-noticias-atual.png",
+      src: "/images/sites/portal-noticias-atual.webp",
       width: 1410,
       height: 831,
       blurDataURL:
@@ -40,7 +40,7 @@ export const websiteExperiences = [
     href: "https://lp-estudio-musica.vercel.app/",
     domain: "lp-estudio-musica.vercel.app",
     image: {
-      src: "/images/sites/lp-estudio-musica.png",
+      src: "/images/sites/lp-estudio-musica.webp",
       width: 1410,
       height: 831,
       blurDataURL:
