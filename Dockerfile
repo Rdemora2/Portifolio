@@ -1,4 +1,4 @@
-FROM node:24.18.0-trixie-slim@sha256:366fdef91728b1b7fa18c84fba63b6e79ed77b7e10cc206878e9705da4d7b169 AS base
+FROM node:26.5.1-trixie-slim@sha256:deae974a69e140f44f434ab29cb519fb5f8fe250fd364b8ca446bd0761acdc6a AS base
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 
