@@ -22,7 +22,7 @@ FROM deps AS dev
 ENV NODE_ENV=development
 CMD ["sh", "-c", "node scripts/dev-workspace.mjs && exec npm run dev -- -H 0.0.0.0 -p 3000"]
 
-FROM gcr.io/distroless/nodejs24-debian13:nonroot@sha256:70a2c12a0d76018b54d7bd01c5e3677632eeed9f890ba318d6db55fc54cf3baa AS runner
+FROM gcr.io/distroless/nodejs24-debian13:nonroot@sha256:af85d11ce7ef10172855a6e3649e3e8125b1b9e3ca41849ec2918036f05cb212 AS runner
 WORKDIR /app
 ARG NEXT_PUBLIC_SITE_URL=https://robertomoraes.dev
 ENV NODE_ENV=production
