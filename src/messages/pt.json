@@ -310,10 +310,22 @@
         "imageAlt": "Página inicial do portal de notícias Atual exibindo manchetes e layout editorial moderno."
       },
       "lp-estudio-musica": {
-        "category": "Música · Estúdio · Educação",
-        "title": "Estúdio de Música — presença digital para escola de música",
-        "description": "Uma landing page imersiva e expressiva desenvolvida para um estúdio de música, transmitindo paixão pela arte sonora por meio de um design moderno, responsivo e orientado à conversão.",
-        "imageAlt": "Página inicial do Estúdio de Música exibindo uma experiência visual moderna com instrumentos e elementos sonoros em destaque."
+        "category": "Música · Selo independente · Cultura",
+        "title": "RUPTURA//REC — experiência digital para selo independente",
+        "description": "Uma experiência editorial e imersiva que traduz a identidade de um selo independente, combinando narrativa sonora, movimento e uma arquitetura responsiva.",
+        "imageAlt": "Página inicial da RUPTURA//REC com tipografia expressiva, o retrato de uma artista e a identidade visual do selo."
+      },
+      "casa-brasa": {
+        "category": "E-commerce · Tabacaria · Curadoria",
+        "title": "Casa Brasa — comércio editorial para uma tabacaria contemporânea",
+        "description": "Uma experiência de comércio premium que une curadoria responsável, informação técnica e navegação clara para sedas, tabacos naturais, charutos e acessórios.",
+        "imageAlt": "Página inicial da Casa Brasa com composição editorial de seda, tabaco natural, charuto, cortador, isqueiro e umidor de cedro."
+      },
+      "limiar-capital": {
+        "category": "Venture capital · Growth equity",
+        "title": "Limiar Capital — a evidência antes da escala",
+        "description": "Uma presença institucional para uma gestora de venture e growth equity, combinando tese de investimento, clareza editorial e navegação precisa para comunicar decisões de longo prazo.",
+        "imageAlt": "Página inicial da Limiar Capital com a frase A evidência vem antes da escala em tipografia editorial."
       }
     }
   },

@@ -310,10 +310,22 @@
         "imageAlt": "Home page of the Atual news portal displaying headlines and a modern editorial layout."
       },
       "lp-estudio-musica": {
-        "category": "Music · Studio · Education",
-        "title": "Music Studio — digital presence for a music school",
-        "description": "An immersive and expressive landing page built for a music studio, conveying a passion for sound through modern, responsive design oriented toward conversion.",
-        "imageAlt": "Home page of the Music Studio displaying a modern visual experience with instruments and sonic elements highlighted."
+        "category": "Music · Independent label · Culture",
+        "title": "RUPTURA//REC — a digital experience for an independent label",
+        "description": "An editorial, immersive experience translating an independent label’s identity through sound-led narrative, motion, and responsive architecture.",
+        "imageAlt": "RUPTURA//REC home page with expressive typography, an artist portrait, and the label’s visual identity."
+      },
+      "casa-brasa": {
+        "category": "E-commerce · Tobacco shop · Curation",
+        "title": "Casa Brasa — editorial commerce for a contemporary tobacco shop",
+        "description": "A premium commerce experience combining responsible curation, technical product information, and clear navigation across rolling papers, natural tobacco, cigars, and accessories.",
+        "imageAlt": "Casa Brasa home page with an editorial composition of rolling paper, natural tobacco, cigar, cutter, lighter, and cedar humidor."
+      },
+      "limiar-capital": {
+        "category": "Venture capital · Growth equity",
+        "title": "Limiar Capital — evidence before scale",
+        "description": "An institutional presence for a venture and growth equity firm, combining investment thesis, editorial clarity, and precise navigation to communicate long-term decisions.",
+        "imageAlt": "Limiar Capital home page with the phrase Evidence comes before scale in editorial typography."
       }
     }
   },

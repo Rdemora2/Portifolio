@@ -4,6 +4,18 @@ import { describe, expect, it } from "vitest"
 
 import { websiteExperiences } from "@/data/showcase-sites"
 
+const requiredPublishedDomains = [
+  "lp-estudio-musica.vercel.app",
+  "lp-fundo-investimento.vercel.app",
+  "portal-noticias-ivory.vercel.app",
+  "lp-hospitalidade-premium.vercel.app",
+  "lp-institucional-fintech.vercel.app",
+  "lp-institucional-paisagismo.vercel.app",
+  "lp-institucional-vendas.vercel.app",
+  "lp-institucional-advocacia.vercel.app",
+  "casa-brasa-tabacaria.vercel.app",
+] as const
+
 const jpegStartOfFrameMarkers = new Set([
   0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce,
   0xcf,
@@ -89,6 +101,18 @@ function readImageDimensions(path: string) {
 }
 
 describe("website showcase data", () => {
+  it("preserves every required published destination", () => {
+    const listedDomains = new Set(
+      websiteExperiences.map(({ domain }) => domain),
+    )
+
+    requiredPublishedDomains.forEach((domain) => {
+      expect(listedDomains.has(domain), `${domain} must remain listed`).toBe(
+        true,
+      )
+    })
+  })
+
   it("keeps identifiers and published destinations unique", () => {
     expect(new Set(websiteExperiences.map(({ id }) => id)).size).toBe(
       websiteExperiences.length,

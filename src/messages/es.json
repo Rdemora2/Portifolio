@@ -310,10 +310,22 @@
         "imageAlt": "Página de inicio del portal de noticias Atual mostrando titulares y un diseño editorial moderno."
       },
       "lp-estudio-musica": {
-        "category": "Música · Estudio · Educación",
-        "title": "Estudio de Música — presencia digital para una escuela de música",
-        "description": "Una landing page inmersiva y expresiva desarrollada para un estudio de música, transmitiendo pasión por el arte sonoro a través de un diseño moderno, responsivo y orientado a la conversión.",
-        "imageAlt": "Página de inicio del Estudio de Música mostrando una experiencia visual moderna con instrumentos y elementos sonoros destacados."
+        "category": "Música · Sello independiente · Cultura",
+        "title": "RUPTURA//REC — experiencia digital para sello independiente",
+        "description": "Una experiencia editorial e inmersiva que traduce la identidad de un sello independiente a través de narrativa sonora, movimiento y arquitectura responsiva.",
+        "imageAlt": "Página inicial de RUPTURA//REC con tipografía expresiva, el retrato de una artista y la identidad visual del sello."
+      },
+      "casa-brasa": {
+        "category": "Comercio electrónico · Tabaquería · Curaduría",
+        "title": "Casa Brasa — comercio editorial para una tabaquería contemporánea",
+        "description": "Una experiencia de comercio premium que reúne curaduría responsable, información técnica y navegación clara para papeles, tabacos naturales, puros y accesorios.",
+        "imageAlt": "Página inicial de Casa Brasa con una composición editorial de papel, tabaco natural, puro, cortador, encendedor y humidor de cedro."
+      },
+      "limiar-capital": {
+        "category": "Capital de riesgo · Growth equity",
+        "title": "Limiar Capital — la evidencia antes de la escala",
+        "description": "Una presencia institucional para una gestora de venture y growth equity que combina tesis de inversión, claridad editorial y navegación precisa para comunicar decisiones de largo plazo.",
+        "imageAlt": "Página inicial de Limiar Capital con la frase La evidencia viene antes de la escala en tipografía editorial."
       }
     }
   },
