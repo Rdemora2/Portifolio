@@ -120,12 +120,20 @@ describe("website showcase data", () => {
     expect(new Set(websiteExperiences.map(({ href }) => href)).size).toBe(
       websiteExperiences.length,
     )
+    expect(new Set(websiteExperiences.map(({ domain }) => domain)).size).toBe(
+      websiteExperiences.length,
+    )
 
     websiteExperiences.forEach(({ href, domain }) => {
       const url = new URL(href)
 
       expect(url.protocol).toBe("https:")
       expect(url.hostname).toBe(domain)
+      expect(url.pathname).toBe("/")
+      expect(url.search).toBe("")
+      expect(url.hash).toBe("")
+      expect(url.username).toBe("")
+      expect(url.password).toBe("")
     })
   })
 
