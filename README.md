@@ -16,14 +16,14 @@ Este README é a porta de entrada operacional. O desenho completo, os fluxos, co
 - Artigo legível sem JavaScript, com experiência de scroll aprimorada quando o navegador e as preferências do usuário permitem.
 - WebGL, GSAP e formulário carregados sob demanda, com fallbacks estáticos ou nativos.
 - API de contato com validação estrita, proteção de origem, limites de corpo, rate limiting, honeypot, timeout e idempotência.
-- Build standalone e imagem de produção distroless, não-root e com filesystem somente leitura via Compose.
+- Entrega nativa na Vercel e build standalone para imagem distroless, não-root e com filesystem somente leitura via Compose.
 - Gates automatizados para testes, lint, tipos, build, bundle, navegadores, dependências e imagem Docker.
 
 ## Stack
 
 | Área | Implementação atual |
 | --- | --- |
-| Aplicação | Next.js 16.2.10, React 19.2.4, TypeScript 5 |
+| Aplicação | Next.js 16.3.0, React 19.2.4, TypeScript 5 |
 | Interface | Tailwind CSS 4, CSS Modules, CSS nativo e Web Animations API |
 | Motion opcional | GSAP 3.15.0 e OGL 1.0.11 |
 | Formulário | React Hook Form 7.74.0, Zod 4.4.1 e Resend 6.17.2 |
@@ -33,11 +33,11 @@ Este README é a porta de entrada operacional. O desenho completo, os fluxos, co
 
 ## Requisitos
 
-- Node.js <code>&gt;=24.0.0</code>, sem teto de major.
+- Node.js <code>&gt;=24.18.0 &lt;25</code>.
 - npm 11.16.0 como versão de referência reproduzível.
 - Docker 24+ somente para os fluxos em container.
 
-O projeto usa Node.js 24.18.0 em <code>.nvmrc</code>, CI e Docker. Essa versão é referência, não limite: <code>engines</code>, <code>devEngines</code> e <code>engine-strict=true</code> rejeitam Node anterior à versão 24, mas aceitam versões posteriores. O campo <code>packageManager</code> declara npm 11.16.0 como referência reproduzível, sem impor uma faixa adicional de compatibilidade.
+O projeto usa Node.js 24.18.0 em <code>.nvmrc</code>, CI e Docker. <code>engines</code>, <code>devEngines</code> e <code>engine-strict=true</code> mantêm instalações na linha 24, a partir de 24.18.0, para evitar upgrades automáticos de major e divergência entre desenvolvimento, CI e deploy. O campo <code>packageManager</code> declara npm 11.16.0 como referência reproduzível, sem impor uma faixa adicional de compatibilidade.
 
 Scripts de lifecycle de dependências ficam desabilitados por <code>.npmrc</code>. Os scripts do próprio projeto, executados explicitamente com <code>npm run</code>, continuam habilitados.
 
@@ -45,7 +45,7 @@ Scripts de lifecycle de dependências ficam desabilitados por <code>.npmrc</code
 
 ### Node.js
 
-Use <code>nvm use</code> para a toolchain de referência ou qualquer Node.js 24+:
+Use <code>nvm use</code> para a toolchain de referência ou uma versão compatível da linha Node.js 24:
 
 ~~~bash
 nvm use
@@ -123,7 +123,7 @@ Regras importantes:
 | <code>npm run test:watch</code> | Vitest em modo interativo |
 | <code>npm run lint</code> | ESLint com regras Next.js, Core Web Vitals e TypeScript |
 | <code>npm run typecheck</code> | Gera tipos de rotas e executa TypeScript sem emitir arquivos |
-| <code>npm run build</code> | Build standalone e cópia validada dos assets |
+| <code>npm run build</code> | Build de produção; fora da Vercel, prepara e valida o standalone |
 | <code>npm run check:bundle</code> | Gate de transferência inicial e chunks diferidos |
 | <code>npm run test:e2e:install</code> | Instala Chromium, Firefox e WebKit |
 | <code>npm run test:e2e</code> | Playwright em todos os projetos configurados |
@@ -201,6 +201,8 @@ set +a
 npm run build
 npm run start
 ~~~
+
+Na Vercel, <code>VERCEL=1</code> é definido pela plataforma: o adaptador nativo do Next.js assume o output do deploy e a preparação standalone é ignorada de forma intencional. O standalone permanece exclusivo dos fluxos local, Docker e self-hosted.
 
 <code>.env.production</code> é ignorado pelo Git. Use valores reais para validar o formulário; fixtures apenas sintaticamente válidas servem para smoke de páginas, mas não para entrega de email.
 

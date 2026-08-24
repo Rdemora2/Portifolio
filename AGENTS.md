@@ -13,7 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Pre-requisitos
 
 - Acesso ao workspace e permissoes para executar comandos quando necessario.
-- Node.js 24+ (`>=24.0.0`) obrigatorio; use o Node.js 24.18.0 e o npm 11.16.0 declarados em `.nvmrc` e `package.json` apenas como toolchain de referencia.
+- Node.js 24.18+ e menor que 25 (`>=24.18.0 <25`) obrigatorio; use o Node.js 24.18.0 e o npm 11.16.0 declarados em `.nvmrc` e `package.json` como toolchain de referencia reproduzivel.
 
 ## Passos
 
