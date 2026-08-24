@@ -59,7 +59,7 @@ jobs:
         run: npm audit signatures
 
       - name: Audit dependencies
-        run: npm audit --omit=dev --audit-level=moderate
+        run: npm audit --audit-level=moderate
 
       - name: Run tests
         run: npm test
@@ -69,6 +69,11 @@ jobs:
 
       - name: Run typecheck
         run: npm run typecheck
+
+      - name: Validate Vercel deployment mode
+        env:
+          VERCEL: "1"
+        run: npm run build
 
       - name: Build the production application
         run: npm run build
