@@ -177,7 +177,7 @@ export function LocaleSwitcher({
           hash={hash}
           current={currentLocale === locale}
           onNavigate={onNavigate}
-          className={`flex min-h-11 min-w-11 items-center justify-center rounded border px-2 text-[10px] font-bold transition-all duration-200 ${
+          className={`flex min-h-11 min-w-11 items-center justify-center rounded border px-2 text-[10px] font-bold transition-colors duration-200 ${
             currentLocale === locale
               ? "border-[var(--color-signal)] bg-[rgba(99,102,241,0.1)] text-[var(--color-signal)]"
               : "border-transparent text-[var(--color-text-muted)] hover:border-[var(--color-edge)] hover:text-[var(--color-text-primary)]"

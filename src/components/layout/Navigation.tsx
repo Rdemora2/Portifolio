@@ -114,8 +114,6 @@ export function Navigation() {
         ),
       ).filter((element) => element.getClientRects().length > 0)
 
-    closeButton.focus({ preventScroll: true })
-
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault()
@@ -144,6 +142,7 @@ export function Navigation() {
     }
 
     document.addEventListener("keydown", handleKeyDown)
+    closeButton.focus({ preventScroll: true })
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
