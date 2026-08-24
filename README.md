@@ -228,7 +228,7 @@ docker compose --env-file .env.production logs --follow portfolio
 docker compose --env-file .env.production down --remove-orphans
 ~~~
 
-O runner usa Node.js 24.18.0 em uma imagem distroless Debian 13, sem shell, package manager ou toolchain. Ele executa como UID/GID <code>65532:65532</code>; o Compose remove capabilities, proíbe privilege escalation, aplica limites de processo/CPU/memória e disponibiliza somente dois <code>tmpfs</code> graváveis.
+O runner recompõe o Node.js 24.18.0 sobre a base distroless <code>base-nossl</code> Debian 13, sem shell, package manager, toolchain ou OpenSSL de sistema não utilizado. Apenas o binário oficial do Node e suas bibliotecas C++ dinâmicas entram na imagem; licenças e metadados correspondentes permanecem presentes. A CI também gera um SBOM CycloneDX da imagem final e confirma nele o runtime Node esperado. O processo executa como UID/GID <code>65532:65532</code>; o Compose remove capabilities, proíbe privilege escalation, aplica limites de processo/CPU/memória e disponibiliza somente dois <code>tmpfs</code> graváveis.
 
 ## Segurança e limites deliberados
 

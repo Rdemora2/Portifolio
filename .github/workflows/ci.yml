@@ -104,6 +104,22 @@ jobs:
           severity: CRITICAL,HIGH
           exit-code: "1"
 
+      - name: Generate and verify the container SBOM
+        run: |
+          docker run --rm \
+            --volume /var/run/docker.sock:/var/run/docker.sock \
+            anchore/syft:v1.51.0@sha256:678bfa565b60f747aac0f8e964fe5588a24445b8d0a480e91f6efd70020dfbb0 \
+            docker:portfolio:ci --output cyclonedx-json > container-sbom.cdx.json
+
+          jq --exit-status '
+            any(
+              .components[]?;
+              .type == "application" and
+              .name == "node" and
+              .version == "24.18.0"
+            )
+          ' container-sbom.cdx.json > /dev/null
+
       - name: Smoke-test the production container
         run: |
           test "$(docker image inspect --format '{{.Config.User}}' portfolio:ci)" = "65532:65532"
@@ -150,7 +166,11 @@ jobs:
 
           test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.env.NODE_ENV')" = "production"
           test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.version')" = "v24.18.0"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.versions.openssl')" = "3.5.7"
           test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.env.NEXT_PUBLIC_SITE_URL')" = "$NEXT_PUBLIC_SITE_URL"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'require("node:fs").existsSync("/var/lib/dpkg/status.d/libssl3t64")')" = "false"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'require("node:fs").existsSync("/var/lib/dpkg/status.d/libstdc++6")')" = "true"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'require("node:fs").existsSync("/usr/share/doc/nodejs/LICENSE")')" = "true"
 
           response_headers="$(curl --fail --show-error --silent --head http://127.0.0.1:3100/)"
           grep --ignore-case --quiet '^cross-origin-resource-policy: same-origin' <<< "$response_headers"
@@ -187,3 +207,12 @@ jobs:
           path: playwright-report/
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload container SBOM
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ !cancelled() }}
+        with:
+          name: container-sbom
+          path: container-sbom.cdx.json
+          if-no-files-found: ignore
+          retention-days: 14

@@ -1024,7 +1024,8 @@ O hook é uma proteção rápida, não substitui o gate completo.
 | <code>deps</code> | base | <code>npm ci</code> sem lifecycle e auditoria de assinaturas |
 | <code>builder</code> | base | Código, build args públicos e <code>npm run build</code> |
 | <code>dev</code> | deps | Next dev em <code>0.0.0.0:3000</code> |
-| <code>runner</code> | distroless Node 24 Debian 13 por digest | Artefato standalone não-root |
+| <code>runtime-libs</code> | distroless Node 24 Debian 13 por digest | Fornece somente bibliotecas C++ dinâmicas, metadados e licença correspondentes |
+| <code>runner</code> | distroless <code>base-nossl</code> Debian 13 por digest | Node 24.18.0 oficial e artefato standalone não-root, sem OpenSSL de sistema não utilizado |
 
 <code>scripts/prepare-standalone.mjs</code>:
 
@@ -1113,6 +1114,8 @@ O runner não tem shell. Não planeje diagnóstico com <code>docker exec ... sh<
 - <code>docker inspect</code>;
 - requests HTTP externos;
 - <code>/nodejs/bin/node</code> apenas para inspeções pontuais já suportadas pelo ambiente.
+
+O binário oficial do Node incorpora seu próprio OpenSSL e liga dinamicamente apenas contra glibc, <code>libstdc++</code> e <code>libgcc</code>. Por isso, o runner parte de <code>base-nossl</code>: copia somente as duas bibliotecas C++ ausentes e preserva seus metadados <code>dpkg</code>, suas licenças e a licença distribuída com o Node. Essa composição evita carregar uma segunda implementação OpenSSL sem mascarar a proveniência dos arquivos adicionados. A CI gera ainda um SBOM CycloneDX da imagem final com Syft, exige a presença de <code>node@24.18.0</code> e publica o documento como artefato da execução.
 
 ### 15.4 Build args
 
