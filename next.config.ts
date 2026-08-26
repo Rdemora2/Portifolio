@@ -64,18 +64,6 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
-  redirects: async () => [
-    {
-      source: "/en/insights/go-em-producao",
-      destination: "/en/insights/go-in-production",
-      permanent: true,
-    },
-    {
-      source: "/es/insights/go-em-producao",
-      destination: "/es/insights/go-en-produccion",
-      permanent: true,
-    },
-  ],
   turbopack: {},
   experimental: {
     globalNotFound: true,
