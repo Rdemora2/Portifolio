@@ -13,7 +13,7 @@ export async function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center">
           <div
-            className="hero-card-enter glass-card max-w-3xl rounded-2xl px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+            className="hero-card-enter glass-card max-w-2xl rounded-2xl px-6 py-8 sm:px-8 sm:py-9 lg:px-9 lg:py-10"
             style={{ borderRadius: "1.5rem" }}
           >
             <h1
@@ -36,7 +36,7 @@ export async function Hero() {
               style={{
                 fontFamily: "var(--font-body)",
                 color: "var(--color-signal)",
-                fontSize: "clamp(0.875rem, 1vw + 0.5rem, var(--text-lg))",
+                fontSize: "clamp(0.8rem, 0.55vw + 0.55rem, 1.05rem)",
                 letterSpacing: "0.15em",
               }}
             >
@@ -51,7 +51,7 @@ export async function Hero() {
             </p>
 
             <p
-              className="hero-subtitle hero-copy-enter mb-8 tracking-widest sm:mb-10"
+              className="hero-subtitle hero-copy-enter mb-8 tracking-widest"
               style={{
                 fontFamily: "var(--font-mono)",
                 color: "var(--color-text-secondary)",

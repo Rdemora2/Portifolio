@@ -91,7 +91,8 @@ export function HeroClientWrapper({
     <section
       id="hero"
       ref={sectionRef}
-      className="relative flex min-h-dvh items-center overflow-hidden"
+      className="site-home-hero relative flex items-center overflow-hidden"
+      data-home-hero
     >
       <div
         className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_64%_28%,rgba(99,102,241,0.15),transparent_34%),linear-gradient(180deg,#050a12_0%,#07101a_52%,#050a12_100%)]"
@@ -124,7 +125,8 @@ export function HeroClientWrapper({
       {children}
 
       <div
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[var(--color-text-muted)]"
+        className="home-scroll-cue absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[var(--color-text-muted)]"
+        data-home-scroll-cue
         aria-hidden="true"
       >
         <span

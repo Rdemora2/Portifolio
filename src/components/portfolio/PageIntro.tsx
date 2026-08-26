@@ -14,7 +14,7 @@ export function PageIntro({
   meta = [],
 }: PageIntroProps) {
   return (
-    <header className={styles.pageHero}>
+    <header className={styles.pageHero} data-page-hero>
       <div className={styles.pageHeroInner}>
         <p className={styles.heroMarker}>{eyebrow}</p>
         <h1 className={styles.pageTitle}>{title}</h1>

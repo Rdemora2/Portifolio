@@ -43,7 +43,7 @@ export async function ProjectCaseStudy({
 
   return (
     <>
-      <header className={styles.caseHero}>
+      <header className={styles.caseHero} data-case-hero>
         <div className={styles.container}>
           <Link href="/work" className={styles.caseBack}>
             <span aria-hidden="true">←</span>

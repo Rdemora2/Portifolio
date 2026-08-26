@@ -1,7 +1,7 @@
 .pageHero {
   position: relative;
   display: flex;
-  min-height: min(46rem, 82svh);
+  min-height: min(38rem, 68svh);
   align-items: flex-end;
   overflow: hidden;
   border-bottom: 1px solid rgba(129, 140, 248, 0.12);
@@ -9,7 +9,7 @@
     radial-gradient(circle at 78% 22%, rgba(79, 70, 229, 0.2), transparent 31rem),
     radial-gradient(circle at 9% 92%, rgba(0, 212, 255, 0.06), transparent 28rem),
     linear-gradient(180deg, #050a12 0%, #07101a 58%, #050a12 100%);
-  padding-block: clamp(9rem, 18vh, 13rem) clamp(4.5rem, 10vh, 7rem);
+  padding-block: clamp(7.5rem, 14svh, 9rem) clamp(3.5rem, 6svh, 4.25rem);
 }
 
 .pageHero::before,
@@ -69,10 +69,10 @@
 }
 
 .pageTitle {
-  max-width: 65rem;
+  max-width: 58rem;
   color: var(--color-text-primary);
   font-family: var(--font-display);
-  font-size: clamp(2.45rem, 7vw, 5.65rem);
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
   font-weight: 750;
   letter-spacing: -0.048em;
   line-height: 0.98;
@@ -81,10 +81,10 @@
 
 .pageLead {
   max-width: 48rem;
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  margin-top: clamp(1.25rem, 2vw, 1.75rem);
   color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
   line-height: 1.65;
 }
 
@@ -92,7 +92,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  margin-top: 2.25rem;
+  margin-top: 1.75rem;
 }
 
 .metaChip {
@@ -111,7 +111,7 @@
 .sectionGrid {
   position: relative;
   overflow: hidden;
-  padding-block: clamp(5.5rem, 11vw, 9rem);
+  padding-block: clamp(4.5rem, 8vw, 7rem);
 }
 
 .section {
@@ -138,13 +138,13 @@
 .sectionHeader {
   display: grid;
   gap: 1.5rem;
-  margin-bottom: clamp(2.75rem, 6vw, 5rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 .sectionHeaderSplit {
   display: grid;
   gap: 1.5rem;
-  margin-bottom: clamp(2.75rem, 6vw, 5rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 .eyebrow {
@@ -161,7 +161,7 @@
   margin-top: 0.75rem;
   color: var(--color-text-primary);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-size: clamp(1.9rem, 3.75vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.05;
@@ -533,7 +533,7 @@
   background:
     radial-gradient(circle at 78% 25%, rgba(129, 140, 248, 0.17), transparent 30rem),
     linear-gradient(180deg, #050a12, #07101a);
-  padding-block: clamp(8.5rem, 16vh, 12rem) clamp(4.5rem, 9vw, 7rem);
+  padding-block: clamp(7.5rem, 13svh, 8.75rem) clamp(3.75rem, 7svh, 5rem);
 }
 
 .caseBack {
@@ -541,7 +541,7 @@
   min-height: 2.75rem;
   align-items: center;
   gap: 0.6rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -561,24 +561,24 @@
   max-width: 58rem;
   color: var(--color-text-primary);
   font-family: var(--font-display);
-  font-size: clamp(2.7rem, 8vw, 6.5rem);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
   font-weight: 750;
   letter-spacing: -0.055em;
-  line-height: 0.92;
+  line-height: 0.96;
 }
 
 .caseSummary {
   max-width: 49rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   color: var(--color-text-secondary);
-  font-size: clamp(1.05rem, 1.7vw, 1.32rem);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
   line-height: 1.68;
 }
 
 .caseFacts {
   display: grid;
   gap: 0;
-  margin-top: clamp(3rem, 7vw, 5rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
   border-top: 1px solid var(--color-edge);
   border-bottom: 1px solid var(--color-edge);
 }
@@ -812,6 +812,120 @@
   line-height: 1.65;
 }
 
+@media (max-width: 39.99rem) {
+  .pageHero {
+    min-height: auto;
+    padding-block: 6.75rem 3.25rem;
+  }
+
+  .heroMarker {
+    margin-bottom: 0.9rem;
+  }
+
+  .pageTitle {
+    max-width: 100%;
+    font-size: clamp(2.2rem, 9vw, 2.7rem);
+    line-height: 1;
+  }
+
+  .pageLead {
+    margin-top: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .heroMeta {
+    margin-top: 1.5rem;
+  }
+
+  .caseHero {
+    padding-block: 6.25rem 3.5rem;
+  }
+
+  .caseBack {
+    margin-bottom: 1.25rem;
+  }
+
+  .caseKicker {
+    margin-bottom: 1rem;
+  }
+
+  .caseTitle {
+    font-size: clamp(2.2rem, 10vw, 2.7rem);
+    line-height: 0.98;
+  }
+
+  .caseSummary {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .caseFacts {
+    margin-top: 2rem;
+  }
+
+  .caseFact {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: start;
+    padding-block: 0.8rem;
+  }
+
+  .caseFactValue {
+    margin-top: 0;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-height: 560px) {
+  .pageHero {
+    min-height: auto;
+    padding-block: 5.5rem 2.75rem;
+  }
+
+  .heroMarker {
+    margin-bottom: 0.75rem;
+  }
+
+  .pageTitle {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    line-height: 1;
+  }
+
+  .pageLead {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .heroMeta {
+    margin-top: 1.25rem;
+  }
+
+  .caseHero {
+    padding-block: 5.25rem 2.5rem;
+  }
+
+  .caseBack {
+    margin-bottom: 1.25rem;
+  }
+
+  .caseTitle {
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+  }
+
+  .caseSummary {
+    margin-top: 1rem;
+    line-height: 1.55;
+  }
+
+  .caseFacts {
+    margin-top: 1.75rem;
+  }
+}
+
 @media (min-width: 40rem) {
   .pageHeroInner,
   .container {
@@ -848,6 +962,28 @@
 
   .caseFact:last-child {
     border-right: 0;
+  }
+}
+
+@media (min-width: 40rem) and (max-height: 560px) {
+  .caseHero {
+    padding-block: 4.75rem 2rem;
+  }
+
+  .caseBack {
+    margin-bottom: 0.75rem;
+  }
+
+  .caseKicker {
+    margin-bottom: 0.75rem;
+  }
+
+  .caseFacts {
+    margin-top: 1.25rem;
+  }
+
+  .caseFact {
+    padding: 1rem;
   }
 }
 

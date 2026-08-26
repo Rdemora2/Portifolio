@@ -11,7 +11,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden py-16 sm:py-20 md:py-32"
+      className="relative overflow-hidden py-16 sm:py-20 md:py-24"
       style={{ backgroundColor: "var(--color-void)" }}
     >
       <ContactBackground />

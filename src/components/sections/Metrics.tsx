@@ -16,7 +16,7 @@ export function Metrics() {
     <section
       id="metrics"
       ref={sectionRef}
-      className="relative overflow-hidden py-16 sm:py-20 md:py-32"
+      className="relative overflow-hidden py-16 sm:py-20 md:py-24"
       style={{ backgroundColor: "var(--color-void)" }}
     >
       <DataflowBackground />

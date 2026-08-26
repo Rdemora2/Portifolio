@@ -41,7 +41,7 @@
   --text-6xl: clamp(2.5rem, 4vw + 0.9rem, 4.3125rem);
   --text-7xl: clamp(2.75rem, 5vw + 0.9rem, 5.1875rem);
   --text-8xl: clamp(3rem, 6vw + 0.9rem, 6.1875rem);
-  --text-hero: clamp(2.5rem, 4vw + 1rem, 5.1875rem);
+  --text-hero: clamp(2.35rem, 3vw + 1rem, 4.25rem);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);

@@ -24,7 +24,7 @@ export async function Insights() {
   return (
     <section
       id="insights"
-      className="relative py-16 sm:py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-24"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
