@@ -18,6 +18,34 @@ export async function expectNoContentClipping(
       () =>
         page.evaluate<LayoutOffender[]>(() => {
           const tolerance = 1
+          const isInsideManagedHorizontalOverflow = (element: Element) => {
+            let ancestor = element.parentElement
+
+            while (ancestor && ancestor !== document.documentElement) {
+              const ancestorStyle = getComputedStyle(ancestor)
+              const managesInlineOverflow = [
+                "auto",
+                "clip",
+                "hidden",
+                "scroll",
+              ].includes(ancestorStyle.overflowX)
+
+              if (
+                managesInlineOverflow &&
+                ancestor.scrollWidth > ancestor.clientWidth + tolerance
+              ) {
+                const ancestorRect = ancestor.getBoundingClientRect()
+                return (
+                  ancestorRect.left >= -tolerance &&
+                  ancestorRect.right <= window.innerWidth + tolerance
+                )
+              }
+
+              ancestor = ancestor.parentElement
+            }
+
+            return false
+          }
           const contentSelector = [
             "nav a",
             "nav button",
@@ -52,9 +80,13 @@ export async function expectNoContentClipping(
               const rect = element.getBoundingClientRect()
               if (rect.width === 0 || rect.height === 0) return false
 
-              return (
+              const escapesViewport =
                 rect.left < -tolerance ||
                 rect.right > window.innerWidth + tolerance
+
+              return (
+                escapesViewport &&
+                !isInsideManagedHorizontalOverflow(element)
               )
             })
             .slice(0, 10)

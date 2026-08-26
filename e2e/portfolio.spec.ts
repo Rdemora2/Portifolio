@@ -137,6 +137,199 @@ test("keeps the hero identity exact and the home deliberately concise", async ({
   )
 })
 
+test("keeps every hero within a deliberate responsive scale", async ({
+  page,
+}) => {
+  test.setTimeout(150_000)
+  await page.emulateMedia({ reducedMotion: "no-preference" })
+
+  const matrix = [
+    {
+      pathname: "/en",
+      selector: "[data-home-hero]",
+      width: 1440,
+      height: 900,
+      maxHeightRatio: 0.76,
+      maxTitleSize: 62,
+    },
+    {
+      pathname: "/en/work",
+      selector: "[data-page-hero]",
+      width: 1440,
+      height: 900,
+      maxHeightRatio: 0.69,
+      maxTitleSize: 70,
+    },
+    {
+      pathname: "/en/work/hospital-sirio-libanes",
+      selector: "[data-case-hero]",
+      width: 1440,
+      height: 900,
+      maxHeightRatio: 0.79,
+      maxTitleSize: 74,
+    },
+    {
+      pathname: "/en/insights/go-in-production",
+      selector: "[data-article-hero]",
+      width: 1440,
+      height: 900,
+      maxHeightRatio: 1.01,
+      maxTitleSize: 74,
+    },
+    {
+      pathname: "/en",
+      selector: "[data-home-hero]",
+      width: 320,
+      height: 568,
+      maxHeightRatio: 0.9,
+      maxTitleSize: 40,
+    },
+    {
+      pathname: "/en/work",
+      selector: "[data-page-hero]",
+      width: 320,
+      height: 568,
+      maxHeightRatio: 0.94,
+      maxTitleSize: 44,
+    },
+    {
+      pathname: "/es/proyectos",
+      selector: "[data-page-hero]",
+      width: 320,
+      height: 568,
+      maxHeightRatio: 1,
+      maxTitleSize: 44,
+    },
+    {
+      pathname: "/en/work/hospital-sirio-libanes",
+      selector: "[data-case-hero]",
+      width: 320,
+      height: 568,
+      maxHeightRatio: 1.23,
+      maxTitleSize: 44,
+    },
+    {
+      pathname: "/en/insights/go-in-production",
+      selector: "[data-article-hero]",
+      width: 320,
+      height: 568,
+      maxHeightRatio: 1.15,
+      maxTitleSize: 44,
+    },
+    {
+      pathname: "/insights/go-em-producao",
+      selector: "[data-article-hero]",
+      width: 320,
+      height: 568,
+      maxHeightRatio: 1.15,
+      maxTitleSize: 44,
+    },
+    {
+      pathname: "/es/insights/go-en-produccion",
+      selector: "[data-article-hero]",
+      width: 390,
+      height: 844,
+      maxHeightRatio: 0.9,
+      maxTitleSize: 44,
+    },
+    {
+      pathname: "/en",
+      selector: "[data-home-hero]",
+      width: 844,
+      height: 390,
+      maxHeightRatio: 1.04,
+      maxTitleSize: 48,
+    },
+    {
+      pathname: "/en/work",
+      selector: "[data-page-hero]",
+      width: 844,
+      height: 390,
+      maxHeightRatio: 0.92,
+      maxTitleSize: 48,
+    },
+    {
+      pathname: "/en/work/hospital-sirio-libanes",
+      selector: "[data-case-hero]",
+      width: 844,
+      height: 390,
+      maxHeightRatio: 1.16,
+      maxTitleSize: 56,
+    },
+    {
+      pathname: "/en/insights/go-in-production",
+      selector: "[data-article-hero]",
+      width: 844,
+      height: 390,
+      maxHeightRatio: 1.15,
+      maxTitleSize: 46,
+    },
+  ] as const
+
+  for (const scenario of matrix) {
+    await page.setViewportSize({
+      width: scenario.width,
+      height: scenario.height,
+    })
+    await page.goto(scenario.pathname, { waitUntil: "domcontentloaded" })
+    await expect(page.locator(`${scenario.selector} h1`)).toBeVisible()
+    await page.evaluate(async () => {
+      await document.fonts.ready
+    })
+
+    const metrics = await page.locator(scenario.selector).evaluate((hero) => {
+      const title = hero.querySelector("h1")
+      const heightTarget = hero.matches("[data-article-hero]")
+        ? hero.querySelector("[data-hero-sticky]")
+        : hero
+
+      if (!(title instanceof HTMLElement)) {
+        throw new Error("Hero must contain a visible H1")
+      }
+      if (!(heightTarget instanceof HTMLElement)) {
+        throw new Error("Hero must expose a measurable visual viewport")
+      }
+
+      return {
+        heightRatio:
+          heightTarget.getBoundingClientRect().height / window.innerHeight,
+        titleSize: Number.parseFloat(getComputedStyle(title).fontSize),
+      }
+    })
+
+    expect(
+      metrics.heightRatio,
+      `${scenario.pathname} at ${scenario.width}×${scenario.height} must not consume disproportionate vertical space`,
+    ).toBeLessThanOrEqual(scenario.maxHeightRatio)
+    expect(
+      metrics.titleSize,
+      `${scenario.pathname} at ${scenario.width}×${scenario.height} must keep its H1 on the shared type scale`,
+    ).toBeLessThanOrEqual(scenario.maxTitleSize)
+  }
+
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/en/insights/go-in-production", {
+    waitUntil: "domcontentloaded",
+  })
+  const articleHero = page.locator("[data-article-hero]")
+  await expect(articleHero).toHaveAttribute("data-hero-motion", "scroll")
+  const motionGeometry = await articleHero.evaluate((hero) => {
+    const sticky = hero.querySelector("[data-hero-sticky]")
+    if (!(hero instanceof HTMLElement) || !(sticky instanceof HTMLElement)) {
+      throw new Error("Article hero must expose its sticky viewport")
+    }
+
+    return {
+      scrollRangeRatio:
+        (hero.offsetHeight - sticky.offsetHeight) / window.innerHeight,
+      stickyHeightRatio: sticky.offsetHeight / window.innerHeight,
+    }
+  })
+  expect(motionGeometry.scrollRangeRatio).toBeGreaterThanOrEqual(0.28)
+  expect(motionGeometry.scrollRangeRatio).toBeLessThanOrEqual(0.32)
+  expect(motionGeometry.stickyHeightRatio).toBeLessThanOrEqual(1.01)
+})
+
 test("presents production cases before the independent web lab", async ({
   page,
 }) => {
@@ -372,6 +565,37 @@ test("publishes a localized editorial index and progressive article", async ({
 
   await expect(page).toHaveURL(/\/en\/insights\/go-in-production$/)
   await expect(page.locator("[data-article-scene]")).toHaveCount(8)
+  await expect(page.locator("[data-article-architecture]")).toHaveAttribute(
+    "aria-labelledby",
+    "article-architecture-title",
+  )
+  const articleReadingOrder = await page
+    .locator("[data-article-story]")
+    .evaluate((story) => {
+      const selectors = [
+        "[data-article-architecture]",
+        "[data-article-progress]",
+        "[data-article-tracker]",
+        "[data-article-stage]",
+        "#article-content",
+      ]
+      const nodes = selectors.map((selector) => story.querySelector(selector))
+
+      return nodes.every((node, index) => {
+        if (node === null) return false
+        const nextNode = nodes[index + 1]
+        if (nextNode === undefined) return true
+
+        return (
+          nextNode !== null &&
+          Boolean(
+            node.compareDocumentPosition(nextNode) &
+              Node.DOCUMENT_POSITION_FOLLOWING,
+          )
+        )
+      })
+    })
+  expect(articleReadingOrder).toBe(true)
   await expect(page.locator("[data-article-cta]")).toContainText(
     "Architecture becomes clearer",
   )
@@ -543,12 +767,30 @@ test("publishes complete robots, sitemap, and permanent article migrations", asy
     "https://robertomoraes.dev/es/insights/go-en-produccion",
   )
 
+  for (const canonicalArticlePath of [
+    "/insights/go-em-producao",
+    "/en/insights/go-in-production",
+    "/es/insights/go-en-produccion",
+  ]) {
+    const canonicalArticle = await request.get(canonicalArticlePath, {
+      maxRedirects: 0,
+    })
+    expect(
+      canonicalArticle.status(),
+      `${canonicalArticlePath} must render without a self-redirect`,
+    ).toBe(200)
+  }
+
   const oldEnglishArticle = await request.get(
     "/en/insights/go-em-producao",
     { maxRedirects: 0 },
   )
+  const oldEnglishArticleUrl = new URL(
+    oldEnglishArticle.headers().location ?? "",
+    "http://localhost",
+  )
   expect(oldEnglishArticle.status()).toBe(308)
-  expect(oldEnglishArticle.headers().location).toBe(
+  expect(oldEnglishArticleUrl.pathname).toBe(
     "/en/insights/go-in-production",
   )
 
@@ -556,10 +798,36 @@ test("publishes complete robots, sitemap, and permanent article migrations", asy
     "/es/insights/go-em-producao",
     { maxRedirects: 0 },
   )
+  const oldSpanishArticleUrl = new URL(
+    oldSpanishArticle.headers().location ?? "",
+    "http://localhost",
+  )
   expect(oldSpanishArticle.status()).toBe(308)
-  expect(oldSpanishArticle.headers().location).toBe(
+  expect(oldSpanishArticleUrl.pathname).toBe(
     "/es/insights/go-en-produccion",
   )
+
+  const legacyArticleWithQuery = await request.get(
+    "/en/insights/go-em-producao?source=e2e",
+    { maxRedirects: 0 },
+  )
+  const migratedArticleUrl = new URL(
+    legacyArticleWithQuery.headers().location ?? "",
+    "http://localhost",
+  )
+  expect(legacyArticleWithQuery.status()).toBe(308)
+  expect(migratedArticleUrl.pathname).toBe(
+    "/en/insights/go-in-production",
+  )
+  expect(migratedArticleUrl.search).toBe("?source=e2e")
+
+  const migratedArticle = await request.get(
+    "/en/insights/go-em-producao?source=e2e",
+  )
+  const finalArticleUrl = new URL(migratedArticle.url())
+  expect(migratedArticle.status()).toBe(200)
+  expect(finalArticleUrl.pathname).toBe("/en/insights/go-in-production")
+  expect(finalArticleUrl.search).toBe("?source=e2e")
 })
 
 test("serves localized, non-indexable not-found pages", async ({ page }) => {

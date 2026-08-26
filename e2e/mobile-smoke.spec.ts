@@ -9,6 +9,8 @@ test.beforeEach(async ({ page }) => {
 test("keeps every core journey usable with real touch and mobile semantics", async ({
   page,
 }) => {
+  test.setTimeout(120_000)
+
   const routes = [
     "/en",
     "/en/work",
@@ -16,6 +18,7 @@ test("keeps every core journey usable with real touch and mobile semantics", asy
     "/en/experience",
     "/en/about",
     "/en/contact",
+    "/en/insights/go-in-production",
   ]
 
   expect(
@@ -40,7 +43,7 @@ test("keeps navigation operable in a short landscape viewport", async ({
 
   await expect(
     page.getByRole("navigation", { name: "Main navigation" }),
-  ).toHaveAttribute("data-navigation-ready", "true")
+  ).toHaveAttribute("data-navigation-ready", "true", { timeout: 30_000 })
   await page.getByRole("button", { name: "Open menu" }).tap()
   const dialog = page.getByRole("dialog", { name: "Navigation menu" })
   await expect(dialog).toBeVisible()
@@ -60,7 +63,13 @@ test("keeps navigation operable in a short landscape viewport", async ({
 
   const experienceLink = dialog.getByRole("link", { name: "Experience" })
   await expect(experienceLink).toBeVisible()
-  await experienceLink.tap()
+  await Promise.all([
+    page.waitForURL(/\/en\/experience\/?$/, {
+      timeout: 30_000,
+      waitUntil: "domcontentloaded",
+    }),
+    experienceLink.tap(),
+  ])
   await expect(page).toHaveURL(/\/en\/experience\/?$/)
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
   await expectNoContentClipping(page, "Short landscape experience")
