@@ -26,18 +26,14 @@ type TopologyStyle = CSSProperties & {
   "--topology-columns": number
 }
 
-type MetricsStyle = CSSProperties & {
-  "--metric-columns": number
-}
-
 function getHeroWordStyle(index: number): HeroWordStyle {
   if (index === 0) {
-    return { "--hero-word-x": "-1.2vw", "--hero-word-y": "0rem" }
+    return { "--hero-word-x": "-0.3rem", "--hero-word-y": "0rem" }
   }
 
   return {
-    "--hero-word-x": `${Math.min(index * 2.6, 6.5)}vw`,
-    "--hero-word-y": index % 2 === 0 ? "0.35rem" : "-0.25rem",
+    "--hero-word-x": `${Math.min(index * 0.2, 1.1)}rem`,
+    "--hero-word-y": index % 2 === 0 ? "0.12rem" : "-0.08rem",
   }
 }
 
@@ -163,17 +159,7 @@ export function ImmersiveArticle({
               <h2 id="article-production-metrics">{article.metricsLabel}</h2>
               <span aria-hidden="true">{article.experience.traceLabel}</span>
             </div>
-            <dl
-              className={styles.metrics}
-              style={
-                {
-                  "--metric-columns": Math.min(
-                    Math.max(article.metrics.length, 1),
-                    4,
-                  ),
-                } as MetricsStyle
-              }
-            >
+            <dl className={styles.metrics}>
               {article.metrics.map((metric, index) => (
                 <div
                   key={metric.label}
@@ -190,29 +176,12 @@ export function ImmersiveArticle({
 
         <div className={styles.storySection}>
           <div className={styles.storyLayout} data-article-story>
-            <ArticleExperience
-              rootId="main-content"
-              labels={{
-                navigation: article.tocLabel,
-                trace: article.experience.traceLabel,
-                chapter: article.experience.chapterLabel,
-                progress: article.experience.progressLabel,
-                core: article.experience.coreLabel,
-                coreCaption: article.experience.coreCaption,
-              }}
-              metrics={article.metrics}
-              sections={article.sections.map(
-                ({ id, title, visual }) => ({
-                  id,
-                  title,
-                  visual,
-                }),
-              )}
-              systemNodes={article.architectureNodes}
-            />
-
             <div className={styles.storyContent}>
-              <section className={styles.architecture}>
+              <section
+                className={styles.architecture}
+                aria-labelledby="article-architecture-title"
+                data-article-architecture
+              >
                 <span aria-hidden="true" className={styles.architectureMarker}>
                   {article.experience.topologyLabel}
                 </span>
@@ -220,13 +189,16 @@ export function ImmersiveArticle({
                   <p className={styles.architectureEyebrow}>
                     {article.architectureLabel}
                   </p>
-                  <h2>{article.architectureTitle}</h2>
+                  <h2 id="article-architecture-title">
+                    {article.architectureTitle}
+                  </h2>
                   <p>{article.architectureDescription}</p>
                 </div>
 
                 <div
                   className={styles.topology}
                   role="list"
+                  aria-label={article.experience.topologyLabel}
                   style={
                     {
                       "--topology-columns": Math.max(
@@ -254,6 +226,27 @@ export function ImmersiveArticle({
                   ))}
                 </div>
               </section>
+
+              <ArticleExperience
+                rootId="main-content"
+                labels={{
+                  navigation: article.tocLabel,
+                  trace: article.experience.traceLabel,
+                  chapter: article.experience.chapterLabel,
+                  progress: article.experience.progressLabel,
+                  core: article.experience.coreLabel,
+                  coreCaption: article.experience.coreCaption,
+                }}
+                metrics={article.metrics}
+                sections={article.sections.map(
+                  ({ id, title, visual }) => ({
+                    id,
+                    title,
+                    visual,
+                  }),
+                )}
+                systemNodes={article.architectureNodes}
+              />
 
               <div id="article-content" className={styles.articleBody}>
                 {article.sections.map((section, index) => (
@@ -305,7 +298,11 @@ export function ImmersiveArticle({
           </div>
         </div>
 
-        <section className={styles.ctaSection} data-article-cta>
+        <section
+          className={styles.ctaSection}
+          aria-labelledby="article-cta-title"
+          data-article-cta
+        >
           <div aria-hidden="true" className={styles.ctaTrace}>
             <span />
             <span />
@@ -313,7 +310,9 @@ export function ImmersiveArticle({
           </div>
           <div className={styles.ctaInner} data-article-cta-content>
             <p>{article.ctaEyebrow}</p>
-            <h2 data-article-cta-title>{article.ctaTitle}</h2>
+            <h2 id="article-cta-title" data-article-cta-title>
+              {article.ctaTitle}
+            </h2>
             <p>{article.ctaDescription}</p>
             <Link href="/work" className={styles.ctaLink}>
               <span>{article.ctaLabel}</span>
