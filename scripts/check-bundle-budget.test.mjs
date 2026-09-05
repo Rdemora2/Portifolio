@@ -1,7 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { once } from "node:events"
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises"
-import { createServer } from "node:http"
 import { join } from "node:path"
 import { tmpdir } from "node:os"
 
@@ -170,34 +168,29 @@ describe("bundle budget collection", () => {
     await rm(join(nextDir, "server/app/en/insights/go-em-producao.html"))
 
     const requestedPaths = []
-    const server = createServer((request, response) => {
-      requestedPaths.push(request.url)
-      if (request.url !== "/en/insights/go-in-production") {
-        response.writeHead(404).end()
-        return
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockImplementation(async (url) => {
+      const parsed = new URL(url)
+      requestedPaths.push(parsed.pathname)
+      if (parsed.pathname !== "/en/insights/go-in-production") {
+        return new Response("Not found", {
+          status: 404,
+          headers: { "content-type": "text/html; charset=utf-8" },
+        })
       }
 
-      response.writeHead(200, { "content-type": "text/html; charset=utf-8" })
-      response.end(articleHtml)
+      return new Response(articleHtml, {
+        status: 200,
+        headers: { "content-type": "text/html; charset=utf-8" },
+      })
     })
-    server.listen({ host: "127.0.0.1", port: 0 })
-    await once(server, "listening")
-    const address = server.address()
-    if (!address || typeof address === "string") {
-      throw new Error("Bundle test server did not expose a TCP port")
-    }
 
-    vi.stubEnv(
-      "BUNDLE_BUDGET_BASE_URL",
-      `http://127.0.0.1:${address.port}`,
-    )
+    vi.stubEnv("BUNDLE_BUDGET_BASE_URL", "http://127.0.0.1:3000")
     vi.spyOn(console, "table").mockImplementation(() => undefined)
 
     try {
       await runBundleBudgetCheck(nextDir)
     } finally {
-      server.close()
-      await once(server, "close")
+      fetchSpy.mockRestore()
     }
 
     expect(requestedPaths).toEqual(["/en/insights/go-in-production"])
