@@ -4,6 +4,10 @@
 
 This site is available in Portuguese, English, and Spanish. Portuguese is the canonical default language. Prefer the localized URLs below when presenting or summarizing its content.
 
+## Full context
+
+- [Full technical context](https://robertomoraes.dev/llms-full.txt): Complete, consolidated technical profile, project case studies, career trajectory, and production engineering article in a single Markdown document for LLM ingestion.
+
 ## Portfolio
 
 - [Português](https://robertomoraes.dev/): Executive introduction to Roberto Moraes's software engineering and IT management profile.
