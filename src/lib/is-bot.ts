@@ -24,25 +24,3 @@ export function isBot(): boolean {
   return /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(ua)
 }
 
-/**
- * Server-side bot detection using the real HTTP User-Agent header.
- *
- * Must be called from a Next.js Server Component or Route Handler where
- * `next/headers` is available. This is more reliable than client-side
- * detection because the UA header cannot be spoofed by JS execution and
- * is read before any React hydration occurs.
- *
- * PageSpeed Insights always sends "Chrome-Lighthouse" in the server-side
- * User-Agent even when the client-side `navigator.userAgent` check fails.
- */
-export async function isBotFromHeaders(): Promise<boolean> {
-  try {
-    const { headers } = await import("next/headers")
-    const headersList = await headers()
-    const ua = headersList.get("user-agent") ?? ""
-    return /bot|googlebot|crawler|spider|robot|crawling|lighthouse|chrome-lighthouse/i.test(ua)
-  } catch {
-    // Not in a Server Component context — fall back gracefully.
-    return false
-  }
-}
