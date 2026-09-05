@@ -36,18 +36,18 @@ export const websiteExperiences = [
     ],
   },
   {
-    id: "lp-estudio-musica",
-    href: "https://lp-estudio-musica.vercel.app/",
-    domain: "lp-estudio-musica.vercel.app",
+    id: "carla-moraes",
+    href: "https://lp-arq-carla-moraes.vercel.app/",
+    domain: "lp-arq-carla-moraes.vercel.app",
     image: {
-      src: "/images/sites/lp-estudio-musica.webp",
+      src: "/images/sites/lp-arq-carla-moraes.webp",
       width: 1410,
       height: 831,
       blurDataURL:
-        "data:image/jpeg;base64,/9j/2wBDABYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////2wBDARYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////wgARCAAHAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAL/2gAMAwEAAhADEAAAAM5Ep//EABsQAQACAgMAAAAAAAAAAAAAAAEAAgMRMUGC/9oACAEBAAE/AC+DvEvqWRsoaN8T/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAgEBPwB//8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPwB//9k=",
+        "data:image/jpeg;base64,/9j/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCAAHAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQF/8QAHRAAAgIBBQAAAAAAAAAAAAAAAQIAAwQREiIxUv/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQMRAD8A0rH21uxYgDWR0nMKcge/QiJB/9k=",
     },
     tagIds: [
-      "editorialExperience",
+      "institutionalStrategy",
       "responsiveExperience",
       "frontendEngineering",
     ],
@@ -61,7 +61,24 @@ export const websiteExperiences = [
       width: 1410,
       height: 831,
       blurDataURL:
-        "data:image/jpeg;base64,/9j/2wBDABYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////2wBDARYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////wgARCAAHAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAME/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQL/2gAMAwEAAhADEAAAAI7ST//EABwQAAICAgMAAAAAAAAAAAAAAAIDAAEEERIiQv/aAAgBAQABPwB7MyiLgfqYjHkrvW73P//EABURAQEAAAAAAAAAAAAAAAAAAAAB/9oACAECAQE/AK//xAAWEQADAAAAAAAAAAAAAAAAAAAAAQL/2gAIAQMBAT8Aln//2Q==",
+        "data:image/jpeg;base64,/9j/2wBDABYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////2wBDARYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////wgARCAAHAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAME/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQL/2gAIAQADEAAAAI7ST//EABwQAAICAgMAAAAAAAAAAAAAAAIDAAEEERIiQv/aAAgBAQABPwB7MyiLgfqYjHkrvW73P//EABURAQEAAAAAAAAAAAAAAAAAAAAB/9oACAECAQE/AK//xAAWEQADAAAAAAAAAAAAAAAAAAAAAQL/2gAIAQMBAT8Aln//2Q==",
+    },
+    tagIds: [
+      "editorialExperience",
+      "responsiveExperience",
+      "frontendEngineering",
+    ],
+  },
+  {
+    id: "lp-estudio-musica",
+    href: "https://lp-estudio-musica.vercel.app/",
+    domain: "lp-estudio-musica.vercel.app",
+    image: {
+      src: "/images/sites/lp-estudio-musica.webp",
+      width: 1410,
+      height: 831,
+      blurDataURL:
+        "data:image/jpeg;base64,/9j/2wBDABYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////2wBDARYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////wgARCAAHAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAL/2gAIAQADEAAAAM5Ep//EABsQAQACAgMAAAAAAAAAAAAAAAEAAgMRMUGC/9oACAEBAAE/AC+DvEvqWRsoaN8T/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAgEBPwB//8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPwB//9k=",
     },
     tagIds: [
       "editorialExperience",
@@ -74,7 +91,7 @@ export const websiteExperiences = [
     href: "https://lp-institucional-paisagismo.vercel.app/",
     domain: "lp-institucional-paisagismo.vercel.app",
     image: {
-      src: "/images/sites/solum-experience.jpg",
+      src: "/images/sites/solum-experience.webp",
       width: 1410,
       height: 831,
       blurDataURL:
@@ -91,7 +108,7 @@ export const websiteExperiences = [
     href: "https://lp-institucional-vendas.vercel.app/",
     domain: "lp-institucional-vendas.vercel.app",
     image: {
-      src: "/images/sites/luxury-experience.jpg",
+      src: "/images/sites/luxury-experience.webp",
       width: 1410,
       height: 831,
       blurDataURL:
@@ -108,7 +125,7 @@ export const websiteExperiences = [
     href: "https://lp-institucional-fintech.vercel.app/",
     domain: "lp-institucional-fintech.vercel.app",
     image: {
-      src: "/images/sites/axenor-experience.jpg",
+      src: "/images/sites/axenor-experience.webp",
       width: 1410,
       height: 831,
       blurDataURL:
@@ -121,28 +138,11 @@ export const websiteExperiences = [
     ],
   },
   {
-    id: "limiar-capital",
-    href: "https://lp-fundo-investimento.vercel.app/",
-    domain: "lp-fundo-investimento.vercel.app",
-    image: {
-      src: "/images/sites/limiar-capital-experience.webp",
-      width: 1410,
-      height: 831,
-      blurDataURL:
-        "data:image/jpeg;base64,/9j/2wBDABYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////2wBDARYWFhYXFhkcHBkjJSElIzMvKysvM003Ozc7N011SVZJSVZJdWh+Zl9mfmi6koKCkrrXtau11//p6f//////////wgARCAAHAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAANJQj//EABcQAQADAAAAAAAAAAAAAAAAAAECECL/2gAIAQEAAT8AGSuq/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAgEBPwB//8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPwB//9k=",
-    },
-    tagIds: [
-      "institutionalStrategy",
-      "responsiveExperience",
-      "frontendEngineering",
-    ],
-  },
-  {
     id: "legal",
     href: "https://lp-institucional-advocacia.vercel.app/",
     domain: "lp-institucional-advocacia.vercel.app",
     image: {
-      src: "/images/sites/legal-experience.jpg",
+      src: "/images/sites/legal-experience.webp",
       width: 1410,
       height: 831,
       blurDataURL:
@@ -159,7 +159,7 @@ export const websiteExperiences = [
     href: "https://front-site-tivix-technologies.vercel.app/",
     domain: "front-site-tivix-technologies.vercel.app",
     image: {
-      src: "/images/sites/tivix-experience.jpg",
+      src: "/images/sites/tivix-experience.webp",
       width: 1410,
       height: 831,
       blurDataURL:

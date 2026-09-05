@@ -309,6 +309,12 @@
         "description": "A responsive and editorial news portal built with a focus on readability, performance, and a smooth reading experience.",
         "imageAlt": "Home page of the Atual news portal displaying headlines and a modern editorial layout."
       },
+      "carla-moraes": {
+        "category": "Floral Architecture · Signature Landscaping",
+        "title": "Carla Moraes — floral architecture and signature landscaping",
+        "description": "Institutional web experience designed for architect Carla Moraes, showcasing landscaping and floral art projects with visual elegance, editorial typography, and responsive design.",
+        "imageAlt": "Home page of Carla Moraes Floral Architecture featuring the headline Transforming spaces into natural experiences."
+      },
       "lp-estudio-musica": {
         "category": "Music · Independent label · Culture",
         "title": "RUPTURA//REC — a digital experience for an independent label",
@@ -320,12 +326,6 @@
         "title": "Casa Brasa — editorial commerce for a contemporary tobacco shop",
         "description": "A premium commerce experience combining responsible curation, technical product information, and clear navigation across rolling papers, natural tobacco, cigars, and accessories.",
         "imageAlt": "Casa Brasa home page with an editorial composition of rolling paper, natural tobacco, cigar, cutter, lighter, and ashtray."
-      },
-      "limiar-capital": {
-        "category": "Venture capital · Growth equity",
-        "title": "Limiar Capital — evidence before scale",
-        "description": "An institutional presence for a venture and growth equity firm, combining investment thesis, editorial clarity, and precise navigation to communicate long-term decisions.",
-        "imageAlt": "Limiar Capital home page with the phrase Evidence comes before scale in editorial typography."
       }
     }
   },

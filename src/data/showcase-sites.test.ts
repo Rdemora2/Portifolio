@@ -6,7 +6,6 @@ import { websiteExperiences } from "@/data/showcase-sites"
 
 const requiredPublishedDomains = [
   "lp-estudio-musica.vercel.app",
-  "lp-fundo-investimento.vercel.app",
   "portal-noticias-ivory.vercel.app",
   "lp-hospitalidade-premium.vercel.app",
   "lp-institucional-fintech.vercel.app",
@@ -14,6 +13,7 @@ const requiredPublishedDomains = [
   "lp-institucional-vendas.vercel.app",
   "lp-institucional-advocacia.vercel.app",
   "casa-brasa-tabacaria.vercel.app",
+  "lp-arq-carla-moraes.vercel.app",
 ] as const
 
 const jpegStartOfFrameMarkers = new Set([
@@ -163,5 +163,21 @@ describe("website showcase data", () => {
     websiteExperiences.forEach(({ image }) => {
       expect(image.blurDataURL).toMatch(/^data:image\/jpeg;base64,/)
     })
+  })
+
+  it("places carla-moraes in 3rd place and casa-brasa before ruptura", () => {
+    expect(websiteExperiences[1].id).toBe("portal-noticias-atual")
+    expect(websiteExperiences[2].id).toBe("carla-moraes")
+
+    const casaBrasaIndex = websiteExperiences.findIndex(
+      ({ id }) => id === "casa-brasa",
+    )
+    const rupturaIndex = websiteExperiences.findIndex(
+      ({ id }) => id === "lp-estudio-musica",
+    )
+
+    expect(casaBrasaIndex).toBeGreaterThan(-1)
+    expect(rupturaIndex).toBeGreaterThan(-1)
+    expect(casaBrasaIndex).toBeLessThan(rupturaIndex)
   })
 })

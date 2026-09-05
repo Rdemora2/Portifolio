@@ -309,6 +309,12 @@
         "description": "Um portal de notícias responsivo e editorial, construído com foco em leiturabilidade, performance e uma experiência de navegação fluida para o leitor.",
         "imageAlt": "Página inicial do portal de notícias Atual exibindo manchetes e layout editorial moderno."
       },
+      "carla-moraes": {
+        "category": "Arquitetura floral · Paisagismo autoral",
+        "title": "Carla Moraes — arquitetura floral e paisagismo autoral",
+        "description": "Presença institucional desenvolvida para a arquiteta Carla Moraes, destacando projetos de paisagismo e arte floral com elegância visual, tipografia editorial e experiência responsiva.",
+        "imageAlt": "Página inicial de Carla Moraes Arquitetura Floral com o título Transformamos espaços em experiências naturais."
+      },
       "lp-estudio-musica": {
         "category": "Música · Selo independente · Cultura",
         "title": "RUPTURA//REC — experiência digital para selo independente",
@@ -320,12 +326,6 @@
         "title": "Casa Brasa — comércio editorial para uma tabacaria contemporânea",
         "description": "Uma experiência de comércio premium que une curadoria responsável, informação técnica e navegação clara para sedas, tabacos naturais, charutos e acessórios.",
         "imageAlt": "Página inicial da Casa Brasa com composição editorial de seda, tabaco natural, charuto, cortador, isqueiro e cinzeiro."
-      },
-      "limiar-capital": {
-        "category": "Venture capital · Growth equity",
-        "title": "Limiar Capital — a evidência antes da escala",
-        "description": "Uma presença institucional para uma gestora de venture e growth equity, combinando tese de investimento, clareza editorial e navegação precisa para comunicar decisões de longo prazo.",
-        "imageAlt": "Página inicial da Limiar Capital com a frase A evidência vem antes da escala em tipografia editorial."
       }
     }
   },
