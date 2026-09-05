@@ -3,6 +3,7 @@ import { dirname, join } from "node:path"
 
 const root = process.cwd()
 const standalone = join(root, ".next", "standalone")
+const isVercelBuild = process.env.VERCEL === "1"
 
 async function assertFile(path, label) {
   let metadata
@@ -51,14 +52,18 @@ async function copyDirectory(source, destination, { optional = false } = {}) {
   return true
 }
 
-await assertFile(join(standalone, "server.js"), "server.js")
+if (isVercelBuild) {
+  console.log("Skipping standalone assets: Vercel's Next adapter owns deployment output.")
+} else {
+  await assertFile(join(standalone, "server.js"), "server.js")
 
-await copyDirectory(join(root, "public"), join(standalone, "public"), {
-  optional: true,
-})
+  await copyDirectory(join(root, "public"), join(standalone, "public"), {
+    optional: true,
+  })
 
-const standaloneStatic = join(standalone, ".next", "static")
-await copyDirectory(join(root, ".next", "static"), standaloneStatic)
-await assertNonEmptyDirectory(standaloneStatic, "static assets")
+  const standaloneStatic = join(standalone, ".next", "static")
+  await copyDirectory(join(root, ".next", "static"), standaloneStatic)
+  await assertNonEmptyDirectory(standaloneStatic, "static assets")
 
-console.log("Standalone assets prepared.")
+  console.log("Standalone assets prepared.")
+}

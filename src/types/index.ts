@@ -31,6 +31,13 @@ export interface CaseStudyDetail {
   keyDecisions: string[]
   lessonsLearned: string[]
   results: string[]
+  images?: {
+    src: string
+    width: number
+    height: number
+    alt: string
+    blurDataURL: string
+  }[]
 }
 
 export interface ManagedDigitalProduct {
@@ -68,20 +75,6 @@ export interface Project {
   international?: boolean
   caseStudy?: CaseStudyDetail
   managedProductGroups?: readonly ManagedDigitalProductGroup[]
-}
-
-export interface ProjectViewModel {
-  id: string
-  roleType: RoleType
-  client: string
-  international?: boolean
-  metrics: Array<Pick<Metric, "id" | "value" | "suffix">>
-  stack: string[]
-  highlightCount: number
-  keyDecisionCount: number
-  lessonsLearnedCount: number
-  hasCaseStudy: boolean
-  managedProductGroups: readonly ManagedDigitalProductGroup[]
 }
 
 export type WebsiteExperienceTag =

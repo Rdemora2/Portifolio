@@ -3,11 +3,13 @@
 import dynamic from "next/dynamic"
 import { useSyncExternalStore } from "react"
 
-import { useInView } from "@/hooks/useInView"
 import { isBot } from "@/lib/is-bot"
+import { WebGLErrorBoundary } from "@/components/shared/WebGLErrorBoundary"
 
-const FaultyTerminal = dynamic(
-  () => import("@/components/shared/FaultyTerminal"),
+// WHY: LiquidChrome is dynamically imported with ssr:false because WebGL APIs
+// (canvas.getContext) are browser-only and should never execute on Node server workers.
+const LiquidChrome = dynamic(
+  () => import("@/components/shared/LiquidChrome"),
   { ssr: false },
 )
 
@@ -22,13 +24,17 @@ const mediaQueries = [
   "(max-width: 1023px)",
 ] as const
 
+const LIQUID_CHROME_BASE_COLOR: [number, number, number] = [0.08, 0.08, 0.22]
+
+// WHY: Privacy-focused browsers like Brave and Firefox randomize or limit navigator.hardwareConcurrency
+// and deviceMemory to mitigate fingerprinting vectors. We check for privacy browser signatures so
+// valid desktop users on these platforms aren't falsely flagged as low-power.
 function canRenderSignatureEffect(isBotHint: boolean) {
   // The server already detected a bot via the real HTTP User-Agent header.
   // Short-circuit immediately — no need to evaluate any client-side signals.
   if (isBotHint) return false
 
   const connection = (navigator as NavigatorWithConnection).connection
-  // Privacy browsers like Brave and Firefox spoof hardware info to prevent fingerprinting
   const isBrave = typeof navigator !== "undefined" && "brave" in navigator
   const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox")
   const isPrivacyBrowser = isBrave || isFirefox
@@ -71,11 +77,6 @@ export function HeroClientWrapper({
   children: React.ReactNode
   isBotHint?: boolean
 }) {
-  const [sectionRef, isInView] = useInView<HTMLElement>({
-    threshold: 0,
-    rootMargin: "0px",
-    triggerOnce: false,
-  })
   const canRender = useSyncExternalStore(
     subscribeToCapabilities,
     () => canRenderSignatureEffect(isBotHint),
@@ -85,33 +86,25 @@ export function HeroClientWrapper({
   return (
     <section
       id="hero"
-      ref={sectionRef}
-      className="relative flex min-h-dvh items-center overflow-hidden"
+      className="site-home-hero relative flex items-center overflow-hidden"
+      data-home-hero
     >
       <div
         className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_64%_28%,rgba(99,102,241,0.15),transparent_34%),linear-gradient(180deg,#050a12_0%,#07101a_52%,#050a12_100%)]"
         aria-hidden="true"
       >
-        {canRender && isInView ? (
-          <FaultyTerminal
-            scale={1.2}
-            gridMul={[1.5, 1]}
-            digitSize={1.2}
-            timeScale={0.22}
-            scanlineIntensity={0.28}
-            glitchAmount={0.45}
-            flickerAmount={0.35}
-            noiseAmp={0.5}
-            chromaticAberration={0}
-            dither={0}
-            curvature={0.08}
-            tint="#6366f1"
-            mouseReact
-            mouseStrength={0.35}
-            pageLoadAnimation={false}
-            brightness={0.55}
-            dpr={1}
-          />
+        {canRender ? (
+          <WebGLErrorBoundary>
+            <LiquidChrome
+              baseColor={LIQUID_CHROME_BASE_COLOR}
+              speed={0.2}
+              amplitude={0.35}
+              frequencyX={2.5}
+              frequencyY={2.5}
+              interactive
+              dpr={1}
+            />
+          </WebGLErrorBoundary>
         ) : null}
       </div>
 
@@ -119,7 +112,7 @@ export function HeroClientWrapper({
         className="absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse at 40% 50%, rgba(5,10,18,0.24) 0%, rgba(5,10,18,0.76) 58%, rgba(5,10,18,0.97) 100%)",
+            "radial-gradient(ellipse at 40% 50%, rgba(5,10,18,0.36) 0%, rgba(5,10,18,0.78) 58%, rgba(5,10,18,0.97) 100%)",
         }}
         aria-hidden="true"
       />
@@ -127,7 +120,8 @@ export function HeroClientWrapper({
       {children}
 
       <div
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[var(--color-text-muted)]"
+        className="home-scroll-cue absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[var(--color-text-muted)]"
+        data-home-scroll-cue
         aria-hidden="true"
       >
         <span

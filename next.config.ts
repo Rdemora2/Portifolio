@@ -6,6 +6,7 @@ import { assertProductionBuildEnv } from "./src/lib/production-env"
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
 const isDevelopment = process.env.NODE_ENV === "development"
+const isVercelBuild = process.env.VERCEL === "1"
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
@@ -20,7 +21,6 @@ const contentSecurityPolicy = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  ...(!isDevelopment ? ["upgrade-insecure-requests"] : []),
 ].join("; ")
 
 const securityHeaders = [
@@ -67,11 +67,13 @@ const nextConfig: NextConfig = {
   turbopack: {},
   experimental: {
     globalNotFound: true,
-    optimizePackageImports: ["gsap", "ogl", "react-icons"],
+    optimizePackageImports: ["ogl", "react-icons"],
     webVitalsAttribution: ["CLS", "LCP", "INP"],
     optimizeCss: true,
   },
-  output: "standalone",
+  // Vercel creates its native function output through its Next adapter. The
+  // standalone artifact is reserved for the Docker/self-hosted runtime.
+  ...(isVercelBuild ? {} : { output: "standalone" }),
 }
 
 export default function createNextConfig(phase: string): NextConfig {

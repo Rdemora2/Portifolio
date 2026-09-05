@@ -114,6 +114,50 @@ export const projects: Project[] = [
         "Zero downtime em todas as migrações",
         "Redução significativa no custo de manutenção",
       ],
+      images: [
+        {
+          src: "/images/band-sites/bandsports.webp",
+          width: 1920,
+          height: 1110,
+          alt: "Portal BandSports — portal editorial e streaming esportivo",
+          blurDataURL: "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAQCdASoQAAkABUB8JQAAQ9qTgPgA9r9sQxDd3obmKkMQUDntjU+s0e5irY8vDZtPG13cUu893xACyg6AQbd3JOeA2aAA",
+        },
+        {
+          src: "/images/band-sites/bandnews.webp",
+          width: 1920,
+          height: 1111,
+          alt: "Portal BandNews TV — notícias e cobertura jornalística 24h",
+          blurDataURL: "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoQAAkABUB8JZwAAt4/DEKGVAAA/mwneP4Zw97ZwzGOG6rzr0iph0Zn+f/gnpN5zXT/piwKqrA20iB3/i1zYiYnZN2AAAAA",
+        },
+        {
+          src: "/images/band-sites/arte1.webp",
+          width: 1920,
+          height: 1055,
+          alt: "Portal Arte 1 — canal de arte, cultura e entretenimento",
+          blurDataURL: "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAkABUB8JagC7ADHNygAAAD+70zxdc8XeBG0fFHvdn2yUQWErfuUARPDVjrCKWP0zZCZDiAAAA==",
+        },
+        {
+          src: "/images/band-sites/terraviva.webp",
+          width: 1920,
+          height: 1046,
+          alt: "Portal Terra Viva — agronegócio e mercado agropecuário",
+          blurDataURL: "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoQAAkABUB8JQBdj+ADAaeWNAAA/Pal+vvZUBs/I40psGzkuQcWO/O5wK4srmtb9qVcQK+nIeGvdrc4l8Diw30GcdGUMAAA",
+        },
+        {
+          src: "/images/band-sites/newcoplay-b2c.webp",
+          width: 1920,
+          height: 1111,
+          alt: "Plataforma Newco Play — streaming e distribuição digital",
+          blurDataURL: "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAkABUB8JZwAAtsj2GJsgAD+72hvgstC6ih2ltqu79kY/RvzVrBA4PyYAAAA",
+        },
+        {
+          src: "/images/band-sites/newcoplay-vivo.webp",
+          width: 1920,
+          height: 1107,
+          alt: "Vivo Newco Play — parceria estratégica de distribuição",
+          blurDataURL: "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoQAAkABUB8JYwAAudkkGPSAAD+5FLioTDWXhlCxb1r5cTnATaIQ9Lc+gaNgIOl/rriQAAA",
+        },
+      ],
     },
     featured: true,
     order: 1,
@@ -166,6 +210,43 @@ export const projects: Project[] = [
         "20M+ requisições/mês sem degradação de performance",
         "Latência média de 6ms em produção",
         "Plataforma aprovada para auditorias de saúde",
+      ],
+      images: [
+        {
+          src: "/images/hsl-app/hsl_app_01.webp",
+          width: 1449,
+          height: 829,
+          alt: "Interface principal do aplicativo Hospital Sírio-Libanês",
+          blurDataURL: "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAQCdASoQAAkABUB8JbACdADx+bvwAP5J5Ekpk1rNd5Rtvib+VeifTQgIaTDXbc0kgcpkTYprcyfmXgltjzzSRB14AAAA",
+        },
+        {
+          src: "/images/hsl-app/hsl_app_02.webp",
+          width: 1450,
+          height: 836,
+          alt: "Canal Sírio-Libanês apresentando conteúdo institucional",
+          blurDataURL: "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQAAkABUB8JYwAAxbPbe5ZgAD+2tdrkp83DSObKE/5FFXvbAEnfK5A/Q34AnBM/QqoWa3Sm2bo5RH6M6pMdgjxTDAXoMQcAAA=",
+        },
+        {
+          src: "/images/hsl-app/hsl_app_03.webp",
+          width: 1448,
+          height: 844,
+          alt: "Catálogo de filmes e séries com proteção DRM",
+          blurDataURL: "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQAgCdASoQAAkABUB8JbACxJUABwQdYfCAAPKnuYLWunslAhBsYWxjRyeod0kcarn4HY7lywuNzkXYk8GOkeT2XA4Cusk9b64QDxJqDX3XAAAA",
+        },
+        {
+          src: "/images/hsl-app/hsl_app_04.webp",
+          width: 1447,
+          height: 839,
+          alt: "Grade de programação e canais ao vivo",
+          blurDataURL: "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACwAQCdASoQAAkABUB8JZACdAEO/gLsAP7n4skkg2dy0un63XrSXcR4ZZQkL39oR5kuYn/YHAYAAA==",
+        },
+        {
+          src: "/images/hsl-app/hsl_app_05.webp",
+          width: 1455,
+          height: 820,
+          alt: "Transmissão ao vivo integrando múltiplas fontes",
+          blurDataURL: "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoQAAkABUB8JYgAArF5RbqGAAD+3ijy0mbaz8JJuMbhy6IkOE1Z6yJ9+S31viNq33jZNgAA",
+        },
       ],
     },
     featured: true,
@@ -322,12 +403,6 @@ export const experience: ExperienceEntry[] = [
   },
 ]
 
-export const metrics = [
-  { id: "requests", value: 20, suffix: "M" },
-  { id: "latency", value: 6, suffix: "ms" },
-  { id: "cache", value: 92, suffix: "%" },
-]
-
 export const insights: Insight[] = [
   {
     id: "insight-2",
@@ -342,14 +417,3 @@ export const insights: Insight[] = [
   },
 ]
 
-export const navLinks = [
-  { id: "hero", label: "Início" },
-  { id: "about", label: "Sobre" },
-  { id: "projects", label: "Projetos" },
-  { id: "sites", label: "Sites" },
-  { id: "tech", label: "Stack" },
-  { id: "metrics", label: "Métricas" },
-  { id: "experience", label: "Experiência" },
-  { id: "insights", label: "Insights" },
-  { id: "contact", label: "Contato" },
-]

@@ -12,8 +12,10 @@ export async function Insights() {
   const publishedInsights = insights.filter(
     (insight) => insight.hasFullArticle && insight.slug,
   );
-  const categoryLabels = t.raw("categories") as Record<string, string>;
-  const tagLabels = t.raw("tags") as Record<string, string>;
+  const rawCategories = t.raw("categories");
+  const categoryLabels = (typeof rawCategories === "object" && rawCategories !== null ? rawCategories : {}) as Record<string, string>;
+  const rawTags = t.raw("tags");
+  const tagLabels = (typeof rawTags === "object" && rawTags !== null ? rawTags : {}) as Record<string, string>;
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     dateStyle: "medium",
     timeZone: "UTC",
@@ -22,7 +24,7 @@ export async function Insights() {
   return (
     <section
       id="insights"
-      className="relative py-16 sm:py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-24"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -131,7 +133,7 @@ export async function Insights() {
 
                 {insight.hasFullArticle && (
                   <Link
-                    href={`/insights/${insight.slug}`}
+                    href="/insights/go-em-producao"
                     className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-signal)] transition-transform duration-200 group-hover:translate-x-1"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >

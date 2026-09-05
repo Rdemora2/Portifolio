@@ -8,6 +8,8 @@ export type LogoItem = {
 
 interface LogoLoopProps {
   logos: LogoItem[]
+  pauseLabel: string
+  resumeLabel: string
   speed?: number
   direction?: "left" | "right"
   logoHeight?: number
@@ -21,6 +23,8 @@ interface LogoLoopProps {
 
 export default function LogoLoop({
   logos,
+  pauseLabel,
+  resumeLabel,
   speed = 60,
   direction = "left",
   logoHeight = 32,
@@ -60,8 +64,20 @@ export default function LogoLoop({
   }
 
   return (
-    <div className={rootClassName} style={rootStyle} aria-hidden="true">
-      <div className="logoloop__track">
+    <div className={rootClassName} style={rootStyle}>
+      <input
+        className="logoloop__toggle"
+        id="technology-logo-motion"
+        type="checkbox"
+      />
+      <label
+        className="logoloop__control"
+        htmlFor="technology-logo-motion"
+      >
+        <span className="logoloop__pause-label">{pauseLabel}</span>
+        <span className="logoloop__resume-label">{resumeLabel}</span>
+      </label>
+      <div className="logoloop__track" aria-hidden="true">
         {[0, 1].map((copyIndex) => (
           <ul className="logoloop__list" key={copyIndex}>
             {logos.map((logo, logoIndex) =>

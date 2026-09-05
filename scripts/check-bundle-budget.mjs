@@ -8,16 +8,54 @@ import { setTimeout as delay } from "node:timers/promises"
 import { pathToFileURL } from "node:url"
 import { gzipSync } from "node:zlib"
 
-const routeDefinitions = {
+export const routeDefinitions = {
   home: {
     surface: "HOME",
     htmlPath: "server/app/en.html",
     pathname: "/en/",
+    budgets: { js: 260, css: 25, html: 60, fontPreload: 120, fontInventory: 210 },
+  },
+  work: {
+    surface: "WORK",
+    htmlPath: "server/app/en/work.html",
+    pathname: "/en/work",
+    budgets: { js: 250, css: 25, html: 35, fontPreload: 120, fontInventory: 210 },
+  },
+  caseStudy: {
+    surface: "CASE",
+    htmlPath: "server/app/en/work/hospital-sirio-libanes.html",
+    pathname: "/en/work/hospital-sirio-libanes",
+    budgets: { js: 245, css: 25, html: 20, fontPreload: 120, fontInventory: 210 },
+  },
+  experience: {
+    surface: "EXPERIENCE",
+    htmlPath: "server/app/en/experience.html",
+    pathname: "/en/experience",
+    budgets: { js: 245, css: 25, html: 22, fontPreload: 120, fontInventory: 210 },
+  },
+  about: {
+    surface: "ABOUT",
+    htmlPath: "server/app/en/about.html",
+    pathname: "/en/about",
+    budgets: { js: 245, css: 25, html: 40, fontPreload: 120, fontInventory: 210 },
+  },
+  insights: {
+    surface: "INSIGHTS",
+    htmlPath: "server/app/en/insights.html",
+    pathname: "/en/insights",
+    budgets: { js: 245, css: 25, html: 18, fontPreload: 120, fontInventory: 210 },
+  },
+  contact: {
+    surface: "CONTACT",
+    htmlPath: "server/app/en/contact.html",
+    pathname: "/en/contact",
+    budgets: { js: 250, css: 25, html: 18, fontPreload: 120, fontInventory: 210 },
   },
   article: {
     surface: "ARTICLE",
     htmlPath: "server/app/en/insights/go-em-producao.html",
-    pathname: "/en/insights/go-em-producao",
+    pathname: "/en/insights/go-in-production",
+    budgets: { js: 250, css: 25, html: 35, fontPreload: 120, fontInventory: 210 },
   },
 }
 
@@ -256,27 +294,49 @@ export function measureDeferredChunks(nextDir, initialFiles) {
   }
 }
 
-function readLazyManifest(nextDir) {
-  const candidates = [
-    resolve(
-      nextDir,
-      "server/app/[locale]/(home)/page/react-loadable-manifest.json",
-    ),
-    resolve(
-      nextDir,
-      "server/app/[locale]/page/react-loadable-manifest.json",
-    ),
-    resolve(nextDir, "react-loadable-manifest.json"),
-  ]
-  const manifestPath = candidates.find((path) => existsSync(path))
+function findFilesNamed(directory, filename, files = []) {
+  if (!existsSync(directory)) return files
 
-  if (!manifestPath) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const absolutePath = resolve(directory, entry.name)
+    if (entry.isDirectory()) {
+      findFilesNamed(absolutePath, filename, files)
+      continue
+    }
+    if (entry.isFile() && entry.name === filename) files.push(absolutePath)
+  }
+
+  return files
+}
+
+function readLazyManifest(nextDir) {
+  const routeManifests = findFilesNamed(
+    resolve(nextDir, "server", "app", "[locale]"),
+    "react-loadable-manifest.json",
+  )
+  const candidates =
+    routeManifests.length > 0
+      ? routeManifests
+      : [resolve(nextDir, "react-loadable-manifest.json")].filter((path) =>
+          existsSync(path),
+        )
+
+  if (candidates.length === 0) {
     throw new Error(
-      `Could not locate a production lazy-load manifest at: ${candidates.join(", ")}`,
+      "Could not locate a production lazy-load manifest for any portfolio route",
     )
   }
 
-  return JSON.parse(readFileSync(manifestPath, "utf8"))
+  const mergedManifest = {}
+  for (const manifestPath of candidates) {
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"))
+    for (const [name, entry] of Object.entries(manifest)) {
+      const route = relative(nextDir, manifestPath).split(sep).join("/")
+      mergedManifest[`${route} :: ${name}`] = entry
+    }
+  }
+
+  return mergedManifest
 }
 
 export function collectBundleMetrics(
@@ -294,17 +354,13 @@ export function collectBundleMetrics(
       ),
     ]),
   )
-  const { home, article } = measuredRoutes
-  const initialFiles = [
-    ...home.files.js,
-    ...home.files.css,
-    ...article.files.js,
-    ...article.files.css,
-  ]
+  const initialFiles = Object.values(measuredRoutes).flatMap((route) => [
+    ...route.files.js,
+    ...route.files.css,
+  ])
 
   return {
-    home,
-    article,
+    ...measuredRoutes,
     lazy: measureLazyGroups(nextDir, readLazyManifest(nextDir)),
     deferred: measureDeferredChunks(nextDir, initialFiles),
   }
@@ -498,86 +554,72 @@ function readBudget(env, names, fallbackKiB) {
 }
 
 export function createBudgetRows(metrics, env = process.env) {
-  const budgets = {
-    homeJs: readBudget(
-      env,
-      ["BUNDLE_BUDGET_HOME_JS_KB", "BUNDLE_BUDGET_JS_KB"],
-      260,
-    ),
-    homeCss: readBudget(
-      env,
-      ["BUNDLE_BUDGET_HOME_CSS_KB", "BUNDLE_BUDGET_CSS_KB"],
-      25,
-    ),
-    homeHtml: readBudget(
-      env,
-      ["BUNDLE_BUDGET_HOME_HTML_KB", "BUNDLE_BUDGET_HTML_KB"],
-      60,
-    ),
-    homeFontPreload: readBudget(
-      env,
-      ["BUNDLE_BUDGET_HOME_FONT_PRELOAD_KB", "BUNDLE_BUDGET_HOME_FONT_KB"],
-      120,
-    ),
-    homeFontInventory: readBudget(
-      env,
-      ["BUNDLE_BUDGET_HOME_FONT_INVENTORY_KB"],
-      210,
-    ),
-    articleJs: readBudget(env, ["BUNDLE_BUDGET_ARTICLE_JS_KB"], 250),
-    articleCss: readBudget(env, ["BUNDLE_BUDGET_ARTICLE_CSS_KB"], 25),
-    articleHtml: readBudget(env, ["BUNDLE_BUDGET_ARTICLE_HTML_KB"], 35),
-    articleFontPreload: readBudget(
-      env,
-      [
-        "BUNDLE_BUDGET_ARTICLE_FONT_PRELOAD_KB",
-        "BUNDLE_BUDGET_ARTICLE_FONT_KB",
-      ],
-      120,
-    ),
-    articleFontInventory: readBudget(
-      env,
-      ["BUNDLE_BUDGET_ARTICLE_FONT_INVENTORY_KB"],
-      210,
-    ),
-    lazyEntry: readBudget(env, ["BUNDLE_BUDGET_LAZY_ENTRY_KB"], 100),
-    lazyChunk: readBudget(env, ["BUNDLE_BUDGET_LAZY_CHUNK_KB"], 90),
-    lazyTotal: readBudget(env, ["BUNDLE_BUDGET_LAZY_TOTAL_KB"], 165),
-  }
+  const routeRows = Object.entries(routeDefinitions).flatMap(
+    ([key, definition]) => {
+      const metric = metrics[key]
+      const prefix = `BUNDLE_BUDGET_${definition.surface}`
+      const fallbackNames =
+        definition.surface === "HOME"
+          ? {
+              js: ["BUNDLE_BUDGET_JS_KB"],
+              css: ["BUNDLE_BUDGET_CSS_KB"],
+              html: ["BUNDLE_BUDGET_HTML_KB"],
+              fontPreload: ["BUNDLE_BUDGET_HOME_FONT_KB"],
+            }
+          : definition.surface === "ARTICLE"
+            ? { fontPreload: ["BUNDLE_BUDGET_ARTICLE_FONT_KB"] }
+            : {}
+      const budgetFor = (kind, suffix) =>
+        readBudget(
+          env,
+          [`${prefix}_${suffix}_KB`, ...(fallbackNames[kind] ?? [])],
+          definition.budgets[kind],
+        )
 
+      return [
+        [`${definition.surface} JS`, metric.js, budgetFor("js", "JS")],
+        [`${definition.surface} CSS`, metric.css, budgetFor("css", "CSS")],
+        [`${definition.surface} HTML`, metric.html, budgetFor("html", "HTML")],
+        [
+          `${definition.surface} FONT PRELOAD`,
+          metric.fontPreload,
+          budgetFor("fontPreload", "FONT_PRELOAD"),
+        ],
+        [
+          `${definition.surface} FONT INVENTORY`,
+          metric.fontInventory,
+          budgetFor("fontInventory", "FONT_INVENTORY"),
+        ],
+      ]
+    },
+  )
+  const lazyEntryBudget = readBudget(
+    env,
+    ["BUNDLE_BUDGET_LAZY_ENTRY_KB"],
+    100,
+  )
+  const lazyChunkBudget = readBudget(
+    env,
+    ["BUNDLE_BUDGET_LAZY_CHUNK_KB"],
+    90,
+  )
+  const lazyTotalBudget = readBudget(
+    env,
+    ["BUNDLE_BUDGET_LAZY_TOTAL_KB"],
+    175,
+  )
   const rows = [
-    ["HOME JS", metrics.home.js, budgets.homeJs],
-    ["HOME CSS", metrics.home.css, budgets.homeCss],
-    ["HOME HTML", metrics.home.html, budgets.homeHtml],
-    ["HOME FONT PRELOAD", metrics.home.fontPreload, budgets.homeFontPreload],
-    [
-      "HOME FONT INVENTORY",
-      metrics.home.fontInventory,
-      budgets.homeFontInventory,
-    ],
-    ["ARTICLE JS", metrics.article.js, budgets.articleJs],
-    ["ARTICLE CSS", metrics.article.css, budgets.articleCss],
-    ["ARTICLE HTML", metrics.article.html, budgets.articleHtml],
-    [
-      "ARTICLE FONT PRELOAD",
-      metrics.article.fontPreload,
-      budgets.articleFontPreload,
-    ],
-    [
-      "ARTICLE FONT INVENTORY",
-      metrics.article.fontInventory,
-      budgets.articleFontInventory,
-    ],
-    ["LAZY TOTAL", metrics.deferred.total, budgets.lazyTotal],
+    ...routeRows,
+    ["LAZY TOTAL", metrics.deferred.total, lazyTotalBudget],
     [
       `LAZY MAX · ${metrics.deferred.max.path}`,
       metrics.deferred.max.total,
-      budgets.lazyChunk,
+      lazyChunkBudget,
     ],
     ...metrics.lazy.groups.map((group) => [
       `LAZY ENTRY · ${group.name}`,
       group.total,
-      budgets.lazyEntry,
+      lazyEntryBudget,
     ]),
   ]
 

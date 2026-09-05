@@ -1,360 +1,276 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useRef, type CSSProperties } from "react";
-import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { navLinks } from "@/data/portfolio";
-import { useActiveSection } from "@/hooks/useActiveSection";
-import { isLocale } from "@/i18n.config";
-import { Link } from "@/navigation";
-import { LocaleSwitcher } from "./LocaleSwitcher";
-import styles from "./Navigation.module.css";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type CSSProperties,
+} from "react"
+import { useTranslations } from "next-intl"
+
+import { siteNavigation } from "@/data/site-navigation"
+import { Link, usePathname } from "@/navigation"
+
+import { LocaleSwitcher } from "./LocaleSwitcher"
+import styles from "./Navigation.module.css"
 
 type MobileNavItemStyle = CSSProperties & {
-  "--nav-item-delay": string;
-};
+  "--nav-item-delay": string
+}
+
+const subscribeToHydration = () => () => undefined
+const getHydratedSnapshot = () => true
+const getServerHydrationSnapshot = () => false
+
+function isCurrentRoute(pathname: string, href: string): boolean {
+  return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`))
+}
 
 export function Navigation() {
-  const pathname = usePathname();
-  const pathSegments = pathname?.split("/").filter(Boolean) ?? [];
-  const pathWithoutLocale = isLocale(pathSegments[0] ?? "")
-    ? `/${pathSegments.slice(1).join("/")}`
-    : (pathname ?? "");
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getHydratedSnapshot,
+    getServerHydrationSnapshot,
+  )
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const navigationRef = useRef<HTMLElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const pathname = usePathname()
+  const t = useTranslations("Nav")
+  const isHome = pathname === "/"
+  const isArticle = pathname.startsWith("/insights/")
 
-  if (pathWithoutLocale.startsWith("/insights")) {
-    return <ArticleNavigation />;
-  }
-
-  return <HomeNavigation />;
-}
-
-function ArticleNavigation() {
-  const t = useTranslations("Nav");
-
-  return (
-    <nav
-      data-article-navigation
-      className="fixed inset-x-0 top-0 z-[100] border-b border-white/[0.06] bg-[rgba(5,10,18,0.78)] backdrop-blur-xl"
-      aria-label={t("ariaLabel")}
-    >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          prefetch={false}
-          className={`${styles.brand} inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight text-[var(--color-text-primary)]`}
-          style={{ fontFamily: "var(--font-display)" }}
-          aria-label={`RM. — Roberto Moraes, ${t("hero").toLowerCase()}`}
-        >
-          RM<span className="text-[var(--color-signal)]">.</span>
-        </Link>
-        <LocaleSwitcher />
-      </div>
-    </nav>
-  );
-}
-
-function HomeNavigation() {
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const activeSection = useActiveSection();
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const dialogCloseButtonRef = useRef<HTMLButtonElement>(null);
-  const brandRef = useRef<HTMLAnchorElement>(null);
-  const mobileLocaleRef = useRef<HTMLDivElement>(null);
-  const lastFocusedRef = useRef<HTMLElement | null>(null);
-  const pathname = usePathname();
-  const t = useTranslations("Nav");
-
-  // Interpolate glass blur across first 120px of scroll (no snap)
   useEffect(() => {
-    let animationFrame = 0;
+    let animationFrame = 0
 
-    const handler = () => {
-      if (animationFrame) return;
+    const updateNavigationSurface = () => {
+      if (animationFrame) return
 
       animationFrame = requestAnimationFrame(() => {
-        const progress = Math.min(window.scrollY / 120, 1);
-        const nav = navRef.current;
-        if (nav) {
-          nav.style.setProperty("--nav-progress", String(progress));
-          nav.style.setProperty(
-            "--nav-border-opacity",
-            String(progress * 0.07),
-          );
-          nav.style.setProperty(
-            "--nav-background-opacity",
-            String(progress * 0.72),
-          );
-        }
-        animationFrame = 0;
-      });
-    };
+        const progress = isHome ? Math.min(window.scrollY / 120, 1) : 1
+        const navigation = navigationRef.current
 
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
+        if (navigation) {
+          navigation.style.setProperty("--nav-progress", String(progress))
+          navigation.style.setProperty(
+            "--nav-border-opacity",
+            String(progress * 0.08),
+          )
+          navigation.style.setProperty(
+            "--nav-background-opacity",
+            String(progress * 0.82),
+          )
+
+          if (progress <= 0) {
+            navigation.style.setProperty("--nav-backdrop-filter", "none")
+            navigation.style.setProperty("--nav-specular-opacity", "0")
+          } else if (progress >= 1) {
+            navigation.style.setProperty(
+              "--nav-backdrop-filter",
+              "var(--glass-nav-blur)",
+            )
+            navigation.style.setProperty("--nav-specular-opacity", "1")
+          } else {
+            const blur = (progress * 16).toFixed(1)
+            const saturation = Math.round(100 + progress * 80)
+            navigation.style.setProperty(
+              "--nav-backdrop-filter",
+              `blur(${blur}px) saturate(${saturation}%)`,
+            )
+            navigation.style.setProperty(
+              "--nav-specular-opacity",
+              String(progress),
+            )
+          }
+        }
+
+        animationFrame = 0
+      })
+    }
+
+    updateNavigationSurface()
+    window.addEventListener("scroll", updateNavigationSurface, {
+      passive: true,
+    })
+
     return () => {
-      cancelAnimationFrame(animationFrame);
-      window.removeEventListener("scroll", handler);
-    };
-  }, []);
+      cancelAnimationFrame(animationFrame)
+      window.removeEventListener("scroll", updateNavigationSurface)
+    }
+  }, [isHome])
 
   useEffect(() => {
-    if (!isMobileOpen) return;
+    if (!isMobileOpen) return
 
-    const menu = mobileMenuRef.current;
-    const menuButton = menuButtonRef.current;
-    const dialogCloseButton = dialogCloseButtonRef.current;
-    if (!menu || !menuButton || !dialogCloseButton) return;
+    const menu = mobileMenuRef.current
+    const trigger = menuButtonRef.current
+    const closeButton = closeButtonRef.current
 
-    // The menu button is the deterministic trigger even when a browser click
-    // does not move DOM focus before React handles the event.
-    lastFocusedRef.current = menuButton;
+    if (!menu || !trigger || !closeButton) return
 
-    const html = document.documentElement;
-    const previousOverflow = html.style.overflow;
-    html.style.overflow = "hidden";
-
-    const backgroundElements = Array.from(
-      new Set(
-        [
-          brandRef.current,
-          mobileLocaleRef.current,
-          document.querySelector<HTMLElement>("main"),
-          document.querySelector<HTMLElement>("footer"),
-          document.querySelector<HTMLElement>('a[href="#main-content"]'),
-        ].filter((element): element is HTMLElement => element !== null),
-      ),
-    );
+    const html = document.documentElement
+    const previousOverflow = html.style.overflow
+    const backgroundElements = [
+      navigationRef.current,
+      document.querySelector<HTMLElement>("main"),
+      document.querySelector<HTMLElement>("footer"),
+      document.querySelector<HTMLElement>('a[href="#main-content"]'),
+    ].filter((element): element is HTMLElement => element !== null)
     const previousInert = backgroundElements.map((element) => ({
       element,
       inert: element.inert,
-    }));
+    }))
+
+    html.style.overflow = "hidden"
     backgroundElements.forEach((element) => {
-      element.inert = true;
-    });
+      element.inert = true
+    })
 
-    const focusWithinMenu = (
-      element: HTMLButtonElement | HTMLAnchorElement | undefined,
-    ) => {
-      if (!element) return;
-      element.focus();
-    };
-
-    const getMenuLinks = () =>
-      Array.from(menu.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
-
-    let focusMenuFrame = 0;
-    let focusAttempts = 0;
-    const focusFirstVisibleLink = () => {
-      const firstLink = getMenuLinks()[0];
-      if (!firstLink) return;
-
-      if (getComputedStyle(firstLink).visibility === "visible") {
-        focusWithinMenu(firstLink);
-        return;
-      }
-
-      focusAttempts += 1;
-      if (focusAttempts < 12) {
-        focusMenuFrame = requestAnimationFrame(focusFirstVisibleLink);
-      }
-    };
-    focusMenuFrame = requestAnimationFrame(focusFirstVisibleLink);
+    const getFocusableElements = () =>
+      Array.from(
+        menu.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => element.getClientRects().length > 0)
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        event.preventDefault();
-        setIsMobileOpen(false);
-        return;
+        event.preventDefault()
+        setIsMobileOpen(false)
+        return
       }
 
-      if (event.key !== "Tab") return;
+      if (event.key !== "Tab") return
 
-      const focusableElements = [
-        dialogCloseButton,
-        ...getMenuLinks(),
-      ].filter((element) => element.getClientRects().length > 0);
-      if (focusableElements.length === 0) return;
+      const focusableElements = getFocusableElements()
+      if (focusableElements.length === 0) return
 
-      event.preventDefault();
       const currentIndex = focusableElements.indexOf(
-        document.activeElement as HTMLButtonElement | HTMLAnchorElement,
-      );
+        document.activeElement as HTMLElement,
+      )
       const nextIndex = event.shiftKey
         ? currentIndex <= 0
           ? focusableElements.length - 1
           : currentIndex - 1
         : currentIndex < 0 || currentIndex === focusableElements.length - 1
           ? 0
-          : currentIndex + 1;
+          : currentIndex + 1
 
-      focusWithinMenu(focusableElements[nextIndex]);
-    };
+      event.preventDefault()
+      focusableElements[nextIndex]?.focus()
+    }
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown)
+    closeButton.focus({ preventScroll: true })
 
     return () => {
-      cancelAnimationFrame(focusMenuFrame);
-      document.removeEventListener("keydown", handleKeyDown);
-      html.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown)
+      html.style.overflow = previousOverflow
       previousInert.forEach(({ element, inert }) => {
-        element.inert = inert;
-      });
-      const focusTarget = lastFocusedRef.current;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (focusTarget?.isConnected) {
-            focusTarget.focus({ preventScroll: true });
-          }
-        });
-      });
-    };
-  }, [isMobileOpen]);
+        element.inert = inert
+      })
+      trigger.focus({ preventScroll: true })
+    }
+  }, [isMobileOpen])
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 1280px)");
+    const desktopQuery = window.matchMedia("(min-width: 1024px)")
     const closeOnDesktop = (event: MediaQueryListEvent) => {
-      if (event.matches) setIsMobileOpen(false);
-    };
-
-    desktopQuery.addEventListener("change", closeOnDesktop);
-    return () => desktopQuery.removeEventListener("change", closeOnDesktop);
-  }, []);
-
-  useEffect(() => {
-    const rawId = window.location.hash.slice(1);
-    let id = rawId;
-    try {
-      id = decodeURIComponent(rawId);
-    } catch {
-      // A malformed external fragment must not break navigation hydration.
+      if (event.matches) setIsMobileOpen(false)
     }
-    if (!id || !navLinks.some((link) => link.id === id)) return;
 
-    let secondFrame = 0;
-    const firstFrame = requestAnimationFrame(() => {
-      secondFrame = requestAnimationFrame(() => {
-        document.getElementById(id)?.scrollIntoView({ block: "start" });
-      });
-    });
+    desktopQuery.addEventListener("change", closeOnDesktop)
+    return () => desktopQuery.removeEventListener("change", closeOnDesktop)
+  }, [])
 
-    return () => {
-      cancelAnimationFrame(firstFrame);
-      cancelAnimationFrame(secondFrame);
-    };
-  }, [pathname]);
-
-  const handleNavClick = (id: string) => {
-    setIsMobileOpen(false);
-    const el = document.getElementById(id);
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    el?.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
-    if (window.location.hash !== `#${id}`) {
-      window.history.replaceState(window.history.state, "", `#${id}`);
-    }
-  };
+  const closeMobileNavigation = () => {
+    setIsMobileOpen(false)
+  }
 
   return (
     <>
       <nav
-        ref={navRef}
-        className="fixed top-0 left-0 w-full z-[100] transition-all duration-500 glass-nav"
-        style={{
-          borderBottomColor:
-            "rgb(255 255 255 / var(--nav-border-opacity, 0))",
-          // Allow glass-nav to handle backdrop-filter; supplement with bg opacity.
-          backgroundColor:
-            "rgb(5 10 18 / var(--nav-background-opacity, 0))",
-        }}
+        ref={navigationRef}
+        data-navigation-ready={isHydrated ? "true" : "false"}
+        data-article-navigation={isArticle ? "" : undefined}
+        className="glass-nav fixed inset-x-0 top-0 z-[100] transition-all duration-500"
+        style={
+          {
+            borderBottomColor: isHome
+              ? "rgb(255 255 255 / var(--nav-border-opacity, 0))"
+              : "rgb(255 255 255 / var(--nav-border-opacity, 0.08))",
+            backgroundColor: isHome
+              ? "rgb(5 10 18 / var(--nav-background-opacity, 0))"
+              : "rgb(5 10 18 / var(--nav-background-opacity, 0.82))",
+            backdropFilter: isHome
+              ? "var(--nav-backdrop-filter, none)"
+              : "var(--nav-backdrop-filter, var(--glass-nav-blur))",
+            WebkitBackdropFilter: isHome
+              ? "var(--nav-backdrop-filter, none)"
+              : "var(--nav-backdrop-filter, var(--glass-nav-blur))",
+            "--nav-progress": isHome ? "0" : "1",
+            "--nav-border-opacity": isHome ? "0" : "0.08",
+            "--nav-background-opacity": isHome ? "0" : "0.82",
+            "--nav-backdrop-filter": isHome ? "none" : "var(--glass-nav-blur)",
+            "--nav-specular-opacity": isHome ? "0" : "1",
+          } as CSSProperties
+        }
         aria-label={t("ariaLabel")}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <a
-            ref={brandRef}
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("hero");
-            }}
-            className={`${styles.brand} inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight`}
-            style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--color-text-primary)",
-            }}
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          <Link
+            href="/"
+            prefetch={false}
+            className={`${styles.brand} inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight text-[var(--color-text-primary)]`}
+            style={{ fontFamily: "var(--font-display)" }}
             aria-label={`RM. — Roberto Moraes, ${t("hero").toLowerCase()}`}
-            aria-current={activeSection === "hero" ? "location" : undefined}
+            aria-current={isHome ? "page" : undefined}
           >
-            RM<span style={{ color: "var(--color-signal)" }}>.</span>
-          </a>
+            RM<span className="text-[var(--color-signal)]">.</span>
+          </Link>
 
-          <div className="hidden items-center gap-5 xl:flex 2xl:gap-8">
-            {navLinks.slice(1).map(({ id }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(id);
-                }}
+          <div className="hidden items-center gap-4 lg:flex xl:gap-6">
+            {siteNavigation.map(({ key, href }) => (
+              <Link
+                key={key}
+                href={href}
                 className={`${styles.desktopLink} flex min-h-11 items-center text-sm font-medium`}
-                aria-current={activeSection === id ? "location" : undefined}
-                style={{
-                  fontFamily: "var(--font-body)",
-                }}
+                aria-current={
+                  isCurrentRoute(pathname, href) ? "page" : undefined
+                }
+                style={{ fontFamily: "var(--font-body)" }}
               >
-                {t(id)}
-              </a>
+                {t(key)}
+              </Link>
             ))}
-            <div className="ml-4 h-4 w-[1px] bg-[var(--color-edge)]" aria-hidden="true" />
+            <div
+              className="ml-2 h-4 w-px bg-[var(--color-edge)]"
+              aria-hidden="true"
+            />
             <LocaleSwitcher />
           </div>
 
-          <div className="flex items-center gap-4 xl:hidden">
-            <div ref={mobileLocaleRef}>
-              <LocaleSwitcher />
-            </div>
-            <button
-              ref={menuButtonRef}
-              className={`${styles.menuButton} relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 ${
-                isMobileOpen ? "invisible" : ""
-              }`}
-              onClick={() => setIsMobileOpen(true)}
-              aria-label={isMobileOpen ? t("closeMenu") : t("openMenu")}
-              aria-expanded={isMobileOpen}
-              aria-controls="mobile-navigation-menu"
-              aria-hidden={isMobileOpen}
-              tabIndex={isMobileOpen ? -1 : undefined}
-            >
-              <span
-                className="block h-[1.5px] w-6 transition-all duration-200"
-                style={{
-                  backgroundColor: "var(--color-text-primary)",
-                  transform: isMobileOpen
-                    ? "rotate(45deg) translateY(4px)"
-                    : "none",
-                }}
-              />
-              <span
-                className="block h-[1.5px] w-6 transition-all duration-200"
-                style={{
-                  backgroundColor: "var(--color-text-primary)",
-                  opacity: isMobileOpen ? 0 : 1,
-                }}
-              />
-              <span
-                className="block h-[1.5px] w-6 transition-all duration-200"
-                style={{
-                  backgroundColor: "var(--color-text-primary)",
-                  transform: isMobileOpen
-                    ? "rotate(-45deg) translateY(-4px)"
-                    : "none",
-                }}
-              />
-            </button>
-          </div>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            data-navigation-menu-button
+            className={`${styles.menuButton} relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden ${
+              isMobileOpen ? "invisible" : ""
+            }`}
+            onClick={() => setIsMobileOpen(true)}
+            aria-label={t("openMenu")}
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-navigation-menu"
+            aria-hidden={isMobileOpen}
+            tabIndex={isMobileOpen ? -1 : undefined}
+          >
+            <span className="block h-[1.5px] w-6 bg-[var(--color-text-primary)]" />
+            <span className="block h-[1.5px] w-6 bg-[var(--color-text-primary)]" />
+            <span className="block h-[1.5px] w-6 bg-[var(--color-text-primary)]" />
+          </button>
         </div>
       </nav>
 
@@ -362,57 +278,88 @@ function HomeNavigation() {
         id="mobile-navigation-menu"
         ref={mobileMenuRef}
         data-open={isMobileOpen ? "true" : "false"}
-        className={`${styles.mobileMenu} fixed left-0 top-0 z-[120] flex h-dvh w-full flex-col items-center justify-start overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out motion-reduce:transition-none xl:hidden ${
+        className={`${styles.mobileMenu} fixed inset-0 z-[120] flex h-dvh w-full flex-col overflow-x-hidden overflow-y-auto bg-[var(--color-void)] transition-opacity duration-300 ease-out motion-reduce:transition-none lg:hidden ${
           isMobileOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
-        style={{
-          backgroundColor: "var(--color-void)",
-        }}
         role="dialog"
         aria-modal="true"
         aria-label={t("mobileMenuLabel")}
         aria-hidden={!isMobileOpen}
       >
-        <button
-          ref={dialogCloseButtonRef}
-          type="button"
-          className={`${styles.menuCloseButton} fixed right-4 top-4 z-[130] flex h-11 w-11 flex-col items-center justify-center gap-1.5`}
-          onClick={() => setIsMobileOpen(false)}
-          aria-label={t("closeMenu")}
+        <div
+          data-navigation-menu-header
+          className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6"
         >
           <span
-            className="block h-[1.5px] w-6 rotate-45 translate-y-1"
-            style={{ backgroundColor: "var(--color-text-primary)" }}
-          />
-          <span
-            className="block h-[1.5px] w-6 -rotate-45 -translate-y-1"
-            style={{ backgroundColor: "var(--color-text-primary)" }}
-          />
-        </button>
+            className="inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight"
+            style={{ fontFamily: "var(--font-display)" }}
+            aria-hidden="true"
+          >
+            RM<span className="text-[var(--color-signal)]">.</span>
+          </span>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className={`${styles.menuCloseButton} relative flex h-11 w-11 items-center justify-center`}
+            onClick={closeMobileNavigation}
+            aria-label={t("closeMenu")}
+          >
+            <span
+              className="absolute h-[1.5px] w-6 rotate-45 bg-[var(--color-text-primary)]"
+              aria-hidden="true"
+            />
+            <span
+              className="absolute h-[1.5px] w-6 -rotate-45 bg-[var(--color-text-primary)]"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
 
-        <div className="flex min-h-full w-full shrink-0 flex-col items-center gap-3 px-4 py-20 sm:gap-6 sm:px-6 sm:py-16">
-          {navLinks.slice(1).map(({ id }, i) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(id);
-              }}
-              className={`${styles.mobileLink} inline-flex min-h-11 items-center text-2xl font-bold first:mt-auto last:mb-auto sm:text-3xl`}
-              aria-current={activeSection === id ? "location" : undefined}
-              style={
-                {
-                  fontFamily: "var(--font-display)",
-                  "--nav-item-delay": isMobileOpen ? `${i * 45}ms` : "0ms",
-                } as MobileNavItemStyle
-              }
-            >
-              {t(id)}
-            </a>
-          ))}
+        <div
+          className={`${styles.mobileMenuContent} mx-auto flex min-h-0 w-full max-w-7xl flex-1 flex-col justify-center px-6 py-10 sm:px-10`}
+        >
+          <p
+            className="mb-7 text-[0.625rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            {t("navigationLabel")}
+          </p>
+          <div className="flex flex-col items-start gap-2 sm:gap-4">
+            {siteNavigation.map(({ key, href }, index) => (
+              <Link
+                key={key}
+                href={href}
+                onClick={closeMobileNavigation}
+                className={`${styles.mobileLink} inline-flex min-h-12 items-center text-3xl font-bold sm:text-4xl`}
+                aria-current={
+                  isCurrentRoute(pathname, href) ? "page" : undefined
+                }
+                style={
+                  {
+                    fontFamily: "var(--font-display)",
+                    "--nav-item-delay": isMobileOpen
+                      ? `${index * 45}ms`
+                      : "0ms",
+                  } as MobileNavItemStyle
+                }
+              >
+                <span
+                  className="mr-4 text-[0.625rem] font-medium tracking-widest text-[var(--color-text-muted)]"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                {t(key)}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-10 border-t border-[var(--color-edge)] pt-6">
+            <LocaleSwitcher onNavigate={closeMobileNavigation} />
+          </div>
         </div>
       </div>
     </>
-  );
+  )
 }

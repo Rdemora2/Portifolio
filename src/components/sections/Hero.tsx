@@ -1,18 +1,17 @@
 import { getTranslations } from "next-intl/server";
 import { personalInfo } from "@/data/portfolio";
 import { HeroClientWrapper } from "./HeroClient";
-import { isBotFromHeaders } from "@/lib/is-bot";
+import { Link } from "@/navigation";
 
 export async function Hero() {
   const t = await getTranslations("Hero");
-  const botHint = await isBotFromHeaders();
 
   return (
-    <HeroClientWrapper isBotHint={botHint}>
+    <HeroClientWrapper>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center">
           <div
-            className="hero-card-enter glass-card max-w-3xl rounded-2xl px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+            className="hero-card-enter glass-card max-w-2xl rounded-2xl px-6 py-8 sm:px-8 sm:py-9 lg:px-9 lg:py-10"
             style={{ borderRadius: "1.5rem" }}
           >
             <h1
@@ -35,7 +34,7 @@ export async function Hero() {
               style={{
                 fontFamily: "var(--font-body)",
                 color: "var(--color-signal)",
-                fontSize: "clamp(0.875rem, 1vw + 0.5rem, var(--text-lg))",
+                fontSize: "clamp(0.8rem, 0.55vw + 0.55rem, 1.05rem)",
                 letterSpacing: "0.15em",
               }}
             >
@@ -50,7 +49,7 @@ export async function Hero() {
             </p>
 
             <p
-              className="hero-subtitle hero-copy-enter mb-8 tracking-widest sm:mb-10"
+              className="hero-subtitle hero-copy-enter mb-8 tracking-widest"
               style={{
                 fontFamily: "var(--font-mono)",
                 color: "var(--color-text-secondary)",
@@ -65,22 +64,22 @@ export async function Hero() {
             </p>
 
             <div className="hero-cta hero-actions-enter flex flex-wrap gap-3 sm:gap-4">
-              <a
-                href="#projects"
+              <Link
+                href="/work"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--color-signal)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-signal)] transition-colors duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] sm:px-8 sm:py-3 sm:text-sm"
                 style={{ fontFamily: "var(--font-body)" }}
                 aria-label={t("viewProjects")}
               >
                 {t("viewProjects")}
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/experience"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--color-edge)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-secondary)] transition-colors duration-200 hover:border-[var(--color-text-secondary)] sm:px-8 sm:py-3 sm:text-sm"
                 style={{ fontFamily: "var(--font-body)" }}
-                aria-label={t("contact")}
+                aria-label={t("viewExperience")}
               >
-                {t("contact")}
-              </a>
+                {t("viewExperience")}
+              </Link>
             </div>
           </div>
         </div>

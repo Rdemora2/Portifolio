@@ -6,27 +6,41 @@ import { websiteExperiences } from "@/data/showcase-sites"
 
 import styles from "./WebsiteShowcase.module.css"
 
-export async function WebsiteShowcase() {
-  const t = await getTranslations("WebsiteShowcase")
+export async function WebsiteShowcase({
+  variant = "default",
+}: {
+  variant?: "default" | "lab"
+}) {
+  const [t, page] = await Promise.all([
+    getTranslations("WebsiteShowcase"),
+    getTranslations("PortfolioPages.work"),
+  ])
+  const isLab = variant === "lab"
+  const sectionId = isLab ? "web" : "sites"
+  const headingId = `${sectionId}-showcase-title`
 
   return (
     <section
-      id="sites"
-      aria-labelledby="website-showcase-title"
+      id={sectionId}
+      aria-labelledby={headingId}
       className={styles.section}
       data-website-showcase
     >
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${styles.container}`}>
         <div className={styles.header}>
           <ScrollReveal animation="title" className={styles.headingBlock}>
-            <p className={styles.eyebrow}>{t("eyebrow")}</p>
-            <h2 id="website-showcase-title" className={styles.title}>
-              {t("title")}
+            <p className={styles.eyebrow}>
+              {isLab ? page("labEyebrow") : t("eyebrow")}
+            </p>
+            <h2 id={headingId} className={styles.title}>
+              {isLab ? page("labTitle") : t("title")}
             </h2>
           </ScrollReveal>
 
           <ScrollReveal animation="body" delay={0.06} className={styles.intro}>
-            <p className={styles.description}>{t("description")}</p>
+            <p className={styles.description}>
+              {isLab ? page("labDescription") : t("description")}
+            </p>
             <p className={styles.publishedCount}>
               <span className={styles.liveDot} aria-hidden="true" />
               {t("publishedCount", { count: websiteExperiences.length })}
@@ -72,6 +86,7 @@ export async function WebsiteShowcase() {
                         className={styles.image}
                         loading="lazy"
                         decoding="async"
+                        unoptimized={site.image.src.endsWith(".webp")}
                         placeholder="blur"
                         blurDataURL={site.image.blurDataURL}
                       />

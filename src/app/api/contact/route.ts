@@ -212,26 +212,21 @@ function escapeHtml(value: string): string {
 }
 
 function buildEmailContent(data: ContactSchema) {
-  const { name, email, company, projectType, message, budget } = data
+  const { name, email, company, subject, message } = data
   const optionalCompanyText = company ? `Empresa: ${company}\n` : ""
-  const optionalBudgetText = budget ? `Budget: ${budget}\n` : ""
   const optionalCompanyHtml = company
     ? `<p><strong>Empresa:</strong> ${escapeHtml(company)}</p>`
     : ""
-  const optionalBudgetHtml = budget
-    ? `<p><strong>Budget:</strong> ${escapeHtml(budget)}</p>`
-    : ""
 
   return {
-    subject: `[Portfolio] Nova mensagem de ${name}`,
+    subject: `[Portfolio] ${subject} — ${name}`,
     text: [
       "Nova mensagem do portfolio",
       "",
       `Nome: ${name}`,
       `Email: ${email}`,
       optionalCompanyText.trimEnd(),
-      `Tipo de projeto: ${projectType}`,
-      optionalBudgetText.trimEnd(),
+      `Assunto: ${subject}`,
       "",
       "Mensagem:",
       message,
@@ -241,8 +236,7 @@ function buildEmailContent(data: ContactSchema) {
       <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       ${optionalCompanyHtml}
-      <p><strong>Tipo de projeto:</strong> ${escapeHtml(projectType)}</p>
-      ${optionalBudgetHtml}
+      <p><strong>Assunto:</strong> ${escapeHtml(subject)}</p>
       <hr />
       <p><strong>Mensagem:</strong></p>
       <p>${escapeHtml(message).replace(/\r?\n/g, "<br />")}</p>

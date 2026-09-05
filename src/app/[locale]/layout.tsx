@@ -18,7 +18,6 @@ import {
   getDocumentLanguage,
   isLocale,
   locales,
-  type Locale,
 } from "@/i18n.config"
 import {
   AUTHOR_NAME,
@@ -47,12 +46,6 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 })
 
-const localizedServiceDescriptions: Record<Locale, string> = {
-  pt: "Consultoria em arquitetura de software, cloud, DevOps e liderança técnica para produtos de larga escala.",
-  en: "Consulting in software architecture, cloud, DevOps, and technical leadership for large-scale products.",
-  es: "Consultoría en arquitectura de software, cloud, DevOps y liderazgo técnico para productos a gran escala.",
-}
-
 export const dynamicParams = false
 
 export const viewport: Viewport = {
@@ -76,7 +69,6 @@ export async function generateMetadata({
   const locale = candidate
   const t = await getTranslations({ locale, namespace: "Metadata" })
   const canonical = getLocalizedUrl(locale)
-  const socialImage = `${SITE_URL}/opengraph-image/${locale}`
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -103,30 +95,6 @@ export async function generateMetadata({
     ],
     authors: [{ name: AUTHOR_NAME, url: canonical }],
     creator: AUTHOR_NAME,
-    alternates: {
-      canonical,
-      languages: {
-        [getDocumentLanguage("pt")]: getLocalizedUrl("pt"),
-        [getDocumentLanguage("en")]: getLocalizedUrl("en"),
-        [getDocumentLanguage("es")]: getLocalizedUrl("es"),
-        "x-default": getLocalizedUrl("pt"),
-      },
-    },
-    openGraph: {
-      type: "website",
-      locale: locale === "pt" ? "pt_BR" : locale === "es" ? "es_MX" : "en_US",
-      title: t("title"),
-      description: t("description"),
-      siteName: SITE_NAME,
-      url: canonical,
-      images: [{ url: socialImage, width: 1200, height: 630, alt: t("title") }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: [{ url: socialImage, alt: t("title") }],
-    },
     robots: {
       index: true,
       follow: true,
@@ -186,19 +154,111 @@ export default async function LocaleLayout({
           "https://github.com/Rdemora2",
         ],
         knowsAbout: [
-          "Go",
-          "Next.js",
-          "TypeScript",
-          "Kotlin",
-          "AWS",
-          "GCP",
-          "Cloud Architecture",
-          "DevOps",
-          "Observability",
-          "PostgreSQL",
-          "Redis",
-          "Technical Leadership",
+          {
+            "@type": "DefinedTerm",
+            name: "Go",
+            url: "https://www.wikidata.org/wiki/Q37227",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Next.js",
+            url: "https://www.wikidata.org/wiki/Q97148564",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "TypeScript",
+            url: "https://www.wikidata.org/wiki/Q9824",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "React",
+            url: "https://www.wikidata.org/wiki/Q193988",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Amazon Web Services",
+            url: "https://www.wikidata.org/wiki/Q456157",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Google Cloud Platform",
+            url: "https://www.wikidata.org/wiki/Q3111005",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Cloud Computing",
+            url: "https://www.wikidata.org/wiki/Q483639",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "DevOps",
+            url: "https://www.wikidata.org/wiki/Q15904870",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Software Architecture",
+            url: "https://www.wikidata.org/wiki/Q581566",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Docker",
+            url: "https://www.wikidata.org/wiki/Q15407077",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Kubernetes",
+            url: "https://www.wikidata.org/wiki/Q22661306",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "PostgreSQL",
+            url: "https://www.wikidata.org/wiki/Q192490",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Redis",
+            url: "https://www.wikidata.org/wiki/Q1638848",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Kotlin",
+            url: "https://www.wikidata.org/wiki/Q3816349",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Python",
+            url: "https://www.wikidata.org/wiki/Q28865",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "JavaScript",
+            url: "https://www.wikidata.org/wiki/Q2005",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "SQL",
+            url: "https://www.wikidata.org/wiki/Q47607",
+          },
+          {
+            "@type": "DefinedTerm",
+            name: "Observability",
+            url: "https://www.wikidata.org/wiki/Q7075429",
+          },
         ],
+        hasOccupation: {
+          "@type": "Occupation",
+          name: "Software Engineer & IT Manager",
+          description: metadata("description"),
+          occupationalCategory: "15-1252.00",
+          skills: [
+            "Go (Golang)",
+            "Next.js",
+            "Cloud Architecture",
+            "Distributed Systems",
+            "DevOps",
+            "Technical Leadership",
+          ],
+        },
         worksFor: {
           "@type": "Organization",
           name: "Valiant Group do Brasil",
@@ -209,21 +269,6 @@ export default async function LocaleLayout({
           addressRegion: "SP",
           addressCountry: "BR",
         },
-      },
-      {
-        "@type": "ProfessionalService",
-        "@id": `${canonical}#service`,
-        name: `${metadata("title")} | Consulting`,
-        provider: { "@id": personId },
-        description: localizedServiceDescriptions[locale],
-        areaServed: ["BR", "US", "MX"],
-        serviceType: [
-          "Software Architecture",
-          "Cloud Infrastructure",
-          "DevOps",
-          "Backend Engineering",
-          "Technical Leadership",
-        ],
       },
       {
         "@type": "WebSite",

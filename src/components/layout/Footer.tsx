@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
-import { personalInfo, navLinks } from "@/data/portfolio"
+import { personalInfo } from "@/data/portfolio"
+import { footerNavigation } from "@/data/site-navigation"
 import { Link } from "@/navigation"
 
 export async function Footer() {
@@ -62,17 +63,17 @@ export async function Footer() {
             </p>
             <nav aria-label={footer("navAriaLabel")}>
               <ul className="grid grid-cols-2 gap-2">
-                {navLinks.slice(1).map(({ id }) => (
-                  <li key={id}>
+                {footerNavigation.map(({ key, href }) => (
+                  <li key={key}>
                     <Link
-                      href={`/#${id}`}
+                      href={href}
                       className="text-sm transition-colors duration-200 hover:text-[var(--color-signal)]"
                       style={{
                         fontFamily: "var(--font-body)",
                         color: "var(--color-text-secondary)",
                       }}
                     >
-                      {nav(id)}
+                      {nav(key)}
                     </Link>
                   </li>
                 ))}

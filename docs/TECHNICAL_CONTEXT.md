@@ -13,7 +13,7 @@ Escopo:
 
 - aplicação Next.js e seus conteúdos versionados;
 - API de contato e integração com Resend;
-- build standalone, Docker, Compose e GitHub Actions;
+- build nativo da Vercel, standalone para self-hosting, Docker, Compose e GitHub Actions;
 - critérios de qualidade e operação observáveis no repositório.
 
 Fora de escopo:
@@ -44,7 +44,9 @@ flowchart LR
     B -. "opcional" .-> V["Endpoint first-party de Web Vitals"]
     S["Conteúdo + mensagens"] --> H
     S --> A
-    N["next build"] --> O[".next/standalone"]
+    N["next build"] --> E{"VERCEL=1?"}
+    E -- "sim" --> X["Adaptador nativo da Vercel"]
+    E -- "não" --> O[".next/standalone"]
     O --> D["Runner distroless Node 24"]
 ~~~
 
@@ -57,7 +59,8 @@ flowchart LR
 | Motion progressivo | CSS, Web Animations API, <code>requestAnimationFrame</code>, GSAP e OGL por capacidade | A experiência degrada para uma versão estática e legível |
 | Conteúdo no repositório | <code>src/data</code>, <code>src/content</code> e <code>src/messages</code> | Não existe CMS nem persistência externa |
 | API mínima | Um Route Handler Node.js para contato | Superfície server-side pequena, sem sessão ou autenticação |
-| Produção standalone | <code>output: "standalone"</code> e runner distroless | Imagem menor e sem shell; diagnóstico deve usar logs e ferramentas externas |
+| Deploy na Vercel | Adaptador nativo quando <code>VERCEL=1</code> | A plataforma produz as funções sem depender do rastreamento standalone |
+| Produção standalone | <code>output: "standalone"</code> fora da Vercel e runner distroless | Imagem menor e sem shell; diagnóstico deve usar logs e ferramentas externas |
 | CSP estática | Headers globais no Next.js | Preserva pré-renderização, mas mantém <code>unsafe-inline</code> para o bootstrap atual |
 | Rate limit em memória | <code>Map</code> local ao processo | Adequado a uma instância; não coordena réplicas nem sobrevive a restart |
 
@@ -144,7 +147,7 @@ O global 404 usa headers da requisição. Essa necessidade fica isolada do grupo
 - React Strict Mode;
 - rotas tipadas;
 - remoção do header de identificação do framework;
-- output standalone;
+- output standalone fora da Vercel; no deploy Vercel, o adaptador nativo controla o output;
 - AVIF e WebP, com tamanhos explícitos de device e imagem;
 - otimização de imports de GSAP e OGL;
 - atribuição de CLS, LCP e INP;
@@ -1021,14 +1024,16 @@ O hook é uma proteção rápida, não substitui o gate completo.
 | <code>deps</code> | base | <code>npm ci</code> sem lifecycle e auditoria de assinaturas |
 | <code>builder</code> | base | Código, build args públicos e <code>npm run build</code> |
 | <code>dev</code> | deps | Next dev em <code>0.0.0.0:3000</code> |
-| <code>runner</code> | distroless Node 24 Debian 13 por digest | Artefato standalone não-root |
+| <code>runtime-libs</code> | distroless Node 24 Debian 13 por digest | Fornece somente bibliotecas C++ dinâmicas, metadados e licença correspondentes |
+| <code>runner</code> | distroless <code>base-nossl</code> Debian 13 por digest | Node 24.18.0 oficial e artefato standalone não-root, sem OpenSSL de sistema não utilizado |
 
 <code>scripts/prepare-standalone.mjs</code>:
 
-1. exige <code>.next/standalone/server.js</code>;
-2. copia <code>public</code> se a pasta existir;
-3. substitui e copia <code>.next/static</code>;
-4. exige assets estáticos não vazios.
+1. quando <code>VERCEL=1</code>, encerra com sucesso sem exigir standalone, pois o adaptador da plataforma controla o output;
+2. nos demais ambientes, exige <code>.next/standalone/server.js</code>;
+3. copia <code>public</code> se a pasta existir;
+4. substitui e copia <code>.next/static</code>;
+5. exige assets estáticos não vazios.
 
 ### 15.2 Desenvolvimento
 
@@ -1110,6 +1115,8 @@ O runner não tem shell. Não planeje diagnóstico com <code>docker exec ... sh<
 - requests HTTP externos;
 - <code>/nodejs/bin/node</code> apenas para inspeções pontuais já suportadas pelo ambiente.
 
+O binário oficial do Node incorpora seu próprio OpenSSL e liga dinamicamente apenas contra glibc, <code>libstdc++</code> e <code>libgcc</code>. Por isso, o runner parte de <code>base-nossl</code>: copia somente as duas bibliotecas C++ ausentes e preserva seus metadados <code>dpkg</code>, suas licenças e a licença distribuída com o Node. Essa composição evita carregar uma segunda implementação OpenSSL sem mascarar a proveniência dos arquivos adicionados. A CI gera ainda um SBOM CycloneDX da imagem final com Syft, exige a presença de <code>node@24.18.0</code> e publica o documento como artefato da execução.
+
 ### 15.4 Build args
 
 Somente variáveis públicas entram como build args:
@@ -1161,16 +1168,17 @@ Ordem atual:
 8. Vitest e quality hook;
 9. ESLint;
 10. tipos;
-11. build;
-12. bundle budgets;
-13. instalação de Chromium, Firefox e WebKit;
-14. Playwright;
-15. validação do Compose;
-16. build do runner;
-17. Trivy;
-18. smoke do container;
-19. cleanup;
-20. upload do report Playwright por sete dias.
+11. build em modo Vercel, sem standalone;
+12. build de produção standalone para os gates self-hosted e Docker;
+13. bundle budgets;
+14. instalação de Chromium, Firefox e WebKit;
+15. Playwright;
+16. validação do Compose;
+17. build do runner;
+18. Trivy;
+19. smoke do container;
+20. cleanup;
+21. upload do report Playwright por sete dias.
 
 O smoke confirma:
 
@@ -1256,7 +1264,7 @@ Não existe IaC, manifesto de plataforma, migração de banco ou script de rollb
 
 ## 18. Troubleshooting
 
-### Node anterior à versão 24
+### Node fora da faixa suportada
 
 Sintoma: <code>npm ci</code> falha por engine.
 
@@ -1266,7 +1274,7 @@ nvm use
 node --version
 ~~~
 
-Versões superiores a 24 são aceitas. A referência reproduzível continua 24.18.0.
+Versões anteriores a 24.18.0 e majors a partir da 25 são rejeitadas. A referência reproduzível continua 24.18.0.
 
 ### npm diferente da referência
 
@@ -1574,7 +1582,7 @@ Prioridade operacional antes de escala horizontal:
 ## 23. Checklist de onboarding
 
 1. leia este documento e o README;
-2. rode <code>nvm use</code> ou confirme Node 24+;
+2. rode <code>nvm use</code> ou confirme Node <code>&gt;=24.18.0 &lt;25</code>;
 3. instale com <code>npm ci</code>;
 4. crie <code>.env.development.local</code> a partir do exemplo;
 5. execute <code>npm run dev</code>;

@@ -4,6 +4,18 @@ import { describe, expect, it } from "vitest"
 
 import { websiteExperiences } from "@/data/showcase-sites"
 
+const requiredPublishedDomains = [
+  "lp-estudio-musica.vercel.app",
+  "portal-noticias-ivory.vercel.app",
+  "lp-hospitalidade-premium.vercel.app",
+  "lp-institucional-fintech.vercel.app",
+  "lp-institucional-paisagismo.vercel.app",
+  "lp-institucional-vendas.vercel.app",
+  "lp-institucional-advocacia.vercel.app",
+  "casa-brasa-tabacaria.vercel.app",
+  "lp-arq-carla-moraes.vercel.app",
+] as const
+
 const jpegStartOfFrameMarkers = new Set([
   0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce,
   0xcf,
@@ -15,12 +27,48 @@ function readImageDimensions(path: string) {
   if (image.length >= 8 && image.readUInt32BE(0) === 0x89504e47) {
     return {
       width: image.readUInt32BE(16),
-      height: image.readUInt32BE(20)
+      height: image.readUInt32BE(20),
+    }
+  }
+
+  if (
+    image.length >= 30 &&
+    image.toString("ascii", 0, 4) === "RIFF" &&
+    image.toString("ascii", 8, 12) === "WEBP"
+  ) {
+    const chunkType = image.toString("ascii", 12, 16)
+
+    if (chunkType === "VP8X") {
+      return {
+        width: image.readUIntLE(24, 3) + 1,
+        height: image.readUIntLE(27, 3) + 1,
+      }
+    }
+
+    if (chunkType === "VP8L" && image[20] === 0x2f) {
+      const dimensions = image.readUInt32LE(21)
+
+      return {
+        width: (dimensions & 0x3fff) + 1,
+        height: ((dimensions >>> 14) & 0x3fff) + 1,
+      }
+    }
+
+    if (
+      chunkType === "VP8 " &&
+      image[23] === 0x9d &&
+      image[24] === 0x01 &&
+      image[25] === 0x2a
+    ) {
+      return {
+        width: image.readUInt16LE(26) & 0x3fff,
+        height: image.readUInt16LE(28) & 0x3fff,
+      }
     }
   }
 
   if (image.readUInt16BE(0) !== 0xffd8) {
-    throw new Error(`${path} is neither a supported JPEG nor a PNG image`)
+    throw new Error(`${path} is not a supported PNG, JPEG, or WebP image`)
   }
 
   let offset = 2
@@ -53,11 +101,26 @@ function readImageDimensions(path: string) {
 }
 
 describe("website showcase data", () => {
+  it("preserves every required published destination", () => {
+    const listedDomains = new Set(
+      websiteExperiences.map(({ domain }) => domain),
+    )
+
+    requiredPublishedDomains.forEach((domain) => {
+      expect(listedDomains.has(domain), `${domain} must remain listed`).toBe(
+        true,
+      )
+    })
+  })
+
   it("keeps identifiers and published destinations unique", () => {
     expect(new Set(websiteExperiences.map(({ id }) => id)).size).toBe(
       websiteExperiences.length,
     )
     expect(new Set(websiteExperiences.map(({ href }) => href)).size).toBe(
+      websiteExperiences.length,
+    )
+    expect(new Set(websiteExperiences.map(({ domain }) => domain)).size).toBe(
       websiteExperiences.length,
     )
 
@@ -66,6 +129,11 @@ describe("website showcase data", () => {
 
       expect(url.protocol).toBe("https:")
       expect(url.hostname).toBe(domain)
+      expect(url.pathname).toBe("/")
+      expect(url.search).toBe("")
+      expect(url.hash).toBe("")
+      expect(url.username).toBe("")
+      expect(url.password).toBe("")
     })
   })
 
@@ -95,5 +163,21 @@ describe("website showcase data", () => {
     websiteExperiences.forEach(({ image }) => {
       expect(image.blurDataURL).toMatch(/^data:image\/jpeg;base64,/)
     })
+  })
+
+  it("places carla-moraes in 3rd place and casa-brasa before ruptura", () => {
+    expect(websiteExperiences[1].id).toBe("portal-noticias-atual")
+    expect(websiteExperiences[2].id).toBe("carla-moraes")
+
+    const casaBrasaIndex = websiteExperiences.findIndex(
+      ({ id }) => id === "casa-brasa",
+    )
+    const rupturaIndex = websiteExperiences.findIndex(
+      ({ id }) => id === "lp-estudio-musica",
+    )
+
+    expect(casaBrasaIndex).toBeGreaterThan(-1)
+    expect(rupturaIndex).toBeGreaterThan(-1)
+    expect(casaBrasaIndex).toBeLessThan(rupturaIndex)
   })
 })

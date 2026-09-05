@@ -5,11 +5,12 @@ import { useTranslations } from "next-intl";
 
 export function Experience() {
   const t = useTranslations("Experience");
+  const page = useTranslations("PortfolioPages.experience");
 
   return (
     <section
       id="experience"
-      className="relative py-16 sm:py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-24"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -53,15 +54,15 @@ export function Experience() {
                 <article
                   aria-labelledby={`experience-${entry.id}-title`}
                   data-experience-entry
-                  className={`relative flex flex-col md:flex-row md:items-center ${
-                    idx % 2 === 0 ? "md:flex-row-reverse" : ""
+                  className={`relative flex flex-col lg:flex-row lg:items-center ${
+                    idx % 2 === 0 ? "lg:flex-row-reverse" : ""
                   }`}
                 >
                   <div
                     className={
                       idx % 2 === 0
-                        ? "flex flex-1 justify-center md:w-1/2 md:flex-none md:justify-start md:pl-12"
-                        : "flex flex-1 justify-center md:w-1/2 md:flex-none md:justify-end md:pr-12"
+                        ? "flex flex-1 justify-center lg:w-1/2 lg:flex-none lg:justify-start lg:pl-12"
+                        : "flex flex-1 justify-center lg:w-1/2 lg:flex-none lg:justify-end lg:pr-12"
                     }
                   >
                     <div
@@ -72,6 +73,15 @@ export function Experience() {
                       }
                       style={{ borderRadius: "1rem" }}
                     >
+                      {idx === 0 ? (
+                        <p
+                          className="mb-5 inline-flex min-h-8 items-center rounded-full border border-[rgba(129,140,248,0.24)] bg-[rgba(129,140,248,0.08)] px-3 text-[0.625rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-signal)]"
+                          style={{ fontFamily: "var(--font-mono)" }}
+                          data-company-progression
+                        >
+                          {page("progression")}
+                        </p>
+                      ) : null}
                       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                         <h3
                           id={`experience-${entry.id}-title`}
@@ -95,6 +105,7 @@ export function Experience() {
                       </div>
 
                       <p
+                        data-experience-company
                         className="mb-4 text-sm font-semibold uppercase tracking-wider"
                         style={{
                           fontFamily: "var(--font-mono)",
@@ -118,8 +129,10 @@ export function Experience() {
                         className="mb-6 list-none space-y-2"
                         data-experience-highlights
                       >
-                        {(t.raw(`items.${entry.id}.highlights`) as string[]).map(
-                          (highlight: string, hIdx: number) => (
+                        {(() => {
+                          const rawHighlights = t.raw(`items.${entry.id}.highlights`);
+                          const highlights = Array.isArray(rawHighlights) ? (rawHighlights as string[]) : [];
+                          return highlights.map((highlight: string, hIdx: number) => (
                             <li
                               key={hIdx}
                               className="flex items-start gap-2 text-xs"
@@ -135,8 +148,8 @@ export function Experience() {
                               />
                               {highlight}
                             </li>
-                          ),
-                        )}
+                          ))
+                        })()}
                       </ul>
 
                       <div className="flex flex-wrap gap-2">
@@ -157,7 +170,7 @@ export function Experience() {
                     </div>
                   </div>
 
-                  <div className="relative z-10 flex h-12 w-12 items-center justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
+                  <div className="relative z-10 hidden h-12 w-12 items-center justify-center lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2">
                     <div
                       className="absolute h-full w-full rounded-full border border-[var(--color-signal)] opacity-20"
                       style={{
@@ -173,7 +186,7 @@ export function Experience() {
                     />
                   </div>
 
-                  <div className="hidden md:block md:w-1/2 md:flex-none" />
+                  <div className="hidden lg:block lg:w-1/2 lg:flex-none" />
                 </article>
               </ScrollReveal>
             ))}

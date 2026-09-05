@@ -1,38 +1,95 @@
 import type { MetadataRoute } from "next"
+
+import { projects } from "@/data/portfolio"
 import { getDocumentLanguage, locales } from "@/i18n.config"
-import { getLocalizedUrl } from "@/lib/constants"
+import {
+  getLocalizedUrl,
+  type InternalPathname,
+} from "@/lib/constants"
 
-const articlePath = "/insights/go-em-producao"
-
-const homeAlternates = {
-  [getDocumentLanguage("pt")]: getLocalizedUrl("pt"),
-  [getDocumentLanguage("en")]: getLocalizedUrl("en"),
-  [getDocumentLanguage("es")]: getLocalizedUrl("es"),
-  "x-default": getLocalizedUrl("pt"),
+type SitemapPage = {
+  pathname: InternalPathname
+  lastModified: string
+  changeFrequency: NonNullable<
+    MetadataRoute.Sitemap[number]["changeFrequency"]
+  >
+  priority: number
 }
 
-const articleAlternates = {
-  [getDocumentLanguage("pt")]: getLocalizedUrl("pt", articlePath),
-  [getDocumentLanguage("en")]: getLocalizedUrl("en", articlePath),
-  [getDocumentLanguage("es")]: getLocalizedUrl("es", articlePath),
-  "x-default": getLocalizedUrl("pt", articlePath),
+const staticPages: SitemapPage[] = [
+  {
+    pathname: "/",
+    lastModified: "2026-07-29",
+    changeFrequency: "monthly",
+    priority: 1,
+  },
+  {
+    pathname: "/work",
+    lastModified: "2026-07-29",
+    changeFrequency: "monthly",
+    priority: 0.95,
+  },
+  {
+    pathname: "/experience",
+    lastModified: "2026-07-29",
+    changeFrequency: "monthly",
+    priority: 0.88,
+  },
+  {
+    pathname: "/about",
+    lastModified: "2026-07-29",
+    changeFrequency: "monthly",
+    priority: 0.82,
+  },
+  {
+    pathname: "/insights",
+    lastModified: "2026-07-29",
+    changeFrequency: "monthly",
+    priority: 0.82,
+  },
+  {
+    pathname: "/insights/go-em-producao",
+    lastModified: "2025-03-20",
+    changeFrequency: "yearly",
+    priority: 0.78,
+  },
+  {
+    pathname: "/contact",
+    lastModified: "2026-07-29",
+    changeFrequency: "yearly",
+    priority: 0.55,
+  },
+]
+
+const casePages: SitemapPage[] = projects.map((project) => ({
+  pathname: `/work/${project.slug}`,
+  lastModified: "2026-07-29",
+  changeFrequency: "monthly",
+  priority: 0.9,
+}))
+
+function languageAlternates(pathname: InternalPathname) {
+  return {
+    ...Object.fromEntries(
+      locales.map((locale) => [
+        getDocumentLanguage(locale),
+        getLocalizedUrl(locale, pathname),
+      ]),
+    ),
+    "x-default": getLocalizedUrl("pt", pathname),
+  }
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return locales.flatMap((locale) => [
-    {
-      url: getLocalizedUrl(locale),
-      lastModified: "2026-07-13",
-      changeFrequency: "monthly",
-      priority: 1,
-      alternates: { languages: homeAlternates },
-    },
-    {
-      url: getLocalizedUrl(locale, articlePath),
-      lastModified: "2025-03-20",
-      changeFrequency: "yearly",
-      priority: 0.7,
-      alternates: { languages: articleAlternates },
-    },
-  ])
+  return [...staticPages, ...casePages].flatMap((page) =>
+    locales.map((locale) => ({
+      url: getLocalizedUrl(locale, page.pathname),
+      lastModified: page.lastModified,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+      alternates: {
+        languages: languageAlternates(page.pathname),
+      },
+    })),
+  )
 }

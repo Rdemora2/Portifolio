@@ -29,8 +29,11 @@ const techLogos = [
 ];
 
 export async function TechStack() {
-  const t = await getTranslations("About.pillars");
-  const tn = await getTranslations("Nav");
+  const [t, tn, page] = await Promise.all([
+    getTranslations("About.pillars"),
+    getTranslations("Nav"),
+    getTranslations("PortfolioPages.about"),
+  ])
 
   const grouped = techStack.reduce<Record<string, typeof techStack>>(
     (acc, tech) => {
@@ -44,7 +47,7 @@ export async function TechStack() {
   return (
     <section
       id="tech"
-      className="relative py-16 sm:py-20 md:py-32"
+      className="relative py-16 sm:py-20 md:py-24"
       style={{ backgroundColor: "var(--color-deep)" }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -75,6 +78,8 @@ export async function TechStack() {
         <div className="mb-12 sm:mb-20">
           <LogoLoop
             logos={techLogos}
+            pauseLabel={page("motionPause")}
+            resumeLabel={page("motionResume")}
             speed={60}
             direction="left"
             logoHeight={48}
@@ -129,14 +134,6 @@ export async function TechStack() {
                         }}
                       >
                         {tech.name}
-                        {tech.proficiency === 5 && (
-                          <span
-                            className="ml-1"
-                            style={{ color: "var(--color-matrix)" }}
-                          >
-                            ★
-                          </span>
-                        )}
                       </span>
                     ))}
                   </div>

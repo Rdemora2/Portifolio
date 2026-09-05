@@ -112,7 +112,7 @@
   .form-input {
     width: 100%;
     background-color: transparent;
-    border: 1px solid var(--color-edge);
+    border: 1px solid var(--color-control-edge);
     border-radius: 0.75rem;
     padding: 1rem;
     font-family: var(--font-body);
@@ -173,11 +173,16 @@
     z-index: 1;
   }
 
+  .glass-nav::before {
+    opacity: var(--nav-specular-opacity, var(--nav-progress, 1));
+    transition: opacity var(--transition-base);
+  }
+
   /* glass-nav — navigation bar (lighter surface, no inset shadow) */
   .glass-nav {
     background-color: var(--glass-nav-bg);
-    backdrop-filter: var(--glass-nav-blur);
-    -webkit-backdrop-filter: var(--glass-nav-blur);
+    backdrop-filter: var(--nav-backdrop-filter, var(--glass-nav-blur));
+    -webkit-backdrop-filter: var(--nav-backdrop-filter, var(--glass-nav-blur));
     border-bottom: 1px solid var(--glass-nav-border);
   }
 
@@ -316,116 +321,164 @@
   animation: hero-copy-enter 700ms 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.site-home-hero {
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
+  padding-block: 5.5rem 3rem;
+}
+
+@media (max-height: 560px) {
+  .site-home-hero {
+    min-block-size: auto;
+    align-items: flex-start;
+    padding-block: 5rem 2rem;
+  }
+
+  .home-scroll-cue {
+    display: none;
+  }
+}
+
 /*
  * Keep the complete portfolio in the document and accessibility tree while
  * letting the browser skip layout and paint for distant sections. The
- * intrinsic block sizes mirror the rendered mobile layout closely, preventing
- * the page from growing as sections approach the viewport. The `auto` value
- * retains the measured size after a section has been rendered.
+ * intrinsic block sizes mirror the current responsive home sections closely,
+ * preventing the page from growing as sections approach the viewport. The
+ * `auto` value retains the measured size after a section has been rendered.
  */
 @supports (content-visibility: auto) {
-  .home-content > section:not(#hero) {
+  .home-content > [data-home-section] {
     content-visibility: auto;
     contain-intrinsic-block-size: auto var(--section-intrinsic-size, 1000px);
   }
 
-  .home-content > #about {
-    --section-intrinsic-size: 955px;
+  .home-content > [data-home-section="profile"] {
+    --section-intrinsic-size: 1165px;
   }
 
-  .home-content > #projects {
-    --section-intrinsic-size: 818px;
+  .home-content > [data-home-section="projects"] {
+    --section-intrinsic-size: 2240px;
   }
 
-  .home-content > #sites {
-    --section-intrinsic-size: 2800px;
+  .home-content > [data-home-section="practice"] {
+    --section-intrinsic-size: 1565px;
   }
 
-  .home-content > #tech {
-    --section-intrinsic-size: 972px;
+  .home-content > [data-home-section="trajectory"] {
+    --section-intrinsic-size: 1075px;
   }
 
-  .home-content > #metrics {
-    --section-intrinsic-size: 633px;
+  .home-content > [data-home-section="insight"] {
+    --section-intrinsic-size: 610px;
   }
 
-  .home-content > #experience {
-    --section-intrinsic-size: 2793px;
-  }
+  @media (min-width: 360px) {
+    .home-content > [data-home-section="profile"] {
+      --section-intrinsic-size: 975px;
+    }
 
-  .home-content > #insights {
-    --section-intrinsic-size: 451px;
-  }
+    .home-content > [data-home-section="projects"] {
+      --section-intrinsic-size: 1900px;
+    }
 
-  .home-content > #contact {
-    --section-intrinsic-size: 1130px;
+    .home-content > [data-home-section="practice"] {
+      --section-intrinsic-size: 1435px;
+    }
+
+    .home-content > [data-home-section="trajectory"] {
+      --section-intrinsic-size: 955px;
+    }
+
+    .home-content > [data-home-section="insight"] {
+      --section-intrinsic-size: 580px;
+    }
   }
 
   @media (min-width: 640px) {
-    .home-content > #about {
-      --section-intrinsic-size: 791px;
+    .home-content > [data-home-section="profile"] {
+      --section-intrinsic-size: 850px;
     }
 
-    .home-content > #projects {
-      --section-intrinsic-size: 748px;
+    .home-content > [data-home-section="projects"] {
+      --section-intrinsic-size: 1535px;
     }
 
-    .home-content > #sites {
-      --section-intrinsic-size: 2950px;
+    .home-content > [data-home-section="practice"] {
+      --section-intrinsic-size: 895px;
     }
 
-    .home-content > #tech {
-      --section-intrinsic-size: 738px;
+    .home-content > [data-home-section="trajectory"] {
+      --section-intrinsic-size: 795px;
     }
 
-    .home-content > #metrics {
-      --section-intrinsic-size: 380px;
-    }
-
-    .home-content > #experience {
-      --section-intrinsic-size: 3351px;
-    }
-
-    .home-content > #insights {
-      --section-intrinsic-size: 492px;
-    }
-
-    .home-content > #contact {
-      --section-intrinsic-size: 1013px;
+    .home-content > [data-home-section="insight"] {
+      --section-intrinsic-size: 480px;
     }
   }
 
   @media (min-width: 1024px) {
-    .home-content > #about {
-      --section-intrinsic-size: 543px;
+    .home-content > [data-home-section="profile"] {
+      --section-intrinsic-size: 610px;
     }
 
-    .home-content > #projects {
-      --section-intrinsic-size: 776px;
+    .home-content > [data-home-section="projects"] {
+      --section-intrinsic-size: 1350px;
     }
 
-    .home-content > #sites {
-      --section-intrinsic-size: 2300px;
+    .home-content > [data-home-section="practice"] {
+      --section-intrinsic-size: 775px;
     }
 
-    .home-content > #tech {
-      --section-intrinsic-size: 602px;
+    .home-content > [data-home-section="trajectory"] {
+      --section-intrinsic-size: 575px;
     }
 
-    .home-content > #metrics {
-      --section-intrinsic-size: 395px;
+    .home-content > [data-home-section="insight"] {
+      --section-intrinsic-size: 425px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .home-content > [data-home-section="profile"] {
+      --section-intrinsic-size: 625px;
     }
 
-    .home-content > #experience {
-      --section-intrinsic-size: 2709px;
+    .home-content > [data-home-section="projects"] {
+      --section-intrinsic-size: 1435px;
     }
 
-    .home-content > #insights {
-      --section-intrinsic-size: 515px;
+    .home-content > [data-home-section="practice"] {
+      --section-intrinsic-size: 795px;
     }
 
-    .home-content > #contact {
-      --section-intrinsic-size: 626px;
+    .home-content > [data-home-section="trajectory"] {
+      --section-intrinsic-size: 585px;
+    }
+
+    .home-content > [data-home-section="insight"] {
+      --section-intrinsic-size: 545px;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .home-content > [data-home-section="profile"] {
+      --section-intrinsic-size: 645px;
+    }
+
+    .home-content > [data-home-section="projects"] {
+      --section-intrinsic-size: 1475px;
+    }
+
+    .home-content > [data-home-section="practice"] {
+      --section-intrinsic-size: 850px;
+    }
+
+    .home-content > [data-home-section="trajectory"] {
+      --section-intrinsic-size: 685px;
+    }
+
+    .home-content > [data-home-section="insight"] {
+      --section-intrinsic-size: 640px;
     }
   }
 }

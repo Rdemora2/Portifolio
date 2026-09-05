@@ -1,4 +1,5 @@
 .articleExperience {
+  --article-shell: 80rem;
   --hero-progress: 0;
   --hero-signal: 0;
   --hero-pulse: 0;
@@ -16,7 +17,7 @@
   --hero-rotation: calc(var(--hero-orbit) * 12deg);
   --hero-counter-rotation: calc(var(--hero-orbit) * -12deg);
   position: relative;
-  min-block-size: 145svh;
+  min-block-size: 130svh;
   border-bottom: 1px solid var(--color-edge);
 }
 
@@ -29,8 +30,8 @@
   overflow: hidden;
   isolation: isolate;
   align-items: center;
-  padding: clamp(5.5rem, 12svh, 7.5rem) 1.5rem
-    clamp(1.5rem, 4svh, 3rem);
+  padding: clamp(6.25rem, 10svh, 7.25rem) 1.5rem
+    clamp(2rem, 5svh, 3rem);
   background:
     radial-gradient(circle at 74% 43%, rgba(99, 102, 241, 0.17), transparent 25rem),
     radial-gradient(circle at 18% 72%, rgba(0, 212, 255, 0.08), transparent 23rem),
@@ -106,7 +107,7 @@
 }
 
 .heroInner {
-  width: min(100%, 90rem);
+  width: min(100%, var(--article-shell));
   margin-inline: auto;
 }
 
@@ -115,7 +116,7 @@
   min-height: 2.75rem;
   align-items: center;
   gap: 0.65rem;
-  margin-bottom: clamp(1.5rem, 4svh, 3.5rem);
+  margin-bottom: clamp(1.5rem, 3svh, 2.5rem);
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-edge);
   border-radius: 999px;
@@ -146,21 +147,21 @@
 .heroComposition {
   display: grid;
   align-items: center;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 30rem);
-  gap: clamp(2rem, 6vw, 7rem);
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 23rem);
+  gap: clamp(2.5rem, 5vw, 5rem);
 }
 
 .heroCopy {
   min-width: 0;
   opacity: 1;
   transform: translate3d(
-      calc(var(--hero-handoff) * -2.5vw),
+      calc(var(--hero-handoff) * -1.5vw),
       calc(
-        var(--hero-orbit) * -1.5vh + var(--hero-handoff) * -2.5vh
+        var(--hero-orbit) * -1vh + var(--hero-handoff) * -1.75vh
       ),
       0
     )
-    scale(calc(1 - var(--hero-handoff) * 0.04));
+    scale(calc(1 - var(--hero-handoff) * 0.025));
   transform-origin: left center;
 }
 
@@ -179,10 +180,10 @@
   margin-top: 1.15rem;
   color: var(--color-text-primary);
   font-family: var(--font-display);
-  font-size: clamp(4rem, min(8.5vw, 15svh), 8.5rem);
+  font-size: clamp(3.5rem, min(5vw, 9svh), 4.75rem);
   font-weight: 800;
-  line-height: 0.82;
-  letter-spacing: -0.065em;
+  line-height: 0.88;
+  letter-spacing: -0.058em;
   text-wrap: balance;
 }
 
@@ -205,19 +206,19 @@
 }
 
 .heroSubtitle {
-  max-width: 44rem;
-  margin-top: 2rem;
+  max-width: 40rem;
+  margin-top: 1.5rem;
   color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  line-height: 1.65;
   text-wrap: pretty;
 }
 
 .heroRecorder {
   position: relative;
   display: grid;
-  width: min(100%, 30rem, 58svh);
+  width: min(100%, 22rem, 48svh);
   aspect-ratio: 1;
   justify-self: center;
   place-items: center;
@@ -306,8 +307,8 @@
 
 .heroCore {
   display: grid;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 6rem;
+  height: 6rem;
   place-content: center;
   border: 1px solid rgba(0, 212, 255, 0.42);
   background: radial-gradient(circle, rgba(0, 212, 255, 0.12), rgba(5, 10, 18, 0.94) 68%);
@@ -321,7 +322,7 @@
 
 .heroCore span {
   font-family: var(--font-display);
-  font-size: 2.35rem;
+  font-size: 1.85rem;
   font-weight: 800;
   letter-spacing: -0.06em;
 }
@@ -338,9 +339,9 @@
 .heroMetric {
   position: absolute;
   display: grid;
-  width: min(9.5rem, 31%);
+  width: min(8rem, 34%);
   gap: 0.25rem;
-  padding: 0.75rem;
+  padding: 0.65rem;
   border-top: 1px solid rgba(129, 140, 248, 0.4);
   background: linear-gradient(180deg, rgba(13, 21, 32, 0.78), transparent);
   opacity: calc(0.52 + var(--hero-signal) * 0.48);
@@ -382,7 +383,7 @@
 .heroMetric strong {
   color: var(--color-text-primary);
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
 }
 
 .heroMetric span {
@@ -398,7 +399,7 @@
   align-items: end;
   justify-content: space-between;
   gap: 2rem;
-  margin-top: clamp(1.5rem, 4svh, 3.5rem);
+  margin-top: clamp(1.75rem, 3.5svh, 2.75rem);
   opacity: 1;
   transform: translate3d(0, calc(var(--hero-handoff) * 1.25rem), 0);
 }
@@ -459,23 +460,23 @@
 .telemetrySection {
   position: relative;
   border-bottom: 1px solid var(--color-edge);
-  padding: clamp(5rem, 10vw, 9rem) 1.5rem;
+  padding: clamp(4.75rem, 8vw, 7rem) 1.5rem;
   background:
     linear-gradient(90deg, transparent 49.9%, rgba(99, 102, 241, 0.08) 50%, transparent 50.1%),
     #03070d;
 }
 
 .telemetryInner {
-  width: min(100%, 76rem);
+  width: min(100%, var(--article-shell));
   margin-inline: auto;
 }
 
 .intro {
-  max-width: 61rem;
+  max-width: 52rem;
   color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(1.35rem, 2.25vw, 2.15rem);
-  line-height: 1.52;
+  font-size: clamp(1.2rem, 1.75vw, 1.7rem);
+  line-height: 1.58;
   letter-spacing: -0.018em;
   text-wrap: pretty;
 }
@@ -485,7 +486,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: clamp(3.5rem, 8vw, 6.5rem);
+  margin-top: clamp(2.75rem, 6vw, 4.75rem);
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-edge);
   color: var(--color-text-muted);
@@ -502,22 +503,26 @@
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(var(--metric-columns), minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   border-left: 1px solid var(--color-edge);
   border-bottom: 1px solid var(--color-edge);
 }
 
 .metric {
   position: relative;
-  min-height: 11rem;
+  min-height: 8.75rem;
   overflow: hidden;
-  padding: 1.65rem 1.25rem 2rem;
+  padding: 1.25rem 1.1rem 1.5rem;
   border-right: 1px solid var(--color-edge);
   background: linear-gradient(145deg, rgba(13, 21, 32, 0.5), transparent 68%);
 }
 
 .metric:first-child {
   border-left: 0;
+}
+
+.metric:nth-child(n + 3) {
+  border-top: 1px solid var(--color-edge);
 }
 
 .metric dt {
@@ -529,10 +534,10 @@
 }
 
 .metric dd {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   color: var(--color-text-primary);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.65rem);
+  font-size: clamp(1.85rem, 3vw, 2.85rem);
   font-weight: 800;
   letter-spacing: -0.055em;
 }
@@ -551,7 +556,7 @@
 
 .storySection {
   position: relative;
-  padding: clamp(4rem, 8vw, 8rem) 1.5rem clamp(7rem, 12vw, 12rem);
+  padding: clamp(4rem, 7vw, 6rem) 1.5rem clamp(6rem, 10vw, 9rem);
 }
 
 .storySection::before {
@@ -561,13 +566,13 @@
   pointer-events: none;
   opacity: 0.16;
   background-image: linear-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px);
-  background-size: 100% 9rem;
+  background-size: 100% 7rem;
   mask-image: linear-gradient(transparent, black 10%, black 90%, transparent);
 }
 
 .storyLayout {
   position: relative;
-  width: min(100%, 88rem);
+  width: min(100%, var(--article-shell));
   margin-inline: auto;
 }
 
@@ -578,10 +583,10 @@
 .architecture {
   position: relative;
   overflow: hidden;
-  margin-bottom: clamp(7rem, 14vw, 12rem);
-  padding: clamp(1.5rem, 4vw, 3.5rem);
+  margin-bottom: clamp(5.5rem, 10vw, 8rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
   border: 1px solid var(--color-edge);
-  border-radius: 2rem;
+  border-radius: 1.5rem;
   background:
     radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.08), transparent 18rem),
     linear-gradient(145deg, rgba(13, 21, 32, 0.82), rgba(2, 4, 8, 0.72));
@@ -600,13 +605,13 @@
 }
 
 .architectureHeading {
-  max-width: 43rem;
+  max-width: 39rem;
 }
 
 .architectureHeading h2 {
   margin-top: 1rem;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.9rem, 3.25vw, 2.85rem);
   font-weight: 750;
   line-height: 1.02;
   letter-spacing: -0.045em;
@@ -614,10 +619,10 @@
 }
 
 .architectureHeading > p:last-child {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.75;
 }
 
@@ -626,7 +631,7 @@
   display: grid;
   grid-template-columns: repeat(var(--topology-columns), minmax(0, 1fr));
   gap: 0.6rem;
-  margin-top: 3.5rem;
+  margin-top: 2.75rem;
 }
 
 .topologyRail {
@@ -650,7 +655,7 @@
 .topologyNode {
   position: relative;
   z-index: 1;
-  min-height: 7.5rem;
+  min-height: 6.25rem;
   padding: 1rem 0.9rem;
   border: 1px solid var(--color-edge);
   border-radius: 0.85rem;
@@ -665,10 +670,10 @@
 
 .topologyNode strong {
   display: block;
-  margin-top: 1.5rem;
+  margin-top: 1.1rem;
   color: var(--color-text-primary);
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   line-height: 1.35;
 }
 
@@ -698,7 +703,7 @@
   --chapter-tone: var(--color-signal);
   position: relative;
   display: grid;
-  min-height: clamp(42rem, 86svh, 54rem);
+  min-height: clamp(34rem, 72svh, 44rem);
   align-items: center;
   scroll-margin-top: 8rem;
 }
@@ -757,8 +762,9 @@
 
 .chapterFrame {
   position: relative;
-  max-width: 47rem;
-  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1rem, 3vw, 2rem);
+  min-width: 0;
+  max-width: 43rem;
+  padding: clamp(1.25rem, 2.5vw, 1.85rem) clamp(1rem, 2.5vw, 1.75rem);
   border-top: 1px solid color-mix(in srgb, var(--chapter-tone) 55%, var(--color-edge));
   background: linear-gradient(135deg, color-mix(in srgb, var(--chapter-tone) 4%, transparent), transparent 48%);
   transform-origin: left center;
@@ -766,7 +772,7 @@
 }
 
 .chapter:nth-child(even) .chapterFrame {
-  margin-left: clamp(0rem, 5vw, 4rem);
+  margin-left: clamp(0rem, 3vw, 2.25rem);
 }
 
 .chapterHeader {
@@ -791,27 +797,27 @@
   max-width: 14ch;
   margin-top: 1.25rem;
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 4.75rem);
+  font-size: clamp(2.1rem, 4vw, 3.65rem);
   font-weight: 780;
-  line-height: 0.96;
-  letter-spacing: -0.055em;
+  line-height: 1;
+  letter-spacing: -0.048em;
   text-wrap: balance;
 }
 
 .chapterIntro {
   max-width: 42rem;
-  margin-top: 1.75rem;
+  margin-top: 1.35rem;
   color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.45vw, 1.2rem);
-  line-height: 1.75;
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+  line-height: 1.7;
   text-wrap: pretty;
 }
 
 .chapterList {
   display: grid;
   gap: 0.35rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   list-style: none;
 }
 
@@ -820,11 +826,11 @@
   grid-template-columns: 0.65rem minmax(0, 1fr);
   gap: 0.85rem;
   align-items: baseline;
-  padding: 0.75rem 0;
+  padding: 0.65rem 0;
   border-bottom: 1px solid rgba(26, 40, 64, 0.58);
   color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: 0.94rem;
+  font-size: 0.91rem;
   line-height: 1.65;
 }
 
@@ -838,7 +844,7 @@
 
 .chapterNote {
   position: relative;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding: 1.35rem 1.5rem 1.35rem 2rem;
   border-left: 2px solid var(--chapter-tone);
   background: linear-gradient(90deg, color-mix(in srgb, var(--chapter-tone) 8%, transparent), transparent);
@@ -880,14 +886,14 @@
 
 .mobileTracker {
   position: sticky;
-  top: 4.25rem;
+  top: 4.75rem;
   z-index: 80;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.9rem;
   min-height: 3.25rem;
-  margin: -1rem -0.25rem 3rem;
+  margin: -0.5rem -0.25rem 2.5rem;
   padding: 0.65rem 0.85rem;
   border: 1px solid rgba(129, 140, 248, 0.24);
   border-radius: 999px;
@@ -925,7 +931,7 @@
   overflow: hidden;
   padding: 1rem;
   border: 1px solid rgba(129, 140, 248, 0.2);
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
   background:
     linear-gradient(180deg, rgba(13, 21, 32, 0.9), rgba(2, 4, 8, 0.92)),
     var(--color-void);
@@ -942,7 +948,7 @@
   border-bottom: 1px solid var(--color-edge);
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -966,7 +972,7 @@
 
 .traceVisual {
   position: relative;
-  height: 15rem;
+  height: 13.5rem;
   overflow: hidden;
   margin: 0.7rem -0.5rem 0;
 }
@@ -1170,7 +1176,7 @@
 }
 
 .stageReadout {
-  min-height: 6.8rem;
+  min-height: 6.25rem;
   padding: 1rem 0.25rem 0.8rem;
   border-top: 1px solid var(--color-edge);
   animation: refreshReadout 420ms var(--ease-out-expo) both;
@@ -1209,7 +1215,7 @@
   border-radius: 999px;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-size: 0.5rem;
+  font-size: 0.52rem;
 }
 
 .stageSignals b {
@@ -1222,7 +1228,7 @@
   border-top: 1px solid var(--color-edge);
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-size: 0.48rem;
+  font-size: 0.5rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -1236,7 +1242,7 @@
 
 .stageNavigation a {
   display: grid;
-  min-height: 2.6rem;
+  min-height: 2.75rem;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.45rem;
@@ -1245,7 +1251,7 @@
   border-radius: 0.55rem;
   color: var(--color-text-muted);
   font-family: var(--font-body);
-  font-size: 0.58rem;
+  font-size: 0.65rem;
   line-height: 1.25;
   transition: border-color var(--transition-fast), color var(--transition-fast),
     background-color var(--transition-fast);
@@ -1268,10 +1274,10 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  min-height: 100svh;
+  min-height: 74svh;
   overflow: clip;
   place-items: center;
-  padding: clamp(1.5rem, 6svh, 4rem) 1.5rem;
+  padding: clamp(4rem, 8svh, 6rem) 1.5rem;
   border-top: 1px solid var(--color-edge);
   background:
     radial-gradient(circle at center, rgba(0, 255, 136, 0.08), transparent 24rem),
@@ -1289,20 +1295,20 @@
 
 .ctaTrace span {
   position: absolute;
-  width: min(82vw, 58rem);
+  width: min(70vw, 48rem);
   aspect-ratio: 1;
   border: 1px solid rgba(0, 255, 136, 0.12);
   border-radius: 50%;
 }
 
 .ctaTrace span:nth-child(2) {
-  width: min(58vw, 38rem);
+  width: min(48vw, 32rem);
   border-style: dashed;
   border-color: rgba(0, 212, 255, 0.16);
 }
 
 .ctaTrace span:nth-child(3) {
-  width: min(34vw, 20rem);
+  width: min(28vw, 17rem);
   border-color: rgba(129, 140, 248, 0.2);
 }
 
@@ -1310,7 +1316,7 @@
   position: relative;
   z-index: 1;
   min-width: 0;
-  width: min(64rem, 100%);
+  width: min(56rem, 100%);
 }
 
 .ctaInner > p:first-child {
@@ -1326,7 +1332,7 @@
   max-width: 20ch;
   margin: clamp(0.75rem, 2.2svh, 1.25rem) auto 0;
   font-family: var(--font-display);
-  font-size: clamp(2.15rem, min(4.4vw, 7.2svh), 4.5rem);
+  font-size: clamp(2.1rem, min(3.8vw, 6.4svh), 3.75rem);
   font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.045em;
@@ -1451,7 +1457,7 @@
   .telemetrySection,
   .storySection,
   .ctaSection {
-    padding-inline: 2.5rem;
+    padding-inline: 1.5rem;
   }
 
   .mobileTracker {
@@ -1459,17 +1465,66 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .heroSticky,
+  .telemetrySection,
+  .storySection,
+  .ctaSection {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1040px) {
+  .telemetryInner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(31rem, 1.1fr);
+    column-gap: clamp(3.5rem, 5vw, 5rem);
+    align-items: end;
+  }
+
+  .intro {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .telemetryHeader {
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+  .metrics {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 1119px) {
+  .architecture {
+    margin-bottom: 2.25rem;
+  }
+}
+
 @media (min-width: 1120px) {
   .storyLayout {
     display: grid;
-    grid-template-columns: minmax(0, 49rem) minmax(20rem, 23rem);
+    grid-template-columns: minmax(0, 45rem) minmax(18rem, 21rem);
     justify-content: space-between;
-    gap: clamp(3rem, 6vw, 6.5rem);
+    column-gap: clamp(3rem, 4vw, 4.5rem);
+    row-gap: clamp(4rem, 7vw, 6rem);
   }
 
   .storyContent {
-    grid-column: 1;
+    display: contents;
+  }
+
+  .architecture {
+    grid-column: 1 / -1;
     grid-row: 1;
+    margin-bottom: 0;
+  }
+
+  .articleBody {
+    grid-column: 1;
+    grid-row: 2;
   }
 
   .mobileTracker {
@@ -1478,18 +1533,19 @@
 
   .stage {
     position: sticky;
-    top: 5.5rem;
+    top: 5.25rem;
     display: block;
-    max-height: calc(100svh - 6.75rem);
+    max-height: calc(100svh - 6.5rem);
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
     align-self: start;
   }
 
   .stagePanel {
-    max-height: calc(100svh - 5.5rem);
+    max-height: calc(100svh - 5.25rem);
     overflow-x: hidden;
     overflow-y: auto;
+    scrollbar-gutter: stable;
     scrollbar-color: color-mix(in srgb, var(--scene-tone) 45%, transparent)
       transparent;
     scrollbar-width: thin;
@@ -1595,7 +1651,7 @@
   }
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .hero {
     --hero-rotation: 12deg;
     --hero-counter-rotation: -12deg;
@@ -1605,9 +1661,9 @@
   .heroSticky {
     position: relative;
     block-size: auto;
-    min-block-size: 100svh;
-    align-items: end;
-    padding-top: 8rem;
+    min-block-size: min(88svh, 44rem);
+    align-items: start;
+    padding-top: 6.75rem;
   }
 
   .heroComposition {
@@ -1622,8 +1678,9 @@
   }
 
   .heroTitle {
-    max-width: 9ch;
-    font-size: clamp(3.6rem, 17vw, 7rem);
+    max-width: 11ch;
+    font-size: clamp(2.3rem, 8vw, 4.25rem);
+    line-height: 0.9;
   }
 
   .heroTitle span {
@@ -1632,10 +1689,10 @@
 
   .heroRecorder {
     position: absolute;
-    top: 16%;
-    right: -8rem;
-    width: 25rem;
-    opacity: 0.28;
+    top: 5.25rem;
+    right: -5rem;
+    width: 20rem;
+    opacity: 0.2;
     transform: rotate(var(--hero-rotation));
   }
 
@@ -1643,6 +1700,7 @@
     position: relative;
     z-index: 2;
     opacity: 1;
+    margin-top: 2rem;
   }
 
   .scrollCue {
@@ -1675,7 +1733,7 @@
 
   .chapter {
     min-height: auto;
-    padding-block: clamp(4rem, 14vw, 7rem);
+    padding-block: clamp(3.75rem, 11vw, 5.75rem);
   }
 
   .chapter:nth-child(even) .chapterFrame {
@@ -1696,17 +1754,37 @@
   }
 
   .backLink {
-    margin-bottom: 2.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .heroSticky {
+    padding-top: 6.25rem;
+    padding-bottom: 2rem;
+  }
+
+  .heroRecorder {
+    top: 4.75rem;
+    right: -6rem;
+    width: 18rem;
+    opacity: 0.17;
+  }
+
+  .heroTitle {
+    font-size: clamp(2.25rem, 9.4vw, 2.75rem);
+    line-height: 0.91;
   }
 
   .heroSubtitle {
-    font-size: 1rem;
-    line-height: 1.55;
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .articleMeta {
     display: grid;
-    gap: 0.35rem;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    line-height: 1.5;
   }
 
   .articleMeta > span[aria-hidden="true"] {
@@ -1717,26 +1795,38 @@
     display: none;
   }
 
-  .metrics {
-    grid-template-columns: 1fr;
+  .telemetrySection {
+    padding-block: 4.25rem;
+  }
+
+  .intro {
+    font-size: 1.12rem;
+    line-height: 1.65;
   }
 
   .metric,
   .metric:first-child,
   .metric:nth-child(2),
   .metric:nth-child(3) {
-    min-height: 8.5rem;
+    min-height: 7.5rem;
+    padding: 1rem 0.85rem 1.2rem;
     border-right: 1px solid var(--color-edge);
     border-left: 0;
   }
 
   .metric dd {
-    margin-top: 0.85rem;
+    margin-top: 0.65rem;
+    font-size: clamp(1.7rem, 8vw, 2.15rem);
+  }
+
+  .metric dt {
+    font-size: 0.68rem;
   }
 
   .architecture {
     padding: 1.25rem;
     border-radius: 1.25rem;
+    margin-bottom: 2rem;
   }
 
   .architectureMarker {
@@ -1749,13 +1839,13 @@
   }
 
   .topologyNode {
-    min-height: 5.7rem;
+    min-height: 5.4rem;
     padding: 0.75rem;
   }
 
   .topologyNode strong {
     margin-top: 0.9rem;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
   }
 
   .articleBody {
@@ -1770,12 +1860,17 @@
     padding-inline: 0.8rem 0;
   }
 
+  .chapter:nth-child(even) .chapterFrame {
+    margin-left: 0;
+  }
+
   .chapter h2 {
-    font-size: clamp(2.15rem, 11vw, 3.4rem);
+    font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+    line-height: 1.03;
   }
 
   .chapterList li {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
 
   .chapterNote {
@@ -1783,11 +1878,80 @@
   }
 
   .ctaTrace span {
-    width: 42rem;
+    width: 32rem;
+  }
+
+  .ctaSection {
+    min-height: 70svh;
+  }
+
+  .ctaInner h2 {
+    font-size: clamp(2rem, 9vw, 2.65rem);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .topology {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 359px) {
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .metric,
+  .metric:first-child,
+  .metric:nth-child(2),
+  .metric:nth-child(3) {
+    min-height: 6.75rem;
+  }
+
+  .metric + .metric {
+    border-top: 1px solid var(--color-edge);
+  }
+
+  .topology {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTitle {
+    font-size: 2.15rem;
   }
 }
 
 @media (max-height: 560px) {
+  .heroSticky {
+    padding-top: 4.75rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .backLink {
+    min-height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .heroRecorder {
+    top: 3.75rem;
+    right: -4rem;
+    width: 16rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+  }
+
+  .heroSubtitle {
+    margin-top: 0.9rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .heroFooter {
+    margin-top: 1.25rem;
+  }
+
   .ctaSection {
     padding-block: 1rem;
   }
@@ -1818,7 +1982,7 @@
   }
 }
 
-@media (max-height: 599px), (hover: none), (pointer: coarse), (pointer: none) {
+@media (max-height: 699px), (hover: none), (pointer: coarse), (pointer: none) {
   .hero,
   .heroSticky {
     min-block-size: auto;
@@ -1827,7 +1991,7 @@
   .heroSticky {
     position: relative;
     block-size: auto;
-    min-height: 100svh;
+    min-height: min(88svh, 44rem);
   }
 
   .heroCopy,

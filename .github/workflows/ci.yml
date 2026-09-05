@@ -30,10 +30,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
 
       - name: Setup Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version: "24.18.0"
           cache: "npm"
@@ -70,6 +70,11 @@ jobs:
       - name: Run typecheck
         run: npm run typecheck
 
+      - name: Validate Vercel deployment mode
+        env:
+          VERCEL: "1"
+        run: npm run build
+
       - name: Build the production application
         run: npm run build
 
@@ -98,6 +103,22 @@ jobs:
           format: table
           severity: CRITICAL,HIGH
           exit-code: "1"
+
+      - name: Generate and verify the container SBOM
+        run: |
+          docker run --rm \
+            --volume /var/run/docker.sock:/var/run/docker.sock \
+            anchore/syft:v1.51.0@sha256:678bfa565b60f747aac0f8e964fe5588a24445b8d0a480e91f6efd70020dfbb0 \
+            docker:portfolio:ci --output cyclonedx-json > container-sbom.cdx.json
+
+          jq --exit-status '
+            any(
+              .components[]?;
+              .type == "application" and
+              .name == "node" and
+              .version == "24.18.0"
+            )
+          ' container-sbom.cdx.json > /dev/null
 
       - name: Smoke-test the production container
         run: |
@@ -145,7 +166,11 @@ jobs:
 
           test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.env.NODE_ENV')" = "production"
           test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.version')" = "v24.18.0"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.versions.openssl')" = "3.5.7"
           test "$(docker exec portfolio-ci /nodejs/bin/node -p 'process.env.NEXT_PUBLIC_SITE_URL')" = "$NEXT_PUBLIC_SITE_URL"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'require("node:fs").existsSync("/var/lib/dpkg/status.d/libssl3t64")')" = "false"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'require("node:fs").existsSync("/var/lib/dpkg/status.d/libstdc++6")')" = "true"
+          test "$(docker exec portfolio-ci /nodejs/bin/node -p 'require("node:fs").existsSync("/usr/share/doc/nodejs/LICENSE")')" = "true"
 
           response_headers="$(curl --fail --show-error --silent --head http://127.0.0.1:3100/)"
           grep --ignore-case --quiet '^cross-origin-resource-policy: same-origin' <<< "$response_headers"
@@ -175,10 +200,19 @@ jobs:
         run: docker rm --force portfolio-ci 2>/dev/null || true
 
       - name: Upload Playwright report
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
           path: playwright-report/
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Upload container SBOM
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ !cancelled() }}
+        with:
+          name: container-sbom
+          path: container-sbom.cdx.json
+          if-no-files-found: ignore
+          retention-days: 14

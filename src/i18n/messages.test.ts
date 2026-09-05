@@ -47,7 +47,7 @@ describe("localized message catalogs", () => {
   })
 
   it("keeps the contact flow localized", () => {
-    expect(en.Contact.form.selectPlaceholder).toBe("Select an option")
+    expect(en.Contact.form.subject).toBe("Subject")
     expect(es.Contact.form.send).toBe("Enviar mensaje")
     expect(es.Contact.form.serverErrors.rateLimited).not.toMatch(/requisi|tente/i)
     expect(pt.Contact.form.webMcp.toolDescription).toContain("confirmação manual")

@@ -186,7 +186,7 @@ export function ArticleExperience({
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
     const heroCapabilityQuery = window.matchMedia(
-      "(min-width: 900px) and (min-height: 600px) and (hover: hover) and (pointer: fine)",
+      "(min-width: 1024px) and (min-height: 700px) and (hover: hover) and (pointer: fine)",
     )
     let geometry: ExperienceGeometry | null = null
     let renderFrame = 0

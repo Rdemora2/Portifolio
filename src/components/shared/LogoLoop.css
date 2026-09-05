@@ -7,6 +7,77 @@
   --logoloop-fadeColorAuto: #ffffff;
 }
 
+.logoloop__toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.logoloop__control {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  width: fit-content;
+  min-height: 2.75rem;
+  align-items: center;
+  margin: 0 0 0.5rem auto;
+  border: 1px solid var(--color-control-edge);
+  border-radius: 999px;
+  padding: 0.6rem 0.9rem;
+  background: rgba(5, 10, 18, 0.72);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.logoloop__control::before {
+  margin-right: 0.45rem;
+  color: var(--color-signal);
+  content: "Ⅱ";
+}
+
+.logoloop__resume-label {
+  display: none;
+}
+
+.logoloop__toggle:checked + .logoloop__control::before {
+  content: "▶";
+}
+
+.logoloop__toggle:checked + .logoloop__control .logoloop__pause-label {
+  display: none;
+}
+
+.logoloop__toggle:checked + .logoloop__control .logoloop__resume-label {
+  display: inline;
+}
+
+.logoloop__toggle:focus-visible + .logoloop__control {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}
+
+.logoloop__toggle:checked ~ .logoloop__track {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logoloop__control:hover {
+    border-color: var(--color-signal);
+    color: var(--color-text-primary);
+  }
+}
+
 .logoloop--scale-hover {
   padding-top: calc(var(--logoloop-logoHeight) * 0.1);
   padding-bottom: calc(var(--logoloop-logoHeight) * 0.1);
@@ -106,6 +177,11 @@
 
   .logoloop__node {
     transition: none !important;
+  }
+
+  .logoloop__control,
+  .logoloop__toggle {
+    display: none;
   }
 }
 
