@@ -63,6 +63,28 @@ export function Navigation() {
             "--nav-background-opacity",
             String(progress * 0.82),
           )
+
+          if (progress <= 0) {
+            navigation.style.setProperty("--nav-backdrop-filter", "none")
+            navigation.style.setProperty("--nav-specular-opacity", "0")
+          } else if (progress >= 1) {
+            navigation.style.setProperty(
+              "--nav-backdrop-filter",
+              "var(--glass-nav-blur)",
+            )
+            navigation.style.setProperty("--nav-specular-opacity", "1")
+          } else {
+            const blur = (progress * 16).toFixed(1)
+            const saturation = Math.round(100 + progress * 80)
+            navigation.style.setProperty(
+              "--nav-backdrop-filter",
+              `blur(${blur}px) saturate(${saturation}%)`,
+            )
+            navigation.style.setProperty(
+              "--nav-specular-opacity",
+              String(progress),
+            )
+          }
         }
 
         animationFrame = 0
@@ -175,12 +197,27 @@ export function Navigation() {
         data-navigation-ready={isHydrated ? "true" : "false"}
         data-article-navigation={isArticle ? "" : undefined}
         className="glass-nav fixed inset-x-0 top-0 z-[100] transition-all duration-500"
-        style={{
-          borderBottomColor:
-            "rgb(255 255 255 / var(--nav-border-opacity, 0))",
-          backgroundColor:
-            "rgb(5 10 18 / var(--nav-background-opacity, 0))",
-        }}
+        style={
+          {
+            borderBottomColor: isHome
+              ? "rgb(255 255 255 / var(--nav-border-opacity, 0))"
+              : "rgb(255 255 255 / var(--nav-border-opacity, 0.08))",
+            backgroundColor: isHome
+              ? "rgb(5 10 18 / var(--nav-background-opacity, 0))"
+              : "rgb(5 10 18 / var(--nav-background-opacity, 0.82))",
+            backdropFilter: isHome
+              ? "var(--nav-backdrop-filter, none)"
+              : "var(--nav-backdrop-filter, var(--glass-nav-blur))",
+            WebkitBackdropFilter: isHome
+              ? "var(--nav-backdrop-filter, none)"
+              : "var(--nav-backdrop-filter, var(--glass-nav-blur))",
+            "--nav-progress": isHome ? "0" : "1",
+            "--nav-border-opacity": isHome ? "0" : "0.08",
+            "--nav-background-opacity": isHome ? "0" : "0.82",
+            "--nav-backdrop-filter": isHome ? "none" : "var(--glass-nav-blur)",
+            "--nav-specular-opacity": isHome ? "0" : "1",
+          } as CSSProperties
+        }
         aria-label={t("ariaLabel")}
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { AboutPrinciples } from "@/components/portfolio/AboutPrinciples"
+import { FAQ } from "@/components/portfolio/FAQ"
 import { PageIntro } from "@/components/portfolio/PageIntro"
 import { About } from "@/components/sections/About"
 import { TechStack } from "@/components/sections/TechStack"
@@ -52,6 +53,9 @@ export default async function AboutPage({
       <AboutPrinciples />
       <div id="stack">
         <TechStack />
+      </div>
+      <div id="faq">
+        <FAQ />
       </div>
     </main>
   )

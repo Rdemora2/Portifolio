@@ -27,6 +27,7 @@
 .DS_Store
 *.pem
 /docs/portifolio/
+.openclaude/
 
 # debug
 npm-debug.log*

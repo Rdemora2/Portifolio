@@ -173,11 +173,16 @@
     z-index: 1;
   }
 
+  .glass-nav::before {
+    opacity: var(--nav-specular-opacity, var(--nav-progress, 1));
+    transition: opacity var(--transition-base);
+  }
+
   /* glass-nav — navigation bar (lighter surface, no inset shadow) */
   .glass-nav {
     background-color: var(--glass-nav-bg);
-    backdrop-filter: var(--glass-nav-blur);
-    -webkit-backdrop-filter: var(--glass-nav-blur);
+    backdrop-filter: var(--nav-backdrop-filter, var(--glass-nav-blur));
+    -webkit-backdrop-filter: var(--nav-backdrop-filter, var(--glass-nav-blur));
     border-bottom: 1px solid var(--glass-nav-border);
   }
 

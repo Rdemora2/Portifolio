@@ -18,6 +18,7 @@ const legacyDestinations: Record<
   experience: { pathname: "/experience" },
   about: { pathname: "/about" },
   tech: { pathname: "/about", hash: "#stack" },
+  faq: { pathname: "/about", hash: "#faq" },
   metrics: {
     pathname: "/work/hospital-sirio-libanes",
     hash: "#metrics",

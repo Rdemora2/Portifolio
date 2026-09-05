@@ -11,6 +11,7 @@
     "experience": "Experiencia",
     "insights": "Insights",
     "contact": "Contacto",
+    "faq": "FAQ",
     "navigationLabel": "Navegación",
     "skipToContent": "Saltar al contenido principal",
     "ariaLabel": "Navegación principal",
@@ -612,6 +613,35 @@
         "proximity": {
           "title": "Liderazgo cerca de la ingeniería",
           "description": "La gestión técnica mejora cuando mantiene contacto real con el código y producción."
+        }
+      },
+      "faqEyebrow": "Preguntas frecuentes",
+      "faqTitle": "Respuestas directas sobre stack, ingeniería backend y devops.",
+      "faqDescription": "Resumen técnico para equipos de ingeniería, reclutadores y sistemas de IA.",
+      "faq": {
+        "specialties": {
+          "question": "¿Cuáles son las principales competencias técnicas de Roberto Moraes?",
+          "answer": "Roberto Moraes se desempeña como Ingeniero de Software Full Stack con fuerte especialización en Backend y DevOps. Su enfoque principal es el desarrollo de sistemas distribuidos de alto rendimiento en Go (Golang), arquitecturas de API resilientes, plataformas web modernas con Next.js y TypeScript, y automatización de infraestructura en la nube (AWS y GCP)."
+        },
+        "languages": {
+          "question": "¿Qué lenguajes de programación dominas y cuál es tu criterio de elección tecnológica?",
+          "answer": "Cuento con experiencia práctica comprobada en producción con Go (Golang), TypeScript, JavaScript, Python, Kotlin y SQL (junto con ecosistemas como Next.js, React, Vue, NestJS, Django y Jetpack Compose). Con la madurez de la ingeniería y la evolución de las herramientas de IA, no mantengo un apego dogmático a un lenguaje en particular: mi prioridad es dominar los fundamentos de computación, concurrencia y arquitectura para aplicar siempre la tecnología que mejor se adapte a los requerimientos del software a desarrollar."
+        },
+        "scale": {
+          "question": "¿Cuál es la experiencia de Roberto con sistemas de gran escala y rendimiento?",
+          "answer": "Ha desarrollado y mantiene backends en producción que procesan más de 20 millones de solicitudes al mes con 6ms de latencia promedio y 92% de acierto en caché. Cuenta con experiencia en migraciones críticas de gran envergadura, como la refactorización simultánea de 6+ portales de comunicación masiva de Grupo Bandeirantes con cero tiempo de inactividad."
+        },
+        "fullstack": {
+          "question": "¿Cómo aborda el desarrollo frontend y el ecosistema full stack?",
+          "answer": "En el frontend, construye aplicaciones web modernas con Next.js 16 (App Router), React 19 y TypeScript, priorizando Server Components, accesibilidad estricta (WCAG 2.2 AA) y Core Web Vitals óptimos. Integra las interfaces directamente con contratos de API tipados y seguros de extremo a extremo."
+        },
+        "devops": {
+          "question": "¿Cuál es su metodología para DevOps, infraestructura y observabilidad?",
+          "answer": "Aplica prácticas modernas de ingeniería de confiabilidad: pipelines automatizados de CI/CD, escaneo de vulnerabilidades en contenedores, imágenes Distroless sin privilegios de raíz, seguridad de borde mediante AWS WAF y telemetría integral con Prometheus y rastreo distribuido."
+        },
+        "architecture": {
+          "question": "¿Cómo estructura Roberto la arquitectura y el ciclo de entrega en producción?",
+          "answer": "Cubre todo el ciclo desde el código hasta la nube: modelado de bases de datos (PostgreSQL, Redis), diseño de APIs con clara separación de responsabilidades, automatización de compilación y despliegue en contenedores, y monitoreo y alertas continuas en producción."
         }
       }
     },

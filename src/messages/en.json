@@ -11,6 +11,7 @@
     "experience": "Experience",
     "insights": "Insights",
     "contact": "Contact",
+    "faq": "FAQ",
     "navigationLabel": "Navigation",
     "skipToContent": "Skip to content",
     "ariaLabel": "Main navigation",
@@ -612,6 +613,35 @@
         "proximity": {
           "title": "Leadership close to engineering",
           "description": "Technical management improves when it maintains real contact with code and production."
+        }
+      },
+      "faqEyebrow": "Frequently Asked Questions",
+      "faqTitle": "Direct answers on stack, backend engineering, and devops.",
+      "faqDescription": "Technical overview for engineering teams, recruiters, and AI retrieval systems.",
+      "faq": {
+        "specialties": {
+          "question": "What are Roberto Moraes's core technical specialties and skills?",
+          "answer": "Roberto Moraes is a Full Stack Software Engineer with deep specialization in Backend systems and DevOps. His core focus is engineering high-throughput distributed systems in Go (Golang), resilient API architectures, modern web platforms with Next.js and TypeScript, and automated cloud infrastructure on AWS and GCP."
+        },
+        "languages": {
+          "question": "Which programming languages do you use, and how do you approach technology choices?",
+          "answer": "I have proven production experience across Go (Golang), TypeScript, JavaScript, Python, Kotlin, and SQL (alongside ecosystems such as Next.js, React, Vue, NestJS, Django, and Jetpack Compose). Supported by modern AI tools and solid engineering foundations, I hold no dogmatic attachment to a single language: my focus is on computer science fundamentals, concurrency, and architecture, always selecting the technology that best fits the specific operational and functional requirements of the software being built."
+        },
+        "scale": {
+          "question": "What is Roberto's experience with high-scale and high-throughput systems?",
+          "answer": "He has built and operates production backends handling over 20 million requests per month with a 6ms average latency and 92% cache hit ratio. His track record includes large-scale critical migrations, such as the simultaneous refactoring of 6+ mass-communication portals for Grupo Bandeirantes with zero downtime."
+        },
+        "fullstack": {
+          "question": "How does he approach frontend and full-stack engineering?",
+          "answer": "On the frontend, he builds modern web applications using Next.js 16 (App Router), React 19, and TypeScript, focusing on Server Components, strict accessibility compliance (WCAG 2.2 AA), and optimal Core Web Vitals. He connects interfaces seamlessly to strictly typed backend API contracts end to end."
+        },
+        "devops": {
+          "question": "What is his methodology for DevOps, infrastructure, and observability?",
+          "answer": "He implements modern reliability engineering practices: automated CI/CD pipelines, container vulnerability scanning, hardened non-root Distroless images, edge security with AWS WAF, and comprehensive telemetry using Prometheus and distributed tracing."
+        },
+        "architecture": {
+          "question": "How does Roberto structure software architecture and production delivery?",
+          "answer": "He covers the entire engineering spectrum from code to cloud: database modeling (PostgreSQL, Redis), API design with clean separation of concerns, automated containerized build and deployment pipelines, and continuous production monitoring and alerting."
         }
       }
     },
