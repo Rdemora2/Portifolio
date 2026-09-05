@@ -403,12 +403,6 @@ export const experience: ExperienceEntry[] = [
   },
 ]
 
-export const metrics = [
-  { id: "requests", value: 20, suffix: "M" },
-  { id: "latency", value: 6, suffix: "ms" },
-  { id: "cache", value: 92, suffix: "%" },
-]
-
 export const insights: Insight[] = [
   {
     id: "insight-2",
@@ -423,14 +417,3 @@ export const insights: Insight[] = [
   },
 ]
 
-export const navLinks = [
-  { id: "hero", label: "Início" },
-  { id: "about", label: "Sobre" },
-  { id: "projects", label: "Projetos" },
-  { id: "sites", label: "Sites" },
-  { id: "tech", label: "Stack" },
-  { id: "metrics", label: "Métricas" },
-  { id: "experience", label: "Experiência" },
-  { id: "insights", label: "Insights" },
-  { id: "contact", label: "Contato" },
-]

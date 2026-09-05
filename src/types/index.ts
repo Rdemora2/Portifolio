@@ -77,20 +77,6 @@ export interface Project {
   managedProductGroups?: readonly ManagedDigitalProductGroup[]
 }
 
-export interface ProjectViewModel {
-  id: string
-  roleType: RoleType
-  client: string
-  international?: boolean
-  metrics: Array<Pick<Metric, "id" | "value" | "suffix">>
-  stack: string[]
-  highlightCount: number
-  keyDecisionCount: number
-  lessonsLearnedCount: number
-  hasCaseStudy: boolean
-  managedProductGroups: readonly ManagedDigitalProductGroup[]
-}
-
 export type WebsiteExperienceTag =
   | "editorialExperience"
   | "institutionalStrategy"
