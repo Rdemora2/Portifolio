@@ -279,6 +279,19 @@ export function LiquidChrome({
     }
     document.addEventListener("visibilitychange", handleVisibilityChange)
     canvas.addEventListener("webglcontextlost", handleContextLost)
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          start()
+        } else {
+          stop()
+        }
+      },
+      { threshold: 0 },
+    )
+    visibilityObserver.observe(container)
+
     start()
 
     return () => {
@@ -288,6 +301,7 @@ export function LiquidChrome({
       cancelAnimationFrame(boundsFrame)
       pointerFrameRef.current = 0
       boundsRef.current = null
+      visibilityObserver.disconnect()
       resizeObserver.disconnect()
       if (interactive) {
         window.removeEventListener("pointermove", handlePointerMove)

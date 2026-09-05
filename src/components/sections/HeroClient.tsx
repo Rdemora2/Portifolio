@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic"
 import { useSyncExternalStore } from "react"
 
-import { useInView } from "@/hooks/useInView"
 import { isBot } from "@/lib/is-bot"
 import { WebGLErrorBoundary } from "@/components/shared/WebGLErrorBoundary"
 
@@ -78,11 +77,6 @@ export function HeroClientWrapper({
   children: React.ReactNode
   isBotHint?: boolean
 }) {
-  const [sectionRef, isInView] = useInView<HTMLElement>({
-    threshold: 0,
-    rootMargin: "0px",
-    triggerOnce: false,
-  })
   const canRender = useSyncExternalStore(
     subscribeToCapabilities,
     () => canRenderSignatureEffect(isBotHint),
@@ -92,7 +86,6 @@ export function HeroClientWrapper({
   return (
     <section
       id="hero"
-      ref={sectionRef}
       className="site-home-hero relative flex items-center overflow-hidden"
       data-home-hero
     >
@@ -100,7 +93,7 @@ export function HeroClientWrapper({
         className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_64%_28%,rgba(99,102,241,0.15),transparent_34%),linear-gradient(180deg,#050a12_0%,#07101a_52%,#050a12_100%)]"
         aria-hidden="true"
       >
-        {canRender && isInView ? (
+        {canRender ? (
           <WebGLErrorBoundary>
             <LiquidChrome
               baseColor={LIQUID_CHROME_BASE_COLOR}
