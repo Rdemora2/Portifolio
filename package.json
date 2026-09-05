@@ -57,7 +57,7 @@
     "runtime": {
       "name": "node",
       "version": ">=24.18.0 <25",
-      "onFail": "error"
+      "onFail": "warn"
     }
   },
   "overrides": {

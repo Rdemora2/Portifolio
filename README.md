@@ -37,7 +37,7 @@ Este README é a porta de entrada operacional. O desenho completo, os fluxos, co
 - npm 11.16.0 como versão de referência reproduzível.
 - Docker 24+ somente para os fluxos em container.
 
-O projeto usa Node.js 24.18.0 em <code>.nvmrc</code>, CI e Docker. <code>engines</code>, <code>devEngines</code> e <code>engine-strict=true</code> mantêm instalações na linha 24, a partir de 24.18.0, para evitar upgrades automáticos de major e divergência entre desenvolvimento, CI e deploy. O campo <code>packageManager</code> declara npm 11.16.0 como referência reproduzível, sem impor uma faixa adicional de compatibilidade.
+O projeto usa Node.js 24.18.0 em <code>.nvmrc</code>, CI e Docker. <code>engines</code> e <code>engine-strict=true</code> mantêm instalações na linha 24, a partir de 24.18.0, para evitar upgrades automáticos de major e divergência entre ambientes. O campo <code>devEngines</code> está configurado para emitir aviso em desenvolvimento local (permitindo ergonomia caso outra versão de Node esteja ativa), enquanto o CI e o Docker garantem a execução estrita no Node 24.18.0. O campo <code>packageManager</code> declara npm 11.16.0 como referência reproduzível, sem impor uma faixa adicional de compatibilidade.
 
 Scripts de lifecycle de dependências ficam desabilitados por <code>.npmrc</code>. Os scripts do próprio projeto, executados explicitamente com <code>npm run</code>, continuam habilitados.
 
