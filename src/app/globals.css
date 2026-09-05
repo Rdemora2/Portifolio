@@ -317,7 +317,8 @@
 }
 
 .site-home-hero {
-  min-block-size: min(42rem, 76svh);
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
   padding-block: 5.5rem 3rem;
 }
 

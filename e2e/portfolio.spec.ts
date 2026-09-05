@@ -149,7 +149,7 @@ test("keeps every hero within a deliberate responsive scale", async ({
       selector: "[data-home-hero]",
       width: 1440,
       height: 900,
-      maxHeightRatio: 0.76,
+      maxHeightRatio: 1.02,
       maxTitleSize: 62,
     },
     {
@@ -181,7 +181,7 @@ test("keeps every hero within a deliberate responsive scale", async ({
       selector: "[data-home-hero]",
       width: 320,
       height: 568,
-      maxHeightRatio: 0.9,
+      maxHeightRatio: 1.02,
       maxTitleSize: 40,
     },
     {

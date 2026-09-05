@@ -25,6 +25,8 @@ const mediaQueries = [
   "(max-width: 1023px)",
 ] as const
 
+const LIQUID_CHROME_BASE_COLOR: [number, number, number] = [0.08, 0.08, 0.22]
+
 // WHY: Privacy-focused browsers like Brave and Firefox randomize or limit navigator.hardwareConcurrency
 // and deviceMemory to mitigate fingerprinting vectors. We check for privacy browser signatures so
 // valid desktop users on these platforms aren't falsely flagged as low-power.
@@ -101,7 +103,7 @@ export function HeroClientWrapper({
         {canRender && isInView ? (
           <WebGLErrorBoundary>
             <LiquidChrome
-              baseColor={[0.08, 0.08, 0.22]}
+              baseColor={LIQUID_CHROME_BASE_COLOR}
               speed={0.2}
               amplitude={0.35}
               frequencyX={2.5}

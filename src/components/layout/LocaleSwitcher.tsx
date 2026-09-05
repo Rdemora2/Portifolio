@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation"
 import { useLocale, useTranslations } from "next-intl"
-import { useSyncExternalStore, type ReactNode } from "react"
+import { useMemo, useSyncExternalStore, type ReactNode } from "react"
 
 import {
   getDocumentLanguage,
@@ -158,7 +158,10 @@ export function LocaleSwitcher({
   const search =
     hashIndex === -1 ? locationSuffix : locationSuffix.slice(0, hashIndex)
   const hash = hashIndex === -1 ? "" : locationSuffix.slice(hashIndex)
-  const query = Object.fromEntries(new URLSearchParams(search).entries())
+  const query = useMemo(
+    () => Object.fromEntries(new URLSearchParams(search).entries()),
+    [search],
+  )
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug
 
   return (
