@@ -54,4 +54,23 @@ describe("portfolio project data", () => {
       expect(url.hash).toBe("")
     })
   })
+
+  it("publishes complete and optimized case study gallery images for primary cases", () => {
+    const casesWithGalleries = ["band-news-bandsports", "hospital-sirio-libanes"] as const
+
+    for (const projectId of casesWithGalleries) {
+      const project = projects.find(({ id }) => id === projectId)
+      expect(project).toBeDefined()
+      const images = project?.caseStudy?.images ?? []
+      expect(images.length).toBeGreaterThanOrEqual(5)
+
+      images.forEach((image) => {
+        expect(image.src).toMatch(/^\/images\/(?:band-sites|hsl-app)\/[a-z0-9_-]+\.webp$/)
+        expect(image.width).toBeGreaterThan(500)
+        expect(image.height).toBeGreaterThan(300)
+        expect(image.alt.trim().length).toBeGreaterThan(10)
+        expect(image.blurDataURL).toMatch(/^data:image\/webp;base64,/)
+      })
+    }
+  })
 })
