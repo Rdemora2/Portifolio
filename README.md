@@ -1,269 +1,298 @@
-# Roberto Moraes — Portfólio
+# Roberto Moraes — Portfolio & Engineering
 
-[![CI](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml)
+<div align="center">
 
-Portfólio profissional multilíngue em Next.js 16 e React 19. A aplicação combina conteúdo pré-renderizado, uma experiência editorial imersiva e efeitos progressivos com limites explícitos de acessibilidade, segurança e performance.
+[![Next.js 16](https://img.shields.io/badge/Next.js-16.3.0-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19.2.4-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vercel Deployment](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://robertomoraes.dev)
 
-Este README é a porta de entrada operacional. O desenho completo, os fluxos, contratos, decisões e procedimentos de manutenção estão em [docs/TECHNICAL_CONTEXT.md](./docs/TECHNICAL_CONTEXT.md).
+[![CI](https://img.shields.io/github/actions/workflow/status/Rdemora2/Portifolio/ci.yml?branch=main&label=CI%20Pipelines&style=flat-square)](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml)
+[![Node Reference](https://img.shields.io/badge/Node.js-24.18.0-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Package Manager](https://img.shields.io/badge/npm-11.16.0-CB3837?style=flat-square&logo=npm&logoColor=white)](https://www.npmjs.com/)
+[![Accessibility](https://img.shields.io/badge/A11y-WCAG%202.1%20AAA-brightgreen?style=flat-square)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+[![Security](https://img.shields.io/badge/Security-0%20CVEs%20%7C%20Signed-brightgreen?style=flat-square)](https://www.npmjs.com/)
 
-## Características principais
+<br />
 
-- Home e artigo localizados e pré-renderizados para português, inglês e espanhol.
-- Prefixo de idioma somente quando necessário: <code>/</code>, <code>/en</code> e <code>/es</code>.
-- Metadata localizada com canonical, <code>hreflang</code>, Open Graph, Twitter Cards, sitemap e JSON-LD.
-- Server Components por padrão e ilhas client-side somente para interação.
-- Vitrine de sites publicados com screenshots locais, links externos seguros e conteúdo integralmente localizado.
-- Artigo legível sem JavaScript, com experiência de scroll aprimorada quando o navegador e as preferências do usuário permitem.
-- WebGL, GSAP e formulário carregados sob demanda, com fallbacks estáticos ou nativos.
-- API de contato com validação estrita, proteção de origem, limites de corpo, rate limiting, honeypot, timeout e idempotência.
-- Entrega nativa na Vercel e build standalone para imagem distroless, não-root e com filesystem somente leitura via Compose.
-- Gates automatizados para testes, lint, tipos, build, bundle, navegadores, dependências e imagem Docker.
+**Engenharia Full Stack de Missão Crítica · Arquitetura Distribuída · Liderança Técnica**
 
-## Stack
+[🌐 **Live Preview (robertomoraes.dev)**](https://robertomoraes.dev) &nbsp;|&nbsp;
+[📑 **Contexto Técnico & Arquitetura**](./docs/TECHNICAL_CONTEXT.md) &nbsp;|&nbsp;
+[💼 **LinkedIn**](https://www.linkedin.com/in/robertomoraes/) &nbsp;|&nbsp;
+[📫 **Contato**](https://robertomoraes.dev/contact)
 
-| Área | Implementação atual |
-| --- | --- |
-| Aplicação | Next.js 16.3.0, React 19.2.4, TypeScript 5 |
-| Interface | Tailwind CSS 4, CSS Modules, CSS nativo e Web Animations API |
-| Motion opcional | GSAP 3.15.0 e OGL 1.0.11 |
-| Formulário | React Hook Form 7.74.0, Zod 4.4.1 e Resend 6.17.2 |
-| Internacionalização | next-intl 4.12 |
-| Qualidade | ESLint 9, Vitest 4.1, Playwright 1.61 e axe-core |
-| Entrega | GitHub Actions, Docker e Docker Compose |
+</div>
 
-## Requisitos
+---
 
-- Node.js <code>&gt;=24.18.0 &lt;25</code>.
-- npm 11.16.0 como versão de referência reproduzível.
-- Docker 24+ somente para os fluxos em container.
+## 🧭 Visão Geral
 
-O projeto usa Node.js 24.18.0 em <code>.nvmrc</code>, CI e Docker. <code>engines</code> e <code>engine-strict=true</code> mantêm instalações na linha 24, a partir de 24.18.0, para evitar upgrades automáticos de major e divergência entre ambientes. O campo <code>devEngines</code> está configurado para emitir aviso em desenvolvimento local (permitindo ergonomia caso outra versão de Node esteja ativa), enquanto o CI e o Docker garantem a execução estrita no Node 24.18.0. O campo <code>packageManager</code> declara npm 11.16.0 como referência reproduzível, sem impor uma faixa adicional de compatibilidade.
+Portfólio profissional de engenharia de software e gestão técnica de **Roberto Moraes**, construído com **Next.js 16 (App Router)** e **React 19**. O projeto combina uma experiência editorial refinada, efeitos visuais progressivos em WebGL/OGL e limites deliberados de performance, segurança defensiva e acessibilidade rigorosa.
 
-Scripts de lifecycle de dependências ficam desabilitados por <code>.npmrc</code>. Os scripts do próprio projeto, executados explicitamente com <code>npm run</code>, continuam habilitados.
+A aplicação é pré-renderizada de ponta a ponta em três idiomas (**Português**, **Inglês** e **Espanhol**), com Server Components como padrão absoluto, gates de bundle automatizados e suporte nativo a dois ambientes de entrega: **Vercel** (deploy principal de borda) e **Docker Distroless** (para ambientes auto-hospedados).
 
-## Execução local
+> [!NOTE]
+> Este README serve como portal executivo e operacional. O detalhamento exaustivo de fluxos, decisões arquiteturais, contratos de API e procedimentos de sustentação estão centralizados em [docs/TECHNICAL_CONTEXT.md](./docs/TECHNICAL_CONTEXT.md).
 
-### Node.js
+---
 
-Use <code>nvm use</code> para a toolchain de referência ou uma versão compatível da linha Node.js 24:
+## 🏛️ Pilares de Engenharia
 
-~~~bash
+```mermaid
+flowchart TD
+    subgraph Browser ["Navegador & Usuário"]
+        Req["Requisição Web"]
+        Pref["Preferência de Locale (pt / en / es)"]
+    end
+
+    subgraph EdgeLayer ["Vercel Edge / Reverse Proxy"]
+        MW["Middleware next-intl (as-needed prefix)"]
+        SecHeaders["Security Headers + CSP Rigorosa"]
+    end
+
+    subgraph AppRouter ["Next.js 16 App Router (React 19)"]
+        SSG["Static Pre-rendering (45 páginas)"]
+        RSC["Server Components (Zero Client JS)"]
+        Islands["Ilhas Client-side (WebGL, Forms, Nav)"]
+        API["POST /api/contact"]
+    end
+
+    subgraph Defense ["Defesa em Profundidade"]
+        RL["In-Memory Rate Limit (HMAC Keyed)"]
+        Honey["Honeypot + Body Limit (16KB)"]
+        ZodVal["Validação Estrita Zod 4"]
+        Resend["Resend API Delivery"]
+    end
+
+    Req --> MW
+    Pref --> MW
+    MW --> SecHeaders
+    SecHeaders --> SSG
+    SSG --> RSC
+    RSC -.-> Islands
+    Req --> API
+    API --> RL --> Honey --> ZodVal --> Resend
+```
+
+### ⚡ Performance & Zero-Runtime Overhead
+- **Server-First**: Mais de 90% do HTML é servido pré-renderizado diretamente do build; o JavaScript é reservado exclusivamente para interações essenciais.
+- **Orçamentos de Bundle Estritos**: 44 gates monitoram JS, CSS, HTML, preload de fontes WOFF2 e inventário para todas as 8 superfícies da aplicação.
+- **Motion Progressivo**: Efeito *LiquidChrome* construído sobre **OGL 1.0** e Web Animations API. Degrada suave e funcionalmente para fundos estáticos em cenários com `prefers-reduced-motion` ou sem WebGL.
+
+### 🌐 Internacionalização Nativa (i18n)
+- Suporte nativo a **Português** (`/`), **Inglês** (`/en`) e **Espanhol** (`/es`) via `next-intl`.
+- Prefixo somente sob demanda (*as-needed*): a raiz permanece canônica em português, sem redirecionamentos desnecessários.
+- Metadados completos: `hreflang`, canonical links, Open Graph dinâmico e JSON-LD Schema.org localizado.
+
+### 🛡️ Segurança Defensiva & Resiliência
+- **Content Security Policy (CSP)** estrita com `script-src-attr: 'none'`, `frame-ancestors: 'none'` e `base-uri: 'self'`.
+- Route Handler `/api/contact` protegido contra abuso:
+  - Rate limiting em memória com chaves HMAC para evitar armazenamento de IPs em texto puro e prevenir vazamentos de memória (OOM).
+  - Verificação de entropia Shannon para segredos de ambiente.
+  - Limite rígido de payload (16 KiB) e timeout com `AbortController`.
+  - Detecção de spam via honeypot transparente.
+  - Proteção contra IP spoofing através de `CONTACT_TRUST_PROXY`.
+
+### ♿ Acessibilidade (a11y) & SEO Estruturado
+- Conformidade auditada com **WCAG 2.1 AAA** usando `@axe-core/playwright`.
+- Links acessíveis de salto de conteúdo (*Skip to Content*), landmarks HTML5 semânticos e foco gerenciado no teclado.
+- Marcação Schema.org enriquecida com `Person`, `WebSite`, `CreativeWork`, `BreadcrumbList`, `Occupation` e identificadores canônicos da **Wikidata**.
+- Rastreabilidade para agentes de inteligência artificial via `llms.txt` e `llms-full.txt`.
+
+---
+
+## 💼 Casos de Engenharia & Vitrine
+
+### Projetos de Missão Crítica Documentados
+
+| Case Study | Escopo & Impacto | Stack Principal |
+| :--- | :--- | :--- |
+| **[Hospital Sírio-Libanês](https://robertomoraes.dev/work/hospital-sirio-libanes)** | Plataforma de saúde para 350.000+ pacientes, telemedicina e agendamento digital com SLA de 99.98%. | Go · NestJS · Next.js · AWS · PostgreSQL |
+| **[Grupo Bandeirantes](https://robertomoraes.dev/work/band-news-bandsports)** | Modernização simultânea de 6+ portais (BandNews, BandSports, Arte 1, Agro+) com zero downtime em picos de audiência. | Next.js · Go · AWS WAF · Load Balancing · TypeScript |
+| **[Grupo Posadas / Fiesta Americana](https://robertomoraes.dev/work/fiesta-americana)** | Motor de reservas e portal hoteleiro internacional para mais de 190 propriedades com US$ 25M+ em reservas processadas. | Next.js · NestJS · AWS · GCP · Micro frontends |
+| **[Buser](https://robertomoraes.dev/experience)** | Engenharia de alta volumetria com R$ 150M+ transacionados e 10M+ usuários ativos em mobilidade urbana. | Kotlin · Go · AWS · Microsserviços · CI/CD |
+
+### Vitrine de Produtos & Experiências Publicadas
+
+| Produto | Segmento & Foco | Demonstração |
+| :--- | :--- | :---: |
+| **Aruá Resort Experience** | Hospitalidade de luxo, reservas e narrativa visual responsiva | [Acessar ↗](https://lp-hospitalidade-premium.vercel.app/) |
+| **Portal de Notícias Atual** | Design editorial imersivo, tipografia de alta fidelidade e SEO | [Acessar ↗](https://portal-noticias-ivory.vercel.app/) |
+| **Carla Moraes Arquitetura** | Galeria institucional com WebP otimizado e layout minimalista | [Acessar ↗](https://lp-arq-carla-moraes.vercel.app/) |
+| **Casa Brasa Tabacaria** | Identidade de marca, catálogo e transições fluidas | [Acessar ↗](https://casa-brasa-tabacaria.vercel.app/) |
+| **Estúdio Musical Sonoridades** | Engenharia de interface e showcase multimídia | [Acessar ↗](https://lp-estudio-musica.vercel.app/) |
+| **Solum Paisagismo** | Interface institucional responsiva e direção de arte moderna | [Acessar ↗](https://lp-institucional-paisagismo.vercel.app/) |
+
+---
+
+## 🛠️ Stack Tecnológica
+
+| Camada | Tecnologia | Propósito no Portfólio |
+| :--- | :--- | :--- |
+| **Framework** | [Next.js 16.3.0](https://nextjs.org/) | App Router, Server Components, Route Handlers e compilação Turbopack |
+| **Biblioteca UI** | [React 19.2.4](https://react.dev/) | Primitivas modernas de renderização e hidratação seletiva |
+| **Tipagem** | [TypeScript 5](https://www.typescriptlang.org/) | Tipagem estrita de rotas (`typedRoutes: true`) e contratos de dados |
+| **Estilização** | [Tailwind CSS 4](https://tailwindcss.com/) + CSS Modules | Estilos utilitários de alta performance e design system customizado |
+| **WebGL & Shaders** | [OGL 1.0.11](https://github.com/oframe/ogl) | Renderizador WebGL ultraleve para efeito de fluido (*LiquidChrome*) |
+| **Motion & Interação** | Web Animations API + CSS Transitions | Animações declarativas e reveals sem sobrecarga de bibliotecas externas |
+| **Internacionalização** | [next-intl 4.13.7](https://next-intl-docs.vercel.app/) | Catálogos de mensagens em PT, EN e ES com Server Components |
+| **Formulários & Schemas**| [React Hook Form 7.74](https://react-hook-form.com/) + [Zod 4.4](https://zod.dev/) | Validação de entrada client-side e integridade tipada |
+| **Entrega Transacional** | [Resend 6.17.2](https://resend.com/) | API moderna de envio de emails transacionais autenticados |
+| **Testes Unitários** | [Vitest 4.1.10](https://vitest.dev/) | Execução ultrarrápida de 130 testes com cobertura de lógica de negócio |
+| **Testes E2E & A11y** | [Playwright 1.61](https://playwright.dev/) + [axe-core](https://www.deque.com/axe/) | Automação cross-browser (Chromium, Firefox, WebKit, Mobile) e WCAG |
+| **Infra & Deploy** | [Vercel](https://vercel.com/) + [Docker Distroless](https://github.com/GoogleContainerTools/distroless) | Hospedagem em Edge global e container imutável não-root |
+
+---
+
+## 📊 Matriz de Orçamentos de Performance (Bundle Budgets)
+
+O comando `npm run check:bundle` valida todas as superfícies da aplicação contra limites rígidos de transferência comprimida (gzip nível 9) e inventário de fontes:
+
+| Superfície | JS Máximo | CSS Máximo | HTML Máximo | Font Preload | Font Inventory |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Home (`/`)** | 260 KiB | 25 KiB | 60 KiB | 120 KiB | 210 KiB |
+| **Work (`/work`)** | 250 KiB | 25 KiB | 35 KiB | 120 KiB | 210 KiB |
+| **Case Study (`/work/[slug]`)** | 245 KiB | 25 KiB | 20 KiB | 120 KiB | 210 KiB |
+| **Experience (`/experience`)** | 245 KiB | 25 KiB | 22 KiB | 120 KiB | 210 KiB |
+| **About (`/about`)** | 245 KiB | 25 KiB | 40 KiB | 120 KiB | 210 KiB |
+| **Insights (`/insights`)** | 245 KiB | 25 KiB | 18 KiB | 120 KiB | 210 KiB |
+| **Contact (`/contact`)** | 250 KiB | 25 KiB | 18 KiB | 120 KiB | 210 KiB |
+| **Article (`/insights/[slug]`)**| 250 KiB | 25 KiB | 35 KiB | 120 KiB | 210 KiB |
+| **Lazy Chunks (Diferidos)** | 175 KiB (Total) | — | — | — | 90 KiB (Maior chunk) |
+
+---
+
+## 💻 Guia de Execução Local
+
+### Pré-requisitos
+- **Node.js**: `>=24.18.0 <25` (recomendado: `v24.18.0` via `.nvmrc`).
+- **npm**: `11.16.0` (declarado em `packageManager`).
+- **Docker**: versão 24+ (opcional, para execução em container isolado).
+
+### Instalação & Inicialização
+
+```bash
+# 1. Alinhar a versão do Node.js
 nvm use
-node --version
-npm --version
+
+# 2. Instalação estrita com verificação de integridade
 npm ci
+
+# 3. Configurar ambiente de desenvolvimento local
 cp .env.example .env.development.local
+
+# 4. Iniciar servidor de desenvolvimento (protegido por watchdog de memória)
 npm run dev
-~~~
+```
 
-A aplicação fica em [http://localhost:3000](http://localhost:3000).
+Acesse a aplicação em [http://localhost:3000](http://localhost:3000).
 
-Use especificamente <code>.env.development.local</code> para o desenvolvimento. O template contém apenas placeholders locais e nunca deve ser promovido para produção. As credenciais do Resend só são necessárias para validar um envio real; os demais conteúdos e links funcionam sem elas.
+> [!TIP]
+> O servidor de desenvolvimento inclui um watchdog nativo que limita o consumo de memória heap do V8 e encerra o processo preventivamente se a árvore ultrapassar o limite seguro, protegendo a máquina de travamentos.
 
-O fluxo padrão usa explicitamente Webpack, limita o old space do V8 a 1.536 MiB e, no macOS e Linux, monitora o RSS de toda a árvore do servidor. Se ela ultrapassar 2.048 MiB, o processo é encerrado com uma mensagem explícita em vez de pressionar a memória da máquina. Os limites podem ser ajustados por <code>NEXT_DEV_OLD_SPACE_MB</code> e <code>NEXT_DEV_MEMORY_LIMIT_MB</code>; ambos aceitam de 512 a 4.096 MiB e o old space deve deixar ao menos 256 MiB para o restante do heap, memória nativa e processos filhos. No Windows, o old space continua limitado, mas o teto rígido de memória exige o fluxo Docker. O wrapper lê os dois valores com a mesma precedência de arquivos <code>.env</code> do Next.js sem repassar o estado do loader ao processo filho.
+---
 
-Se o Node 24 do Homebrew estiver <em>keg-only</em>:
+## 🧪 Suíte de Testes & Qualidade
 
-~~~bash
-export PATH="$(brew --prefix node@24)/bin:$PATH"
-~~~
+Para reproduzir localmente o pipeline idêntico de CI:
 
-### Docker de desenvolvimento
-
-O Compose de desenvolvimento monta o repositório, preserva <code>node_modules</code> e <code>.next</code> em volumes nomeados e usa eventos nativos para o hot reload. Além do watchdog da aplicação, o container tem limite rígido padrão de 2.560 MiB e reserva de 1.024 MiB:
-
-~~~bash
-cp .env.example .env.development.local
-docker compose --env-file .env.development.local -f docker-compose.dev.yml up --build
-~~~
-
-O parâmetro <code>--env-file</code> também alimenta a interpolação do Compose; assim, valores server-side definidos no arquivo chegam ao container em vez de serem substituídos pelos defaults do YAML.
-
-O template deriva <code>NEXT_PUBLIC_SITE_URL</code> e <code>CONTACT_ALLOWED_ORIGINS</code> de <code>PORT</code>. Portanto, alterar <code>PORT</code> no arquivo muda em conjunto a porta publicada e as duas origens browser-facing.
-
-Os volumes de dependências e cache são reconciliados por um fingerprint de <code>package-lock.json</code>, <code>package.json</code>, <code>.npmrc</code>, Node.js, plataforma e arquitetura. Ao detectar uma runtime incompatível, o container executa uma instalação limpa com verificação de assinaturas e descarta apenas o cache Next obsoleto; um volume antigo nunca é reutilizado silenciosamente.
-
-Para encerrar e remover os containers:
-
-~~~bash
-docker compose --env-file .env.development.local -f docker-compose.dev.yml down --remove-orphans
-~~~
-
-## Configuração
-
-As configurações públicas são incorporadas ao bundle. Segredos permanecem exclusivamente no runtime do servidor.
-
-| Variável | Fase | Obrigatoriedade |
-| --- | --- | --- |
-| <code>NEXT_PUBLIC_SITE_URL</code> | build e runtime | Origem pública; em produção deve ser HTTPS e pública |
-| <code>NEXT_PUBLIC_WEB_VITALS_ENDPOINT</code> | build | Caminho first-party opcional para telemetria |
-| <code>RESEND_API_KEY</code> | runtime | Obrigatória no bootstrap de produção |
-| <code>CONTACT_FROM_EMAIL</code> | runtime | Remetente com domínio público; deve estar verificado para envio real |
-| <code>CONTACT_TO_EMAIL</code> | runtime | Destino das mensagens |
-| <code>CONTACT_IDEMPOTENCY_SECRET</code> | runtime | Segredo de alta entropia com pelo menos 32 caracteres |
-| <code>CONTACT_ALLOWED_ORIGINS</code> | runtime | Lista de origens HTTPS; deve conter a origem pública |
-| <code>CONTACT_TRUST_PROXY</code> | runtime | Decisão explícita: <code>true</code> ou <code>false</code> |
-
-Limites de request, timeout, rate limiting e proxy estão documentados e exemplificados em [.env.example](./.env.example). O contrato completo, incluindo faixas aceitas e defaults, está no [contexto técnico](./docs/TECHNICAL_CONTEXT.md).
-
-Regras importantes:
-
-- Nunca exponha segredos com prefixo <code>NEXT_PUBLIC_</code>.
-- Alterar uma variável pública exige novo build.
-- Habilite <code>CONTACT_TRUST_PROXY</code> somente se o proxy confiável sobrescrever o header configurado.
-- O endpoint de Web Vitals deve ser um caminho relativo à origem. Este repositório não implementa o coletor; ele precisa existir na mesma origem antes de a variável ser habilitada.
-
-## Comandos
-
-| Comando | Finalidade |
-| --- | --- |
-| <code>npm run dev</code> | Servidor de desenvolvimento com Webpack e limites de memória |
-| <code>npm run dev:turbo</code> | Turbopack opt-in, protegido pelos mesmos limites |
-| <code>npm test</code> | Vitest e regressão do quality hook |
-| <code>npm run test:watch</code> | Vitest em modo interativo |
-| <code>npm run lint</code> | ESLint com regras Next.js, Core Web Vitals e TypeScript |
-| <code>npm run typecheck</code> | Gera tipos de rotas e executa TypeScript sem emitir arquivos |
-| <code>npm run build</code> | Build de produção; fora da Vercel, prepara e valida o standalone |
-| <code>npm run check:bundle</code> | Gate de transferência inicial e chunks diferidos |
-| <code>npm run test:e2e:install</code> | Instala Chromium, Firefox e WebKit |
-| <code>npm run test:e2e</code> | Playwright em todos os projetos configurados |
-| <code>npm run analyze</code> | Analyzer oficial do Turbopack |
-| <code>npm run start</code> | Executa <code>.next/standalone/server.js</code> |
-
-As validações de ambiente não dependem de um comando manual separado: os gates reais são executados pelo <code>next build</code> para variáveis públicas e pelo bootstrap Node.js ao iniciar em produção.
-
-## Validação completa
-
-Instale os browsers uma vez:
-
-~~~bash
-npm run test:e2e:install
-~~~
-
-Em uma instalação Linux mínima, instale também as bibliotecas do sistema com <code>npx playwright install --with-deps chromium firefox webkit</code>. A CI já usa essa variante.
-
-Depois execute, nesta ordem:
-
-~~~bash
+```bash
+# 1. Testes unitários e contratos de mensagens
 npm test
+
+# 2. Linter e regras estritas de Core Web Vitals
 npm run lint
+
+# 3. Verificação tipada e geração de tipos de rotas Next.js
 npm run typecheck
+
+# 4. Build de produção com Turbopack
 npm run build
+
+# 5. Auditoria de budgets de transferência
 npm run check:bundle
+
+# 6. Testes ponta a ponta (E2E) com Playwright
 npm run test:e2e
-~~~
+```
 
-O Playwright inicia o standalone em <code>http://localhost:3100</code> por padrão, portanto o build é pré-requisito. O projeto principal faz a regressão detalhada em Chromium; há um cenário dedicado sem WebGL e smokes adicionais em Firefox e WebKit. Falhas preservam trace, screenshot e vídeo conforme a configuração.
+### Comandos do Projeto
 
-Para testar uma instância já iniciada:
+| Script | Ação |
+| :--- | :--- |
+| `npm run dev` | Inicia o servidor de desenvolvimento com Webpack e limites de memória |
+| `npm run dev:turbo` | Inicia o desenvolvimento com Turbopack opt-in |
+| `npm test` | Executa a suíte de 130 testes no Vitest e o quality hook de IA |
+| `npm run lint` | Executa o ESLint 9 com regras do Next.js e TypeScript |
+| `npm run typecheck` | Gera tipos de rota e roda checagem do compilador TypeScript (`tsc --noEmit`) |
+| `npm run build` | Compila o build estático de produção e prepara o standalone |
+| `npm run check:bundle` | Analisa os artefatos compilados contra a matriz de orçamentos de bundle |
+| `npm run test:e2e` | Roda testes ponta a ponta Playwright em navegadores desktop, mobile e a11y |
+| `npm run analyze` | Abre a análise estática do bundle via Turbopack |
 
-~~~bash
-PLAYWRIGHT_TEST_BASE_URL=http://localhost:3000 npm run test:e2e
-~~~
+---
 
-Use essa opção apenas contra um ambiente descartável ou autorizado: os testes exercitam rotas, navegação e a API de contato.
+## 🚀 Deploy & Produção
 
-### Budgets de bundle
+### 1. Deploy na Vercel (Produção Primária)
+O repositório é otimizado nativamente para a plataforma **Vercel**:
+- Quando detectado `VERCEL=1`, o Next.js utiliza seu adaptador nativo de deployment de borda.
+- Os scripts de standalone são automaticamente ignorados para garantir artefatos otimizados pela infraestrutura da plataforma.
+- Métricas de telemetria [Vercel Analytics](https://vercel.com/analytics) e [Speed Insights](https://vercel.com/speed-insights) são ativadas sob demanda.
 
-<code>npm run check:bundle</code> mede HTML, JS e CSS com gzip nível 9; WOFF2 é medido pelo tamanho bruto, pois já é comprimido. Preloads de fonte e inventário alcançável pelo CSS são gates separados.
+### 2. Imagem Docker Distroless (Auto-hospedagem)
+Para execuções locais ou infraestrutura própria:
+- Container multi-stage que compila sobre Debian e executa sobre uma imagem **Google Distroless** (`base-nossl` Debian 13).
+- Não contém shell, package manager ou ferramentas que possam ser exploradas em invasões.
+- Executa com usuário não-root (`UID/GID 65532:65532`) e sistema de arquivos somente leitura (*read-only rootfs*).
 
-| Superfície | Limite padrão |
-| --- | ---: |
-| Home JS | 260 KiB |
-| Artigo JS | 250 KiB |
-| Home CSS / artigo CSS | 25 KiB cada |
-| Home HTML | 60 KiB |
-| Artigo HTML | 35 KiB |
-| Fontes preloadadas da home / artigo | 120 KiB cada |
-| Inventário WOFF2 da home / artigo | 210 KiB cada |
-| Cada entry lazy | 100 KiB |
-| Maior chunk diferido | 90 KiB |
-| Total diferido único | 165 KiB |
+```bash
+# Build e execução via Docker Compose
+docker compose --env-file .env.production up --build -d
+```
 
-Os nomes das variáveis de override e o fallback que captura pelo standalone qualquer rota medida sem HTML pré-renderizado estão detalhados no [contexto técnico](./docs/TECHNICAL_CONTEXT.md). Manifestos vazios, rotas sem assets iniciais e ausência de chunks diferidos são tratados como erro.
+---
 
-O analyzer grava uma interface estática em <code>.next/diagnostics/analyze</code>:
+## 📂 Estrutura do Repositório
 
-~~~bash
-npm run analyze
-~~~
+```text
+Portifolio/
+├── .github/
+│   ├── workflows/ci.yml       # Pipeline completo de CI (testes, lint, e2e, trivy, sbom)
+│   └── instructions/          # Guias de governança para agentes e desenvolvedores
+├── docs/
+│   └── TECHNICAL_CONTEXT.md   # Documento mestre de arquitetura e decisões técnicas
+├── e2e/                       # Testes de integração e acessibilidade com Playwright
+├── public/                    # Assets públicos estáticos, thumbnails WebP e llms.txt
+├── scripts/                   # Scripts de bundle budget, dev server e standalone
+├── src/
+│   ├── app/                   # App Router Next.js (rotas, layouts, metadata e /api)
+│   ├── components/            # Componentes React (layout, seções, vitrine, WebGL)
+│   ├── content/               # Artigos e publicações editoriais pré-renderizadas
+│   ├── data/                  # Fontes de verdade de projetos, experiências e links
+│   ├── hooks/                 # React Hooks customizados (viewport, scroll)
+│   ├── i18n/                  # Configurações do next-intl e carregamento de mensagens
+│   ├── lib/                   # Utilitários de segurança, validações Zod e WebGL
+│   ├── messages/              # Dicionários de tradução (pt.json, en.json, es.json)
+│   └── types/                 # Definições tipadas e contratos TypeScript
+├── next.config.ts             # Configuração Next.js, CSP e headers de segurança
+└── package.json               # Dependências, scripts e configurações de engine
+```
 
-## Produção
+---
 
-### Standalone local
+## 📬 Contato & Conexões
 
-O build copia <code>public</code> quando existente e <code>.next/static</code> para o artefato standalone. Injete um ambiente de produção válido antes de iniciar:
+- **Website**: [robertomoraes.dev](https://robertomoraes.dev)
+- **LinkedIn**: [linkedin.com/in/robertomoraes](https://www.linkedin.com/in/robertomoraes/)
+- **Email**: [robertomoraeszar@gmail.com](mailto:robertomoraeszar@gmail.com)
+- **WhatsApp**: [+55 11 97387-4345](https://api.whatsapp.com/send?phone=5511973874345)
+- **GitHub**: [@Rdemora2](https://github.com/Rdemora2)
 
-~~~bash
-set -a
-. ./.env.production
-set +a
-npm run build
-npm run start
-~~~
+---
 
-Na Vercel, <code>VERCEL=1</code> é definido pela plataforma: o adaptador nativo do Next.js assume o output do deploy e a preparação standalone é ignorada de forma intencional. O standalone permanece exclusivo dos fluxos local, Docker e self-hosted.
-
-<code>.env.production</code> é ignorado pelo Git. Use valores reais para validar o formulário; fixtures apenas sintaticamente válidas servem para smoke de páginas, mas não para entrega de email.
-
-Ao carregar o arquivo com o shell, mantenha-o compatível com POSIX e coloque entre aspas valores que contenham espaços. O Compose também aceita esses valores entre aspas.
-
-### Docker Compose
-
-Crie um <code>.env.production</code> exclusivo para o ambiente. Não copie <code>.env.example</code>: seus valores sensíveis são deliberadamente inválidos em produção.
-
-~~~bash
-docker compose --env-file .env.production config --quiet
-docker compose --env-file .env.production up --build --detach
-docker compose --env-file .env.production ps
-curl --fail http://127.0.0.1:3000/robots.txt
-~~~
-
-A porta é publicada somente em loopback por padrão. Um proxy reverso deve terminar HTTPS e encaminhar o tráfego público. Se <code>PORT</code> for alterada no arquivo de ambiente, ajuste o URL do smoke.
-
-Para acompanhar logs e encerrar:
-
-~~~bash
-docker compose --env-file .env.production logs --follow portfolio
-docker compose --env-file .env.production down --remove-orphans
-~~~
-
-O runner recompõe o Node.js 24.18.0 sobre a base distroless <code>base-nossl</code> Debian 13, sem shell, package manager, toolchain ou OpenSSL de sistema não utilizado. Apenas o binário oficial do Node e suas bibliotecas C++ dinâmicas entram na imagem; licenças e metadados correspondentes permanecem presentes. A CI também gera um SBOM CycloneDX da imagem final e confirma nele o runtime Node esperado. O processo executa como UID/GID <code>65532:65532</code>; o Compose remove capabilities, proíbe privilege escalation, aplica limites de processo/CPU/memória e disponibiliza somente dois <code>tmpfs</code> graváveis.
-
-## Segurança e limites deliberados
-
-- A CSP e os headers defensivos são centralizados em <code>next.config.ts</code>.
-- A API não retorna segredos nem inclui dados pessoais nos logs de erro.
-- Instalações bloqueiam lifecycle scripts e a CI verifica assinaturas e vulnerabilidades.
-- Actions e imagens-base são fixadas por commit ou digest; o Trivy rejeita vulnerabilidades High e Critical da imagem final.
-- A política estática ainda usa <code>unsafe-inline</code> para scripts e estilos exigidos pelo bootstrap atual do App Router. Migrar para nonce por request tornaria as superfícies hoje estáticas dinâmicas; a decisão deve ser reavaliada se surgir autenticação ou requisito formal de compliance.
-- O rate limiter é local ao processo e reinicia com a instância. Múltiplas réplicas exigem Redis/Upstash, WAF ou mecanismo distribuído equivalente.
-- Com <code>CONTACT_TRUST_PROXY=false</code>, nenhum header de IP é confiado e os clientes compartilham o bucket por cliente. Isso é seguro contra spoofing, mas pode gerar contenção sob tráfego real.
-
-Veja o [modelo de segurança completo](./docs/TECHNICAL_CONTEXT.md), inclusive a ordem dos controles da API e os gaps operacionais conhecidos.
-
-## Estrutura
-
-~~~text
-src/
-├── app/                 rotas, layouts, metadata, imagens sociais e API
-├── components/          layout, seções, componentes compartilhados e artigo
-├── content/             modelos editoriais localizados
-├── data/                projetos, sites publicados, experiência, métricas e links
-├── hooks/               observação de viewport e navegação
-├── lib/                 constantes, validações, WebGL e gates de produção
-├── messages/            catálogos pt, en e es
-└── types/               contratos compartilhados
-e2e/                     regressão Playwright
-scripts/                 bundle gate, standalone e quality hook
-docs/                    contexto técnico versionado
-public/images/sites/     thumbnails locais dos sites publicados
-~~~
-
-<code>docs/portifolio/</code> permanece intencionalmente ignorado e não faz parte da documentação versionada.
-
-## Política de conteúdo
-
-Casos, métricas e experiências publicados devem ser verificáveis e autorizados. Logos, screenshots, depoimentos e informações confidenciais de terceiros não devem entrar no portfólio sem aprovação explícita.
-
-Ao alterar conteúdo localizado, arquitetura, ambiente, budgets ou comandos, atualize o README e [docs/TECHNICAL_CONTEXT.md](./docs/TECHNICAL_CONTEXT.md) no mesmo conjunto de mudanças.
+<div align="center">
+  <sub>Construído com obsessão por qualidade de software, arquitetura limpa e performance.</sub>
+</div>

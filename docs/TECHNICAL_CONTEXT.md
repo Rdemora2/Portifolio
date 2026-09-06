@@ -56,7 +56,7 @@ flowchart LR
 | --- | --- | --- |
 | Renderização server-first | App Router, Server Components e parâmetros estáticos por locale | Conteúdo essencial chega no HTML e o JavaScript fica concentrado nas interações |
 | Internacionalização na URL | next-intl com prefixo <code>as-needed</code> | Português usa a raiz; inglês e espanhol usam prefixo |
-| Motion progressivo | CSS, Web Animations API, <code>requestAnimationFrame</code>, GSAP e OGL por capacidade | A experiência degrada para uma versão estática e legível |
+| Motion progressivo | CSS, Web Animations API, <code>requestAnimationFrame</code> e OGL por capacidade | A experiência degrada para uma versão estática e legível |
 | Conteúdo no repositório | <code>src/data</code>, <code>src/content</code> e <code>src/messages</code> | Não existe CMS nem persistência externa |
 | API mínima | Um Route Handler Node.js para contato | Superfície server-side pequena, sem sessão ou autenticação |
 | Deploy na Vercel | Adaptador nativo quando <code>VERCEL=1</code> | A plataforma produz as funções sem depender do rastreamento standalone |
@@ -119,7 +119,7 @@ O provider global envia ao cliente apenas <code>Nav</code>, <code>Error</code> e
 8. Insights;
 9. Contato.
 
-Divisores mantêm a transição entre os fundos. A vitrine de sites é um Server Component e entrega títulos, destinos e thumbnails no HTML inicial; somente o reveal progressivo reutiliza uma ilha compartilhada. A rota está em um grupo próprio para que seu <code>loading.tsx</code> localizado não afete o artigo. O conteúdo estrutural é renderizado no servidor; filtros, drawers, contadores, menus e efeitos são ilhas client-side.
+Divisores mantêm a transição entre os fundos. A vitrine de sites é um Server Component e entrega títulos, destinos e thumbnails no HTML inicial; somente o reveal progressivo reutiliza uma ilha compartilhada. A rota está em um grupo próprio para que seu <code>loading.tsx</code> localizado não afete o artigo. O conteúdo estrutural é renderizado no servidor; filtros, contadores, menus e efeitos são ilhas client-side.
 
 ### 2.4 Artigo
 
@@ -149,7 +149,7 @@ O global 404 usa headers da requisição. Essa necessidade fica isolada do grupo
 - remoção do header de identificação do framework;
 - output standalone fora da Vercel; no deploy Vercel, o adaptador nativo controla o output;
 - AVIF e WebP, com tamanhos explícitos de device e imagem;
-- otimização de imports de GSAP e OGL;
+- otimização de imports de OGL e react-icons;
 - atribuição de CLS, LCP e INP;
 - global not found experimental;
 - headers de segurança para todas as rotas;
@@ -173,7 +173,7 @@ src/
 │   ├── insights/                 experiência reutilizável do artigo
 │   ├── layout/                   navegação, locale, footer e Web Vitals
 │   ├── sections/                 seções da home
-│   └── shared/                   motion, drawer, WebGL e UI compartilhada
+│   └── shared/                   motion, lightbox, WebGL e UI compartilhada
 ├── content/insights/             contratos e conteúdo editorial
 ├── data/                         portfólio e sites publicados
 ├── hooks/                        viewport e seção ativa
@@ -208,26 +208,20 @@ Um componente deve permanecer no servidor quando não precisa de estado, efeitos
 | --- | --- | --- |
 | Terminal WebGL do hero | Desktop, ponteiro fino, aba visível, seção em viewport, sem economia de dados e fora do perfil low-power | Gradiente estático |
 | Scroll reveal | Elemento entra na viewport | Conteúdo visível por padrão; reduced motion revela imediatamente |
-| Filtro de projetos | Interação do usuário | Troca imediata se GSAP falhar ou motion estiver reduzido |
-| Drawer de projeto | Preload em foco/hover e import na abertura | Shell local de loading e error boundary com retry |
-| Liquid Portal | Drawer desktop capaz, sem reduced motion, save-data ou perfil low-power | Fundo e scrim estáticos |
+| Filtro de projetos | Interação do usuário | Transição funcional e imediata com motion reduzido |
+| Galeria de projetos (lightbox) | Interação ao clicar na imagem do case study | Visualização em página com imagens estáticas otimizadas |
 | Formulário | Até 900 px antes da viewport ou hash <code>#contact</code> | Skeleton visual; links de contato continuam disponíveis |
-| Contadores | Métrica entra na viewport ou drawer abre | Valor final acessível e fallback sem animação |
+| Contadores | Métrica entra na viewport | Valor final acessível e fallback sem animação |
 | Artigo imersivo | Hidratação em navegador capaz | Documento linear completo |
 
-### 4.3 Drawer de projetos
+### 4.3 Páginas de cases e galeria de projetos
 
-O fluxo de abertura foi desenhado para conter falhas sem substituir a página:
+Os estudos de caso são páginas estáticas dedicadas pré-renderizadas em <code>/[locale]/work/[slug]</code>:
 
-1. foco ou pointer hover inicia preload do módulo;
-2. clique preserva a seção de projetos e monta um shell local;
-3. <code>Suspense</code> cobre o carregamento do chunk;
-4. um error boundary local cobre falha de import;
-5. retry grava apenas o ID do projeto em <code>sessionStorage</code>, ancora o URL em <code>#projects</code> e faz hard reload;
-6. após recarregar, o ID é consumido e o drawer reabre;
-7. fechar restaura foco ao trigger correto sem scroll.
-
-Enquanto aberto ou fechando, o documento permanece scroll-locked e o fundo fica <code>inert</code>. O diálogo suporta Escape, focus trap, clique no backdrop e apresentação responsiva como modal desktop ou bottom sheet mobile.
+1. Server Components pré-renderizam toda a narrativa, métricas, stack e metadados estruturados (<code>CreativeWork</code> e <code>BreadcrumbList</code>);
+2. a galeria visual oferece um carrossel/lightbox progressivo (<code>ProjectGalleryCarousel</code>);
+3. suporta navegação por teclado (setas, Escape) e gerenciamento acessível de foco;
+4. o layout é responsivo e não bloqueia a renderização caso scripts sejam desativados.
 
 ### 4.4 Formulário
 
@@ -298,7 +292,7 @@ Para adicionar ou alterar um projeto:
 1. mantenha o contrato <code>Project</code> de <code>src/types/index.ts</code>;
 2. atualize o dado estrutural em <code>src/data/portfolio.ts</code>;
 3. crie as chaves <code>Projects.items.&lt;id&gt;</code> nos três catálogos;
-4. valide métricas, case study, filtros e drawer;
+4. valide métricas, case study, galeria e lightbox;
 5. teste abertura por mouse e teclado, mobile, reduced motion e WebGL indisponível;
 6. execute testes de mensagens, E2E e bundle.
 
@@ -637,7 +631,7 @@ O runtime:
 
 ### 10.2 Diálogos
 
-Menu mobile, shell de loading/erro e drawer:
+Menu mobile, shell de loading/erro e modal/lightbox da galeria:
 
 - usam <code>role=dialog</code> ou <code>alertdialog</code>;
 - definem <code>aria-modal</code> e nome acessível;
@@ -654,7 +648,7 @@ Menu mobile, shell de loading/erro e drawer:
 
 - desativa scroll suave;
 - revela conteúdo imediatamente;
-- evita GSAP e animações de contagem quando aplicável;
+- desativa transições de reveal e animações de contagem quando aplicável;
 - torna o hero e o artigo estáticos;
 - impede WebGL contínuo;
 - preserva valores e texto finais.
@@ -666,7 +660,7 @@ Menu mobile, shell de loading/erro e drawer:
 O Playwright executa axe-core nas superfícies principais e cenários dedicados de:
 
 - teclado e formulário;
-- foco do drawer e menu;
+- foco do menu mobile e modal;
 - ausência de overflow horizontal;
 - reduced motion;
 - contraste aumentado;
@@ -769,27 +763,23 @@ Todos os keyframes ficam restritos a <code>transform</code> e <code>opacity</cod
 
 - O terminal do hero é um import dinâmico OGL, renderizado somente quando capacidade, viewport e visibilidade permitem.
 - A navegação atualiza variáveis CSS com um listener de scroll passivo e um frame por ciclo; hover, foco e seção ativa usam feedback CSS contido, sem mudar o layout.
-- Filtros importam GSAP apenas quando uma transição animada é solicitada.
+- Filtros de projetos usam transições CSS contidas e acessíveis.
 - Os divisores exibem um sinal discreto com CSS Scroll-Driven Animations; sem suporte, preservam apenas a onda estática.
 - A timeline profissional usa CSS Scroll-Driven Animations dentro de <code>@supports</code>; navegadores sem suporte mantêm o trilho estático.
 - Métricas usam Intersection Observer e <code>requestAnimationFrame</code> para contagem, com valor final separado para tecnologia assistiva.
 - A borda reativa fica restrita aos três cards de métricas.
 - A vitrine de sites combina reveal progressivo com hover restrito a <code>transform</code> e <code>opacity</code>; reduced motion e dispositivos sem hover mantêm os cards estáticos.
 
-### 12.3 Drawer
+### 12.3 LiquidChrome (WebGL com OGL)
 
-Entrada e saída importam GSAP sob demanda. Se o import demorar ou falhar, um timer aplica estado final funcional. <code>will-change</code> é removido ao concluir.
+O efeito de fluido no hero utiliza shaders GLSL compilados via OGL:
 
-O Liquid Portal:
-
-- cria WebGL2 ou WebGL somente se houver contexto;
-- limita DPR a 1,5 e a 1 em dispositivo low-power;
-- reduz para 30 FPS no perfil low-power;
-- pausa com a aba oculta;
-- trata perda de contexto;
-- desconecta observers, listeners e contexto no unmount.
-
-O efeito nem é montado em mobile, reduced motion, save-data ou dispositivo low-power.
+- cria contexto WebGL apenas se houver suporte no navegador;
+- limita DPR dinamicamente (1,5 em desktop e 1,0 em perfil low-power);
+- pausa o loop de animação com a aba oculta ou quando fora da viewport;
+- trata perda e restauração de contexto WebGL graciosamente;
+- desconecta observers, listeners e libera buffers de renderização no unmount;
+- degrada para fundo e gradiente estáticos sob <code>prefers-reduced-motion</code> ou em navegadores sem WebGL.
 
 ### 12.4 Artigo
 
@@ -838,10 +828,10 @@ Antes de adicionar motion:
 - pré-renderização da home e artigo por locale;
 - Server Components para estrutura e conteúdo;
 - providers com subconjuntos de mensagens;
-- imports dinâmicos para terminal, drawer, Liquid Portal, GSAP e formulário;
+- imports dinâmicos para LiquidChrome (OGL), carrossel/lightbox e formulário;
 - import do Resend somente após validar o request;
 - <code>next/font</code> com fontes self-hosted no build e <code>display: swap</code>;
-- otimização de imports de GSAP e OGL pelo Turbopack;
+- otimização de imports de OGL e react-icons pelo Turbopack;
 - thumbnails locais da vitrine com dimensões reservadas, blur placeholder, lazy loading e negociação AVIF/WebP pelo <code>next/image</code>;
 - <code>content-visibility: auto</code> quando suportado para seções fora da viewport;
 - frames, observers e listeners com cleanup;
@@ -960,10 +950,10 @@ Vitest roda em ambiente Node e inclui <code>src/**/*.test.ts</code> e <code>scri
 
 | Projeto | Escopo |
 | --- | --- |
-| <code>chromium</code> | Regressão completa de UI, SEO, a11y, artigo, drawer, API e mobile |
-| <code>chromium-webgl-disabled</code> | Drawer funcional sem WebGL |
-| <code>firefox-smoke</code> | Home, sites publicados, artigo e drawer nas invariantes cross-browser |
-| <code>webkit-smoke</code> | Home, sites publicados, artigo e drawer nas invariantes cross-browser |
+| <code>chromium</code> | Regressão completa de UI, SEO, a11y, artigo, case studies, API e mobile |
+| <code>chromium-webgl-disabled</code> | Experiência funcional e degradada sem WebGL |
+| <code>firefox-smoke</code> | Home, sites publicados, artigo e cases nas invariantes cross-browser |
+| <code>webkit-smoke</code> | Home, sites publicados, artigo e cases nas invariantes cross-browser |
 
 Configuração:
 
@@ -1399,7 +1389,7 @@ Configuração server-side de email está incompleta. Em produção normal, o bo
 O site deve permanecer utilizável. Confirme:
 
 - gradiente estático no hero;
-- drawer opaco e legível;
+- cards e modais opacos e legíveis;
 - nenhum erro não tratado;
 - cenário <code>chromium-webgl-disabled</code>.
 
@@ -1520,7 +1510,7 @@ Instruções devem ser reproduzíveis por um revisor sem contexto.
 | Mudança | Arquivos mínimos a revisar | Validação mínima |
 | --- | --- | --- |
 | Texto localizado | três catálogos ou três edições do artigo | testes i18n/conteúdo, build e E2E da rota |
-| Projeto | dados, tipos e mensagens | Vitest, drawer desktop/mobile, a11y e bundle |
+| Projeto | dados, tipos e mensagens | Vitest, case study desktop/mobile, lightbox, a11y e bundle |
 | Site publicado | dados, três catálogos e thumbnail local | Vitest, link HTTPS, no-JS, cross-browser, overflow e bundle |
 | Experiência profissional | dados e mensagens | semântica da lista, espaçamento, timeline e reduced motion |
 | Artigo | conteúdo, rota, metadata, sitemap e imagem | sem JS, print, reduced motion, SEO, a11y e bundle |
@@ -1587,7 +1577,7 @@ Prioridade operacional antes de escala horizontal:
 4. crie <code>.env.development.local</code> a partir do exemplo;
 5. execute <code>npm run dev</code>;
 6. navegue pelos três locales;
-7. teste home, artigo, drawer, menu e contato;
+7. teste home, artigo, case studies, menu e contato;
 8. leia as instruções da área que será alterada;
 9. consulte a documentação local do Next.js;
 10. execute testes da área;

@@ -20,28 +20,25 @@ type NavigatorWithConnection = Navigator & {
 
 const mediaQueries = [
   "(prefers-reduced-motion: reduce)",
-  "(pointer: coarse)",
-  "(max-width: 1023px)",
 ] as const
 
-const LIQUID_CHROME_BASE_COLOR: [number, number, number] = [0.08, 0.08, 0.22]
+const LIQUID_CHROME_BASE_COLOR: [number, number, number] = [0.10, 0.12, 0.28]
 
 // WHY: Privacy-focused browsers like Brave and Firefox randomize or limit navigator.hardwareConcurrency
-// and deviceMemory to mitigate fingerprinting vectors. We check for privacy browser signatures so
-// valid desktop users on these platforms aren't falsely flagged as low-power.
+// and deviceMemory to mitigate fingerprinting vectors. Similarly, WebKit on iOS clamps hardwareConcurrency to 4.
+// We guard against false low-power positives so mobile and privacy-browser users experience the authentic WebGL fluid.
 function canRenderSignatureEffect(isBotHint: boolean) {
-  // The server already detected a bot via the real HTTP User-Agent header.
-  // Short-circuit immediately — no need to evaluate any client-side signals.
   if (isBotHint) return false
 
   const connection = (navigator as NavigatorWithConnection).connection
   const isBrave = typeof navigator !== "undefined" && "brave" in navigator
   const isFirefox = typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox")
-  const isPrivacyBrowser = isBrave || isFirefox
+  const isWebKit = typeof navigator !== "undefined" && (/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.vendor && navigator.vendor.includes("Apple")))
+  const isPrivacyOrApple = isBrave || isFirefox || isWebKit
 
-  const isLowPower = !isPrivacyBrowser && (
-    (navigator.hardwareConcurrency > 0 && navigator.hardwareConcurrency <= 4) ||
-    (navigator.deviceMemory !== undefined && navigator.deviceMemory <= 4)
+  const isLowPower = !isPrivacyOrApple && (
+    (navigator.hardwareConcurrency > 0 && navigator.hardwareConcurrency < 4) ||
+    (navigator.deviceMemory !== undefined && navigator.deviceMemory < 4)
   )
 
   const _isBot = isBot()
@@ -70,6 +67,18 @@ function subscribeToCapabilities(onChange: () => void) {
   }
 }
 
+function getIsPointerFine(): boolean {
+  if (typeof window === "undefined") return false
+  return window.matchMedia("(pointer: fine)").matches
+}
+
+function subscribeToPointerFine(onChange: () => void) {
+  if (typeof window === "undefined") return () => {}
+  const mql = window.matchMedia("(pointer: fine)")
+  mql.addEventListener("change", onChange)
+  return () => mql.removeEventListener("change", onChange)
+}
+
 export function HeroClientWrapper({
   children,
   isBotHint = false,
@@ -80,6 +89,12 @@ export function HeroClientWrapper({
   const canRender = useSyncExternalStore(
     subscribeToCapabilities,
     () => canRenderSignatureEffect(isBotHint),
+    () => false,
+  )
+
+  const isPointerFine = useSyncExternalStore(
+    subscribeToPointerFine,
+    getIsPointerFine,
     () => false,
   )
 
@@ -101,7 +116,7 @@ export function HeroClientWrapper({
               amplitude={0.35}
               frequencyX={2.5}
               frequencyY={2.5}
-              interactive
+              interactive={isPointerFine}
               dpr={1}
             />
           </WebGLErrorBoundary>
@@ -109,10 +124,10 @@ export function HeroClientWrapper({
       </div>
 
       <div
-        className="absolute inset-0 z-[1]"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 40% 50%, rgba(5,10,18,0.36) 0%, rgba(5,10,18,0.78) 58%, rgba(5,10,18,0.97) 100%)",
+            "radial-gradient(ellipse at 40% 50%, rgba(5,10,18,0.25) 0%, rgba(5,10,18,0.70) 60%, rgba(5,10,18,0.95) 100%)",
         }}
         aria-hidden="true"
       />
