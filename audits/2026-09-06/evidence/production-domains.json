@@ -1,0 +1,87 @@
+{
+  "dns": [
+    {
+      "server": "system",
+      "host": "robertomoraes.dev",
+      "error": "ENOTFOUND"
+    },
+    {
+      "server": "system",
+      "host": "portifolio-liard-zeta.vercel.app",
+      "result": [
+        "216.198.79.2",
+        "64.29.17.2"
+      ]
+    },
+    {
+      "server": "8.8.8.8",
+      "host": "robertomoraes.dev",
+      "error": "ENOTFOUND"
+    },
+    {
+      "server": "8.8.8.8",
+      "host": "portifolio-liard-zeta.vercel.app",
+      "result": [
+        "216.198.79.130",
+        "64.29.17.130"
+      ]
+    },
+    {
+      "server": "1.1.1.1",
+      "host": "robertomoraes.dev",
+      "error": "ENOTFOUND"
+    },
+    {
+      "server": "1.1.1.1",
+      "host": "portifolio-liard-zeta.vercel.app",
+      "result": [
+        "64.29.17.66",
+        "216.198.79.66"
+      ]
+    }
+  ],
+  "http": [
+    {
+      "host": "portifolio-liard-zeta.vercel.app",
+      "url": "https://portifolio-liard-zeta.vercel.app/",
+      "status": 200,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "57",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-disposition": "inline",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-opener-policy": "same-origin",
+        "cross-origin-resource-policy": "same-origin",
+        "date": "Mon, 07 Sep 2026 02:55:01 GMT",
+        "etag": "W/\"636adbb0e843e942ff4c7c4c5c305e3b\"",
+        "origin-agent-cluster": "?1",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/pt",
+        "x-nextjs-prerender": "1",
+        "x-nextjs-stale-time": "300",
+        "x-vercel-cache": "HIT"
+      },
+      "canonical": "https://robertomoraes.dev",
+      "ogImage": "https://robertomoraes.dev/opengraph-image/pt"
+    },
+    {
+      "host": "portifolio-egof514zi-roberto-moraes-projects.vercel.app",
+      "url": "https://vercel.com/login",
+      "status": 200,
+      "title": "Login – Vercel",
+      "canonical": "https://vercel.com/login",
+      "ogImage": null,
+      "note": "Deployment individual redirecionou para autenticação; não foi usado como site público."
+    }
+  ]
+}

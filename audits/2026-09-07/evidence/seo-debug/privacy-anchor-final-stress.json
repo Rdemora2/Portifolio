@@ -1,0 +1,398 @@
+[
+  {
+    "run": 0,
+    "locale": "pt",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/privacidade",
+    "lang": "pt-BR",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/privacidade",
+      "lang": "pt-BR"
+    },
+    "nextLocale": "pt"
+  },
+  {
+    "run": 0,
+    "locale": "pt",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/privacidade",
+    "lang": "pt-BR",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/privacidade",
+      "lang": "pt-BR"
+    },
+    "nextLocale": "pt"
+  },
+  {
+    "run": 0,
+    "locale": "en",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/en/privacy",
+    "lang": "en-US",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/en/privacy"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/en/privacy",
+      "lang": "en-US"
+    },
+    "nextLocale": "en"
+  },
+  {
+    "run": 0,
+    "locale": "en",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/en/privacy",
+    "lang": "en-US",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/en/privacy"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/en/privacy",
+      "lang": "en-US"
+    },
+    "nextLocale": "en"
+  },
+  {
+    "run": 0,
+    "locale": "es",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/es/privacidad",
+    "lang": "es-MX",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/es/privacidad"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/es/privacidad",
+      "lang": "es-MX"
+    },
+    "nextLocale": "es"
+  },
+  {
+    "run": 0,
+    "locale": "es",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/es/privacidad",
+    "lang": "es-MX",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/es/privacidad"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/es/privacidad",
+      "lang": "es-MX"
+    },
+    "nextLocale": "es"
+  },
+  {
+    "run": 1,
+    "locale": "pt",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/privacidade",
+    "lang": "pt-BR",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/privacidade",
+      "lang": "pt-BR"
+    },
+    "nextLocale": "pt"
+  },
+  {
+    "run": 1,
+    "locale": "pt",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/privacidade",
+    "lang": "pt-BR",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/privacidade",
+      "lang": "pt-BR"
+    },
+    "nextLocale": "pt"
+  },
+  {
+    "run": 1,
+    "locale": "en",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/en/privacy",
+    "lang": "en-US",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/en/privacy"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/en/privacy",
+      "lang": "en-US"
+    },
+    "nextLocale": "en"
+  },
+  {
+    "run": 1,
+    "locale": "en",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/en/privacy",
+    "lang": "en-US",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/en/privacy"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/en/privacy",
+      "lang": "en-US"
+    },
+    "nextLocale": "en"
+  },
+  {
+    "run": 1,
+    "locale": "es",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/es/privacidad",
+    "lang": "es-MX",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/es/privacidad"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/es/privacidad",
+      "lang": "es-MX"
+    },
+    "nextLocale": "es"
+  },
+  {
+    "run": 1,
+    "locale": "es",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/es/privacidad",
+    "lang": "es-MX",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/es/privacidad"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/es/privacidad",
+      "lang": "es-MX"
+    },
+    "nextLocale": "es"
+  },
+  {
+    "run": 2,
+    "locale": "pt",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/privacidade",
+    "lang": "pt-BR",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/privacidade",
+      "lang": "pt-BR"
+    },
+    "nextLocale": "pt"
+  },
+  {
+    "run": 2,
+    "locale": "pt",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/privacidade",
+    "lang": "pt-BR",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/privacidade",
+      "lang": "pt-BR"
+    },
+    "nextLocale": "pt"
+  },
+  {
+    "run": 2,
+    "locale": "en",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/en/privacy",
+    "lang": "en-US",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/en/privacy"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/en/privacy",
+      "lang": "en-US"
+    },
+    "nextLocale": "en"
+  },
+  {
+    "run": 2,
+    "locale": "en",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/en/privacy",
+    "lang": "en-US",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/en/privacy"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/en/privacy",
+      "lang": "en-US"
+    },
+    "nextLocale": "en"
+  },
+  {
+    "run": 2,
+    "locale": "es",
+    "source": "notice",
+    "beforeDocument": 1,
+    "pathname": "/es/privacidad",
+    "lang": "es-MX",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/es/privacidad"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/es/privacidad",
+      "lang": "es-MX"
+    },
+    "nextLocale": "es"
+  },
+  {
+    "run": 2,
+    "locale": "es",
+    "source": "footer",
+    "beforeDocument": 1,
+    "pathname": "/es/privacidad",
+    "lang": "es-MX",
+    "xDefault": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ],
+    "canonical": [
+      "https://portifolio-liard-zeta.vercel.app/es/privacidad"
+    ],
+    "navigationTypes": [
+      "navigate"
+    ],
+    "expected": {
+      "privacy": "/es/privacidad",
+      "lang": "es-MX"
+    },
+    "nextLocale": "es"
+  }
+]

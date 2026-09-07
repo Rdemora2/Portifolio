@@ -1,0 +1,1013 @@
+{
+  "rows": [
+    {
+      "width": 320,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 320,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 360,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 375,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 390,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 412,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 430,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 768,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1024,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1280,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1440,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 1920,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/projetos",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/projetos/hospital-sirio-libanes",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/projetos/band-news-bandsports",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/projetos/fiesta-americana",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/experiencia",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/sobre",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/insights",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/insights/go-em-producao",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/contato",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/privacidade",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    },
+    {
+      "width": 2560,
+      "path": "/not-a-portfolio-route",
+      "overflow": false,
+      "headings": 1,
+      "collisions": []
+    }
+  ],
+  "warnings": []
+}

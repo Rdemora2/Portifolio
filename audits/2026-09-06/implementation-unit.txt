@@ -1,0 +1,18 @@
+
+> portifolio@0.1.0 test
+> vitest run && npm run test:quality-hook
+
+
+ RUN  v4.1.10 /Users/roberto/Documents/Code/Personal/Portifolio
+
+
+ Test Files  19 passed (19)
+      Tests  146 passed (146)
+   Start at  00:43:50
+   Duration  2.57s (transform 1.06s, setup 0ms, import 1.80s, tests 1.96s, environment 4ms)
+
+
+> portifolio@0.1.0 test:quality-hook
+> bash scripts/ai-quality-gate.test.sh
+
+AI quality gate tests passed.

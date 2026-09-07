@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-07",
+  "scope": "Client navigation from localized contact pages to localized privacy pages",
+  "finding": "The previous page and destination x-default alternates could remain connected simultaneously under HTML/HEAD after an App Router navigation.",
+  "notBodyOrHiddenContent": true,
+  "failedTracePolls": 17,
+  "failedTraceTimeoutMs": 7500,
+  "stress": {
+    "contexts": 12,
+    "snapshots": 48,
+    "snapshotsWithDuplicateXDefault": 23,
+    "maxObservedDelayMs": 625
+  },
+  "hydrationControlledStress": {
+    "contexts": 10,
+    "duplicatesAfter250Ms": 2
+  },
+  "workaround": "Use localized document anchors for the two links to Privacy so the destination receives a complete document head.",
+  "finalValidation": {
+    "navigations": 18,
+    "locales": ["pt", "en", "es"],
+    "sources": ["contact notice", "footer"],
+    "failures": 0,
+    "checked": [
+      "document navigation",
+      "localized URL",
+      "document language",
+      "single canonical",
+      "single x-default",
+      "NEXT_LOCALE cookie"
+    ],
+    "privacyAxeSpecPassed": true
+  },
+  "limitation": "This workaround covers only the Contact-to-Privacy links. It does not establish that metadata reconciliation is fixed for every App Router client navigation."
+}

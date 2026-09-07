@@ -1,0 +1,638 @@
+[
+  {
+    "run": 0,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 0,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 0,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 0,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 1,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/contato",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 1,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 1,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 1,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 4,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/contato",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 4,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/contato",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 4,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 4,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 5,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": []
+  },
+  {
+    "run": 5,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 5,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 5,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 6,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 6,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 6,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 6,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 7,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": []
+  },
+  {
+    "run": 7,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 7,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 7,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 8,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 8,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 8,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 8,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/contato",
+        "parent": "HEAD",
+        "connected": true
+      },
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 9,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": []
+  },
+  {
+    "run": 9,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 9,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 9,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 10,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": []
+  },
+  {
+    "run": 10,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 10,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 10,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 11,
+    "delay": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": []
+  },
+  {
+    "run": 11,
+    "delay": 25,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 11,
+    "delay": 100,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  },
+  {
+    "run": 11,
+    "delay": 500,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      {
+        "href": "https://portifolio-liard-zeta.vercel.app/privacidade",
+        "parent": "HEAD",
+        "connected": true
+      }
+    ]
+  }
+]

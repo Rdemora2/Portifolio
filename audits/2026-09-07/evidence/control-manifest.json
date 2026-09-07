@@ -1,0 +1,25 @@
+{
+  "baselineCommit": "dddab26d28c9eb5fc6605bda9a2435d66da7e896",
+  "extraction": "git archive",
+  "trackedFilesOnly": true,
+  "nodeModules": "symlink to existing workspace installation",
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "next": "16.3.0",
+  "critters": "0.0.23",
+  "canonicalBuildOrigin": "https://portifolio-liard-zeta.vercel.app",
+  "measurementOrigin": "http://127.0.0.1:3220",
+  "sourceConfigModified": true,
+  "environmentFilesReadOrCopied": false,
+  "controlOnlyDeviation": "turbopack.root set to common ancestor of archived source and read-only node_modules symlink; standalone asset preparation performed by harness because tracing output is nested",
+  "buildStatus": "passed",
+  "standaloneServerRelativePath": "audits/2026-09-07/control-dddab26/.next/standalone/audits/2026-09-07/control-dddab26/server.js",
+  "artifacts": {
+    "originalConfig": "control-next-config.ts.txt",
+    "effectiveConfig": "control-next-config-effective.ts.txt",
+    "buildLog": "control-build.txt",
+    "cssSummary": "control-css.json"
+  },
+  "controlArchiveRemoved": true,
+  "serverStopped": true
+}

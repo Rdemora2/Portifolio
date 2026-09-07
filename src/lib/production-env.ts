@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://robertomoraes.dev"
+import { DEFAULT_SITE_URL } from "./site"
 
 type Environment = Readonly<Record<string, string | undefined>>
 

@@ -1,0 +1,89 @@
+{
+  "visual": [
+    {
+      "name": "mobile",
+      "webdriver": false,
+      "canvas": 1,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "desktop",
+      "webdriver": false,
+      "canvas": 1,
+      "width": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "noJs": [
+    {
+      "path": "/",
+      "h1Visible": false,
+      "mainTextLength": 3113,
+      "formCount": 0,
+      "galleryLinks": 0
+    },
+    {
+      "path": "/projetos/hospital-sirio-libanes",
+      "h1Visible": true,
+      "mainTextLength": 2921,
+      "formCount": 0,
+      "galleryLinks": 5
+    },
+    {
+      "path": "/insights/go-em-producao",
+      "h1Visible": true,
+      "mainTextLength": 7814,
+      "formCount": 0,
+      "galleryLinks": 0
+    },
+    {
+      "path": "/contato",
+      "h1Visible": true,
+      "mainTextLength": 341,
+      "formCount": 0,
+      "galleryLinks": 0
+    }
+  ],
+  "errors": [],
+  "imageError": {
+    "mainVisible": true,
+    "h1": "Hospital Sírio-Libanês",
+    "brokenImages": 5,
+    "horizontalOverflow": false
+  },
+  "form": {
+    "mocked": true,
+    "status": 504,
+    "alertsInitially": 1,
+    "alertsAfter4300ms": 0,
+    "nameRetained": true,
+    "submitDisabled": false
+  },
+  "privacy": {
+    "scripts": [
+      {
+        "src": "https://portifolio-liard-zeta.vercel.app/a5561f6d51910011/script.js",
+        "dataset": {
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "disableAutoTrack": "1",
+          "viewEndpoint": "/a5561f6d51910011/view",
+          "eventEndpoint": "/a5561f6d51910011/event",
+          "sessionEndpoint": "/a5561f6d51910011/session"
+        }
+      },
+      {
+        "src": "https://portifolio-liard-zeta.vercel.app/04d43d4a63d827d6/script.js",
+        "dataset": {
+          "sdkn": "@vercel/speed-insights/next",
+          "sdkv": "2.0.0",
+          "route": "/",
+          "endpoint": "/04d43d4a63d827d6/vitals"
+        }
+      }
+    ],
+    "localStorage": [],
+    "sessionStorage": []
+  }
+}

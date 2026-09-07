@@ -1,0 +1,22 @@
+{
+  "requestedOrigin": "http://127.0.0.1:3220",
+  "finalOrigin": "http://127.0.0.1:3220",
+  "status": 200,
+  "htmlBytes": 88624,
+  "stylesheetLinkCount": 2,
+  "linkedStylesheetDecodedBytes": 80373,
+  "linkedStylesheets": [
+    {
+      "path": "/_next/static/chunks/2i2sz5ut8c-sf.css",
+      "status": 200,
+      "decodedBytes": 51876
+    },
+    {
+      "path": "/_next/static/chunks/3jgok5_fpzmdt.css",
+      "status": 200,
+      "decodedBytes": 28497
+    }
+  ],
+  "inlineStyleCount": 0,
+  "inlineStyleBytes": 0
+}

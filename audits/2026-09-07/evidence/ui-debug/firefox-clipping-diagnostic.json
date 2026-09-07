@@ -1,0 +1,78 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "runs": [
+    {
+      "run": 1,
+      "durationMs": 1946,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 2,
+      "durationMs": 1771,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 3,
+      "durationMs": 1684,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 4,
+      "durationMs": 986,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 5,
+      "durationMs": 996,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 6,
+      "durationMs": 823,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 7,
+      "durationMs": 1627,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 8,
+      "durationMs": 1052,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 9,
+      "durationMs": 1553,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    },
+    {
+      "run": 10,
+      "durationMs": 1161,
+      "offenders": [],
+      "consoleErrors": [],
+      "requestFailures": []
+    }
+  ]
+}

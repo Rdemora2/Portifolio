@@ -77,6 +77,21 @@ describe("POST /api/contact", () => {
     expect(sendEmailMock).not.toHaveBeenCalled()
   })
 
+  it("rejects a malformed idempotency key without spending rate-limit capacity", async () => {
+    vi.stubEnv("CONTACT_RATE_LIMIT_MAX", "1")
+    const POST = await loadPost()
+    const invalid = await POST(
+      makeRequest(validContact, { "idempotency-key": "contains spaces" })
+    )
+
+    expect(invalid.status).toBe(400)
+    await expect(invalid.json()).resolves.toEqual({
+      error: "Idempotency-Key inválido",
+    })
+    expect((await POST(makeRequest(validContact))).status).toBe(200)
+    expect(sendEmailMock).toHaveBeenCalledTimes(1)
+  })
+
   it("rejects cross-origin submissions", async () => {
     const POST = await loadPost()
     const response = await POST(
@@ -160,6 +175,58 @@ describe("POST /api/contact", () => {
     )
   })
 
+  it("keeps the provider idempotency key stable for an explicit retry", async () => {
+    const POST = await loadPost()
+    const headers = { "idempotency-key": "retry_01K4J6Q9E7M2VR8W3X5Y6Z" }
+
+    expect((await POST(makeRequest(validContact, headers))).status).toBe(200)
+    expect((await POST(makeRequest(validContact, headers))).status).toBe(200)
+
+    const firstKey = sendEmailMock.mock.calls[0]?.[1]?.idempotencyKey
+    const secondKey = sendEmailMock.mock.calls[1]?.[1]?.idempotencyKey
+    expect(firstKey).toMatch(/^[A-Za-z0-9_-]{43}$/)
+    expect(secondKey).toBe(firstKey)
+  })
+
+  it("binds a supplied idempotency key to the validated payload", async () => {
+    const POST = await loadPost()
+    const headers = { "idempotency-key": "retry_01K4J6Q9E7M2VR8W3X5Y6Z" }
+
+    expect((await POST(makeRequest(validContact, headers))).status).toBe(200)
+    expect((await POST(makeRequest({ ...validContact, subject: "Outro assunto" }, headers))).status).toBe(200)
+
+    expect(sendEmailMock.mock.calls[1]?.[1]?.idempotencyKey).not.toBe(
+      sendEmailMock.mock.calls[0]?.[1]?.idempotencyKey
+    )
+  })
+
+  it("reuses the provider key when the user retries after an indeterminate timeout", async () => {
+    vi.useFakeTimers()
+    vi.stubEnv("CONTACT_EMAIL_TIMEOUT_MS", "1000")
+    const deliveryThatMayStillComplete = new Promise(() => {})
+    sendEmailMock
+      .mockReturnValueOnce(deliveryThatMayStillComplete)
+      .mockResolvedValueOnce({ data: { id: "email_retry" }, error: null, headers: {} })
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {})
+
+    try {
+      const POST = await loadPost()
+      const headers = { "idempotency-key": "retry_01K4J6Q9E7M2VR8W3X5Y6Z" }
+      const firstAttempt = POST(makeRequest(validContact, headers))
+
+      await vi.advanceTimersByTimeAsync(1_000)
+      expect((await firstAttempt).status).toBe(504)
+      expect((await POST(makeRequest(validContact, headers))).status).toBe(200)
+
+      expect(sendEmailMock.mock.calls[1]?.[1]?.idempotencyKey).toBe(
+        sendEmailMock.mock.calls[0]?.[1]?.idempotencyKey
+      )
+    } finally {
+      consoleError.mockRestore()
+      vi.useRealTimers()
+    }
+  })
+
   it("returns 429 with retry metadata after the client limit", async () => {
     vi.stubEnv("CONTACT_RATE_LIMIT_MAX", "2")
     const POST = await loadPost()
@@ -172,6 +239,54 @@ describe("POST /api/contact", () => {
     expect(response.headers.get("retry-after")).toBe("60")
     expect(response.headers.get("ratelimit-remaining")).toBe("0")
     expect(sendEmailMock).toHaveBeenCalledTimes(2)
+  })
+
+  it("does not spend global capacity on attempts already rejected for one client", async () => {
+    vi.stubEnv("CONTACT_RATE_LIMIT_MAX", "2")
+    vi.stubEnv("CONTACT_RATE_LIMIT_GLOBAL_MAX", "4")
+    const POST = await loadPost()
+
+    expect((await POST(makeRequest(validContact))).status).toBe(200)
+    expect((await POST(makeRequest(validContact))).status).toBe(200)
+    expect((await POST(makeRequest(validContact))).status).toBe(429)
+    expect((await POST(makeRequest(validContact))).status).toBe(429)
+
+    const unrelatedClient = await POST(
+      makeRequest(validContact, { "x-forwarded-for": "198.51.100.22" })
+    )
+
+    expect(unrelatedClient.status).toBe(200)
+    expect(unrelatedClient.headers.get("ratelimit-limit")).toBe("2")
+    expect(sendEmailMock).toHaveBeenCalledTimes(3)
+  })
+
+  it("does not spend client capacity on an attempt rejected by the global bucket", async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date("2026-09-07T00:00:00Z"))
+    vi.stubEnv("CONTACT_RATE_LIMIT_MAX", "2")
+    vi.stubEnv("CONTACT_RATE_LIMIT_GLOBAL_MAX", "2")
+
+    try {
+      const POST = await loadPost()
+      expect((await POST(makeRequest(validContact))).status).toBe(200)
+
+      vi.setSystemTime(new Date("2026-09-07T00:00:30Z"))
+      expect((await POST(
+        makeRequest(validContact, { "x-forwarded-for": "198.51.100.21" })
+      )).status).toBe(200)
+      expect((await POST(
+        makeRequest(validContact, { "x-forwarded-for": "198.51.100.22" })
+      )).status).toBe(429)
+
+      vi.setSystemTime(new Date("2026-09-07T00:01:01Z"))
+      const admittedAfterGlobalReset = await POST(
+        makeRequest(validContact, { "x-forwarded-for": "198.51.100.22" })
+      )
+      expect(admittedAfterGlobalReset.status).toBe(200)
+      expect(admittedAfterGlobalReset.headers.get("ratelimit-remaining")).toBe("1")
+    } finally {
+      vi.useRealTimers()
+    }
   })
 
   it("does not trust spoofable forwarding headers by default", async () => {

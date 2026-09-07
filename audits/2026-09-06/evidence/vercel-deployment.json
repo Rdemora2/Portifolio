@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-07",
+  "project": "portifolio",
+  "framework": "nextjs",
+  "nodeVersion": "24.x",
+  "deploymentState": "READY",
+  "deploymentId": "dpl_H2VCBh1LKKshsois3W32jCC6GG4s",
+  "commit": "dddab26d28c9eb5fc6605bda9a2435d66da7e896",
+  "domains": [
+    "portifolio-liard-zeta.vercel.app",
+    "portifolio-roberto-moraes-projects.vercel.app",
+    "portifolio-git-main-roberto-moraes-projects.vercel.app"
+  ],
+  "runtimeErrorsLast7Days": 0,
+  "source": "Vercel tools get_project, list_deployments, get_runtime_errors; no environment values inspected"
+}

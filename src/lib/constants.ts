@@ -2,20 +2,9 @@ import type { TechCategory } from "@/types"
 import type { Locale } from "@/i18n.config"
 import { defaultLocale } from "@/i18n.config"
 import { pathnames } from "@/i18n/routing"
+import { resolveSiteUrl } from "@/lib/site"
 
-const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://robertomoraes.dev"
-
-function normalizeSiteUrl(value: string): string {
-  const url = new URL(value)
-
-  if (!['http:', 'https:'].includes(url.protocol)) {
-    throw new Error('NEXT_PUBLIC_SITE_URL must use http or https')
-  }
-
-  return url.origin
-}
-
-export const SITE_URL = normalizeSiteUrl(configuredSiteUrl)
+export const SITE_URL = resolveSiteUrl()
 export const SITE_NAME = "Roberto Moraes"
 export const AUTHOR_NAME = "Roberto Moraes"
 
@@ -28,6 +17,7 @@ export type InternalPathname =
   | "/insights"
   | "/insights/go-em-producao"
   | "/contact"
+  | "/privacy"
 
 export function getLocalizedPath(
   locale: Locale,

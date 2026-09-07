@@ -42,6 +42,7 @@ export async function generateMetadata({
     pathname: `/work/${project.slug}`,
     title,
     description: t(`items.${project.id}.shortDescription`),
+    imagePath: `/opengraph-image/project/${project.slug}/${candidate}`,
   })
 }
 

@@ -181,7 +181,7 @@ const articles = {
         ],
       },
     ],
-    authorRole: "Engenheiro de Software & Gerente de TI",
+    authorRole: "Engenheiro de Software",
     ctaEyebrow: "Arquitetura precisa funcionar fora do diagrama",
     ctaTitle: "A arquitetura fica mais clara quando decisões e resultados aparecem juntos.",
     ctaDescription:
@@ -346,7 +346,7 @@ const articles = {
         ],
       },
     ],
-    authorRole: "Software Engineer & IT Manager",
+    authorRole: "Software Engineer",
     ctaEyebrow: "Architecture has to work beyond the diagram",
     ctaTitle: "Architecture becomes clearer when decisions and outcomes appear together.",
     ctaDescription:
@@ -511,7 +511,7 @@ const articles = {
         ],
       },
     ],
-    authorRole: "Ingeniero de Software & Gerente de TI",
+    authorRole: "Ingeniero de Software",
     ctaEyebrow: "La arquitectura debe funcionar fuera del diagrama",
     ctaTitle: "La arquitectura se vuelve más clara cuando decisiones y resultados aparecen juntos.",
     ctaDescription:

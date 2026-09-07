@@ -79,7 +79,6 @@ export async function generateMetadata({
     description: t("description"),
     keywords: [
       "Software Engineer",
-      "IT Manager",
       "Tech Lead",
       "Go",
       "Golang",
@@ -247,7 +246,7 @@ export default async function LocaleLayout({
         ],
         hasOccupation: {
           "@type": "Occupation",
-          name: "Software Engineer & IT Manager",
+          name: hero("title"),
           description: metadata("description"),
           occupationalCategory: "15-1252.00",
           skills: [
@@ -294,7 +293,7 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: serializedJsonLd }}
         />
       </head>
-      <body>
+      <body id="top" tabIndex={-1}>
         <NextIntlClientProvider locale={locale} messages={layoutMessages}>
           <a href="#main-content" className="sr-only focus:not-sr-only">
             {nav("skipToContent")}

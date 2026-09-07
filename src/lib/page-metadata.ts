@@ -19,6 +19,7 @@ type PageMetadataInput = {
   title: string
   description: string
   imagePath?: string
+  absoluteTitle?: boolean
 }
 
 export function buildPageMetadata({
@@ -27,6 +28,7 @@ export function buildPageMetadata({
   title,
   description,
   imagePath = `/opengraph-image/${locale}`,
+  absoluteTitle = false,
 }: PageMetadataInput): Metadata {
   const canonical = getLocalizedUrl(locale, pathname)
   const image = imagePath.startsWith("http")
@@ -38,9 +40,12 @@ export function buildPageMetadata({
       getLocalizedUrl(alternateLocale, pathname),
     ]),
   )
+  const socialTitle = title.includes(SITE_NAME)
+    ? title
+    : `${title} | ${SITE_NAME}`
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     authors: [{ name: AUTHOR_NAME, url: getLocalizedUrl(locale) }],
     alternates: {
@@ -53,7 +58,7 @@ export function buildPageMetadata({
     openGraph: {
       type: "website",
       locale: getDocumentLanguage(locale).replace("-", "_"),
-      title: `${title} | ${SITE_NAME}`,
+      title: socialTitle,
       description,
       siteName: SITE_NAME,
       url: canonical,
@@ -61,7 +66,7 @@ export function buildPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | ${SITE_NAME}`,
+      title: socialTitle,
       description,
       images: [{ url: image, alt: title }],
     },

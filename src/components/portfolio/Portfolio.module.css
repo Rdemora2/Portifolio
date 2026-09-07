@@ -862,15 +862,15 @@
   }
 
   .caseFacts {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   .caseFact {
     display: grid;
-    grid-template-columns: 5rem minmax(0, 1fr);
+    grid-template-columns: minmax(7.25rem, 38%) minmax(0, 1fr);
     gap: 0.75rem;
     align-items: start;
-    padding-block: 0.8rem;
+    padding-block: 0.75rem;
   }
 
   .caseFactValue {
@@ -1129,6 +1129,7 @@
 
 .galleryHeader {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
@@ -1136,7 +1137,38 @@
 
 .galleryControls {
   display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
   gap: 0.5rem;
+}
+
+.galleryMotionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding-inline: 0.9rem;
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  border-radius: 999px;
+  background: rgba(10, 16, 24, 0.6);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.galleryMotionBtn:hover {
+  border-color: var(--color-signal);
+  background: rgba(10, 16, 24, 0.9);
+  color: var(--color-signal);
 }
 
 .galleryNavBtn {
@@ -1335,6 +1367,7 @@
 }
 
 .galleryItemCard:focus-visible,
+.galleryMotionBtn:focus-visible,
 .galleryNavBtn:focus-visible,
 .galleryPaginationButton:focus-visible,
 .modalCloseBtn:focus-visible,
@@ -1488,6 +1521,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .galleryMotionBtn,
   .galleryNavBtn,
   .galleryPaginationButton::before,
   .galleryExpandBadge,
@@ -1503,6 +1537,7 @@
 
 @media (forced-colors: active) {
   .galleryItemCard,
+  .galleryMotionBtn,
   .galleryNavBtn,
   .galleryPaginationButton,
   .modalCloseBtn,

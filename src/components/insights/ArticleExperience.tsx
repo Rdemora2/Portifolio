@@ -147,6 +147,7 @@ export function ArticleExperience({
 }: ArticleExperienceProps) {
   const progressRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
+  const mobileIndexRef = useRef<HTMLDetailsElement>(null)
   const activeIndexRef = useRef(-1)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -172,6 +173,24 @@ export function ArticleExperience({
     "--scene-tone": activeVisual
       ? sceneTones[activeVisual.kind]
       : sceneTones.ingress,
+  }
+
+  const handleMobileNavigation = (sectionId: string) => {
+    const destination = document
+      .getElementById(sectionId)
+      ?.querySelector<HTMLElement>("h2")
+    mobileIndexRef.current?.removeAttribute("open")
+    if (!destination) return
+
+    window.requestAnimationFrame(() => {
+      destination.tabIndex = -1
+      destination.focus({ preventScroll: true })
+      destination.addEventListener(
+        "blur",
+        () => destination.removeAttribute("tabindex"),
+        { once: true },
+      )
+    })
   }
 
   useEffect(() => {
@@ -390,6 +409,42 @@ export function ArticleExperience({
         </span>
         <span className={styles.mobileTrackerTitle}>{activeSection.title}</span>
       </div>
+
+      <details
+        ref={mobileIndexRef}
+        className={styles.mobileIndex}
+        data-article-mobile-index
+      >
+        <summary>
+          <span>{labels.navigation}</span>
+          <span className={styles.mobileIndexCount} aria-hidden="true">
+            {String(activeIndex + 1).padStart(2, "0")}/
+            {String(sections.length).padStart(2, "0")}
+          </span>
+        </summary>
+        <nav aria-label={labels.navigation}>
+          <ol>
+            {sections.map((section, index) => {
+              const isActive = index === activeIndex
+              return (
+                <li key={section.id}>
+                  <a
+                    href={`#${section.id}`}
+                    onClick={() => handleMobileNavigation(section.id)}
+                    aria-current={isActive ? "location" : undefined}
+                    data-current={isActive ? "true" : undefined}
+                  >
+                    <span aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span>{section.title}</span>
+                  </a>
+                </li>
+              )
+            })}
+          </ol>
+        </nav>
+      </details>
 
       <div
         ref={stageRef}

@@ -1,0 +1,21 @@
+
+> portifolio@0.1.0 build
+> next build && node scripts/prepare-standalone.mjs
+
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 455ms
+- Experiments (use with caution):
+  ✓ globalNotFound
+  ✓ optimizeCss
+  · optimizePackageImports
+  · webVitalsAttribution
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.8s
+  Running TypeScript ...
+src/components/sections/WebsiteShowcase.tsx(46,86): error TS2339: Property 'available' does not exist on type '{ readonly id: "arua"; readonly href: "https://lp-hospitalidade-premium.vercel.app/"; readonly domain: "lp-hospitalidade-premium.vercel.app"; readonly image: { readonly src: "/images/sites/arua-resort-experience.webp"; readonly width: 1410; readonly height: 831; readonly blurDataURL: "data:image/jpeg;base64,/9j/2wBD...'.
+  Property 'available' does not exist on type '{ readonly id: "arua"; readonly href: "https://lp-hospitalidade-premium.vercel.app/"; readonly domain: "lp-hospitalidade-premium.vercel.app"; readonly image: { readonly src: "/images/sites/arua-resort-experience.webp"; readonly width: 1410; readonly height: 831; readonly blurDataURL: "data:image/jpeg;base64,/9j/2wBD...'.
+src/components/sections/WebsiteShowcase.tsx(53,36): error TS2339: Property 'available' does not exist on type '{ readonly id: "arua"; readonly href: "https://lp-hospitalidade-premium.vercel.app/"; readonly domain: "lp-hospitalidade-premium.vercel.app"; readonly image: { readonly src: "/images/sites/arua-resort-experience.webp"; readonly width: 1410; readonly height: 831; readonly blurDataURL: "data:image/jpeg;base64,/9j/2wBD...'.
+  Property 'available' does not exist on type '{ readonly id: "arua"; readonly href: "https://lp-hospitalidade-premium.vercel.app/"; readonly domain: "lp-hospitalidade-premium.vercel.app"; readonly image: { readonly src: "/images/sites/arua-resort-experience.webp"; readonly width: 1410; readonly height: 831; readonly blurDataURL: "data:image/jpeg;base64,/9j/2wBD...'.
+Failed to type check.
+

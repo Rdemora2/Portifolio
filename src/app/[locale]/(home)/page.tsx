@@ -26,6 +26,7 @@ export async function generateMetadata({
     pathname: "/",
     title: t("title"),
     description: t("description"),
+    absoluteTitle: true,
   })
 }
 

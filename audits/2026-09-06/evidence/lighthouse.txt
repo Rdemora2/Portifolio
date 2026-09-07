@@ -1,0 +1,6 @@
+local-home-mobile {"performance":0.36,"accessibility":1,"best-practices":1,"seo":1} {"first-contentful-paint":1802.7974999999997,"largest-contentful-paint":7755.892499999998,"total-blocking-time":7600.999999999999,"cumulative-layout-shift":0}
+production-home-mobile {"performance":0.75,"accessibility":1,"best-practices":1,"seo":1} {"first-contentful-paint":1175,"largest-contentful-paint":2982,"total-blocking-time":788.5,"cumulative-layout-shift":0}
+production-home-mobile-visual {"performance":0.7,"accessibility":1,"best-practices":1,"seo":1} {"first-contentful-paint":1065.807,"largest-contentful-paint":2834.807,"total-blocking-time":1266.9999999999998,"cumulative-layout-shift":0}
+production-home-desktop {"performance":0.51,"accessibility":1,"best-practices":1,"seo":1} {"first-contentful-paint":2121,"largest-contentful-paint":3724.5,"total-blocking-time":6624.5,"cumulative-layout-shift":0}
+production-work-mobile {"performance":0.75,"accessibility":1,"best-practices":1,"seo":1} {"first-contentful-paint":1514.818,"largest-contentful-paint":3032.8223869018557,"total-blocking-time":669.4956130981445,"cumulative-layout-shift":0}
+production-article-mobile {"performance":0.95,"accessibility":1,"best-practices":1,"seo":1} {"first-contentful-paint":1109.7469999999998,"largest-contentful-paint":2616.747,"total-blocking-time":162,"cumulative-layout-shift":0}

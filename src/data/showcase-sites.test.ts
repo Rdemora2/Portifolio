@@ -13,7 +13,6 @@ const requiredPublishedDomains = [
   "lp-institucional-vendas.vercel.app",
   "lp-institucional-advocacia.vercel.app",
   "casa-brasa-tabacaria.vercel.app",
-  "lp-arq-carla-moraes.vercel.app",
 ] as const
 
 const jpegStartOfFrameMarkers = new Set([
@@ -165,9 +164,10 @@ describe("website showcase data", () => {
     })
   })
 
-  it("places carla-moraes in 3rd place and casa-brasa before ruptura", () => {
+  it("keeps the unavailable Carla Moraes demo labeled and casa-brasa before ruptura", () => {
     expect(websiteExperiences[1].id).toBe("portal-noticias-atual")
     expect(websiteExperiences[2].id).toBe("carla-moraes")
+    expect(websiteExperiences[2].available).toBe(false)
 
     const casaBrasaIndex = websiteExperiences.findIndex(
       ({ id }) => id === "casa-brasa",

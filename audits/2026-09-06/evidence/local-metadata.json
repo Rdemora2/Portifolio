@@ -1,0 +1,524 @@
+[
+  {
+    "pathname": "/",
+    "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+    "lang": "pt-BR",
+    "viewport": "width=device-width, initial-scale=1",
+    "canonical": "https://robertomoraes.dev/",
+    "og": [
+      {
+        "name": "og:title",
+        "value": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes"
+      },
+      {
+        "name": "og:description",
+        "value": "Engenheiro de software e líder técnico com perfil hands-on. Lidero times, construo backends de alta performance em Go, gerencio infraestrutura cloud (AWS, GCP) e garanto observabilidade e DevOps em sistemas de missão crítica."
+      },
+      {
+        "name": "og:url",
+        "value": "https://robertomoraes.dev"
+      },
+      {
+        "name": "og:site_name",
+        "value": "Roberto Moraes"
+      },
+      {
+        "name": "og:locale",
+        "value": "pt_BR"
+      },
+      {
+        "name": "og:image",
+        "value": "https://robertomoraes.dev/opengraph-image/pt"
+      },
+      {
+        "name": "og:image:width",
+        "value": "1200"
+      },
+      {
+        "name": "og:image:height",
+        "value": "630"
+      },
+      {
+        "name": "og:image:alt",
+        "value": "Roberto Moraes | Engenheiro de Software & Gerente de TI"
+      },
+      {
+        "name": "og:type",
+        "value": "website"
+      },
+      {
+        "name": "twitter:card",
+        "value": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "value": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes"
+      },
+      {
+        "name": "twitter:description",
+        "value": "Engenheiro de software e líder técnico com perfil hands-on. Lidero times, construo backends de alta performance em Go, gerencio infraestrutura cloud (AWS, GCP) e garanto observabilidade e DevOps em sistemas de missão crítica."
+      },
+      {
+        "name": "twitter:image",
+        "value": "https://robertomoraes.dev/opengraph-image/pt"
+      },
+      {
+        "name": "twitter:image:alt",
+        "value": "Roberto Moraes | Engenheiro de Software & Gerente de TI"
+      }
+    ],
+    "hreflang": [
+      {
+        "lang": "pt-BR",
+        "href": "https://robertomoraes.dev/"
+      },
+      {
+        "lang": "en-US",
+        "href": "https://robertomoraes.dev/en"
+      },
+      {
+        "lang": "es-MX",
+        "href": "https://robertomoraes.dev/es"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://robertomoraes.dev/"
+      }
+    ]
+  },
+  {
+    "pathname": "/en",
+    "title": "Roberto Moraes | Software Engineer & IT Manager | Roberto Moraes",
+    "lang": "en-US",
+    "viewport": "width=device-width, initial-scale=1",
+    "canonical": "https://robertomoraes.dev/en",
+    "og": [
+      {
+        "name": "og:title",
+        "value": "Roberto Moraes | Software Engineer & IT Manager | Roberto Moraes"
+      },
+      {
+        "name": "og:description",
+        "value": "Hands-on software engineer and technical leader. I lead teams, build high-performance Go backends, manage cloud infrastructure across AWS and GCP, and bring observability and DevOps practices to mission-critical systems."
+      },
+      {
+        "name": "og:url",
+        "value": "https://robertomoraes.dev/en"
+      },
+      {
+        "name": "og:site_name",
+        "value": "Roberto Moraes"
+      },
+      {
+        "name": "og:locale",
+        "value": "en_US"
+      },
+      {
+        "name": "og:image",
+        "value": "https://robertomoraes.dev/opengraph-image/en"
+      },
+      {
+        "name": "og:image:width",
+        "value": "1200"
+      },
+      {
+        "name": "og:image:height",
+        "value": "630"
+      },
+      {
+        "name": "og:image:alt",
+        "value": "Roberto Moraes | Software Engineer & IT Manager"
+      },
+      {
+        "name": "og:type",
+        "value": "website"
+      },
+      {
+        "name": "twitter:card",
+        "value": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "value": "Roberto Moraes | Software Engineer & IT Manager | Roberto Moraes"
+      },
+      {
+        "name": "twitter:description",
+        "value": "Hands-on software engineer and technical leader. I lead teams, build high-performance Go backends, manage cloud infrastructure across AWS and GCP, and bring observability and DevOps practices to mission-critical systems."
+      },
+      {
+        "name": "twitter:image",
+        "value": "https://robertomoraes.dev/opengraph-image/en"
+      },
+      {
+        "name": "twitter:image:alt",
+        "value": "Roberto Moraes | Software Engineer & IT Manager"
+      }
+    ],
+    "hreflang": [
+      {
+        "lang": "pt-BR",
+        "href": "https://robertomoraes.dev/"
+      },
+      {
+        "lang": "en-US",
+        "href": "https://robertomoraes.dev/en"
+      },
+      {
+        "lang": "es-MX",
+        "href": "https://robertomoraes.dev/es"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://robertomoraes.dev/"
+      }
+    ]
+  },
+  {
+    "pathname": "/es",
+    "title": "Roberto Moraes | Ingeniero de Software & Gerente de TI | Roberto Moraes",
+    "lang": "es-MX",
+    "viewport": "width=device-width, initial-scale=1",
+    "canonical": "https://robertomoraes.dev/es",
+    "og": [
+      {
+        "name": "og:title",
+        "value": "Roberto Moraes | Ingeniero de Software & Gerente de TI | Roberto Moraes"
+      },
+      {
+        "name": "og:description",
+        "value": "Ingeniero de software y líder técnico con perfil hands-on. Lidero equipos, construyo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidad y DevOps en sistemas de misión crítica."
+      },
+      {
+        "name": "og:url",
+        "value": "https://robertomoraes.dev/es"
+      },
+      {
+        "name": "og:site_name",
+        "value": "Roberto Moraes"
+      },
+      {
+        "name": "og:locale",
+        "value": "es_MX"
+      },
+      {
+        "name": "og:image",
+        "value": "https://robertomoraes.dev/opengraph-image/es"
+      },
+      {
+        "name": "og:image:width",
+        "value": "1200"
+      },
+      {
+        "name": "og:image:height",
+        "value": "630"
+      },
+      {
+        "name": "og:image:alt",
+        "value": "Roberto Moraes | Ingeniero de Software & Gerente de TI"
+      },
+      {
+        "name": "og:type",
+        "value": "website"
+      },
+      {
+        "name": "twitter:card",
+        "value": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "value": "Roberto Moraes | Ingeniero de Software & Gerente de TI | Roberto Moraes"
+      },
+      {
+        "name": "twitter:description",
+        "value": "Ingeniero de software y líder técnico con perfil hands-on. Lidero equipos, construyo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidad y DevOps en sistemas de misión crítica."
+      },
+      {
+        "name": "twitter:image",
+        "value": "https://robertomoraes.dev/opengraph-image/es"
+      },
+      {
+        "name": "twitter:image:alt",
+        "value": "Roberto Moraes | Ingeniero de Software & Gerente de TI"
+      }
+    ],
+    "hreflang": [
+      {
+        "lang": "pt-BR",
+        "href": "https://robertomoraes.dev/"
+      },
+      {
+        "lang": "en-US",
+        "href": "https://robertomoraes.dev/en"
+      },
+      {
+        "lang": "es-MX",
+        "href": "https://robertomoraes.dev/es"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://robertomoraes.dev/"
+      }
+    ]
+  },
+  {
+    "pathname": "/projetos/hospital-sirio-libanes",
+    "title": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico | Roberto Moraes",
+    "lang": "es-MX",
+    "viewport": "width=device-width, initial-scale=1",
+    "canonical": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes",
+    "og": [
+      {
+        "name": "og:title",
+        "value": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico | Roberto Moraes"
+      },
+      {
+        "name": "og:description",
+        "value": "Arquitectura e ingeniería de extremo a extremo de la plataforma de hospitalidad digital. Backend en Go procesando 20M+ peticiones/mes con 6ms de latencia."
+      },
+      {
+        "name": "og:url",
+        "value": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes"
+      },
+      {
+        "name": "og:site_name",
+        "value": "Roberto Moraes"
+      },
+      {
+        "name": "og:locale",
+        "value": "es_MX"
+      },
+      {
+        "name": "og:image",
+        "value": "https://robertomoraes.dev/opengraph-image/es"
+      },
+      {
+        "name": "og:image:width",
+        "value": "1200"
+      },
+      {
+        "name": "og:image:height",
+        "value": "630"
+      },
+      {
+        "name": "og:image:alt",
+        "value": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico"
+      },
+      {
+        "name": "og:type",
+        "value": "website"
+      },
+      {
+        "name": "twitter:card",
+        "value": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "value": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico | Roberto Moraes"
+      },
+      {
+        "name": "twitter:description",
+        "value": "Arquitectura e ingeniería de extremo a extremo de la plataforma de hospitalidad digital. Backend en Go procesando 20M+ peticiones/mes con 6ms de latencia."
+      },
+      {
+        "name": "twitter:image",
+        "value": "https://robertomoraes.dev/opengraph-image/es"
+      },
+      {
+        "name": "twitter:image:alt",
+        "value": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico"
+      }
+    ],
+    "hreflang": [
+      {
+        "lang": "pt-BR",
+        "href": "https://robertomoraes.dev/projetos/hospital-sirio-libanes"
+      },
+      {
+        "lang": "en-US",
+        "href": "https://robertomoraes.dev/en/work/hospital-sirio-libanes"
+      },
+      {
+        "lang": "es-MX",
+        "href": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://robertomoraes.dev/projetos/hospital-sirio-libanes"
+      }
+    ]
+  },
+  {
+    "pathname": "/insights/go-em-producao",
+    "title": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria | Roberto Moraes",
+    "lang": "es-MX",
+    "viewport": "width=device-width, initial-scale=1",
+    "canonical": "https://robertomoraes.dev/es/insights/go-en-produccion",
+    "og": [
+      {
+        "name": "og:title",
+        "value": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria | Roberto Moraes"
+      },
+      {
+        "name": "og:description",
+        "value": "Decisiones de arquitectura, caché híbrida (Redis + sync.Map), RBAC de 4 niveles, observabilidad y resiliencia en el backend Go (Fiber/FastHTTP) del Hospital Sírio-Libanês que procesa más de 20M de peticiones al mes."
+      },
+      {
+        "name": "og:url",
+        "value": "https://robertomoraes.dev/es/insights/go-en-produccion"
+      },
+      {
+        "name": "og:site_name",
+        "value": "Roberto Moraes"
+      },
+      {
+        "name": "og:locale",
+        "value": "es_MX"
+      },
+      {
+        "name": "og:image",
+        "value": "https://robertomoraes.dev/opengraph-image/article/es"
+      },
+      {
+        "name": "og:image:width",
+        "value": "1200"
+      },
+      {
+        "name": "og:image:height",
+        "value": "630"
+      },
+      {
+        "name": "og:image:alt",
+        "value": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria"
+      },
+      {
+        "name": "og:type",
+        "value": "article"
+      },
+      {
+        "name": "twitter:card",
+        "value": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "value": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria | Roberto Moraes"
+      },
+      {
+        "name": "twitter:description",
+        "value": "Decisiones de arquitectura, caché híbrida (Redis + sync.Map), RBAC de 4 niveles, observabilidad y resiliencia en el backend Go (Fiber/FastHTTP) del Hospital Sírio-Libanês que procesa más de 20M de peticiones al mes."
+      },
+      {
+        "name": "twitter:image",
+        "value": "https://robertomoraes.dev/opengraph-image/article/es"
+      },
+      {
+        "name": "twitter:image:alt",
+        "value": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria"
+      }
+    ],
+    "hreflang": [
+      {
+        "lang": "pt-BR",
+        "href": "https://robertomoraes.dev/insights/go-em-producao"
+      },
+      {
+        "lang": "en-US",
+        "href": "https://robertomoraes.dev/en/insights/go-in-production"
+      },
+      {
+        "lang": "es-MX",
+        "href": "https://robertomoraes.dev/es/insights/go-en-produccion"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://robertomoraes.dev/insights/go-em-producao"
+      }
+    ]
+  },
+  {
+    "pathname": "/contato",
+    "title": "Contacto Profesional | Roberto Moraes",
+    "lang": "es-MX",
+    "viewport": "width=device-width, initial-scale=1",
+    "canonical": "https://robertomoraes.dev/es/contacto",
+    "og": [
+      {
+        "name": "og:title",
+        "value": "Contacto Profesional | Roberto Moraes"
+      },
+      {
+        "name": "og:description",
+        "value": "Canales profesionales de Roberto Moraes para conversaciones sobre ingeniería de software, arquitectura, tecnología y gestión."
+      },
+      {
+        "name": "og:url",
+        "value": "https://robertomoraes.dev/es/contacto"
+      },
+      {
+        "name": "og:site_name",
+        "value": "Roberto Moraes"
+      },
+      {
+        "name": "og:locale",
+        "value": "es_MX"
+      },
+      {
+        "name": "og:image",
+        "value": "https://robertomoraes.dev/opengraph-image/es"
+      },
+      {
+        "name": "og:image:width",
+        "value": "1200"
+      },
+      {
+        "name": "og:image:height",
+        "value": "630"
+      },
+      {
+        "name": "og:image:alt",
+        "value": "Contacto Profesional"
+      },
+      {
+        "name": "og:type",
+        "value": "website"
+      },
+      {
+        "name": "twitter:card",
+        "value": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "value": "Contacto Profesional | Roberto Moraes"
+      },
+      {
+        "name": "twitter:description",
+        "value": "Canales profesionales de Roberto Moraes para conversaciones sobre ingeniería de software, arquitectura, tecnología y gestión."
+      },
+      {
+        "name": "twitter:image",
+        "value": "https://robertomoraes.dev/opengraph-image/es"
+      },
+      {
+        "name": "twitter:image:alt",
+        "value": "Contacto Profesional"
+      }
+    ],
+    "hreflang": [
+      {
+        "lang": "pt-BR",
+        "href": "https://robertomoraes.dev/contato"
+      },
+      {
+        "lang": "en-US",
+        "href": "https://robertomoraes.dev/en/contact"
+      },
+      {
+        "lang": "es-MX",
+        "href": "https://robertomoraes.dev/es/contacto"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://robertomoraes.dev/contato"
+      }
+    ]
+  }
+]

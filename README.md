@@ -6,22 +6,22 @@
 [![React 19](https://img.shields.io/badge/React-19.2.4-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vercel Deployment](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://robertomoraes.dev)
+[![Vercel Deployment](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://portifolio-liard-zeta.vercel.app)
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Rdemora2/Portifolio/ci.yml?branch=main&label=CI%20Pipelines&style=flat-square)](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml)
 [![Node Reference](https://img.shields.io/badge/Node.js-24.18.0-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Package Manager](https://img.shields.io/badge/npm-11.16.0-CB3837?style=flat-square&logo=npm&logoColor=white)](https://www.npmjs.com/)
 [![Accessibility](https://img.shields.io/badge/A11y-WCAG%202.1%20AAA-brightgreen?style=flat-square)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-[![Security](https://img.shields.io/badge/Security-0%20CVEs%20%7C%20Signed-brightgreen?style=flat-square)](https://www.npmjs.com/)
+[![Security checks](https://img.shields.io/badge/Security-CI%20checks-informational?style=flat-square)](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml)
 
 <br />
 
 **Engenharia Full Stack de Missão Crítica · Arquitetura Distribuída · Liderança Técnica**
 
-[🌐 **Live Preview (robertomoraes.dev)**](https://robertomoraes.dev) &nbsp;|&nbsp;
+[🌐 **Live Preview (Vercel)**](https://portifolio-liard-zeta.vercel.app) &nbsp;|&nbsp;
 [📑 **Contexto Técnico & Arquitetura**](./docs/TECHNICAL_CONTEXT.md) &nbsp;|&nbsp;
 [💼 **LinkedIn**](https://www.linkedin.com/in/robertomoraes/) &nbsp;|&nbsp;
-[📫 **Contato**](https://robertomoraes.dev/contact)
+[📫 **Contato**](https://portifolio-liard-zeta.vercel.app/contato)
 
 </div>
 
@@ -49,7 +49,7 @@ flowchart TD
 
     subgraph EdgeLayer ["Vercel Edge / Reverse Proxy"]
         MW["Middleware next-intl (as-needed prefix)"]
-        SecHeaders["Security Headers + CSP Rigorosa"]
+        SecHeaders["Security Headers + CSP Versionada"]
     end
 
     subgraph AppRouter ["Next.js 16 App Router (React 19)"]
@@ -78,7 +78,7 @@ flowchart TD
 
 ### ⚡ Performance & Zero-Runtime Overhead
 - **Server-First**: Mais de 90% do HTML é servido pré-renderizado diretamente do build; o JavaScript é reservado exclusivamente para interações essenciais.
-- **Orçamentos de Bundle Estritos**: 44 gates monitoram JS, CSS, HTML, preload de fontes WOFF2 e inventário para todas as 8 superfícies da aplicação.
+- **Orçamentos de Bundle Estritos**: 49 gates monitoram JS, CSS, HTML, preload de fontes WOFF2 e inventário para as 9 superfícies da aplicação, incluindo privacidade.
 - **Motion Progressivo**: Efeito *LiquidChrome* construído sobre **OGL 1.0** e Web Animations API. Degrada suave e funcionalmente para fundos estáticos em cenários com `prefers-reduced-motion` ou sem WebGL.
 
 ### 🌐 Internacionalização Nativa (i18n)
@@ -87,13 +87,16 @@ flowchart TD
 - Metadados completos: `hreflang`, canonical links, Open Graph dinâmico e JSON-LD Schema.org localizado.
 
 ### 🛡️ Segurança Defensiva & Resiliência
-- **Content Security Policy (CSP)** estrita com `script-src-attr: 'none'`, `frame-ancestors: 'none'` e `base-uri: 'self'`.
+- **Content Security Policy (CSP)** versionada com `script-src-attr: 'none'`, `frame-ancestors: 'none'` e `base-uri: 'self'`; o bootstrap atual ainda requer `unsafe-inline` para scripts e estilos.
 - Route Handler `/api/contact` protegido contra abuso:
-  - Rate limiting em memória com chaves HMAC para evitar armazenamento de IPs em texto puro e prevenir vazamentos de memória (OOM).
+  - Rate limiting em memória com teto de entradas; IPs confiáveis são transformados em HMAC antes de entrar no mapa.
   - Verificação de entropia Shannon para segredos de ambiente.
-  - Limite rígido de payload (16 KiB) e timeout com `AbortController`.
+  - Limite rígido de payload (16 KiB) e timeout por `Promise.race`; o timeout não cancela uma entrega já iniciada.
   - Detecção de spam via honeypot transparente.
-  - Proteção contra IP spoofing através de `CONTACT_TRUST_PROXY`.
+  - Confiança explícita de proxy através de `CONTACT_TRUST_PROXY`; os contadores continuam locais a cada processo.
+  - Retentativa manual com chave de idempotência estável e resultado indeterminado documentado para respostas 504.
+
+Os checks de segurança da CI incluem auditoria npm, verificação de assinaturas, Trivy da imagem e SBOM CycloneDX. O badge indica a existência desse pipeline; não certifica ausência permanente de vulnerabilidades. Veja também o [runbook do contato](./docs/CONTACT_OPERATIONS.md).
 
 ### ♿ Acessibilidade (a11y) & SEO Estruturado
 - Conformidade auditada com **WCAG 2.1 AAA** usando `@axe-core/playwright`.
@@ -109,10 +112,10 @@ flowchart TD
 
 | Case Study | Escopo & Impacto | Stack Principal |
 | :--- | :--- | :--- |
-| **[Hospital Sírio-Libanês](https://robertomoraes.dev/work/hospital-sirio-libanes)** | Plataforma de saúde para 350.000+ pacientes, telemedicina e agendamento digital com SLA de 99.98%. | Go · NestJS · Next.js · AWS · PostgreSQL |
-| **[Grupo Bandeirantes](https://robertomoraes.dev/work/band-news-bandsports)** | Modernização simultânea de 6+ portais (BandNews, BandSports, Arte 1, Agro+) com zero downtime em picos de audiência. | Next.js · Go · AWS WAF · Load Balancing · TypeScript |
-| **[Grupo Posadas / Fiesta Americana](https://robertomoraes.dev/work/fiesta-americana)** | Motor de reservas e portal hoteleiro internacional para mais de 190 propriedades com US$ 25M+ em reservas processadas. | Next.js · NestJS · AWS · GCP · Micro frontends |
-| **[Buser](https://robertomoraes.dev/experience)** | Engenharia de alta volumetria com R$ 150M+ transacionados e 10M+ usuários ativos em mobilidade urbana. | Kotlin · Go · AWS · Microsserviços · CI/CD |
+| **[Hospital Sírio-Libanês](https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes)** | Plataforma de saúde para 350.000+ pacientes, telemedicina e agendamento digital com SLA de 99.98%. | Go · NestJS · Next.js · AWS · PostgreSQL |
+| **[Grupo Bandeirantes](https://portifolio-liard-zeta.vercel.app/projetos/band-news-bandsports)** | Modernização simultânea de 6+ portais (BandNews, BandSports, Arte 1, Agro+) com zero downtime em picos de audiência. | Next.js · Go · AWS WAF · Load Balancing · TypeScript |
+| **[Grupo Posadas / Fiesta Americana](https://portifolio-liard-zeta.vercel.app/projetos/fiesta-americana)** | Motor de reservas e portal hoteleiro internacional para mais de 190 propriedades com US$ 25M+ em reservas processadas. | Next.js · NestJS · AWS · GCP · Micro frontends |
+| **[Buser](https://portifolio-liard-zeta.vercel.app/experiencia)** | Engenharia de alta volumetria com R$ 150M+ transacionados e 10M+ usuários ativos em mobilidade urbana. | Kotlin · Go · AWS · Microsserviços · CI/CD |
 
 ### Vitrine de Produtos & Experiências Publicadas
 
@@ -140,7 +143,7 @@ flowchart TD
 | **Internacionalização** | [next-intl 4.13.7](https://next-intl-docs.vercel.app/) | Catálogos de mensagens em PT, EN e ES com Server Components |
 | **Formulários & Schemas**| [React Hook Form 7.74](https://react-hook-form.com/) + [Zod 4.4](https://zod.dev/) | Validação de entrada client-side e integridade tipada |
 | **Entrega Transacional** | [Resend 6.17.2](https://resend.com/) | API moderna de envio de emails transacionais autenticados |
-| **Testes Unitários** | [Vitest 4.1.10](https://vitest.dev/) | Execução ultrarrápida de 130 testes com cobertura de lógica de negócio |
+| **Testes Unitários** | [Vitest 4.1.10](https://vitest.dev/) | Contratos automatizados de lógica, conteúdo e configuração |
 | **Testes E2E & A11y** | [Playwright 1.61](https://playwright.dev/) + [axe-core](https://www.deque.com/axe/) | Automação cross-browser (Chromium, Firefox, WebKit, Mobile) e WCAG |
 | **Infra & Deploy** | [Vercel](https://vercel.com/) + [Docker Distroless](https://github.com/GoogleContainerTools/distroless) | Hospedagem em Edge global e container imutável não-root |
 
@@ -160,6 +163,7 @@ O comando `npm run check:bundle` valida todas as superfícies da aplicação con
 | **Insights (`/insights`)** | 245 KiB | 25 KiB | 18 KiB | 120 KiB | 210 KiB |
 | **Contact (`/contact`)** | 250 KiB | 25 KiB | 18 KiB | 120 KiB | 210 KiB |
 | **Article (`/insights/[slug]`)**| 250 KiB | 25 KiB | 35 KiB | 120 KiB | 210 KiB |
+| **Privacy (`/privacy`)** | 245 KiB | 25 KiB | 18 KiB | 120 KiB | 210 KiB |
 | **Lazy Chunks (Diferidos)** | 175 KiB (Total) | — | — | — | 90 KiB (Maior chunk) |
 
 ---
@@ -224,7 +228,7 @@ npm run test:e2e
 | :--- | :--- |
 | `npm run dev` | Inicia o servidor de desenvolvimento com Webpack e limites de memória |
 | `npm run dev:turbo` | Inicia o desenvolvimento com Turbopack opt-in |
-| `npm test` | Executa a suíte de 130 testes no Vitest e o quality hook de IA |
+| `npm test` | Executa a suíte Vitest e o quality hook de IA |
 | `npm run lint` | Executa o ESLint 9 com regras do Next.js e TypeScript |
 | `npm run typecheck` | Gera tipos de rota e roda checagem do compilador TypeScript (`tsc --noEmit`) |
 | `npm run build` | Compila o build estático de produção e prepara o standalone |
@@ -263,6 +267,7 @@ Portifolio/
 │   ├── workflows/ci.yml       # Pipeline completo de CI (testes, lint, e2e, trivy, sbom)
 │   └── instructions/          # Guias de governança para agentes e desenvolvedores
 ├── docs/
+│   ├── CONTACT_OPERATIONS.md  # Runbook de rate limit, timeout e idempotência
 │   └── TECHNICAL_CONTEXT.md   # Documento mestre de arquitetura e decisões técnicas
 ├── e2e/                       # Testes de integração e acessibilidade com Playwright
 ├── public/                    # Assets públicos estáticos, thumbnails WebP e llms.txt
@@ -285,7 +290,7 @@ Portifolio/
 
 ## 📬 Contato & Conexões
 
-- **Website**: [robertomoraes.dev](https://robertomoraes.dev)
+- **Website**: [portifolio-liard-zeta.vercel.app](https://portifolio-liard-zeta.vercel.app)
 - **LinkedIn**: [linkedin.com/in/robertomoraes](https://www.linkedin.com/in/robertomoraes/)
 - **Email**: [robertomoraeszar@gmail.com](mailto:robertomoraeszar@gmail.com)
 - **WhatsApp**: [+55 11 97387-4345](https://api.whatsapp.com/send?phone=5511973874345)

@@ -38,7 +38,15 @@ export function ProjectGalleryCarousel({
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null)
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
   const [allowsMotion, setAllowsMotion] = useState(false)
+  const [hasFocusWithin, setHasFocusWithin] = useState(false)
+  const [isUserPaused, setIsUserPaused] = useState(false)
   const isDialogOpen = activeModalIndex !== null
+  const shouldAutoplay =
+    images.length > 1 &&
+    allowsMotion &&
+    !hasFocusWithin &&
+    !isUserPaused &&
+    !isDialogOpen
 
   const closeGallery = useCallback(() => setActiveModalIndex(null), [])
   const moveModal = useCallback(
@@ -117,9 +125,45 @@ export function ProjectGalleryCarousel({
     const autoplay = swiperRef.current?.autoplay
     if (!autoplay) return
 
-    if (allowsMotion) autoplay.start()
+    if (shouldAutoplay) autoplay.start()
     else autoplay.stop()
-  }, [allowsMotion])
+  }, [shouldAutoplay])
+
+  const handleFocusCapture = () => {
+    swiperRef.current?.autoplay?.stop()
+    setHasFocusWithin(true)
+  }
+
+  const handleBlurCapture = (event: React.FocusEvent<HTMLElement>) => {
+    const nextTarget = event.relatedTarget
+    if (nextTarget instanceof Node && event.currentTarget.contains(nextTarget)) {
+      return
+    }
+    setHasFocusWithin(false)
+  }
+
+  const toggleAutoplay = () => {
+    setIsUserPaused((current) => {
+      const next = !current
+      if (next) swiperRef.current?.autoplay?.stop()
+      return next
+    })
+  }
+
+  const handleSlideChange = (swiper: SwiperInstance) => {
+    setActiveSlideIndex(swiper.realIndex)
+
+    const focused = document.activeElement
+    if (!(focused instanceof HTMLElement)) return
+    if (!focused.matches(`.${styles.galleryItemCard}`)) return
+
+    const activeTrigger = swiper.slides[swiper.activeIndex]?.querySelector<HTMLElement>(
+      `.${styles.galleryItemCard}`,
+    )
+    if (activeTrigger && activeTrigger !== focused) {
+      activeTrigger.focus({ preventScroll: true })
+    }
+  }
 
   const openGallery = (index: number, trigger: HTMLButtonElement) => {
     triggerRef.current = trigger
@@ -130,12 +174,28 @@ export function ProjectGalleryCarousel({
 
   return (
     <>
-      <section className={styles.gallerySection} aria-label={title}>
+      <section
+        className={styles.gallerySection}
+        aria-label={title}
+        onFocusCapture={handleFocusCapture}
+        onBlurCapture={handleBlurCapture}
+      >
         <div className={styles.container}>
           <div className={styles.galleryHeader}>
             <h2 className={styles.storyLabel}>{title}</h2>
 
             <div className={styles.galleryControls}>
+              {allowsMotion && images.length > 1 ? (
+                <button
+                  type="button"
+                  className={styles.galleryMotionBtn}
+                  onClick={toggleAutoplay}
+                  data-paused={isUserPaused ? "true" : undefined}
+                >
+                  <span aria-hidden="true">{isUserPaused ? "▶" : "Ⅱ"}</span>
+                  <span>{isUserPaused ? labels.resume : labels.pause}</span>
+                </button>
+              ) : null}
               <button
                 type="button"
                 className={styles.galleryNavBtn}
@@ -163,8 +223,7 @@ export function ProjectGalleryCarousel({
             grabCursor
             centeredSlides
             slidesPerView="auto"
-            loop={images.length > 2}
-            loopAdditionalSlides={2}
+            rewind={images.length > 1}
             watchSlidesProgress
             speed={allowsMotion ? 600 : 0}
             autoplay={
@@ -187,7 +246,7 @@ export function ProjectGalleryCarousel({
               swiperRef.current = swiper
               setActiveSlideIndex(swiper.realIndex)
             }}
-            onSlideChange={(swiper) => setActiveSlideIndex(swiper.realIndex)}
+            onSlideChange={handleSlideChange}
             className={styles.swiperGallery}
           >
             {images.map((image, index) => (
@@ -241,8 +300,8 @@ export function ProjectGalleryCarousel({
                 type="button"
                 className={styles.galleryPaginationButton}
                 data-active={activeSlideIndex === index}
-                onClick={() => swiperRef.current?.slideToLoop(index)}
-                aria-label={`${labels.open}: ${image.alt}`}
+                onClick={() => swiperRef.current?.slideTo(index)}
+                aria-label={`${labels.goTo} ${index + 1}: ${image.alt}`}
                 aria-current={activeSlideIndex === index ? "true" : undefined}
               />
             ))}

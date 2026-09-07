@@ -5,7 +5,7 @@ const port = Number(process.env.PORT ?? 3100)
 const localBaseUrl = `http://localhost:${port}`
 const baseURL = process.env.PLAYWRIGHT_TEST_BASE_URL ?? localBaseUrl
 const startsLocalServer = !process.env.PLAYWRIGHT_TEST_BASE_URL
-const productionSiteUrl = "https://robertomoraes.dev"
+const productionSiteUrl = "https://portifolio-liard-zeta.vercel.app"
 const fixtureDigest = (scope: string) =>
   createHash("sha256").update(`portfolio-playwright-${scope}`).digest("hex")
 

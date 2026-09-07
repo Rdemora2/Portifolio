@@ -1,0 +1,19 @@
+{
+  "canvasCount": 1,
+  "deviceMemory": 8,
+  "hardwareConcurrency": 6,
+  "pointerFine": true,
+  "probeContext": "webgl2",
+  "reducedMotion": false,
+  "saveData": false,
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+  "visibilityState": "visible",
+  "webdriver": false,
+  "consoleMessages": [
+    "[.WebGL-0x11c004a4800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[.WebGL-0x11c004a4800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[.WebGL-0x11c004a4800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[.WebGL-0x11c004a4800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+  ],
+  "failedRequests": []
+}

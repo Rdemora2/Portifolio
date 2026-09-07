@@ -57,6 +57,12 @@ export const routeDefinitions = {
     pathname: "/en/insights/go-in-production",
     budgets: { js: 250, css: 25, html: 35, fontPreload: 120, fontInventory: 210 },
   },
+  privacy: {
+    surface: "PRIVACY",
+    htmlPath: "server/app/en/privacy.html",
+    pathname: "/en/privacy",
+    budgets: { js: 245, css: 25, html: 18, fontPreload: 120, fontInventory: 210 },
+  },
 }
 
 function requireNonEmpty(values, message) {
@@ -493,7 +499,7 @@ async function loadDynamicRouteHtml(nextDir, routeEntries) {
     .update("portfolio-bundle-analysis-runtime")
     .digest("hex")
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://robertomoraes.dev"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://portifolio-liard-zeta.vercel.app"
   let serverOutput = ""
   const appendOutput = (chunk) => {
     serverOutput = `${serverOutput}${chunk.toString()}`.slice(-8_000)

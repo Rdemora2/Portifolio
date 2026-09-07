@@ -1,8 +1,19 @@
 import { describe, expect, it } from "vitest"
 
 import { getLocalizedPath, getLocalizedUrl, SITE_URL } from "./constants"
+import { DEFAULT_SITE_URL, resolveSiteUrl } from "./site"
 
 describe("localized portfolio URLs", () => {
+  it("uses the reachable public alias as the default canonical origin", () => {
+    expect(resolveSiteUrl(undefined)).toBe(DEFAULT_SITE_URL)
+  })
+
+  it("normalizes a configured origin for every public URL consumer", () => {
+    expect(resolveSiteUrl("https://portfolio.example.org/path?q=1")).toBe(
+      "https://portfolio.example.org",
+    )
+  })
+
   it.each([
     ["pt", "/", "/"],
     ["pt", "/work", "/projetos"],

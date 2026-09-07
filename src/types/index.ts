@@ -88,6 +88,7 @@ export interface WebsiteExperience {
   id: string
   href: string
   domain: string
+  available?: boolean
   image: {
     src: string
     width: number

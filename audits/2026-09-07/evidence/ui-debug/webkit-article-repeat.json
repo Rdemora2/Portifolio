@@ -1,0 +1,507 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@24/24.18.0/bin/node",
+      "/Users/roberto/Documents/Code/Personal/Portifolio/node_modules/.bin/playwright",
+      "test",
+      "e2e/browser-smoke.spec.ts",
+      "--project=webkit-smoke",
+      "--grep=keeps project details and article content progressive",
+      "--workers=2",
+      "--repeat-each=10",
+      "--reporter=json",
+      "--output=audits/2026-09-07/evidence/ui-debug/webkit-article-results"
+    ],
+    "configFile": "/Users/roberto/Documents/Code/Personal/Portifolio/playwright.config.ts",
+    "rootDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webkit-article-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [
+          "/(?:browser-smoke|mobile-smoke|webgl-disabled)\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webkit-article-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium-webgl-disabled",
+        "name": "chromium-webgl-disabled",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/webgl-disabled\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webkit-article-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "firefox-smoke",
+        "name": "firefox-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/browser-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webkit-article-results",
+        "repeatEach": 10,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "webkit-smoke",
+        "name": "webkit-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/browser-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webkit-article-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium-mobile-smoke",
+        "name": "chromium-mobile-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/mobile-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webkit-article-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "webkit-mobile-smoke",
+        "name": "webkit-mobile-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/mobile-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "browser-smoke.spec.ts",
+      "file": "browser-smoke.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 36868,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:39:49.684Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-1474f92a20bc1a2645bc",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 36541,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:39:49.642Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-daadc8d9dbce43754318",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 24933,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:40:33.337Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-12f799706fcbefdbe0bf",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25635,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:40:33.341Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-c39241d6bf505a8792a3",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 34065,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:41:03.919Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-34ab3b7c9e8be88526e6",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33884,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:41:03.972Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-7b284687ab817221bdb4",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25567,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:41:42.637Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-6f6051cf99ff2c15db95",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 26623,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:41:42.637Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-d6640e22b20902d293de",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 31058,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:42:13.616Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-69b66efd1d96b6036e53",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        },
+        {
+          "title": "keeps project details and article content progressive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit-smoke",
+              "projectName": "webkit-smoke",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 30740,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:42:14.008Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5a831c70b3774ee84c9d-df72de8da0a03c6edc5d",
+          "file": "browser-smoke.spec.ts",
+          "line": 61,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-07T04:39:47.975Z",
+    "duration": 179651.095,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

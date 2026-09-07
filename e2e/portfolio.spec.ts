@@ -116,7 +116,7 @@ test("keeps the hero identity exact and the home deliberately concise", async ({
     "Roberto Moraes",
   )
   await expect(
-    page.getByText("Software Engineer & IT Manager", { exact: true }),
+    page.getByText("Software Engineer", { exact: true }),
   ).toBeVisible()
   await expect(page.locator("[data-home-section]")).toHaveCount(5)
   await expect(page.locator("[data-project-card]")).toHaveCount(3)
@@ -341,12 +341,12 @@ test("presents production cases before the independent web lab", async ({
   const websiteLinks = page.locator("[data-website-link]")
   await expect(cases).toHaveCount(3)
   await expect(websiteCards).toHaveCount(websiteExperiences.length)
-  await expect(websiteLinks).toHaveCount(websiteExperiences.length)
+  await expect(websiteLinks).toHaveCount(websiteExperiences.filter((site) => !("available" in site) || site.available !== false).length)
   await expect(cases.nth(0)).toContainText("Hospital Sírio-Libanês")
   await expect(cases.nth(1)).toContainText("Grupo Bandeirantes")
   await expect(cases.nth(2)).toContainText("Fiesta Americana")
 
-  for (let index = 0; index < websiteExperiences.length; index += 1) {
+  for (let index = 0; index < await websiteLinks.count(); index += 1) {
     const link = websiteLinks.nth(index)
     await expect(link).toHaveAttribute("target", "_blank")
     await expect(link).toHaveAttribute(
@@ -720,19 +720,19 @@ test("enforces security headers and route-aware discoverability", async ({
   await page.goto("/en/work", { waitUntil: "domcontentloaded" })
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://robertomoraes.dev/en/work",
+    "https://portifolio-liard-zeta.vercel.app/en/work",
   )
   await expect(page.locator('link[hreflang="pt-BR"]')).toHaveAttribute(
     "href",
-    "https://robertomoraes.dev/projetos",
+    "https://portifolio-liard-zeta.vercel.app/projetos",
   )
   await expect(page.locator('link[hreflang="es-MX"]')).toHaveAttribute(
     "href",
-    "https://robertomoraes.dev/es/proyectos",
+    "https://portifolio-liard-zeta.vercel.app/es/proyectos",
   )
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
     "content",
-    "https://robertomoraes.dev/en/work",
+    "https://portifolio-liard-zeta.vercel.app/en/work",
   )
 
   await page.goto("/en")
@@ -750,21 +750,21 @@ test("publishes complete robots, sitemap, and permanent article migrations", asy
   const robots = await request.get("/robots.txt")
   expect(robots.status()).toBe(200)
   expect(await robots.text()).toContain(
-    "Sitemap: https://robertomoraes.dev/sitemap.xml",
+    "Sitemap: https://portifolio-liard-zeta.vercel.app/sitemap.xml",
   )
 
   const sitemap = await request.get("/sitemap.xml")
   const sitemapXml = await sitemap.text()
   expect(sitemap.status()).toBe(200)
-  expect((sitemapXml.match(/<url>/g) ?? [])).toHaveLength(30)
+  expect((sitemapXml.match(/<url>/g) ?? [])).toHaveLength(33)
   expect(sitemapXml).toContain(
-    "https://robertomoraes.dev/projetos/hospital-sirio-libanes",
+    "https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes",
   )
   expect(sitemapXml).toContain(
-    "https://robertomoraes.dev/en/insights/go-in-production",
+    "https://portifolio-liard-zeta.vercel.app/en/insights/go-in-production",
   )
   expect(sitemapXml).toContain(
-    "https://robertomoraes.dev/es/insights/go-en-produccion",
+    "https://portifolio-liard-zeta.vercel.app/es/insights/go-en-produccion",
   )
 
   for (const canonicalArticlePath of [
@@ -864,6 +864,57 @@ test("rejects untrusted contact origins with the neutral schema", async ({
   })
 
   expect(response.status()).toBe(403)
+})
+
+test("keeps contact retries idempotent across reload and rotates after success", async ({
+  page,
+}) => {
+  const idempotencyKeys: string[] = []
+  await page.route("**/api/contact", async (route) => {
+    idempotencyKeys.push(route.request().headers()["idempotency-key"] ?? "")
+    await route.fulfill({
+      status: idempotencyKeys.length <= 2 ? 504 : 200,
+      contentType: "application/json",
+      body: JSON.stringify(
+        idempotencyKeys.length <= 2
+          ? { error: "Não foi possível confirmar o envio" }
+          : { success: true },
+      ),
+    })
+  })
+
+  const submitContact = async () => {
+    await page.locator("#contact-name").fill("Test User")
+    await page.locator("#contact-email").fill("test@example.com")
+    await page.locator("#contact-subject").fill("Engineering conversation")
+    await page.locator("#contact-message").fill(
+      "This is a valid test message with enough context.",
+    )
+    await page.getByRole("button", { name: "Send message" }).click()
+  }
+
+  await page.goto("/en/contact", { waitUntil: "domcontentloaded" })
+  await submitContact()
+
+  const alert = page.locator("form").getByRole("alert")
+  await expect(alert).toBeVisible()
+  await page.waitForTimeout(4_300)
+  await expect(alert).toBeVisible()
+
+  await page.reload({ waitUntil: "domcontentloaded" })
+  await submitContact()
+  await expect.poll(() => idempotencyKeys.length).toBe(2)
+  await expect(alert).toBeVisible()
+  expect(idempotencyKeys[0]).toMatch(/^[0-9a-f-]{36}$/i)
+  expect(idempotencyKeys[1]).toBe(idempotencyKeys[0])
+
+  await page.getByRole("button", { name: "Send message" }).click()
+  await expect(page.locator("form").getByRole("status")).toContainText("Message sent successfully!")
+  expect(idempotencyKeys[2]).toBe(idempotencyKeys[0])
+
+  await submitContact()
+  await expect.poll(() => idempotencyKeys.length).toBe(4)
+  expect(idempotencyKeys[3]).not.toBe(idempotencyKeys[0])
 })
 
 test("passes automated WCAG audits on every primary surface", async ({

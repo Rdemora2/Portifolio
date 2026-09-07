@@ -1,0 +1,217 @@
+
+> portifolio@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:14099) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 51 tests using 2 workers
+
+(node:14127) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › e2e/article-navigation.spec.ts:23:5 › leaves chapter navigation to the desktop experience on wide screens (2.6s)
+  ✓   2 [chromium] › e2e/article-navigation.spec.ts:3:5 › offers the article chapter index on mobile (2.7s)
+  ✓   4 [chromium] › e2e/gallery-accessibility.spec.ts:130:5 › disables gallery autoplay when reduced motion is requested (3.5s)
+  ✓   5 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 320px (2.3s)
+  ✓   6 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 390px (1.2s)
+  ✓   7 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 430px (1.2s)
+  ✓   8 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 320px (2.1s)
+  ✓   9 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 390px (2.3s)
+  ✓   3 [chromium] › e2e/gallery-accessibility.spec.ts:3:5 › keeps gallery motion under the visitor's control (14.8s)
+  ✓  10 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 430px (2.0s)
+  ✓  12 [chromium] › e2e/home-navigation-motion.spec.ts:111:7 › localized page navigation › keeps the mobile menu modal, keyboard-safe, and route-aware (3.5s)
+  ✓  11 [chromium] › e2e/home-navigation-motion.spec.ts:61:7 › localized page navigation › keeps hover, focus, and current-page feedback perceptible (4.5s)
+  ✓  14 [chromium] › e2e/home-navigation-motion.spec.ts:177:7 › restrained motion › preserves interaction feedback without spatial movement (2.9s)
+  ✓  13 [chromium] › e2e/home-navigation-motion.spec.ts:150:7 › localized page navigation › bridges legacy section fragments to localized pages (3.8s)
+  ✓  15 [chromium] › e2e/portfolio.spec.ts:71:5 › serves every localized portfolio route and case (2.5s)
+  ✓  16 [chromium] › e2e/portfolio.spec.ts:97:5 › renders one descriptive document title and H1 on every primary surface (4.2s)
+  ✓  17 [chromium] › e2e/portfolio.spec.ts:110:5 › keeps the hero identity exact and the home deliberately concise (1.9s)
+  ✓  19 [chromium] › e2e/portfolio.spec.ts:333:5 › presents production cases before the independent web lab (3.6s)
+  ✓  20 [chromium] › e2e/portfolio.spec.ts:383:5 › publishes complete, shareable case studies with contextual evidence (2.3s)
+  ✘  18 [chromium] › e2e/portfolio.spec.ts:140:5 › keeps every hero within a deliberate responsive scale (5.5s)
+  ✓  21 [chromium] › e2e/portfolio.spec.ts:425:7 › case gallery › progressively enhances the case gallery with an accessible lightbox (1.8s)
+(node:14887) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  22 [chromium] › e2e/portfolio.spec.ts:513:5 › separates profile, principles, and technical capabilities (1.5s)
+  ✓  23 [chromium] › e2e/portfolio.spec.ts:470:5 › preserves the complete professional chronology and company progression (2.2s)
+  ✓  25 [chromium] › e2e/portfolio.spec.ts:627:5 › switches locale semantically on indexes and dynamic cases (2.5s)
+  ✓  24 [chromium] › e2e/portfolio.spec.ts:551:5 › publishes a localized editorial index and progressive article (6.2s)
+  ✓  26 [chromium] › e2e/portfolio.spec.ts:661:5 › keeps the professional contact contract neutral and keyboard-first (2.5s)
+  ✓  28 [chromium] › e2e/portfolio.spec.ts:747:5 › publishes complete robots, sitemap, and permanent article migrations (350ms)
+  ✓  27 [chromium] › e2e/portfolio.spec.ts:706:5 › enforces security headers and route-aware discoverability (2.1s)
+  ✓  30 [chromium] › e2e/portfolio.spec.ts:848:5 › rejects untrusted contact origins with the neutral schema (127ms)
+  ✓  29 [chromium] › e2e/portfolio.spec.ts:833:5 › serves localized, non-indexable not-found pages (1.2s)
+  ✘  31 [chromium] › e2e/portfolio.spec.ts:869:5 › keeps contact retries idempotent across reload and rotates after success (4.2s)
+(node:15033) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  33 [chromium] › e2e/portfolio.spec.ts:960:5 › remains overflow-free across the responsive validation matrix (10.8s)
+  ✓  34 [chromium] › e2e/portfolio.spec.ts:1024:5 › loads primary routes without uncaught errors in reduced motion (4.0s)
+  ✓  35 [chromium] › e2e/progressive-content.spec.ts:4:5 › home content and links work without JavaScript in every language (5.9s)
+  ✓  32 [chromium] › e2e/portfolio.spec.ts:920:5 › passes automated WCAG audits on every primary surface (30.8s)
+  ✓  36 [chromium] › e2e/progressive-content.spec.ts:20:5 › blocked application chunks leave server content visible (1.6s)
+  ✓  38 [chromium] › e2e/progressive-content.spec.ts:50:5 › website previews use responsive images and unavailable demos have no dead link (2.1s)
+  ✘  37 [chromium] › e2e/progressive-content.spec.ts:33:5 › privacy is localized, accessible and linked from contact and footer (2.4s)
+(node:15230) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15229) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  40 [chromium] › e2e/webgl-active.spec.ts:117:5 › falls back cleanly after a real WebGL context loss (8.5s)
+  ✓  39 [chromium] › e2e/webgl-active.spec.ts:37:5 › runs the WebGL signature for a normal visitor and follows lifecycle changes (11.2s)
+(node:15281) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15293) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  41 [chromium-webgl-disabled] › e2e/webgl-disabled.spec.ts:3:5 › keeps the engineering journey usable when WebGL is unavailable (2.4s)
+(node:15311) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  42 [firefox-smoke] › e2e/browser-smoke.spec.ts:31:5 › renders the multipage portfolio without engine-specific regressions (21.1s)
+  ✓  43 [firefox-smoke] › e2e/browser-smoke.spec.ts:61:5 › keeps project details and article content progressive (26.5s)
+  ✓  44 [firefox-smoke] › e2e/browser-smoke.spec.ts:109:5 › keeps mobile navigation and contact usable (8.0s)
+(node:15655) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15663) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  45 [webkit-smoke] › e2e/browser-smoke.spec.ts:31:5 › renders the multipage portfolio without engine-specific regressions (33.4s)
+  ✓  46 [webkit-smoke] › e2e/browser-smoke.spec.ts:61:5 › keeps project details and article content progressive (40.9s)
+  ✓  47 [webkit-smoke] › e2e/browser-smoke.spec.ts:109:5 › keeps mobile navigation and contact usable (14.2s)
+(node:15970) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  48 [chromium-mobile-smoke] › e2e/mobile-smoke.spec.ts:9:5 › keeps every core journey usable with real touch and mobile semantics (15.1s)
+  ✓  49 [chromium-mobile-smoke] › e2e/mobile-smoke.spec.ts:36:5 › keeps navigation operable in a short landscape viewport (9.0s)
+(node:16149) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  50 [webkit-mobile-smoke] › e2e/mobile-smoke.spec.ts:36:5 › keeps navigation operable in a short landscape viewport (18.1s)
+  ✓  51 [webkit-mobile-smoke] › e2e/mobile-smoke.spec.ts:9:5 › keeps every core journey usable with real touch and mobile semantics (18.2s)
+
+
+  1) [chromium] › e2e/portfolio.spec.ts:140:5 › keeps every hero within a deliberate responsive scale 
+
+    Error: /en/work/hospital-sirio-libanes at 320×568 must not consume disproportionate vertical space
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 1.23
+    Received:    1.2500825264084507
+
+      301 |       metrics.heightRatio,
+      302 |       `${scenario.pathname} at ${scenario.width}×${scenario.height} must not consume disproportionate vertical space`,
+    > 303 |     ).toBeLessThanOrEqual(scenario.maxHeightRatio)
+          |       ^
+      304 |     expect(
+      305 |       metrics.titleSize,
+      306 |       `${scenario.pathname} at ${scenario.width}×${scenario.height} must keep its H1 on the shared type scale`,
+        at /Users/roberto/Documents/Code/Personal/Portifolio/e2e/portfolio.spec.ts:303:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/portfolio-keeps-every-hero-f1e23-deliberate-responsive-scale-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/portfolio-keeps-every-hero-f1e23-deliberate-responsive-scale-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/portfolio-keeps-every-hero-f1e23-deliberate-responsive-scale-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/portfolio-keeps-every-hero-f1e23-deliberate-responsive-scale-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/portfolio-keeps-every-hero-f1e23-deliberate-responsive-scale-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/portfolio.spec.ts:869:5 › keeps contact retries idempotent across reload and rotates after success 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('alert')
+    Expected: visible
+    Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+        1) <div role="alert" aria-live="assertive" class="flex items-center gap-2 rounded-xl border p-3 text-sm animate-shake sm:p-4">The delivery could not be confirmed. Try again or…</div> aka getByText('The delivery could not be')
+        2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+    Call log:
+      - Expect "toBeVisible" with timeout 7500ms
+      - waiting for getByRole('alert')
+
+
+      898 |
+      899 |   const alert = page.getByRole("alert")
+    > 900 |   await expect(alert).toBeVisible()
+          |                       ^
+      901 |   await page.waitForTimeout(4_300)
+      902 |   await expect(alert).toBeVisible()
+      903 |
+        at /Users/roberto/Documents/Code/Personal/Portifolio/e2e/portfolio.spec.ts:900:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/portfolio-keeps-contact-re-73112-d-and-rotates-after-success-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/portfolio-keeps-contact-re-73112-d-and-rotates-after-success-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/portfolio-keeps-contact-re-73112-d-and-rotates-after-success-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/portfolio-keeps-contact-re-73112-d-and-rotates-after-success-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/portfolio-keeps-contact-re-73112-d-and-rotates-after-success-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/progressive-content.spec.ts:33:5 › privacy is localized, accessible and linked from contact and footer 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: locator('link[rel=\'alternate\'][hreflang=\'x-default\']')
+    Expected pattern: /\/privacidade$/
+    Error: strict mode violation: locator('link[rel=\'alternate\'][hreflang=\'x-default\']') resolved to 2 elements:
+        1) <link rel="alternate" hreflang="x-default" href="https://portifolio-liard-zeta.vercel.app/contato"/> aka locator('link:nth-child(31)')
+        2) <link rel="alternate" hreflang="x-default" href="https://portifolio-liard-zeta.vercel.app/privacidade"/> aka locator('link:nth-child(74)')
+
+    Call log:
+      - Expect "toHaveAttribute" with timeout 7500ms
+      - waiting for locator('link[rel=\'alternate\'][hreflang=\'x-default\']')
+
+
+      42 |     await expect(page).toHaveURL(new RegExp(`${privacy}$`))
+      43 |     await expect(page.getByRole("heading", { level: 1 })).toHaveText(title!)
+    > 44 |     await expect(page.locator("link[rel='alternate'][hreflang='x-default']")).toHaveAttribute("href", /\/privacidade$/)
+         |                                                                               ^
+      45 |     const results = await new AxeBuilder({ page }).analyze()
+      46 |     expect(results.violations).toEqual([])
+      47 |   }
+        at /Users/roberto/Documents/Code/Personal/Portifolio/e2e/progressive-content.spec.ts:44:79
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/progressive-content-privac-43fa0-ked-from-contact-and-footer-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/progressive-content-privac-43fa0-ked-from-contact-and-footer-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/progressive-content-privac-43fa0-ked-from-contact-and-footer-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/progressive-content-privac-43fa0-ked-from-contact-and-footer-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/progressive-content-privac-43fa0-ked-from-contact-and-footer-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › e2e/portfolio.spec.ts:140:5 › keeps every hero within a deliberate responsive scale 
+    [chromium] › e2e/portfolio.spec.ts:869:5 › keeps contact retries idempotent across reload and rotates after success 
+    [chromium] › e2e/progressive-content.spec.ts:33:5 › privacy is localized, accessible and linked from contact and footer 
+  48 passed (4.2m)

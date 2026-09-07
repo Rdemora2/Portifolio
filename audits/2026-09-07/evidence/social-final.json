@@ -1,0 +1,146 @@
+[
+  {
+    "path": "/opengraph-image",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 103024
+  },
+  {
+    "path": "/opengraph-image/pt",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 103024
+  },
+  {
+    "path": "/opengraph-image/article/pt",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 132198
+  },
+  {
+    "path": "/opengraph-image/project/hospital-sirio-libanes/pt",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 110240
+  },
+  {
+    "path": "/opengraph-image/project/band-news-bandsports/pt",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 108674
+  },
+  {
+    "path": "/opengraph-image/project/fiesta-americana/pt",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 112566
+  },
+  {
+    "path": "/opengraph-image/en",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 101862
+  },
+  {
+    "path": "/opengraph-image/article/en",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 129125
+  },
+  {
+    "path": "/opengraph-image/project/hospital-sirio-libanes/en",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 108584
+  },
+  {
+    "path": "/opengraph-image/project/band-news-bandsports/en",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 106400
+  },
+  {
+    "path": "/opengraph-image/project/fiesta-americana/en",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 111180
+  },
+  {
+    "path": "/opengraph-image/es",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 102506
+  },
+  {
+    "path": "/opengraph-image/article/es",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 130745
+  },
+  {
+    "path": "/opengraph-image/project/hospital-sirio-libanes/es",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 110007
+  },
+  {
+    "path": "/opengraph-image/project/band-news-bandsports/es",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 108518
+  },
+  {
+    "path": "/opengraph-image/project/fiesta-americana/es",
+    "status": 200,
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 113319
+  },
+  {
+    "path": "/llms.txt",
+    "status": 200,
+    "type": "text/plain; charset=utf-8",
+    "correctOrigin": true,
+    "oldOrigin": false,
+    "privacy": false
+  },
+  {
+    "path": "/llms-full.txt",
+    "status": 200,
+    "type": "text/plain; charset=utf-8",
+    "correctOrigin": true,
+    "oldOrigin": false,
+    "privacy": true
+  }
+]

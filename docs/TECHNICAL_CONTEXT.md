@@ -62,7 +62,7 @@ flowchart LR
 | Deploy na Vercel | Adaptador nativo quando <code>VERCEL=1</code> | A plataforma produz as funções sem depender do rastreamento standalone |
 | Produção standalone | <code>output: "standalone"</code> fora da Vercel e runner distroless | Imagem menor e sem shell; diagnóstico deve usar logs e ferramentas externas |
 | CSP estática | Headers globais no Next.js | Preserva pré-renderização, mas mantém <code>unsafe-inline</code> para o bootstrap atual |
-| Rate limit em memória | <code>Map</code> local ao processo | Adequado a uma instância; não coordena réplicas nem sobrevive a restart |
+| Rate limit em memória | <code>Map</code> local ao processo | Admissão atômica e cardinalidade limitada; não coordena réplicas nem sobrevive a restart |
 
 ## 2. Rotas e ciclo de uma requisição
 
@@ -156,6 +156,8 @@ O global 404 usa headers da requisição. Essa necessidade fica isolada do grupo
 - cache específico do favicon por um dia, com stale-while-revalidate de sete dias.
 
 O desenvolvimento padrão seleciona Webpack explicitamente por estabilidade de memória. Turbopack permanece opt-in e o analyzer usa sua API experimental oficial instalada nesta versão do Next.js.
+
+<code>experimental.optimizeCss</code> não está habilitado e o pacote Critters não faz parte das dependências. Ele foi removido por estar descontinuado e porque o caminho de renderização do App Router atual não demonstrou consumi-lo. Essa remoção reduz manutenção; nenhuma melhora de performance é atribuída a ela sem comparação equivalente de build e métricas.
 
 ## 3. Organização do código
 
@@ -370,7 +372,7 @@ Todos os arquivos <code>.env*</code>, exceto <code>.env.example</code>, são ign
 
 | Variável | Default | Regra e fase |
 | --- | --- | --- |
-| <code>NEXT_PUBLIC_SITE_URL</code> | <code>https://robertomoraes.dev</code> no código | Build público. Em produção aceita apenas origem HTTPS pública, sem path, query, fragmento ou credenciais. O Compose exige valor explícito. |
+| <code>NEXT_PUBLIC_SITE_URL</code> | <code>https://portifolio-liard-zeta.vercel.app</code> no código | Build público. Em produção aceita apenas origem HTTPS pública, sem path, query, fragmento ou credenciais. O Compose exige valor explícito. |
 | <code>NEXT_PUBLIC_WEB_VITALS_ENDPOINT</code> | vazio | Build público e opcional. Deve ser path normalizado da mesma origem, começar com uma barra e não conter query, fragmento ou barra invertida. |
 | <code>RESEND_API_KEY</code> | nenhum | Runtime de produção. Deve seguir o formato <code>re_</code>, ter pelo menos 20 caracteres de token, variabilidade suficiente e não conter placeholder. |
 | <code>CONTACT_FROM_EMAIL</code> | nenhum | Runtime de produção. Um email, opcionalmente com display name, em domínio DNS público. |
@@ -430,9 +432,8 @@ O schema é <code>strict</code>: campos desconhecidos invalidam o request.
 | <code>name</code> | sim | string trimada, 2 a 100 caracteres, uma linha, sem controles |
 | <code>email</code> | sim | email trimado, convertido para minúsculas, até 254 caracteres |
 | <code>company</code> | não | até 120 caracteres, uma linha, sem controles |
-| <code>projectType</code> | sim | <code>web</code>, <code>mobile</code>, <code>backend</code>, <code>architecture</code>, <code>leadership</code> ou <code>other</code> |
+| <code>subject</code> | sim | string trimada, 3 a 160 caracteres, uma linha, sem controles |
 | <code>message</code> | sim | 20 a 4.000 caracteres; quebras de linha permitidas, controles inseguros rejeitados |
-| <code>budget</code> | não | até 100 caracteres, uma linha, sem controles |
 | <code>botCheck</code> | não | honeypot com no máximo 200 caracteres |
 
 ### 8.2 Ordem de processamento
@@ -447,8 +448,9 @@ sequenceDiagram
     B->>A: POST application/json
     A->>A: Sec-Fetch-Site e Origin
     A->>A: Content-Type, Encoding e Content-Length
-    A->>M: Consome bucket global
-    A->>M: Consome bucket do identificador
+    A->>A: Valida Idempotency-Key opcional
+    A->>M: Consulta capacidade global e do identificador
+    M-->>A: Admite e consome ambos atomicamente
     A->>A: Lê stream UTF-8 com limite
     A->>A: Honeypot
     A->>Z: safeParse strict
@@ -465,20 +467,21 @@ Detalhes:
 3. Apenas <code>application/json</code> é aceito.
 4. <code>Content-Encoding</code> deve estar ausente ou ser <code>identity</code>.
 5. <code>Content-Length</code> excessivo é rejeitado antes da leitura.
-6. Os buckets global e por identificador são consumidos antes do parse.
-7. O corpo é lido como stream UTF-8 fatal e interrompido ao exceder o limite.
-8. Honeypot preenchido recebe sucesso silencioso sem importar Resend.
-9. Zod normaliza e valida.
-10. Resend é importado apenas após os controles anteriores.
-11. HTML de email é escapado e o texto puro é enviado em paralelo.
-12. Todas as respostas JSON usam <code>Cache-Control: no-store</code>.
+6. <code>Idempotency-Key</code>, quando enviado, aceita somente 16 a 128 caracteres alfanuméricos, sublinhado ou hífen.
+7. Os buckets global e por identificador são consultados e consumidos atomicamente antes do parse; uma rejeição não reduz a capacidade do outro bucket.
+8. O corpo é lido como stream UTF-8 fatal e interrompido ao exceder o limite.
+9. Honeypot preenchido recebe sucesso silencioso sem importar Resend.
+10. Zod normaliza e valida.
+11. Resend é importado apenas após os controles anteriores.
+12. HTML de email é escapado e o texto puro é enviado em paralelo.
+13. Todas as respostas JSON usam <code>Cache-Control: no-store</code>.
 
 ### 8.3 Respostas
 
 | Status | Situação |
 | ---: | --- |
 | 200 | envio aceito pelo provedor ou honeypot descartado silenciosamente |
-| 400 | JSON inválido ou payload reprovado pelo schema |
+| 400 | JSON inválido, <code>Idempotency-Key</code> malformado ou payload reprovado pelo schema |
 | 403 | origem não permitida |
 | 413 | corpo maior que o limite |
 | 415 | tipo de mídia ou encoding não suportado |
@@ -494,7 +497,7 @@ Respostas após consumo do bucket por identificador incluem <code>RateLimit-Limi
 O estado fica em um <code>Map</code> do processo:
 
 - entradas expiradas são limpas periodicamente;
-- um teto impede crescimento ilimitado;
+- um teto limita a quantidade de chaves, sem constituir limite rígido de memória do processo;
 - restart limpa todo o histórico;
 - réplicas não compartilham contadores.
 
@@ -512,17 +515,24 @@ Nunca habilite confiança de proxy diretamente na internet.
 
 ### 8.5 Idempotência e privacidade
 
-A chave de idempotência é um HMAC do payload validado, sem honeypot, combinado com uma janela de dez minutos. O segredo não sai do servidor.
+O formulário cria uma chave opaca, persiste somente chave e timestamp em <code>sessionStorage</code> por até 23 horas e a envia em <code>Idempotency-Key</code>. Reloads, retentativas e edições reutilizam a chave até o primeiro sucesso. Como a API combina payload validado e chave por HMAC, payloads diferentes produzem digests diferentes no Resend. Clientes sem o header mantêm o fallback temporal de dez minutos para compatibilidade.
+
+O timeout é implementado com <code>Promise.race</code>: ele encerra a espera local, mas não cancela nem determina o resultado da chamada já iniciada. Por isso, <code>504</code> significa entrega indeterminada. Não há retentativa automática; o erro permanece visível e o usuário pode repetir a submissão com a mesma chave. A deduplicação final depende da garantia e da janela do Resend. O provedor [documenta 24 horas](https://resend.com/docs/dashboard/emails/idempotency-keys), e o cliente expira a chave em 23 horas para manter margem. Se <code>sessionStorage</code> estiver indisponível, o fallback em memória não sobrevive a reload.
 
 Logs de falha registram apenas categoria, nome/código e status do provedor quando disponíveis. Conteúdo da mensagem, email, segredo e chave do Resend não são logados. Ainda assim, logs de infraestrutura devem ter retenção e acesso controlados.
+
+A página localizada de privacidade e o aviso junto ao formulário explicam finalidade, serviços envolvidos, preferência de idioma e canal de direitos. O repositório não define nem consegue impor a retenção da caixa de email, dos logs da plataforma ou do Resend. O responsável ainda precisa confirmar prazos, acesso e procedimento de exclusão nos serviços efetivos antes da aprovação operacional.
+
+O contrato detalhado e o checklist de operação ficam em <code>docs/CONTACT_OPERATIONS.md</code>.
 
 ### 8.6 Assunções e limites
 
 - Não existe autenticação, cookie de sessão ou operação em nome de usuário.
 - Requests sem header <code>Origin</code> são aceitos se não declararem <code>Sec-Fetch-Site: cross-site</code>.
+- A allowlist valida origens recebidas; ela não habilita CORS. Não há handler <code>OPTIONS</code> nem headers <code>Access-Control-Allow-*</code>, então navegadores devem usar a rota same-origin. Clientes server-to-server não dependem de CORS.
 - Não existe CAPTCHA, proof-of-work ou classificação de abuso.
 - Não existe fila durável para reprocessar falhas de email.
-- Rate limiting distribuído e WAF não fazem parte deste repositório.
+- Rate limiting distribuído e configuração WAF não fazem parte deste repositório. A existência de regra externa deve ser confirmada na plataforma.
 
 ## 9. Modelo de segurança
 
@@ -558,10 +568,9 @@ Política de produção:
 - <code>object-src 'none'</code>;
 - <code>base-uri 'self'</code>;
 - <code>form-action 'self'</code>;
-- <code>frame-ancestors 'none'</code>;
-- <code>upgrade-insecure-requests</code>.
+- <code>frame-ancestors 'none'</code>.
 
-Desenvolvimento adiciona <code>unsafe-eval</code> e WebSocket em <code>connect-src</code>. HSTS e upgrade de requests não são adicionados em desenvolvimento.
+Desenvolvimento adiciona <code>unsafe-eval</code> e WebSocket em <code>connect-src</code>. HSTS não é adicionado em desenvolvimento. A política atual não declara <code>upgrade-insecure-requests</code> em nenhum ambiente.
 
 O bootstrap atual do App Router e os estilos gerados exigem inline. Uma CSP por nonce/strict-dynamic seria mais rígida, mas introduziria dependência por request e reduziria o benefício de pré-renderização. Reavalie essa decisão se a aplicação passar a tratar sessão, conteúdo privado ou compliance regulatório.
 
@@ -585,6 +594,7 @@ Não há endpoint de report de CSP configurado.
 - Actions são pinadas por commit.
 - Imagens-base são pinadas por versão e digest.
 - Trivy 0.72 falha a CI em vulnerabilidades High ou Critical da imagem final.
+- Syft gera um SBOM CycloneDX da imagem final, valida a presença do Node de referência e publica o documento como artefato da execução por 14 dias.
 
 Uma nova dependência que exija postinstall precisa ser avaliada conscientemente. Não remova a proteção global apenas para contornar uma instalação.
 
@@ -607,10 +617,10 @@ O runtime:
 ### 9.6 Gaps de segurança conhecidos
 
 - não há secret scanning ou SAST específico configurado no repositório;
-- não há WAF, mitigação DDoS ou rate limit distribuído versionado;
+- não há WAF, mitigação DDoS ou rate limit distribuído versionado; controles externos não foram inferidos;
 - não há coleta de CSP violations;
 - não há autenticação porque não existe área privada;
-- não há SBOM ou assinatura da imagem configurada;
+- há SBOM da imagem na CI, mas não há assinatura da imagem configurada;
 - a segurança do TLS, proxy e domínio depende da plataforma externa.
 
 ## 10. Acessibilidade
@@ -1166,9 +1176,10 @@ Ordem atual:
 16. validação do Compose;
 17. build do runner;
 18. Trivy;
-19. smoke do container;
-20. cleanup;
-21. upload do report Playwright por sete dias.
+19. geração e validação do SBOM CycloneDX;
+20. smoke do container;
+21. cleanup;
+22. upload do report Playwright por sete dias e do SBOM por 14 dias.
 
 O smoke confirma:
 
@@ -1378,7 +1389,7 @@ Leia <code>Retry-After</code> e headers <code>RateLimit-*</code>. Com proxy não
 
 ### Formulário retorna 502 ou 504
 
-Revise disponibilidade do Resend, remetente, chave, timeout e logs sem expor o payload. 502 representa rejeição/exceção; 504 representa timeout.
+Revise disponibilidade do Resend, remetente, chave, timeout e logs sem expor o payload. 502 representa rejeição/exceção; 504 encerra apenas a espera local e deixa a entrega indeterminada. Oriente retentativa manual sem editar os campos para reutilizar a chave; após reload ou expiração da janela externa, deduplicação não é garantida.
 
 ### Formulário retorna 503
 
@@ -1538,7 +1549,7 @@ Estes itens não devem ser descritos como existentes:
 11. CSP por nonce e report de violations;
 12. smoke profundo em Firefox/WebKit equivalente ao Chromium;
 13. teste de carga da API de contato;
-14. SBOM.
+14. política de retenção verificada para caixa de email, logs da plataforma e Resend.
 
 Prioridade operacional antes de escala horizontal:
 

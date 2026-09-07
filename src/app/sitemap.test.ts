@@ -10,13 +10,16 @@ describe("portfolio sitemap", () => {
   const entries = sitemap()
 
   it("publishes every index, article, and case in each locale", () => {
-    const pagesPerLocale = 7 + projects.length
+    const pagesPerLocale = 8 + projects.length
 
     expect(entries).toHaveLength(locales.length * pagesPerLocale)
     expect(new Set(entries.map((entry) => entry.url)).size).toBe(entries.length)
   })
 
   it.each([
+    `${SITE_URL}/privacidade`,
+    `${SITE_URL}/en/privacy`,
+    `${SITE_URL}/es/privacidad`,
     `${SITE_URL}/projetos`,
     `${SITE_URL}/en/work`,
     `${SITE_URL}/es/proyectos`,
