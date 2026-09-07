@@ -1,0 +1,23 @@
+{
+  "trigger": "Post-merge CI of e9af38f: article click stayed on /en/insights; retry passed and failOnFlakyTests rejected the run.",
+  "ci": "https://github.com/Rdemora2/Portifolio/actions/runs/34088237094",
+  "trace": {
+    "clickPoint": {
+      "x": 480,
+      "y": 360.09
+    },
+    "clickStartMs": 37707.747,
+    "clickEndMs": 37720.779,
+    "cardShiftPxApprox": 23.6,
+    "articleRequests": "Two successful RSC prefetches only; no navigation request.",
+    "afterClickInlineStyle": "opacity:1; transform:none; filter:none; clip-path:none"
+  },
+  "cause": "focusin canceled the entrance transform between mouse press and release, moving the link away from the release point.",
+  "reproduction": "Hold the real card entrance using WAAPI at its initial position; a normal Playwright pointer click fails to navigate before the fix.",
+  "fix": "Only snap for focus-visible targets, preserving immediate keyboard reveal and the pointer geometry of article links.",
+  "scope": "The regression covers links. focus-visible is a browser heuristic and can also match text inputs after pointer focus; no universal input-pointer behavior is claimed.",
+  "verification": {
+    "focused": "20 passed, 10 repetitions of pointer and keyboard cases, no retries",
+    "fullSuite": "53 passed, six Playwright projects, no retries, 1.5 minutes"
+  }
+}

@@ -1,0 +1,55 @@
+
+> portifolio@0.1.0 test:e2e
+> playwright test e2e/scroll-reveal-interaction.spec.ts --project chromium --workers=1
+
+[WebServer] (node:14175) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:14176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › e2e/scroll-reveal-interaction.spec.ts:5:5 › keeps a pointer click on an article stable during its entrance (8.8s)
+
+
+  1) [chromium] › e2e/scroll-reveal-interaction.spec.ts:5:5 › keeps a pointer click on an article stable during its entrance 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/en\/insights\/go-in-production$/
+    Received string:  "http://localhost:3300/en/insights"
+    Timeout: 7500ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 7500ms
+        19 × unexpected value "http://localhost:3300/en/insights"
+
+
+      21 |   // exercise the same geometry regardless of runner speed.
+      22 |   await articleLink.click()
+    > 23 |   await expect(page).toHaveURL(/\/en\/insights\/go-in-production$/)
+         |                      ^
+      24 | })
+      25 |
+        at /Users/roberto/Documents/Code/Personal/Portifolio/e2e/scroll-reveal-interaction.spec.ts:23:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/scroll-reveal-interaction--84b20--stable-during-its-entrance-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/scroll-reveal-interaction--84b20--stable-during-its-entrance-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/scroll-reveal-interaction--84b20--stable-during-its-entrance-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/scroll-reveal-interaction--84b20--stable-during-its-entrance-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/scroll-reveal-interaction--84b20--stable-during-its-entrance-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/scroll-reveal-interaction.spec.ts:5:5 › keeps a pointer click on an article stable during its entrance 

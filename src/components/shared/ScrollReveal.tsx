@@ -171,7 +171,10 @@ export function ScrollReveal({
     motionQuery.addEventListener("change", handleMotionChange);
     observer.observe(el);
 
-    const revealOnFocus = () => {
+    const revealOnFocus = (event: FocusEvent) => {
+      // Pointer focus occurs between press and release. Snapping the transform
+      // here can move a link away from the pointer and discard the click.
+      if (!(event.target instanceof Element) || !event.target.matches(":focus-visible")) return;
       observer.disconnect();
       runningAnimation?.cancel();
       runningAnimation = null;
