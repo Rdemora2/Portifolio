@@ -1,0 +1,57 @@
+
+> portifolio@0.1.0 check:bundle
+> node scripts/check-bundle-budget.mjs
+
+┌─────────┬───────────────────────────────────────────────────────────────────────────────────────┬─────────┬───────────┬────────┐
+│ (index) │ surface                                                                               │ sizeKiB │ budgetKiB │ status │
+├─────────┼───────────────────────────────────────────────────────────────────────────────────────┼─────────┼───────────┼────────┤
+│ 0       │ 'HOME JS'                                                                             │ '220.4' │ '260.0'   │ 'PASS' │
+│ 1       │ 'HOME CSS'                                                                            │ '16.5'  │ '25.0'    │ 'PASS' │
+│ 2       │ 'HOME HTML'                                                                           │ '14.4'  │ '60.0'    │ 'PASS' │
+│ 3       │ 'HOME FONT PRELOAD'                                                                   │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 4       │ 'HOME FONT INVENTORY'                                                                 │ '197.2' │ '210.0'   │ 'PASS' │
+│ 5       │ 'WORK JS'                                                                             │ '222.9' │ '250.0'   │ 'PASS' │
+│ 6       │ 'WORK CSS'                                                                            │ '18.7'  │ '25.0'    │ 'PASS' │
+│ 7       │ 'WORK HTML'                                                                           │ '21.7'  │ '35.0'    │ 'PASS' │
+│ 8       │ 'WORK FONT PRELOAD'                                                                   │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 9       │ 'WORK FONT INVENTORY'                                                                 │ '197.2' │ '210.0'   │ 'PASS' │
+│ 10      │ 'CASE JS'                                                                             │ '224.0' │ '245.0'   │ 'PASS' │
+│ 11      │ 'CASE CSS'                                                                            │ '16.5'  │ '25.0'    │ 'PASS' │
+│ 12      │ 'CASE HTML'                                                                           │ '14.8'  │ '20.0'    │ 'PASS' │
+│ 13      │ 'CASE FONT PRELOAD'                                                                   │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 14      │ 'CASE FONT INVENTORY'                                                                 │ '197.2' │ '210.0'   │ 'PASS' │
+│ 15      │ 'EXPERIENCE JS'                                                                       │ '217.0' │ '245.0'   │ 'PASS' │
+│ 16      │ 'EXPERIENCE CSS'                                                                      │ '16.9'  │ '25.0'    │ 'PASS' │
+│ 17      │ 'EXPERIENCE HTML'                                                                     │ '14.6'  │ '22.0'    │ 'PASS' │
+│ 18      │ 'EXPERIENCE FONT PRELOAD'                                                             │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 19      │ 'EXPERIENCE FONT INVENTORY'                                                           │ '197.2' │ '210.0'   │ 'PASS' │
+│ 20      │ 'ABOUT JS'                                                                            │ '217.0' │ '245.0'   │ 'PASS' │
+│ 21      │ 'ABOUT CSS'                                                                           │ '18.3'  │ '25.0'    │ 'PASS' │
+│ 22      │ 'ABOUT HTML'                                                                          │ '32.9'  │ '40.0'    │ 'PASS' │
+│ 23      │ 'ABOUT FONT PRELOAD'                                                                  │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 24      │ 'ABOUT FONT INVENTORY'                                                                │ '197.2' │ '210.0'   │ 'PASS' │
+│ 25      │ 'INSIGHTS JS'                                                                         │ '217.4' │ '245.0'   │ 'PASS' │
+│ 26      │ 'INSIGHTS CSS'                                                                        │ '16.5'  │ '25.0'    │ 'PASS' │
+│ 27      │ 'INSIGHTS HTML'                                                                       │ '9.9'   │ '18.0'    │ 'PASS' │
+│ 28      │ 'INSIGHTS FONT PRELOAD'                                                               │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 29      │ 'INSIGHTS FONT INVENTORY'                                                             │ '197.2' │ '210.0'   │ 'PASS' │
+│ 30      │ 'CONTACT JS'                                                                          │ '219.5' │ '250.0'   │ 'PASS' │
+│ 31      │ 'CONTACT CSS'                                                                         │ '16.5'  │ '25.0'    │ 'PASS' │
+│ 32      │ 'CONTACT HTML'                                                                        │ '10.4'  │ '18.0'    │ 'PASS' │
+│ 33      │ 'CONTACT FONT PRELOAD'                                                                │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 34      │ 'CONTACT FONT INVENTORY'                                                              │ '197.2' │ '210.0'   │ 'PASS' │
+│ 35      │ 'ARTICLE JS'                                                                          │ '219.7' │ '250.0'   │ 'PASS' │
+│ 36      │ 'ARTICLE CSS'                                                                         │ '19.8'  │ '25.0'    │ 'PASS' │
+│ 37      │ 'ARTICLE HTML'                                                                        │ '21.1'  │ '35.0'    │ 'PASS' │
+│ 38      │ 'ARTICLE FONT PRELOAD'                                                                │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 39      │ 'ARTICLE FONT INVENTORY'                                                              │ '197.2' │ '210.0'   │ 'PASS' │
+│ 40      │ 'PRIVACY JS'                                                                          │ '215.9' │ '245.0'   │ 'PASS' │
+│ 41      │ 'PRIVACY CSS'                                                                         │ '16.5'  │ '25.0'    │ 'PASS' │
+│ 42      │ 'PRIVACY HTML'                                                                        │ '10.6'  │ '18.0'    │ 'PASS' │
+│ 43      │ 'PRIVACY FONT PRELOAD'                                                                │ '69.9'  │ '120.0'   │ 'PASS' │
+│ 44      │ 'PRIVACY FONT INVENTORY'                                                              │ '197.2' │ '210.0'   │ 'PASS' │
+│ 45      │ 'LAZY TOTAL'                                                                          │ '134.5' │ '175.0'   │ 'PASS' │
+│ 46      │ 'LAZY MAX · static/chunks/2760ckem9rkg7.js'                                           │ '84.0'  │ '90.0'    │ 'PASS' │
+│ 47      │ 'LAZY ENTRY · server/app/[locale]/(home)/page/react-loadable-manifest.json :: 58915'  │ '15.9'  │ '100.0'   │ 'PASS' │
+│ 48      │ 'LAZY ENTRY · server/app/[locale]/contact/page/react-loadable-manifest.json :: 92033' │ '84.0'  │ '100.0'   │ 'PASS' │
+└─────────┴───────────────────────────────────────────────────────────────────────────────────────┴─────────┴───────────┴────────┘

@@ -18,6 +18,12 @@ type SitemapPage = {
 
 const staticPages: SitemapPage[] = [
   {
+    pathname: "/privacy",
+    lastModified: "2026-09-07",
+    changeFrequency: "yearly",
+    priority: 0.3,
+  },
+  {
     pathname: "/",
     lastModified: "2026-07-29",
     changeFrequency: "monthly",

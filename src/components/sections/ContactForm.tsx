@@ -8,6 +8,64 @@ import { MagneticButton } from "@/components/shared/MagneticButton"
 import { useTranslations } from "next-intl"
 
 type ServerErrorKey = "rateLimited" | "generic"
+type IdempotencyState = { key: string; createdAt: number }
+
+const IDEMPOTENCY_STORAGE_KEY = "portfolio-contact-idempotency"
+const IDEMPOTENCY_TTL_MS = 23 * 60 * 60 * 1_000
+const IDEMPOTENCY_KEY_PATTERN = /^[A-Za-z0-9_-]{16,128}$/
+
+function createRequestIdempotencyKey(): string | null {
+  try {
+    if (typeof crypto.randomUUID === "function") {
+      return crypto.randomUUID()
+    }
+
+    const bytes = crypto.getRandomValues(new Uint8Array(16))
+    return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("")
+  } catch {
+    return null
+  }
+}
+
+function readStoredIdempotency(now = Date.now()): IdempotencyState | null {
+  try {
+    const raw = sessionStorage.getItem(IDEMPOTENCY_STORAGE_KEY)
+    if (!raw) return null
+
+    const value = JSON.parse(raw) as Partial<IdempotencyState>
+    if (
+      typeof value.key !== "string" ||
+      !IDEMPOTENCY_KEY_PATTERN.test(value.key) ||
+      typeof value.createdAt !== "number" ||
+      !Number.isFinite(value.createdAt) ||
+      value.createdAt > now ||
+      now - value.createdAt >= IDEMPOTENCY_TTL_MS
+    ) {
+      sessionStorage.removeItem(IDEMPOTENCY_STORAGE_KEY)
+      return null
+    }
+
+    return { key: value.key, createdAt: value.createdAt }
+  } catch {
+    return null
+  }
+}
+
+function writeStoredIdempotency(value: IdempotencyState): void {
+  try {
+    sessionStorage.setItem(IDEMPOTENCY_STORAGE_KEY, JSON.stringify(value))
+  } catch {
+    // The in-memory ref remains available when storage is blocked or full.
+  }
+}
+
+function clearStoredIdempotency(): void {
+  try {
+    sessionStorage.removeItem(IDEMPOTENCY_STORAGE_KEY)
+  } catch {
+    // Storage availability must not affect the contact flow.
+  }
+}
 
 export function ContactForm() {
   const t = useTranslations("Contact")
@@ -16,6 +74,7 @@ export function ContactForm() {
   const isMounted = useRef(true)
   const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const requestControllerRef = useRef<AbortController | null>(null)
+  const idempotencyRef = useRef<IdempotencyState | null>(null)
 
   useEffect(() => {
     isMounted.current = true
@@ -50,11 +109,38 @@ export function ContactForm() {
     setStatus("loading")
     setServerError("generic")
     let errorKey: ServerErrorKey = "generic"
+    const payload = JSON.stringify(data)
+    const now = Date.now()
+    let idempotency = idempotencyRef.current
+    if (
+      idempotency &&
+      (idempotency.createdAt > now || now - idempotency.createdAt >= IDEMPOTENCY_TTL_MS)
+    ) {
+      idempotencyRef.current = null
+      clearStoredIdempotency()
+      idempotency = null
+    }
+    idempotency ??= readStoredIdempotency(now)
+    if (!idempotency) {
+      const key = createRequestIdempotencyKey()
+      if (key) {
+        idempotency = { key, createdAt: now }
+        idempotencyRef.current = idempotency
+        writeStoredIdempotency(idempotency)
+      }
+    } else {
+      idempotencyRef.current = idempotency
+    }
     try {
+      const headers: Record<string, string> = { "Content-Type": "application/json" }
+      if (idempotency?.key) {
+        headers["Idempotency-Key"] = idempotency.key
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers,
+        body: payload,
         signal: controller.signal,
       })
       if (!res.ok) {
@@ -62,6 +148,8 @@ export function ContactForm() {
         throw new Error("Contact request failed")
       }
       if (isMounted.current) {
+        idempotencyRef.current = null
+        clearStoredIdempotency()
         setStatus("success")
         reset()
         statusTimerRef.current = setTimeout(() => {
@@ -74,10 +162,6 @@ export function ContactForm() {
       if (isMounted.current) {
         setServerError(errorKey)
         setStatus("error")
-        statusTimerRef.current = setTimeout(() => {
-          if (isMounted.current) setStatus("idle")
-          statusTimerRef.current = null
-        }, 4000)
       }
     } finally {
       if (requestControllerRef.current === controller) {

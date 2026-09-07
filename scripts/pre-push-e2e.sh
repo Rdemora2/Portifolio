@@ -33,9 +33,9 @@ while read -r _local_ref _local_sha remote_ref _remote_sha; do
 
   echo "🎭 Running Playwright E2E tests before push to '$branch'…"
 
-  # The test suite expects a production build + server to be running.
-  # If it is already running on port 3100 (reuseExistingServer), it will
-  # be reused; otherwise playwright.config.ts starts one via `npm run start`.
+  # The suite expects a production build and starts a fresh server on port 3100
+  # by default. Set PORT for a different local port, or explicitly provide
+  # PLAYWRIGHT_TEST_BASE_URL to target an existing server.
   if ! npm run test:e2e; then
     echo ""
     echo "❌  E2E tests failed. Push aborted."

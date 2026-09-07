@@ -1,0 +1,2459 @@
+{
+  "generatedAt": "2026-09-07T02:59:34.999Z",
+  "scope": {
+    "aliasOrigin": "https://portifolio-liard-zeta.vercel.app",
+    "canonicalOrigin": "https://robertomoraes.dev",
+    "routeCount": 30,
+    "socialImageCount": 7,
+    "externalProjectLinkCount": 19,
+    "note": "No forms submitted; no contact endpoints or personal contact links requested."
+  },
+  "canonicalReachability": {
+    "url": "https://robertomoraes.dev",
+    "status": null,
+    "error": {
+      "name": "TypeError",
+      "code": "ENOTFOUND",
+      "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+    }
+  },
+  "routes": [
+    {
+      "locale": "pt",
+      "route": "/",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 2542,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "h1": "Roberto Moraes",
+      "description": "Engenheiro de software e líder técnico com perfil hands-on. Lidero times, construo backends de alta performance em Go, gerencio infraestrutura cloud (AWS, GCP) e garanto observabilidade e DevOps em sistemas de missão crítica.",
+      "canonical": "https://robertomoraes.dev",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev",
+        "en-US": "https://robertomoraes.dev/en",
+        "es-MX": "https://robertomoraes.dev/es",
+        "x-default": "https://robertomoraes.dev"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes"
+      },
+      "htmlBytes": 89487
+    },
+    {
+      "locale": "pt",
+      "route": "/projetos",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 1532,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "h1": "Engenharia explicada por decisões, não por uma lista de tecnologias.",
+      "description": "Estudos de caso de engenharia, arquitetura, cloud e liderança técnica em sistemas de produção, além de um laboratório autoral de interfaces.",
+      "canonical": "https://robertomoraes.dev/projetos",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos",
+        "en-US": "https://robertomoraes.dev/en/work",
+        "es-MX": "https://robertomoraes.dev/es/proyectos",
+        "x-default": "https://robertomoraes.dev/projetos"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/projetos",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Projetos de Engenharia de Software | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Projetos de Engenharia de Software | Roberto Moraes"
+      },
+      "htmlBytes": 156391
+    },
+    {
+      "locale": "pt",
+      "route": "/experiencia",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/experiencia",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 1526,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "h1": "Uma trajetória construída entre engenharia, operação e liderança.",
+      "description": "Trajetória completa de Roberto Moraes entre engenharia de software, arquitetura, cloud, operação, liderança técnica e gestão de TI.",
+      "canonical": "https://robertomoraes.dev/experiencia",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/experiencia",
+        "en-US": "https://robertomoraes.dev/en/experience",
+        "es-MX": "https://robertomoraes.dev/es/experiencia",
+        "x-default": "https://robertomoraes.dev/experiencia"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/experiencia",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Experiência Profissional | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Experiência Profissional | Roberto Moraes"
+      },
+      "htmlBytes": 99517
+    },
+    {
+      "locale": "pt",
+      "route": "/sobre",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 1529,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "h1": "Profundidade técnica para construir. Visão sistêmica para conduzir.",
+      "description": "Perfil técnico de Roberto Moraes: engenharia de software ponta a ponta, arquitetura, cloud, observabilidade, liderança técnica e gestão de TI.",
+      "canonical": "https://robertomoraes.dev/sobre",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/sobre",
+        "en-US": "https://robertomoraes.dev/en/about",
+        "es-MX": "https://robertomoraes.dev/es/sobre",
+        "x-default": "https://robertomoraes.dev/sobre"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/sobre",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Sobre & Competências | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Sobre & Competências | Roberto Moraes"
+      },
+      "htmlBytes": 169753
+    },
+    {
+      "locale": "pt",
+      "route": "/insights",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/insights",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 1391,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "h1": "Engenharia compartilhada com contexto de produção.",
+      "description": "Artigos sobre arquitetura, performance, sistemas em produção e liderança técnica escritos a partir de experiência prática.",
+      "canonical": "https://robertomoraes.dev/insights",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/insights",
+        "en-US": "https://robertomoraes.dev/en/insights",
+        "es-MX": "https://robertomoraes.dev/es/insights",
+        "x-default": "https://robertomoraes.dev/insights"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/insights",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Insights de Engenharia | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Insights de Engenharia | Roberto Moraes"
+      },
+      "htmlBytes": 53312
+    },
+    {
+      "locale": "pt",
+      "route": "/insights/go-em-producao",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/insights/go-em-producao",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 1521,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "h1": "Go em produção: o que ninguém te conta",
+      "description": "Decisões de arquitetura, cache híbrido (Redis + memória local), RBAC de 4 níveis, observabilidade e alta disponibilidade no backend Go (Fiber/FastHTTP) do Hospital Sírio-Libanês.",
+      "canonical": "https://robertomoraes.dev/insights/go-em-producao",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/insights/go-em-producao",
+        "en-US": "https://robertomoraes.dev/en/insights/go-in-production",
+        "es-MX": "https://robertomoraes.dev/es/insights/go-en-produccion",
+        "x-default": "https://robertomoraes.dev/insights/go-em-producao"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/insights/go-em-producao",
+        "image": "https://robertomoraes.dev/opengraph-image/article/pt",
+        "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+        "type": "article"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/article/pt",
+        "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes"
+      },
+      "htmlBytes": 113342
+    },
+    {
+      "locale": "pt",
+      "route": "/contato",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/contato",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 138,
+      "title": "Contato Profissional | Roberto Moraes",
+      "h1": "Um canal direto para conversas profissionais.",
+      "description": "Canais profissionais de Roberto Moraes para conversas sobre engenharia de software, arquitetura, tecnologia e gestão.",
+      "canonical": "https://robertomoraes.dev/contato",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/contato",
+        "en-US": "https://robertomoraes.dev/en/contact",
+        "es-MX": "https://robertomoraes.dev/es/contacto",
+        "x-default": "https://robertomoraes.dev/contato"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/contato",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Contato Profissional | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Contato Profissional | Roberto Moraes"
+      },
+      "htmlBytes": 56351
+    },
+    {
+      "locale": "pt",
+      "route": "/projetos/band-news-bandsports",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/projetos/band-news-bandsports",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 408,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "h1": "Grupo Bandeirantes",
+      "description": "Gestão da refatoração completa de 6+ portais do Grupo Bandeirantes, modernizando a stack de comunicação de massa com zero downtime.",
+      "canonical": "https://robertomoraes.dev/projetos/band-news-bandsports",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/band-news-bandsports",
+        "en-US": "https://robertomoraes.dev/en/work/band-news-bandsports",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/band-news-bandsports",
+        "x-default": "https://robertomoraes.dev/projetos/band-news-bandsports"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/projetos/band-news-bandsports",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes"
+      },
+      "htmlBytes": 95193
+    },
+    {
+      "locale": "pt",
+      "route": "/projetos/hospital-sirio-libanes",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 392,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "h1": "Hospital Sírio-Libanês",
+      "description": "Arquitetura e engenharia end-to-end da plataforma de hospitalidade digital. Backend em Go processando 20M+ requisições/mês com 6ms de latência.",
+      "canonical": "https://robertomoraes.dev/projetos/hospital-sirio-libanes",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/hospital-sirio-libanes",
+        "en-US": "https://robertomoraes.dev/en/work/hospital-sirio-libanes",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes",
+        "x-default": "https://robertomoraes.dev/projetos/hospital-sirio-libanes"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/projetos/hospital-sirio-libanes",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes"
+      },
+      "htmlBytes": 85943
+    },
+    {
+      "locale": "pt",
+      "route": "/projetos/fiesta-americana",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/projetos/fiesta-americana",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 429,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "h1": "Resort Fiesta Americana",
+      "description": "Gestão transnacional de uma solução pioneira em hospitalidade: convergência de streaming Unicast e broadcast coaxial em uma única plataforma.",
+      "canonical": "https://robertomoraes.dev/projetos/fiesta-americana",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/fiesta-americana",
+        "en-US": "https://robertomoraes.dev/en/work/fiesta-americana",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/fiesta-americana",
+        "x-default": "https://robertomoraes.dev/projetos/fiesta-americana"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/projetos/fiesta-americana",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/pt",
+        "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes"
+      },
+      "htmlBytes": 66534
+    },
+    {
+      "locale": "en",
+      "route": "/en",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 445,
+      "title": "Roberto Moraes | Software Engineer & IT Manager | Roberto Moraes",
+      "h1": "Roberto Moraes",
+      "description": "Hands-on software engineer and technical leader. I lead teams, build high-performance Go backends, manage cloud infrastructure across AWS and GCP, and bring observability and DevOps practices to mission-critical systems.",
+      "canonical": "https://robertomoraes.dev/en",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev",
+        "en-US": "https://robertomoraes.dev/en",
+        "es-MX": "https://robertomoraes.dev/es",
+        "x-default": "https://robertomoraes.dev"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Roberto Moraes | Software Engineer & IT Manager | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Roberto Moraes | Software Engineer & IT Manager | Roberto Moraes"
+      },
+      "htmlBytes": 88705
+    },
+    {
+      "locale": "en",
+      "route": "/en/work",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/work",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 417,
+      "title": "Software Engineering Work | Roberto Moraes",
+      "h1": "Engineering explained through decisions—not a list of technologies.",
+      "description": "Case studies in engineering, architecture, cloud, and technical leadership across production systems, plus an independent interface lab.",
+      "canonical": "https://robertomoraes.dev/en/work",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos",
+        "en-US": "https://robertomoraes.dev/en/work",
+        "es-MX": "https://robertomoraes.dev/es/proyectos",
+        "x-default": "https://robertomoraes.dev/projetos"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/work",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Software Engineering Work | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Software Engineering Work | Roberto Moraes"
+      },
+      "htmlBytes": 155235
+    },
+    {
+      "locale": "en",
+      "route": "/en/experience",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/experience",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 420,
+      "title": "Professional Experience | Roberto Moraes",
+      "h1": "A career built across engineering, operations, and leadership.",
+      "description": "Roberto Moraes's complete career across software engineering, architecture, cloud, operations, technical leadership, and IT management.",
+      "canonical": "https://robertomoraes.dev/en/experience",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/experiencia",
+        "en-US": "https://robertomoraes.dev/en/experience",
+        "es-MX": "https://robertomoraes.dev/es/experiencia",
+        "x-default": "https://robertomoraes.dev/experiencia"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/experience",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Professional Experience | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Professional Experience | Roberto Moraes"
+      },
+      "htmlBytes": 99226
+    },
+    {
+      "locale": "en",
+      "route": "/en/about",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/about",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 449,
+      "title": "About & Capabilities | Roberto Moraes",
+      "h1": "Technical depth to build. Systems thinking to lead.",
+      "description": "Roberto Moraes's technical profile: end-to-end software engineering, architecture, cloud, observability, technical leadership, and IT management.",
+      "canonical": "https://robertomoraes.dev/en/about",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/sobre",
+        "en-US": "https://robertomoraes.dev/en/about",
+        "es-MX": "https://robertomoraes.dev/es/sobre",
+        "x-default": "https://robertomoraes.dev/sobre"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/about",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "About & Capabilities | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "About & Capabilities | Roberto Moraes"
+      },
+      "htmlBytes": 168607
+    },
+    {
+      "locale": "en",
+      "route": "/en/insights",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/insights",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 402,
+      "title": "Engineering Insights | Roberto Moraes",
+      "h1": "Engineering shared with production context.",
+      "description": "Articles on architecture, performance, production systems, and technical leadership grounded in practical experience.",
+      "canonical": "https://robertomoraes.dev/en/insights",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/insights",
+        "en-US": "https://robertomoraes.dev/en/insights",
+        "es-MX": "https://robertomoraes.dev/es/insights",
+        "x-default": "https://robertomoraes.dev/insights"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/insights",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Engineering Insights | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Engineering Insights | Roberto Moraes"
+      },
+      "htmlBytes": 53032
+    },
+    {
+      "locale": "en",
+      "route": "/en/insights/go-in-production",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/insights/go-in-production",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 420,
+      "title": "Go in Production: High-Performance Architecture & Hospital Resilience | Roberto Moraes",
+      "h1": "Go in production: what nobody tells you",
+      "description": "Architecture decisions, two-tier hybrid caching (Redis + sync.Map), 4-tier RBAC, observability, and resilience in Hospital Sírio-Libanês' Go backend (Fiber/FastHTTP) handling over 20M requests/month.",
+      "canonical": "https://robertomoraes.dev/en/insights/go-in-production",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/insights/go-em-producao",
+        "en-US": "https://robertomoraes.dev/en/insights/go-in-production",
+        "es-MX": "https://robertomoraes.dev/es/insights/go-en-produccion",
+        "x-default": "https://robertomoraes.dev/insights/go-em-producao"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/insights/go-in-production",
+        "image": "https://robertomoraes.dev/opengraph-image/article/en",
+        "title": "Go in Production: High-Performance Architecture & Hospital Resilience | Roberto Moraes",
+        "type": "article"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/article/en",
+        "title": "Go in Production: High-Performance Architecture & Hospital Resilience | Roberto Moraes"
+      },
+      "htmlBytes": 110341
+    },
+    {
+      "locale": "en",
+      "route": "/en/contact",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/contact",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 366,
+      "title": "Professional Contact | Roberto Moraes",
+      "h1": "A direct channel for professional conversations.",
+      "description": "Roberto Moraes's professional channels for conversations about software engineering, architecture, technology, and management.",
+      "canonical": "https://robertomoraes.dev/en/contact",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/contato",
+        "en-US": "https://robertomoraes.dev/en/contact",
+        "es-MX": "https://robertomoraes.dev/es/contacto",
+        "x-default": "https://robertomoraes.dev/contato"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/contact",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Professional Contact | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Professional Contact | Roberto Moraes"
+      },
+      "htmlBytes": 56234
+    },
+    {
+      "locale": "en",
+      "route": "/en/work/band-news-bandsports",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/work/band-news-bandsports",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 457,
+      "title": "Grupo Bandeirantes — Software Engineer & IT Manager | Roberto Moraes",
+      "h1": "Grupo Bandeirantes",
+      "description": "Led the full rebuild of 6+ Grupo Bandeirantes portals, modernizing a high-traffic media platform with zero downtime.",
+      "canonical": "https://robertomoraes.dev/en/work/band-news-bandsports",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/band-news-bandsports",
+        "en-US": "https://robertomoraes.dev/en/work/band-news-bandsports",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/band-news-bandsports",
+        "x-default": "https://robertomoraes.dev/projetos/band-news-bandsports"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/work/band-news-bandsports",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Grupo Bandeirantes — Software Engineer & IT Manager | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Grupo Bandeirantes — Software Engineer & IT Manager | Roberto Moraes"
+      },
+      "htmlBytes": 94797
+    },
+    {
+      "locale": "en",
+      "route": "/en/work/hospital-sirio-libanes",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/work/hospital-sirio-libanes",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 378,
+      "title": "Hospital Sírio-Libanês — Backend & Cloud Engineer · Technical Lead | Roberto Moraes",
+      "h1": "Hospital Sírio-Libanês",
+      "description": "End-to-end architecture and engineering for a digital hospitality platform. Its Go backend handles 20M+ requests per month at 6ms average latency.",
+      "canonical": "https://robertomoraes.dev/en/work/hospital-sirio-libanes",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/hospital-sirio-libanes",
+        "en-US": "https://robertomoraes.dev/en/work/hospital-sirio-libanes",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes",
+        "x-default": "https://robertomoraes.dev/projetos/hospital-sirio-libanes"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/work/hospital-sirio-libanes",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Hospital Sírio-Libanês — Backend & Cloud Engineer · Technical Lead | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Hospital Sírio-Libanês — Backend & Cloud Engineer · Technical Lead | Roberto Moraes"
+      },
+      "htmlBytes": 85536
+    },
+    {
+      "locale": "en",
+      "route": "/en/work/fiesta-americana",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/en/work/fiesta-americana",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 407,
+      "title": "Fiesta Americana Resort — International Project Manager | Roberto Moraes",
+      "h1": "Fiesta Americana Resort",
+      "description": "Led a cross-border hospitality project that unified Unicast streaming and coaxial broadcast in a single platform.",
+      "canonical": "https://robertomoraes.dev/en/work/fiesta-americana",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/fiesta-americana",
+        "en-US": "https://robertomoraes.dev/en/work/fiesta-americana",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/fiesta-americana",
+        "x-default": "https://robertomoraes.dev/projetos/fiesta-americana"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/en/work/fiesta-americana",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Fiesta Americana Resort — International Project Manager | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/en",
+        "title": "Fiesta Americana Resort — International Project Manager | Roberto Moraes"
+      },
+      "htmlBytes": 65514
+    },
+    {
+      "locale": "es",
+      "route": "/es",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 440,
+      "title": "Roberto Moraes | Ingeniero de Software & Gerente de TI | Roberto Moraes",
+      "h1": "Roberto Moraes",
+      "description": "Ingeniero de software y líder técnico con perfil hands-on. Lidero equipos, construyo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidad y DevOps en sistemas de misión crítica.",
+      "canonical": "https://robertomoraes.dev/es",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev",
+        "en-US": "https://robertomoraes.dev/en",
+        "es-MX": "https://robertomoraes.dev/es",
+        "x-default": "https://robertomoraes.dev"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Roberto Moraes | Ingeniero de Software & Gerente de TI | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Roberto Moraes | Ingeniero de Software & Gerente de TI | Roberto Moraes"
+      },
+      "htmlBytes": 89826
+    },
+    {
+      "locale": "es",
+      "route": "/es/proyectos",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/proyectos",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 410,
+      "title": "Proyectos de Ingeniería de Software | Roberto Moraes",
+      "h1": "Ingeniería explicada por decisiones, no por una lista de tecnologías.",
+      "description": "Casos de estudio de ingeniería, arquitectura, cloud y liderazgo técnico en sistemas de producción, además de un laboratorio independiente de interfaces.",
+      "canonical": "https://robertomoraes.dev/es/proyectos",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos",
+        "en-US": "https://robertomoraes.dev/en/work",
+        "es-MX": "https://robertomoraes.dev/es/proyectos",
+        "x-default": "https://robertomoraes.dev/projetos"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/proyectos",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Proyectos de Ingeniería de Software | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Proyectos de Ingeniería de Software | Roberto Moraes"
+      },
+      "htmlBytes": 157152
+    },
+    {
+      "locale": "es",
+      "route": "/es/experiencia",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/experiencia",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 413,
+      "title": "Experiencia Profesional | Roberto Moraes",
+      "h1": "Una trayectoria construida entre ingeniería, operación y liderazgo.",
+      "description": "Trayectoria completa de Roberto Moraes entre ingeniería de software, arquitectura, cloud, operación, liderazgo técnico y gestión de TI.",
+      "canonical": "https://robertomoraes.dev/es/experiencia",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/experiencia",
+        "en-US": "https://robertomoraes.dev/en/experience",
+        "es-MX": "https://robertomoraes.dev/es/experiencia",
+        "x-default": "https://robertomoraes.dev/experiencia"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/experiencia",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Experiencia Profesional | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Experiencia Profesional | Roberto Moraes"
+      },
+      "htmlBytes": 99974
+    },
+    {
+      "locale": "es",
+      "route": "/es/sobre",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/sobre",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 429,
+      "title": "Sobre mí y Competencias | Roberto Moraes",
+      "h1": "Profundidad técnica para construir. Visión sistémica para conducir.",
+      "description": "Perfil técnico de Roberto Moraes: ingeniería de software de punta a punta, arquitectura, cloud, observabilidad, liderazgo técnico y gestión de TI.",
+      "canonical": "https://robertomoraes.dev/es/sobre",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/sobre",
+        "en-US": "https://robertomoraes.dev/en/about",
+        "es-MX": "https://robertomoraes.dev/es/sobre",
+        "x-default": "https://robertomoraes.dev/sobre"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/sobre",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Sobre mí y Competencias | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Sobre mí y Competencias | Roberto Moraes"
+      },
+      "htmlBytes": 169896
+    },
+    {
+      "locale": "es",
+      "route": "/es/insights",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/insights",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 638,
+      "title": "Insights de Ingeniería | Roberto Moraes",
+      "h1": "Ingeniería compartida con contexto de producción.",
+      "description": "Artículos sobre arquitectura, rendimiento, sistemas en producción y liderazgo técnico basados en experiencia práctica.",
+      "canonical": "https://robertomoraes.dev/es/insights",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/insights",
+        "en-US": "https://robertomoraes.dev/en/insights",
+        "es-MX": "https://robertomoraes.dev/es/insights",
+        "x-default": "https://robertomoraes.dev/insights"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/insights",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Insights de Ingeniería | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Insights de Ingeniería | Roberto Moraes"
+      },
+      "htmlBytes": 53505
+    },
+    {
+      "locale": "es",
+      "route": "/es/insights/go-en-produccion",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/insights/go-en-produccion",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 425,
+      "title": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria | Roberto Moraes",
+      "h1": "Go en producción: lo que nadie te cuenta",
+      "description": "Decisiones de arquitectura, caché híbrida (Redis + sync.Map), RBAC de 4 niveles, observabilidad y resiliencia en el backend Go (Fiber/FastHTTP) del Hospital Sírio-Libanês que procesa más de 20M de peticiones al mes.",
+      "canonical": "https://robertomoraes.dev/es/insights/go-en-produccion",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/insights/go-em-producao",
+        "en-US": "https://robertomoraes.dev/en/insights/go-in-production",
+        "es-MX": "https://robertomoraes.dev/es/insights/go-en-produccion",
+        "x-default": "https://robertomoraes.dev/insights/go-em-producao"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/insights/go-en-produccion",
+        "image": "https://robertomoraes.dev/opengraph-image/article/es",
+        "title": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria | Roberto Moraes",
+        "type": "article"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/article/es",
+        "title": "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria | Roberto Moraes"
+      },
+      "htmlBytes": 112852
+    },
+    {
+      "locale": "es",
+      "route": "/es/contacto",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/contacto",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 393,
+      "title": "Contacto Profesional | Roberto Moraes",
+      "h1": "Un canal directo para conversaciones profesionales.",
+      "description": "Canales profesionales de Roberto Moraes para conversaciones sobre ingeniería de software, arquitectura, tecnología y gestión.",
+      "canonical": "https://robertomoraes.dev/es/contacto",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/contato",
+        "en-US": "https://robertomoraes.dev/en/contact",
+        "es-MX": "https://robertomoraes.dev/es/contacto",
+        "x-default": "https://robertomoraes.dev/contato"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/contacto",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Contacto Profesional | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Contacto Profesional | Roberto Moraes"
+      },
+      "htmlBytes": 56706
+    },
+    {
+      "locale": "es",
+      "route": "/es/proyectos/band-news-bandsports",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/proyectos/band-news-bandsports",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 419,
+      "title": "Grupo Bandeirantes — Ingeniero de Software & Gerente de TI | Roberto Moraes",
+      "h1": "Grupo Bandeirantes",
+      "description": "Gestión de la refactorización completa de 6+ portales del Grupo Bandeirantes, modernizando la stack de comunicación masiva con cero tiempo de inactividad.",
+      "canonical": "https://robertomoraes.dev/es/proyectos/band-news-bandsports",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/band-news-bandsports",
+        "en-US": "https://robertomoraes.dev/en/work/band-news-bandsports",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/band-news-bandsports",
+        "x-default": "https://robertomoraes.dev/projetos/band-news-bandsports"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/proyectos/band-news-bandsports",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Grupo Bandeirantes — Ingeniero de Software & Gerente de TI | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Grupo Bandeirantes — Ingeniero de Software & Gerente de TI | Roberto Moraes"
+      },
+      "htmlBytes": 96080
+    },
+    {
+      "locale": "es",
+      "route": "/es/proyectos/hospital-sirio-libanes",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/proyectos/hospital-sirio-libanes",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 369,
+      "title": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "h1": "Hospital Sírio-Libanês",
+      "description": "Arquitectura e ingeniería de extremo a extremo de la plataforma de hospitalidad digital. Backend en Go procesando 20M+ peticiones/mes con 6ms de latencia.",
+      "canonical": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/hospital-sirio-libanes",
+        "en-US": "https://robertomoraes.dev/en/work/hospital-sirio-libanes",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes",
+        "x-default": "https://robertomoraes.dev/projetos/hospital-sirio-libanes"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Hospital Sírio-Libanês — Ingeniero de Backend & Cloud + Líder Técnico | Roberto Moraes"
+      },
+      "htmlBytes": 86405
+    },
+    {
+      "locale": "es",
+      "route": "/es/proyectos/fiesta-americana",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/es/proyectos/fiesta-americana",
+      "contentType": "text/html; charset=utf-8",
+      "durationMs": 374,
+      "title": "Resort Fiesta Americana — Gestor de Proyecto Internacional | Roberto Moraes",
+      "h1": "Resort Fiesta Americana",
+      "description": "Gestión transnacional de una solución pionera en hospitalidad: convergencia de streaming Unicast y broadcast coaxial en una única plataforma.",
+      "canonical": "https://robertomoraes.dev/es/proyectos/fiesta-americana",
+      "alternates": {
+        "pt-BR": "https://robertomoraes.dev/projetos/fiesta-americana",
+        "en-US": "https://robertomoraes.dev/en/work/fiesta-americana",
+        "es-MX": "https://robertomoraes.dev/es/proyectos/fiesta-americana",
+        "x-default": "https://robertomoraes.dev/projetos/fiesta-americana"
+      },
+      "openGraph": {
+        "url": "https://robertomoraes.dev/es/proyectos/fiesta-americana",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Resort Fiesta Americana — Gestor de Proyecto Internacional | Roberto Moraes",
+        "type": "website"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "image": "https://robertomoraes.dev/opengraph-image/es",
+        "title": "Resort Fiesta Americana — Gestor de Proyecto Internacional | Roberto Moraes"
+      },
+      "htmlBytes": 66981
+    }
+  ],
+  "discovery": {
+    "robots": {
+      "path": "/robots.txt",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 71,
+      "body": "User-Agent: *\nAllow: /\n\nSitemap: https://robertomoraes.dev/sitemap.xml\n"
+    },
+    "sitemap": {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "contentType": "application/xml",
+      "bytes": 16687
+    },
+    "sitemapUrlCount": 30,
+    "sitemapUrls": [
+      "https://robertomoraes.dev",
+      "https://robertomoraes.dev/en",
+      "https://robertomoraes.dev/es",
+      "https://robertomoraes.dev/projetos",
+      "https://robertomoraes.dev/en/work",
+      "https://robertomoraes.dev/es/proyectos",
+      "https://robertomoraes.dev/experiencia",
+      "https://robertomoraes.dev/en/experience",
+      "https://robertomoraes.dev/es/experiencia",
+      "https://robertomoraes.dev/sobre",
+      "https://robertomoraes.dev/en/about",
+      "https://robertomoraes.dev/es/sobre",
+      "https://robertomoraes.dev/insights",
+      "https://robertomoraes.dev/en/insights",
+      "https://robertomoraes.dev/es/insights",
+      "https://robertomoraes.dev/insights/go-em-producao",
+      "https://robertomoraes.dev/en/insights/go-in-production",
+      "https://robertomoraes.dev/es/insights/go-en-produccion",
+      "https://robertomoraes.dev/contato",
+      "https://robertomoraes.dev/en/contact",
+      "https://robertomoraes.dev/es/contacto",
+      "https://robertomoraes.dev/projetos/band-news-bandsports",
+      "https://robertomoraes.dev/en/work/band-news-bandsports",
+      "https://robertomoraes.dev/es/proyectos/band-news-bandsports",
+      "https://robertomoraes.dev/projetos/hospital-sirio-libanes",
+      "https://robertomoraes.dev/en/work/hospital-sirio-libanes",
+      "https://robertomoraes.dev/es/proyectos/hospital-sirio-libanes",
+      "https://robertomoraes.dev/projetos/fiesta-americana",
+      "https://robertomoraes.dev/en/work/fiesta-americana",
+      "https://robertomoraes.dev/es/proyectos/fiesta-americana"
+    ],
+    "sitemapUniqueLastModified": [
+      "2026-07-29",
+      "2025-03-20"
+    ]
+  },
+  "socialImages": {
+    "alias": [
+      {
+        "path": "/opengraph-image",
+        "url": "https://portifolio-liard-zeta.vercel.app/opengraph-image",
+        "status": 200,
+        "finalUrl": "https://portifolio-liard-zeta.vercel.app/opengraph-image",
+        "contentType": "image/png",
+        "bytes": 104291,
+        "dimensions": {
+          "width": 1200,
+          "height": 630,
+          "format": "png"
+        }
+      },
+      {
+        "path": "/opengraph-image/pt",
+        "url": "https://portifolio-liard-zeta.vercel.app/opengraph-image/pt",
+        "status": 200,
+        "finalUrl": "https://portifolio-liard-zeta.vercel.app/opengraph-image/pt",
+        "contentType": "image/png",
+        "bytes": 104291,
+        "dimensions": {
+          "width": 1200,
+          "height": 630,
+          "format": "png"
+        }
+      },
+      {
+        "path": "/opengraph-image/en",
+        "url": "https://portifolio-liard-zeta.vercel.app/opengraph-image/en",
+        "status": 200,
+        "finalUrl": "https://portifolio-liard-zeta.vercel.app/opengraph-image/en",
+        "contentType": "image/png",
+        "bytes": 103698,
+        "dimensions": {
+          "width": 1200,
+          "height": 630,
+          "format": "png"
+        }
+      },
+      {
+        "path": "/opengraph-image/es",
+        "url": "https://portifolio-liard-zeta.vercel.app/opengraph-image/es",
+        "status": 200,
+        "finalUrl": "https://portifolio-liard-zeta.vercel.app/opengraph-image/es",
+        "contentType": "image/png",
+        "bytes": 103836,
+        "dimensions": {
+          "width": 1200,
+          "height": 630,
+          "format": "png"
+        }
+      },
+      {
+        "path": "/opengraph-image/article/pt",
+        "url": "https://portifolio-liard-zeta.vercel.app/opengraph-image/article/pt",
+        "status": 200,
+        "finalUrl": "https://portifolio-liard-zeta.vercel.app/opengraph-image/article/pt",
+        "contentType": "image/png",
+        "bytes": 131379,
+        "dimensions": {
+          "width": 1200,
+          "height": 630,
+          "format": "png"
+        }
+      },
+      {
+        "path": "/opengraph-image/article/en",
+        "url": "https://portifolio-liard-zeta.vercel.app/opengraph-image/article/en",
+        "status": 200,
+        "finalUrl": "https://portifolio-liard-zeta.vercel.app/opengraph-image/article/en",
+        "contentType": "image/png",
+        "bytes": 128287,
+        "dimensions": {
+          "width": 1200,
+          "height": 630,
+          "format": "png"
+        }
+      },
+      {
+        "path": "/opengraph-image/article/es",
+        "url": "https://portifolio-liard-zeta.vercel.app/opengraph-image/article/es",
+        "status": 200,
+        "finalUrl": "https://portifolio-liard-zeta.vercel.app/opengraph-image/article/es",
+        "contentType": "image/png",
+        "bytes": 129898,
+        "dimensions": {
+          "width": 1200,
+          "height": 630,
+          "format": "png"
+        }
+      }
+    ],
+    "canonical": [
+      {
+        "path": "/opengraph-image",
+        "url": "https://robertomoraes.dev/opengraph-image",
+        "status": null,
+        "error": {
+          "name": "TypeError",
+          "code": "ENOTFOUND",
+          "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+        }
+      },
+      {
+        "path": "/opengraph-image/pt",
+        "url": "https://robertomoraes.dev/opengraph-image/pt",
+        "status": null,
+        "error": {
+          "name": "TypeError",
+          "code": "ENOTFOUND",
+          "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+        }
+      },
+      {
+        "path": "/opengraph-image/en",
+        "url": "https://robertomoraes.dev/opengraph-image/en",
+        "status": null,
+        "error": {
+          "name": "TypeError",
+          "code": "ENOTFOUND",
+          "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+        }
+      },
+      {
+        "path": "/opengraph-image/es",
+        "url": "https://robertomoraes.dev/opengraph-image/es",
+        "status": null,
+        "error": {
+          "name": "TypeError",
+          "code": "ENOTFOUND",
+          "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+        }
+      },
+      {
+        "path": "/opengraph-image/article/pt",
+        "url": "https://robertomoraes.dev/opengraph-image/article/pt",
+        "status": null,
+        "error": {
+          "name": "TypeError",
+          "code": "ENOTFOUND",
+          "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+        }
+      },
+      {
+        "path": "/opengraph-image/article/en",
+        "url": "https://robertomoraes.dev/opengraph-image/article/en",
+        "status": null,
+        "error": {
+          "name": "TypeError",
+          "code": "ENOTFOUND",
+          "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+        }
+      },
+      {
+        "path": "/opengraph-image/article/es",
+        "url": "https://robertomoraes.dev/opengraph-image/article/es",
+        "status": null,
+        "error": {
+          "name": "TypeError",
+          "code": "ENOTFOUND",
+          "message": "getaddrinfo ENOTFOUND robertomoraes.dev"
+        }
+      }
+    ]
+  },
+  "icons": [
+    {
+      "path": "/favicon.ico",
+      "url": "https://portifolio-liard-zeta.vercel.app/favicon.ico",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/favicon.ico",
+      "contentType": "image/vnd.microsoft.icon",
+      "bytes": 4414,
+      "dimensions": null
+    },
+    {
+      "path": "/icon.svg",
+      "url": "https://portifolio-liard-zeta.vercel.app/icon.svg",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1309,
+      "dimensions": {
+        "width": 512,
+        "height": 512,
+        "format": "svg"
+      }
+    },
+    {
+      "path": "/apple-icon.png",
+      "url": "https://portifolio-liard-zeta.vercel.app/apple-icon.png",
+      "status": 200,
+      "finalUrl": "https://portifolio-liard-zeta.vercel.app/apple-icon.png",
+      "contentType": "image/png",
+      "bytes": 35304,
+      "dimensions": {
+        "width": 180,
+        "height": 180,
+        "format": "png"
+      }
+    }
+  ],
+  "contentImages": [
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/arua-resort-experience.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 80800,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/portal-noticias-atual.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 132240,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/lp-arq-carla-moraes.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 88566,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/casa-brasa-experience.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 65512,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/lp-estudio-musica.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 64510,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/solum-experience.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 136304,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/luxury-experience.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 34164,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/axenor-experience.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 44760,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/legal-experience.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 69034,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/tivix-experience.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 30448,
+      "dimensions": {
+        "width": 1410,
+        "height": 831,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 158378,
+      "dimensions": {
+        "width": 1920,
+        "height": 1110,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 8493,
+      "dimensions": {
+        "width": 256,
+        "height": 148,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 37260,
+      "dimensions": {
+        "width": 640,
+        "height": 370,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 45606,
+      "dimensions": {
+        "width": 750,
+        "height": 434,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 52466,
+      "dimensions": {
+        "width": 828,
+        "height": 479,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 76354,
+      "dimensions": {
+        "width": 1080,
+        "height": 624,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 89734,
+      "dimensions": {
+        "width": 1200,
+        "height": 694,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 158378,
+      "dimensions": {
+        "width": 1920,
+        "height": 1110,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 140130,
+      "dimensions": {
+        "width": 1920,
+        "height": 1111,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 7745,
+      "dimensions": {
+        "width": 256,
+        "height": 148,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 33111,
+      "dimensions": {
+        "width": 640,
+        "height": 370,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 42193,
+      "dimensions": {
+        "width": 750,
+        "height": 434,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 47477,
+      "dimensions": {
+        "width": 828,
+        "height": 479,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 70726,
+      "dimensions": {
+        "width": 1080,
+        "height": 625,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 81112,
+      "dimensions": {
+        "width": 1200,
+        "height": 694,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fbandnews.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 140130,
+      "dimensions": {
+        "width": 1920,
+        "height": 1111,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 169784,
+      "dimensions": {
+        "width": 1920,
+        "height": 1055,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 6727,
+      "dimensions": {
+        "width": 256,
+        "height": 141,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 30611,
+      "dimensions": {
+        "width": 640,
+        "height": 352,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 39960,
+      "dimensions": {
+        "width": 750,
+        "height": 412,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 46987,
+      "dimensions": {
+        "width": 828,
+        "height": 455,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 72261,
+      "dimensions": {
+        "width": 1080,
+        "height": 593,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 84044,
+      "dimensions": {
+        "width": 1200,
+        "height": 659,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Farte1.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 169784,
+      "dimensions": {
+        "width": 1920,
+        "height": 1055,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 186427,
+      "dimensions": {
+        "width": 1920,
+        "height": 1046,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 7619,
+      "dimensions": {
+        "width": 256,
+        "height": 139,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 33431,
+      "dimensions": {
+        "width": 640,
+        "height": 349,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 41858,
+      "dimensions": {
+        "width": 750,
+        "height": 409,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 49302,
+      "dimensions": {
+        "width": 828,
+        "height": 451,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 74148,
+      "dimensions": {
+        "width": 1080,
+        "height": 588,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 86525,
+      "dimensions": {
+        "width": 1200,
+        "height": 654,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fterraviva.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 186427,
+      "dimensions": {
+        "width": 1920,
+        "height": 1046,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 183698,
+      "dimensions": {
+        "width": 1920,
+        "height": 1111,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 7890,
+      "dimensions": {
+        "width": 256,
+        "height": 148,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 35784,
+      "dimensions": {
+        "width": 640,
+        "height": 370,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 45381,
+      "dimensions": {
+        "width": 750,
+        "height": 434,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 53104,
+      "dimensions": {
+        "width": 828,
+        "height": 479,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 80017,
+      "dimensions": {
+        "width": 1080,
+        "height": 625,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 93367,
+      "dimensions": {
+        "width": 1200,
+        "height": 694,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 183698,
+      "dimensions": {
+        "width": 1920,
+        "height": 1111,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 53110,
+      "dimensions": {
+        "width": 1920,
+        "height": 1107,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 4094,
+      "dimensions": {
+        "width": 256,
+        "height": 148,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 14623,
+      "dimensions": {
+        "width": 640,
+        "height": 369,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 17609,
+      "dimensions": {
+        "width": 750,
+        "height": 432,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 19922,
+      "dimensions": {
+        "width": 828,
+        "height": 477,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 29054,
+      "dimensions": {
+        "width": 1080,
+        "height": 623,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 32609,
+      "dimensions": {
+        "width": 1200,
+        "height": 692,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 53110,
+      "dimensions": {
+        "width": 1920,
+        "height": 1107,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 160441,
+      "dimensions": {
+        "width": 1449,
+        "height": 829,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 8288,
+      "dimensions": {
+        "width": 256,
+        "height": 146,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 40445,
+      "dimensions": {
+        "width": 640,
+        "height": 366,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 53457,
+      "dimensions": {
+        "width": 750,
+        "height": 429,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 63733,
+      "dimensions": {
+        "width": 828,
+        "height": 474,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 95560,
+      "dimensions": {
+        "width": 1080,
+        "height": 618,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 113602,
+      "dimensions": {
+        "width": 1200,
+        "height": 687,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 160441,
+      "dimensions": {
+        "width": 1449,
+        "height": 829,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 90726,
+      "dimensions": {
+        "width": 1450,
+        "height": 836,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 6801,
+      "dimensions": {
+        "width": 256,
+        "height": 148,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 27679,
+      "dimensions": {
+        "width": 640,
+        "height": 369,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 35303,
+      "dimensions": {
+        "width": 750,
+        "height": 432,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 41036,
+      "dimensions": {
+        "width": 828,
+        "height": 477,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 58874,
+      "dimensions": {
+        "width": 1080,
+        "height": 623,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 68898,
+      "dimensions": {
+        "width": 1200,
+        "height": 692,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_02.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 90726,
+      "dimensions": {
+        "width": 1450,
+        "height": 836,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 90892,
+      "dimensions": {
+        "width": 1448,
+        "height": 844,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 7306,
+      "dimensions": {
+        "width": 256,
+        "height": 149,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 27999,
+      "dimensions": {
+        "width": 640,
+        "height": 373,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 36168,
+      "dimensions": {
+        "width": 750,
+        "height": 437,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 41657,
+      "dimensions": {
+        "width": 828,
+        "height": 483,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 58315,
+      "dimensions": {
+        "width": 1080,
+        "height": 630,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 69000,
+      "dimensions": {
+        "width": 1200,
+        "height": 699,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 90892,
+      "dimensions": {
+        "width": 1448,
+        "height": 844,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 54498,
+      "dimensions": {
+        "width": 1447,
+        "height": 839,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 8456,
+      "dimensions": {
+        "width": 256,
+        "height": 148,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 31704,
+      "dimensions": {
+        "width": 640,
+        "height": 371,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 38442,
+      "dimensions": {
+        "width": 750,
+        "height": 435,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 41950,
+      "dimensions": {
+        "width": 828,
+        "height": 480,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 54498,
+      "dimensions": {
+        "width": 1447,
+        "height": 839,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 54498,
+      "dimensions": {
+        "width": 1447,
+        "height": 839,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 54498,
+      "dimensions": {
+        "width": 1447,
+        "height": 839,
+        "format": "webp"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=2048&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 76091,
+      "dimensions": {
+        "width": 1455,
+        "height": 820,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=256&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 5360,
+      "dimensions": {
+        "width": 256,
+        "height": 144,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=640&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 22470,
+      "dimensions": {
+        "width": 640,
+        "height": 361,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=750&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 28703,
+      "dimensions": {
+        "width": 750,
+        "height": 423,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=828&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 32356,
+      "dimensions": {
+        "width": 828,
+        "height": 467,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=1080&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 48339,
+      "dimensions": {
+        "width": 1080,
+        "height": 609,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=1200&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 54719,
+      "dimensions": {
+        "width": 1200,
+        "height": 676,
+        "format": "jpeg"
+      }
+    },
+    {
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=1920&q=75",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 76091,
+      "dimensions": {
+        "width": 1455,
+        "height": 820,
+        "format": "jpeg"
+      }
+    }
+  ],
+  "externalProjectLinks": [
+    {
+      "url": "https://bandsports.uol.com.br/",
+      "status": 403,
+      "ok": false,
+      "finalHost": "bandsports.uol.com.br",
+      "redirected": false,
+      "durationMs": 644,
+      "browserLikeRetest": {
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "note": "curl GET with desktop Chrome user-agent"
+      }
+    },
+    {
+      "url": "https://bandnewstv.uol.com.br/",
+      "status": 403,
+      "ok": false,
+      "finalHost": "bandnewstv.uol.com.br",
+      "redirected": false,
+      "durationMs": 631,
+      "browserLikeRetest": {
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "note": "curl GET with desktop Chrome user-agent"
+      }
+    },
+    {
+      "url": "https://canalarte1.uol.com.br/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "canalarte1.uol.com.br",
+      "redirected": false,
+      "durationMs": 770
+    },
+    {
+      "url": "https://terraviva.uol.com.br/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "terraviva.uol.com.br",
+      "redirected": false,
+      "durationMs": 724
+    },
+    {
+      "url": "https://agromais.uol.com.br/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "agromais.uol.com.br",
+      "redirected": false,
+      "durationMs": 835
+    },
+    {
+      "url": "https://canalsaborearte.uol.com.br/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "canalsaborearte.uol.com.br",
+      "redirected": false,
+      "durationMs": 651
+    },
+    {
+      "url": "https://newcoplay.com.br/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "newcoplay.com.br",
+      "redirected": true,
+      "durationMs": 1141
+    },
+    {
+      "url": "https://vivo.newcoplay.com.br/home",
+      "status": 200,
+      "ok": true,
+      "finalHost": "vivo.newcoplay.com.br",
+      "redirected": false,
+      "durationMs": 270
+    },
+    {
+      "url": "https://surf.newcoplay.com.br/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "surf.newcoplay.com.br",
+      "redirected": true,
+      "durationMs": 549
+    },
+    {
+      "url": "https://lp-hospitalidade-premium.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "lp-hospitalidade-premium.vercel.app",
+      "redirected": false,
+      "durationMs": 303
+    },
+    {
+      "url": "https://portal-noticias-ivory.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "portal-noticias-ivory.vercel.app",
+      "redirected": false,
+      "durationMs": 348
+    },
+    {
+      "url": "https://lp-arq-carla-moraes.vercel.app/",
+      "status": 404,
+      "ok": false,
+      "finalHost": "lp-arq-carla-moraes.vercel.app",
+      "redirected": false,
+      "durationMs": 75,
+      "browserLikeRetest": {
+        "status": 404,
+        "contentType": "text/plain; charset=utf-8",
+        "note": "curl GET with desktop Chrome user-agent"
+      }
+    },
+    {
+      "url": "https://casa-brasa-tabacaria.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "casa-brasa-tabacaria.vercel.app",
+      "redirected": false,
+      "durationMs": 297
+    },
+    {
+      "url": "https://lp-estudio-musica.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "lp-estudio-musica.vercel.app",
+      "redirected": false,
+      "durationMs": 268
+    },
+    {
+      "url": "https://lp-institucional-paisagismo.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "lp-institucional-paisagismo.vercel.app",
+      "redirected": false,
+      "durationMs": 277
+    },
+    {
+      "url": "https://lp-institucional-vendas.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "lp-institucional-vendas.vercel.app",
+      "redirected": false,
+      "durationMs": 280
+    },
+    {
+      "url": "https://lp-institucional-fintech.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "lp-institucional-fintech.vercel.app",
+      "redirected": false,
+      "durationMs": 291
+    },
+    {
+      "url": "https://lp-institucional-advocacia.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "lp-institucional-advocacia.vercel.app",
+      "redirected": false,
+      "durationMs": 1293
+    },
+    {
+      "url": "https://front-site-tivix-technologies.vercel.app/",
+      "status": 200,
+      "ok": true,
+      "finalHost": "front-site-tivix-technologies.vercel.app",
+      "redirected": false,
+      "durationMs": 286
+    }
+  ],
+  "summary": {
+    "routesOk": 30,
+    "routesFailed": [],
+    "duplicateBrandTitles": [
+      "/",
+      "/en",
+      "/es"
+    ],
+    "canonicalHosts": [
+      "robertomoraes.dev"
+    ],
+    "brokenContentImages": [],
+    "failedExternalProjectLinks": [
+      {
+        "url": "https://lp-arq-carla-moraes.vercel.app/",
+        "status": 404,
+        "ok": false,
+        "finalHost": "lp-arq-carla-moraes.vercel.app",
+        "redirected": false,
+        "durationMs": 75,
+        "browserLikeRetest": {
+          "status": 404,
+          "contentType": "text/plain; charset=utf-8",
+          "note": "curl GET with desktop Chrome user-agent"
+        }
+      }
+    ],
+    "externalProjectLinksBlockedForAuditAgent": [
+      "https://bandsports.uol.com.br/",
+      "https://bandnewstv.uol.com.br/"
+    ]
+  }
+}

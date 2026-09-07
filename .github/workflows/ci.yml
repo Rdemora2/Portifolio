@@ -22,10 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      NEXT_PUBLIC_SITE_URL: https://robertomoraes.dev
+      NEXT_PUBLIC_SITE_URL: https://portifolio-liard-zeta.vercel.app
       CONTACT_FROM_EMAIL: portfolio-ci@robertomoraes.dev
       CONTACT_TO_EMAIL: quality-ci@robertomoraes.dev
-      CONTACT_ALLOWED_ORIGINS: https://robertomoraes.dev
+      CONTACT_ALLOWED_ORIGINS: https://portifolio-liard-zeta.vercel.app
       CONTACT_TRUST_PROXY: "false"
 
     steps:

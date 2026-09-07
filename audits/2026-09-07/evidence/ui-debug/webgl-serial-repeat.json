@@ -1,0 +1,574 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@24/24.18.0/bin/node",
+      "/Users/roberto/Documents/Code/Personal/Portifolio/node_modules/.bin/playwright",
+      "test",
+      "e2e/webgl-active.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--repeat-each=6",
+      "--reporter=json",
+      "--output=audits/2026-09-07/evidence/ui-debug/webgl-serial-results"
+    ],
+    "configFile": "/Users/roberto/Documents/Code/Personal/Portifolio/playwright.config.ts",
+    "rootDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webgl-serial-results",
+        "repeatEach": 6,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [
+          "/(?:browser-smoke|mobile-smoke|webgl-disabled)\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webgl-serial-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-webgl-disabled",
+        "name": "chromium-webgl-disabled",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/webgl-disabled\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webgl-serial-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox-smoke",
+        "name": "firefox-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/browser-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webgl-serial-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit-smoke",
+        "name": "webkit-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/browser-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webgl-serial-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-mobile-smoke",
+        "name": "chromium-mobile-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/mobile-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/roberto/Documents/Code/Personal/Portifolio/audits/2026-09-07/evidence/ui-debug/webgl-serial-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit-mobile-smoke",
+        "name": "webkit-mobile-smoke",
+        "testDir": "/Users/roberto/Documents/Code/Personal/Portifolio/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "/mobile-smoke\\.spec\\.ts/"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "webgl-active.spec.ts",
+      "file": "webgl-active.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "runs the WebGL signature for a normal visitor and follows lifecycle changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7331,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:31:37.557Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-cae0492e25858ed1d905",
+          "file": "webgl-active.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "falls back cleanly after a real WebGL context loss",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4189,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:31:47.217Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-1e383e1b5f37095be7fd",
+          "file": "webgl-active.spec.ts",
+          "line": 175,
+          "column": 5
+        },
+        {
+          "title": "runs the WebGL signature for a normal visitor and follows lifecycle changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5539,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:31:54.682Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-5edf1ac3daabbad3c556",
+          "file": "webgl-active.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "falls back cleanly after a real WebGL context loss",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4296,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:02.698Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-7f091babda597faa3ca3",
+          "file": "webgl-active.spec.ts",
+          "line": 175,
+          "column": 5
+        },
+        {
+          "title": "runs the WebGL signature for a normal visitor and follows lifecycle changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15553,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:09.459Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-ef3c1c167b7768273915",
+          "file": "webgl-active.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "falls back cleanly after a real WebGL context loss",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3137,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:26.203Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-09698e90a0679f6e6cbc",
+          "file": "webgl-active.spec.ts",
+          "line": 175,
+          "column": 5
+        },
+        {
+          "title": "runs the WebGL signature for a normal visitor and follows lifecycle changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2444,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:30.130Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-2324f6ddd9f52bb1334f",
+          "file": "webgl-active.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "falls back cleanly after a real WebGL context loss",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2225,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:32.961Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-74989dea0b87c3e84f2f",
+          "file": "webgl-active.spec.ts",
+          "line": 175,
+          "column": 5
+        },
+        {
+          "title": "runs the WebGL signature for a normal visitor and follows lifecycle changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3798,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:35.990Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-3576467a5c3020daec93",
+          "file": "webgl-active.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "falls back cleanly after a real WebGL context loss",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3011,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:40.102Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-66eb12aadf03833ad981",
+          "file": "webgl-active.spec.ts",
+          "line": 175,
+          "column": 5
+        },
+        {
+          "title": "runs the WebGL signature for a normal visitor and follows lifecycle changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4395,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:44.687Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-f562f1bb951e4718d1a2",
+          "file": "webgl-active.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "falls back cleanly after a real WebGL context loss",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1741,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-07T04:32:50.135Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "98c001bf6844c6cbed1d-59515f5e9ed29caccabe",
+          "file": "webgl-active.spec.ts",
+          "line": 175,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-07T04:31:34.325Z",
+    "duration": 77679.302,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -22,7 +22,7 @@ test("keeps the engineering journey usable when WebGL is unavailable", async ({
     "Roberto Moraes",
   )
   await expect(
-    page.getByText("Software Engineer & IT Manager", { exact: true }),
+    page.getByText("Software Engineer", { exact: true }),
   ).toBeVisible()
   await expect(page.locator("[data-project-card]")).toHaveCount(3)
 

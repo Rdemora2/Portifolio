@@ -1,14 +1,19 @@
-import { getTranslations } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 
 import { personalInfo } from "@/data/portfolio"
 import { footerNavigation } from "@/data/site-navigation"
+import { isLocale } from "@/i18n.config"
+import { getLocalizedPath } from "@/lib/constants"
 import { Link } from "@/navigation"
 
 export async function Footer() {
-  const [footer, nav] = await Promise.all([
+  const [footer, nav, locale] = await Promise.all([
     getTranslations("Footer"),
     getTranslations("Nav"),
+    getLocale(),
   ])
+  // A document navigation avoids duplicate alternate metadata on the privacy route.
+  const privacyHref = getLocalizedPath(isLocale(locale) ? locale : "pt", "/privacy")
   const year = new Date().getFullYear()
   return (
     <footer
@@ -105,6 +110,9 @@ export async function Footer() {
                   }}
                 >
                   {contact.label}
+                  {contact.type !== "email" && (
+                    <span className="sr-only"> {footer("opensNewTab")}</span>
+                  )}
                 </a>
               ))}
             </div>
@@ -115,6 +123,20 @@ export async function Footer() {
           className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:mt-12 md:flex-row"
           style={{ borderColor: "var(--color-edge)" }}
         >
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs text-[var(--color-text-secondary)]">
+            <a
+              href={privacyHref}
+              className="inline-flex min-h-11 items-center underline underline-offset-4"
+            >
+              {footer("privacy")}
+            </a>
+            <a
+              href="#top"
+              className="inline-flex min-h-11 items-center gap-2 underline underline-offset-4"
+            >
+              {footer("backToTop")} <span aria-hidden="true">↑</span>
+            </a>
+          </div>
           <p
             className="text-xs"
             style={{

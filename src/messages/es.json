@@ -27,15 +27,15 @@
     }
   },
   "Hero": {
-    "title": "Ingeniero de Software & Gerente de TI",
+    "title": "Ingeniero de Software",
     "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
     "viewProjects": "Explorar proyectos",
     "viewExperience": "Ver experiencia",
     "contact": "Contacto"
   },
   "Metadata": {
-    "title": "Roberto Moraes | Ingeniero de Software & Gerente de TI",
-    "description": "Ingeniero de software y líder técnico con perfil hands-on. Lidero equipos, construyo backends de alto rendimiento en Go, gestiono infraestructura cloud (AWS, GCP) y garantizo observabilidad y DevOps en sistemas de misión crítica."
+    "title": "Roberto Moraes | Ingeniero de Software",
+    "description": "Ingeniero de software enfocado en backend, cloud y sistemas en producción. Construyo soluciones con Go, Next.js y Kotlin, combinando arquitectura, confiabilidad y experiencia en liderazgo técnico."
   },
   "About": {
     "title": "Sobre mí",
@@ -328,17 +328,18 @@
         "description": "Una experiencia de comercio premium que reúne curaduría responsable, información técnica y navegación clara para papeles, tabacos naturales, puros y accesorios.",
         "imageAlt": "Página inicial de Casa Brasa con una composición editorial de papel, tabaco natural, puro, cortador, encendedor y cenicero."
       }
-    }
+    },
+    "unavailable": "Demostración temporalmente no disponible"
   },
   "Experience": {
     "title": "Experiencia Profesional",
     "title_small": "Donde he trabajado",
     "present": "Actualidad",
     "items": {
-    "valiant-gti": {
-      "company": "Valiant Group do Brasil",
-      "role": "Ingeniero de Software & Gerente de TI",
-      "period": "Ene 2026 · Actualidad",
+      "valiant-gti": {
+        "company": "Valiant Group do Brasil",
+        "role": "Ingeniero de Software & Gerente de TI",
+        "period": "Ene 2026 · Actualidad",
         "description": "Lidero el área de tecnología de la empresa, incluyendo infraestructura cloud, DevOps, seguridad y operaciones. Gestiono el ciclo completo de productos de software que impactan a más de 100k usuarios activos. Dirijo operaciones internacionales y me mantengo involucrado en el código, desde backends en Go hasta aplicaciones Android TV.",
         "highlights": [
           "Principal decisor de tecnología de la empresa",
@@ -349,10 +350,10 @@
           "Infraestructura cloud en GCP, AWS y Oracle"
         ]
       },
-    "valiant-pm": {
-      "company": "Valiant Group do Brasil",
-      "role": "Gerente de Proyectos de TI",
-      "period": "Nov 2024 · Dic 2025",
+      "valiant-pm": {
+        "company": "Valiant Group do Brasil",
+        "role": "Gerente de Proyectos de TI",
+        "period": "Nov 2024 · Dic 2025",
         "description": "Orquesté equipos multidisciplinarios garantizando entregas ágiles de nuevos proyectos. Con una sólida formación en desarrollo, dirigí el gobierno de infraestructura cloud en GCP, pipelines de CI/CD y gestión del ciclo de vida de los productos.",
         "highlights": [
           "Equipo de desarrollo bajo mi gestión directa",
@@ -361,10 +362,10 @@
           "Interfaz directa con clientes y stakeholders"
         ]
       },
-    "valiant-dev": {
-      "company": "Valiant Group do Brasil",
-      "role": "Desarrollador Web / Móvil Full Stack",
-      "period": "Dic 2023 · Dic 2024",
+      "valiant-dev": {
+        "company": "Valiant Group do Brasil",
+        "role": "Desarrollador Web / Móvil Full Stack",
+        "period": "Dic 2023 · Dic 2024",
         "description": "Desarrollo full stack de extremo a extremo: web, móvil e infraestructura. Trabajé desde el diseño de APIs hasta el despliegue en producción, con enfoque en rendimiento y estabilidad.",
         "highlights": [
           "Full stack: JavaScript, TypeScript, React, Kotlin, Go",
@@ -373,10 +374,10 @@
           "Monitoreo y optimización del rendimiento en producción"
         ]
       },
-    "weber-dev": {
-      "company": "Weber Technologies",
-      "role": "Desarrollador Web Full Stack",
-      "period": "May 2023 · Dic 2023",
+      "weber-dev": {
+        "company": "Weber Technologies",
+        "role": "Desarrollador Web Full Stack",
+        "period": "May 2023 · Dic 2023",
         "description": "Desarrollo full stack con React y Python/Django. Desde la concepción hasta la implementación y despliegue, pasando por la contenerización con Docker.",
         "highlights": [
           "Desarrollo full stack con React y Python/Django",
@@ -384,10 +385,10 @@
           "Ciclo completo: concepción, desarrollo y despliegue"
         ]
       },
-    "buser-dev": {
-      "company": "Buser Brasil",
-      "role": "Desarrollador Web Full Stack",
-      "period": "Abr 2022 · Abr 2023",
+      "buser-dev": {
+        "company": "Buser Brasil",
+        "role": "Desarrollador Web Full Stack",
+        "period": "Abr 2022 · Abr 2023",
         "description": "Mantenimiento y evolución de producto a gran escala. Implementación de nuevas funcionalidades en codebase existente con Vue.js, Python y Django.",
         "highlights": [
           "Mantenimiento y evolución de producto a gran escala",
@@ -439,7 +440,7 @@
       },
       "serverErrors": {
         "rateLimited": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
-        "generic": "No fue posible enviar el mensaje ahora. Inténtalo de nuevo o usa un canal de contacto directo."
+        "generic": "No se pudo confirmar el envío. Inténtalo de nuevo o usa un contacto directo."
       },
       "webMcp": {
         "toolDescription": "Completa el formulario de contacto profesional de Roberto Moraes para que el usuario lo revise. El envío requiere confirmación manual.",
@@ -451,7 +452,12 @@
           "message": "Contexto de la conversación, con un mínimo de 20 caracteres."
         }
       }
-    }
+    },
+    "privacyNotice": "Usaré los datos que envíes para responder a tu mensaje. Evita incluir información sensible.",
+    "privacyLink": "Cómo se tratan tus datos",
+    "formLoading": "Cargando formulario. Si no aparece, usa uno de los contactos directos de esta página.",
+    "formUnavailable": "No se pudo cargar el formulario. Usa uno de los contactos directos de esta página.",
+    "opensNewTab": "(se abre en una pestaña nueva)"
   },
   "PortfolioPages": {
     "home": {
@@ -576,7 +582,11 @@
       "galleryOpen": "Ampliar imagen",
       "galleryPrevious": "Imagen anterior",
       "next": "Siguiente caso",
-      "allProjects": "Todos los proyectos"
+      "allProjects": "Todos los proyectos",
+      "galleryPause": "Pausar galería",
+      "galleryResume": "Reanudar galería",
+      "galleryGoTo": "Ir a la imagen",
+      "openNext": "Abrir siguiente caso"
     },
     "experience": {
       "metaTitle": "Experiencia Profesional",
@@ -661,12 +671,15 @@
     }
   },
   "Footer": {
-    "descriptionLine1": "Ingeniero de Software & Gerente de TI.",
+    "descriptionLine1": "Ingeniero de Software.",
     "descriptionLine2": "Construyendo software que resiste la presión de producción.",
     "navigation": "Navegación",
     "navAriaLabel": "Navegación del pie de página",
     "contact": "Contacto",
-    "signature": "Hecho con código, café y ambición"
+    "signature": "Hecho con código, café y ambición",
+    "privacy": "Privacidad",
+    "backToTop": "Volver arriba",
+    "opensNewTab": "(se abre en una pestaña nueva)"
   },
   "NotFound": {
     "eyebrow": "Error de ruta · 404",
@@ -681,5 +694,44 @@
     "title": "¡Algo salió mal!",
     "message": "Ocurrió un error al cargar esta sección. Por favor, inténtelo de nuevo.",
     "retry": "Reintentar"
+  },
+  "Privacy": {
+    "eyebrow": "Transparencia",
+    "title": "Privacidad",
+    "description": "Cómo este portafolio utiliza los datos de contacto, las preferencias de idioma y la información de navegación.",
+    "updated": "Actualizado el 7 de septiembre de 2026.",
+    "requestContact": "Solicitar acceso, corrección o eliminación",
+    "responsibility": {
+      "title": "Quién es el responsable",
+      "body": "Roberto Moraes es el responsable de este portafolio y de los mensajes recibidos por sus canales de contacto."
+    },
+    "contact": {
+      "title": "Cuando te pones en contacto",
+      "body": "El formulario recibe nombre, correo electrónico, asunto, mensaje y, opcionalmente, empresa. Estos datos se utilizan para entender tu solicitud y responder. No incluyas contraseñas, datos financieros, información de salud ni otros datos sensibles. El sitio no ofrece registro, boletines ni publicidad personalizada."
+    },
+    "retention": {
+      "title": "Mensajes y conservación",
+      "body": "El formulario envía el mensaje por correo electrónico, donde pasa a formar parte de esa conversación. El sitio no mantiene una base de mensajes. La conservación en el buzón y los servicios de entrega depende de la finalidad de la conversación y de la configuración de esos servicios. Ponte en contacto para solicitar información sobre un mensaje o su eliminación."
+    },
+    "services": {
+      "title": "Servicios involucrados",
+      "body": "Vercel aloja el sitio y procesa información técnica necesaria para entregar las páginas y proteger el servicio. Resend procesa el envío del formulario al correo de contacto. Estos proveedores pueden procesar datos fuera de Brasil. El contenido del formulario no se envía a las herramientas de medición de audiencia."
+    },
+    "measurement": {
+      "title": "Audiencia y rendimiento",
+      "body": "En la versión alojada en Vercel, Web Analytics y Speed Insights miden visitas y rendimiento, como carga y estabilidad visual. Pueden procesarse la ruta de la página, el origen de la visita, la ubicación aproximada y características del navegador y dispositivo. Estas herramientas se usan para estadísticas y mejoras del sitio; este portafolio no configura cookies publicitarias ni seguimiento entre sitios."
+    },
+    "preferences": {
+      "title": "Idioma y reintentos de contacto",
+      "body": "Al seleccionar un idioma, la cookie funcional NEXT_LOCALE puede guardar esa elección durante la sesión del navegador. Así no necesitas elegir el idioma de nuevo. Puedes eliminarla en la configuración del navegador, lo que puede restablecer esa preferencia. El navegador también puede guardar en esta pestaña una clave aleatoria para reconocer reintentos de envío. Tiene una validez de hasta 24 horas, no contiene el contenido del formulario y se elimina cuando se confirma el envío."
+    },
+    "rights": {
+      "title": "Solicitudes sobre tus datos",
+      "body": "Usa el correo de contacto para solicitar información, acceso, corrección o eliminación de los datos que enviaste. Proporciona lo necesario para localizar la conversación sin adjuntar documentos sensibles. Puede ser necesario confirmar tu identidad para proteger tus datos."
+    },
+    "external": {
+      "title": "Enlaces externos",
+      "body": "Los enlaces a proyectos, redes sociales y WhatsApp llevan a servicios con sus propias prácticas de privacidad. Consulta su información antes de compartir datos."
+    }
   }
-  }
+}

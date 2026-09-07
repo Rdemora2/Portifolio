@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-09-07T03:56:12.626Z",
+  "focusedSpecs": "12/12 passed",
+  "facts": [
+    {
+      "width": 320,
+      "label": {
+        "x": 16,
+        "y": 526.21875,
+        "width": 116,
+        "height": 14.875
+      },
+      "value": {
+        "x": 144,
+        "y": 526.21875,
+        "width": 160,
+        "height": 43.21875
+      },
+      "overlap": false
+    },
+    {
+      "width": 390,
+      "label": {
+        "x": 16,
+        "y": 482.5,
+        "width": 136.03125,
+        "height": 14.875
+      },
+      "value": {
+        "x": 164.03125,
+        "y": 482.5,
+        "width": 209.96875,
+        "height": 43.21875
+      },
+      "overlap": false
+    },
+    {
+      "width": 430,
+      "label": {
+        "x": 16,
+        "y": 490.3125,
+        "width": 151.234375,
+        "height": 14.875
+      },
+      "value": {
+        "x": 179.234375,
+        "y": 490.3125,
+        "width": 234.765625,
+        "height": 43.21875
+      },
+      "overlap": false
+    }
+  ],
+  "gallery": {
+    "390": {
+      "pagination": 6,
+      "motionControl": "Resume gallery",
+      "viewport": {
+        "x": 0,
+        "y": 493.71875,
+        "width": 390,
+        "height": 461.5625
+      }
+    },
+    "1440": {
+      "pagination": 6,
+      "motionControl": "Resume gallery",
+      "viewport": {
+        "x": 0,
+        "y": 339.53125,
+        "width": 1440,
+        "height": 619.78125
+      }
+    }
+  },
+  "article": {
+    "mobileLinks": 8,
+    "mobileBox": {
+      "x": 16,
+      "y": 397.140625,
+      "width": 358,
+      "height": 449.53125
+    },
+    "desktopIndexHidden": true,
+    "desktopLinks": 8
+  },
+  "webgl": {
+    "canvasWidth": 1440,
+    "canvasHeight": 900,
+    "context": "webgl2",
+    "webdriver": false
+  }
+}

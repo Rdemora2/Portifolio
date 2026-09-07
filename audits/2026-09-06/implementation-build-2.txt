@@ -1,0 +1,21 @@
+
+> portifolio@0.1.0 build
+> next build && node scripts/prepare-standalone.mjs
+
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 156ms
+- Experiments (use with caution):
+  ✓ globalNotFound
+  ✓ optimizeCss
+  · optimizePackageImports
+  · webVitalsAttribution
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.3s
+  Running TypeScript ...
+e2e/webgl-active.spec.ts(57,22): error TS2339: Property 'drawingBufferHeight' does not exist on type 'RenderingContext'.
+  Property 'drawingBufferHeight' does not exist on type 'CanvasRenderingContext2D'.
+e2e/webgl-active.spec.ts(58,21): error TS2339: Property 'drawingBufferWidth' does not exist on type 'RenderingContext'.
+  Property 'drawingBufferWidth' does not exist on type 'CanvasRenderingContext2D'.
+Failed to type check.
+

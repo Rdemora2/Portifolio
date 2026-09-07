@@ -1,12 +1,17 @@
 import { personalInfo } from "@/data/portfolio"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { ContactFormLoader } from "./ContactFormLoader"
 import { ContactBackground } from "./ContactBackground"
+import { isLocale } from "@/i18n.config"
+import { getLocalizedPath } from "@/lib/constants"
 
 export function Contact() {
   const t = useTranslations("Contact")
   const tNav = useTranslations("Nav")
+  const locale = useLocale()
+  // Load privacy as a full document, as in Footer, to replace the complete head.
+  const privacyHref = getLocalizedPath(isLocale(locale) ? locale : "pt", "/privacy")
 
   return (
     <section
@@ -71,6 +76,9 @@ export function Contact() {
                       {contact.type === "github" && "gh"}
                     </span>
                     {contact.label}
+                    {contact.type !== "email" && (
+                      <span className="sr-only"> {t("opensNewTab")}</span>
+                    )}
                   </a>
                 ))}
               </div>
@@ -80,6 +88,15 @@ export function Contact() {
           <ScrollReveal animation="card" delay={0.2}>
             <div className="glass-panel rounded-2xl p-6 sm:p-8" style={{ borderRadius: "1.5rem" }}>
               <ContactFormLoader />
+              <p className="mt-6 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                {t("privacyNotice")} {" "}
+                <a
+                  href={privacyHref}
+                  className="underline underline-offset-4 text-[var(--color-text-secondary)]"
+                >
+                  {t("privacyLink")}
+                </a>
+              </p>
             </div>
           </ScrollReveal>
         </div>

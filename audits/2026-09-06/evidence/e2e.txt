@@ -1,0 +1,67 @@
+
+> portifolio@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:81433) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 34 tests using 2 workers
+
+(node:81575) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:81576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › e2e/home-navigation-motion.spec.ts:111:7 › localized page navigation › keeps the mobile menu modal, keyboard-safe, and route-aware (8.3s)
+  ✓   2 [chromium] › e2e/home-navigation-motion.spec.ts:61:7 › localized page navigation › keeps hover, focus, and current-page feedback perceptible (8.5s)
+  ✓   4 [chromium] › e2e/home-navigation-motion.spec.ts:177:7 › restrained motion › preserves interaction feedback without spatial movement (2.1s)
+  ✓   3 [chromium] › e2e/home-navigation-motion.spec.ts:150:7 › localized page navigation › bridges legacy section fragments to localized pages (3.1s)
+  ✓   5 [chromium] › e2e/portfolio.spec.ts:71:5 › serves every localized portfolio route and case (1.2s)
+  ✓   7 [chromium] › e2e/portfolio.spec.ts:110:5 › keeps the hero identity exact and the home deliberately concise (2.6s)
+  ✓   6 [chromium] › e2e/portfolio.spec.ts:97:5 › renders one descriptive document title and H1 on every primary surface (4.2s)
+  ✓   9 [chromium] › e2e/portfolio.spec.ts:333:5 › presents production cases before the independent web lab (2.7s)
+  ✓  10 [chromium] › e2e/portfolio.spec.ts:383:5 › publishes complete, shareable case studies with contextual evidence (3.2s)
+  ✓   8 [chromium] › e2e/portfolio.spec.ts:140:5 › keeps every hero within a deliberate responsive scale (8.2s)
+  ✓  11 [chromium] › e2e/portfolio.spec.ts:425:7 › case gallery › progressively enhances the case gallery with an accessible lightbox (3.4s)
+  ✓  12 [chromium] › e2e/portfolio.spec.ts:470:5 › preserves the complete professional chronology and company progression (1.8s)
+  ✓  13 [chromium] › e2e/portfolio.spec.ts:513:5 › separates profile, principles, and technical capabilities (1.6s)
+  ✓  14 [chromium] › e2e/portfolio.spec.ts:551:5 › publishes a localized editorial index and progressive article (2.6s)
+  ✓  15 [chromium] › e2e/portfolio.spec.ts:627:5 › switches locale semantically on indexes and dynamic cases (1.1s)
+  ✓  16 [chromium] › e2e/portfolio.spec.ts:661:5 › keeps the professional contact contract neutral and keyboard-first (1.4s)
+  ✓  17 [chromium] › e2e/portfolio.spec.ts:706:5 › enforces security headers and route-aware discoverability (1.3s)
+  ✓  19 [chromium] › e2e/portfolio.spec.ts:747:5 › publishes complete robots, sitemap, and permanent article migrations (114ms)
+  ✓  20 [chromium] › e2e/portfolio.spec.ts:848:5 › rejects untrusted contact origins with the neutral schema (73ms)
+  ✓  18 [chromium] › e2e/portfolio.spec.ts:833:5 › serves localized, non-indexable not-found pages (858ms)
+  ✓  22 [chromium] › e2e/portfolio.spec.ts:909:5 › remains overflow-free across the responsive validation matrix (5.1s)
+  ✓  23 [chromium] › e2e/portfolio.spec.ts:973:5 › loads primary routes without uncaught errors in reduced motion (2.3s)
+(node:81918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  24 [chromium-webgl-disabled] › e2e/webgl-disabled.spec.ts:3:5 › keeps the engineering journey usable when WebGL is unavailable (2.0s)
+(node:81952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  21 [chromium] › e2e/portfolio.spec.ts:869:5 › passes automated WCAG audits on every primary surface (14.4s)
+(node:81973) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  25 [firefox-smoke] › e2e/browser-smoke.spec.ts:31:5 › renders the multipage portfolio without engine-specific regressions (7.6s)
+  ✓  26 [firefox-smoke] › e2e/browser-smoke.spec.ts:61:5 › keeps project details and article content progressive (8.2s)
+  ✓  27 [firefox-smoke] › e2e/browser-smoke.spec.ts:109:5 › keeps mobile navigation and contact usable (2.3s)
+(node:82065) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  29 [webkit-smoke] › e2e/browser-smoke.spec.ts:31:5 › renders the multipage portfolio without engine-specific regressions (8.7s)
+  ✓  30 [webkit-smoke] › e2e/browser-smoke.spec.ts:109:5 › keeps mobile navigation and contact usable (4.1s)
+  ✓  28 [webkit-smoke] › e2e/browser-smoke.spec.ts:61:5 › keeps project details and article content progressive (14.7s)
+(node:82188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  32 [chromium-mobile-smoke] › e2e/mobile-smoke.spec.ts:36:5 › keeps navigation operable in a short landscape viewport (6.4s)
+  ✓  31 [chromium-mobile-smoke] › e2e/mobile-smoke.spec.ts:9:5 › keeps every core journey usable with real touch and mobile semantics (13.2s)
+(node:82272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82289) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  34 [webkit-mobile-smoke] › e2e/mobile-smoke.spec.ts:36:5 › keeps navigation operable in a short landscape viewport (14.0s)
+  ✓  33 [webkit-mobile-smoke] › e2e/mobile-smoke.spec.ts:9:5 › keeps every core journey usable with real touch and mobile semantics (15.7s)
+
+  34 passed (2.6m)

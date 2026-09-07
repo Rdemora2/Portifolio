@@ -1,0 +1,36 @@
+
+> portifolio@0.1.0 test:e2e
+> playwright test --workers=1
+
+[WebServer] (node:44293) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 51 tests using 1 worker
+
+(node:44309) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › e2e/article-navigation.spec.ts:3:5 › offers the article chapter index on mobile (4.6s)
+  ✓   2 [chromium] › e2e/article-navigation.spec.ts:23:5 › leaves chapter navigation to the desktop experience on wide screens (1.7s)
+  ✓   3 [chromium] › e2e/gallery-accessibility.spec.ts:3:5 › keeps gallery motion under the visitor's control (12.3s)
+  ✓   4 [chromium] › e2e/gallery-accessibility.spec.ts:130:5 › disables gallery autoplay when reduced motion is requested (2.3s)
+  ✓   5 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 320px (1.9s)
+  ✓   6 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 390px (2.7s)
+  ✓   7 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 430px (6.6s)
+  ✓   8 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 320px (4.2s)
+  ✓   9 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 390px (3.8s)
+  ✓  10 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 430px (1.6s)
+  ✓  11 [chromium] › e2e/home-navigation-motion.spec.ts:61:7 › localized page navigation › keeps hover, focus, and current-page feedback perceptible (3.8s)
+  ✓  12 [chromium] › e2e/home-navigation-motion.spec.ts:111:7 › localized page navigation › keeps the mobile menu modal, keyboard-safe, and route-aware (5.0s)
+  ✓  13 [chromium] › e2e/home-navigation-motion.spec.ts:150:7 › localized page navigation › bridges legacy section fragments to localized pages (12.8s)
+  ✓  14 [chromium] › e2e/home-navigation-motion.spec.ts:177:7 › restrained motion › preserves interaction feedback without spatial movement (7.5s)
+  ✓  15 [chromium] › e2e/portfolio.spec.ts:71:5 › serves every localized portfolio route and case (2.3s)
+  ✓  16 [chromium] › e2e/portfolio.spec.ts:97:5 › renders one descriptive document title and H1 on every primary surface (8.5s)
+  ✓  17 [chromium] › e2e/portfolio.spec.ts:110:5 › keeps the hero identity exact and the home deliberately concise (7.9s)
+  ✓  18 [chromium] › e2e/portfolio.spec.ts:140:5 › keeps every hero within a deliberate responsive scale (19.5s)
+  ✓  19 [chromium] › e2e/portfolio.spec.ts:333:5 › presents production cases before the independent web lab (14.6s)
+  ✓  20 [chromium] › e2e/portfolio.spec.ts:383:5 › publishes complete, shareable case studies with contextual evidence (11.2s)
+  ✓  21 [chromium] › e2e/portfolio.spec.ts:425:7 › case gallery › progressively enhances the case gallery with an accessible lightbox (6.9s)
+  ✓  22 [chromium] › e2e/portfolio.spec.ts:470:5 › preserves the complete professional chronology and company progression (8.1s)
+  ✘  23 [chromium] › e2e/portfolio.spec.ts:513:5 › separates profile, principles, and technical capabilities (2.5m)
+(node:45933) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

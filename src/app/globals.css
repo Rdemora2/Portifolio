@@ -511,6 +511,12 @@
 }
 
 @media (scripting: none) {
+  .contact-form-loader {
+    min-height: 0;
+  }
+  .contact-form-skeleton {
+    display: none;
+  }
   .count-up-animated {
     display: none;
   }
@@ -519,15 +525,6 @@
     display: inline;
   }
 
-  /*
-   * ScrollReveal sets opacity:0 + transform as an inline style at render time
-   * to prevent one-frame flashes (see ScrollReveal.tsx). Without JavaScript
-   * the animation never runs, so we forcibly reveal all elements here.
-   */
-  [data-scroll-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

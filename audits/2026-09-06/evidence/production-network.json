@@ -1,0 +1,636 @@
+{
+  "errors": [],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/",
+      "type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3spp37u85cn_5.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/turbopack-2bof0vwc05-mw.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/205hv9zmmrokf.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1_j18s6tfcyb5.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16k1y303keupd.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ki0plebwgp8_.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ji2o_jpsiehn.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0efbb4jplsic4.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/36-vmk9axabal.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/09scyxqnpjwjx.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/a5561f6d51910011/script.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/04d43d4a63d827d6/script.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/experiencia",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/insights",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0h-29bc113ppz.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0zhocnlkc7rgq.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16ah3oi5pik7m.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/experiencia",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/insights",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ntmpi1-aivlz.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0nvget7i2jkmy.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2g77d_a2pp4rw.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/band-news-bandsports",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/fiesta-americana",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/insights/go-em-producao",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0zhocnlkc7rgq.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3spp37u85cn_5.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/turbopack-2bof0vwc05-mw.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/205hv9zmmrokf.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ji2o_jpsiehn.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1_j18s6tfcyb5.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16k1y303keupd.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0nvget7i2jkmy.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/36-vmk9axabal.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/09scyxqnpjwjx.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/arua-resort-experience.webp",
+      "type": "image"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/portal-noticias-atual.webp",
+      "type": "image"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/a5561f6d51910011/script.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/04d43d4a63d827d6/script.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/experiencia",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/insights",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16ah3oi5pik7m.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0h-29bc113ppz.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/experiencia",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ntmpi1-aivlz.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/insights",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2g77d_a2pp4rw.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0fwllwwr2h3p-.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/contato",
+      "type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/band-news-bandsports",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/lp-arq-carla-moraes.webp",
+      "type": "image"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/fiesta-americana",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/band-news-bandsports",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/casa-brasa-experience.webp",
+      "type": "image"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/images/sites/lp-estudio-musica.webp",
+      "type": "image"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos/fiesta-americana",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+      "type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3spp37u85cn_5.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/turbopack-2bof0vwc05-mw.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/205hv9zmmrokf.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ji2o_jpsiehn.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1_j18s6tfcyb5.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16k1y303keupd.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3d_d0tqaf5ysa.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/36-vmk9axabal.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/09scyxqnpjwjx.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/a5561f6d51910011/script.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/04d43d4a63d827d6/script.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/experiencia",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/insights",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0hk23e83n9zw4.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0zhocnlkc7rgq.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0h-29bc113ppz.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/sobre",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16ah3oi5pik7m.css",
+      "type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/experiencia",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0nvget7i2jkmy.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/insights",
+      "type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ntmpi1-aivlz.js",
+      "type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2g77d_a2pp4rw.js",
+      "type": "script"
+    }
+  ],
+  "responses": [],
+  "storage": {
+    "localStorage": [],
+    "sessionStorage": []
+  },
+  "cookies": []
+}

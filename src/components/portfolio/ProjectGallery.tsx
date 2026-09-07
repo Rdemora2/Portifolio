@@ -16,9 +16,12 @@ export interface ProjectGalleryImage {
 export interface ProjectGalleryLabels {
   close: string
   dialog: string
+  goTo: string
   next: string
   open: string
+  pause: string
   previous: string
+  resume: string
 }
 
 interface ProjectGalleryProps {

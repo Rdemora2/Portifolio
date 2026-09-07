@@ -43,13 +43,16 @@ export async function WebsiteShowcase({
             </p>
             <p className={styles.publishedCount}>
               <span className={styles.liveDot} aria-hidden="true" />
-              {t("publishedCount", { count: websiteExperiences.length })}
+              {t("publishedCount", { count: websiteExperiences.filter((site) => !("available" in site) || site.available !== false).length })}
             </p>
           </ScrollReveal>
         </div>
 
         <div className={styles.grid} data-website-grid>
-          {websiteExperiences.map((site, index) => (
+          {websiteExperiences.map((site, index) => {
+            const available = !("available" in site) || site.available !== false
+            const CardContent = available ? "a" : "div"
+            return (
             <ScrollReveal
               key={site.id}
               animation="card"
@@ -58,12 +61,12 @@ export async function WebsiteShowcase({
               className={styles.reveal}
             >
               <article className={styles.card} data-website-card={site.id}>
-                <a
-                  href={site.href}
-                  target="_blank"
-                  rel="noopener noreferrer external"
+                <CardContent
+                  href={available ? site.href : undefined}
+                  target={available ? "_blank" : undefined}
+                  rel={available ? "noopener noreferrer external" : undefined}
                   className={styles.cardLink}
-                  data-website-link
+                  data-website-link={available ? "" : undefined}
                 >
                   <div className={styles.browserFrame}>
                     <div className={styles.browserBar} aria-hidden="true">
@@ -86,7 +89,6 @@ export async function WebsiteShowcase({
                         className={styles.image}
                         loading="lazy"
                         decoding="async"
-                        unoptimized={site.image.src.endsWith(".webp")}
                         placeholder="blur"
                         blurDataURL={site.image.blurDataURL}
                       />
@@ -102,10 +104,10 @@ export async function WebsiteShowcase({
                       <span className={styles.category}>
                         {t(`items.${site.id}.category`)}
                       </span>
-                      <span className={styles.liveStatus}>
+                      {available && <span className={styles.liveStatus}>
                         <span className={styles.liveDot} aria-hidden="true" />
                         {t("live")}
-                      </span>
+                      </span>}
                     </div>
 
                     <h3 className={styles.cardTitle}>
@@ -124,7 +126,7 @@ export async function WebsiteShowcase({
                         ))}
                       </ul>
 
-                      <span className={styles.cta}>
+                      {available ? <span className={styles.cta}>
                         {t("visit")}
                         <svg
                           viewBox="0 0 20 20"
@@ -143,13 +145,13 @@ export async function WebsiteShowcase({
                           />
                         </svg>
                         <span className="sr-only"> — {t("newTab")}</span>
-                      </span>
+                      </span> : <span className="text-xs leading-relaxed text-[var(--color-text-muted)]">{t("unavailable")}</span>}
                     </div>
                   </div>
-                </a>
+                </CardContent>
               </article>
             </ScrollReveal>
-          ))}
+          )})}
         </div>
 
         <ScrollReveal animation="ambient" delay={0.12} className={styles.pipeline}>

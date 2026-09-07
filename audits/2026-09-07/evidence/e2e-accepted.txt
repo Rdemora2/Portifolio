@@ -1,0 +1,76 @@
+
+> portifolio@0.1.0 test:e2e
+> playwright test --workers=1
+
+[WebServer] (node:10424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 51 tests using 1 worker
+
+(node:10434) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › e2e/article-navigation.spec.ts:3:5 › offers the article chapter index on mobile (891ms)
+  ✓   2 [chromium] › e2e/article-navigation.spec.ts:23:5 › leaves chapter navigation to the desktop experience on wide screens (508ms)
+  ✓   3 [chromium] › e2e/gallery-accessibility.spec.ts:3:5 › keeps gallery motion under the visitor's control (9.9s)
+  ✓   4 [chromium] › e2e/gallery-accessibility.spec.ts:130:5 › disables gallery autoplay when reduced motion is requested (1.1s)
+  ✓   5 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 320px (410ms)
+  ✓   6 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 390px (423ms)
+  ✓   7 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidade separate at 430px (417ms)
+  ✓   8 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 320px (425ms)
+  ✓   9 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 390px (450ms)
+  ✓  10 [chromium] › e2e/gallery-accessibility.spec.ts:171:9 › keeps Responsabilidad separate at 430px (482ms)
+  ✓  11 [chromium] › e2e/home-navigation-motion.spec.ts:61:7 › localized page navigation › keeps hover, focus, and current-page feedback perceptible (1.5s)
+  ✓  12 [chromium] › e2e/home-navigation-motion.spec.ts:111:7 › localized page navigation › keeps the mobile menu modal, keyboard-safe, and route-aware (596ms)
+  ✓  13 [chromium] › e2e/home-navigation-motion.spec.ts:150:7 › localized page navigation › bridges legacy section fragments to localized pages (1.2s)
+  ✓  14 [chromium] › e2e/home-navigation-motion.spec.ts:177:7 › restrained motion › preserves interaction feedback without spatial movement (589ms)
+  ✓  15 [chromium] › e2e/portfolio.spec.ts:71:5 › serves every localized portfolio route and case (256ms)
+  ✓  16 [chromium] › e2e/portfolio.spec.ts:97:5 › renders one descriptive document title and H1 on every primary surface (2.1s)
+  ✓  17 [chromium] › e2e/portfolio.spec.ts:110:5 › keeps the hero identity exact and the home deliberately concise (832ms)
+  ✓  18 [chromium] › e2e/portfolio.spec.ts:140:5 › keeps every hero within a deliberate responsive scale (2.8s)
+  ✓  19 [chromium] › e2e/portfolio.spec.ts:333:5 › presents production cases before the independent web lab (877ms)
+  ✓  20 [chromium] › e2e/portfolio.spec.ts:383:5 › publishes complete, shareable case studies with contextual evidence (607ms)
+  ✓  21 [chromium] › e2e/portfolio.spec.ts:425:7 › case gallery › progressively enhances the case gallery with an accessible lightbox (941ms)
+  ✓  22 [chromium] › e2e/portfolio.spec.ts:470:5 › preserves the complete professional chronology and company progression (682ms)
+  ✓  23 [chromium] › e2e/portfolio.spec.ts:513:5 › separates profile, principles, and technical capabilities (538ms)
+  ✓  24 [chromium] › e2e/portfolio.spec.ts:551:5 › publishes a localized editorial index and progressive article (2.3s)
+  ✓  25 [chromium] › e2e/portfolio.spec.ts:627:5 › switches locale semantically on indexes and dynamic cases (561ms)
+  ✓  26 [chromium] › e2e/portfolio.spec.ts:661:5 › keeps the professional contact contract neutral and keyboard-first (1.2s)
+  ✓  27 [chromium] › e2e/portfolio.spec.ts:706:5 › enforces security headers and route-aware discoverability (571ms)
+  ✓  28 [chromium] › e2e/portfolio.spec.ts:747:5 › publishes complete robots, sitemap, and permanent article migrations (47ms)
+  ✓  29 [chromium] › e2e/portfolio.spec.ts:833:5 › serves localized, non-indexable not-found pages (319ms)
+  ✓  30 [chromium] › e2e/portfolio.spec.ts:848:5 › rejects untrusted contact origins with the neutral schema (23ms)
+  ✓  31 [chromium] › e2e/portfolio.spec.ts:869:5 › keeps contact retries idempotent across reload and rotates after success (6.7s)
+  ✓  32 [chromium] › e2e/portfolio.spec.ts:920:5 › passes automated WCAG audits on every primary surface (6.0s)
+  ✓  33 [chromium] › e2e/portfolio.spec.ts:960:5 › remains overflow-free across the responsive validation matrix (2.3s)
+  ✓  34 [chromium] › e2e/portfolio.spec.ts:1024:5 › loads primary routes without uncaught errors in reduced motion (1.2s)
+  ✓  35 [chromium] › e2e/progressive-content.spec.ts:4:5 › home content and links work without JavaScript in every language (739ms)
+  ✓  36 [chromium] › e2e/progressive-content.spec.ts:20:5 › blocked application chunks leave server content visible (351ms)
+  ✓  37 [chromium] › e2e/progressive-content.spec.ts:33:5 › privacy is localized, accessible and linked from contact and footer (2.4s)
+  ✓  38 [chromium] › e2e/progressive-content.spec.ts:52:5 › website previews use responsive images and unavailable demos have no dead link (765ms)
+(node:10747) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  39 [chromium] › e2e/webgl-active.spec.ts:90:5 › runs the WebGL signature for a normal visitor and follows lifecycle changes (2.3s)
+  ✓  40 [chromium] › e2e/webgl-active.spec.ts:175:5 › falls back cleanly after a real WebGL context loss (1.8s)
+(node:10801) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  41 [chromium-webgl-disabled] › e2e/webgl-disabled.spec.ts:3:5 › keeps the engineering journey usable when WebGL is unavailable (1.1s)
+(node:10808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  42 [firefox-smoke] › e2e/browser-smoke.spec.ts:31:5 › renders the multipage portfolio without engine-specific regressions (4.2s)
+  ✓  43 [firefox-smoke] › e2e/browser-smoke.spec.ts:61:5 › keeps project details and article content progressive (2.6s)
+  ✓  44 [firefox-smoke] › e2e/browser-smoke.spec.ts:110:5 › keeps mobile navigation and contact usable (950ms)
+(node:11132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  45 [webkit-smoke] › e2e/browser-smoke.spec.ts:31:5 › renders the multipage portfolio without engine-specific regressions (5.3s)
+  ✓  46 [webkit-smoke] › e2e/browser-smoke.spec.ts:61:5 › keeps project details and article content progressive (5.5s)
+  ✓  47 [webkit-smoke] › e2e/browser-smoke.spec.ts:110:5 › keeps mobile navigation and contact usable (1.8s)
+(node:11255) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  48 [chromium-mobile-smoke] › e2e/mobile-smoke.spec.ts:9:5 › keeps every core journey usable with real touch and mobile semantics (3.2s)
+  ✓  49 [chromium-mobile-smoke] › e2e/mobile-smoke.spec.ts:36:5 › keeps navigation operable in a short landscape viewport (1.2s)
+(node:11286) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  50 [webkit-mobile-smoke] › e2e/mobile-smoke.spec.ts:9:5 › keeps every core journey usable with real touch and mobile semantics (4.7s)
+  ✓  51 [webkit-mobile-smoke] › e2e/mobile-smoke.spec.ts:36:5 › keeps navigation operable in a short landscape viewport (2.5s)
+
+  51 passed (1.8m)

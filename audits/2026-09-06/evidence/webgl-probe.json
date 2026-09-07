@@ -1,0 +1,24 @@
+[
+  {
+    "controlled": false,
+    "webdriver": false,
+    "visibility": "visible",
+    "ua": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Mobile Safari/537.36",
+    "cores": 6,
+    "memory": 8,
+    "saveData": false,
+    "reduced": false,
+    "canvases": 1
+  },
+  {
+    "controlled": true,
+    "webdriver": false,
+    "visibility": "visible",
+    "ua": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Mobile Safari/537.36",
+    "cores": 6,
+    "memory": 8,
+    "saveData": false,
+    "reduced": false,
+    "canvases": 1
+  }
+]

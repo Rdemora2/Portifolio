@@ -69,7 +69,6 @@ const nextConfig: NextConfig = {
     globalNotFound: true,
     optimizePackageImports: ["ogl", "react-icons"],
     webVitalsAttribution: ["CLS", "LCP", "INP"],
-    optimizeCss: true,
   },
   // Vercel creates its native function output through its Next adapter. The
   // standalone artifact is reserved for the Docker/self-hosted runtime.

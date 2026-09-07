@@ -11,11 +11,14 @@ type RateLimitEntry = {
 }
 
 type RateLimitResult = {
-  limited: boolean
   limit: number
   remaining: number
   resetSeconds: number
 }
+
+type RateLimitAdmission =
+  | { admitted: true; client: RateLimitResult }
+  | { admitted: false; rejected: RateLimitResult }
 
 const RATE_LIMIT_WINDOW_MS = getIntegerEnv(
   "CONTACT_RATE_LIMIT_WINDOW_SECONDS",
@@ -74,35 +77,58 @@ function cleanupRateLimitEntries(now: number): void {
   nextRateLimitCleanup = now + RATE_LIMIT_WINDOW_MS
 }
 
-function consumeRateLimit(key: string, limit: number, now = Date.now()): RateLimitResult {
-  cleanupRateLimitEntries(now)
-
+function currentRateLimitEntry(key: string, now: number): RateLimitEntry {
   const existing = rateLimitEntries.get(key)
-  const resetAt = existing?.resetAt && existing.resetAt > now
-    ? existing.resetAt
-    : now + RATE_LIMIT_WINDOW_MS
-  const entry = existing?.resetAt && existing.resetAt > now
+
+  return existing?.resetAt && existing.resetAt > now
     ? existing
-    : { count: 0, resetAt }
+    : { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS }
+}
 
-  entry.count += 1
-
-  if (!existing && rateLimitEntries.size >= RATE_LIMIT_MAX_ENTRIES) {
-    return {
-      limited: true,
-      limit,
-      remaining: 0,
-      resetSeconds: Math.ceil(RATE_LIMIT_WINDOW_MS / 1_000),
-    }
-  }
-
-  rateLimitEntries.set(key, entry)
-
+function rateLimitResult(entry: RateLimitEntry, limit: number, now: number): RateLimitResult {
   return {
-    limited: entry.count > limit,
     limit,
     remaining: Math.max(0, limit - entry.count),
     resetSeconds: Math.max(1, Math.ceil((entry.resetAt - now) / 1_000)),
+  }
+}
+
+function admitRateLimits(clientKey: string, now = Date.now()): RateLimitAdmission {
+  cleanupRateLimitEntries(now)
+
+  const globalKey = "global"
+  const globalEntry = currentRateLimitEntry(globalKey, now)
+  const clientEntry = currentRateLimitEntry(clientKey, now)
+  const clientResult = rateLimitResult(clientEntry, RATE_LIMIT_MAX, now)
+  if (clientEntry.count >= RATE_LIMIT_MAX) {
+    return { admitted: false, rejected: clientResult }
+  }
+
+  const globalResult = rateLimitResult(globalEntry, RATE_LIMIT_GLOBAL_MAX, now)
+  if (globalEntry.count >= RATE_LIMIT_GLOBAL_MAX) {
+    return { admitted: false, rejected: globalResult }
+  }
+
+  const newEntries = Number(!rateLimitEntries.has(globalKey)) + Number(!rateLimitEntries.has(clientKey))
+  if (rateLimitEntries.size + newEntries > RATE_LIMIT_MAX_ENTRIES) {
+    return {
+      admitted: false,
+      rejected: {
+        limit: RATE_LIMIT_MAX,
+        remaining: 0,
+        resetSeconds: Math.ceil(RATE_LIMIT_WINDOW_MS / 1_000),
+      },
+    }
+  }
+
+  const admittedGlobal = { ...globalEntry, count: globalEntry.count + 1 }
+  const admittedClient = { ...clientEntry, count: clientEntry.count + 1 }
+  rateLimitEntries.set(globalKey, admittedGlobal)
+  rateLimitEntries.set(clientKey, admittedClient)
+
+  return {
+    admitted: true,
+    client: rateLimitResult(admittedClient, RATE_LIMIT_MAX, now),
   }
 }
 
@@ -201,6 +227,7 @@ async function readJsonBody(request: NextRequest): Promise<unknown> {
 
 class BodyTooLargeError extends Error {}
 class EmailTimeoutError extends Error {}
+class InvalidIdempotencyKeyError extends Error {}
 
 function escapeHtml(value: string): string {
   return value
@@ -244,9 +271,22 @@ function buildEmailContent(data: ContactSchema) {
   }
 }
 
-function createIdempotencyKey(data: ContactSchema, secret: string): string {
-  const tenMinuteWindow = Math.floor(Date.now() / 600_000)
-  const payload = JSON.stringify({ ...data, botCheck: undefined, tenMinuteWindow })
+function getRequestIdempotencyKey(request: NextRequest): string {
+  const suppliedKey = request.headers.get("idempotency-key")
+
+  if (!suppliedKey) {
+    return `legacy-${Math.floor(Date.now() / 600_000)}`
+  }
+
+  if (!/^[A-Za-z0-9_-]{16,128}$/.test(suppliedKey)) {
+    throw new InvalidIdempotencyKeyError()
+  }
+
+  return suppliedKey
+}
+
+function createIdempotencyKey(data: ContactSchema, requestKey: string, secret: string): string {
+  const payload = JSON.stringify({ ...data, botCheck: undefined, requestKey })
 
   return createHmac("sha256", secret).update(payload).digest("base64url")
 }
@@ -288,24 +328,29 @@ export async function POST(request: NextRequest) {
     return jsonResponse({ error: "Payload muito grande" }, 413)
   }
 
-  const globalRateLimit = consumeRateLimit("global", RATE_LIMIT_GLOBAL_MAX)
-  if (globalRateLimit.limited) {
+  let requestIdempotencyKey: string
+  try {
+    requestIdempotencyKey = getRequestIdempotencyKey(request)
+  } catch (error) {
+    if (error instanceof InvalidIdempotencyKeyError) {
+      return jsonResponse({ error: "Idempotency-Key inválido" }, 400)
+    }
+    throw error
+  }
+
+  const rateLimitAdmission = admitRateLimits(`client:${getClientIdentifier(request)}`)
+  if (!rateLimitAdmission.admitted) {
     return jsonResponse(
       { error: "Muitas requisições. Tente novamente em breve." },
       429,
-      { ...rateLimitHeaders(globalRateLimit), "Retry-After": String(globalRateLimit.resetSeconds) }
+      {
+        ...rateLimitHeaders(rateLimitAdmission.rejected),
+        "Retry-After": String(rateLimitAdmission.rejected.resetSeconds),
+      }
     )
   }
 
-  const clientRateLimit = consumeRateLimit(`client:${getClientIdentifier(request)}`, RATE_LIMIT_MAX)
-  const responseRateLimitHeaders = rateLimitHeaders(clientRateLimit)
-  if (clientRateLimit.limited) {
-    return jsonResponse(
-      { error: "Muitas requisições. Tente novamente em breve." },
-      429,
-      { ...responseRateLimitHeaders, "Retry-After": String(clientRateLimit.resetSeconds) }
-    )
-  }
+  const responseRateLimitHeaders = rateLimitHeaders(rateLimitAdmission.client)
 
   let body: unknown
   try {
@@ -362,7 +407,13 @@ export async function POST(request: NextRequest) {
           replyTo: parsed.data.email,
           ...emailContent,
         },
-        { idempotencyKey: createIdempotencyKey(parsed.data, idempotencySecret) }
+        {
+          idempotencyKey: createIdempotencyKey(
+            parsed.data,
+            requestIdempotencyKey,
+            idempotencySecret
+          ),
+        }
       )
     )
 

@@ -27,15 +27,15 @@
     }
   },
   "Hero": {
-    "title": "Software Engineer & IT Manager",
+    "title": "Software Engineer",
     "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
     "viewProjects": "Explore work",
     "viewExperience": "View experience",
     "contact": "Contact"
   },
   "Metadata": {
-    "title": "Roberto Moraes | Software Engineer & IT Manager",
-    "description": "Hands-on software engineer and technical leader. I lead teams, build high-performance Go backends, manage cloud infrastructure across AWS and GCP, and bring observability and DevOps practices to mission-critical systems."
+    "title": "Roberto Moraes | Software Engineer",
+    "description": "Software engineer focused on backend, cloud, and production systems. I build solutions with Go, Next.js, and Kotlin, combining architecture, reliability, and technical leadership experience."
   },
   "About": {
     "title": "About",
@@ -328,17 +328,18 @@
         "description": "A premium commerce experience combining responsible curation, technical product information, and clear navigation across rolling papers, natural tobacco, cigars, and accessories.",
         "imageAlt": "Casa Brasa home page with an editorial composition of rolling paper, natural tobacco, cigar, cutter, lighter, and ashtray."
       }
-    }
+    },
+    "unavailable": "Demo temporarily unavailable"
   },
   "Experience": {
     "title": "Work Experience",
     "title_small": "Where I've worked",
     "present": "Present",
     "items": {
-    "valiant-gti": {
-      "company": "Valiant Group do Brasil",
-      "role": "Software Engineer & IT Manager",
-      "period": "Jan 2026 · Present",
+      "valiant-gti": {
+        "company": "Valiant Group do Brasil",
+        "role": "Software Engineer & IT Manager",
+        "period": "Jan 2026 · Present",
         "description": "I lead the company's technology function across cloud infrastructure, DevOps, security, and operations. I oversee the full lifecycle of software products used by 100k+ active users, lead international initiatives, and stay hands-on with the code—from Go backends to Android TV applications.",
         "highlights": [
           "Primary decision-maker for technology strategy",
@@ -349,10 +350,10 @@
           "Cloud infrastructure across GCP, AWS, and Oracle Cloud"
         ]
       },
-    "valiant-pm": {
-      "company": "Valiant Group do Brasil",
-      "role": "IT Project Manager",
-      "period": "Nov 2024 · Dec 2025",
+      "valiant-pm": {
+        "company": "Valiant Group do Brasil",
+        "role": "IT Project Manager",
+        "period": "Nov 2024 · Dec 2025",
         "description": "I led multidisciplinary teams and delivered new projects through agile execution. Drawing on my engineering background, I also owned GCP cloud governance, CI/CD pipelines, and the product lifecycle.",
         "highlights": [
           "Development team under my direct management",
@@ -361,10 +362,10 @@
           "Direct collaboration with clients and stakeholders"
         ]
       },
-    "valiant-dev": {
-      "company": "Valiant Group do Brasil",
+      "valiant-dev": {
+        "company": "Valiant Group do Brasil",
         "role": "Full-Stack Web / Mobile Developer",
-      "period": "Dec 2023 · Dec 2024",
+        "period": "Dec 2023 · Dec 2024",
         "description": "End-to-end development across web, mobile, and infrastructure. I worked across the delivery lifecycle, from API design to production deployment, with a focus on performance and stability.",
         "highlights": [
           "Full stack: JavaScript, TypeScript, React, Kotlin, Go",
@@ -373,10 +374,10 @@
           "Production performance monitoring and optimization"
         ]
       },
-    "weber-dev": {
-      "company": "Weber Technologies",
+      "weber-dev": {
+        "company": "Weber Technologies",
         "role": "Full-Stack Web Developer",
-      "period": "May 2023 · Dec 2023",
+        "period": "May 2023 · Dec 2023",
         "description": "Delivered full-stack applications with React and Python/Django, from initial design through implementation and deployment, including Docker containerization.",
         "highlights": [
           "Full-stack development with React and Python/Django",
@@ -384,10 +385,10 @@
           "Full delivery cycle: design, development, and deployment"
         ]
       },
-    "buser-dev": {
-      "company": "Buser Brasil",
+      "buser-dev": {
+        "company": "Buser Brasil",
         "role": "Full-Stack Web Developer",
-      "period": "Apr 2022 · Apr 2023",
+        "period": "Apr 2022 · Apr 2023",
         "description": "Maintained and evolved a large-scale product, shipping new features into an established Vue.js, Python, and Django codebase.",
         "highlights": [
           "Maintained and evolved a large-scale product",
@@ -439,7 +440,7 @@
       },
       "serverErrors": {
         "rateLimited": "Too many attempts. Wait a moment and try again.",
-        "generic": "The message could not be sent right now. Try again or use a direct contact channel."
+        "generic": "The delivery could not be confirmed. Try again or use a direct contact channel."
       },
       "webMcp": {
         "toolDescription": "Fills Roberto Moraes's professional contact form for the user's review. Submission requires manual confirmation.",
@@ -451,7 +452,12 @@
           "message": "Context for the conversation, using at least 20 characters."
         }
       }
-    }
+    },
+    "privacyNotice": "I will use the details you send to respond to your message. Avoid including sensitive information.",
+    "privacyLink": "How your data is handled",
+    "formLoading": "Loading form. If it does not appear, use one of the direct contact links on this page.",
+    "formUnavailable": "The form could not be loaded. Use one of the direct contact links on this page.",
+    "opensNewTab": "(opens in a new tab)"
   },
   "PortfolioPages": {
     "home": {
@@ -576,7 +582,11 @@
       "galleryOpen": "Enlarge image",
       "galleryPrevious": "Previous image",
       "next": "Next case",
-      "allProjects": "All work"
+      "allProjects": "All work",
+      "galleryPause": "Pause gallery",
+      "galleryResume": "Resume gallery",
+      "galleryGoTo": "Go to image",
+      "openNext": "Open next case"
     },
     "experience": {
       "metaTitle": "Professional Experience",
@@ -661,12 +671,15 @@
     }
   },
   "Footer": {
-    "descriptionLine1": "Software Engineer & IT Manager.",
+    "descriptionLine1": "Software Engineer.",
     "descriptionLine2": "Building software engineered for demanding production environments.",
     "navigation": "Navigation",
     "navAriaLabel": "Footer navigation",
     "contact": "Contact",
-    "signature": "Built with code, coffee, and ambition"
+    "signature": "Built with code, coffee, and ambition",
+    "privacy": "Privacy",
+    "backToTop": "Back to top",
+    "opensNewTab": "(opens in a new tab)"
   },
   "NotFound": {
     "eyebrow": "Route error · 404",
@@ -681,5 +694,44 @@
     "title": "Something went wrong!",
     "message": "An error occurred while loading this section. Please try again.",
     "retry": "Try again"
+  },
+  "Privacy": {
+    "eyebrow": "Transparency",
+    "title": "Privacy",
+    "description": "How this portfolio uses contact details, language preferences, and browsing information.",
+    "updated": "Updated September 7, 2026.",
+    "requestContact": "Request access, correction, or deletion",
+    "responsibility": {
+      "title": "Who is responsible",
+      "body": "Roberto Moraes is responsible for this portfolio and the messages received through its contact channels."
+    },
+    "contact": {
+      "title": "When you get in touch",
+      "body": "The form receives your name, email, subject, message, and optionally your company. These details are used to understand and respond to your request. Do not include passwords, financial details, health information, or other sensitive data. The site does not offer accounts, newsletters, or personalized advertising."
+    },
+    "retention": {
+      "title": "Messages and retention",
+      "body": "The form forwards your message by email, where it becomes part of that conversation. The site does not keep a message database. Retention in the mailbox and delivery services depends on the purpose of the conversation and those services’ settings. Get in touch to request information about a message or its deletion."
+    },
+    "services": {
+      "title": "Services involved",
+      "body": "Vercel hosts the site and processes technical information needed to deliver pages and protect the service. Resend processes form delivery to the contact mailbox. These providers may process data outside Brazil. Form content is not sent to audience measurement tools."
+    },
+    "measurement": {
+      "title": "Audience and performance",
+      "body": "On the Vercel-hosted version, Web Analytics and Speed Insights measure visits and performance, including loading and visual stability. Page paths, referral sources, approximate location, and browser and device characteristics may be processed. These tools support statistics and site improvements; this portfolio does not configure advertising cookies or cross-site tracking."
+    },
+    "preferences": {
+      "title": "Language and contact retries",
+      "body": "When you select a language, the functional NEXT_LOCALE cookie may remember that choice for the browser session. It saves you from choosing the language again. You can remove it through your browser settings, which may reset your preference. The browser may also keep a random key in this tab to recognize repeated delivery attempts. It is valid for up to 24 hours, contains no form content, and is removed after delivery is confirmed."
+    },
+    "rights": {
+      "title": "Requests about your data",
+      "body": "Use the contact email to request information, access, correction, or deletion of the data you sent. Provide enough information to locate the conversation without attaching sensitive documents. Identity confirmation may be needed to protect your data."
+    },
+    "external": {
+      "title": "External links",
+      "body": "Links to projects, social networks, and WhatsApp lead to services with their own privacy practices. Review their information before sharing data."
+    }
   }
 }

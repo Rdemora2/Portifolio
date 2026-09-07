@@ -63,7 +63,7 @@ export default async function NotFound() {
           href="/"
           className="mt-9 inline-flex min-h-11 items-center justify-center rounded-full border px-7 py-3 text-sm font-medium transition-colors hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-4"
           style={{
-            borderColor: "var(--color-edge-bright)",
+            borderColor: "var(--color-control-edge)",
             color: "var(--color-text-primary)",
             fontFamily: "var(--font-body)",
             outlineColor: "var(--color-signal)",

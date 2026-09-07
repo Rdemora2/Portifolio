@@ -20,12 +20,9 @@ import React, { useRef, useEffect, type ReactNode, type ElementType } from "reac
  * Uses the browser's Web Animations API, so reveal effects do not pull an
  * animation runtime into the initial bundle.
  *
- * ## Flicker prevention
- * The initial "from" keyframe is applied directly as an inline style at render
- * time (before any paint). This eliminates the one-frame flash that occurs when
- * `content-visibility: auto` defers section rendering — the element is always
- * invisible on its first paint, and the Web Animations API transitions it to the
- * final "to" state once the IntersectionObserver fires.
+ * Server HTML stays visible. Effects start just before content enters the
+ * viewport, without preparing animations or forcing layout for every section
+ * during hydration. Initially visible text never waits for an entrance effect.
  */
 
 type RevealVariant = "title" | "body" | "stat" | "card" | "ambient" | "fade-up" | "slide-left" | "slide-right" | "scale" | "fade-in";
@@ -124,7 +121,7 @@ export function ScrollReveal({
       el.style.willChange = "";
     };
 
-    if (motionQuery.matches) {
+    if (motionQuery.matches || !window.IntersectionObserver || !el.animate) {
       revealImmediately();
       return;
     }
@@ -132,29 +129,35 @@ export function ScrollReveal({
     const finalDuration = duration ?? config.dur ?? 0.8;
 
     let runningAnimation: Animation | null = null;
+    let hasObserved = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
+        const initialObservation = !hasObserved;
+        hasObserved = true;
         if (!entry?.isIntersecting) return;
 
         observer.disconnect();
-        el.style.willChange = "transform, opacity";
-        runningAnimation = el.animate([config.from, config.to], {
-          duration: finalDuration * 1000,
-          delay: delay * 1000,
-          easing: config.easing,
-          fill: "both",
-        });
-        runningAnimation.addEventListener(
-          "finish",
-          () => {
+        if (initialObservation && entry.boundingClientRect.top < window.innerHeight) return;
+
+        try {
+          runningAnimation = el.animate([config.from, config.to], {
+            duration: finalDuration * 1000,
+            delay: delay * 1000,
+            easing: config.easing,
+            fill: "both",
+          });
+          runningAnimation.addEventListener("finish", () => {
             revealImmediately();
             runningAnimation?.cancel();
             runningAnimation = null;
-          },
-          { once: true },
-        );
+          }, { once: true });
+        } catch {
+          runningAnimation?.cancel();
+          runningAnimation = null;
+          revealImmediately();
+        }
       },
-      { threshold },
+      { threshold, rootMargin: "0px 0px 160px 0px" },
     );
 
     const handleMotionChange = (event: MediaQueryListEvent) => {
@@ -168,8 +171,17 @@ export function ScrollReveal({
     motionQuery.addEventListener("change", handleMotionChange);
     observer.observe(el);
 
+    const revealOnFocus = () => {
+      observer.disconnect();
+      runningAnimation?.cancel();
+      runningAnimation = null;
+      revealImmediately();
+    };
+    el.addEventListener("focusin", revealOnFocus);
+
     return () => {
       motionQuery.removeEventListener("change", handleMotionChange);
+      el.removeEventListener("focusin", revealOnFocus);
       observer.disconnect();
 
       if (runningAnimation) {
@@ -184,27 +196,11 @@ export function ScrollReveal({
     };
   }, [animation, delay, duration, threshold]);
 
-  // ── Initial render style ────────────────────────────────────────────────────
-  // Apply the animation's "from" keyframe as an inline style on the very first
-  // render (server + client). This ensures the element is always invisible on
-  // its initial paint, eliminating the one-frame flash caused by the sequence:
-  //   1. content-visibility:auto defers section layout until near-viewport.
-  //   2. Browser paints the section for the first time (element is visible).
-  //   3. useEffect runs → IntersectionObserver fires → animation starts.
-  // Without this, step 2 produces a single visible frame before step 3 hides
-  // the element to begin the entrance animation.
-  //
-  // Graceful degradation: @media (scripting: none) in globals.css overrides
-  // these styles so content remains visible for users without JavaScript.
-  const config = ANIMATION_CONFIG[animation];
-  const initialStyle = config?.from as React.CSSProperties | undefined;
-
   return React.createElement(
     Tag,
     {
       ref,
       className,
-      style: initialStyle,
       "data-scroll-reveal": "",
       "data-reveal-variant": animation,
     },

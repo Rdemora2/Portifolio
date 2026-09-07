@@ -1,0 +1,178 @@
+{
+  "sequence": [
+    {
+      "label": "final-mobile",
+      "runs": 3,
+      "performanceScores": [
+        77,
+        60,
+        69
+      ],
+      "medianPerformance": 69.0,
+      "benchmarkRange": [
+        956,
+        1028
+      ],
+      "medianMetrics": {
+        "first-contentful-paint": 1667.20725,
+        "largest-contentful-paint": 4110.943,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 645.5285000000003,
+        "speed-index": 3391.1160938032817
+      },
+      "metricRanges": {
+        "first-contentful-paint": [
+          1648.9648500000003,
+          1853.1216
+        ],
+        "largest-contentful-paint": [
+          3730.4648500000003,
+          4757.8288
+        ],
+        "cumulative-layout-shift": [
+          0,
+          0.02031813102296237
+        ],
+        "total-blocking-time": [
+          444.5,
+          837.0856000000003
+        ],
+        "speed-index": [
+          2786.030020030823,
+          3855.36374755772
+        ]
+      }
+    },
+    {
+      "label": "control-mobile",
+      "runs": 3,
+      "performanceScores": [
+        74,
+        83,
+        83
+      ],
+      "medianPerformance": 83.0,
+      "benchmarkRange": [
+        1074,
+        1264
+      ],
+      "medianMetrics": {
+        "first-contentful-paint": 1116.2702,
+        "largest-contentful-paint": 3649.4053,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 326,
+        "speed-index": 2121.5401798613266
+      },
+      "metricRanges": {
+        "first-contentful-paint": [
+          1109.9918,
+          1177.1007
+        ],
+        "largest-contentful-paint": [
+          3635.9876999999997,
+          3960.65105
+        ],
+        "cumulative-layout-shift": [
+          0,
+          0
+        ],
+        "total-blocking-time": [
+          306.5,
+          549
+        ],
+        "speed-index": [
+          2068.7150353410575,
+          2414.7504022896314
+        ]
+      }
+    },
+    {
+      "label": "final-mobile-repeat",
+      "runs": 3,
+      "performanceScores": [
+        78,
+        84,
+        70
+      ],
+      "medianPerformance": 78.0,
+      "benchmarkRange": [
+        1215.5,
+        1408
+      ],
+      "medianMetrics": {
+        "first-contentful-paint": 1604.4138000000003,
+        "largest-contentful-paint": 3688.4138000000003,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 419.8907999999997,
+        "speed-index": 2931.5164578562208
+      },
+      "metricRanges": {
+        "first-contentful-paint": [
+          1588.02345,
+          2103.1501
+        ],
+        "largest-contentful-paint": [
+          3486.0234500000006,
+          4065.300199999999
+        ],
+        "cumulative-layout-shift": [
+          0,
+          0.02031813102296237
+        ],
+        "total-blocking-time": [
+          306.00000000000045,
+          592.4999999999995
+        ],
+        "speed-index": [
+          2342.7274586341737,
+          3006.9100693896844
+        ]
+      }
+    },
+    {
+      "label": "final-desktop",
+      "runs": 1,
+      "performanceScores": [
+        98
+      ],
+      "medianPerformance": 98.0,
+      "benchmarkRange": [
+        1157,
+        1157
+      ],
+      "medianMetrics": {
+        "first-contentful-paint": 452.0924,
+        "largest-contentful-paint": 915.0924,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 55,
+        "speed-index": 1193.1941905472472
+      },
+      "metricRanges": {
+        "first-contentful-paint": [
+          452.0924,
+          452.0924
+        ],
+        "largest-contentful-paint": [
+          915.0924,
+          915.0924
+        ],
+        "cumulative-layout-shift": [
+          0,
+          0
+        ],
+        "total-blocking-time": [
+          55,
+          55
+        ],
+        "speed-index": [
+          1193.1941905472472,
+          1193.1941905472472
+        ]
+      }
+    }
+  ],
+  "configuration": "Lighthouse 13.4.1; mobile 412x823, simulated network, CPU 4x; desktop 1350x940, CPU 1x. Same Chromium. Each browser run sequential; no other task browser suite/build during measurement.",
+  "interpretation": "No general mobile CWV improvement established. Machine benchmark varies and the samples do not isolate causality. All measured runs retained; earlier concurrent before-optimize runs excluded.",
+  "control": "Original commit dddab26; tracked-file archive, same installed dependencies, explicit matching public origin; only Turbopack root adjusted for archived checkout.",
+  "webgl": "Lighthouse filmstrips show signature effect in representative original/candidate runs; post-audit runtime probe was unavailable, so no universal claim about capabilities across every run."
+}

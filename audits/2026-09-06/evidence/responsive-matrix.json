@@ -1,0 +1,2970 @@
+{
+  "widths": [
+    320,
+    360,
+    375,
+    390,
+    412,
+    430,
+    768,
+    1024,
+    1280,
+    1440,
+    1920,
+    2560
+  ],
+  "routes": [
+    "/",
+    "/projetos",
+    "/projetos/band-news-bandsports",
+    "/projetos/hospital-sirio-libanes",
+    "/projetos/fiesta-americana",
+    "/experiencia",
+    "/sobre",
+    "/insights",
+    "/insights/go-em-producao",
+    "/contato",
+    "/audit-route-not-found"
+  ],
+  "results": [
+    {
+      "pathname": "/",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 8534,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 11779,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 263,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 6907,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 223,
+          "renderedWidth": 222,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 6704,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=2048&q=75",
+          "naturalWidth": 223,
+          "renderedWidth": 222,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 5545,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 4611,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 6421,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 1698,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 13139,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 320,
+      "status": 200,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 2295,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 320,
+      "status": 404,
+      "documentWidth": 320,
+      "viewport": 320,
+      "height": 844,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 7923,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 11034,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 303,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 6652,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 251,
+          "renderedWidth": 250,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 6552,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=2048&q=75",
+          "naturalWidth": 251,
+          "renderedWidth": 250,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 5256,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 4237,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 5920,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 1637,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 11761,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 360,
+      "status": 200,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 2261,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 360,
+      "status": 404,
+      "documentWidth": 360,
+      "viewport": 360,
+      "height": 844,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 7766,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 10802,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 318,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 6614,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 262,
+          "renderedWidth": 261,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 6485,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=2048&q=75",
+          "naturalWidth": 262,
+          "renderedWidth": 260,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 5143,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 4176,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 5854,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 1637,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 11459,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 375,
+      "status": 200,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 2236,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 375,
+      "status": 404,
+      "documentWidth": 375,
+      "viewport": 375,
+      "height": 844,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 7726,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 10792,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 333,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 6552,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 273,
+          "renderedWidth": 271,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 6494,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=2048&q=75",
+          "naturalWidth": 273,
+          "renderedWidth": 271,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 5064,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 4121,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 5624,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 1632,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 11251,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 390,
+      "status": 200,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 2201,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 390,
+      "status": 404,
+      "documentWidth": 390,
+      "viewport": 390,
+      "height": 844,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 7595,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 10666,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 355,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 6331,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 288,
+          "renderedWidth": 286,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 6379,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=2048&q=75",
+          "naturalWidth": 288,
+          "renderedWidth": 286,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 4984,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 3916,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 5583,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 1619,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 11058,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 412,
+      "status": 200,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 2207,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 412,
+      "status": 404,
+      "documentWidth": 412,
+      "viewport": 412,
+      "height": 844,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 7569,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 10530,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 373,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 6283,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 301,
+          "renderedWidth": 299,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 6180,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_01.webp&w=2048&q=75",
+          "naturalWidth": 301,
+          "renderedWidth": 299,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 4860,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 3751,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 5483,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 1626,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 10968,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 430,
+      "status": 200,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 2213,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 430,
+      "status": 404,
+      "documentWidth": 430,
+      "viewport": 430,
+      "height": 844,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 6267,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 11049,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 695,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 5340,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 384,
+          "renderedWidth": 382,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 5258,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=2048&q=75",
+          "naturalWidth": 384,
+          "renderedWidth": 382,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 4050,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 3914,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 4470,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 1671,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 9568,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 768,
+      "status": 200,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 2222,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 768,
+      "status": 404,
+      "documentWidth": 768,
+      "viewport": 768,
+      "height": 900,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 5467,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 6967,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 440,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 4821,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 512,
+          "renderedWidth": 510,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 4632,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=2048&q=75",
+          "naturalWidth": 512,
+          "renderedWidth": 510,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 3493,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 4073,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 4105,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 1649,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 8639,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 1024,
+      "status": 200,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 1772,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 1024,
+      "status": 404,
+      "documentWidth": 1024,
+      "viewport": 1024,
+      "height": 900,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 5841,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 7132,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 564,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 5110,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 486,
+          "renderedWidth": 484,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 4918,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=2048&q=75",
+          "naturalWidth": 486,
+          "renderedWidth": 484,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 3746,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 4022,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 4221,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 1660,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 8904,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 1280,
+      "status": 200,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 1772,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 1280,
+      "status": 404,
+      "documentWidth": 1280,
+      "viewport": 1280,
+      "height": 900,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 6206,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 7238,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 5298,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fbandsports.webp&w=2048&q=75",
+          "naturalWidth": 547,
+          "renderedWidth": 545,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 5072,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_05.webp&w=2048&q=75",
+          "naturalWidth": 547,
+          "renderedWidth": 545,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 3871,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 4032,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 4420,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 1661,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 9533,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 1440,
+      "status": 200,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 1772,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 1440,
+      "status": 404,
+      "documentWidth": 1440,
+      "viewport": 1440,
+      "height": 900,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 6212,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 7248,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 5331,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-vivo.webp&w=2048&q=75",
+          "naturalWidth": 729,
+          "renderedWidth": 598,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 5106,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_04.webp&w=2048&q=75",
+          "naturalWidth": 729,
+          "renderedWidth": 598,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 3875,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 4032,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 4435,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 1661,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 9764,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 1920,
+      "status": 200,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 1772,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 1920,
+      "status": 404,
+      "documentWidth": 1920,
+      "viewport": 1920,
+      "height": 900,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 6212,
+      "h1Count": 1,
+      "title": "Roberto Moraes | Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/projetos",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 7248,
+      "h1Count": 1,
+      "title": "Projetos de Engenharia de Software | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/images/sites/arua-resort-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/portal-noticias-atual.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-arq-carla-moraes.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/casa-brasa-experience.webp",
+          "naturalWidth": 1410,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/lp-estudio-musica.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/solum-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/luxury-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/axenor-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/legal-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        },
+        {
+          "src": "/images/sites/tivix-experience.webp",
+          "naturalWidth": 0,
+          "renderedWidth": 563,
+          "loading": "lazy",
+          "sizes": "",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/band-news-bandsports",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 5331,
+      "h1Count": 1,
+      "title": "Grupo Bandeirantes — Engenheiro de Software & Gerente de TI | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fband-sites%2Fnewcoplay-b2c.webp&w=2048&q=75",
+          "naturalWidth": 972,
+          "renderedWidth": 598,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/hospital-sirio-libanes",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 5106,
+      "h1Count": 1,
+      "title": "Hospital Sírio-Libanês — Engenheiro de Backend & Cloud + Líder Técnico | Roberto Moraes",
+      "offenders": [],
+      "images": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Fhsl-app%2Fhsl_app_03.webp&w=2048&q=75",
+          "naturalWidth": 972,
+          "renderedWidth": 598,
+          "loading": "lazy",
+          "sizes": "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "pathname": "/projetos/fiesta-americana",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 3875,
+      "h1Count": 1,
+      "title": "Resort Fiesta Americana — Gestor de Projeto Internacional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/experiencia",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 4032,
+      "h1Count": 1,
+      "title": "Experiência Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/sobre",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 4435,
+      "h1Count": 1,
+      "title": "Sobre & Competências | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 1661,
+      "h1Count": 1,
+      "title": "Insights de Engenharia | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/insights/go-em-producao",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 9764,
+      "h1Count": 1,
+      "title": "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/contato",
+      "width": 2560,
+      "status": 200,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 1772,
+      "h1Count": 1,
+      "title": "Contato Profissional | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    },
+    {
+      "pathname": "/audit-route-not-found",
+      "width": 2560,
+      "status": 404,
+      "documentWidth": 2560,
+      "viewport": 2560,
+      "height": 900,
+      "h1Count": 1,
+      "title": "Página não encontrada | Roberto Moraes",
+      "offenders": [],
+      "images": []
+    }
+  ],
+  "errors": [
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "The resource http://127.0.0.1:3200/_next/static/chunks/3a404zjd0zavc.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/band-news-bandsports",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/projetos/hospital-sirio-libanes",
+      "type": "warning",
+      "message": "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters"
+    },
+    {
+      "route": "/audit-route-not-found",
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ]
+}

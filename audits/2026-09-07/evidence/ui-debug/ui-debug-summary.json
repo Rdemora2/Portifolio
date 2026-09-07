@@ -1,0 +1,17 @@
+{
+  "webglConcurrentBaseline": {
+    "failed": 1,
+    "passed": 11
+  },
+  "webglSerialAfterTestIsolation": {
+    "passed": 12
+  },
+  "firefoxRealSpecRepeat": {
+    "passed": 8
+  },
+  "firefoxGeometryProbe": {
+    "runs": 10,
+    "runsWithOffenders": 0
+  },
+  "inference": "The captured failure had eligible canRender signals, WebGL2 available, no failed requests, and a canvas present immediately after the visibility timeout. GPU stall warnings correlated with synchronous readPixels while a sibling test forced context loss. Removing readPixels and serializing this GPU-mutating group eliminated the reproduced failures without changing product source."
+}

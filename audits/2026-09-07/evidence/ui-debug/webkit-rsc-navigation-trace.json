@@ -1,0 +1,21 @@
+{
+  "sourceTrace": "test-results/browser-smoke-keeps-projec-235a3-article-content-progressive-webkit-smoke/trace.zip",
+  "projectLayoutCheckAt": 211658.882,
+  "articleNavigation": {
+    "startedAt": 211729.306,
+    "completedAt": 212148.504,
+    "durationMs": 419.198
+  },
+  "pageError": {
+    "at": 211769.823,
+    "millisecondsAfterNavigationStarted": 40.517,
+    "resource": "/en/insights?_rsc=[redacted-request-id]",
+    "messageClass": "Fetch API access-control check"
+  },
+  "networkEvidence": {
+    "failedRequestPresentInHar": false,
+    "otherInsightsPrefetchStatuses": [200, 200, 200],
+    "otherInsightsPrefetchDurationsMs": [23.28, 52.948, 9.852]
+  },
+  "assessment": "The error fired 40.517 ms after page.goto replaced the project document and before the article navigation completed. The failing RSC request has no completed HAR snapshot, while neighboring same-origin prefetches completed with HTTP 200. This supports cancellation during artificial document replacement, rather than a product CSP, redirect, or server response failure. The harness now waits for project-page prefetch activity to become idle before replacing that document; it does not filter page errors."
+}

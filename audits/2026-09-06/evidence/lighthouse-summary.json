@@ -1,0 +1,4300 @@
+[
+  {
+    "name": "local-home-mobile",
+    "url": "http://127.0.0.1:3200/",
+    "preset": "mobile",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-07T03:00:42.512Z",
+    "categories": {
+      "performance": 0.36,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "audits": {
+      "first-contentful-paint": {
+        "score": 0.89,
+        "title": "First Contentful Paint",
+        "value": 1802.7974999999997,
+        "display": "1.8 s"
+      },
+      "largest-contentful-paint": {
+        "score": 0.03,
+        "title": "Largest Contentful Paint",
+        "value": 7755.892499999998,
+        "display": "7.8 s"
+      },
+      "speed-index": {
+        "score": 0.11,
+        "title": "Speed Index",
+        "value": 9634.84539089806,
+        "display": "9.6 s"
+      },
+      "total-blocking-time": {
+        "score": 0,
+        "title": "Total Blocking Time",
+        "value": 7600.999999999999,
+        "display": "7,600 ms"
+      },
+      "max-potential-fid": {
+        "score": 0,
+        "title": "Max Potential First Input Delay",
+        "value": 7286.999999999999,
+        "display": "7,290 ms"
+      },
+      "cumulative-layout-shift": {
+        "score": 1,
+        "title": "Cumulative Layout Shift",
+        "value": 0,
+        "display": "0",
+        "details": {
+          "type": "debugdata",
+          "items": [
+            {
+              "cumulativeLayoutShiftMainFrame": 0,
+              "newEngineResult": {
+                "cumulativeLayoutShift": 0,
+                "cumulativeLayoutShiftMainFrame": 0
+              },
+              "newEngineResultDiffered": false
+            }
+          ]
+        }
+      },
+      "server-response-time": {
+        "score": 1,
+        "title": "Initial server response time was short",
+        "value": 61,
+        "display": "Root document took 60 ms",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "responseTime",
+              "valueType": "timespanMs",
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "url": "http://127.0.0.1:3200/",
+              "responseTime": 61
+            }
+          ],
+          "overallSavingsMs": 0
+        }
+      },
+      "interactive": {
+        "score": 0.19,
+        "title": "Time to Interactive",
+        "value": 11404.6925,
+        "display": "11.4 s"
+      },
+      "mainthread-work-breakdown": {
+        "score": 0,
+        "title": "Minimize main-thread work",
+        "value": 17899.120000000083,
+        "display": "17.9 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "groupLabel",
+              "valueType": "text",
+              "label": "Category"
+            },
+            {
+              "key": "duration",
+              "valueType": "ms",
+              "granularity": 1,
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "group": "scriptEvaluation",
+              "groupLabel": "Script Evaluation",
+              "duration": 15443.068000000083
+            },
+            {
+              "group": "styleLayout",
+              "groupLabel": "Style & Layout",
+              "duration": 1156.0879999999993
+            },
+            {
+              "group": "other",
+              "groupLabel": "Other",
+              "duration": 978.4399999999991
+            },
+            {
+              "group": "scriptParseCompile",
+              "groupLabel": "Script Parsing & Compilation",
+              "duration": 121.30000000000001
+            },
+            {
+              "group": "paintCompositeRender",
+              "groupLabel": "Rendering",
+              "duration": 110.4040000000012
+            },
+            {
+              "group": "parseHTML",
+              "groupLabel": "Parse HTML & CSS",
+              "duration": 50.492000000000004
+            },
+            {
+              "group": "garbageCollection",
+              "groupLabel": "Garbage Collection",
+              "duration": 39.32799999999998
+            }
+          ],
+          "sortedBy": [
+            "duration"
+          ]
+        }
+      },
+      "bootup-time": {
+        "score": 0,
+        "title": "Reduce JavaScript execution time",
+        "value": 15486.856000000025,
+        "display": "15.5 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "total",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Total CPU Time"
+            },
+            {
+              "key": "scripting",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Evaluation"
+            },
+            {
+              "key": "scriptParseCompile",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Parse"
+            }
+          ],
+          "items": [
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+              "total": 15467.128000000024,
+              "scripting": 15046.392000000027,
+              "scriptParseCompile": 33.096
+            },
+            {
+              "url": "http://127.0.0.1:3200/",
+              "total": 1282.0439999999994,
+              "scripting": 91.47200000000002,
+              "scriptParseCompile": 18.615999999999996
+            },
+            {
+              "url": "Unattributable",
+              "total": 442.3880000000003,
+              "scripting": 15.531999999999991,
+              "scriptParseCompile": 0
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/2-fhpc3uwfxxb.js",
+              "total": 393.36399999999986,
+              "scripting": 109.5320000000001,
+              "scriptParseCompile": 6.42
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/3lxysnsbk24ar.js",
+              "total": 190.45600000000007,
+              "scripting": 136.59200000000007,
+              "scriptParseCompile": 29.204
+            }
+          ],
+          "summary": {
+            "wastedMs": 15486.856000000025
+          },
+          "sortedBy": [
+            "total"
+          ]
+        }
+      },
+      "label-content-name-mismatch": {
+        "score": 0,
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "node",
+              "valueType": "node",
+              "subItemsHeading": {
+                "key": "relatedNode",
+                "valueType": "node"
+              },
+              "label": "Failing Elements"
+            }
+          ],
+          "items": [
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-0-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,0,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2142,
+                  "bottom": 2591,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"hospital-sirio-libanes\" aria-label=\"Abrir estudo de caso: Hospital Sírio-Libanês\" href=\"/projetos/hospital-sirio-libanes\">",
+                "nodeLabel": "CASE 01\nENGENHEIRO DE BACKEND & CLOUD + LÍDER TÉCNICO\nHospital Sírio-Libanês\n\nA…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-1-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,1,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2609,
+                  "bottom": 3058,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"band-news-bandsports\" aria-label=\"Abrir estudo de caso: Grupo Bandeirantes\" href=\"/projetos/band-news-bandsports\">",
+                "nodeLabel": "CASE 02\nENGENHEIRO DE SOFTWARE & GERENTE DE TI\nGrupo Bandeirantes\n\nGestão da re…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-2-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,2,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 3076,
+                  "bottom": 3409,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 332
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"fiesta-americana\" aria-label=\"Abrir estudo de caso: Resort Fiesta Americana\" href=\"/projetos/fiesta-americana\">",
+                "nodeLabel": "CASE 03\nGESTOR DE PROJETO INTERNACIONAL\nResort Fiesta Americana\n\nGestão transna…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "impact": "serious",
+            "tags": [
+              "cat.semantics",
+              "wcag21a",
+              "wcag253",
+              "EN-301-549",
+              "EN-9.2.5.3",
+              "RGAAv4",
+              "RGAA-6.1.5",
+              "experimental"
+            ]
+          }
+        }
+      },
+      "total-byte-weight": {
+        "score": 1,
+        "title": "Avoids enormous network payloads",
+        "value": 443236,
+        "display": "Total size was 433 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            }
+          ],
+          "items": [
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+              "totalBytes": 75289
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/3lxysnsbk24ar.js",
+              "totalBytes": 52531
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2",
+              "totalBytes": 41503
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2",
+              "totalBytes": 38003
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2",
+              "totalBytes": 35583
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/2-fhpc3uwfxxb.js",
+              "totalBytes": 17427
+            },
+            {
+              "url": "http://127.0.0.1:3200/",
+              "totalBytes": 17144
+            },
+            {
+              "url": "http://127.0.0.1:3200/sobre?_rsc=bTDP0P1Wf1p2sqFt",
+              "totalBytes": 16478
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/0kxx-85hpadca.js",
+              "totalBytes": 14985
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/2m-u3xvfj6imo.js",
+              "totalBytes": 12025
+            }
+          ],
+          "sortedBy": [
+            "totalBytes"
+          ]
+        }
+      },
+      "unused-javascript": {
+        "score": 0,
+        "title": "Reduce unused JavaScript",
+        "value": 280,
+        "display": "Est savings of 45 KiB",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "source",
+                "valueType": "code"
+              },
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceBytes"
+              },
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceWastedBytes"
+              },
+              "label": "Est Savings"
+            }
+          ],
+          "items": [
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+              "totalBytes": 74185,
+              "wastedBytes": 24551,
+              "wastedPercent": 33.09421590165859
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/3lxysnsbk24ar.js",
+              "totalBytes": 51428,
+              "wastedBytes": 21407,
+              "wastedPercent": 41.62509022132542
+            }
+          ],
+          "overallSavingsMs": 280,
+          "overallSavingsBytes": 45958,
+          "sortedBy": [
+            "wastedBytes"
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 280
+            }
+          }
+        }
+      },
+      "forced-reflow-insight": {
+        "score": 0,
+        "title": "Forced reflow",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "source",
+                  "valueType": "source-location",
+                  "label": "Top function call"
+                },
+                {
+                  "key": "reflowTime",
+                  "valueType": "ms",
+                  "granularity": 1,
+                  "label": "Total reflow time"
+                }
+              ],
+              "items": [
+                {
+                  "source": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 1,
+                    "column": 3186
+                  },
+                  "reflowTime": 39.957
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "source",
+                  "valueType": "source-location",
+                  "label": "Source"
+                },
+                {
+                  "key": "reflowTime",
+                  "valueType": "ms",
+                  "granularity": 1,
+                  "label": "Total reflow time"
+                }
+              ],
+              "items": [
+                {
+                  "source": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3200/_next/static/chunks/1p1z16wxi4p4k.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 25018
+                  },
+                  "reflowTime": 1.96
+                },
+                {
+                  "source": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3200/_next/static/chunks/2-fhpc3uwfxxb.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 55400
+                  },
+                  "reflowTime": 39.957
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "lcp-breakdown-insight": {
+        "score": 0,
+        "title": "LCP breakdown",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "label",
+                  "valueType": "text",
+                  "label": "Subpart"
+                },
+                {
+                  "key": "duration",
+                  "valueType": "ms",
+                  "label": "Duration"
+                }
+              ],
+              "items": [
+                {
+                  "subpart": "timeToFirstByte",
+                  "label": "Time to first byte",
+                  "duration": 142.96500000095367
+                },
+                {
+                  "subpart": "elementRenderDelay",
+                  "label": "Element render delay",
+                  "duration": 4459.8019999990465
+                }
+              ]
+            },
+            {
+              "type": "node",
+              "lhId": "page-0-H1",
+              "path": "1,HTML,1,BODY,5,MAIN,0,SECTION,2,DIV,0,DIV,0,DIV,0,H1",
+              "selector": "div.relative > div.flex > div.hero-card-enter > h1.hero-name",
+              "boundingRect": {
+                "top": 288,
+                "bottom": 363,
+                "left": 41,
+                "right": 371,
+                "width": 330,
+                "height": 75
+              },
+              "snippet": "<h1 class=\"hero-name hero-name-enter mb-4 font-extrabold leading-none\" aria-label=\"Roberto Moraes\" style=\"font-family: var(--font-display); font-size: var(--text-hero);\">",
+              "nodeLabel": "Roberto Moraes"
+            }
+          ]
+        }
+      },
+      "lcp-discovery-insight": {
+        "score": null,
+        "title": "LCP request discovery"
+      },
+      "legacy-javascript-insight": {
+        "score": 0.5,
+        "title": "Legacy JavaScript",
+        "display": "Est savings of 13 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "location",
+                "valueType": "source-location"
+              },
+              "label": "URL"
+            },
+            {
+              "key": null,
+              "valueType": "code",
+              "subItemsHeading": {
+                "key": "signal"
+              },
+              "label": ""
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "label": "Wasted bytes"
+            }
+          ],
+          "items": [
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+              "wastedBytes": 13821,
+              "subItems": {
+                "type": "subitems",
+                "items": [
+                  {
+                    "signal": "Array.prototype.at",
+                    "location": {
+                      "type": "source-location",
+                      "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1116
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flat",
+                    "location": {
+                      "type": "source-location",
+                      "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 504
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flatMap",
+                    "location": {
+                      "type": "source-location",
+                      "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 617
+                    }
+                  },
+                  {
+                    "signal": "Object.fromEntries",
+                    "location": {
+                      "type": "source-location",
+                      "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 993
+                    }
+                  },
+                  {
+                    "signal": "Object.hasOwn",
+                    "location": {
+                      "type": "source-location",
+                      "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1251
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimEnd",
+                    "location": {
+                      "type": "source-location",
+                      "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 246
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimStart",
+                    "location": {
+                      "type": "source-location",
+                      "url": "http://127.0.0.1:3200/_next/static/chunks/16gu4a07kx4-0.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 161
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "wastedBytes": 13821
+          }
+        }
+      },
+      "network-dependency-tree-insight": {
+        "score": 0,
+        "title": "Network dependency tree",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "list-section",
+              "value": {
+                "type": "network-tree",
+                "chains": {
+                  "A5DF6E76225F029C9F4D945145A77399": {
+                    "url": "http://127.0.0.1:3200/",
+                    "navStartToEndTime": 284,
+                    "transferSize": 17144,
+                    "isLongest": true,
+                    "children": {
+                      "83095.6": {
+                        "url": "http://127.0.0.1:3200/_next/static/chunks/0096y1mfjfkpl.css",
+                        "navStartToEndTime": 363,
+                        "transferSize": 6140,
+                        "isLongest": true,
+                        "children": {}
+                      },
+                      "83095.5": {
+                        "url": "http://127.0.0.1:3200/_next/static/chunks/35ge9pg-flbde.css",
+                        "navStartToEndTime": 358,
+                        "transferSize": 11699,
+                        "children": {}
+                      }
+                    }
+                  }
+                },
+                "longestChain": {
+                  "duration": 363
+                }
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnected origins",
+              "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+              "value": {
+                "type": "text",
+                "value": "no origins were preconnected"
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnect candidates",
+              "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+              "value": {
+                "type": "text",
+                "value": "No additional origins are good candidates for preconnecting"
+              }
+            }
+          ]
+        }
+      },
+      "render-blocking-insight": {
+        "score": 0.5,
+        "title": "Render-blocking requests",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedMs",
+              "valueType": "timespanMs",
+              "label": "Duration"
+            }
+          ],
+          "items": [
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/0096y1mfjfkpl.css",
+              "totalBytes": 6140,
+              "wastedMs": 329
+            },
+            {
+              "url": "http://127.0.0.1:3200/_next/static/chunks/35ge9pg-flbde.css",
+              "totalBytes": 11699,
+              "wastedMs": 329
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "production-home-mobile",
+    "url": "https://portifolio-liard-zeta.vercel.app/",
+    "preset": "mobile",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-07T03:01:03.288Z",
+    "categories": {
+      "performance": 0.75,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "audits": {
+      "first-contentful-paint": {
+        "score": 0.99,
+        "title": "First Contentful Paint",
+        "value": 1175,
+        "display": "1.2 s"
+      },
+      "largest-contentful-paint": {
+        "score": 0.78,
+        "title": "Largest Contentful Paint",
+        "value": 2982,
+        "display": "3.0 s"
+      },
+      "speed-index": {
+        "score": 0.96,
+        "title": "Speed Index",
+        "value": 2771.989458500709,
+        "display": "2.8 s"
+      },
+      "total-blocking-time": {
+        "score": 0.37,
+        "title": "Total Blocking Time",
+        "value": 788.5,
+        "display": "790 ms"
+      },
+      "max-potential-fid": {
+        "score": 0.16,
+        "title": "Max Potential First Input Delay",
+        "value": 415,
+        "display": "420 ms"
+      },
+      "cumulative-layout-shift": {
+        "score": 1,
+        "title": "Cumulative Layout Shift",
+        "value": 0,
+        "display": "0",
+        "details": {
+          "type": "debugdata",
+          "items": [
+            {
+              "cumulativeLayoutShiftMainFrame": 0,
+              "newEngineResult": {
+                "cumulativeLayoutShift": 0,
+                "cumulativeLayoutShiftMainFrame": 0
+              },
+              "newEngineResultDiffered": false
+            }
+          ]
+        }
+      },
+      "server-response-time": {
+        "score": 1,
+        "title": "Initial server response time was short",
+        "value": 16,
+        "display": "Root document took 20 ms",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "responseTime",
+              "valueType": "timespanMs",
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "responseTime": 16
+            }
+          ],
+          "overallSavingsMs": 0
+        }
+      },
+      "interactive": {
+        "score": 0.94,
+        "title": "Time to Interactive",
+        "value": 3243.55,
+        "display": "3.2 s"
+      },
+      "mainthread-work-breakdown": {
+        "score": 0,
+        "title": "Minimize main-thread work",
+        "value": 3797.5759999999937,
+        "display": "3.8 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "groupLabel",
+              "valueType": "text",
+              "label": "Category"
+            },
+            {
+              "key": "duration",
+              "valueType": "ms",
+              "granularity": 1,
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "group": "scriptEvaluation",
+              "groupLabel": "Script Evaluation",
+              "duration": 1702.203999999992
+            },
+            {
+              "group": "other",
+              "groupLabel": "Other",
+              "duration": 1174.5800000000004
+            },
+            {
+              "group": "styleLayout",
+              "groupLabel": "Style & Layout",
+              "duration": 576.6280000000002
+            },
+            {
+              "group": "scriptParseCompile",
+              "groupLabel": "Script Parsing & Compilation",
+              "duration": 136.39200000000005
+            },
+            {
+              "group": "paintCompositeRender",
+              "groupLabel": "Rendering",
+              "duration": 107.58000000000119
+            },
+            {
+              "group": "parseHTML",
+              "groupLabel": "Parse HTML & CSS",
+              "duration": 63.047999999999995
+            },
+            {
+              "group": "garbageCollection",
+              "groupLabel": "Garbage Collection",
+              "duration": 37.144000000000005
+            }
+          ],
+          "sortedBy": [
+            "duration"
+          ]
+        }
+      },
+      "bootup-time": {
+        "score": 0,
+        "title": "Reduce JavaScript execution time",
+        "value": 1658.219999999999,
+        "display": "1.7 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "total",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Total CPU Time"
+            },
+            {
+              "key": "scripting",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Evaluation"
+            },
+            {
+              "key": "scriptParseCompile",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Parse"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "total": 1364.5239999999988,
+              "scripting": 1232.4119999999987,
+              "scriptParseCompile": 30.316
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "total": 821.9000000000003,
+              "scripting": 39.99199999999999,
+              "scriptParseCompile": 12.524
+            },
+            {
+              "url": "Unattributable",
+              "total": 726.2319999999994,
+              "scripting": 18.663999999999994,
+              "scriptParseCompile": 0
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1jzts4b1t2du7.js",
+              "total": 493.164,
+              "scripting": 153.94400000000005,
+              "scriptParseCompile": 8.112
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "total": 181.24800000000022,
+              "scripting": 140.8960000000002,
+              "scriptParseCompile": 21.36
+            }
+          ],
+          "summary": {
+            "wastedMs": 1658.219999999999
+          },
+          "sortedBy": [
+            "total"
+          ]
+        }
+      },
+      "label-content-name-mismatch": {
+        "score": 0,
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "node",
+              "valueType": "node",
+              "subItemsHeading": {
+                "key": "relatedNode",
+                "valueType": "node"
+              },
+              "label": "Failing Elements"
+            }
+          ],
+          "items": [
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-0-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,0,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2142,
+                  "bottom": 2591,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"hospital-sirio-libanes\" aria-label=\"Abrir estudo de caso: Hospital Sírio-Libanês\" href=\"/projetos/hospital-sirio-libanes\">",
+                "nodeLabel": "CASE 01\nENGENHEIRO DE BACKEND & CLOUD + LÍDER TÉCNICO\nHospital Sírio-Libanês\n\nA…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-1-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,1,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2609,
+                  "bottom": 3058,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"band-news-bandsports\" aria-label=\"Abrir estudo de caso: Grupo Bandeirantes\" href=\"/projetos/band-news-bandsports\">",
+                "nodeLabel": "CASE 02\nENGENHEIRO DE SOFTWARE & GERENTE DE TI\nGrupo Bandeirantes\n\nGestão da re…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-2-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,2,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 3076,
+                  "bottom": 3409,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 332
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"fiesta-americana\" aria-label=\"Abrir estudo de caso: Resort Fiesta Americana\" href=\"/projetos/fiesta-americana\">",
+                "nodeLabel": "CASE 03\nGESTOR DE PROJETO INTERNACIONAL\nResort Fiesta Americana\n\nGestão transna…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "impact": "serious",
+            "tags": [
+              "cat.semantics",
+              "wcag21a",
+              "wcag253",
+              "EN-301-549",
+              "EN-9.2.5.3",
+              "RGAAv4",
+              "RGAA-6.1.5",
+              "experimental"
+            ]
+          }
+        }
+      },
+      "total-byte-weight": {
+        "score": 1,
+        "title": "Avoids enormous network payloads",
+        "value": 426352,
+        "display": "Total size was 416 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76200
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51554
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+              "totalBytes": 40731
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+              "totalBytes": 37308
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+              "totalBytes": 34837
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1jzts4b1t2du7.js",
+              "totalBytes": 17737
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "totalBytes": 16401
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/sobre?_rsc=bTDP0P1Wf1p2sqFt",
+              "totalBytes": 15791
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+              "totalBytes": 15063
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+              "totalBytes": 11744
+            }
+          ],
+          "sortedBy": [
+            "totalBytes"
+          ]
+        }
+      },
+      "unused-javascript": {
+        "score": 0,
+        "title": "Reduce unused JavaScript",
+        "value": 200,
+        "display": "Est savings of 45 KiB",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "source",
+                "valueType": "code"
+              },
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceBytes"
+              },
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceWastedBytes"
+              },
+              "label": "Est Savings"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76035,
+              "wastedBytes": 24787,
+              "wastedPercent": 32.59895303732158
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51384,
+              "wastedBytes": 21289,
+              "wastedPercent": 41.43068631428105
+            }
+          ],
+          "overallSavingsMs": 200,
+          "overallSavingsBytes": 46076,
+          "sortedBy": [
+            "wastedBytes"
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 200
+            }
+          }
+        }
+      },
+      "lcp-breakdown-insight": {
+        "score": 1,
+        "title": "LCP breakdown",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "label",
+                  "valueType": "text",
+                  "label": "Subpart"
+                },
+                {
+                  "key": "duration",
+                  "valueType": "ms",
+                  "label": "Duration"
+                }
+              ],
+              "items": [
+                {
+                  "subpart": "timeToFirstByte",
+                  "label": "Time to first byte",
+                  "duration": 288.7479999990463
+                },
+                {
+                  "subpart": "elementRenderDelay",
+                  "label": "Element render delay",
+                  "duration": 914.7790000009537
+                }
+              ]
+            },
+            {
+              "type": "node",
+              "lhId": "page-0-H1",
+              "path": "1,HTML,1,BODY,5,MAIN,0,SECTION,2,DIV,0,DIV,0,DIV,0,H1",
+              "selector": "div.relative > div.flex > div.hero-card-enter > h1.hero-name",
+              "boundingRect": {
+                "top": 288,
+                "bottom": 363,
+                "left": 41,
+                "right": 371,
+                "width": 330,
+                "height": 75
+              },
+              "snippet": "<h1 class=\"hero-name hero-name-enter mb-4 font-extrabold leading-none\" aria-label=\"Roberto Moraes\" style=\"font-family: var(--font-display); font-size: var(--text-hero);\">",
+              "nodeLabel": "Roberto Moraes"
+            }
+          ]
+        }
+      },
+      "lcp-discovery-insight": {
+        "score": null,
+        "title": "LCP request discovery"
+      },
+      "legacy-javascript-insight": {
+        "score": 0.5,
+        "title": "Legacy JavaScript",
+        "display": "Est savings of 14 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "location",
+                "valueType": "source-location"
+              },
+              "label": "URL"
+            },
+            {
+              "key": null,
+              "valueType": "code",
+              "subItemsHeading": {
+                "key": "signal"
+              },
+              "label": ""
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "label": "Wasted bytes"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "wastedBytes": 13961,
+              "subItems": {
+                "type": "subitems",
+                "items": [
+                  {
+                    "signal": "Array.prototype.at",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1116
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flat",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 504
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flatMap",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 617
+                    }
+                  },
+                  {
+                    "signal": "Object.fromEntries",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 993
+                    }
+                  },
+                  {
+                    "signal": "Object.hasOwn",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1251
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimEnd",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 246
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimStart",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 161
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "wastedBytes": 13961
+          }
+        }
+      },
+      "network-dependency-tree-insight": {
+        "score": 0,
+        "title": "Network dependency tree",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "list-section",
+              "value": {
+                "type": "network-tree",
+                "chains": {
+                  "392680B458B018A1CDB3A7AFFD94AD4D": {
+                    "url": "https://portifolio-liard-zeta.vercel.app/",
+                    "navStartToEndTime": 573,
+                    "transferSize": 16401,
+                    "isLongest": true,
+                    "children": {
+                      "83236.6": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+                        "navStartToEndTime": 639,
+                        "transferSize": 6078,
+                        "isLongest": true,
+                        "children": {}
+                      },
+                      "83236.5": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+                        "navStartToEndTime": 620,
+                        "transferSize": 11357,
+                        "children": {}
+                      }
+                    }
+                  }
+                },
+                "longestChain": {
+                  "duration": 639
+                }
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnected origins",
+              "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+              "value": {
+                "type": "text",
+                "value": "no origins were preconnected"
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnect candidates",
+              "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+              "value": {
+                "type": "text",
+                "value": "No additional origins are good candidates for preconnecting"
+              }
+            }
+          ]
+        }
+      },
+      "render-blocking-insight": {
+        "score": 0.5,
+        "title": "Render-blocking requests",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedMs",
+              "valueType": "timespanMs",
+              "label": "Duration"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+              "totalBytes": 6078
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "totalBytes": 11357
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "production-home-mobile-visual",
+    "url": "https://portifolio-liard-zeta.vercel.app/",
+    "preset": "visual",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-07T03:01:24.179Z",
+    "categories": {
+      "performance": 0.7,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "audits": {
+      "first-contentful-paint": {
+        "score": 1,
+        "title": "First Contentful Paint",
+        "value": 1065.807,
+        "display": "1.1 s"
+      },
+      "largest-contentful-paint": {
+        "score": 0.82,
+        "title": "Largest Contentful Paint",
+        "value": 2834.807,
+        "display": "2.8 s"
+      },
+      "speed-index": {
+        "score": 0.84,
+        "title": "Speed Index",
+        "value": 3816.995869414754,
+        "display": "3.8 s"
+      },
+      "total-blocking-time": {
+        "score": 0.19,
+        "title": "Total Blocking Time",
+        "value": 1266.9999999999998,
+        "display": "1,270 ms"
+      },
+      "max-potential-fid": {
+        "score": 0.06,
+        "title": "Max Potential First Input Delay",
+        "value": 533,
+        "display": "530 ms"
+      },
+      "cumulative-layout-shift": {
+        "score": 1,
+        "title": "Cumulative Layout Shift",
+        "value": 0,
+        "display": "0",
+        "details": {
+          "type": "debugdata",
+          "items": [
+            {
+              "cumulativeLayoutShiftMainFrame": 0,
+              "newEngineResult": {
+                "cumulativeLayoutShift": 0,
+                "cumulativeLayoutShiftMainFrame": 0
+              },
+              "newEngineResultDiffered": false
+            }
+          ]
+        }
+      },
+      "server-response-time": {
+        "score": 1,
+        "title": "Initial server response time was short",
+        "value": 14,
+        "display": "Root document took 10 ms",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "responseTime",
+              "valueType": "timespanMs",
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "responseTime": 14
+            }
+          ],
+          "overallSavingsMs": 0
+        }
+      },
+      "interactive": {
+        "score": 0.89,
+        "title": "Time to Interactive",
+        "value": 3802.9069999999997,
+        "display": "3.8 s"
+      },
+      "mainthread-work-breakdown": {
+        "score": 0,
+        "title": "Minimize main-thread work",
+        "value": 4463.596000000007,
+        "display": "4.5 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "groupLabel",
+              "valueType": "text",
+              "label": "Category"
+            },
+            {
+              "key": "duration",
+              "valueType": "ms",
+              "granularity": 1,
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "group": "scriptEvaluation",
+              "groupLabel": "Script Evaluation",
+              "duration": 2208.1840000000034
+            },
+            {
+              "group": "styleLayout",
+              "groupLabel": "Style & Layout",
+              "duration": 1103.6719999999998
+            },
+            {
+              "group": "other",
+              "groupLabel": "Other",
+              "duration": 805.7120000000032
+            },
+            {
+              "group": "paintCompositeRender",
+              "groupLabel": "Rendering",
+              "duration": 147.28799999999953
+            },
+            {
+              "group": "scriptParseCompile",
+              "groupLabel": "Script Parsing & Compilation",
+              "duration": 136.68800000000005
+            },
+            {
+              "group": "parseHTML",
+              "groupLabel": "Parse HTML & CSS",
+              "duration": 37.992000000000004
+            },
+            {
+              "group": "garbageCollection",
+              "groupLabel": "Garbage Collection",
+              "duration": 24.060000000000002
+            }
+          ],
+          "sortedBy": [
+            "duration"
+          ]
+        }
+      },
+      "bootup-time": {
+        "score": 0,
+        "title": "Reduce JavaScript execution time",
+        "value": 2246.0319999999997,
+        "display": "2.2 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "total",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Total CPU Time"
+            },
+            {
+              "key": "scripting",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Evaluation"
+            },
+            {
+              "key": "scriptParseCompile",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Parse"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "total": 1927.1880000000003,
+              "scripting": 1746.2400000000002,
+              "scriptParseCompile": 44.16
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "total": 1118.3919999999998,
+              "scripting": 34.767999999999994,
+              "scriptParseCompile": 15.431999999999997
+            },
+            {
+              "url": "Unattributable",
+              "total": 420.92800000000074,
+              "scripting": 46.14799999999999,
+              "scriptParseCompile": 0
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1jzts4b1t2du7.js",
+              "total": 371.72400000000005,
+              "scripting": 135.08000000000007,
+              "scriptParseCompile": 15.36
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16k1y303keupd.js",
+              "total": 282.47200000000004,
+              "scripting": 4.180000000000001,
+              "scriptParseCompile": 5.827999999999999
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "total": 221.0519999999998,
+              "scripting": 175.5639999999998,
+              "scriptParseCompile": 23.272000000000002
+            }
+          ],
+          "summary": {
+            "wastedMs": 2246.0319999999997
+          },
+          "sortedBy": [
+            "total"
+          ]
+        }
+      },
+      "label-content-name-mismatch": {
+        "score": 0,
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "node",
+              "valueType": "node",
+              "subItemsHeading": {
+                "key": "relatedNode",
+                "valueType": "node"
+              },
+              "label": "Failing Elements"
+            }
+          ],
+          "items": [
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-0-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,0,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2142,
+                  "bottom": 2591,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"hospital-sirio-libanes\" aria-label=\"Abrir estudo de caso: Hospital Sírio-Libanês\" href=\"/projetos/hospital-sirio-libanes\">",
+                "nodeLabel": "CASE 01\nENGENHEIRO DE BACKEND & CLOUD + LÍDER TÉCNICO\nHospital Sírio-Libanês\n\nA…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-1-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,1,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2609,
+                  "bottom": 3058,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"band-news-bandsports\" aria-label=\"Abrir estudo de caso: Grupo Bandeirantes\" href=\"/projetos/band-news-bandsports\">",
+                "nodeLabel": "CASE 02\nENGENHEIRO DE SOFTWARE & GERENTE DE TI\nGrupo Bandeirantes\n\nGestão da re…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-2-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,2,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 3076,
+                  "bottom": 3409,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 332
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"fiesta-americana\" aria-label=\"Abrir estudo de caso: Resort Fiesta Americana\" href=\"/projetos/fiesta-americana\">",
+                "nodeLabel": "CASE 03\nGESTOR DE PROJETO INTERNACIONAL\nResort Fiesta Americana\n\nGestão transna…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "impact": "serious",
+            "tags": [
+              "cat.semantics",
+              "wcag21a",
+              "wcag253",
+              "EN-301-549",
+              "EN-9.2.5.3",
+              "RGAAv4",
+              "RGAA-6.1.5",
+              "experimental"
+            ]
+          }
+        }
+      },
+      "total-byte-weight": {
+        "score": 1,
+        "title": "Avoids enormous network payloads",
+        "value": 426292,
+        "display": "Total size was 416 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76200
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51548
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+              "totalBytes": 40731
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+              "totalBytes": 37255
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+              "totalBytes": 34881
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1jzts4b1t2du7.js",
+              "totalBytes": 17286
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "totalBytes": 16403
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/sobre?_rsc=bTDP0P1Wf1p2sqFt",
+              "totalBytes": 15295
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+              "totalBytes": 14826
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+              "totalBytes": 11800
+            }
+          ],
+          "sortedBy": [
+            "totalBytes"
+          ]
+        }
+      },
+      "unused-javascript": {
+        "score": 0,
+        "title": "Reduce unused JavaScript",
+        "value": 150,
+        "display": "Est savings of 45 KiB",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "source",
+                "valueType": "code"
+              },
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceBytes"
+              },
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceWastedBytes"
+              },
+              "label": "Est Savings"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76035,
+              "wastedBytes": 24702,
+              "wastedPercent": 32.48764525456424
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51384,
+              "wastedBytes": 21289,
+              "wastedPercent": 41.43068631428105
+            }
+          ],
+          "overallSavingsMs": 150,
+          "overallSavingsBytes": 45991,
+          "sortedBy": [
+            "wastedBytes"
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 150
+            }
+          }
+        }
+      },
+      "forced-reflow-insight": {
+        "score": 0,
+        "title": "Forced reflow",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "source",
+                  "valueType": "source-location",
+                  "label": "Top function call"
+                },
+                {
+                  "key": "reflowTime",
+                  "valueType": "ms",
+                  "granularity": 1,
+                  "label": "Total reflow time"
+                }
+              ],
+              "items": [
+                {
+                  "source": {
+                    "type": "source-location",
+                    "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16k1y303keupd.js",
+                    "urlProvider": "network",
+                    "line": 1,
+                    "column": 25428
+                  },
+                  "reflowTime": 52.274
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "source",
+                  "valueType": "source-location",
+                  "label": "Source"
+                },
+                {
+                  "key": "reflowTime",
+                  "valueType": "ms",
+                  "granularity": 1,
+                  "label": "Total reflow time"
+                }
+              ],
+              "items": [
+                {
+                  "source": {
+                    "type": "text",
+                    "value": "[unattributed]"
+                  },
+                  "reflowTime": 47.703
+                },
+                {
+                  "source": {
+                    "type": "source-location",
+                    "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/16k1y303keupd.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 25454
+                  },
+                  "reflowTime": 52.274
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "lcp-breakdown-insight": {
+        "score": 1,
+        "title": "LCP breakdown",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "label",
+                  "valueType": "text",
+                  "label": "Subpart"
+                },
+                {
+                  "key": "duration",
+                  "valueType": "ms",
+                  "label": "Duration"
+                }
+              ],
+              "items": [
+                {
+                  "subpart": "timeToFirstByte",
+                  "label": "Time to first byte",
+                  "duration": 122.034
+                },
+                {
+                  "subpart": "elementRenderDelay",
+                  "label": "Element render delay",
+                  "duration": 1910.715
+                }
+              ]
+            },
+            {
+              "type": "node",
+              "lhId": "page-0-H1",
+              "path": "1,HTML,1,BODY,5,MAIN,0,SECTION,2,DIV,0,DIV,0,DIV,0,H1",
+              "selector": "div.relative > div.flex > div.hero-card-enter > h1.hero-name",
+              "boundingRect": {
+                "top": 288,
+                "bottom": 363,
+                "left": 41,
+                "right": 371,
+                "width": 330,
+                "height": 75
+              },
+              "snippet": "<h1 class=\"hero-name hero-name-enter mb-4 font-extrabold leading-none\" aria-label=\"Roberto Moraes\" style=\"font-family: var(--font-display); font-size: var(--text-hero);\">",
+              "nodeLabel": "Roberto Moraes"
+            }
+          ]
+        }
+      },
+      "lcp-discovery-insight": {
+        "score": null,
+        "title": "LCP request discovery"
+      },
+      "legacy-javascript-insight": {
+        "score": 0.5,
+        "title": "Legacy JavaScript",
+        "display": "Est savings of 14 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "location",
+                "valueType": "source-location"
+              },
+              "label": "URL"
+            },
+            {
+              "key": null,
+              "valueType": "code",
+              "subItemsHeading": {
+                "key": "signal"
+              },
+              "label": ""
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "label": "Wasted bytes"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "wastedBytes": 13961,
+              "subItems": {
+                "type": "subitems",
+                "items": [
+                  {
+                    "signal": "Array.prototype.at",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1116
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flat",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 504
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flatMap",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 617
+                    }
+                  },
+                  {
+                    "signal": "Object.fromEntries",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 993
+                    }
+                  },
+                  {
+                    "signal": "Object.hasOwn",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1251
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimEnd",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 246
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimStart",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 161
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "wastedBytes": 13961
+          }
+        }
+      },
+      "network-dependency-tree-insight": {
+        "score": 0,
+        "title": "Network dependency tree",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "list-section",
+              "value": {
+                "type": "network-tree",
+                "chains": {
+                  "C2DB1B461DFB179F51B83939BFD71922": {
+                    "url": "https://portifolio-liard-zeta.vercel.app/",
+                    "navStartToEndTime": 201,
+                    "transferSize": 16403,
+                    "isLongest": true,
+                    "children": {
+                      "83377.6": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+                        "navStartToEndTime": 235,
+                        "transferSize": 6380,
+                        "isLongest": true,
+                        "children": {}
+                      },
+                      "83377.5": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+                        "navStartToEndTime": 234,
+                        "transferSize": 11339,
+                        "children": {}
+                      }
+                    }
+                  }
+                },
+                "longestChain": {
+                  "duration": 235
+                }
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnected origins",
+              "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+              "value": {
+                "type": "text",
+                "value": "no origins were preconnected"
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnect candidates",
+              "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+              "value": {
+                "type": "text",
+                "value": "No additional origins are good candidates for preconnecting"
+              }
+            }
+          ]
+        }
+      },
+      "render-blocking-insight": {
+        "score": 0.5,
+        "title": "Render-blocking requests",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedMs",
+              "valueType": "timespanMs",
+              "label": "Duration"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+              "totalBytes": 6380
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "totalBytes": 11339
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "production-home-desktop",
+    "url": "https://portifolio-liard-zeta.vercel.app/",
+    "preset": "desktop",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-07T03:01:59.970Z",
+    "categories": {
+      "performance": 0.51,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "audits": {
+      "first-contentful-paint": {
+        "score": 0.8,
+        "title": "First Contentful Paint",
+        "value": 2121,
+        "display": "2.1 s"
+      },
+      "largest-contentful-paint": {
+        "score": 0.57,
+        "title": "Largest Contentful Paint",
+        "value": 3724.5,
+        "display": "3.7 s"
+      },
+      "speed-index": {
+        "score": 0.38,
+        "title": "Speed Index",
+        "value": 6551.031564579605,
+        "display": "6.6 s"
+      },
+      "total-blocking-time": {
+        "score": 0,
+        "title": "Total Blocking Time",
+        "value": 6624.5,
+        "display": "6,620 ms"
+      },
+      "max-potential-fid": {
+        "score": 0,
+        "title": "Max Potential First Input Delay",
+        "value": 2074,
+        "display": "2,070 ms"
+      },
+      "cumulative-layout-shift": {
+        "score": 1,
+        "title": "Cumulative Layout Shift",
+        "value": 0,
+        "display": "0",
+        "details": {
+          "type": "debugdata",
+          "items": [
+            {
+              "cumulativeLayoutShiftMainFrame": 0,
+              "newEngineResult": {
+                "cumulativeLayoutShift": 0,
+                "cumulativeLayoutShiftMainFrame": 0
+              },
+              "newEngineResultDiffered": false
+            }
+          ]
+        }
+      },
+      "server-response-time": {
+        "score": 1,
+        "title": "Initial server response time was short",
+        "value": 112,
+        "display": "Root document took 110 ms",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "responseTime",
+              "valueType": "timespanMs",
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "responseTime": 112
+            }
+          ],
+          "overallSavingsMs": 12
+        }
+      },
+      "interactive": {
+        "score": 0.25,
+        "title": "Time to Interactive",
+        "value": 10186.75,
+        "display": "10.2 s"
+      },
+      "mainthread-work-breakdown": {
+        "score": 0,
+        "title": "Minimize main-thread work",
+        "value": 14930.919999999918,
+        "display": "14.9 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "groupLabel",
+              "valueType": "text",
+              "label": "Category"
+            },
+            {
+              "key": "duration",
+              "valueType": "ms",
+              "granularity": 1,
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "group": "scriptEvaluation",
+              "groupLabel": "Script Evaluation",
+              "duration": 6488.723999999978
+            },
+            {
+              "group": "other",
+              "groupLabel": "Other",
+              "duration": 4390.935999999936
+            },
+            {
+              "group": "styleLayout",
+              "groupLabel": "Style & Layout",
+              "duration": 2832.5359999999996
+            },
+            {
+              "group": "paintCompositeRender",
+              "groupLabel": "Rendering",
+              "duration": 408.8800000000027
+            },
+            {
+              "group": "garbageCollection",
+              "groupLabel": "Garbage Collection",
+              "duration": 306.05199999999996
+            },
+            {
+              "group": "parseHTML",
+              "groupLabel": "Parse HTML & CSS",
+              "duration": 275.272
+            },
+            {
+              "group": "scriptParseCompile",
+              "groupLabel": "Script Parsing & Compilation",
+              "duration": 228.52000000000004
+            }
+          ],
+          "sortedBy": [
+            "duration"
+          ]
+        }
+      },
+      "bootup-time": {
+        "score": 0,
+        "title": "Reduce JavaScript execution time",
+        "value": 6597.687999999998,
+        "display": "6.6 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "total",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Total CPU Time"
+            },
+            {
+              "key": "scripting",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Evaluation"
+            },
+            {
+              "key": "scriptParseCompile",
+              "granularity": 1,
+              "valueType": "ms",
+              "label": "Script Parse"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "total": 6149.12,
+              "scripting": 4323.44,
+              "scriptParseCompile": 24.740000000000002
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "total": 4446.519999999999,
+              "scripting": 932.5559999999999,
+              "scriptParseCompile": 118.196
+            },
+            {
+              "url": "Unattributable",
+              "total": 2720.115999999968,
+              "scripting": 44.412,
+              "scriptParseCompile": 0
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1jzts4b1t2du7.js",
+              "total": 452.95999999999987,
+              "scripting": 260.84400000000016,
+              "scriptParseCompile": 6.3919999999999995
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3spp37u85cn_5.js",
+              "total": 393.38800000000003,
+              "scripting": 392.048,
+              "scriptParseCompile": 1.12
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "total": 261.64399999999955,
+              "scripting": 230.09999999999957,
+              "scriptParseCompile": 20.32
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/turbopack-2bof0vwc05-mw.js",
+              "total": 133.14000000000001,
+              "scripting": 130.776,
+              "scriptParseCompile": 2.016
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/04d43d4a63d827d6/script.js",
+              "total": 75.75999999999999,
+              "scripting": 39.19599999999999,
+              "scriptParseCompile": 25.808
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "total": 72.58,
+              "scripting": 0,
+              "scriptParseCompile": 0
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/a5561f6d51910011/script.js",
+              "total": 55.28399999999999,
+              "scripting": 45.35599999999999,
+              "scriptParseCompile": 0.368
+            }
+          ],
+          "summary": {
+            "wastedMs": 6597.687999999998
+          },
+          "sortedBy": [
+            "total"
+          ]
+        }
+      },
+      "label-content-name-mismatch": {
+        "score": 0,
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "node",
+              "valueType": "node",
+              "subItemsHeading": {
+                "key": "relatedNode",
+                "valueType": "node"
+              },
+              "label": "Failing Elements"
+            }
+          ],
+          "items": [
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-0-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,0,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2142,
+                  "bottom": 2591,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"hospital-sirio-libanes\" aria-label=\"Abrir estudo de caso: Hospital Sírio-Libanês\" href=\"/projetos/hospital-sirio-libanes\">",
+                "nodeLabel": "CASE 01\nENGENHEIRO DE BACKEND & CLOUD + LÍDER TÉCNICO\nHospital Sírio-Libanês\n\nA…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-1-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,1,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 2609,
+                  "bottom": 3058,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"band-news-bandsports\" aria-label=\"Abrir estudo de caso: Grupo Bandeirantes\" href=\"/projetos/band-news-bandsports\">",
+                "nodeLabel": "CASE 02\nENGENHEIRO DE SOFTWARE & GERENTE DE TI\nGrupo Bandeirantes\n\nGestão da re…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-2-A",
+                "path": "1,HTML,1,BODY,5,MAIN,2,SECTION,0,DIV,1,DIV,2,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 3076,
+                  "bottom": 3409,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 332
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"fiesta-americana\" aria-label=\"Abrir estudo de caso: Resort Fiesta Americana\" href=\"/projetos/fiesta-americana\">",
+                "nodeLabel": "CASE 03\nGESTOR DE PROJETO INTERNACIONAL\nResort Fiesta Americana\n\nGestão transna…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "impact": "serious",
+            "tags": [
+              "cat.semantics",
+              "wcag21a",
+              "wcag253",
+              "EN-301-549",
+              "EN-9.2.5.3",
+              "RGAAv4",
+              "RGAA-6.1.5",
+              "experimental"
+            ]
+          }
+        }
+      },
+      "total-byte-weight": {
+        "score": 1,
+        "title": "Avoids enormous network payloads",
+        "value": 426476,
+        "display": "Total size was 416 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76236
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51571
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+              "totalBytes": 40731
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+              "totalBytes": 37255
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+              "totalBytes": 34905
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1jzts4b1t2du7.js",
+              "totalBytes": 17793
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/",
+              "totalBytes": 16402
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/sobre?_rsc=bTDP0P1Wf1p2sqFt",
+              "totalBytes": 15264
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+              "totalBytes": 14802
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+              "totalBytes": 12280
+            }
+          ],
+          "sortedBy": [
+            "totalBytes"
+          ]
+        }
+      },
+      "unused-javascript": {
+        "score": 0.5,
+        "title": "Reduce unused JavaScript",
+        "value": 0,
+        "display": "Est savings of 45 KiB",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "source",
+                "valueType": "code"
+              },
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceBytes"
+              },
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceWastedBytes"
+              },
+              "label": "Est Savings"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76035,
+              "wastedBytes": 24805,
+              "wastedPercent": 32.62238625474418
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51384,
+              "wastedBytes": 21289,
+              "wastedPercent": 41.43068631428105
+            }
+          ],
+          "overallSavingsMs": 0,
+          "overallSavingsBytes": 46094,
+          "sortedBy": [
+            "wastedBytes"
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 0
+            }
+          }
+        }
+      },
+      "forced-reflow-insight": {
+        "score": 0,
+        "title": "Forced reflow",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "source",
+                  "valueType": "source-location",
+                  "label": "Top function call"
+                },
+                {
+                  "key": "reflowTime",
+                  "valueType": "ms",
+                  "granularity": 1,
+                  "label": "Total reflow time"
+                }
+              ],
+              "items": [
+                {
+                  "source": {
+                    "type": "source-location",
+                    "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                    "urlProvider": "network",
+                    "line": 1,
+                    "column": 3186
+                  },
+                  "reflowTime": 173.747
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "source",
+                  "valueType": "source-location",
+                  "label": "Source"
+                },
+                {
+                  "key": "reflowTime",
+                  "valueType": "ms",
+                  "granularity": 1,
+                  "label": "Total reflow time"
+                }
+              ],
+              "items": [
+                {
+                  "source": {
+                    "type": "source-location",
+                    "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1jzts4b1t2du7.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 55400
+                  },
+                  "reflowTime": 173.747
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "lcp-breakdown-insight": {
+        "score": 1,
+        "title": "LCP breakdown",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "label",
+                  "valueType": "text",
+                  "label": "Subpart"
+                },
+                {
+                  "key": "duration",
+                  "valueType": "ms",
+                  "label": "Duration"
+                }
+              ],
+              "items": [
+                {
+                  "subpart": "timeToFirstByte",
+                  "label": "Time to first byte",
+                  "duration": 531.3310000009536
+                },
+                {
+                  "subpart": "elementRenderDelay",
+                  "label": "Element render delay",
+                  "duration": 1525.8909999990462
+                }
+              ]
+            },
+            {
+              "type": "node",
+              "lhId": "page-0-H1",
+              "path": "1,HTML,1,BODY,5,MAIN,0,SECTION,2,DIV,0,DIV,0,DIV,0,H1",
+              "selector": "div.relative > div.flex > div.hero-card-enter > h1.hero-name",
+              "boundingRect": {
+                "top": 288,
+                "bottom": 363,
+                "left": 41,
+                "right": 371,
+                "width": 330,
+                "height": 75
+              },
+              "snippet": "<h1 class=\"hero-name hero-name-enter mb-4 font-extrabold leading-none\" aria-label=\"Roberto Moraes\" style=\"font-family: var(--font-display); font-size: var(--text-hero);\">",
+              "nodeLabel": "Roberto Moraes"
+            }
+          ]
+        }
+      },
+      "lcp-discovery-insight": {
+        "score": null,
+        "title": "LCP request discovery"
+      },
+      "legacy-javascript-insight": {
+        "score": 0.5,
+        "title": "Legacy JavaScript",
+        "display": "Est savings of 14 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "location",
+                "valueType": "source-location"
+              },
+              "label": "URL"
+            },
+            {
+              "key": null,
+              "valueType": "code",
+              "subItemsHeading": {
+                "key": "signal"
+              },
+              "label": ""
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "label": "Wasted bytes"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "wastedBytes": 13968,
+              "subItems": {
+                "type": "subitems",
+                "items": [
+                  {
+                    "signal": "Array.prototype.at",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1116
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flat",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 504
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flatMap",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 617
+                    }
+                  },
+                  {
+                    "signal": "Object.fromEntries",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 993
+                    }
+                  },
+                  {
+                    "signal": "Object.hasOwn",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1251
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimEnd",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 246
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimStart",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 161
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "wastedBytes": 13968
+          }
+        }
+      },
+      "network-dependency-tree-insight": {
+        "score": 0,
+        "title": "Network dependency tree",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "list-section",
+              "value": {
+                "type": "network-tree",
+                "chains": {
+                  "2185D400D8FE2BA14B5CDE8A3E9E438C": {
+                    "url": "https://portifolio-liard-zeta.vercel.app/",
+                    "navStartToEndTime": 1003,
+                    "transferSize": 16402,
+                    "isLongest": true,
+                    "children": {
+                      "83543.6": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+                        "navStartToEndTime": 1003,
+                        "transferSize": 6355,
+                        "children": {}
+                      },
+                      "83543.5": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+                        "navStartToEndTime": 1002,
+                        "transferSize": 11341,
+                        "children": {}
+                      }
+                    }
+                  }
+                },
+                "longestChain": {
+                  "duration": 1003
+                }
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnected origins",
+              "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+              "value": {
+                "type": "text",
+                "value": "no origins were preconnected"
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnect candidates",
+              "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+              "value": {
+                "type": "text",
+                "value": "No additional origins are good candidates for preconnecting"
+              }
+            }
+          ]
+        }
+      },
+      "render-blocking-insight": {
+        "score": 0.5,
+        "title": "Render-blocking requests",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedMs",
+              "valueType": "timespanMs",
+              "label": "Duration"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+              "totalBytes": 6355
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "totalBytes": 11341
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "production-work-mobile",
+    "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+    "preset": "mobile",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-07T03:02:57.042Z",
+    "categories": {
+      "performance": 0.75,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "audits": {
+      "first-contentful-paint": {
+        "score": 0.95,
+        "title": "First Contentful Paint",
+        "value": 1514.818,
+        "display": "1.5 s"
+      },
+      "largest-contentful-paint": {
+        "score": 0.77,
+        "title": "Largest Contentful Paint",
+        "value": 3032.8223869018557,
+        "display": "3.0 s"
+      },
+      "speed-index": {
+        "score": 0.85,
+        "title": "Speed Index",
+        "value": 3723.796800707203,
+        "display": "3.7 s"
+      },
+      "total-blocking-time": {
+        "score": 0.44,
+        "title": "Total Blocking Time",
+        "value": 669.4956130981445,
+        "display": "670 ms"
+      },
+      "max-potential-fid": {
+        "score": 0.07,
+        "title": "Max Potential First Input Delay",
+        "value": 521,
+        "display": "520 ms"
+      },
+      "cumulative-layout-shift": {
+        "score": 1,
+        "title": "Cumulative Layout Shift",
+        "value": 0,
+        "display": "0",
+        "details": {
+          "type": "debugdata",
+          "items": [
+            {
+              "cumulativeLayoutShiftMainFrame": 0,
+              "newEngineResult": {
+                "cumulativeLayoutShift": 0,
+                "cumulativeLayoutShiftMainFrame": 0
+              },
+              "newEngineResultDiffered": false
+            }
+          ]
+        }
+      },
+      "server-response-time": {
+        "score": 1,
+        "title": "Initial server response time was short",
+        "value": 15,
+        "display": "Root document took 20 ms",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "responseTime",
+              "valueType": "timespanMs",
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+              "responseTime": 15
+            }
+          ],
+          "overallSavingsMs": 0
+        }
+      },
+      "interactive": {
+        "score": 0.95,
+        "title": "Time to Interactive",
+        "value": 3096.3728255920414,
+        "display": "3.1 s"
+      },
+      "mainthread-work-breakdown": {
+        "score": 0,
+        "title": "Minimize main-thread work",
+        "value": 3078.9919999999993,
+        "display": "3.1 s",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "groupLabel",
+              "valueType": "text",
+              "label": "Category"
+            },
+            {
+              "key": "duration",
+              "valueType": "ms",
+              "granularity": 1,
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "group": "scriptEvaluation",
+              "groupLabel": "Script Evaluation",
+              "duration": 1106.9439999999954
+            },
+            {
+              "group": "styleLayout",
+              "groupLabel": "Style & Layout",
+              "duration": 947.2560000000002
+            },
+            {
+              "group": "other",
+              "groupLabel": "Other",
+              "duration": 704.5000000000034
+            },
+            {
+              "group": "parseHTML",
+              "groupLabel": "Parse HTML & CSS",
+              "duration": 132.91199999999998
+            },
+            {
+              "group": "scriptParseCompile",
+              "groupLabel": "Script Parsing & Compilation",
+              "duration": 77.82000000000002
+            },
+            {
+              "group": "paintCompositeRender",
+              "groupLabel": "Rendering",
+              "duration": 75.04800000000006
+            },
+            {
+              "group": "garbageCollection",
+              "groupLabel": "Garbage Collection",
+              "duration": 34.512
+            }
+          ],
+          "sortedBy": [
+            "duration"
+          ]
+        }
+      },
+      "label-content-name-mismatch": {
+        "score": 0,
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "node",
+              "valueType": "node",
+              "subItemsHeading": {
+                "key": "relatedNode",
+                "valueType": "node"
+              },
+              "label": "Failing Elements"
+            }
+          ],
+          "items": [
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-0-A",
+                "path": "1,HTML,1,BODY,4,MAIN,1,SECTION,0,DIV,1,DIV,0,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 788,
+                  "bottom": 1237,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"hospital-sirio-libanes\" aria-label=\"Abrir estudo de caso: Hospital Sírio-Libanês\" href=\"/projetos/hospital-sirio-libanes\">",
+                "nodeLabel": "CASE 01\nENGENHEIRO DE BACKEND & CLOUD + LÍDER TÉCNICO\nHospital Sírio-Libanês\n\nA…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-1-A",
+                "path": "1,HTML,1,BODY,4,MAIN,1,SECTION,0,DIV,1,DIV,1,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 1255,
+                  "bottom": 1704,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 449
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"band-news-bandsports\" aria-label=\"Abrir estudo de caso: Grupo Bandeirantes\" href=\"/projetos/band-news-bandsports\">",
+                "nodeLabel": "CASE 02\nENGENHEIRO DE SOFTWARE & GERENTE DE TI\nGrupo Bandeirantes\n\nGestão da re…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            },
+            {
+              "node": {
+                "type": "node",
+                "lhId": "1-2-A",
+                "path": "1,HTML,1,BODY,4,MAIN,1,SECTION,0,DIV,1,DIV,2,ARTICLE,0,A",
+                "selector": "div.Portfolio-module__tg8D_W__container > div.Portfolio-module__tg8D_W__projectGrid > article.Portfolio-module__tg8D_W__projectCard > a.Portfolio-module__tg8D_W__projectLink",
+                "boundingRect": {
+                  "top": 1722,
+                  "bottom": 2054,
+                  "left": 17,
+                  "right": 395,
+                  "width": 378,
+                  "height": 332
+                },
+                "snippet": "<a class=\"Portfolio-module__tg8D_W__projectLink\" data-project-link=\"fiesta-americana\" aria-label=\"Abrir estudo de caso: Resort Fiesta Americana\" href=\"/projetos/fiesta-americana\">",
+                "nodeLabel": "CASE 03\nGESTOR DE PROJETO INTERNACIONAL\nResort Fiesta Americana\n\nGestão transna…",
+                "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "impact": "serious",
+            "tags": [
+              "cat.semantics",
+              "wcag21a",
+              "wcag253",
+              "EN-301-549",
+              "EN-9.2.5.3",
+              "RGAAv4",
+              "RGAA-6.1.5",
+              "experimental"
+            ]
+          }
+        }
+      },
+      "total-byte-weight": {
+        "score": 1,
+        "title": "Avoids enormous network payloads",
+        "value": 421084,
+        "display": "Total size was 411 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76255
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51577
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+              "totalBytes": 40761
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+              "totalBytes": 37261
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+              "totalBytes": 34882
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+              "totalBytes": 19247
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/sobre?_rsc=LY1D-dHa0W0ebv_Y",
+              "totalBytes": 15484
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+              "totalBytes": 14829
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+              "totalBytes": 12278
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "totalBytes": 11339
+            }
+          ],
+          "sortedBy": [
+            "totalBytes"
+          ]
+        }
+      },
+      "unused-javascript": {
+        "score": 0,
+        "title": "Reduce unused JavaScript",
+        "value": 150,
+        "display": "Est savings of 48 KiB",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "source",
+                "valueType": "code"
+              },
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceBytes"
+              },
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceWastedBytes"
+              },
+              "label": "Est Savings"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76035,
+              "wastedBytes": 28051,
+              "wastedPercent": 36.89183477907916
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51384,
+              "wastedBytes": 21221,
+              "wastedPercent": 41.298449510302355
+            }
+          ],
+          "overallSavingsMs": 150,
+          "overallSavingsBytes": 49272,
+          "sortedBy": [
+            "wastedBytes"
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 150
+            }
+          }
+        }
+      },
+      "forced-reflow-insight": {
+        "score": 0,
+        "title": "Forced reflow",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "source",
+                  "valueType": "source-location",
+                  "label": "Source"
+                },
+                {
+                  "key": "reflowTime",
+                  "valueType": "ms",
+                  "granularity": 1,
+                  "label": "Total reflow time"
+                }
+              ],
+              "items": [
+                {
+                  "source": {
+                    "type": "text",
+                    "value": "[unattributed]"
+                  },
+                  "reflowTime": 147.967
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "lcp-breakdown-insight": {
+        "score": 0,
+        "title": "LCP breakdown",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "label",
+                  "valueType": "text",
+                  "label": "Subpart"
+                },
+                {
+                  "key": "duration",
+                  "valueType": "ms",
+                  "label": "Duration"
+                }
+              ],
+              "items": [
+                {
+                  "subpart": "timeToFirstByte",
+                  "label": "Time to first byte",
+                  "duration": 153.00700000095367
+                },
+                {
+                  "subpart": "elementRenderDelay",
+                  "label": "Element render delay",
+                  "duration": 2348.4309999990464
+                }
+              ]
+            },
+            {
+              "type": "node",
+              "lhId": "page-0-H1",
+              "path": "1,HTML,1,BODY,4,MAIN,0,HEADER,0,DIV,1,H1",
+              "selector": "main#main-content > header.Portfolio-module__tg8D_W__pageHero > div.Portfolio-module__tg8D_W__pageHeroInner > h1.Portfolio-module__tg8D_W__pageTitle",
+              "boundingRect": {
+                "top": 139,
+                "bottom": 324,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 185
+              },
+              "snippet": "<h1 class=\"Portfolio-module__tg8D_W__pageTitle\">",
+              "nodeLabel": "Engenharia explicada por decisões, não por uma lista de tecnologias."
+            }
+          ]
+        }
+      },
+      "lcp-discovery-insight": {
+        "score": null,
+        "title": "LCP request discovery"
+      },
+      "legacy-javascript-insight": {
+        "score": 0.5,
+        "title": "Legacy JavaScript",
+        "display": "Est savings of 14 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "location",
+                "valueType": "source-location"
+              },
+              "label": "URL"
+            },
+            {
+              "key": null,
+              "valueType": "code",
+              "subItemsHeading": {
+                "key": "signal"
+              },
+              "label": ""
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "label": "Wasted bytes"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "wastedBytes": 13971,
+              "subItems": {
+                "type": "subitems",
+                "items": [
+                  {
+                    "signal": "Array.prototype.at",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1116
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flat",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 504
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flatMap",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 617
+                    }
+                  },
+                  {
+                    "signal": "Object.fromEntries",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 993
+                    }
+                  },
+                  {
+                    "signal": "Object.hasOwn",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1251
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimEnd",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 246
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimStart",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 161
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "wastedBytes": 13971
+          }
+        }
+      },
+      "network-dependency-tree-insight": {
+        "score": 0,
+        "title": "Network dependency tree",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "list-section",
+              "value": {
+                "type": "network-tree",
+                "chains": {
+                  "CD6BD6F97DD8FFDF5F9AEA1CE17FBAD0": {
+                    "url": "https://portifolio-liard-zeta.vercel.app/projetos",
+                    "navStartToEndTime": 273,
+                    "transferSize": 19247,
+                    "isLongest": true,
+                    "children": {
+                      "83769.6": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+                        "navStartToEndTime": 347,
+                        "transferSize": 5843,
+                        "isLongest": true,
+                        "children": {}
+                      },
+                      "83769.5": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+                        "navStartToEndTime": 335,
+                        "transferSize": 11339,
+                        "children": {}
+                      },
+                      "83769.7": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0zhocnlkc7rgq.css",
+                        "navStartToEndTime": 311,
+                        "transferSize": 2721,
+                        "children": {}
+                      }
+                    }
+                  }
+                },
+                "longestChain": {
+                  "duration": 347
+                }
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnected origins",
+              "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+              "value": {
+                "type": "text",
+                "value": "no origins were preconnected"
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnect candidates",
+              "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+              "value": {
+                "type": "text",
+                "value": "No additional origins are good candidates for preconnecting"
+              }
+            }
+          ]
+        }
+      },
+      "render-blocking-insight": {
+        "score": 0.5,
+        "title": "Render-blocking requests",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedMs",
+              "valueType": "timespanMs",
+              "label": "Duration"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0ukjum2mi2co8.css",
+              "totalBytes": 5843
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "totalBytes": 11339
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0zhocnlkc7rgq.css",
+              "totalBytes": 2721
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "production-article-mobile",
+    "url": "https://portifolio-liard-zeta.vercel.app/insights/go-em-producao",
+    "preset": "mobile",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-07T03:03:29.406Z",
+    "categories": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "audits": {
+      "first-contentful-paint": {
+        "score": 0.99,
+        "title": "First Contentful Paint",
+        "value": 1109.7469999999998,
+        "display": "1.1 s"
+      },
+      "largest-contentful-paint": {
+        "score": 0.87,
+        "title": "Largest Contentful Paint",
+        "value": 2616.747,
+        "display": "2.6 s"
+      },
+      "speed-index": {
+        "score": 1,
+        "title": "Speed Index",
+        "value": 1572.7228179990416,
+        "display": "1.6 s"
+      },
+      "total-blocking-time": {
+        "score": 0.93,
+        "title": "Total Blocking Time",
+        "value": 162,
+        "display": "160 ms"
+      },
+      "max-potential-fid": {
+        "score": 0.84,
+        "title": "Max Potential First Input Delay",
+        "value": 150,
+        "display": "150 ms"
+      },
+      "cumulative-layout-shift": {
+        "score": 1,
+        "title": "Cumulative Layout Shift",
+        "value": 0,
+        "display": "0",
+        "details": {
+          "type": "debugdata",
+          "items": [
+            {
+              "cumulativeLayoutShiftMainFrame": 0,
+              "newEngineResult": {
+                "cumulativeLayoutShift": 0,
+                "cumulativeLayoutShiftMainFrame": 0
+              },
+              "newEngineResultDiffered": false
+            }
+          ]
+        }
+      },
+      "server-response-time": {
+        "score": 1,
+        "title": "Initial server response time was short",
+        "value": 22,
+        "display": "Root document took 20 ms",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "responseTime",
+              "valueType": "timespanMs",
+              "label": "Time Spent"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/insights/go-em-producao",
+              "responseTime": 22
+            }
+          ],
+          "overallSavingsMs": 0
+        }
+      },
+      "interactive": {
+        "score": 0.98,
+        "title": "Time to Interactive",
+        "value": 2616.747,
+        "display": "2.6 s"
+      },
+      "total-byte-weight": {
+        "score": 1,
+        "title": "Avoids enormous network payloads",
+        "value": 420339,
+        "display": "Total size was 410 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76206
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51575
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.p.269kn9uafm0ti.woff2",
+              "totalBytes": 40799
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/5c285b27cdda1fe8-s.p.0lsanbtneewqp.woff2",
+              "totalBytes": 37299
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/media/0c795a286deabae8-s.p.25jyahqycoolj.woff2",
+              "totalBytes": 34815
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/insights/go-em-producao",
+              "totalBytes": 20081
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/sobre?_rsc=rin295TSd2f1fHX9",
+              "totalBytes": 15312
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3673nevo6r5qq.js",
+              "totalBytes": 14829
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3vmjy6jdb67jh.js",
+              "totalBytes": 11770
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "totalBytes": 11351
+            }
+          ],
+          "sortedBy": [
+            "totalBytes"
+          ]
+        }
+      },
+      "unused-javascript": {
+        "score": 0,
+        "title": "Reduce unused JavaScript",
+        "value": 300,
+        "display": "Est savings of 48 KiB",
+        "details": {
+          "type": "opportunity",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "source",
+                "valueType": "code"
+              },
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceBytes"
+              },
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "subItemsHeading": {
+                "key": "sourceWastedBytes"
+              },
+              "label": "Est Savings"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "totalBytes": 76035,
+              "wastedBytes": 27926,
+              "wastedPercent": 36.72738380680986
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/3-n9s3h8fttfe.js",
+              "totalBytes": 51384,
+              "wastedBytes": 21251,
+              "wastedPercent": 41.3574555742291
+            }
+          ],
+          "overallSavingsMs": 300,
+          "overallSavingsBytes": 49177,
+          "sortedBy": [
+            "wastedBytes"
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "metricSavings": {
+              "FCP": 0,
+              "LCP": 300
+            }
+          }
+        }
+      },
+      "lcp-breakdown-insight": {
+        "score": 1,
+        "title": "LCP breakdown",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "table",
+              "headings": [
+                {
+                  "key": "label",
+                  "valueType": "text",
+                  "label": "Subpart"
+                },
+                {
+                  "key": "duration",
+                  "valueType": "ms",
+                  "label": "Duration"
+                }
+              ],
+              "items": [
+                {
+                  "subpart": "timeToFirstByte",
+                  "label": "Time to first byte",
+                  "duration": 91.38199999904633
+                },
+                {
+                  "subpart": "elementRenderDelay",
+                  "label": "Element render delay",
+                  "duration": 875.6040000009536
+                }
+              ]
+            },
+            {
+              "type": "node",
+              "lhId": "page-0-P",
+              "path": "1,HTML,1,BODY,4,MAIN,1,ARTICLE,0,SECTION,0,DIV,2,DIV,1,DIV,0,DIV,2,P",
+              "selector": "div.ImmersiveArticle-module__KXGWDq__heroInner > div.ImmersiveArticle-module__KXGWDq__heroComposition > div.ImmersiveArticle-module__KXGWDq__heroCopy > p.ImmersiveArticle-module__KXGWDq__heroSubtitle",
+              "boundingRect": {
+                "top": 368,
+                "bottom": 465,
+                "left": 16,
+                "right": 396,
+                "width": 380,
+                "height": 97
+              },
+              "snippet": "<p class=\"ImmersiveArticle-module__KXGWDq__heroSubtitle\">",
+              "nodeLabel": "Como projetamos o backend Go (Fiber v2 / FastHTTP) do Hospital Sírio-Libanês pa…"
+            }
+          ]
+        }
+      },
+      "lcp-discovery-insight": {
+        "score": null,
+        "title": "LCP request discovery"
+      },
+      "legacy-javascript-insight": {
+        "score": 0,
+        "title": "Legacy JavaScript",
+        "display": "Est savings of 14 KiB",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "subItemsHeading": {
+                "key": "location",
+                "valueType": "source-location"
+              },
+              "label": "URL"
+            },
+            {
+              "key": null,
+              "valueType": "code",
+              "subItemsHeading": {
+                "key": "signal"
+              },
+              "label": ""
+            },
+            {
+              "key": "wastedBytes",
+              "valueType": "bytes",
+              "label": "Wasted bytes"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+              "wastedBytes": 13962,
+              "subItems": {
+                "type": "subitems",
+                "items": [
+                  {
+                    "signal": "Array.prototype.at",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1116
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flat",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 504
+                    }
+                  },
+                  {
+                    "signal": "Array.prototype.flatMap",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 617
+                    }
+                  },
+                  {
+                    "signal": "Object.fromEntries",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 993
+                    }
+                  },
+                  {
+                    "signal": "Object.hasOwn",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 1251
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimEnd",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 246
+                    }
+                  },
+                  {
+                    "signal": "String.prototype.trimStart",
+                    "location": {
+                      "type": "source-location",
+                      "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/2oz6jcpxtb6ra.js",
+                      "urlProvider": "network",
+                      "line": 0,
+                      "column": 161
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "debugData": {
+            "type": "debugdata",
+            "wastedBytes": 13962
+          }
+        }
+      },
+      "network-dependency-tree-insight": {
+        "score": 0,
+        "title": "Network dependency tree",
+        "details": {
+          "type": "list",
+          "items": [
+            {
+              "type": "list-section",
+              "value": {
+                "type": "network-tree",
+                "chains": {
+                  "729AF609285678473BDDBB96BF67B66C": {
+                    "url": "https://portifolio-liard-zeta.vercel.app/insights/go-em-producao",
+                    "navStartToEndTime": 150,
+                    "transferSize": 20081,
+                    "isLongest": true,
+                    "children": {
+                      "83915.6": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0lu836q3s6tzn.css",
+                        "navStartToEndTime": 205,
+                        "transferSize": 9515,
+                        "isLongest": true,
+                        "children": {}
+                      },
+                      "83915.5": {
+                        "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+                        "navStartToEndTime": 171,
+                        "transferSize": 11351,
+                        "children": {}
+                      }
+                    }
+                  }
+                },
+                "longestChain": {
+                  "duration": 205
+                }
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnected origins",
+              "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+              "value": {
+                "type": "text",
+                "value": "no origins were preconnected"
+              }
+            },
+            {
+              "type": "list-section",
+              "title": "Preconnect candidates",
+              "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+              "value": {
+                "type": "text",
+                "value": "No additional origins are good candidates for preconnecting"
+              }
+            }
+          ]
+        }
+      },
+      "render-blocking-insight": {
+        "score": 0.5,
+        "title": "Render-blocking requests",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "url",
+              "valueType": "url",
+              "label": "URL"
+            },
+            {
+              "key": "totalBytes",
+              "valueType": "bytes",
+              "label": "Transfer Size"
+            },
+            {
+              "key": "wastedMs",
+              "valueType": "timespanMs",
+              "label": "Duration"
+            }
+          ],
+          "items": [
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/0lu836q3s6tzn.css",
+              "totalBytes": 9515
+            },
+            {
+              "url": "https://portifolio-liard-zeta.vercel.app/_next/static/immutable/chunks/1t_-wkopt0hfq.css",
+              "totalBytes": 11351
+            }
+          ]
+        }
+      }
+    }
+  }
+]

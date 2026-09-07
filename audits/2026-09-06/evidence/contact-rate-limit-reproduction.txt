@@ -1,0 +1,10 @@
+Command:
+PATH=/opt/homebrew/opt/node@24/bin:$PATH npx vitest run --config audits/2026-09-06/vitest.config.mts
+
+Result:
+Test Files  1 passed (1)
+Tests       1 passed (1)
+
+The isolated test uses a mocked Resend provider. It confirms that requests already
+rejected by one client's per-client bucket continue to consume the global bucket,
+after which a different client receives HTTP 429.

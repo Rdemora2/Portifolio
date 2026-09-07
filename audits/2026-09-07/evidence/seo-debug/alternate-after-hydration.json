@@ -1,0 +1,74 @@
+[
+  {
+    "run": 0,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 1,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 2,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 3,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/contato",
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 4,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 5,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/contato",
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 6,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 7,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 8,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  },
+  {
+    "run": 9,
+    "url": "http://127.0.0.1:3200/privacidade",
+    "nodes": [
+      "https://portifolio-liard-zeta.vercel.app/privacidade"
+    ]
+  }
+]

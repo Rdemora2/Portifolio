@@ -72,6 +72,7 @@ test("keeps project details and article content progressive", async ({
   )
   await expect(page.locator("#metrics")).toContainText("20M")
   await expectNoContentClipping(page, "Project detail")
+  await page.waitForLoadState("networkidle")
 
   await page.goto("/en/insights/go-in-production", {
     waitUntil: "domcontentloaded",

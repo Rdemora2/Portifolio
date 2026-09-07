@@ -10,13 +10,13 @@ const digest = (scope: string) => createHash("sha256").update(`portfolio-${scope
 
 function validEnvironment(overrides: Record<string, string | undefined> = {}) {
   return {
-    NEXT_PUBLIC_SITE_URL: "https://robertomoraes.dev",
+    NEXT_PUBLIC_SITE_URL: "https://portifolio-liard-zeta.vercel.app",
     NEXT_PUBLIC_WEB_VITALS_ENDPOINT: "/api/vitals",
     RESEND_API_KEY: `re_${digest("resend")}`,
     CONTACT_FROM_EMAIL: "Portfolio <contact@robertomoraes.dev>",
     CONTACT_TO_EMAIL: "owner@robertomoraes.dev",
     CONTACT_IDEMPOTENCY_SECRET: digest("idempotency"),
-    CONTACT_ALLOWED_ORIGINS: "https://robertomoraes.dev",
+    CONTACT_ALLOWED_ORIGINS: "https://portifolio-liard-zeta.vercel.app",
     CONTACT_TRUST_PROXY: "false",
     CONTACT_CLIENT_IP_HEADER: "x-forwarded-for",
     CONTACT_TRUST_PROXY_HOPS: "1",

@@ -1,0 +1,82 @@
+
+> portifolio@0.1.0 build
+> next build && node scripts/prepare-standalone.mjs
+
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config.ts took 240ms
+- Experiments (use with caution):
+  ✓ globalNotFound
+  ✓ optimizeCss
+  · optimizePackageImports
+  · webVitalsAttribution
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 14.7s
+  Running TypeScript ...
+  Finished TypeScript in 5.0s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/45) ...
+  Generating static pages using 5 workers (11/45) 
+  Generating static pages using 5 workers (22/45) 
+  Generating static pages using 5 workers (33/45) 
+✓ Generating static pages using 5 workers (45/45) in 1938ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /_not-found
+├   /[locale]
+│ ├ ● /pt
+│ ├ ● /en
+│ └ ● /es
+├   /[locale]/about
+│ ├ ● /pt/about
+│ ├ ● /en/about
+│ └ ● /es/about
+├   /[locale]/contact
+│ ├ ● /pt/contact
+│ ├ ● /en/contact
+│ └ ● /es/contact
+├   /[locale]/experience
+│ ├ ● /pt/experience
+│ ├ ● /en/experience
+│ └ ● /es/experience
+├   /[locale]/insights
+│ ├ ● /pt/insights
+│ ├ ● /en/insights
+│ └ ● /es/insights
+├   /[locale]/insights/go-em-producao
+│ ├ ● /pt/insights/go-em-producao
+│ ├ ● /en/insights/go-em-producao
+│ └ ● /es/insights/go-em-producao
+├   /[locale]/work
+│ ├ ● /pt/work
+│ ├ ● /en/work
+│ └ ● /es/work
+├   /[locale]/work/[slug]
+│ ├ ● /pt/work/band-news-bandsports
+│ ├ ● /pt/work/hospital-sirio-libanes
+│ ├ ● /pt/work/fiesta-americana
+│ └ ● [+6 more paths]
+├ ƒ /api/contact
+├ ○ /apple-icon.png
+├ ○ /icon.svg
+├ ○ /opengraph-image
+├   /opengraph-image/[locale]
+│ ├ ● /opengraph-image/pt
+│ ├ ● /opengraph-image/en
+│ └ ● /opengraph-image/es
+├   /opengraph-image/article/[locale]
+│ ├ ● /opengraph-image/article/pt
+│ ├ ● /opengraph-image/article/en
+│ └ ● /opengraph-image/article/es
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+Standalone assets prepared.

@@ -1,0 +1,28 @@
+[
+  {
+    "base": "http://127.0.0.1:3200",
+    "h1Visible": false,
+    "hiddenAncestors": [
+      {
+        "tag": "DIV",
+        "id": "S:0",
+        "display": "none",
+        "hidden": true,
+        "opacity": "1"
+      }
+    ]
+  },
+  {
+    "base": "https://portifolio-liard-zeta.vercel.app",
+    "h1Visible": false,
+    "hiddenAncestors": [
+      {
+        "tag": "DIV",
+        "id": "S:0",
+        "display": "none",
+        "hidden": true,
+        "opacity": "1"
+      }
+    ]
+  }
+]

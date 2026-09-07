@@ -100,9 +100,12 @@ export async function ProjectCaseStudy({
           labels={{
             close: caseTranslations("galleryClose"),
             dialog: caseTranslations("galleryDialog"),
+            goTo: caseTranslations("galleryGoTo"),
             next: caseTranslations("galleryNext"),
             open: caseTranslations("galleryOpen"),
+            pause: caseTranslations("galleryPause"),
             previous: caseTranslations("galleryPrevious"),
+            resume: caseTranslations("galleryResume"),
           }}
         />
       ) : null}
@@ -311,7 +314,7 @@ export async function ProjectCaseStudy({
               {projectsTranslations(`items.${nextProject.id}.title`)}
             </span>
             <span className={styles.sectionAction}>
-              {caseTranslations("allProjects")}
+              {caseTranslations("openNext")}
               <span aria-hidden="true">→</span>
             </span>
           </Link>
