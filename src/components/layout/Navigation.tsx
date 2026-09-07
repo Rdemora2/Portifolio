@@ -224,7 +224,7 @@ export function Navigation() {
           <Link
             href="/"
             prefetch={false}
-            className={`${styles.brand} inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight text-[var(--color-text-primary)]`}
+            className={`${styles.brand} ${isHome ? styles.homeBrand : ""} inline-flex min-h-11 min-w-11 items-center text-lg font-bold tracking-tight text-[var(--color-text-primary)]`}
             style={{ fontFamily: "var(--font-display)" }}
             aria-label={`RM. — Roberto Moraes, ${t("hero").toLowerCase()}`}
             aria-current={isHome ? "page" : undefined}

@@ -329,7 +329,8 @@
 
 .site-home-hero {
   min-block-size: 100vh;
-  min-block-size: 100dvh;
+  /* Keep the hero stable while mobile browser chrome expands and collapses. */
+  min-block-size: 100svh;
   padding-block: 5.5rem 3rem;
 }
 

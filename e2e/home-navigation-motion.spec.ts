@@ -73,6 +73,11 @@ test.describe("localized page navigation", () => {
     await expect(work).toBeVisible()
     await expect(brand).toHaveAttribute("aria-current", "page")
     await expect(work).not.toHaveAttribute("aria-current")
+    expect(
+      await brand.evaluate(
+        (element) => getComputedStyle(element, "::before").content,
+      ),
+    ).toBe("none")
 
     const restingState = await readNavigationVisualState(work)
     expect(restingState.beforeOpacity).toBeLessThan(0.05)

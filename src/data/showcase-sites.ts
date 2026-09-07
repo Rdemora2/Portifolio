@@ -53,6 +53,23 @@ export const websiteExperiences = [
     ],
   },
   {
+    id: "sen-omakase",
+    href: "https://sen-omakase.vercel.app/",
+    domain: "sen-omakase.vercel.app",
+    image: {
+      src: "/images/sites/sen-omakase-experience.webp",
+      width: 1410,
+      height: 831,
+      blurDataURL:
+        "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAHAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQG/8QAHhAAAgIABwAAAAAAAAAAAAAAAgMAAQQREiMyQXH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwDKrJQ8tReS5DsDS9xZ2WfVVESYa//Z",
+    },
+    tagIds: [
+      "editorialExperience",
+      "responsiveExperience",
+      "frontendEngineering",
+    ],
+  },
+  {
     id: "casa-brasa",
     href: "https://casa-brasa-tabacaria.vercel.app/",
     domain: "casa-brasa-tabacaria.vercel.app",

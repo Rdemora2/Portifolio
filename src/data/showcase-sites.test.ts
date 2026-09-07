@@ -13,6 +13,7 @@ const requiredPublishedDomains = [
   "lp-institucional-vendas.vercel.app",
   "lp-institucional-advocacia.vercel.app",
   "casa-brasa-tabacaria.vercel.app",
+  "sen-omakase.vercel.app",
 ] as const
 
 const jpegStartOfFrameMarkers = new Set([
@@ -164,11 +165,15 @@ describe("website showcase data", () => {
     })
   })
 
-  it("keeps the published Carla Moraes demo linked and casa-brasa before ruptura", () => {
+  it("keeps highlighted published demos linked and casa-brasa before ruptura", () => {
     expect(websiteExperiences[1].id).toBe("portal-noticias-atual")
     expect(websiteExperiences[2].id).toBe("carla-moraes")
     expect(websiteExperiences[2].href).toBe(
       "https://arq-carla-moraes-v2.vercel.app/",
+    )
+    expect(websiteExperiences[3].id).toBe("sen-omakase")
+    expect(websiteExperiences[3].href).toBe(
+      "https://sen-omakase.vercel.app/",
     )
 
     const casaBrasaIndex = websiteExperiences.findIndex(

@@ -124,6 +124,7 @@ Os checks de segurança da CI incluem auditoria npm, verificação de assinatura
 | **Aruá Resort Experience** | Hospitalidade de luxo, reservas e narrativa visual responsiva | [Acessar ↗](https://lp-hospitalidade-premium.vercel.app/) |
 | **Portal de Notícias Atual** | Design editorial imersivo, tipografia de alta fidelidade e SEO | [Acessar ↗](https://portal-noticias-ivory.vercel.app/) |
 | **Carla Moraes Arquitetura** | Galeria institucional com WebP otimizado e layout minimalista | [Acessar ↗](https://arq-carla-moraes-v2.vercel.app/) |
+| **SEN Omakase** | Experiência editorial para gastronomia japonesa de estação | [Acessar ↗](https://sen-omakase.vercel.app/) |
 | **Casa Brasa Tabacaria** | Identidade de marca, catálogo e transições fluidas | [Acessar ↗](https://casa-brasa-tabacaria.vercel.app/) |
 | **Estúdio Musical Sonoridades** | Engenharia de interface e showcase multimídia | [Acessar ↗](https://lp-estudio-musica.vercel.app/) |
 | **Solum Paisagismo** | Interface institucional responsiva e direção de arte moderna | [Acessar ↗](https://lp-institucional-paisagismo.vercel.app/) |
