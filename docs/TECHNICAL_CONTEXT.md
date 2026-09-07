@@ -372,7 +372,7 @@ Todos os arquivos <code>.env*</code>, exceto <code>.env.example</code>, são ign
 
 | Variável | Default | Regra e fase |
 | --- | --- | --- |
-| <code>NEXT_PUBLIC_SITE_URL</code> | <code>https://portifolio-liard-zeta.vercel.app</code> no código | Build público. Em produção aceita apenas origem HTTPS pública, sem path, query, fragmento ou credenciais. O Compose exige valor explícito. |
+| <code>NEXT_PUBLIC_SITE_URL</code> | <code>https://robertomoraes.vercel.app</code> no código | Build público. Em produção aceita apenas origem HTTPS pública, sem path, query, fragmento ou credenciais. O Compose exige valor explícito. |
 | <code>NEXT_PUBLIC_WEB_VITALS_ENDPOINT</code> | vazio | Build público e opcional. Deve ser path normalizado da mesma origem, começar com uma barra e não conter query, fragmento ou barra invertida. |
 | <code>RESEND_API_KEY</code> | nenhum | Runtime de produção. Deve seguir o formato <code>re_</code>, ter pelo menos 20 caracteres de token, variabilidade suficiente e não conter placeholder. |
 | <code>CONTACT_FROM_EMAIL</code> | nenhum | Runtime de produção. Um email, opcionalmente com display name, em domínio DNS público. |

@@ -9,7 +9,7 @@ const [{default:lighthouse},chromeLauncher]=await Promise.all([
   import(pathToFileURL(resolve(lighthouseNodeModules,'chrome-launcher/dist/index.js')).href),
 ]);
 const localBase=process.env.AUDIT_LOCAL_BASE_URL??'http://127.0.0.1:3200';
-const productionBase=process.env.AUDIT_PRODUCTION_BASE_URL??'https://portifolio-liard-zeta.vercel.app';
+const productionBase=process.env.AUDIT_PRODUCTION_BASE_URL??'https://robertomoraes.vercel.app';
 const dir='audits/2026-09-06/evidence';const summary=[];
 for(const [name,url,preset]of [
 ['local-home-mobile',`${localBase}/`,'mobile'],

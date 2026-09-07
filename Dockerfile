@@ -9,7 +9,7 @@ COPY scripts/dev-workspace.mjs ./scripts/dev-workspace.mjs
 RUN node scripts/dev-workspace.mjs --mark-dependencies
 
 FROM base AS builder
-ARG NEXT_PUBLIC_SITE_URL=https://robertomoraes.dev
+ARG NEXT_PUBLIC_SITE_URL=https://robertomoraes.vercel.app
 ARG NEXT_PUBLIC_WEB_VITALS_ENDPOINT=
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
 ENV NEXT_PUBLIC_WEB_VITALS_ENDPOINT=${NEXT_PUBLIC_WEB_VITALS_ENDPOINT}
@@ -30,7 +30,7 @@ FROM gcr.io/distroless/nodejs24-debian13:nonroot@sha256:ffab599740d4aaa66029d02b
 
 FROM gcr.io/distroless/base-nossl-debian13:nonroot@sha256:5cab74e7f8a5e7c5f1c8a9e6268b1f352f053c36c656f493308340bcecbc636c AS runner
 WORKDIR /app
-ARG NEXT_PUBLIC_SITE_URL=https://robertomoraes.dev
+ARG NEXT_PUBLIC_SITE_URL=https://robertomoraes.vercel.app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}

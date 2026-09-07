@@ -49,12 +49,16 @@ test("privacy is localized, accessible and linked from contact and footer", asyn
   }
 })
 
-test("website previews use responsive images and unavailable demos have no dead link", async ({ page }) => {
+test("website previews use responsive images and published demos have valid links", async ({ page }) => {
   await page.goto("/projetos")
   await page.locator("[data-website-grid]").scrollIntoViewIfNeeded()
-  const unavailable = page.locator("[data-website-card='carla-moraes']")
-  await expect(unavailable.locator("a")).toHaveCount(0)
-  await expect(unavailable).toContainText("Demonstração temporariamente indisponível")
+  const carlaMoraes = page.locator("[data-website-card='carla-moraes']")
+  const carlaMoraesLink = carlaMoraes.locator("[data-website-link]")
+  await expect(carlaMoraesLink).toHaveAttribute(
+    "href",
+    "https://arq-carla-moraes-v2.vercel.app/",
+  )
+  await expect(carlaMoraesLink).toHaveAttribute("target", "_blank")
   const image = page.locator("[data-website-thumbnail] img").first()
   await expect(image).toHaveAttribute("srcset", /_next\/image/)
   await image.scrollIntoViewIfNeeded()

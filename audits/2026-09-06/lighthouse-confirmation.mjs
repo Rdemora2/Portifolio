@@ -2,7 +2,7 @@ import {chromium} from '@playwright/test';import {writeFile}from'node:fs/promise
 import{resolve}from'node:path';import{fileURLToPath,pathToFileURL}from'node:url';
 const repoRoot=fileURLToPath(new URL('../../',import.meta.url));process.chdir(repoRoot);const lighthouseNodeModules=process.env.LIGHTHOUSE_NODE_MODULES??resolve(repoRoot,'node_modules');
 const [{default:lighthouse},{default:desktopConfig},chromeLauncher]=await Promise.all([import(pathToFileURL(resolve(lighthouseNodeModules,'lighthouse/core/index.js')).href),import(pathToFileURL(resolve(lighthouseNodeModules,'lighthouse/core/config/desktop-config.js')).href),import(pathToFileURL(resolve(lighthouseNodeModules,'chrome-launcher/dist/index.js')).href)]);
-const localBase=process.env.AUDIT_LOCAL_BASE_URL??'http://127.0.0.1:3200',productionBase=process.env.AUDIT_PRODUCTION_BASE_URL??'https://portifolio-liard-zeta.vercel.app';
+const localBase=process.env.AUDIT_LOCAL_BASE_URL??'http://127.0.0.1:3200',productionBase=process.env.AUDIT_PRODUCTION_BASE_URL??'https://robertomoraes.vercel.app';
 const dir='audits/2026-09-06/evidence',summary=[];
 for(const[name,url,mode]of[
 ['home-mobile-confirm-1',`${productionBase}/`,'mobile'],

@@ -499,7 +499,7 @@ async function loadDynamicRouteHtml(nextDir, routeEntries) {
     .update("portfolio-bundle-analysis-runtime")
     .digest("hex")
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://portifolio-liard-zeta.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://robertomoraes.vercel.app"
   let serverOutput = ""
   const appendOutput = (chunk) => {
     serverOutput = `${serverOutput}${chunk.toString()}`.slice(-8_000)

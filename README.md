@@ -6,7 +6,7 @@
 [![React 19](https://img.shields.io/badge/React-19.2.4-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vercel Deployment](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://portifolio-liard-zeta.vercel.app)
+[![Vercel Deployment](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://robertomoraes.vercel.app)
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Rdemora2/Portifolio/ci.yml?branch=main&label=CI%20Pipelines&style=flat-square)](https://github.com/Rdemora2/Portifolio/actions/workflows/ci.yml)
 [![Node Reference](https://img.shields.io/badge/Node.js-24.18.0-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -18,10 +18,10 @@
 
 **Engenharia Full Stack de Missão Crítica · Arquitetura Distribuída · Liderança Técnica**
 
-[🌐 **Live Preview (Vercel)**](https://portifolio-liard-zeta.vercel.app) &nbsp;|&nbsp;
+[🌐 **Live Preview (Vercel)**](https://robertomoraes.vercel.app) &nbsp;|&nbsp;
 [📑 **Contexto Técnico & Arquitetura**](./docs/TECHNICAL_CONTEXT.md) &nbsp;|&nbsp;
 [💼 **LinkedIn**](https://www.linkedin.com/in/robertomoraes/) &nbsp;|&nbsp;
-[📫 **Contato**](https://portifolio-liard-zeta.vercel.app/contato)
+[📫 **Contato**](https://robertomoraes.vercel.app/contato)
 
 </div>
 
@@ -112,10 +112,10 @@ Os checks de segurança da CI incluem auditoria npm, verificação de assinatura
 
 | Case Study | Escopo & Impacto | Stack Principal |
 | :--- | :--- | :--- |
-| **[Hospital Sírio-Libanês](https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes)** | Plataforma de saúde para 350.000+ pacientes, telemedicina e agendamento digital com SLA de 99.98%. | Go · NestJS · Next.js · AWS · PostgreSQL |
-| **[Grupo Bandeirantes](https://portifolio-liard-zeta.vercel.app/projetos/band-news-bandsports)** | Modernização simultânea de 6+ portais (BandNews, BandSports, Arte 1, Agro+) com zero downtime em picos de audiência. | Next.js · Go · AWS WAF · Load Balancing · TypeScript |
-| **[Grupo Posadas / Fiesta Americana](https://portifolio-liard-zeta.vercel.app/projetos/fiesta-americana)** | Motor de reservas e portal hoteleiro internacional para mais de 190 propriedades com US$ 25M+ em reservas processadas. | Next.js · NestJS · AWS · GCP · Micro frontends |
-| **[Buser](https://portifolio-liard-zeta.vercel.app/experiencia)** | Engenharia de alta volumetria com R$ 150M+ transacionados e 10M+ usuários ativos em mobilidade urbana. | Kotlin · Go · AWS · Microsserviços · CI/CD |
+| **[Hospital Sírio-Libanês](https://robertomoraes.vercel.app/projetos/hospital-sirio-libanes)** | Plataforma de saúde para 350.000+ pacientes, telemedicina e agendamento digital com SLA de 99.98%. | Go · NestJS · Next.js · AWS · PostgreSQL |
+| **[Grupo Bandeirantes](https://robertomoraes.vercel.app/projetos/band-news-bandsports)** | Modernização simultânea de 6+ portais (BandNews, BandSports, Arte 1, Agro+) com zero downtime em picos de audiência. | Next.js · Go · AWS WAF · Load Balancing · TypeScript |
+| **[Grupo Posadas / Fiesta Americana](https://robertomoraes.vercel.app/projetos/fiesta-americana)** | Motor de reservas e portal hoteleiro internacional para mais de 190 propriedades com US$ 25M+ em reservas processadas. | Next.js · NestJS · AWS · GCP · Micro frontends |
+| **[Buser](https://robertomoraes.vercel.app/experiencia)** | Engenharia de alta volumetria com R$ 150M+ transacionados e 10M+ usuários ativos em mobilidade urbana. | Kotlin · Go · AWS · Microsserviços · CI/CD |
 
 ### Vitrine de Produtos & Experiências Publicadas
 
@@ -123,7 +123,7 @@ Os checks de segurança da CI incluem auditoria npm, verificação de assinatura
 | :--- | :--- | :---: |
 | **Aruá Resort Experience** | Hospitalidade de luxo, reservas e narrativa visual responsiva | [Acessar ↗](https://lp-hospitalidade-premium.vercel.app/) |
 | **Portal de Notícias Atual** | Design editorial imersivo, tipografia de alta fidelidade e SEO | [Acessar ↗](https://portal-noticias-ivory.vercel.app/) |
-| **Carla Moraes Arquitetura** | Galeria institucional com WebP otimizado e layout minimalista | [Acessar ↗](https://lp-arq-carla-moraes.vercel.app/) |
+| **Carla Moraes Arquitetura** | Galeria institucional com WebP otimizado e layout minimalista | [Acessar ↗](https://arq-carla-moraes-v2.vercel.app/) |
 | **Casa Brasa Tabacaria** | Identidade de marca, catálogo e transições fluidas | [Acessar ↗](https://casa-brasa-tabacaria.vercel.app/) |
 | **Estúdio Musical Sonoridades** | Engenharia de interface e showcase multimídia | [Acessar ↗](https://lp-estudio-musica.vercel.app/) |
 | **Solum Paisagismo** | Interface institucional responsiva e direção de arte moderna | [Acessar ↗](https://lp-institucional-paisagismo.vercel.app/) |
@@ -290,7 +290,7 @@ Portifolio/
 
 ## 📬 Contato & Conexões
 
-- **Website**: [portifolio-liard-zeta.vercel.app](https://portifolio-liard-zeta.vercel.app)
+- **Website**: [robertomoraes.vercel.app](https://robertomoraes.vercel.app)
 - **LinkedIn**: [linkedin.com/in/robertomoraes](https://www.linkedin.com/in/robertomoraes/)
 - **Email**: [robertomoraeszar@gmail.com](mailto:robertomoraeszar@gmail.com)
 - **WhatsApp**: [+55 11 97387-4345](https://api.whatsapp.com/send?phone=5511973874345)

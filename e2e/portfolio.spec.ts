@@ -720,19 +720,19 @@ test("enforces security headers and route-aware discoverability", async ({
   await page.goto("/en/work", { waitUntil: "domcontentloaded" })
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://portifolio-liard-zeta.vercel.app/en/work",
+    "https://robertomoraes.vercel.app/en/work",
   )
   await expect(page.locator('link[hreflang="pt-BR"]')).toHaveAttribute(
     "href",
-    "https://portifolio-liard-zeta.vercel.app/projetos",
+    "https://robertomoraes.vercel.app/projetos",
   )
   await expect(page.locator('link[hreflang="es-MX"]')).toHaveAttribute(
     "href",
-    "https://portifolio-liard-zeta.vercel.app/es/proyectos",
+    "https://robertomoraes.vercel.app/es/proyectos",
   )
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
     "content",
-    "https://portifolio-liard-zeta.vercel.app/en/work",
+    "https://robertomoraes.vercel.app/en/work",
   )
 
   await page.goto("/en")
@@ -750,7 +750,7 @@ test("publishes complete robots, sitemap, and permanent article migrations", asy
   const robots = await request.get("/robots.txt")
   expect(robots.status()).toBe(200)
   expect(await robots.text()).toContain(
-    "Sitemap: https://portifolio-liard-zeta.vercel.app/sitemap.xml",
+    "Sitemap: https://robertomoraes.vercel.app/sitemap.xml",
   )
 
   const sitemap = await request.get("/sitemap.xml")
@@ -758,13 +758,13 @@ test("publishes complete robots, sitemap, and permanent article migrations", asy
   expect(sitemap.status()).toBe(200)
   expect((sitemapXml.match(/<url>/g) ?? [])).toHaveLength(33)
   expect(sitemapXml).toContain(
-    "https://portifolio-liard-zeta.vercel.app/projetos/hospital-sirio-libanes",
+    "https://robertomoraes.vercel.app/projetos/hospital-sirio-libanes",
   )
   expect(sitemapXml).toContain(
-    "https://portifolio-liard-zeta.vercel.app/en/insights/go-in-production",
+    "https://robertomoraes.vercel.app/en/insights/go-in-production",
   )
   expect(sitemapXml).toContain(
-    "https://portifolio-liard-zeta.vercel.app/es/insights/go-en-produccion",
+    "https://robertomoraes.vercel.app/es/insights/go-en-produccion",
   )
 
   for (const canonicalArticlePath of [
