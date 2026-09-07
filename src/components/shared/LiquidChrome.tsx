@@ -193,10 +193,12 @@ export function LiquidChrome({
     function resize() {
       if (!container || !renderer || !canvas || !gl) return
       boundsRef.current = container.getBoundingClientRect()
-      renderer.setSize(
-        Math.max(container.offsetWidth, 1),
-        Math.max(container.offsetHeight, 1),
-      )
+      const width = Math.max(container.offsetWidth, 1)
+      const height = Math.max(container.offsetHeight, 1)
+
+      if (renderer.width === width && renderer.height === height) return
+
+      renderer.setSize(width, height)
       canvas.style.width = "100%"
       canvas.style.height = "100%"
 
@@ -204,6 +206,11 @@ export function LiquidChrome({
       res[0] = gl.canvas.width
       res[1] = gl.canvas.height
       res[2] = gl.canvas.width / gl.canvas.height
+
+      // Resizing clears the drawing buffer. Paint it in the same cycle so a
+      // mobile viewport change cannot expose a blank frame before the 30 fps
+      // animation loop resumes.
+      renderer.render({ scene: mesh })
     }
 
     const resizeObserver = new ResizeObserver(() => resize())

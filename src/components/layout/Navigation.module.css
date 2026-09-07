@@ -51,6 +51,10 @@
   transform: scale(1);
 }
 
+.homeBrand::before {
+  content: none;
+}
+
 .desktopLink {
   border-radius: 999px;
   color: var(--color-text-secondary);

@@ -172,6 +172,53 @@ test("runs the WebGL signature for a normal visitor and follows lifecycle change
   )
 })
 
+test("keeps the WebGL surface painted through a mobile viewport resize", async ({
+  page,
+}, testInfo) => {
+  const runtime = captureRuntimeSignals(page)
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.emulateMedia({ reducedMotion: "no-preference" })
+  await page.goto("/en", { waitUntil: "domcontentloaded" })
+
+  const canvas = page.locator("[data-home-hero] canvas")
+  await expectActiveCanvas(page, canvas, runtime, testInfo)
+
+  const resizeFrame = await canvas.evaluate(async (element) => {
+    const target = element as HTMLCanvasElement
+    const container = target.parentElement
+    const hero = target.closest<HTMLElement>("[data-home-hero]")
+    const gl = target.getContext("webgl2") ?? target.getContext("webgl")
+
+    if (!container || !hero || !gl) {
+      throw new Error("WebGL hero must expose a resizable drawing surface")
+    }
+
+    return new Promise<{ height: number; pixel: number[] }>((resolve) => {
+      const observer = new ResizeObserver(() => {
+        observer.disconnect()
+        const pixel = new Uint8Array(4)
+        gl.readPixels(
+          Math.floor(gl.drawingBufferWidth / 2),
+          Math.floor(gl.drawingBufferHeight / 2),
+          1,
+          1,
+          gl.RGBA,
+          gl.UNSIGNED_BYTE,
+          pixel,
+        )
+        resolve({ height: gl.drawingBufferHeight, pixel: [...pixel] })
+      })
+
+      observer.observe(container)
+      hero.style.minBlockSize = `${Math.max(hero.offsetHeight - 84, 1)}px`
+    })
+  })
+
+  expect(resizeFrame.height).toBeGreaterThan(0)
+  expect(resizeFrame.pixel.slice(0, 3).some((channel) => channel > 0)).toBe(true)
+  await expect(canvas).toBeVisible()
+})
+
 test("falls back cleanly after a real WebGL context loss", async ({ page }, testInfo) => {
   const pageErrors: string[] = []
   const runtime = captureRuntimeSignals(page)
