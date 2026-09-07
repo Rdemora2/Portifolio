@@ -1,0 +1,51 @@
+
+> portifolio@0.1.0 test:e2e
+> playwright test e2e/scroll-reveal-interaction.spec.ts --project chromium --workers=1 --repeat-each=10
+
+[WebServer] (node:14674) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 20 tests using 1 worker
+
+(node:14705) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.6s)
+  ✓   2 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.2s)
+(node:14723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓   4 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.1s)
+(node:14733) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓   6 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.2s)
+(node:14757) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓   8 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.1s)
+(node:14770) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓  10 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.1s)
+(node:14780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓  12 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.0s)
+(node:14790) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓  14 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.1s)
+(node:14809) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓  16 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.2s)
+(node:14841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  17 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.2s)
+  ✓  18 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.2s)
+(node:14858) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [chromium] › e2e/scroll-reveal-interaction.spec.ts:27:5 › keeps a pointer click on an article stable during its entrance (1.1s)
+  ✓  20 [chromium] › e2e/scroll-reveal-interaction.spec.ts:35:5 › reveals the article immediately when reached with the keyboard (1.3s)
+
+  20 passed (29.9s)

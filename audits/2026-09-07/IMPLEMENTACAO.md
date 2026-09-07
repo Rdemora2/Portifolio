@@ -8,7 +8,7 @@
 
 A implementação trata os 27 achados documentados na auditoria, sem redesign e sem migração de stack ou hospedagem. A origem padrão passa a usar o alias público funcional; conteúdo e arquivos para crawlers compartilham a mesma fonte; os fluxos de galeria, contato e carregamento progressivo recebem correções de robustez; e a experiência ganha política de privacidade localizada, índice mobile e imagens sociais específicas por case.
 
-A implementação está **validada localmente e pronta para revisão/integração**, com build, lint, TypeScript, 152 testes unitários/de contrato, 51 testes de navegadores, 49 budgets e 144 combinações responsivas aprovados. A versão final marcou 91 nas três medições mobile e 99 no desktop, com CLS zero; o LCP mobile mediano de 3,45 s ainda merece melhoria. A variação de carga da máquina impede atribuir todo ganho de pontuação ao código. O merge autorizado depende das GitHub Actions verdes; a prontidão operacional também depende da configuração real da plataforma. Não foram executados deploy manual, alteração de DNS, WAF, infraestrutura ou configuração de produção.
+A implementação está **validada localmente e pronta para revisão/integração**, com build, lint, TypeScript, 152 testes unitários/de contrato, 53 testes de navegadores, 49 budgets e 144 combinações responsivas aprovados. A versão final marcou 91 nas três medições mobile e 99 no desktop, com CLS zero; o LCP mobile mediano de 3,45 s ainda merece melhoria. A variação de carga da máquina impede atribuir todo ganho de pontuação ao código. O merge autorizado depende das GitHub Actions verdes; a prontidão operacional também depende da configuração real da plataforma. Não foram executados deploy manual, alteração de DNS, WAF, infraestrutura ou configuração de produção.
 
 A identidade foi preservada: paleta, três famílias tipográficas, composição das páginas, linguagem dos cases, cartões e assinatura WebGL continuam presentes. Engenharia de software assume o posicionamento principal solicitado, enquanto cargos históricos e experiência de liderança permanecem na trajetória.
 
@@ -37,7 +37,7 @@ A auditoria não confirmou P0. Ela registrou 6 achados P1, 16 P2 e 5 P3. As clas
 |---|---|---|
 | P0 | Nenhum | Nenhuma vulnerabilidade crítica ou indisponibilidade completa foi confirmada. |
 | P1 | A01–A05, A26 | Origem pública, consistência do conteúdo para agentes, foco/autoplay, admissão atômica do contato, transparência de privacidade e conteúdo invisível quando chunks falham. Correções implementadas e validadas localmente; integração depende da CI. |
-| P2 | A06–A20, A27 | Posicionamento, mobile, navegação, feedback, imagens, performance, lacunas de teste, documentação, dependência descontinuada, limites operacionais e fallback sem JavaScript. Implementados ou documentados conforme a natureza do achado; A15 teve 12/12 repetições WebGL aprovadas após isolar os testes; a suíte integrada final passou em 51/51. |
+| P2 | A06–A20, A27 | Posicionamento, mobile, navegação, feedback, imagens, performance, lacunas de teste, documentação, dependência descontinuada, limites operacionais e fallback sem JavaScript. Implementados ou documentados conforme a natureza do achado; A15 teve 12/12 repetições WebGL aprovadas após isolar os testes; a suíte integrada passou em 51/51 na entrega principal e 53/53 após a correção de interação. |
 | P3 | A21–A25 | Imagens sociais específicas, retorno ao topo, consistência da 404, aviso de nova aba e semântica da paginação. Implementados. |
 
 Não viraram correção hipóteses sem evidência: não se inventaram métricas profissionais, datas de conteúdo, problemas de notch/leitor de tela ou mudança estética. O rate limit distribuído e a retenção nos fornecedores continuam tratados como limites externos, sem afirmação sobre configuração não inspecionada.
@@ -56,7 +56,7 @@ Não viraram correção hipóteses sem evidência: não se inventaram métricas 
 | A11, A20 | O erro de contato permanece até nova ação. Uma chave opaca de retentativa, sem conteúdo pessoal, sobrevive a reload no `sessionStorage`; sucesso a remove. O servidor vincula idempotência ao payload. |
 | A12 | O artigo ganhou índice mobile nativo e expansível para oito capítulos, com fechamento e transferência de foco após a seleção. |
 | A13, A14, A18 | Miniaturas usam variantes responsivas do Next Image; revelações são iniciadas perto da viewport; Critters e `experimental.optimizeCss` foram removidos sem adicionar dependência. |
-| A15 | Foram adicionados cenários para canvas/contexto real, resize, visibilidade, reduced motion e perda de contexto. As 12 repetições isoladas e a suíte integrada final de 51 testes passaram. |
+| A15 | Foram adicionados cenários para canvas/contexto real, resize, visibilidade, reduced motion e perda de contexto. As 12 repetições isoladas e a suíte integrada final de 53 testes passaram. |
 | A17, A19 | Documentação alinha o contrato de contato, CSP efetiva, SBOM, timeout indeterminado, trust proxy e rate limit por processo. |
 | A21–A24 | Cases recebem arte social própria; rodapé oferece retorno ao topo; 404 usa token existente; links externos anunciam nova aba. |
 | A26, A27 | HTML inicial é visível, as animações começam perto da viewport e a boundary que prendia a home no loading sem JavaScript foi removida. |
@@ -138,7 +138,7 @@ O cache autenticado e a atualização de previews nas plataformas sociais não f
 - `ScrollReveal` mantém conteúdo visível no HTML inicial e em falha de chunks; a home também entrega conteúdo essencial sem JavaScript.
 - O formulário mantém mensagens de erro até nova ação e preserva o comportamento de foco/`aria-invalid` já correto.
 
-A cobertura automatizada inclui axe e cenários de teclado, mas VoiceOver, TalkBack e dispositivos físicos permanecem sem validação. A suíte final de navegadores passou em 51/51 testes, incluindo os cenários automatizados de acessibilidade.
+A cobertura automatizada inclui axe e cenários de teclado, mas VoiceOver, TalkBack e dispositivos físicos permanecem sem validação. A suíte final de navegadores passou em 53/53 testes, incluindo os cenários automatizados de acessibilidade.
 
 ## Privacy
 
@@ -173,7 +173,17 @@ A falha isolada de clipping em Firefox não foi reproduzida em **10 sondagens ge
 
 A rodada integrada seguinte passou em **50/51 testes** e encontrou uma falha diferente em WebKit: uma requisição RSC de prefetch falhou 40,5 ms após o teste substituir o documento, antes da nova página terminar de carregar. Requisições vizinhas da mesma origem responderam 200; a requisição interrompida não teve resposta completa no trace. A evidência favorece cancelamento na navegação artificial, sem provar universalmente ausência de problemas de acesso. O harness agora aguarda a rede estabilizar **depois** das asserções de conteúdo inicial e **antes** de substituir o documento. Não há filtro de erros. As **10/10 repetições WebKit passaram**. [Trace resumido](evidence/ui-debug/webkit-rsc-navigation-trace.json) e [repetições](evidence/ui-debug/webkit-article-repeat.json).
 
-A rodada integrada final passou em **51/51 testes, sem retry**, em 1,8 minuto, incluindo WebGL ativo, fallback sem WebGL, Firefox, WebKit e os dois projetos mobile. Esse é o resultado local de aceite. A rodada interrompida permanece identificada como `e2e-interrupted.txt`, sem ser contabilizada como aprovação.
+A rodada integrada da entrega principal passou em **51/51 testes, sem retry**, em 1,8 minuto, incluindo WebGL ativo, fallback sem WebGL, Firefox, WebKit e os dois projetos mobile. Esse foi o resultado local usado no PR #37; a correção posterior é descrita abaixo. A rodada interrompida permanece identificada como `e2e-interrupted.txt`, sem ser contabilizada como aprovação.
+
+## Correção de interação identificada após a integração
+
+O [PR #37](https://github.com/Rdemora2/Portifolio/pull/37) foi integrado depois da [CI aprovada](https://github.com/Rdemora2/Portifolio/actions/runs/34087771758). A primeira execução da `main` encontrou uma intermitência nova: o clique no artigo permaneceu no índice; a retentativa passou, mas `failOnFlakyTests` corretamente rejeitou a execução. A falha não foi mascarada por reexecução ou aumento de timeout.
+
+O trace mostrou que o `focusin` cancelou o `translateY` do card entre pressionar e soltar o mouse, deslocando o link aproximadamente 23,6 px. As requisições eram apenas prefetches bem-sucedidos; nenhuma navegação chegou a ser disparada. Uma reprodução determinística com a animação WAAPI real pausada confirmou o mesmo erro antes da correção.
+
+`ScrollReveal` agora finaliza imediatamente a revelação apenas para alvos `:focus-visible`. Assim, Tab continua revelando o conteúdo e o foco por ponteiro nos links preserva a posição durante o clique. Esse seletor é uma heurística do navegador e pode casar com campos de texto após foco por ponteiro; a correção e os testes não afirmam cobrir universalmente essa outra classe de controles.
+
+Os cenários de clique e teclado passaram em **20/20 execuções, sem retry**. [Diagnóstico](evidence/reveal-click/diagnosis.json), [reprodução anterior](evidence/reveal-click/before-fix.txt), [repetições](evidence/reveal-click/focused.txt). O build e os budgets também passaram. A suíte integrada da correção passou em **53/53 testes, sem retry**, em 1,5 minuto. [E2E final](evidence/reveal-click/e2e.txt).
 
 ## Remaining Issues
 
@@ -189,17 +199,17 @@ Toolchain de referência: Node.js 24.18.0 e npm 11.16.0. As credenciais usadas n
 
 | Verificação | Resultado atual | Evidência |
 |---|---|---|
-| Build de produção standalone | Passou com origem pública explícita. | [build](evidence/build-fonts-restored.txt) |
-| ESLint | Passou. | [lint](evidence/lint-accepted.txt) |
-| TypeScript | Passou. | [typecheck](evidence/typecheck-accepted.txt) |
+| Build de produção standalone | Passou com origem pública explícita, incluindo a correção posterior de foco. | [build](evidence/reveal-click/build.txt) |
+| ESLint | Passou. | [lint](evidence/reveal-click/lint.txt) |
+| TypeScript | Passou no typecheck da entrega principal e no build da correção de foco. | [typecheck](evidence/typecheck-accepted.txt), [build final](evidence/reveal-click/build.txt) |
 | Unitários e contratos | **152 passaram em 21 arquivos.** | [testes](evidence/unit-accepted.txt) |
-| Budgets | **49 passaram**, cobrindo nove superfícies e privacidade. | [budgets](evidence/bundle-accepted.txt) |
+| Budgets | **49 passaram**, cobrindo nove superfícies e privacidade. | [budgets](evidence/reveal-click/bundle.txt) |
 | Matriz responsiva | **144 combinações passaram**. | [matriz](evidence/responsive-matrix.json) |
 | Dependências | Zero vulnerabilidades reportadas; inventário de 553 dependências. | [npm audit](evidence/npm-audit.json) |
 | Demonstrações disponíveis | 9/9 respostas HTTP 200. | [sites](evidence/available-websites.json) |
 | OG e documentos `llms` | 16 imagens locais 200/PNG 1200×630; rotas `llms` 200/`text/plain`. | [social e llms](evidence/social-final.json) |
-| Suíte de navegadores | **51/51 passaram**, sem retry, em seis projetos Playwright. | [E2E final](evidence/e2e-accepted.txt) |
-| Performance mobile/desktop | **91 nas três medições mobile; desktop 99. CLS zero em todas.** LCP mediano 3,45 s/0,77 s; sem dados de visitantes. | [mobile](evidence/accepted-mobile-summary.json), [desktop](evidence/accepted-desktop-summary.json) |
+| Suíte de navegadores | **53/53 passaram**, sem retry, em seis projetos Playwright. | [E2E final](evidence/reveal-click/e2e.txt) |
+| Performance mobile/desktop — entrega principal, antes da correção de foco | **91 nas três medições mobile; desktop 99. CLS zero em todas.** LCP mediano 3,45 s/0,77 s; sem dados de visitantes. | [mobile](evidence/accepted-mobile-summary.json), [desktop](evidence/accepted-desktop-summary.json) |
 
 Os registros intermediários foram preservados para diagnóstico. O aceite local usa os artefatos finais desta tabela; a aprovação da integração e da plataforma deve ser consultada nos checks do PR e no commit resultante da `main`.
 
