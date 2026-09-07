@@ -1,4 +1,4 @@
-export const DEFAULT_SITE_URL = "https://portifolio-liard-zeta.vercel.app"
+export const DEFAULT_SITE_URL = "https://robertomoraes.vercel.app"
 
 export function resolveSiteUrl(value = process.env.NEXT_PUBLIC_SITE_URL): string {
   const url = new URL(value ?? DEFAULT_SITE_URL)

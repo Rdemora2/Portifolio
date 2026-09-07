@@ -164,10 +164,12 @@ describe("website showcase data", () => {
     })
   })
 
-  it("keeps the unavailable Carla Moraes demo labeled and casa-brasa before ruptura", () => {
+  it("keeps the published Carla Moraes demo linked and casa-brasa before ruptura", () => {
     expect(websiteExperiences[1].id).toBe("portal-noticias-atual")
     expect(websiteExperiences[2].id).toBe("carla-moraes")
-    expect(websiteExperiences[2].available).toBe(false)
+    expect(websiteExperiences[2].href).toBe(
+      "https://arq-carla-moraes-v2.vercel.app/",
+    )
 
     const casaBrasaIndex = websiteExperiences.findIndex(
       ({ id }) => id === "casa-brasa",

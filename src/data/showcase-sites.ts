@@ -37,9 +37,8 @@ export const websiteExperiences = [
   },
   {
     id: "carla-moraes",
-    href: "https://lp-arq-carla-moraes.vercel.app/",
-    domain: "lp-arq-carla-moraes.vercel.app",
-    available: false,
+    href: "https://arq-carla-moraes-v2.vercel.app/",
+    domain: "arq-carla-moraes-v2.vercel.app",
     image: {
       src: "/images/sites/lp-arq-carla-moraes.webp",
       width: 1410,

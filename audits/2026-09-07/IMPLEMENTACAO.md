@@ -46,7 +46,7 @@ Não viraram correção hipóteses sem evidência: não se inventaram métricas 
 
 | Achados | Implementação |
 |---|---|
-| A01 | Metadata, sitemap, robots, OG e documentos `llms` usam a resolução comum de `NEXT_PUBLIC_SITE_URL`, com `https://portifolio-liard-zeta.vercel.app` como origem padrão funcional; fixtures da CI e do budget foram alinhadas. |
+| A01 | Metadata, sitemap, robots, OG e documentos `llms` usam a resolução comum de `NEXT_PUBLIC_SITE_URL`, atualizada para a origem pública definitiva `https://robertomoraes.vercel.app`; fixtures da CI e do budget foram alinhadas. |
 | A02 | `llms.txt` e `llms-full.txt` são rotas estáticas; o documento completo deriva cases e trajetória dos dados estruturados, removendo divergências editoriais. |
 | A03, A16, A25 | Galeria ganhou pausa persistente, pausa por foco/modal, respeito a reduced motion, comportamento sem loop insuficiente, proteção do foco e paginação com nome correspondente à ação. |
 | A04 | A admissão nos limites global e por cliente tornou-se atômica; tentativas já rejeitadas não consomem o outro bucket. |
@@ -206,7 +206,7 @@ Toolchain de referência: Node.js 24.18.0 e npm 11.16.0. As credenciais usadas n
 | Budgets | **49 passaram**, cobrindo nove superfícies e privacidade. | [budgets](evidence/reveal-click/bundle.txt) |
 | Matriz responsiva | **144 combinações passaram**. | [matriz](evidence/responsive-matrix.json) |
 | Dependências | Zero vulnerabilidades reportadas; inventário de 553 dependências. | [npm audit](evidence/npm-audit.json) |
-| Demonstrações disponíveis | 9/9 respostas HTTP 200. | [sites](evidence/available-websites.json) |
+| Demonstrações disponíveis | 9/9 respostas HTTP 200 na auditoria original; Carla Moraes foi restaurada posteriormente com a nova URL validada em HTTP 200, totalizando 10 demonstrações publicadas. | [sites da auditoria](evidence/available-websites.json) |
 | OG e documentos `llms` | 16 imagens locais 200/PNG 1200×630; rotas `llms` 200/`text/plain`. | [social e llms](evidence/social-final.json) |
 | Suíte de navegadores | **53/53 passaram**, sem retry, em seis projetos Playwright. | [E2E final](evidence/reveal-click/e2e.txt) |
 | Performance mobile/desktop — entrega principal, antes da correção de foco | **91 nas três medições mobile; desktop 99. CLS zero em todas.** LCP mediano 3,45 s/0,77 s; sem dados de visitantes. | [mobile](evidence/accepted-mobile-summary.json), [desktop](evidence/accepted-desktop-summary.json) |
