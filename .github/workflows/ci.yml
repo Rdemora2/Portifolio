@@ -43,6 +43,9 @@ jobs:
           test "$(node --version)" = "v24.18.0"
           test "$(npm --version)" = "11.16.0"
 
+      - name: Reject tracked files covered by gitignore
+        run: npm run check:repo
+
       - name: Provision deterministic non-secret validation credentials
         run: |
           node --input-type=module <<'NODE' >> "$GITHUB_ENV"

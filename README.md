@@ -225,6 +225,10 @@ npm run test:e2e
 
 ### Comandos do Projeto
 
+Capturas, vídeos, traces, logs e relatórios de auditoria local ficam em `audits/`, fora do versionamento e do contexto Docker. Os relatórios do CI são disponibilizados como artifacts com retenção limitada. Imagens usadas pelo site continuam em `public/`; testes e scripts reutilizáveis ficam em `e2e/` e `scripts/`.
+
+Antes de cada commit, revise `git diff --cached --stat` e execute `npm run check:repo`. O mesmo comando roda no CI e rejeita arquivos rastreados que estejam cobertos pelo `.gitignore`, mesmo quando adicionados com `git add -f`.
+
 | Script | Ação |
 | :--- | :--- |
 | `npm run dev` | Inicia o servidor de desenvolvimento com Webpack e limites de memória |
@@ -234,6 +238,7 @@ npm run test:e2e
 | `npm run typecheck` | Gera tipos de rota e roda checagem do compilador TypeScript (`tsc --noEmit`) |
 | `npm run build` | Compila o build estático de produção e prepara o standalone |
 | `npm run check:bundle` | Analisa os artefatos compilados contra a matriz de orçamentos de bundle |
+| `npm run check:repo` | Rejeita arquivos ignorados que estejam no índice do Git |
 | `npm run test:e2e` | Roda testes ponta a ponta Playwright em navegadores desktop, mobile e a11y |
 | `npm run analyze` | Abre a análise estática do bundle via Turbopack |
 
