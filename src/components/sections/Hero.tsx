@@ -1,89 +1,43 @@
-import { getTranslations } from "next-intl/server";
-import { personalInfo } from "@/data/portfolio";
-import { HeroClientWrapper } from "./HeroClient";
-import { Link } from "@/navigation";
+import { getTranslations } from "next-intl/server"
+import { personalInfo } from "@/data/portfolio"
+import { HeroClientWrapper } from "./HeroClient"
+import { Link } from "@/navigation"
+import styles from "./Hero.module.css"
 
 export async function Hero() {
-  const t = await getTranslations("Hero");
+  const t = await getTranslations("Hero")
+  const [firstName, ...lastNames] = personalInfo.name.split(" ")
 
   return (
-    <HeroClientWrapper>
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center">
-          <div
-            className="hero-card-enter glass-card max-w-2xl rounded-2xl px-6 py-8 sm:px-8 sm:py-9 lg:px-9 lg:py-10"
-            style={{ borderRadius: "1.5rem" }}
-          >
-            <h1
-              className="hero-name hero-name-enter mb-4 font-extrabold leading-none"
-              aria-label={personalInfo.name}
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "var(--text-hero)",
-                letterSpacing: "-0.03em",
-                color: "var(--color-text-primary)",
-                overflowWrap: "break-word",
-                wordBreak: "normal",
-              }}
-            >
-              {personalInfo.name}
-            </h1>
-
-            <p
-              className="hero-title hero-copy-enter mb-4 font-semibold uppercase"
-              style={{
-                fontFamily: "var(--font-body)",
-                color: "var(--color-signal)",
-                fontSize: "clamp(0.8rem, 0.55vw + 0.55rem, 1.05rem)",
-                letterSpacing: "0.15em",
-              }}
-            >
-              {t("title").includes(" & ") ? (
-                <>
-                  {t("title").split(" & ")[0]} &<br />
-                  {t("title").split(" & ")[1]}
-                </>
-              ) : (
-                t("title")
-              )}
-            </p>
-
-            <p
-              className="hero-subtitle hero-copy-enter mb-8 tracking-widest"
-              style={{
-                fontFamily: "var(--font-mono)",
-                color: "var(--color-text-secondary)",
-                fontSize: "clamp(0.75rem, 0.5vw + 0.625rem, 1rem)",
-              }}
-            >
-              <span className="typewriter">{t("subtitle")}</span>
-              <span
-                className="ml-0.5 inline-block h-5 w-[2px] animate-blink align-text-bottom"
-                style={{ backgroundColor: "var(--color-signal)" }}
-              />
-            </p>
-
-            <div className="hero-cta hero-actions-enter flex flex-wrap gap-3 sm:gap-4">
-              <Link
-                href="/work"
-                className="inline-flex items-center justify-center rounded-full border border-[var(--color-signal)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-signal)] transition-colors duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] sm:px-8 sm:py-3 sm:text-sm"
-                style={{ fontFamily: "var(--font-body)" }}
-                aria-label={t("viewProjects")}
-              >
-                {t("viewProjects")}
-              </Link>
-              <Link
-                href="/experience"
-                className="inline-flex items-center justify-center rounded-full border border-[var(--color-edge)] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-secondary)] transition-colors duration-200 hover:border-[var(--color-text-secondary)] sm:px-8 sm:py-3 sm:text-sm"
-                style={{ fontFamily: "var(--font-body)" }}
-                aria-label={t("viewExperience")}
-              >
-                {t("viewExperience")}
-              </Link>
-            </div>
+    <HeroClientWrapper motionLabels={{ pause: t("pauseMotion"), resume: t("resumeMotion") }}>
+      <div className={`relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${styles.layout}`}>
+        <div className={`hero-card-enter glass-card ${styles.card}`}>
+          <p className={`hero-title hero-copy-enter ${styles.eyebrow}`}>
+            <span aria-hidden="true" />{t("title")}
+          </p>
+          <h1 className={`hero-name hero-name-enter ${styles.name}`} aria-label={personalInfo.name}>
+            {firstName}{" "}<span>{lastNames.join(" ")}</span>
+          </h1>
+          <p className={`hero-copy-enter ${styles.statement}`}>{t("statement")}</p>
+          <p className={`hero-subtitle hero-copy-enter ${styles.stack}`}>{t("subtitle")}</p>
+          <div className={`hero-cta hero-actions-enter ${styles.actions}`}>
+            <Link href="/work" className={styles.primary}>{t("viewProjects")}<span aria-hidden="true">↗</span></Link>
+            <Link href="/experience" className={styles.secondary}>{t("viewExperience")}<span aria-hidden="true">→</span></Link>
           </div>
         </div>
+        <aside className={styles.evidence} aria-label={t("evidenceLabel")}>
+          <p className={styles.evidenceKicker}>{t("evidenceLabel")}</p>
+          <p className={styles.evidenceNumber}>20M<span>+</span></p>
+          <p className={styles.evidenceCaption}>{t("requests")}</p>
+          <div className={styles.evidenceDetails}>
+            <p><strong>6 ms</strong><span>{t("latency")}</span></p>
+            <p><strong>92%</strong><span>{t("cache")}</span></p>
+          </div>
+          <Link href={{ pathname: "/work/[slug]", params: { slug: "hospital-sirio-libanes" } }} className={styles.evidenceLink}>
+            Hospital Sírio-Libanês<span aria-hidden="true">↗</span>
+          </Link>
+        </aside>
       </div>
     </HeroClientWrapper>
-  );
+  )
 }

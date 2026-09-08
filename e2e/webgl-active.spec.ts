@@ -246,3 +246,32 @@ test("falls back cleanly after a real WebGL context loss", async ({ page }, test
   )
   expect(pageErrors).toEqual([])
 })
+
+test("stops WebGL drawing when the visitor pauses the hero", async ({ page }) => {
+  await page.addInitScript(() => {
+    const instrumented = window as typeof window & { heroDraws: number }
+    instrumented.heroDraws = 0
+    for (const prototype of [WebGLRenderingContext.prototype, WebGL2RenderingContext.prototype]) {
+      const original = prototype.drawArrays
+      prototype.drawArrays = function (...args: Parameters<typeof original>) {
+        instrumented.heroDraws += 1
+        return original.apply(this, args)
+      }
+    }
+  })
+  await page.goto("/en")
+  const drawCount = () => page.evaluate(() => (window as typeof window & { heroDraws: number }).heroDraws)
+  await expect.poll(drawCount).toBeGreaterThan(2)
+  const pause = page.getByRole("button", { name: "Pause animation" })
+  await pause.click()
+  await expect(pause).toHaveAttribute("aria-pressed", "true")
+  const settled = await page.evaluate(async () => {
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
+    const count = (window as typeof window & { heroDraws: number }).heroDraws
+    await new Promise((resolve) => setTimeout(resolve, 350))
+    return { before: count, after: (window as typeof window & { heroDraws: number }).heroDraws }
+  })
+  expect(settled.after).toBe(settled.before)
+  await pause.click()
+  await expect.poll(drawCount).toBeGreaterThan(settled.after)
+})

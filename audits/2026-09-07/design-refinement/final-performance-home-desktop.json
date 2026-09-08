@@ -1,0 +1,383 @@
+{
+  "route": "/",
+  "mode": "desktop",
+  "date": "2026-09-08T01:36:38.604Z",
+  "version": "13.3.0",
+  "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "largest-contentful-paint": 797.1553999999999,
+    "total-blocking-time": 0,
+    "cumulative-layout-shift": 0
+  },
+  "findings": {
+    "largest-contentful-paint": {
+      "title": "Largest Contentful Paint",
+      "score": 0.98,
+      "displayValue": "0.8 s"
+    },
+    "speed-index": {
+      "title": "Speed Index",
+      "score": 0.99,
+      "displayValue": "0.8 s"
+    },
+    "unused-javascript": {
+      "title": "Reduce unused JavaScript",
+      "score": 0,
+      "displayValue": "Est savings of 44 KiB",
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "source",
+              "valueType": "code"
+            },
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceBytes"
+            },
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceWastedBytes"
+            },
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+            "totalBytes": 74185,
+            "wastedBytes": 24149,
+            "wastedPercent": 32.55253316339365
+          },
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/3lxysnsbk24ar.js",
+            "totalBytes": 51428,
+            "wastedBytes": 21369,
+            "wastedPercent": 41.55185948127348
+          }
+        ],
+        "overallSavingsMs": 80,
+        "overallSavingsBytes": 45518,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 0,
+            "LCP": 80
+          }
+        }
+      }
+    },
+    "lcp-breakdown-insight": {
+      "title": "LCP breakdown",
+      "score": 1,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 9.153
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 167.813
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-H1",
+            "path": "1,HTML,1,BODY,4,MAIN,0,SECTION,2,DIV,0,DIV,1,H1",
+            "selector": "section#hero > div.relative > div.hero-card-enter > h1.hero-name",
+            "boundingRect": {
+              "top": 331,
+              "bottom": 486,
+              "left": 115,
+              "right": 691,
+              "width": 576,
+              "height": 156
+            },
+            "snippet": "<h1 class=\"hero-name hero-name-enter Hero-module___w2HtG__name\" aria-label=\"Roberto Moraes\">",
+            "nodeLabel": "Roberto\nMoraes"
+          }
+        ]
+      }
+    },
+    "lcp-discovery-insight": {
+      "title": "LCP request discovery",
+      "score": null
+    },
+    "legacy-javascript-insight": {
+      "title": "Legacy JavaScript",
+      "score": 0,
+      "displayValue": "Est savings of 13 KiB",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "location",
+              "valueType": "source-location"
+            },
+            "label": "URL"
+          },
+          {
+            "key": null,
+            "valueType": "code",
+            "subItemsHeading": {
+              "key": "signal"
+            },
+            "label": ""
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Wasted bytes"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+            "wastedBytes": 13821,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "signal": "Array.prototype.at",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 1116
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flat",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 504
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flatMap",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 617
+                  }
+                },
+                {
+                  "signal": "Object.fromEntries",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 993
+                  }
+                },
+                {
+                  "signal": "Object.hasOwn",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 1251
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimEnd",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 246
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimStart",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 161
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "wastedBytes": 13821
+        }
+      }
+    },
+    "network-dependency-tree-insight": {
+      "title": "Network dependency tree",
+      "score": 0,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "1CDDD8DF65FF200C8F51285C3864DF9C": {
+                  "url": "http://127.0.0.1:3400/",
+                  "navStartToEndTime": 54,
+                  "transferSize": 22625,
+                  "isLongest": true,
+                  "children": {
+                    "23937.8": {
+                      "url": "http://127.0.0.1:3400/_next/static/chunks/3ihnsbtjbsfy0.css",
+                      "navStartToEndTime": 58,
+                      "transferSize": 2306,
+                      "isLongest": true,
+                      "children": {}
+                    },
+                    "23937.7": {
+                      "url": "http://127.0.0.1:3400/_next/static/chunks/1i9d_-jz_xgk0.css",
+                      "navStartToEndTime": 57,
+                      "transferSize": 6034,
+                      "children": {}
+                    },
+                    "23937.5": {
+                      "url": "http://127.0.0.1:3400/_next/static/chunks/1gl1wgnalsgfb.css",
+                      "navStartToEndTime": 57,
+                      "transferSize": 12351,
+                      "children": {}
+                    },
+                    "23937.6": {
+                      "url": "http://127.0.0.1:3400/_next/static/chunks/0mi58boteoqq9.css",
+                      "navStartToEndTime": 57,
+                      "transferSize": 2239,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 58
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "no origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      }
+    },
+    "render-blocking-insight": {
+      "title": "Render-blocking requests",
+      "score": 0,
+      "displayValue": "Est savings of 40 ms",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/3ihnsbtjbsfy0.css",
+            "totalBytes": 2306,
+            "wastedMs": 88
+          },
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/1i9d_-jz_xgk0.css",
+            "totalBytes": 6034,
+            "wastedMs": 88
+          },
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/1gl1wgnalsgfb.css",
+            "totalBytes": 12351,
+            "wastedMs": 88
+          },
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/0mi58boteoqq9.css",
+            "totalBytes": 2239,
+            "wastedMs": 88
+          }
+        ]
+      }
+    }
+  },
+  "warnings": [],
+  "note": "Local Lighthouse sample; WebGL has separate functional tests. This is not field data."
+}

@@ -10,7 +10,29 @@ import {
 } from "react"
 import { useTranslations } from "next-intl"
 
+import { personalInfo } from "@/data/portfolio"
 import { useInView } from "@/hooks/useInView"
+
+const directEmail = personalInfo.contacts.find((contact) => contact.type === "email")
+
+function DirectContactFallback({ message }: { message: string }) {
+  return (
+    <div className="rounded-xl border border-[var(--color-edge)] bg-white/[0.02] p-5">
+      <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]" role="status">
+        {message}
+      </p>
+      {directEmail ? (
+        <a
+          href={directEmail.href}
+          className="mt-4 inline-flex min-h-12 max-w-full break-all items-center rounded-full border border-[var(--color-control-edge)] px-5 text-sm text-[var(--color-text-primary)] underline decoration-transparent underline-offset-4 transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)] hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-4"
+          style={{ outlineColor: "var(--color-highlight)" }}
+        >
+          {directEmail.label}
+        </a>
+      ) : null}
+    </div>
+  )
+}
 
 function ContactFormSkeleton() {
   const t = useTranslations("Contact")
@@ -93,16 +115,19 @@ export function ContactFormLoader() {
         for every other browser.
       */}
       {shouldLoad || requestedByHash || webMcpAvailable ? (
-        <FormLoadBoundary fallback={
-          <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]" role="status">
-            {t("formUnavailable")}
-          </p>
-        }>
+        <FormLoadBoundary fallback={<DirectContactFallback message={t("formUnavailable")} />}>
           <ContactForm />
         </FormLoadBoundary>
       ) : (
         <ContactFormSkeleton />
       )}
+      <noscript>
+        <style>{`
+          .contact-form-loader { min-height: 0 !important; }
+          .contact-form-loader > .contact-form-loader { display: none; }
+        `}</style>
+        <DirectContactFallback message={t("formUnavailable")} />
+      </noscript>
     </div>
   )
 }

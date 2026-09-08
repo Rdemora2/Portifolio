@@ -30,6 +30,44 @@ interface ProjectGalleryProps {
   title: string
 }
 
+function GalleryPreviewImage({ image }: { image: ProjectGalleryImage }) {
+  const [failed, setFailed] = useState(false)
+
+  if (failed) {
+    return (
+      <span
+        className={`${styles.galleryImage} grid place-items-center bg-[var(--color-structure)] px-6 text-center text-[var(--color-text-secondary)]`}
+        style={{ display: "grid" }}
+        role="img"
+        aria-label={image.alt}
+      >
+        <span aria-hidden="true">
+          <svg className="mx-auto mb-3 h-7 w-7 text-[var(--color-signal)]" viewBox="0 0 24 24" fill="none">
+            <path d="M4 5.75A1.75 1.75 0 0 1 5.75 4h12.5A1.75 1.75 0 0 1 20 5.75v12.5A1.75 1.75 0 0 1 18.25 20H5.75A1.75 1.75 0 0 1 4 18.25V5.75Z" stroke="currentColor" strokeWidth="1.5" />
+            <path d="m5 17 4.2-4.2 2.8 2.8 2.2-2.2L19 18M15.8 9.2h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="line-clamp-2 text-sm leading-relaxed">{image.alt}</span>
+        </span>
+      </span>
+    )
+  }
+
+  return (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      placeholder="blur"
+      blurDataURL={image.blurDataURL}
+      className={styles.galleryImage}
+      loading="lazy"
+      sizes="(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw"
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
 const ProjectGalleryCarousel = lazy(
   () =>
     import("./ProjectGalleryCarousel").then(
@@ -47,6 +85,11 @@ function ProjectGalleryPreview({
       <div className={styles.container}>
         <div className={styles.galleryHeader}>
           <h2 className={styles.storyLabel}>{title}</h2>
+          <div className={`${styles.galleryControls} ${styles.galleryControlPlaceholder}`} aria-hidden="true">
+            {images.length > 1 ? <span className={styles.galleryMotionBtn}><span>Ⅱ</span><span>{labels.pause}</span></span> : null}
+            <span className={styles.galleryNavBtn} />
+            <span className={styles.galleryNavBtn} />
+          </div>
         </div>
       </div>
 
@@ -59,17 +102,7 @@ function ProjectGalleryPreview({
                 className={styles.galleryItemCard}
                 aria-label={`${labels.open}: ${image.alt}`}
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  placeholder="blur"
-                  blurDataURL={image.blurDataURL}
-                  className={styles.galleryImage}
-                  loading="lazy"
-                  sizes="(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw"
-                />
+                <GalleryPreviewImage image={image} />
                 <span className={styles.galleryExpandBadge} aria-hidden="true">
                   +
                 </span>
@@ -80,6 +113,9 @@ function ProjectGalleryPreview({
             </li>
           ))}
         </ul>
+      </div>
+      <div className={styles.swiperPagination} aria-hidden="true">
+        <span className={styles.galleryPaginationButton} />
       </div>
     </section>
   )

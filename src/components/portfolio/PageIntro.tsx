@@ -1,33 +1,31 @@
-import styles from "./Portfolio.module.css"
+import styles from "./PageIntro.module.css"
 
 type PageIntroProps = {
   eyebrow: string
   title: string
   description: string
-  meta?: readonly string[]
+  navigation?: {
+    label: string
+    links: readonly { href: `#${string}`; label: string }[]
+  }
 }
 
-export function PageIntro({
-  eyebrow,
-  title,
-  description,
-  meta = [],
-}: PageIntroProps) {
+export function PageIntro({ eyebrow, title, description, navigation }: PageIntroProps) {
   return (
     <header className={styles.pageHero} data-page-hero>
       <div className={styles.pageHeroInner}>
         <p className={styles.heroMarker}>{eyebrow}</p>
         <h1 className={styles.pageTitle}>{title}</h1>
         <p className={styles.pageLead}>{description}</p>
-        {meta.length > 0 ? (
-          <div className={styles.heroMeta} aria-label={eyebrow}>
-            {meta.map((item) => (
-              <span key={item} className={styles.metaChip}>
-                {item}
-              </span>
+        {navigation && (
+          <nav className={styles.navigation} aria-label={navigation.label}>
+            {navigation.links.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}<span aria-hidden="true">↓</span>
+              </a>
             ))}
-          </div>
-        ) : null}
+          </nav>
+        )}
       </div>
     </header>
   )

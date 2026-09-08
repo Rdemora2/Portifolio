@@ -45,6 +45,14 @@ export default async function ExperiencePage({
         eyebrow={t("eyebrow")}
         title={t("title")}
         description={t("description")}
+        navigation={{
+          label: t("contents"),
+          links: [
+            { href: "#experience-valiant-gti", label: "Valiant Group" },
+            { href: "#experience-weber-dev", label: "Weber Technologies" },
+            { href: "#experience-buser-dev", label: "Buser Brasil" },
+          ],
+        }}
       />
       <Experience />
     </main>

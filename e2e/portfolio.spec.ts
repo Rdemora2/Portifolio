@@ -118,7 +118,7 @@ test("keeps the hero identity exact and the home deliberately concise", async ({
   await expect(
     page.getByText("Software Engineer", { exact: true }),
   ).toBeVisible()
-  await expect(page.locator("[data-home-section]")).toHaveCount(5)
+  await expect(page.locator("[data-home-section]")).toHaveCount(7)
   await expect(page.locator("[data-project-card]")).toHaveCount(3)
   await expect(page.locator("[data-experience-list]")).toHaveCount(0)
   await expect(page.locator("[data-website-showcase]")).toHaveCount(0)
@@ -150,7 +150,7 @@ test("keeps every hero within a deliberate responsive scale", async ({
       width: 1440,
       height: 900,
       maxHeightRatio: 1.02,
-      maxTitleSize: 62,
+      maxTitleSize: 88,
     },
     {
       pathname: "/en/work",
@@ -182,7 +182,7 @@ test("keeps every hero within a deliberate responsive scale", async ({
       width: 320,
       height: 568,
       maxHeightRatio: 1.02,
-      maxTitleSize: 40,
+      maxTitleSize: 48,
     },
     {
       pathname: "/en/work",
@@ -346,6 +346,8 @@ test("presents production cases before the independent web lab", async ({
   await expect(cases.nth(1)).toContainText("Grupo Bandeirantes")
   await expect(cases.nth(2)).toContainText("Fiesta Americana")
 
+  await page.getByText(/Explore \d+ more interfaces/).click()
+
   for (let index = 0; index < await websiteLinks.count(); index += 1) {
     const link = websiteLinks.nth(index)
     await expect(link).toHaveAttribute("target", "_blank")
@@ -501,7 +503,7 @@ test("preserves the complete professional chronology and company progression", a
   ).toEqual(expectedCompanies)
 
   await page.setViewportSize({ width: 768, height: 1024 })
-  await expect(page.locator("[data-experience-timeline]")).toBeHidden()
+  await expect(page.locator("[data-experience-timeline]")).toBeVisible()
   expect(
     (await page.locator("[data-experience-card]").first().boundingBox())?.width,
   ).toBeGreaterThan(480)
@@ -516,7 +518,7 @@ test("separates profile, principles, and technical capabilities", async ({
   await page.goto("/en/about", { waitUntil: "domcontentloaded" })
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Technical depth to build",
+    "Engineering across product and operations.",
   )
   await expect(
     page.getByRole("heading", {
@@ -542,6 +544,7 @@ test("separates profile, principles, and technical capabilities", async ({
   await page.getByText("Resume motion", { exact: true }).click()
   await expect(motionControl).not.toBeChecked()
   await page.mouse.move(0, 0)
+  await motionControl.evaluate((element: HTMLInputElement) => element.blur())
   await expect(page.locator(".logoloop__track")).toHaveCSS(
     "animation-play-state",
     "running",

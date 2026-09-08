@@ -1,0 +1,127 @@
+.button {
+  position: fixed;
+  right: calc(1.5rem + env(safe-area-inset-right, 0px));
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 80;
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 50%;
+  background: rgba(5, 10, 18, 0.88);
+  box-shadow:
+    0 0.75rem 2.25rem rgba(0, 0, 0, 0.38),
+    inset 0 1px rgba(255, 255, 255, 0.08);
+  color: var(--color-text-secondary);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0.65rem, 0) scale(0.88);
+  transition:
+    opacity 180ms ease,
+    transform 260ms var(--ease-out-expo),
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.button[data-visible="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.button[data-deep="true"] {
+  border-color: rgba(129, 140, 248, 0.58);
+  background: var(--color-void);
+  color: var(--color-signal);
+  box-shadow:
+    0 0.75rem 2.25rem rgba(0, 0, 0, 0.42),
+    0 0 1.5rem rgba(79, 70, 229, 0.18),
+    inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.progress,
+.arrow {
+  position: absolute;
+  pointer-events: none;
+}
+
+.progress {
+  inset: 0.125rem;
+  width: calc(100% - 0.25rem);
+  height: calc(100% - 0.25rem);
+  transform: rotate(-90deg);
+}
+
+.track,
+.ring {
+  fill: none;
+  stroke-width: 2;
+}
+
+.track {
+  stroke: var(--color-control-edge);
+  stroke-opacity: 0.4;
+}
+
+.ring {
+  stroke: var(--color-signal);
+  stroke-dasharray: 119.38;
+  stroke-dashoffset: 119.38;
+  stroke-linecap: round;
+}
+
+.arrow {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 4px;
+}
+
+@media (max-width: 767px) {
+  .button {
+    right: calc(1rem + env(safe-area-inset-right, 0px));
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button[data-visible="true"]:hover {
+    border-color: rgba(129, 140, 248, 0.72);
+    color: var(--color-signal);
+    transform: translate3d(0, -2px, 0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button[data-visible="true"],
+  .button[data-visible="true"]:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .button {
+    border-color: ButtonText;
+    background: Canvas;
+    box-shadow: none;
+    color: ButtonText;
+    forced-color-adjust: auto;
+  }
+
+  .track {
+    stroke: GrayText;
+  }
+}

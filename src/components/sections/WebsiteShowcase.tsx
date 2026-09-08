@@ -19,44 +19,14 @@ export async function WebsiteShowcase({
   const sectionId = isLab ? "web" : "sites"
   const headingId = `${sectionId}-showcase-title`
 
-  return (
-    <section
-      id={sectionId}
-      aria-labelledby={headingId}
-      className={styles.section}
-      data-website-showcase
-    >
-      <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${styles.container}`}>
-        <div className={styles.header}>
-          <ScrollReveal animation="title" className={styles.headingBlock}>
-            <p className={styles.eyebrow}>
-              {isLab ? page("labEyebrow") : t("eyebrow")}
-            </p>
-            <h2 id={headingId} className={styles.title}>
-              {isLab ? page("labTitle") : t("title")}
-            </h2>
-          </ScrollReveal>
-
-          <ScrollReveal animation="body" delay={0.06} className={styles.intro}>
-            <p className={styles.description}>
-              {isLab ? page("labDescription") : t("description")}
-            </p>
-            <p className={styles.publishedCount}>
-              <span className={styles.liveDot} aria-hidden="true" />
-              {t("publishedCount", { count: websiteExperiences.filter((site) => !("available" in site) || site.available !== false).length })}
-            </p>
-          </ScrollReveal>
-        </div>
-
-        <div className={styles.grid} data-website-grid>
-          {websiteExperiences.map((site, index) => {
+  const cards = websiteExperiences.map((site, index) => {
             const available = !("available" in site) || site.available !== false
             const CardContent = available ? "a" : "div"
             return (
             <ScrollReveal
               key={site.id}
               animation="card"
-              delay={index * 0.08}
+              delay={(index % 2) * 0.08}
               threshold={0.12}
               className={styles.reveal}
             >
@@ -76,7 +46,7 @@ export async function WebsiteShowcase({
                         <span />
                       </span>
                       <span className={styles.domain}>{site.domain}</span>
-                      <span className={styles.secureMark}>HTTPS</span>
+
                     </div>
 
                     <div className={styles.thumbnail} data-website-thumbnail>
@@ -151,8 +121,45 @@ export async function WebsiteShowcase({
                 </CardContent>
               </article>
             </ScrollReveal>
-          )})}
+          )})
+
+  return (
+    <section
+      id={sectionId}
+      aria-labelledby={headingId}
+      className={styles.section}
+      data-website-showcase
+    >
+      <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${styles.container}`}>
+        <div className={styles.header}>
+          <ScrollReveal animation="title" className={styles.headingBlock}>
+            <p className={styles.eyebrow}>
+              {isLab ? page("labEyebrow") : t("eyebrow")}
+            </p>
+            <h2 id={headingId} className={styles.title}>
+              {isLab ? page("labTitle") : t("title")}
+            </h2>
+          </ScrollReveal>
+
+          <ScrollReveal animation="body" delay={0.06} className={styles.intro}>
+            <p className={styles.description}>
+              {isLab ? page("labDescription") : t("description")}
+            </p>
+            <p className={styles.publishedCount}>
+              <span className={styles.liveDot} aria-hidden="true" />
+              {t("publishedCount", { count: websiteExperiences.filter((site) => !("available" in site) || site.available !== false).length })}
+            </p>
+          </ScrollReveal>
         </div>
+
+        <div className={styles.grid} data-website-grid>
+          {cards.slice(0, 4)}
+        </div>
+
+        <details className={styles.moreWork}>
+          <summary>{t("moreWork", { count: websiteExperiences.length - 4 })}<span aria-hidden="true">+</span></summary>
+          <div className={styles.grid}>{cards.slice(4)}</div>
+        </details>
 
         <ScrollReveal animation="ambient" delay={0.12} className={styles.pipeline}>
           <span className={styles.pipelineLine} aria-hidden="true" />

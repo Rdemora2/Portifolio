@@ -1,0 +1,18 @@
+.pageHero {
+  position: relative;
+  padding-block: clamp(7rem, 12vw, 10rem) clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--color-edge);
+  background: radial-gradient(ellipse at 85% 0%, rgba(99, 102, 241, 0.12), transparent 65%), var(--color-void);
+}
+.pageHeroInner { width: min(100%, 80rem); margin-inline: auto; padding-inline: 1rem; }
+.heroMarker { margin-bottom: 1.25rem; color: var(--color-signal); font: 0.75rem var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; }
+.pageTitle { max-width: 19ch; font: 750 clamp(2.2rem, 4.7vw, 4.25rem)/1.04 var(--font-display); letter-spacing: -0.045em; color: var(--color-text-primary); text-wrap: balance; }
+.pageLead { max-width: 48rem; margin-top: 1.5rem; color: var(--color-text-secondary); font-size: clamp(1rem, 1.3vw, 1.125rem); line-height: 1.75; text-wrap: pretty; }
+.navigation { display: flex; flex-wrap: wrap; gap: 0.25rem 1.75rem; margin-top: 1.75rem; }
+.navigation a { display: inline-flex; align-items: center; gap: 0.65rem; min-height: 2.75rem; color: var(--color-text-secondary); font: 0.75rem var(--font-mono); text-decoration: underline; text-underline-offset: 0.35rem; text-decoration-color: var(--color-edge); }
+.navigation a:hover { color: var(--color-signal); text-decoration-color: currentColor; }
+.navigation a:focus-visible { outline: 2px solid var(--color-highlight); outline-offset: 4px; border-radius: 2px; }
+.navigation span { color: var(--color-signal); }
+@media (min-width: 40rem) { .pageHeroInner { padding-inline: 1.5rem; } }
+@media (min-width: 64rem) { .pageHeroInner { padding-inline: 2rem; } }
+@media (max-height: 560px) { .pageHero { padding-block: 5.5rem 2.5rem; } .pageTitle { font-size: clamp(2.1rem, 5vw, 3rem); } }

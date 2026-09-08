@@ -109,7 +109,7 @@ test.describe("localized page navigation", () => {
     expect(currentState.beforeOpacity).toBeGreaterThan(0.4)
     expect(currentState.afterOpacity).toBeGreaterThan(0.9)
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Engineering explained through decisions",
+      "Engineering through to production.",
     )
   })
 

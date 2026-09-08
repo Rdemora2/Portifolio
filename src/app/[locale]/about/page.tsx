@@ -47,14 +47,23 @@ export default async function AboutPage({
       <PageIntro
         eyebrow={t("eyebrow")}
         title={t("title")}
-        description={`${t("description")} ${t("bridge")}`}
+        description={t("description")}
+        navigation={{
+          label: t("contents"),
+          links: [
+            { href: "#about", label: t("profileLink") },
+            { href: "#principles", label: t("principlesEyebrow") },
+            { href: "#stack", label: t("stackLink") },
+            { href: "#faq", label: t("faqEyebrow") },
+          ],
+        }}
       />
       <About />
       <AboutPrinciples />
-      <div id="stack">
+      <div id="stack" className="scroll-mt-24">
         <TechStack />
       </div>
-      <div id="faq">
+      <div id="faq" className="scroll-mt-24">
         <FAQ />
       </div>
     </main>

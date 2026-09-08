@@ -11,6 +11,7 @@ import {
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
+import { BackToTop } from "@/components/layout/BackToTop"
 import { Footer } from "@/components/layout/Footer"
 import { Navigation } from "@/components/layout/Navigation"
 import { WebVitals } from "@/components/layout/WebVitals"
@@ -124,6 +125,7 @@ export default async function LocaleLayout({
   ])
   const layoutMessages = {
     Nav: messages.Nav,
+    Footer: { backToTop: messages.Footer.backToTop },
     Error: messages.Error,
     Loading: messages.Loading,
   }
@@ -304,6 +306,7 @@ export default async function LocaleLayout({
           <Navigation />
           {children}
           <Footer />
+          <BackToTop />
           {process.env.VERCEL === "1" && (
             <>
               <Analytics />

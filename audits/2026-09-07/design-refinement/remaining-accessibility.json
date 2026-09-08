@@ -1,0 +1,98 @@
+[
+  {
+    "name": "about",
+    "width": 390,
+    "url": "/sobre",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "experience",
+    "width": 390,
+    "url": "/experiencia",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "contact",
+    "width": 390,
+    "url": "/contato",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "insights",
+    "width": 390,
+    "url": "/insights",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "privacy",
+    "width": 390,
+    "url": "/privacidade",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "article",
+    "width": 390,
+    "url": "/insights/go-em-producao",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "about",
+    "width": 1440,
+    "url": "/sobre",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "experience",
+    "width": 1440,
+    "url": "/experiencia",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "contact",
+    "width": 1440,
+    "url": "/contato",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "insights",
+    "width": 1440,
+    "url": "/insights",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "privacy",
+    "width": 1440,
+    "url": "/privacidade",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  },
+  {
+    "name": "article",
+    "width": 1440,
+    "url": "/insights/go-em-producao",
+    "overflow": false,
+    "errors": [],
+    "violations": []
+  }
+]

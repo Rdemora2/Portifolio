@@ -1,9 +1,11 @@
+import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 
 import { projects } from "@/data/portfolio"
 import { Link } from "@/navigation"
 
 import styles from "./Portfolio.module.css"
+import workStyles from "./Work.module.css"
 
 const selectedProjectIds = [
   "hospital-sirio-libanes",
@@ -17,7 +19,7 @@ const projectAccents: Record<(typeof selectedProjectIds)[number], string> = {
   "fiesta-americana": "orange",
 }
 
-export async function ProjectGrid() {
+export async function ProjectGrid({ variant = "home" }: { variant?: "home" | "work" }) {
   const [projectsTranslations, pageTranslations] = await Promise.all([
     getTranslations("Projects"),
     getTranslations("PortfolioPages.home.projects"),
@@ -29,7 +31,7 @@ export async function ProjectGrid() {
     )
 
   return (
-    <div className={styles.projectGrid} data-project-grid>
+    <div className={`${styles.projectGrid} ${variant === "work" ? workStyles.projectGrid : ""}`} data-project-grid>
       {selectedProjects.map((project, index) => (
         <article
           key={project.id}
@@ -37,17 +39,28 @@ export async function ProjectGrid() {
           data-accent={projectAccents[project.id as keyof typeof projectAccents]}
           data-project-card={project.id}
         >
-          <Link
-            href={{
-              pathname: "/work/[slug]",
-              params: { slug: project.slug },
-            }}
-            className={styles.projectLink}
-            data-project-link={project.id}
-            aria-label={`${pageTranslations("openCase")}: ${projectsTranslations(
-              `items.${project.id}.title`,
-            )}`}
-          >
+          <div className={styles.projectLayout} data-project-layout>
+            <div className={styles.projectVisual} aria-hidden="true">
+              {project.caseStudy?.images?.[0] ? (
+                <Image
+                  src={project.caseStudy.images[0].src}
+                  width={project.caseStudy.images[0].width}
+                  height={project.caseStudy.images[0].height}
+                  alt=""
+                  sizes="(min-width: 1280px) 560px, (min-width: 1024px) calc((100vw - 10rem) / 2), (min-width: 640px) calc(100vw - 6rem), calc(100vw - 5rem)"
+                  className={styles.projectImage}
+                  placeholder="blur"
+                  blurDataURL={project.caseStudy.images[0].blurDataURL}
+                />
+              ) : (
+                <div className={styles.projectSchematic}>
+                  <span className={styles.schematicTitle}>Fiesta Americana</span>
+                  <div className={styles.schematicFlow}><span>IP / Unicast</span><i /><span>Coax / Broadcast</span></div>
+                  <span className={styles.schematicCaption}>{project.stack.slice(0, 3).join(" · ")}</span>
+                </div>
+              )}
+            </div>
+            <div className={styles.projectBody}>
             <div className={styles.projectMeta}>
               <span className={styles.projectIndex}>
                 Case {String(index + 1).padStart(2, "0")}
@@ -93,11 +106,18 @@ export async function ProjectGrid() {
                   </span>
                 ))}
               </div>
-              <span className={styles.projectArrow} aria-hidden="true">
-                →
-              </span>
+              <Link
+                href={{ pathname: "/work/[slug]", params: { slug: project.slug } }}
+                className={styles.projectCta}
+                data-project-link={project.id}
+                aria-label={`${pageTranslations("openCase")}: ${projectsTranslations(`items.${project.id}.title`)}`}
+              >
+                {pageTranslations("openCase")}
+                <span className={styles.projectArrow} aria-hidden="true">↗</span>
+              </Link>
             </div>
-          </Link>
+            </div>
+          </div>
         </article>
       ))}
     </div>

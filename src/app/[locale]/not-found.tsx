@@ -29,7 +29,7 @@ export default async function NotFound() {
         }}
       />
 
-      <section className="relative z-10 w-full max-w-2xl text-center">
+      <section className="relative z-10 w-full max-w-2xl rounded-[1.75rem] border border-[var(--color-edge)] bg-[rgba(10,16,24,0.66)] px-6 py-12 text-center shadow-2xl sm:px-12 sm:py-16" aria-labelledby="not-found-title">
         <p
           className="mb-5 text-xs uppercase"
           style={{
@@ -41,7 +41,8 @@ export default async function NotFound() {
           {t("eyebrow")}
         </p>
         <h1
-          className="text-7xl font-bold tracking-tighter sm:text-8xl md:text-9xl"
+          id="not-found-title"
+          className="text-5xl font-bold tracking-tighter sm:text-7xl md:text-8xl"
           style={{
             color: "var(--color-text-primary)",
             fontFamily: "var(--font-display)",
@@ -61,7 +62,7 @@ export default async function NotFound() {
 
         <Link
           href="/"
-          className="mt-9 inline-flex min-h-11 items-center justify-center rounded-full border px-7 py-3 text-sm font-medium transition-colors hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-4"
+          className="mt-9 inline-flex min-h-12 items-center justify-center rounded-full border px-7 py-3 text-sm font-medium transition-[color,background-color,transform] hover:-translate-y-0.5 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-4 motion-reduce:transform-none motion-reduce:transition-none"
           style={{
             borderColor: "var(--color-control-edge)",
             color: "var(--color-text-primary)",

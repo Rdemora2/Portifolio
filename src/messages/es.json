@@ -31,7 +31,14 @@
     "subtitle": "Go · Next.js · Kotlin · AWS · GCP",
     "viewProjects": "Explorar proyectos",
     "viewExperience": "Ver experiencia",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "statement": "Backend, cloud e interfaces. Ingeniería que acompaña al producto hasta producción.",
+    "pauseMotion": "Pausar animación",
+    "resumeMotion": "Reanudar animación",
+    "evidenceLabel": "Ingeniería en producción",
+    "requests": "solicitudes por mes",
+    "latency": "latencia media",
+    "cache": "cache hit"
   },
   "Metadata": {
     "title": "Roberto Moraes | Ingeniero de Software",
@@ -39,9 +46,9 @@
   },
   "About": {
     "title": "Sobre mí",
-    "mainTitle": "De dev a gestor sin soltar la terminal",
-    "bio": "Empecé como desarrollador full-stack y hoy lidero el área de tecnología de una empresa con operaciones internacionales. En el camino, aprendí que la verdadera gestión exige involucramiento directo, por lo que sigo construyendo backends, configurando infraestructura cloud y garantizando que cada sistema soporte la presión de producción. Mi entrega va desde el código hasta el despliegue final.",
-    "bioExtended": "He entregado proyectos para el Hospital Sírio-Libanês, Grupo Bandeirantes y cadenas hoteleras internacionales, siempre con enfoque en rendimiento real, infraestructura resiliente y equipos que funcionan. Mi perfil es hands-on: codifico, reviso, configuro infra y tomo decisiones técnicas en el mismo día.",
+    "mainTitle": "De la implementación a la gestión de tecnología",
+    "bio": "Comencé en desarrollo full stack y avancé hasta liderar el área de tecnología en Valiant Group. Hoy combino la gestión de personas y productos con programación, revisión técnica e infraestructura en la nube.",
+    "bioExtended": "Mi experiencia incluye sistemas para Hospital Sírio-Libanês, portales de Grupo Bandeirantes y plataformas de TV para cadenas hoteleras. En cada contexto, acompaño el software desde los requisitos hasta la entrega y su operación continua.",
     "location": "São Paulo, Brasil",
     "pillars": {
       "cloud": "Cloud",
@@ -90,7 +97,7 @@
     "managedProducts": {
       "eyebrow": "Ecosistema digital en producción",
       "title": "De la concepción al soporte continuo",
-      "description": "Participé directamente en la gestión integral de estos {count} productos digitales: desde su concepción y la conducción del desarrollo hasta el despliegue en producción y el soporte continuo.",
+      "description": "Dirigí estos {count} productos desde la concepción hasta el desarrollo, el despliegue y el soporte continuo en producción.",
       "lifecycleLabel": "Ciclo de trabajo integral",
       "stages": {
         "concept": "Concepción",
@@ -130,123 +137,171 @@
     "items": {
       "band-news-bandsports": {
         "title": "Grupo Bandeirantes",
-        "role": "Ingeniero de Software & Gerente de TI",
-        "shortDescription": "Gestión de la refactorización completa de 6+ portales del Grupo Bandeirantes, modernizando la stack de comunicación masiva con cero tiempo de inactividad.",
-        "description": "Lideré la modernización tecnológica de misión crítica de los portales Band News, BandSports, Arte 1, Sabor e Arte, TerraViva y Agro+. Orquesté equipos de diseño, ingeniería e infraestructura manteniendo un alineamiento constante con el C-Level del grupo. La migración incluyó una alianza estratégica con Vivo para la distribución de contenido.",
-        "challenge": "Modernizar 6 portales de comunicación masiva simultáneamente, sin interrumpir el servicio para millones de usuarios, coordinando múltiples equipos y manteniendo la consistencia arquitectónica.",
-        "solution": "Arquitectura unificada en Next.js en el frontend y Go en el backend, con NestJS para microservicios auxiliares. Seguridad perimetral vía AWS WAF, Load Balancing elástico y despliegue gradual con rollback automatizado.",
-        "impact": "6 portales modernizados con arquitectura de vanguardia, seguridad de nivel empresarial y capacidad de escala para picos de audiencia (elecciones, eventos deportivos en vivo).",
+        "role": "Ingeniería de software y gestión de TI",
+        "shortDescription": "Modernización de seis portales del Grupo Bandeirantes, con arquitectura compartida y migración sin interrupciones del servicio.",
+        "description": "Lideré la modernización de BandSports, BandNews TV, Arte 1, Sabor & Arte, Terra Viva y Agro+. El trabajo combinó arquitectura de software, coordinación de diseño e ingeniería y seguimiento de la operación. El alcance también incluyó la distribución de contenido mediante la alianza con Vivo.",
+        "challenge": "Sustituir sistemas heredados mientras los seis portales seguían atendiendo a su audiencia. La migración debía conciliar entregas independientes, coherencia entre equipos y picos de tráfico durante elecciones y eventos deportivos.",
+        "solution": "Definí una base compartida en Next.js y Go, con NestJS para servicios auxiliares y despliegues independientes por portal. En AWS, la operación combinó balanceo de carga, WAF, despliegue gradual y rollback automatizado para limitar el riesgo de cada cambio.",
+        "impact": "Los seis portales pasaron a la nueva arquitectura sin interrupciones durante la migración. La base común simplificó el mantenimiento y permitió que cada equipo evolucionara su portal de forma independiente.",
         "metrics": {
           "portalsMigrated": "Portales migrados",
-          "downtime": "Tiempo de inactividad",
-          "partnership": "Alianza"
+          "downtime": "Interrupción en la migración",
+          "partnership": "Alianza de distribución"
         },
         "highlights": [
-          "Coordinación directa de los equipos de Diseño, Frontend, Backend e Infraestructura",
-          "Migración de 6 portales sin tiempo de inactividad",
-          "WAF y seguridad perimetral configurados en AWS",
-          "Alineamiento constante con la dirección y el C-Level de Grupo Bandeirantes",
-          "Alianza estratégica con Vivo para la distribución de contenido",
-          "Stack final: Next.js + Go + NestJS + AWS"
+          "Arquitectura compartida con despliegues independientes",
+          "Coordinación de diseño, frontend, backend e infraestructura",
+          "Migración gradual con rollback automatizado",
+          "Distribución de contenido mediante la alianza con Vivo"
         ],
         "caseStudy": {
-          "problem": "Los portales del Grupo Bandeirantes funcionaban en stacks heredadas con mantenimiento costoso, rendimiento inconsistente y dificultad para escalar en picos de audiencia como elecciones y transmisiones deportivas.",
-          "solution": "Diseñé una arquitectura moderna unificada que permitió refactorizar cada portal con independencia de despliegue pero compartiendo componentes core. La stack Go + Next.js garantizó el máximo rendimiento en SSR con latencia mínima.",
-          "robertoRole": "Actué como gerente técnico: definí la arquitectura, coordiné 4 squads simultáneos, negocié plazos con el C-Level y supervisé cada despliegue. En las sprints críticas, me sumergí en el código para resolver cuellos de botella de rendimiento.",
+          "problem": "Sustituir sistemas heredados mientras los seis portales seguían atendiendo a su audiencia. La migración debía conciliar entregas independientes, coherencia entre equipos y picos de tráfico durante elecciones y eventos deportivos.",
+          "solution": "Definí una base compartida en Next.js y Go, con NestJS para servicios auxiliares y despliegues independientes por portal. En AWS, la operación combinó balanceo de carga, WAF, despliegue gradual y rollback automatizado para limitar el riesgo de cada cambio.",
+          "robertoRole": "Fui responsable de la arquitectura y de la dirección técnica de la entrega. Coordiné cuatro equipos, acordé prioridades y plazos con la dirección y supervisé los despliegues. También trabajé en el código para resolver cuellos de botella de rendimiento en las etapas críticas.",
           "keyDecisions": [
-            "Elección de Go para el backend por rendimiento y latencia",
-            "Adopción de despliegue gradual (canary) para evitar tiempos de inactividad",
-            "AWS WAF para protección DDoS en eventos de alta audiencia"
+            "Compartir la base técnica y mantener despliegues independientes para estandarizar componentes sin migrar todos los portales al mismo tiempo.",
+            "Usar Go para los requisitos de capacidad y latencia del backend, Next.js en la capa web y NestJS en servicios auxiliares.",
+            "Adoptar despliegue gradual y rollback automatizado, con la continuidad del servicio como requisito de la migración.",
+            "Concentrar la protección de borde y el balanceo en AWS para atender variaciones de audiencia."
           ],
           "lessonsLearned": [
-            "La migración de sistemas heredados exige comunicación constante con los stakeholders no técnicos",
-            "El despliegue gradual es innegociable para sistemas de alta visibilidad"
+            "La migración de sistemas heredados requiere alinear las áreas de negocio con las decisiones técnicas. Una arquitectura coherente no resuelve por sí sola los conflictos de prioridades.",
+            "Desplegar por etapas permite controlar mejor el riesgo. El plan de retorno debe formar parte de la entrega desde el inicio."
           ],
           "results": [
-            "6 portales modernizados en un cronograma agresivo",
-            "Cero tiempo de inactividad en todas las migraciones",
-            "Reducción significativa en los costos de mantenimiento"
+            "Seis portales migrados sin downtime durante la transición.",
+            "Componentes compartidos y menor coste de mantenimiento de la base técnica.",
+            "Distribución de contenido incluida en la alianza con Vivo."
           ]
+        },
+        "architecture": [
+          {
+            "title": "Experiencia web",
+            "detail": "Next.js · React · TypeScript"
+          },
+          {
+            "title": "Servicios",
+            "detail": "Go · NestJS · componentes compartidos"
+          },
+          {
+            "title": "Operación",
+            "detail": "AWS · WAF · balanceo · despliegue gradual"
+          }
+        ],
+        "metricContext": {
+          "portalsMigrated": "Portales editoriales del Grupo Bandeirantes.",
+          "downtime": "Durante la transición a la nueva arquitectura.",
+          "partnership": "Vivo, para distribución de contenido."
         }
       },
       "hospital-sirio-libanes": {
         "title": "Hospital Sírio-Libanês",
-        "role": "Ingeniero de Backend & Cloud + Líder Técnico",
-        "shortDescription": "Arquitectura e ingeniería de extremo a extremo de la plataforma de hospitalidad digital. Backend en Go procesando 20M+ peticiones/mes con 6ms de latencia.",
-        "description": "Asumí el liderazgo técnico integral del backend, infraestructura cloud y aplicación nativa. Arquitecturé una plataforma de altísima disponibilidad para uno de los complejos hospitalarios más grandes de América Latina, incluyendo la integración con el sistema Tasy, streaming Unicast con Widevine DRM y aplicación Android TV en Kotlin.",
-        "challenge": "Construir una plataforma resiliente capaz de gestionar operaciones hospitalarias en tiempo real, desde el streaming de contenido a las habitaciones hasta la integración con sistemas de gestión hospitalaria (Tasy), todo con latencia cercana a cero.",
-        "solution": "Backend en Go (Fiber) optimizado para el máximo rendimiento, con orquestación de auto-escalado en GCP (Cloud Run). Caché distribuido con Redis (92% hit rate), persistencia en PostgreSQL y observabilidad vía Prometheus. Aplicación nativa Kotlin con Jetpack Compose y Media3 para Android TV.",
-        "impact": "Plataforma en producción estable con 20M+ peticiones mensuales, latencia media de 6ms e infraestructura lista para auditorías de salud y expansión a nuevas unidades hospitalarias.",
+        "role": "Backend, cloud y liderazgo técnico",
+        "shortDescription": "Plataforma de hospitalidad digital con backend en Go, integración con Tasy y aplicación Android TV. Más de 20 millones de solicitudes al mes.",
+        "description": "Diseñé e implementé la plataforma que lleva información y contenido a las televisiones de las habitaciones del Hospital Sírio-Libanês. Fui responsable del backend, la infraestructura en GCP y la aplicación nativa, integrando Tasy y la reproducción protegida por Widevine DRM.",
+        "challenge": "Conectar información del sistema hospitalario, streaming protegido y una interfaz de TV en una operación fiable. El backend necesitaba responder con baja latencia, mientras la aplicación debía atender las particularidades de Android TV y de la integración con Tasy.",
+        "solution": "Implementé el backend en Go con Fiber, PostgreSQL para persistencia y Redis para caché. Cloud Run permitió escalar los servicios sin administrar servidores. En Android TV utilicé Kotlin, Jetpack Compose y Media3, con Widevine para proteger el contenido. Prometheus dio soporte al monitoreo de la operación.",
+        "impact": "El backend atendió más de 20 millones de solicitudes mensuales, con una respuesta media de 6 ms y un 92% de aciertos en caché. La plataforma reunió información hospitalaria y entretenimiento en una sola experiencia en las televisiones de las habitaciones.",
         "metrics": {
-          "requestsPerMonth": "Peticiones/mes",
-          "averageResponse": "Respuesta media",
-          "cacheHitRate": "Tasa de aciertos de caché"
+          "requestsPerMonth": "Solicitudes al mes",
+          "averageResponse": "Respuesta media de la API",
+          "cacheHitRate": "Aciertos en caché"
         },
         "highlights": [
-          "100% del backend y cloud hechos por mí, sin terceros",
-          "Go + Fiber: elegidos por baja latencia y alto rendimiento",
-          "Integración con sistema hospitalario Tasy para datos del paciente",
-          "Streaming Unicast con DRM Widevine (protección de contenido premium)",
-          "App nativa Kotlin/Jetpack Compose para Android TV",
-          "Monitoreo con Prometheus y alertas en tiempo real",
-          "Cloud Run con auto-scaling en GCP"
+          "Implementación del backend y la infraestructura cloud",
+          "Integración con el sistema hospitalario Tasy",
+          "Aplicación Android TV en Kotlin y Jetpack Compose",
+          "Streaming con Media3 y Widevine DRM",
+          "Monitoreo y alertas con Prometheus"
         ],
         "caseStudy": {
-          "problem": "El Sírio-Libanês necesitaba una plataforma digital de hospitalidad para sus pacientes que integrara información en tiempo real de Tasy, streaming de contenido con protección DRM y una interfaz intuitiva en los televisores de las habitaciones.",
-          "solution": "Diseñé y construí todo el stack: backend en Go para máximo rendimiento, infraestructura GCP con auto-escalado, caché Redis para respuestas instantáneas y aplicación Android TV en Kotlin con streaming protegido por Widevine DRM.",
-          "robertoRole": "Fui el ingeniero responsable de todo el stack técnico (backend, infra, mobile). Simultáneamente, actué como líder técnico definiendo arquitectura, estándares de código y monitoreo. La decisión de usar Go surgió de la necesidad de latencia ultra baja en un entorno hospitalario.",
+          "problem": "Conectar información del sistema hospitalario, streaming protegido y una interfaz de TV en una operación fiable. El backend necesitaba responder con baja latencia, mientras la aplicación debía atender las particularidades de Android TV y de la integración con Tasy.",
+          "solution": "Implementé el backend en Go con Fiber, PostgreSQL para persistencia y Redis para caché. Cloud Run permitió escalar los servicios sin administrar servidores. En Android TV utilicé Kotlin, Jetpack Compose y Media3, con Widevine para proteger el contenido. Prometheus dio soporte al monitoreo de la operación.",
+          "robertoRole": "Implementé el backend, la infraestructura cloud y la aplicación Android TV, además de asumir el liderazgo técnico. Definí la arquitectura, los estándares de código y el monitoreo, acompañando la integración entre los servicios y la experiencia en TV.",
           "keyDecisions": [
-            "Go + Fiber por rendimiento: 6ms de latencia media",
-            "Redis como capa de caché: 92% de hit rate redujo la carga en PostgreSQL",
-            "Widevine DRM para protección de contenido premium",
-            "Cloud Run para auto-escalado sin gestionar servidores"
+            "Usar Go y Fiber para atender el volumen de solicitudes con baja latencia en el backend.",
+            "Introducir Redis como caché para reducir accesos a PostgreSQL. La tasa de aciertos en producción alcanzó el 92%.",
+            "Ejecutar los servicios en Cloud Run para obtener escalado automático sin administrar servidores.",
+            "Integrar Media3 y Widevine en la aplicación nativa para combinar reproducción de vídeo y protección del contenido.",
+            "Incluir métricas y alertas con Prometheus para observar el comportamiento del backend en producción."
           ],
           "lessonsLearned": [
-            "En salud, la confiabilidad va antes que las funcionalidades",
-            "La observabilidad no es opcional. Prometheus salvó noches de sueño",
-            "La integración con sistemas heredados (Tasy) exige documentación obsesiva"
+            "La fiabilidad depende de decisiones en todas las capas, desde la integración hospitalaria hasta la reproducción en TV.",
+            "La observabilidad en producción forma parte de la implementación. Las métricas y alertas deben evolucionar con los servicios.",
+            "La integración con Tasy exige documentar con claridad los contratos y los comportamientos esperados entre sistemas."
           ],
           "results": [
-            "20M+ peticiones/mes sin degradación de rendimiento",
-            "Latencia media de 6ms en producción",
-            "Plataforma aprobada para auditorías de salud"
+            "Backend en producción con respuesta media de 6 ms.",
+            "Caché Redis con un 92% de aciertos, reduciendo accesos a la base de datos.",
+            "Integración entre Tasy, servicios cloud y aplicación Android TV con contenido protegido."
           ]
+        },
+        "architecture": [
+          {
+            "title": "Aplicación",
+            "detail": "Kotlin · Jetpack Compose · Media3 · Widevine"
+          },
+          {
+            "title": "Backend y datos",
+            "detail": "Go / Fiber · Tasy · PostgreSQL · Redis"
+          },
+          {
+            "title": "Operación",
+            "detail": "GCP · Cloud Run · Prometheus"
+          }
+        ],
+        "metricContext": {
+          "requestsPerMonth": "Volumen de solicitudes del backend en producción.",
+          "averageResponse": "Media del backend; no representa la latencia de toda la experiencia.",
+          "cacheHitRate": "Tasa de aciertos observada en Redis."
         }
       },
       "fiesta-americana": {
         "title": "Resort Fiesta Americana",
-        "role": "Gestor de Proyecto Internacional",
-        "shortDescription": "Gestión transnacional de una solución pionera en hospitalidad: convergencia de streaming Unicast y broadcast coaxial en una única plataforma.",
-        "description": "Lideré una operación global coordinando equipos de ingeniería distribuidos en múltiples zonas horarias. El proyecto involucró la creación de una aplicación nativa Kotlin que hace algo inédito en el sector: integra simultáneamente señales de TV por cable (broadcast coaxial) y streaming digital (Unicast) en una interfaz única en la TV de la habitación.",
-        "challenge": "Viabilizar una solución de hardware/software inédita en el sector de la hospitalidad, alineando una compleja ingeniería de decodificación con la gestión de stakeholders distribuidos en diferentes continentes y culturas.",
-        "solution": "Gobernanza de proyecto intercultural con comunicación adaptada a cada zona horaria. Ingeniería que involucra una integración profunda de decodificadores de hardware (TV Box y dongles USB) con frameworks nativos de Android TV, convergiendo dos paradigmas de transmisión en una experiencia unificada.",
-        "impact": "Posicionamiento disruptivo de la cadena hotelera con una plataforma pionera que convergió tecnologías de transmisión antes aisladas, creando una experiencia premium para los huéspedes.",
+        "role": "Gestión de proyecto y coordinación técnica",
+        "shortDescription": "Coordinación internacional de una plataforma Android TV que reúne canales por coaxial y streaming IP en una misma interfaz.",
+        "description": "Dirigí el proyecto de hospitalidad digital del resort Fiesta Americana, coordinando equipos de ingeniería en distintos países y husos horarios. La entrega reunió televisión por cable y streaming en una aplicación nativa para las habitaciones.",
+        "challenge": "Unificar dos fuentes de contenido que antes exigían cambiar la entrada de la televisión. Además de la aplicación, el proyecto dependía de integrar TV Box y dongles USB para la señal coaxial, con desarrollo y validación distribuidos entre equipos internacionales.",
+        "solution": "Coordiné una aplicación Kotlin con Jetpack Compose, streaming Unicast y guía electrónica de programación. Los dongles USB y los drivers específicos llevaron la señal coaxial a la misma interfaz. La planificación concilió los ciclos de prueba del hardware, la evolución del software y los husos horarios de los equipos.",
+        "impact": "La solución se implantó en la operación hotelera, reuniendo canales de televisión y streaming en la aplicación. Los huéspedes pudieron acceder a ambas fuentes sin cambiar la entrada del televisor.",
         "highlights": [
-          "Equipos distribuidos en múltiples países y zonas horarias",
-          "Comunicación intercultural con stakeholders internacionales",
-          "Responsabilidad total sobre plazos, calidad y entregas",
-          "Solución inédita: Unicast + Broadcast simultáneamente en app nativa",
-          "Integración de hardware: TV Box + señal coaxial vía USB Dongle",
-          "TV abierta y cable en la misma interfaz de la app de hospitalidad"
+          "Coordinación de equipos internacionales",
+          "Roadmap, plazos, riesgos y calidad de entrega",
+          "Validación técnica de la arquitectura Android TV",
+          "Integración de señal coaxial y streaming IP"
         ],
         "caseStudy": {
-          "problem": "Las cadenas hoteleras internacionales tenían dos sistemas separados para la televisión: uno para canales por cable (coaxial) y otro para streaming digital. Los huéspedes tenían que alternar entre las entradas de la TV, creando una experiencia fragmentada.",
-          "solution": "Coordiné el desarrollo de una aplicación Kotlin que decodifica ambas señales simultáneamente, presentando todo en una interfaz unificada con EPG integrado. La integración de hardware exigió drivers personalizados para dongles USB.",
-          "robertoRole": "Gestión completa del proyecto internacional: alineamiento de stakeholders en múltiples países, definición del roadmap, gestión de riesgos y garantía de calidad. Mi experiencia técnica en Android TV fue fundamental para validar las decisiones de arquitectura.",
+          "problem": "Unificar dos fuentes de contenido que antes exigían cambiar la entrada de la televisión. Además de la aplicación, el proyecto dependía de integrar TV Box y dongles USB para la señal coaxial, con desarrollo y validación distribuidos entre equipos internacionales.",
+          "solution": "Coordiné una aplicación Kotlin con Jetpack Compose, streaming Unicast y guía electrónica de programación. Los dongles USB y los drivers específicos llevaron la señal coaxial a la misma interfaz. La planificación concilió los ciclos de prueba del hardware, la evolución del software y los husos horarios de los equipos.",
+          "robertoRole": "Fui responsable de la gestión del proyecto: alineación de equipos, definición del roadmap, seguimiento de riesgos y calidad. Mi experiencia en Android TV me permitió evaluar decisiones de arquitectura e incorporar las restricciones del hardware a la planificación.",
           "keyDecisions": [
-            "Uso de dongles USB para la captura de señal coaxial (solución innovadora)",
-            "Kotlin/Jetpack Compose para una interfaz unificada",
-            "Sprints adaptados a diferentes zonas horarias"
+            "Integrar la señal coaxial mediante dongles USB y drivers específicos para ofrecer los canales dentro de la aplicación.",
+            "Usar Kotlin y Jetpack Compose para reunir reproducción y navegación en una interfaz nativa de Android TV.",
+            "Organizar las entregas según los husos horarios de los equipos y los ciclos de validación del hardware."
           ],
           "lessonsLearned": [
-            "Los proyectos internacionales exigen el triple de documentación",
-            "La integración de hardware tiene ciclos de prueba mucho más largos que el software puro"
+            "Los equipos en husos diferentes necesitan decisiones documentadas para avanzar sin depender de reuniones simultáneas.",
+            "La integración de hardware requiere su propio tiempo de validación. Ese esfuerzo debe planificarse junto con el desarrollo del software."
           ],
           "results": [
-            "Primera aplicación del sector en converger broadcast + unicast",
-            "Implementación exitosa en cadena hotelera internacional"
+            "Aplicación implantada en el resort con canales coaxiales y streaming Unicast.",
+            "Guía de programación y navegación reunidas en la interfaz de hospitalidad."
           ]
-        }
+        },
+        "architecture": [
+          {
+            "title": "Señal de TV",
+            "detail": "Broadcast coaxial · TV Box · dongle USB"
+          },
+          {
+            "title": "Aplicación",
+            "detail": "Android TV · Kotlin · Jetpack Compose · EPG"
+          },
+          {
+            "title": "Vídeo digital",
+            "detail": "Streaming Unicast · Media3"
+          }
+        ]
       }
     }
   },
@@ -271,74 +326,75 @@
       "luxury": {
         "category": "Lujo · Moda · Joyería",
         "title": "VESTIGIAL — experiencia digital para marcas de lujo",
-        "description": "Una presencia editorial creada para joyería, moda y negocios premium, combinando narrativa visual, tipografía expresiva y una navegación inmersiva.",
+        "description": "Interfaz editorial para moda y lujo, con fotografía destacada, jerarquía tipográfica y navegación adaptada a distintas pantallas.",
         "imageAlt": "Página del proyecto VESTIGIAL con una fotografía en blanco y negro de una pieza metálica junto al título Compresión."
       },
       "legal": {
         "category": "Derecho empresarial",
         "title": "Almeida Vilar Costa — presencia institucional jurídica",
-        "description": "Una experiencia sobria y contemporánea, estructurada para comunicar autoridad, claridad y confianza en servicios jurídicos de alta complejidad.",
+        "description": "Sitio institucional que organiza áreas de práctica, contenido jurídico y contacto con navegación directa y prioridad en la lectura.",
         "imageAlt": "Página inicial de Almeida Vilar Costa con el título Claridad jurídica para mover negocios y una composición arquitectónica en tonos verdes."
       },
       "tivix": {
         "category": "Tecnología · Software · Inteligencia artificial",
         "title": "Tivix Technologies — presencia digital para software e IA",
-        "description": "Una experiencia tecnológica de alto contraste que presenta desarrollo full stack, inteligencia artificial y automatización mediante una narrativa directa, responsiva y guiada por el movimiento.",
+        "description": "Presentación de servicios de software, inteligencia artificial y automatización, con secciones claras y movimiento integrado en la navegación.",
         "imageAlt": "Página inicial de Tivix Technologies con una sección de apertura centrada sobre fondo negro, tipografía blanca y luces en azul y violeta."
       },
       "solum": {
         "category": "Paisajismo · Arquitectura",
         "title": "Solum Paisagismo — portafolio y presencia institucional",
-        "description": "Una experiencia visual centrada en la naturaleza y la arquitectura, destacando proyectos de paisajismo con elegancia y capacidad de respuesta.",
+        "description": "Portafolio de paisajismo que organiza fotografías y proyectos en una composición adaptable, conectando imagen y contexto.",
         "imageAlt": "Página de inicio de Solum Paisagismo con fotografía de un jardín y tipografía elegante."
       },
       "axenor": {
         "category": "Fintech · Tecnología financiera",
         "title": "Axenor Fintech — presencia institucional financiera",
-        "description": "Plataforma digital para servicios financieros, construida con un enfoque en la confianza, claridad y conversión.",
+        "description": "Interfaz institucional para servicios financieros, con jerarquía de información y recorridos claros para explorar soluciones y contactar.",
         "imageAlt": "Página de inicio de Axenor Fintech con una interfaz moderna e información financiera."
       },
       "arua": {
         "category": "Resort · Hospitalidad Premium",
         "title": "Aruá — sitio web de un resort de alto estándar",
-        "description": "Una experiencia de alto nivel que traduce la exclusividad de un resort, ofreciendo una navegación elegante y un aspecto sofisticado para los huéspedes.",
+        "description": "Sitio de un resort que presenta espacios, alojamientos e información para la estancia en una experiencia adaptable.",
         "imageAlt": "Página de inicio del resort Aruá que muestra un entorno de hospitalidad premium."
       },
       "portal-noticias-atual": {
         "category": "Periodismo · Portal de Noticias",
         "title": "Atual — portal de noticias editorial moderno",
-        "description": "Un portal de noticias responsivo y editorial, construido con enfoque en legibilidad, rendimiento y una experiencia de navegación fluida para el lector.",
+        "description": "Portal de noticias con jerarquía editorial, organización de titulares y páginas pensadas para la lectura en distintos dispositivos.",
         "imageAlt": "Página de inicio del portal de noticias Atual mostrando titulares y un diseño editorial moderno."
       },
       "carla-moraes": {
         "category": "Arquitectura floral · Paisajismo autoral",
         "title": "Carla Moraes — arquitectura floral y paisajismo autoral",
-        "description": "Presencia institucional desarrollada para la arquitecta Carla Moraes, destacando proyectos de paisajismo y arte floral con elegancia visual, tipografía editorial y experiencia responsiva.",
+        "description": "Portafolio de arquitectura floral y paisajismo, con proyectos destacados y tipografía editorial que conecta imágenes, servicios y contacto.",
         "imageAlt": "Página inicial de Carla Moraes Arquitectura Floral con el título Transformamos espacios en experiencias naturales."
       },
       "sen-omakase": {
         "category": "Gastronomía · Omakase · Hospitalidad",
         "title": "SEN — cocina japonesa de temporada",
-        "description": "Una experiencia editorial y sensorial para un restaurante conceptual, que combina narrativa de temporada, alta cocina japonesa y un recorrido de reserva sofisticado.",
+        "description": "Interfaz para un restaurante japonés, con narrativa de temporada, presentación de su propuesta gastronómica y recorrido hasta la reserva.",
         "imageAlt": "Página inicial de SEN con una barra japonesa íntima y el título El arte de estar presente."
       },
       "lp-estudio-musica": {
         "category": "Música · Sello independiente · Cultura",
         "title": "RUPTURA//REC — experiencia digital para sello independiente",
-        "description": "Una experiencia editorial e inmersiva que traduce la identidad de un sello independiente a través de narrativa sonora, movimiento y arquitectura responsiva.",
+        "description": "Sitio para un sello independiente, con tipografía expresiva, contenido sobre artistas y movimiento al servicio de su identidad musical.",
         "imageAlt": "Página inicial de RUPTURA//REC con tipografía expresiva, el retrato de una artista y la identidad visual del sello."
       },
       "casa-brasa": {
         "category": "Comercio electrónico · Tabaquería · Curaduría",
         "title": "Casa Brasa — comercio editorial para una tabaquería contemporánea",
-        "description": "Una experiencia de comercio premium que reúne curaduría responsable, información técnica y navegación clara para papeles, tabacos naturales, puros y accesorios.",
+        "description": "Catálogo de tabaquería con organización por productos, información técnica y composición editorial para facilitar la consulta.",
         "imageAlt": "Página inicial de Casa Brasa con una composición editorial de papel, tabaco natural, puro, cortador, encendedor y cenicero."
       }
     },
-    "unavailable": "Demostración temporalmente no disponible"
+    "unavailable": "Demostración temporalmente no disponible",
+    "moreWork": "Explorar {count} interfaces más"
   },
   "Experience": {
-    "title": "Experiencia Profesional",
+    "title": "Responsabilidades en cada etapa",
     "title_small": "Donde he trabajado",
     "present": "Actualidad",
     "items": {
@@ -346,66 +402,64 @@
         "company": "Valiant Group do Brasil",
         "role": "Ingeniero de Software & Gerente de TI",
         "period": "Ene 2026 · Actualidad",
-        "description": "Lidero el área de tecnología de la empresa, incluyendo infraestructura cloud, DevOps, seguridad y operaciones. Gestiono el ciclo completo de productos de software que impactan a más de 100k usuarios activos. Dirijo operaciones internacionales y me mantengo involucrado en el código, desde backends en Go hasta aplicaciones Android TV.",
+        "description": "Lidero el área de tecnología de Valiant Group, que abarca ingeniería de software, infraestructura, seguridad y operación. Acompaño productos con más de 100 mil usuarios activos y proyectos internacionales, manteniendo participación directa en arquitectura e implementación.",
         "highlights": [
-          "Principal decisor de tecnología de la empresa",
-          "Softwares en producción con más de 100k usuarios activos",
-          "Proyectos internacionales en múltiples países",
-          "Perfil hands-on: web, móvil, Android TV, broadcast y unicast",
-          "Backends de alto rendimiento en Golang",
-          "Infraestructura cloud en GCP, AWS y Oracle"
+          "Prioridades técnicas y estándares de ingeniería",
+          "Gestión del ciclo de vida de los productos y la operación",
+          "Backends en Go y aplicaciones web y Android TV",
+          "Infraestructura en GCP, AWS y Oracle"
         ]
       },
       "valiant-pm": {
         "company": "Valiant Group do Brasil",
         "role": "Gerente de Proyectos de TI",
         "period": "Nov 2024 · Dic 2025",
-        "description": "Orquesté equipos multidisciplinarios garantizando entregas ágiles de nuevos proyectos. Con una sólida formación en desarrollo, dirigí el gobierno de infraestructura cloud en GCP, pipelines de CI/CD y gestión del ciclo de vida de los productos.",
+        "description": "Gestioné proyectos de software y coordiné al equipo de desarrollo, conectando requisitos de clientes, prioridades de entrega y decisiones técnicas. También supervisé la infraestructura en GCP y la evolución de los pipelines de CI/CD.",
         "highlights": [
-          "Equipo de desarrollo bajo mi gestión directa",
-          "Definición de stack técnico y estándares de calidad",
-          "Optimización de infraestructura cloud GCP",
-          "Interfaz directa con clientes y stakeholders"
+          "Coordinación del equipo y seguimiento de entregas",
+          "Selección de tecnologías y criterios de calidad",
+          "Revisión de infraestructura en GCP",
+          "Alineación técnica con clientes y otras áreas"
         ]
       },
       "valiant-dev": {
         "company": "Valiant Group do Brasil",
         "role": "Desarrollador Web / Móvil Full Stack",
         "period": "Dic 2023 · Dic 2024",
-        "description": "Desarrollo full stack de extremo a extremo: web, móvil e infraestructura. Trabajé desde el diseño de APIs hasta el despliegue en producción, con enfoque en rendimiento y estabilidad.",
+        "description": "Desarrollé aplicaciones web y móviles, APIs e integraciones. Participé en el modelado de datos, la configuración de infraestructura y el despliegue de servicios, siguiendo su comportamiento en producción.",
         "highlights": [
-          "Full stack: JavaScript, TypeScript, React, Kotlin, Go",
-          "Bases de datos: PostgreSQL, MySQL, BigQuery, SQL Server, MongoDB, Redis",
-          "Alojamiento y configuración en la nube en GCP",
-          "Monitoreo y optimización del rendimiento en producción"
+          "Interfaces y servicios con JavaScript, TypeScript, Kotlin y Go",
+          "Integraciones con bases relacionales, NoSQL y caché",
+          "Configuración de servicios y despliegue en GCP",
+          "Monitoreo y mejoras de rendimiento"
         ]
       },
       "weber-dev": {
         "company": "Weber Technologies",
         "role": "Desarrollador Web Full Stack",
         "period": "May 2023 · Dic 2023",
-        "description": "Desarrollo full stack con React y Python/Django. Desde la concepción hasta la implementación y despliegue, pasando por la contenerización con Docker.",
+        "description": "Desarrollé aplicaciones con React y Python/Django, desde la definición de la solución hasta el despliegue. También preparé entornos de ejecución con Docker.",
         "highlights": [
-          "Desarrollo full stack con React y Python/Django",
-          "Contenerización con Docker",
-          "Ciclo completo: concepción, desarrollo y despliegue"
+          "Implementación de interfaces en React",
+          "Desarrollo de backend con Python y Django",
+          "Contenedorización y despliegue de aplicaciones"
         ]
       },
       "buser-dev": {
         "company": "Buser Brasil",
         "role": "Desarrollador Web Full Stack",
         "period": "Abr 2022 · Abr 2023",
-        "description": "Mantenimiento y evolución de producto a gran escala. Implementación de nuevas funcionalidades en codebase existente con Vue.js, Python y Django.",
+        "description": "Trabajé en el mantenimiento y la evolución del producto, implementando funcionalidades en una base de código existente con Vue.js, Python y Django.",
         "highlights": [
-          "Mantenimiento y evolución de producto a gran escala",
-          "Implementación de nuevas funcionalidades en codebase existente",
-          "Stack: Vue.js, Python, Django, Docker"
+          "Evolución de interfaces y flujos con Vue.js",
+          "Implementación y mantenimiento de servicios en Django",
+          "Desarrollo en entornos con Docker"
         ]
       }
     }
   },
   "Insights": {
-    "title": "Insights & Artículos",
+    "title": "Artículos publicados",
     "title_small": "Pensamiento Técnico",
     "subtitle": "Reflexiones sobre el liderazgo técnico, la arquitectura de sistemas y las decisiones que marcan la diferencia en producción.",
     "readTime": "lectura",
@@ -420,14 +474,15 @@
     },
     "items": {
       "insight-2": {
-        "title": "Go en producción: lo que nadie te cuenta",
-        "summary": "Después de ejecutar Go en sistemas que procesan más de 20M de peticiones al mes, comparto las decisiones de arquitectura que marcaron la diferencia y los errores que casi cuestan caro."
+        "title": "Go en producción: arquitectura, caché y operación",
+        "summary": "Las decisiones detrás del backend de Hospital Sírio-Libanês: caché híbrida, límites en las integraciones y observabilidad en un sistema con más de 20 millones de solicitudes al mes."
       }
-    }
+    },
+    "topicsLabel": "Temas del artículo"
   },
   "Contact": {
-    "title": "Contacto profesional",
-    "subtitle": "Un espacio directo para intercambiar ideas sobre ingeniería de software, arquitectura, tecnología y gestión.",
+    "title": "Canales directos",
+    "subtitle": "Elige el canal más adecuado para la conversación. En GitHub también encontrarás mis repositorios públicos.",
     "form": {
       "name": "Nombre",
       "email": "Correo electrónico",
@@ -463,13 +518,15 @@
     "privacyLink": "Cómo se tratan tus datos",
     "formLoading": "Cargando formulario. Si no aparece, usa uno de los contactos directos de esta página.",
     "formUnavailable": "No se pudo cargar el formulario. Usa uno de los contactos directos de esta página.",
-    "opensNewTab": "(se abre en una pestaña nueva)"
+    "opensNewTab": "(se abre en una pestaña nueva)",
+    "formTitle": "Envía un mensaje",
+    "formDescription": "Comparte el contexto y lo que te gustaría conversar. El campo empresa es opcional."
   },
   "PortfolioPages": {
     "home": {
       "profile": {
         "eyebrow": "Perfil",
-        "title": "Ingeniería como eje. Gestión como multiplicador.",
+        "title": "Profundidad técnica. Visión de producto.",
         "description": "Mi trabajo comienza con el problema técnico y acompaña al producto hasta la operación. Diseño arquitecturas, escribo y reviso código, estructuro cloud y observabilidad y, cuando el contexto lo exige, coordino personas, prioridades y riesgos para transformar decisiones en software confiable.",
         "pillars": {
           "endToEnd": {
@@ -491,14 +548,14 @@
       },
       "projects": {
         "eyebrow": "Proyectos seleccionados",
-        "title": "Software en producción. Contexto, decisiones y resultados.",
+        "title": "Sistemas reales. Resultados medibles.",
         "description": "Casos que muestran cómo arquitectura, código, infraestructura y coordinación se conectan cuando importan el rendimiento, la confiabilidad y la continuidad.",
         "openCase": "Abrir caso de estudio",
         "viewAll": "Ver todos los proyectos"
       },
       "practice": {
         "eyebrow": "Actuación",
-        "title": "Del backend a la operación, siempre con el producto en el centro.",
+        "title": "De la arquitectura a la operación.",
         "description": "Mi experiencia combina profundidad de implementación, arquitectura de sistemas y responsabilidad sobre lo que sucede después del despliegue.",
         "areas": {
           "backend": {
@@ -522,7 +579,7 @@
       },
       "trajectory": {
         "eyebrow": "Trayectoria",
-        "title": "Una evolución continua entre desarrollo y liderazgo.",
+        "title": "Crecer sin alejarse del código.",
         "description": "Desde 2022, amplié mi actuación del desarrollo full stack a la gestión del área de tecnología, incorporando arquitectura, cloud, operaciones y liderazgo sin perder cercanía con el código.",
         "steps": {
           "buser": {
@@ -545,29 +602,37 @@
       },
       "insight": {
         "eyebrow": "Pensamiento técnico",
-        "title": "Aprendizajes de producción, sin abstracción innecesaria.",
+        "title": "Lo que enseña la producción.",
         "description": "Arquitectura, rendimiento y liderazgo técnico explicados a partir de sistemas reales.",
         "cta": "Leer artículo"
+      },
+      "contact": {
+        "eyebrow": "La próxima conversación",
+        "title": "Un desafío técnico. Una buena conversación.",
+        "description": "Cuéntame el contexto, qué necesita evolucionar y dónde puedo contribuir.",
+        "cta": "Conversemos"
       }
     },
     "work": {
       "metaTitle": "Proyectos de Ingeniería de Software",
-      "metaDescription": "Casos de estudio de ingeniería, arquitectura, cloud y liderazgo técnico en sistemas de producción, además de un laboratorio independiente de interfaces.",
+      "metaDescription": "Casos de Roberto Moraes: backend Go en Sírio-Libanês, migración de portales Bandeirantes y Android TV en Fiesta Americana. Arquitectura, decisiones y resultados.",
       "eyebrow": "Proyectos",
-      "title": "Ingeniería explicada por decisiones, no por una lista de tecnologías.",
-      "description": "Una selección de sistemas y plataformas donde arquitectura, implementación, operación y liderazgo forman parte de la misma entrega.",
+      "title": "Ingeniería que llega a producción.",
+      "description": "De la migración de portales a la integración de televisiones hospitalarias. Tres casos sobre arquitectura, implementación y responsabilidad en la entrega.",
       "casesEyebrow": "Casos en producción",
-      "casesTitle": "Problemas complejos, software que sostiene la operación.",
-      "casesDescription": "Cada caso registra contexto, responsabilidad, decisiones técnicas y evidencias de resultados.",
+      "casesTitle": "Sistemas reales. Decisiones explicadas.",
+      "casesDescription": "El problema, mi papel y las decisiones detrás de cada implementación.",
       "labEyebrow": "Laboratorio web",
-      "labTitle": "Interfaces publicadas para explorar ingeniería frontend y dirección visual.",
-      "labDescription": "Proyectos independientes donde exploro arquitectura frontend, responsividad, accesibilidad y movimiento, con ejecuciones disponibles online."
+      "labTitle": "Interfaces para explorar y construir.",
+      "labDescription": "Proyectos propios para explorar composición visual, arquitectura frontend y navegación adaptable. Recorre las demostraciones y sus distintos contextos de uso.",
+      "caseCount": "{count} casos de estudio",
+      "navigation": "Secciones de proyectos"
     },
     "case": {
       "back": "Volver a proyectos",
       "productionCase": "Caso en producción",
       "internationalCase": "Contexto internacional",
-      "overview": "Visión general",
+      "overview": "Contexto del proyecto",
       "client": "Organización",
       "role": "Responsabilidad",
       "period": "Período",
@@ -576,12 +641,12 @@
       "impact": "Impacto",
       "metrics": "Evidencias de producción",
       "contribution": "Mi actuación",
-      "decisions": "Decisiones clave",
+      "decisions": "Decisiones de ingeniería",
       "results": "Resultados",
       "lessons": "Aprendizajes",
       "stack": "Tecnologías y plataforma",
       "managedProducts": "Productos bajo gestión",
-      "gallery": "Galería del Proyecto",
+      "gallery": "La plataforma en uso",
       "galleryClose": "Cerrar imagen ampliada",
       "galleryDialog": "Vista ampliada de la galería",
       "galleryNext": "Siguiente imagen",
@@ -592,22 +657,30 @@
       "galleryPause": "Pausar galería",
       "galleryResume": "Reanudar galería",
       "galleryGoTo": "Ir a la imagen",
-      "openNext": "Abrir siguiente caso"
+      "openNext": "Abrir siguiente caso",
+      "contents": "En este caso",
+      "contextLabel": "Contexto",
+      "engineeringLabel": "Ingeniería",
+      "ownershipLabel": "Responsabilidad",
+      "deliveryLabel": "Entrega",
+      "practiceLabel": "Práctica",
+      "scopeLabel": "Alcance"
     },
     "experience": {
       "metaTitle": "Experiencia Profesional",
       "metaDescription": "Trayectoria completa de Roberto Moraes entre ingeniería de software, arquitectura, cloud, operación, liderazgo técnico y gestión de TI.",
       "eyebrow": "Experiencia",
-      "title": "Una trayectoria construida entre ingeniería, operación y liderazgo.",
-      "description": "Del desarrollo full stack a la gestión del área de TI, cada etapa amplió mi alcance sin alejarme del código ni de la responsabilidad por producción.",
-      "progression": "Progresión dentro de la empresa · 3 puestos"
+      "title": "Del desarrollo al liderazgo técnico.",
+      "description": "Cinco puestos, con responsabilidades que crecieron desde el desarrollo web hasta la gestión de productos, equipos e infraestructura. Esta cronología explica el alcance de cada etapa.",
+      "progression": "Progresión dentro de la empresa · 3 puestos",
+      "contents": "En esta página"
     },
     "about": {
       "metaTitle": "Sobre mí y Competencias",
       "metaDescription": "Perfil técnico de Roberto Moraes: ingeniería de software de punta a punta, arquitectura, cloud, observabilidad, liderazgo técnico y gestión de TI.",
       "eyebrow": "Sobre mí",
-      "title": "Profundidad técnica para construir. Visión sistémica para conducir.",
-      "description": "Mi carrera se construyó acompañando sistemas de punta a punta: comprensión del problema, decisiones de arquitectura, implementación, despliegue, observabilidad y evolución en producción.",
+      "title": "Ingeniería con visión de producto y operación.",
+      "description": "Trabajo entre arquitectura, implementación y gestión de TI. Mi enfoque es conectar las decisiones de ingeniería con las necesidades del producto, la capacidad del equipo y la operación en producción.",
       "bridge": "Hoy amplío ese trabajo desde la gestión de TI, alineando personas, prioridades y riesgos sin perder cercanía con la ingeniería.",
       "motionPause": "Pausar movimiento",
       "motionResume": "Reanudar movimiento",
@@ -632,48 +705,51 @@
         }
       },
       "faqEyebrow": "Preguntas frecuentes",
-      "faqTitle": "Respuestas directas sobre stack, ingeniería backend y devops.",
-      "faqDescription": "Resumen técnico para equipos de ingeniería, reclutadores y sistemas de IA.",
+      "faqTitle": "Cómo trabajo en la práctica.",
+      "faqDescription": "Criterios de arquitectura, elección de tecnologías y responsabilidades en la entrega de software.",
       "faq": {
         "specialties": {
-          "question": "¿Cuáles son las principales competencias técnicas de Roberto Moraes?",
-          "answer": "Roberto Moraes se desempeña como Ingeniero de Software Full Stack con fuerte especialización en Backend y DevOps. Su enfoque principal es el desarrollo de sistemas distribuidos de alto rendimiento en Go (Golang), arquitecturas de API resilientes, plataformas web modernas con Next.js y TypeScript, y automatización de infraestructura en la nube (AWS y GCP)."
+          "question": "¿Dónde concentro mi trabajo técnico?",
+          "answer": "Trabajo en ingeniería full stack, con foco en backend, infraestructura y operación. Desarrollo APIs en Go, aplicaciones con React y Next.js, bases de datos y automatización de entregas en AWS y GCP."
         },
         "languages": {
-          "question": "¿Qué lenguajes de programación dominas y cuál es tu criterio de elección tecnológica?",
-          "answer": "Cuento con experiencia práctica comprobada en producción con Go (Golang), TypeScript, JavaScript, Python, Kotlin y SQL (junto con ecosistemas como Next.js, React, Vue, NestJS, Django y Jetpack Compose). Con la madurez de la ingeniería y la evolución de las herramientas de IA, no mantengo un apego dogmático a un lenguaje en particular: mi prioridad es dominar los fundamentos de computación, concurrencia y arquitectura para aplicar siempre la tecnología que mejor se adapte a los requerimientos del software a desarrollar."
+          "question": "¿Cómo elijo lenguajes y herramientas?",
+          "answer": "Uso Go, TypeScript, JavaScript, Python, Kotlin y SQL en distintos contextos. La elección considera los requisitos del producto, el comportamiento bajo carga, el conocimiento del equipo y el costo de mantener la solución."
         },
         "scale": {
-          "question": "¿Cuál es la experiencia de Roberto con sistemas de gran escala y rendimiento?",
-          "answer": "Ha desarrollado y mantiene backends en producción que procesan más de 20 millones de solicitudes al mes con 6ms de latencia promedio y 92% de acierto en caché. Cuenta con experiencia en migraciones críticas de gran envergadura, como la refactorización simultánea de 6+ portales de comunicación masiva de Grupo Bandeirantes con cero tiempo de inactividad."
+          "question": "¿Qué experiencia tengo con escala y rendimiento?",
+          "answer": "El backend documentado de Hospital Sírio-Libanês procesa más de 20 millones de solicitudes al mes, con una respuesta media de 6 ms en la API y un 92% de aciertos en caché. Son métricas de ese servicio; la media de la API no representa la latencia de toda la experiencia en la TV."
         },
         "fullstack": {
-          "question": "¿Cómo aborda el desarrollo frontend y el ecosistema full stack?",
-          "answer": "En el frontend, construye aplicaciones web modernas con Next.js 16 (App Router), React 19 y TypeScript, priorizando Server Components, accesibilidad estricta (WCAG 2.2 AA) y Core Web Vitals óptimos. Integra las interfaces directamente con contratos de API tipados y seguros de extremo a extremo."
+          "question": "¿Cómo conecto frontend y backend?",
+          "answer": "Trabajo desde la interfaz hasta los contratos de API, con React, Next.js y TypeScript. Considero accesibilidad, estados de carga y error, coherencia de datos y el rendimiento que percibe el usuario."
         },
         "devops": {
-          "question": "¿Cuál es su metodología para DevOps, infraestructura y observabilidad?",
-          "answer": "Aplica prácticas modernas de ingeniería de confiabilidad: pipelines automatizados de CI/CD, escaneo de vulnerabilidades en contenedores, imágenes Distroless sin privilegios de raíz, seguridad de borde mediante AWS WAF y telemetría integral con Prometheus y rastreo distribuido."
+          "question": "¿Cómo abordo infraestructura y operación?",
+          "answer": "La compilación, el despliegue, el monitoreo y la recuperación forman parte de la entrega. Uso pipelines de CI/CD, contenedores, métricas y alertas para seguir el servicio e investigar fallos con contexto."
         },
         "architecture": {
-          "question": "¿Cómo estructura Roberto la arquitectura y el ciclo de entrega en producción?",
-          "answer": "Cubre todo el ciclo desde el código hasta la nube: modelado de bases de datos (PostgreSQL, Redis), diseño de APIs con clara separación de responsabilidades, automatización de compilación y despliegue en contenedores, y monitoreo y alertas continuas en producción."
+          "question": "¿Qué orienta mis decisiones de arquitectura?",
+          "answer": "Comienzo por los requisitos y las restricciones operativas. Defino responsabilidades entre componentes, modelo los datos y establezco límites para las integraciones. El equipo debe poder entender y evolucionar la arquitectura sin convertir cada cambio en una migración completa."
         }
-      }
+      },
+      "contents": "En esta página",
+      "profileLink": "Perfil",
+      "stackLink": "Competencias técnicas"
     },
     "insights": {
       "metaTitle": "Insights de Ingeniería",
       "metaDescription": "Artículos sobre arquitectura, rendimiento, sistemas en producción y liderazgo técnico basados en experiencia práctica.",
       "eyebrow": "Insights",
-      "title": "Ingeniería compartida con contexto de producción.",
-      "description": "Reflexiones directas sobre decisiones técnicas, trade-offs y aprendizajes que solo aparecen cuando el software encuentra la operación."
+      "title": "Decisiones de ingeniería, con contexto.",
+      "description": "Notas sobre arquitectura, rendimiento y operación a partir de los sistemas en los que he trabajado. El foco está en las decisiones, los límites y lo aprendido en producción."
     },
     "contact": {
       "metaTitle": "Contacto Profesional",
       "metaDescription": "Canales profesionales de Roberto Moraes para conversaciones sobre ingeniería de software, arquitectura, tecnología y gestión.",
       "eyebrow": "Contacto",
-      "title": "Un canal directo para conversaciones profesionales.",
-      "description": "Canales para intercambiar ideas sobre ingeniería de software, arquitectura, tecnología y gestión."
+      "title": "Conversemos sobre ingeniería.",
+      "description": "Usa el formulario o uno de los canales siguientes para compartir una pregunta, una experiencia o un contexto profesional."
     }
   },
   "Footer": {
@@ -738,6 +814,15 @@
     "external": {
       "title": "Enlaces externos",
       "body": "Los enlaces a proyectos, redes sociales y WhatsApp llevan a servicios con sus propias prácticas de privacidad. Consulta su información antes de compartir datos."
-    }
+    },
+    "contents": "En esta página"
+  },
+  "ClientBrands": {
+    "pauseMotion": "Pausar movimiento de los logos",
+    "resumeMotion": "Reanudar movimiento de los logos",
+    "title": "Marcas en mi trayectoria",
+    "description": "Tecnología en distintos contextos y escalas.",
+    "case": "Ver caso",
+    "healthcare": "Hospitalidad digital"
   }
 }

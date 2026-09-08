@@ -71,6 +71,11 @@
   animation-play-state: paused;
 }
 
+.logoloop[data-visible="false"] .logoloop__track,
+.logoloop:focus-within .logoloop__track {
+  animation-play-state: paused;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .logoloop__control:hover {
     border-color: var(--color-signal);
@@ -170,9 +175,33 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .logoloop {
+    overflow: visible;
+  }
+
   .logoloop__track {
+    width: 100%;
     animation: none;
     transform: translate3d(0, 0, 0) !important;
+  }
+
+  .logoloop__list {
+    flex-wrap: wrap;
+    gap: 1rem var(--logoloop-gap);
+  }
+
+  .logoloop__list + .logoloop__list {
+    display: none;
+  }
+
+  .logoloop__item,
+  .logoloop__item:last-child {
+    margin-right: 0;
+  }
+
+  .logoloop--fade::before,
+  .logoloop--fade::after {
+    display: none;
   }
 
   .logoloop__node {

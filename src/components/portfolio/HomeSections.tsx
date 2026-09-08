@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 import { ScrollReveal } from "@/components/shared/ScrollReveal"
 import { Link } from "@/navigation"
 
+import { ClientBrands } from "./ClientBrands"
 import { ProjectGrid } from "./ProjectGrid"
 import { SectionHeading } from "./SectionHeading"
 import styles from "./Portfolio.module.css"
@@ -21,6 +22,27 @@ export async function HomeSections() {
 
   return (
     <>
+      <ClientBrands />
+      <section className={styles.section} data-home-section="projects">
+        <div className={styles.container}>
+          <ScrollReveal>
+            <SectionHeading
+              eyebrow={t("projects.eyebrow")}
+              title={t("projects.title")}
+              description={t("projects.description")}
+              split
+            />
+          </ScrollReveal>
+          <ProjectGrid />
+          <ScrollReveal>
+            <Link href="/work" className={styles.sectionAction}>
+              {t("projects.viewAll")}
+              <span aria-hidden="true">↗</span>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
       <section className={styles.sectionAlt} data-home-section="profile">
         <div className={styles.container}>
           <div className={styles.profileLayout}>
@@ -54,26 +76,6 @@ export async function HomeSections() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className={styles.section} data-home-section="projects">
-        <div className={styles.container}>
-          <ScrollReveal>
-            <SectionHeading
-              eyebrow={t("projects.eyebrow")}
-              title={t("projects.title")}
-              description={t("projects.description")}
-              split
-            />
-          </ScrollReveal>
-          <ProjectGrid />
-          <ScrollReveal>
-            <Link href="/work" className={styles.sectionAction}>
-              {t("projects.viewAll")}
-              <span aria-hidden="true">↗</span>
-            </Link>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -172,6 +174,21 @@ export async function HomeSections() {
             >
               {t("insight.cta")}
               <span aria-hidden="true">↗</span>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section className={styles.contactClosing} data-home-section="contact" aria-labelledby="home-contact-title">
+        <div className={styles.container}>
+          <ScrollReveal className={styles.contactClosingInner}>
+            <div>
+              <p className={styles.eyebrow}>{t("contact.eyebrow")}</p>
+              <h2 id="home-contact-title" className={styles.sectionTitle}>{t("contact.title")}</h2>
+              <p className={styles.sectionLead}>{t("contact.description")}</p>
+            </div>
+            <Link href="/contact" className={styles.contactClosingLink}>
+              {t("contact.cta")}<span aria-hidden="true">↗</span>
             </Link>
           </ScrollReveal>
         </div>

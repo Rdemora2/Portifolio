@@ -1,0 +1,149 @@
+.section {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  border-block: 1px solid var(--color-edge);
+  background: var(--color-void);
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.heading h2 {
+  color: var(--color-signal);
+  font: 500 var(--text-xs)/1.6 var(--font-mono);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.heading p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.marquee {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  border-block: 1px solid var(--color-edge);
+}
+
+.viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: brand-scroll 70s linear infinite;
+}
+
+.grid {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  list-style: none;
+}
+
+.brand {
+  --logo-width: 7rem;
+  --logo-height: 4rem;
+  flex: 0 0 12rem;
+  width: 12rem;
+  min-width: 0;
+}
+
+.logoFrame {
+  display: flex;
+  min-height: 8rem;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem .75rem;
+  border-radius: .75rem;
+}
+
+.logo {
+  display: block;
+  width: var(--logo-width);
+  height: var(--logo-height);
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.brand[data-brand="newco"] { --logo-width: 5rem; --logo-height: 5rem; }
+.brand[data-brand="bandsports"],
+.brand[data-brand="bandnews"] { --logo-width: 8rem; --logo-height: 4.5rem; }
+.brand[data-brand="arte1"] { --logo-width: 3.25rem; --logo-height: 3.25rem; }
+.brand[data-brand="globo"] { --logo-width: 4rem; --logo-height: 4rem; }
+.brand[data-brand="sirio"] { --logo-width: 11rem; }
+.brand[data-brand="sirio"] .logo { filter: brightness(0) invert(1); }
+.brand[data-brand="omo"] { --logo-width: 6.5rem; --logo-height: 4rem; }
+.brand[data-brand="terraviva"] { --logo-width: 7rem; --logo-height: 4rem; }
+.brand[data-brand="agromais"] { --logo-width: 8rem; --logo-height: 4.5rem; }
+.brand[data-brand="housi"] { --logo-width: 9rem; }
+.brand[data-brand="premio-sde"] { --logo-width: 10rem; --logo-height: 4.5rem; }
+
+.logoFrame:focus-visible,
+.viewport:focus-visible,
+.motionControl:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: -4px;
+}
+
+.motionControl {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-inline-start: .5rem;
+  border: 1px solid var(--color-control-edge);
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.marquee[data-paused="true"] .track,
+.marquee[data-visible="false"] .track {
+  animation-play-state: paused;
+}
+
+/* Keyboard navigation uses a stable, scrollable row of the original links. */
+.viewport:focus-within {
+  overflow-x: auto;
+  mask-image: none;
+}
+
+.viewport:focus-within .track {
+  animation: none;
+}
+
+.viewport:focus-within [data-brand-copy="1"] {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .logoFrame { min-height: 9rem; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.logoFrame:hover { background: var(--color-deep); }
+  .viewport:hover .track { animation-play-state: paused; }
+  .motionControl:hover { color: var(--color-signal); border-color: var(--color-signal); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { grid-template-columns: minmax(0, 1fr); }
+  .viewport { overflow-x: auto; mask-image: none; }
+  .track { animation: none; }
+  [data-brand-copy="1"].grid, .motionControl { display: none; }
+}
+
+@keyframes brand-scroll {
+  to { transform: translateX(-50%); }
+}

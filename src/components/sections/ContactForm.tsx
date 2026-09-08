@@ -72,7 +72,6 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [serverError, setServerError] = useState<ServerErrorKey>("generic")
   const isMounted = useRef(true)
-  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const requestControllerRef = useRef<AbortController | null>(null)
   const idempotencyRef = useRef<IdempotencyState | null>(null)
 
@@ -80,17 +79,9 @@ export function ContactForm() {
     isMounted.current = true
     return () => {
       isMounted.current = false
-      if (statusTimerRef.current) clearTimeout(statusTimerRef.current)
       requestControllerRef.current?.abort()
     }
   }, [])
-
-  const clearStatusTimer = () => {
-    if (statusTimerRef.current) {
-      clearTimeout(statusTimerRef.current)
-      statusTimerRef.current = null
-    }
-  }
 
   const {
     register,
@@ -102,7 +93,6 @@ export function ContactForm() {
   })
 
   const onSubmit = async (data: ContactSchema) => {
-    clearStatusTimer()
     requestControllerRef.current?.abort()
     const controller = new AbortController()
     requestControllerRef.current = controller
@@ -152,10 +142,6 @@ export function ContactForm() {
         clearStoredIdempotency()
         setStatus("success")
         reset()
-        statusTimerRef.current = setTimeout(() => {
-          if (isMounted.current) setStatus("idle")
-          statusTimerRef.current = null
-        }, 5000)
       }
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return
@@ -173,7 +159,13 @@ export function ContactForm() {
   return (
     <>
       <form
-        onSubmit={(e) => void handleSubmit(onSubmit)(e)}
+        onSubmit={(event) => {
+          if (status === "success") setStatus("idle")
+          void handleSubmit(onSubmit)(event)
+        }}
+        onChange={() => {
+          if (status === "success") setStatus("idle")
+        }}
         className="space-y-4 sm:space-y-6"
         aria-busy={status === "loading"}
         toolname="prepare_portfolio_contact"
@@ -283,9 +275,10 @@ export function ContactForm() {
           type="submit"
           disabled={status === "loading"}
           wrapperClassName="w-full"
-          className="w-full cursor-pointer rounded-full border border-[var(--color-signal)] text-[var(--color-signal)] px-4 py-3 text-xs font-semibold uppercase tracking-widest transition-all duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] disabled:cursor-not-allowed disabled:opacity-50 sm:py-4 sm:text-sm"
+          className="min-h-12 w-full cursor-pointer rounded-full border border-[var(--color-signal)] px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-signal)] transition-all duration-200 hover:bg-[var(--color-signal)] hover:text-[var(--color-void)] focus-visible:outline-2 focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-50 sm:py-4 sm:text-sm"
           style={{
             fontFamily: "var(--font-body)",
+            outlineColor: "var(--color-highlight)",
           }}
         >
           {status === "loading" && (
@@ -300,6 +293,7 @@ export function ContactForm() {
         {status === "success" && (
           <div
             role="status"
+            aria-live="polite"
             className="flex items-center gap-2 rounded-xl border p-3 text-sm sm:p-4"
             style={{
               borderColor: "var(--color-matrix)",

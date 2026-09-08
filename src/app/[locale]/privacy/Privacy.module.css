@@ -1,0 +1,12 @@
+.layout { display: grid; gap: 3rem; width: min(100%, 80rem); margin-inline: auto; padding: clamp(2.5rem, 5vw, 5rem) 1rem; }
+.index { align-self: start; }
+.updated { margin-bottom: 1.5rem; color: var(--color-text-muted); font: 0.75rem/1.7 var(--font-mono); }
+.index nav { display: grid; border-top: 1px solid var(--color-edge); }
+.index a { display: flex; align-items: baseline; gap: 0.75rem; min-height: 2.75rem; padding-block: 0.75rem; border-bottom: 1px solid var(--color-edge); color: var(--color-text-secondary); font-size: 0.8125rem; line-height: 1.5; }
+.index a span { color: var(--color-signal); font: 0.6875rem var(--font-mono); }
+.index a:hover { color: var(--color-signal); }
+.index a:focus-visible { outline: 2px solid var(--color-highlight); outline-offset: 3px; }
+.content { display: grid; gap: 2.75rem; max-width: 46rem; min-width: 0; }
+.content section { scroll-margin-top: 7rem; padding-bottom: 2rem; border-bottom: 1px solid var(--color-edge); }
+@media (min-width: 40rem) { .layout { padding-inline: 1.5rem; } }
+@media (min-width: 64rem) { .layout { grid-template-columns: 17rem minmax(0, 1fr); gap: 6rem; padding-inline: 2rem; } .index { position: sticky; top: 7rem; } }
