@@ -16,6 +16,11 @@
 /test-results/
 /blob-report/
 
+# local audit evidence and generated delivery artifacts
+/audits/
+/container-sbom.cdx.json
+/*.tmp
+
 # next.js
 /.next/
 /out/

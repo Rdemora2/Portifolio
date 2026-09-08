@@ -1,4 +1,0 @@
-{"route":"/","mode":"mobile","scores":{"performance":89,"accessibility":100,"best-practices":100,"seo":100},"metrics":{"largest-contentful-paint":3665.9707499999995,"total-blocking-time":93.5,"cumulative-layout-shift":0}}
-{"route":"/","mode":"desktop","scores":{"performance":99,"accessibility":100,"best-practices":100,"seo":100},"metrics":{"largest-contentful-paint":797.1553999999999,"total-blocking-time":0,"cumulative-layout-shift":0}}
-{"route":"/projetos","mode":"mobile","scores":{"performance":90,"accessibility":100,"best-practices":100,"seo":100},"metrics":{"largest-contentful-paint":3587.4727000000003,"total-blocking-time":29.5,"cumulative-layout-shift":0}}
-{"route":"/contato","mode":"mobile","scores":{"performance":92,"accessibility":100,"best-practices":100,"seo":100},"metrics":{"largest-contentful-paint":3424.3740000000003,"total-blocking-time":39.5,"cumulative-layout-shift":0}}

@@ -45,6 +45,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Guardrails
 
+- Evidencias locais (capturas, videos, traces, logs e relatorios de auditoria) devem ficar em `audits/`, ignorado pelo Git. Nunca comite essa pasta nem use `git add -f` para incluir artefatos ignorados. Assets usados pelo site permanecem em `public/`; testes e scripts reutilizaveis devem ficar em `e2e/` ou `scripts/`.
+- Antes de cada commit, revise `git diff --cached --stat` e execute `npm run check:repo`. Evidencias de CI devem ser publicadas como artifacts com retencao limitada, nunca como arquivos do repositorio.
 - Frontend e Backend devem consultar node_modules/next/dist/docs/ antes de codar.
 - Evite mudancas amplas sem plano; prefira iteracoes pequenas e validaveis.
 

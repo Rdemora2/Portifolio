@@ -8,6 +8,7 @@
     "dev:turbo": "node scripts/dev-server.mjs --turbopack",
     "build": "next build && node scripts/prepare-standalone.mjs",
     "check:bundle": "node scripts/check-bundle-budget.mjs",
+    "check:repo": "node scripts/check-repository-hygiene.mjs",
     "start": "node .next/standalone/server.js",
     "analyze": "next experimental-analyze --output",
     "lint": "eslint",

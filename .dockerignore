@@ -23,6 +23,9 @@ vitest.config.*
 playwright-report
 test-results
 blob-report
+audits
+container-sbom.cdx.json
+*.tmp
 *.trace
 *.trace.zip
 *.tsbuildinfo
