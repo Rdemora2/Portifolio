@@ -7,6 +7,7 @@ export const siteNavigation = [
   { key: "experience", href: "/experience" },
   { key: "about", href: "/about" },
   { key: "insights", href: "/insights" },
+  { key: "contact", href: "/contact" },
 ] as const
 
 export type SiteNavigationItem = (typeof siteNavigation)[number]
@@ -18,7 +19,5 @@ export type FooterNavigationItem = {
 
 export const footerNavigation: readonly FooterNavigationItem[] = [
   ...siteNavigation,
-  { key: "contact", href: "/contact" },
   { key: "faq", href: { pathname: "/about", hash: "faq" } },
 ] as const
-

@@ -80,7 +80,7 @@
   gap: 0.55rem;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -163,7 +163,7 @@
 .browserBar {
   display: grid;
   min-height: 2.7rem;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.85rem;
   padding-inline: 1rem;
@@ -194,7 +194,7 @@
   overflow: hidden;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -280,7 +280,7 @@
 .category {
   color: var(--color-signal);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   line-height: 1.4;
   text-transform: uppercase;
@@ -339,7 +339,7 @@
   background: rgba(255, 255, 255, 0.025);
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
 }
 
@@ -350,7 +350,7 @@
   gap: 0.55rem;
   color: var(--color-text-primary);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -369,7 +369,7 @@
   margin-top: clamp(3rem, 7vw, 5.5rem);
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-align: center;
   text-transform: uppercase;
@@ -432,9 +432,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .reveal:nth-child(even) {
-    margin-top: 4rem;
-  }
+
 
   .reveal:last-child:nth-child(odd) {
     width: calc((100% - var(--website-grid-gap)) / 2);
@@ -507,3 +505,10 @@
     box-shadow: none;
   }
 }
+
+.moreWork { margin-top: 2rem; }
+.moreWork > summary { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; padding: 1rem 0; border-block: 1px solid var(--color-control-edge); color: var(--color-text-secondary); font: 500 var(--text-sm)/1.5 var(--font-body); list-style: none; cursor: pointer; }
+.moreWork > summary::-webkit-details-marker { display: none; }
+.moreWork > summary span { color: var(--color-signal); font-size: 1.5rem; }
+.moreWork[open] > summary { margin-bottom: 2rem; }
+.moreWork[open] > summary span { transform: rotate(45deg); }

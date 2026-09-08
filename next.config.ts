@@ -45,8 +45,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   typedRoutes: true,
   images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    formats: ["image/webp"],
+    deviceSizes: [384, 640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
   headers: async () => [
@@ -67,6 +67,8 @@ const nextConfig: NextConfig = {
   turbopack: {},
   experimental: {
     globalNotFound: true,
+    // Keep case-specific styles out of unrelated routes while grouping small shared files.
+    cssChunking: { type: "graph", requestCost: 6000 },
     optimizePackageImports: ["ogl", "react-icons"],
     webVitalsAttribution: ["CLS", "LCP", "INP"],
   },

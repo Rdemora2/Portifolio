@@ -1,0 +1,95 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "route": "/pt",
+      "scrollWidth": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "route": "/projetos",
+      "scrollWidth": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "route": "/experiencia",
+      "scrollWidth": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "route": "/sobre",
+      "scrollWidth": 320,
+      "viewport": 320
+    },
+    {
+      "width": 320,
+      "route": "/contato",
+      "scrollWidth": 320,
+      "viewport": 320
+    },
+    {
+      "width": 768,
+      "route": "/pt",
+      "scrollWidth": 768,
+      "viewport": 768
+    },
+    {
+      "width": 768,
+      "route": "/projetos",
+      "scrollWidth": 768,
+      "viewport": 768
+    },
+    {
+      "width": 768,
+      "route": "/experiencia",
+      "scrollWidth": 768,
+      "viewport": 768
+    },
+    {
+      "width": 768,
+      "route": "/sobre",
+      "scrollWidth": 768,
+      "viewport": 768
+    },
+    {
+      "width": 768,
+      "route": "/contato",
+      "scrollWidth": 768,
+      "viewport": 768
+    },
+    {
+      "width": 1440,
+      "route": "/pt",
+      "scrollWidth": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "route": "/projetos",
+      "scrollWidth": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "route": "/experiencia",
+      "scrollWidth": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "route": "/sobre",
+      "scrollWidth": 1440,
+      "viewport": 1440
+    },
+    {
+      "width": 1440,
+      "route": "/contato",
+      "scrollWidth": 1440,
+      "viewport": 1440
+    }
+  ],
+  "errors": []
+}

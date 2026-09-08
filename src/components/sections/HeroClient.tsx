@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { useSyncExternalStore } from "react"
+import { useState, useSyncExternalStore } from "react"
 
 import { isBot } from "@/lib/is-bot"
 import { WebGLErrorBoundary } from "@/components/shared/WebGLErrorBoundary"
@@ -82,10 +82,13 @@ function subscribeToPointerFine(onChange: () => void) {
 export function HeroClientWrapper({
   children,
   isBotHint = false,
+  motionLabels,
 }: {
   children: React.ReactNode
   isBotHint?: boolean
+  motionLabels: { pause: string; resume: string }
 }) {
+  const [paused, setPaused] = useState(false)
   const canRender = useSyncExternalStore(
     subscribeToCapabilities,
     () => canRenderSignatureEffect(isBotHint),
@@ -102,6 +105,7 @@ export function HeroClientWrapper({
     <section
       id="hero"
       className="site-home-hero relative flex items-center overflow-hidden"
+      data-motion-paused={paused}
       data-home-hero
     >
       <div
@@ -118,6 +122,7 @@ export function HeroClientWrapper({
               frequencyY={2.5}
               interactive={isPointerFine}
               dpr={1}
+              paused={paused}
             />
           </WebGLErrorBoundary>
         ) : null}
@@ -133,6 +138,12 @@ export function HeroClientWrapper({
       />
 
       {children}
+      {canRender ? (
+        <button type="button" className="hero-motion-toggle" aria-pressed={paused} aria-label={motionLabels.pause} onClick={() => setPaused((value) => !value)}>
+          <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span>
+          {paused ? motionLabels.resume : motionLabels.pause}
+        </button>
+      ) : null}
 
       <div
         className="home-scroll-cue absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[var(--color-text-muted)]"

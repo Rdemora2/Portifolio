@@ -1,0 +1,16 @@
+{
+  "mode": "desktop",
+  "date": "2026-09-07T21:55:30.645Z",
+  "version": "13.3.0",
+  "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "lcpMs": 859.09825,
+  "tbtMs": 38.99999999999994,
+  "cls": 0,
+  "warnings": [],
+  "note": "Single local lab sample with standard Lighthouse user agent; WebGL is validated separately by webgl-active.spec.ts."
+}

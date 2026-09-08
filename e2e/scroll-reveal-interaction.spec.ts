@@ -1,11 +1,24 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 
 test.use({
-  viewport: { width: 1280, height: 480 },
+  viewport: { width: 1280, height: 320 },
   contextOptions: { reducedMotion: "no-preference" },
 })
 
 async function holdArticleEntrance(page: Page): Promise<Locator> {
+  // Pause at creation: scrollIntoViewIfNeeded may otherwise wait until the
+  // entrance has finished before the assertion gets a chance to observe it.
+  await page.addInitScript(() => {
+    const originalAnimate = Element.prototype.animate
+    Element.prototype.animate = function (keyframes, options) {
+      const animation = originalAnimate.call(this, keyframes, options)
+      if (this.matches("[data-scroll-reveal]")) {
+        animation.pause()
+        animation.currentTime = 0
+      }
+      return animation
+    }
+  })
   await page.goto("/en/insights", { waitUntil: "networkidle" })
   const articleLink = page.getByRole("link", { name: /Read full article/i })
   await articleLink.scrollIntoViewIfNeeded()

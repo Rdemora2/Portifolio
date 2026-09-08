@@ -1,0 +1,372 @@
+{
+  "route": "/contato",
+  "mode": "mobile",
+  "date": "2026-09-08T01:36:53.666Z",
+  "version": "13.3.0",
+  "scores": {
+    "performance": 92,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "largest-contentful-paint": 3424.3740000000003,
+    "total-blocking-time": 39.5,
+    "cumulative-layout-shift": 0
+  },
+  "findings": {
+    "largest-contentful-paint": {
+      "title": "Largest Contentful Paint",
+      "score": 0.66,
+      "displayValue": "3.4 s"
+    },
+    "max-potential-fid": {
+      "title": "Max Potential First Input Delay",
+      "score": 0.96,
+      "displayValue": "100 ms"
+    },
+    "interactive": {
+      "title": "Time to Interactive",
+      "score": 0.86,
+      "displayValue": "4.2 s"
+    },
+    "unused-javascript": {
+      "title": "Reduce unused JavaScript",
+      "score": 0,
+      "displayValue": "Est savings of 110 KiB",
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "source",
+              "valueType": "code"
+            },
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceBytes"
+            },
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceWastedBytes"
+            },
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/16_aik3lpuv7j.js",
+            "totalBytes": 82179,
+            "wastedBytes": 68038,
+            "wastedPercent": 82.79218454862354
+          },
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+            "totalBytes": 74185,
+            "wastedBytes": 23402,
+            "wastedPercent": 31.545053581311105
+          },
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/3lxysnsbk24ar.js",
+            "totalBytes": 51428,
+            "wastedBytes": 21339,
+            "wastedPercent": 41.49285341734673
+          }
+        ],
+        "overallSavingsMs": 450,
+        "overallSavingsBytes": 112779,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 0,
+            "LCP": 450
+          }
+        }
+      }
+    },
+    "lcp-breakdown-insight": {
+      "title": "LCP breakdown",
+      "score": 1,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 7.797
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 160.589
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-H1",
+            "path": "1,HTML,1,BODY,4,MAIN,0,HEADER,0,DIV,1,H1",
+            "selector": "main#main-content > header.PageIntro-module__3D2SwG__pageHero > div.PageIntro-module__3D2SwG__pageHeroInner > h1.PageIntro-module__3D2SwG__pageTitle",
+            "boundingRect": {
+              "top": 148,
+              "bottom": 258,
+              "left": 16,
+              "right": 396,
+              "width": 380,
+              "height": 110
+            },
+            "snippet": "<h1 class=\"PageIntro-module__3D2SwG__pageTitle\">",
+            "nodeLabel": "Vamos conversar sobre engenharia."
+          }
+        ]
+      }
+    },
+    "lcp-discovery-insight": {
+      "title": "LCP request discovery",
+      "score": null
+    },
+    "legacy-javascript-insight": {
+      "title": "Legacy JavaScript",
+      "score": 0,
+      "displayValue": "Est savings of 13 KiB",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "location",
+              "valueType": "source-location"
+            },
+            "label": "URL"
+          },
+          {
+            "key": null,
+            "valueType": "code",
+            "subItemsHeading": {
+              "key": "signal"
+            },
+            "label": ""
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Wasted bytes"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+            "wastedBytes": 13821,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "signal": "Array.prototype.at",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 1116
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flat",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 504
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flatMap",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 617
+                  }
+                },
+                {
+                  "signal": "Object.fromEntries",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 993
+                  }
+                },
+                {
+                  "signal": "Object.hasOwn",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 1251
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimEnd",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 246
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimStart",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://127.0.0.1:3400/_next/static/chunks/16gu4a07kx4-0.js",
+                    "urlProvider": "network",
+                    "line": 0,
+                    "column": 161
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "wastedBytes": 13821
+        }
+      }
+    },
+    "network-dependency-tree-insight": {
+      "title": "Network dependency tree",
+      "score": 0,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "7606AD7E181323BB755493C40E992734": {
+                  "url": "http://127.0.0.1:3400/contato",
+                  "navStartToEndTime": 56,
+                  "transferSize": 14821,
+                  "isLongest": true,
+                  "children": {
+                    "24014.6": {
+                      "url": "http://127.0.0.1:3400/_next/static/chunks/1_2_rzyqhpv99.css",
+                      "navStartToEndTime": 75,
+                      "transferSize": 1816,
+                      "isLongest": true,
+                      "children": {}
+                    },
+                    "24014.5": {
+                      "url": "http://127.0.0.1:3400/_next/static/chunks/1gl1wgnalsgfb.css",
+                      "navStartToEndTime": 74,
+                      "transferSize": 12351,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 75
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "no origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      }
+    },
+    "render-blocking-insight": {
+      "title": "Render-blocking requests",
+      "score": 0,
+      "displayValue": "Est savings of 150 ms",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/1_2_rzyqhpv99.css",
+            "totalBytes": 1816,
+            "wastedMs": 308
+          },
+          {
+            "url": "http://127.0.0.1:3400/_next/static/chunks/1gl1wgnalsgfb.css",
+            "totalBytes": 12351,
+            "wastedMs": 308
+          }
+        ]
+      }
+    }
+  },
+  "warnings": [],
+  "note": "Local Lighthouse sample; WebGL has separate functional tests. This is not field data."
+}

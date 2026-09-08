@@ -772,7 +772,7 @@
 }
 
 .chapter:nth-child(even) .chapterFrame {
-  margin-left: clamp(0rem, 3vw, 2.25rem);
+  margin-left: 0;
 }
 
 .chapterHeader {
@@ -794,10 +794,10 @@
 }
 
 .chapter h2 {
-  max-width: 14ch;
+  max-width: 22ch;
   margin-top: 1.25rem;
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 4vw, 3.65rem);
+  font-size: clamp(1.85rem, 3.2vw, 3rem);
   font-weight: 780;
   line-height: 1;
   letter-spacing: -0.048em;
@@ -830,8 +830,8 @@
   border-bottom: 1px solid rgba(26, 40, 64, 0.58);
   color: var(--color-text-secondary);
   font-family: var(--font-body);
-  font-size: 0.91rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
 .chapterList li > span:first-child {
@@ -2039,6 +2039,7 @@
   }
 
   .heroTitle {
+    max-width: 22ch;
     font-size: clamp(2rem, 6vw, 2.75rem);
   }
 

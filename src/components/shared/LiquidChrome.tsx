@@ -15,6 +15,7 @@ export interface LiquidChromeProps extends React.HTMLAttributes<HTMLDivElement> 
   frequencyY?: number
   interactive?: boolean
   dpr?: number
+  paused?: boolean
 }
 
 const vertexShader = `
@@ -77,10 +78,17 @@ export function LiquidChrome({
   frequencyY = 3,
   interactive = true,
   dpr = 1,
+  paused = false,
   className = "",
   style,
   ...rest
 }: LiquidChromeProps) {
+  const pausedRef = useRef(paused)
+  const syncMotionRef = useRef<(() => void) | null>(null)
+  useEffect(() => {
+    pausedRef.current = paused
+    syncMotionRef.current?.()
+  }, [paused])
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rendererRef = useRef<Renderer | null>(null)
@@ -263,8 +271,13 @@ export function LiquidChrome({
     }
 
     const start = () => {
-      if (animationFrame || contextLost || document.hidden) return
+      if (animationFrame || contextLost || document.hidden || pausedRef.current) return
       animationFrame = requestAnimationFrame(update)
+    }
+
+    syncMotionRef.current = () => {
+      if (pausedRef.current) stop()
+      else start()
     }
 
     const handleContextLost = (event: Event) => {
@@ -303,6 +316,7 @@ export function LiquidChrome({
 
     return () => {
       contextLost = true
+      syncMotionRef.current = null
       stop()
       cancelAnimationFrame(pointerFrameRef.current)
       cancelAnimationFrame(boundsFrame)

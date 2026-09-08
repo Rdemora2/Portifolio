@@ -38,7 +38,7 @@ test("renders the multipage portfolio without engine-specific regressions", asyn
   await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName(
     "Roberto Moraes",
   )
-  await expect(page.locator("[data-home-section]")).toHaveCount(5)
+  await expect(page.locator("[data-home-section]")).toHaveCount(7)
   await expect(page.locator("[data-project-card]")).toHaveCount(3)
   await expectNoContentClipping(page, "Home")
 

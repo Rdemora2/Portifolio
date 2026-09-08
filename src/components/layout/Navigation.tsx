@@ -45,12 +45,16 @@ export function Navigation() {
 
   useEffect(() => {
     let animationFrame = 0
+    let previousProgress = -1
 
     const updateNavigationSurface = () => {
       if (animationFrame) return
 
       animationFrame = requestAnimationFrame(() => {
-        const progress = isHome ? Math.min(window.scrollY / 120, 1) : 1
+        animationFrame = 0
+        const progress = isHome ? Math.max(0, Math.min(window.scrollY / 120, 1)) : 1
+        if (progress === previousProgress) return
+        previousProgress = progress
         const navigation = navigationRef.current
 
         if (navigation) {
@@ -86,15 +90,13 @@ export function Navigation() {
             )
           }
         }
-
-        animationFrame = 0
       })
     }
 
     updateNavigationSurface()
-    window.addEventListener("scroll", updateNavigationSurface, {
-      passive: true,
-    })
+    if (isHome) {
+      window.addEventListener("scroll", updateNavigationSurface, { passive: true })
+    }
 
     return () => {
       cancelAnimationFrame(animationFrame)
@@ -237,7 +239,9 @@ export function Navigation() {
               <Link
                 key={key}
                 href={href}
-                className={`${styles.desktopLink} flex min-h-11 items-center text-sm font-medium`}
+                className={`${styles.desktopLink} ${
+                  key === "contact" ? styles.contactLink : "min-h-11"
+                } flex items-center text-sm font-medium`}
                 aria-current={
                   isCurrentRoute(pathname, href) ? "page" : undefined
                 }
@@ -330,7 +334,9 @@ export function Navigation() {
                 key={key}
                 href={href}
                 onClick={closeMobileNavigation}
-                className={`${styles.mobileLink} inline-flex min-h-12 items-center text-3xl font-bold sm:text-4xl`}
+                className={`${styles.mobileLink} ${
+                  key === "contact" ? styles.mobileContactLink : ""
+                } inline-flex min-h-12 items-center text-3xl font-bold sm:text-4xl`}
                 aria-current={
                   isCurrentRoute(pathname, href) ? "page" : undefined
                 }

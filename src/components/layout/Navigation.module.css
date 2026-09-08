@@ -126,6 +126,42 @@
   transform: scaleX(0.52);
 }
 
+.contactLink {
+  min-height: 3rem;
+  padding-inline: 1rem;
+  border: 1px solid rgba(129, 140, 248, 0.52);
+  background:
+    linear-gradient(135deg, rgba(79, 70, 229, 0.3), rgba(11, 18, 29, 0.9))
+      padding-box,
+    linear-gradient(115deg, var(--color-signal), rgba(0, 212, 255, 0.45))
+      border-box;
+  box-shadow:
+    0 0.6rem 1.8rem rgba(5, 10, 18, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.08);
+  color: var(--color-text-primary);
+}
+
+.contactLink::before {
+  content: none;
+}
+
+.contactLink::after {
+  right: 1rem;
+  bottom: 0.42rem;
+  left: 1rem;
+}
+
+.mobileContactLink {
+  margin-top: 0.5rem;
+  padding-inline: 1rem;
+  border: 1px solid rgba(129, 140, 248, 0.36);
+  background: linear-gradient(
+    110deg,
+    rgba(79, 70, 229, 0.24),
+    rgba(13, 21, 32, 0.38)
+  );
+}
+
 .menuButton,
 .menuCloseButton {
   border-radius: 0.75rem;
@@ -199,6 +235,11 @@
   transform: translate3d(0, -1px, 0);
 }
 
+.contactLink:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
 .desktopLink:focus-visible::after {
   opacity: 1;
   transform: scaleX(1);
@@ -242,6 +283,14 @@
   .desktopLink:hover::after {
     opacity: 1;
     transform: scaleX(1);
+  }
+
+  .contactLink:hover {
+    border-color: rgba(129, 140, 248, 0.82);
+    box-shadow:
+      0 0.75rem 2rem rgba(5, 10, 18, 0.38),
+      0 0 1.25rem rgba(79, 70, 229, 0.16),
+      inset 0 1px rgba(255, 255, 255, 0.1);
   }
 
   .mobileLink:hover {

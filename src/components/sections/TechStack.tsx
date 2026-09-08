@@ -1,148 +1,151 @@
-import { techStack } from "@/data/portfolio";
-import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import { TECH_CATEGORY_COLORS } from "@/lib/constants";
-import { getTranslations } from "next-intl/server";
-
-import LogoLoop from "@/components/shared/LogoLoop";
-import { FaAws } from "react-icons/fa";
+import { FaAws } from "react-icons/fa"
 import {
-  SiReact,
-  SiNextdotjs,
-  SiGo,
-  SiKotlin,
-  SiGooglecloud,
   SiDocker,
+  SiGo,
+  SiGooglecloud,
+  SiKotlin,
+  SiNextdotjs,
   SiPostgresql,
+  SiReact,
   SiVuedotjs,
-} from "react-icons/si";
+} from "react-icons/si"
+import { getTranslations } from "next-intl/server"
+
+import LogoLoop from "@/components/shared/LogoLoop"
+import { ScrollReveal } from "@/components/shared/ScrollReveal"
+import { projects, techStack } from "@/data/portfolio"
+import { TECH_CATEGORY_COLORS } from "@/lib/constants"
+import { Link } from "@/navigation"
+
+import styles from "./TechStack.module.css"
 
 const techLogos = [
-  { node: <SiReact size={36} color="#61DAFB" /> },
-  { node: <SiNextdotjs size={36} color="var(--color-text-primary)" /> },
-  { node: <SiVuedotjs size={36} color="#4FC08D" /> },
-  { node: <SiGo size={36} color="#00ADD8" /> },
-  { node: <SiKotlin size={36} color="#7F52FF" /> },
-  { node: <SiGooglecloud size={36} color="#4285F4" /> },
-  { node: <SiDocker size={36} color="#2496ED" /> },
-  { node: <FaAws size={36} color="#FF9900" /> },
-  { node: <SiPostgresql size={36} color="#4169E1" /> },
-];
+  { node: <SiGo title="Go" /> },
+  { node: <SiGooglecloud title="Google Cloud" /> },
+  { node: <FaAws title="AWS" /> },
+  { node: <SiDocker title="Docker" /> },
+  { node: <SiPostgresql title="PostgreSQL" /> },
+  { node: <SiKotlin title="Kotlin" /> },
+  { node: <SiNextdotjs title="Next.js" /> },
+  { node: <SiReact title="React" /> },
+  { node: <SiVuedotjs title="Vue.js" /> },
+]
+
+const categoryOrder = [
+  "backend",
+  "cloud",
+  "devops",
+  "frontend",
+  "mobile",
+  "video",
+  "ai",
+] as const
+
+const evidenceProjectIds = [
+  "hospital-sirio-libanes",
+  "band-news-bandsports",
+] as const
 
 export async function TechStack() {
-  const [t, tn, page] = await Promise.all([
+  const [t, nav, page, projectT, projectPage] = await Promise.all([
     getTranslations("About.pillars"),
     getTranslations("Nav"),
     getTranslations("PortfolioPages.about"),
+    getTranslations("Projects"),
+    getTranslations("PortfolioPages.home.projects"),
   ])
 
-  const grouped = techStack.reduce<Record<string, typeof techStack>>(
-    (acc, tech) => {
-      if (!acc[tech.category]) acc[tech.category] = [];
-      acc[tech.category]?.push(tech);
-      return acc;
-    },
-    {},
-  );
+  const grouped = new Map(
+    categoryOrder.map((category) => [
+      category,
+      techStack.filter((technology) => technology.category === category),
+    ]),
+  )
+  const evidenceProjects = evidenceProjectIds
+    .map((id) => projects.find((project) => project.id === id))
+    .filter((project): project is (typeof projects)[number] => Boolean(project))
 
   return (
-    <section
-      id="tech"
-      className="relative py-16 sm:py-20 md:py-24"
-      style={{ backgroundColor: "var(--color-deep)" }}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal animation="title">
-          <p
-            className="mb-2 text-xs font-normal uppercase"
-            style={{
-              fontFamily: "var(--font-mono)",
-              color: "var(--color-text-muted)",
-              letterSpacing: "0.25em",
-            }}
-          >
-            {tn("tech_small")}
-          </p>
-          <h2
-            className="mb-8 font-bold sm:mb-12"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--color-text-primary)",
-              fontSize: "var(--text-3xl)",
-            }}
-          >
-            {tn("tech")}
-          </h2>
+    <section id="tech" className={styles.section}>
+      <div className={styles.container}>
+        <ScrollReveal animation="title" className={styles.heading}>
+          <p className={styles.eyebrow}>{nav("tech_small")}</p>
+          <h2 className={styles.title}>{nav("tech")}</h2>
         </ScrollReveal>
 
-        {/* Endless Logo Loop */}
-        <div className="mb-12 sm:mb-20">
-          <LogoLoop
-            logos={techLogos}
-            pauseLabel={page("motionPause")}
-            resumeLabel={page("motionResume")}
-            speed={60}
-            direction="left"
-            logoHeight={48}
-            gap={40}
-            fadeOut={true}
-            fadeOutColor="var(--color-deep)"
-            scaleOnHover={true}
-          />
-        </div>
-
-        {/* Technology groups stay stable; hover feedback is handled in CSS. */}
-        <div>
-          <div className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3">
-            {Object.entries(grouped).map(([category, items], idx) => (
-              <ScrollReveal key={category} delay={idx * 0.1}>
-                <div>
-                  <h3
-                    className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-widest"
-                    style={{ fontFamily: "var(--font-mono)" }}
-                  >
+        <div className={styles.content}>
+          <div className={styles.capabilities}>
+            {Array.from(grouped).map(([category, items], index) => (
+              <ScrollReveal
+                key={category}
+                delay={Math.min(index * 0.04, 0.16)}
+                className={styles.category}
+              >
+                <header className={styles.categoryHeader}>
+                  <span className={styles.categoryIndex} aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{t(category)}</h3>
+                  <span
+                    className={styles.categorySignal}
+                    style={{
+                      backgroundColor:
+                        TECH_CATEGORY_COLORS[category] ?? "var(--color-signal)",
+                    }}
+                    aria-hidden="true"
+                  />
+                </header>
+                <div className={styles.tags}>
+                  {items.map((technology) => (
                     <span
-                      className="h-2 w-2 rounded-full"
-                      style={{
-                        backgroundColor:
-                          TECH_CATEGORY_COLORS[category as keyof typeof TECH_CATEGORY_COLORS] ?? "#6366f1",
-                      }}
-                    />
-                    <span
-                      style={{
-                        color: "var(--color-text-primary)",
-                      }}
+                      key={technology.name}
+                      className={`tech-tag ${styles.tag}`}
+                      data-featured={technology.featured || undefined}
                     >
-                      {t(category) || category}
+                      {technology.name}
                     </span>
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {items.map((tech) => (
-                      <span
-                        key={tech.name}
-                        className="tech-tag cursor-default rounded-full border px-3 py-1.5 text-xs transition-all duration-200 hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          borderColor: tech.featured
-                            ? "var(--color-edge)"
-                            : "rgba(26,40,64,0.5)",
-                          color: tech.featured
-                            ? "var(--color-text-primary)"
-                            : "var(--color-text-secondary)",
-                          backgroundColor: tech.featured
-                            ? "rgba(99,102,241,0.05)"
-                            : "transparent",
-                        }}
-                      >
-                        {tech.name}
-                      </span>
-                    ))}
-                  </div>
+                  ))}
                 </div>
               </ScrollReveal>
             ))}
           </div>
+
+          <aside className={styles.evidence} aria-label={projectPage("eyebrow")}>
+            <p className={styles.evidenceEyebrow}>{projectPage("eyebrow")}</p>
+            {evidenceProjects.map((project) => (
+              <Link
+                key={project.id}
+                href={{ pathname: "/work/[slug]", params: { slug: project.slug } }}
+                className={styles.evidenceLink}
+                aria-label={`${projectPage("openCase")}: ${projectT(`items.${project.id}.title`)}`}
+              >
+                <span className={styles.evidenceTitle}>
+                  {projectT(`items.${project.id}.title`)}
+                </span>
+                <span className={styles.evidenceStack}>
+                  {project.stack.slice(0, 4).join(" · ")}
+                </span>
+                <span className={styles.evidenceAction} aria-hidden="true">
+                  {projectT("viewCaseStudy")} ↗
+                </span>
+              </Link>
+            ))}
+          </aside>
+        </div>
+
+        <div className={styles.logoBand}>
+          <LogoLoop
+            logos={techLogos}
+            pauseLabel={page("motionPause")}
+            resumeLabel={page("motionResume")}
+            speed={52}
+            logoHeight={32}
+            gap={52}
+            fadeOut
+            fadeOutColor="var(--color-deep)"
+          />
         </div>
       </div>
     </section>
-  );
+  )
 }

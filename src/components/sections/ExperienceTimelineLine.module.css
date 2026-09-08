@@ -1,3 +1,13 @@
+.timeline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(10rem + clamp(1.25rem, 2.5vw, 2.75rem));
+  display: block;
+  width: 1px;
+  pointer-events: none;
+}
+
 .track,
 .progress {
   position: absolute;
@@ -63,4 +73,8 @@
     background: var(--color-signal);
     box-shadow: none;
   }
+}
+
+@media (max-width: 47.9375rem) {
+  .timeline { display: none; }
 }

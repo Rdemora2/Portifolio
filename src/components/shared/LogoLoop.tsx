@@ -1,4 +1,6 @@
-import type { CSSProperties, ReactNode } from "react"
+"use client"
+
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react"
 
 import "./LogoLoop.css"
 
@@ -35,6 +37,7 @@ export default function LogoLoop({
   className = "",
   style,
 }: LogoLoopProps) {
+  const rootRef = useRef<HTMLDivElement>(null)
   const duration = Math.max(14, (logos.length * 100) / Math.max(speed, 1))
   const rootClassName = [
     "logoloop",
@@ -63,11 +66,26 @@ export default function LogoLoop({
     )
   }
 
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root || !("IntersectionObserver" in window)) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        root.dataset.visible = String(entry?.isIntersecting ?? true)
+      },
+      { rootMargin: "80px" },
+    )
+    observer.observe(root)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className={rootClassName} style={rootStyle}>
+    <div ref={rootRef} className={rootClassName} style={rootStyle} data-visible="true">
       <input
         className="logoloop__toggle"
         id="technology-logo-motion"
+        data-logo-motion-toggle
         type="checkbox"
       />
       <label

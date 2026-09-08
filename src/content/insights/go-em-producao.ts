@@ -25,14 +25,14 @@ type GoProductionArticleCopy = Omit<InsightArticle, "sections"> & {
 const articles = {
   pt: {
     seo: {
-      title: "Go em Produção: Arquitetura de Alto Desempenho e Resiliência Hospitalar",
+      title: "Go em produção: arquitetura, cache e operação",
       description:
         "Decisões de arquitetura, cache híbrido (Redis + memória local), RBAC de 4 níveis, observabilidade e alta disponibilidade no backend Go (Fiber/FastHTTP) do Hospital Sírio-Libanês.",
     },
     eyebrow: "Case técnico · Engenharia de backend",
-    title: "Go em produção: o que ninguém te conta",
+    title: "Go em produção: arquitetura, cache e operação",
     subtitle:
-      "Como projetamos o backend Go (Fiber v2 / FastHTTP) do Hospital Sírio-Libanês para rodar sob carga real com resposta média de 6ms, resiliência no cache e alta disponibilidade.",
+      "As escolhas de arquitetura, cache e observabilidade no backend Go do Hospital Sírio-Libanês, que registra mais de 20 milhões de requisições por mês.",
     backLabel: "Voltar aos insights",
     publishedLabel: "Publicado em",
     publishedDate: sharedDate,
@@ -49,18 +49,18 @@ const articles = {
       traceCoordinateLabel: "rastro",
     },
     intro:
-      "Este backend foi desenvolvido para sustentar todo o sistema de IPTV e atendimento nos leitos do Hospital Sírio-Libanês (unidades SP e Brasília). Integrando as Smart TVs dos quartos, o ERP hospitalar TASY (via barramento ESB HSL) e a infraestrutura de streaming, o sistema precisava responder em milissegundos sem margem para quedas. Alcançamos isso combinando Fiber/FastHTTP, cache híbrido em duas camadas com fallback transparente, pools de conexão otimizados (pgxpool + sqlc) e uma política rígida de controle de acesso (RBAC).",
+      "O backend integra as TVs dos quartos, o ERP Tasy e a infraestrutura de streaming nas unidades de São Paulo e Brasília. Este artigo descreve as decisões para limitar o custo das requisições, lidar com falhas nas integrações e acompanhar o serviço em produção. A resposta média de 6 ms se refere à API, não ao tempo completo de navegação ou reprodução na TV.",
     metricsLabel: "Escala observada em produção",
     metrics: [
       { value: "20M+", label: "requisições por mês" },
-      { value: "6 ms", label: "tempo médio de resposta" },
+      { value: "6 ms", label: "resposta média da API" },
       { value: "92%", label: "taxa de acerto no cache (hit rate)" },
       { value: "1k+", label: "commits de engenharia no backend" },
     ],
     architectureLabel: "Visão do sistema",
     architectureTitle: "Uma arquitetura com caminhos de degradação claros",
     architectureDescription:
-      "Cada dependência possui timeout, limite de concorrência e alternativa operacional. Se o Redis oscilar, a memória local assume; se o ERP demorar a responder, retentativas inteligentes protegem o sistema.",
+      "Timeouts e limites de retentativa delimitam o tempo gasto nas integrações. O cache combina Redis e memória local para reduzir a dependência de uma única camada durante falhas.",
     architectureNodes: [
       "Borda HTTP (Fiber v2)",
       "API Go Core",
@@ -101,12 +101,12 @@ const articles = {
       {
         id: "performance",
         eyebrow: "03 · Performance",
-        title: "Eficiência máxima na rota principal",
+        title: "Menos trabalho na rota principal",
         intro:
-          "A rota principal da API (que entrega o catálogo e dados do leito para a TV) responde em menos de 10ms. Conseguimos isso reduzindo alocações de memória e mantendo conexões persistentes abertas.",
+          "A rota que entrega o catálogo e os dados do leito concentra o esforço de otimização. Reduzimos alocações de memória, reutilizamos conexões e acompanhamos a latência para avaliar o resultado.",
         items: [
           "Cliente HTTP customizado (FastHTTP) com pool de conexões por host e limite de 3 tentativas com retentativa inteligente.",
-          "Parsing de JSON otimizado com Sonic JSON e código gerado pelo sqlc, eliminando reflexão (reflection) em tempo de execução.",
+          "Processamento de JSON com Sonic JSON e consultas tipadas geradas pelo sqlc, reduzindo trabalho repetitivo no caminho da requisição.",
           "Compressão seletiva e cabeçalhos ETag para economizar banda na rede interna do hospital.",
           "Dashboard de monitoramento e páginas de administração embarcados diretamente no binário compilado do Go via embed.FS.",
         ],
@@ -116,7 +116,7 @@ const articles = {
         eyebrow: "04 · Cache",
         title: "Cache híbrido em duas camadas (Redis + sync.Map)",
         intro:
-          "O Redis é a nossa primeira camada de cache, mas uma oscilação no Redis jamais pode derrubar o sistema. Por isso, criamos uma arquitetura híbrida com transição automática para memória local.",
+          "O Redis é a camada principal de cache. Para lidar com indisponibilidade ou respostas lentas, a aplicação também utiliza memória local, com regras de expiração e limpeza.",
         items: [
           "Redis v8 como camada principal, com tempos de expiração (TTL) definidos pela volatilidade de cada dado (ex: 4 min para sessão da TV).",
           "Fallback automático para sync.Map local com rotina de limpeza (janitor) quando o Redis falha ou demora mais de 500ms.",
@@ -124,7 +124,7 @@ const articles = {
           "Métricas em tempo real acompanhando acertos (hits), erros e latência separados por camada (Redis vs Memória local).",
         ],
         note:
-          "Se o Redis oscilar no meio da madrugada, a TV do leito continua funcionando normalmente usando o cache em memória da própria aplicação.",
+          "O fallback reduz a dependência do Redis, mas a memória pertence a cada instância. A validade dos dados e a capacidade dessa camada também precisam entrar na análise de falhas.",
       },
       {
         id: "observabilidade",
@@ -135,7 +135,7 @@ const articles = {
         items: [
           "Histogramas de latência (http_request_duration_seconds) de 0.5ms a 30s com rotas normalizadas.",
           "Métricas específicas para tempo de consulta no banco (db_query_duration_seconds) e chamadas para APIs externas.",
-          "Acompanhamento de recursos em tempo real: CPU, memória heap/stack, quantidade de goroutines e pausagens do Garbage Collector.",
+          "Acompanhamento de CPU, memória heap/stack, quantidade de goroutines e pausas do coletor de lixo.",
           "Painel web responsivo em /pkg/dashboard embutido via embed.FS, sem depender de ferramentas de terceiros.",
         ],
         note:
@@ -146,12 +146,12 @@ const articles = {
         eyebrow: "06 · Segurança",
         title: "Controle de acesso por papéis (RBAC) e auditoria",
         intro:
-          "A segurança é tratada na camada de rotas via middlewares (JWTMiddleware e AuthorizeMiddleware), com papéis de acesso bem definidos e registro imutável de alterações.",
+          "O controle de acesso fica nos middlewares JWTMiddleware e AuthorizeMiddleware. Os papéis delimitam as ações permitidas, e os registros de auditoria ajudam a investigar alterações.",
         items: [
           "Sessões administrativas protegidas por cookies HTTP-only, Secure e SameSite, assinadas com JWT (golang-jwt/jwt/v5).",
           "Hierarquia de permissões em 4 níveis (Dev, Suporte, Gestor, Analista) com travas no código para impedir elevação indevida de privilégios.",
           "Histórico detalhado de auditoria (activity_log) no PostgreSQL registrando quem fez a alteração, o tipo de ação e o valor antigo/novo.",
-          "Senhas criptografadas com Bcrypt (golang.org/x/crypto/bcrypt) e políticas de rotação de chaves.",
+          "Senhas armazenadas como hashes bcrypt (golang.org/x/crypto/bcrypt), com políticas de rotação de chaves para os demais segredos.",
         ],
       },
       {
@@ -161,10 +161,10 @@ const articles = {
         intro:
           "Cada ajuste na arquitetura foi fruto de observação e aprendizado prático durante a operação em ambiente hospitalar.",
         items: [
-          "Estouro de métricas no Prometheus -> Solução: middleware com padronização rígida do formato das URLs.",
-          "Pequenas quedas de conexão com o Redis -> Solução: cache híbrido transparente com fallback imediato para memória local.",
-          "Tentativas excessivas de conexão com APIs externas -> Solução: cliente HTTP otimizado com limite de retentativas e tempo de espera gradual.",
-          "Inconsistências ao trocar o aparelho de TV -> Solução: verificação prévia do MAC address antes de salvar no banco.",
+          "Estouro de métricas no Prometheus → Solução: middleware com padronização rígida do formato das URLs.",
+          "Pequenas quedas de conexão com o Redis → Solução: cache híbrido transparente com fallback automático para memória local.",
+          "Tentativas excessivas de conexão com APIs externas → Solução: cliente HTTP otimizado com limite de retentativas e tempo de espera gradual.",
+          "Inconsistências ao trocar o aparelho de TV → Solução: verificação prévia do MAC address antes de salvar no banco.",
         ],
       },
       {
@@ -172,7 +172,7 @@ const articles = {
         eyebrow: "08 · Checklist",
         title: "O que verificar antes de um novo deploy",
         intro:
-          "Manter um serviço em Go respondendo em 6ms exige consistência e testes automatizados a cada entrega.",
+          "Antes de publicar, revisamos os limites operacionais, simulamos falhas e verificamos o comportamento sob carga. A média de latência, sozinha, não descreve todos os cenários do serviço.",
         items: [
           "Limites dos pools de conexão (banco e Redis) ajustados de acordo com os núcleos de CPU alocados no container.",
           "Teste do mecanismo de fallback do cache simulando a indisponibilidade total do Redis.",
@@ -190,14 +190,14 @@ const articles = {
   },
   en: {
     seo: {
-      title: "Go in Production: High-Performance Architecture & Hospital Resilience",
+      title: "Go in production: architecture, caching, and operations",
       description:
         "Architecture decisions, two-tier hybrid caching (Redis + sync.Map), 4-tier RBAC, observability, and resilience in Hospital Sírio-Libanês' Go backend (Fiber/FastHTTP) handling over 20M requests/month.",
     },
     eyebrow: "Technical Case Study · Backend Engineering",
-    title: "Go in production: what nobody tells you",
+    title: "Go in production: architecture, caching, and operations",
     subtitle:
-      "How we designed Hospital Sírio-Libanês' Go backend (Fiber v2 / FastHTTP) to operate under real load with 6ms average latency, hybrid cache resilience, and zero downtime.",
+      "Architecture, caching, and observability choices in Hospital Sírio-Libanês’ Go backend, which handles over 20 million requests per month.",
     backLabel: "Back to insights",
     publishedLabel: "Published on",
     publishedDate: sharedDate,
@@ -214,18 +214,18 @@ const articles = {
       traceCoordinateLabel: "trace",
     },
     intro:
-      "This backend was built to power the bedside IPTV and digital hospitality ecosystem for Hospital Sírio-Libanês (São Paulo and Brasília units). Connecting Android TV Set-Top Boxes, the TASY hospital ERP (via HSL ESB), and the IPTV streaming middleware, the platform required sub-10ms response times without tolerating systemic downtime. The result was achieved through Fiber v2/FastHTTP, a two-tier hybrid cache with graceful fallback, optimized connection pooling (pgxpool + sqlc), and a strict RBAC security matrix.",
+      "The backend connects bedside TVs, the Tasy ERP, and streaming infrastructure at the São Paulo and Brasília sites. This article covers decisions to limit request cost, handle integration failures, and observe the service in production. The 6 ms average response refers to the API, not the complete TV navigation or playback experience.",
     metricsLabel: "Observed production scale",
     metrics: [
       { value: "20M+", label: "requests per month" },
-      { value: "6 ms", label: "average response latency" },
+      { value: "6 ms", label: "average API response" },
       { value: "92%", label: "sustained cache hit rate" },
       { value: "1k+", label: "backend engineering commits" },
     ],
     architectureLabel: "System view",
     architectureTitle: "An architecture with clear degradation paths",
     architectureDescription:
-      "Every dependency has an explicit timeout, concurrency limit, and operational fallback. If Redis fails, local memory takes over; if the hospital ERP stumbles, bounded retries protect the service.",
+      "Timeouts and retry limits bound the time spent on integrations. The cache combines Redis and local memory to reduce dependence on a single layer during failures.",
     architectureNodes: [
       "HTTP Edge (Fiber v2)",
       "Go Core API",
@@ -240,7 +240,7 @@ const articles = {
         eyebrow: "01 · Context",
         title: "Real challenges of a hospital ecosystem",
         intro:
-          "In a critical hospital setting, bedside TV instability triggers immediate support tickets and impacts patient experience. The backend had to integrate TASY ERP and IPTV streaming middleware while guaranteeing rock-solid predictability.",
+          "An unstable bedside TV creates support work and affects the patient experience. The backend needed to integrate Tasy and IPTV streaming while keeping resource use and failure behavior predictable.",
         items: [
           "Bidirectional integration with TASY ERP via HSL ESB for patient bed activation, deactivation, and device swap.",
           "IPTV streaming middleware orchestration with dynamic salted MD5 authentication tokens.",
@@ -253,9 +253,9 @@ const articles = {
         eyebrow: "02 · Architecture",
         title: "Predictable bootstrap and strict boundaries",
         intro:
-          "We chose Fiber v2 (FastHTTP) for its exceptional throughput and near-zero memory allocations. The entire application lifecycle is deterministically configured before accepting incoming traffic.",
+          "We chose Fiber v2 and FastHTTP with a focus on throughput and memory use. Application configuration is established at startup, before the service accepts traffic.",
         items: [
-          "Fiber v2 on FastHTTP leveraging zero-allocation techniques and buffer reuse.",
+          "Fiber v2 and FastHTTP with buffer reuse to reduce unnecessary allocations.",
           "High-concurrency PostgreSQL access via pgx/v5 and pgxpool, using sqlc for core type-safe queries and GORM for admin.",
           "Explicit timeouts at every layer (HTTP Read/Write, DB connection lifetime, and dial timeouts).",
           "Readiness probes validating PostgreSQL and Redis health before routing traffic to new instances.",
@@ -266,12 +266,12 @@ const articles = {
       {
         id: "performance",
         eyebrow: "03 · Performance",
-        title: "Zero-allocation on the hot path",
+        title: "Less work on the main request path",
         intro:
-          "The hot read path (delivering IPTV catalogue and bed profiles to Smart TVs) operates in sub-10ms by eliminating heap allocations and reusing persistent connections.",
+          "The route serving the catalogue and bed data is the focus of optimization. We reduced memory allocations, reused connections, and tracked latency to evaluate the result.",
         items: [
           "Custom high-performance HTTP client (FastHTTP) with per-host connection pools and a 3-retry limit.",
-          "Fast JSON parsing via Sonic JSON and sqlc code generation to prevent runtime reflection overhead.",
+          "JSON processing with Sonic JSON and typed queries generated by sqlc, reducing repetitive work on the request path.",
           "Selective compression and ETag headers to conserve internal hospital network bandwidth.",
           "Monitoring dashboard and HTML templates compiled directly into the Go binary via embed.FS.",
         ],
@@ -281,7 +281,7 @@ const articles = {
         eyebrow: "04 · Caching",
         title: "Two-Tier Hybrid Caching (Redis + sync.Map)",
         intro:
-          "Redis acts as the primary cache layer, but Redis downtime can never bring down patient services. We designed a two-tier hybrid cache with instant local fallback.",
+          "Redis is the primary cache layer. To handle outages or slow responses, the application also uses local memory, with expiration and cleanup rules.",
         items: [
           "Primary Redis (v8) pool with volatility-driven TTLs (e.g., 4 min for MAC login cache).",
           "Automatic fallback to local sync.Map with a TTL janitor routine when Redis fails or exceeds 500ms.",
@@ -289,7 +289,7 @@ const articles = {
           "Real-time hit/miss/error telemetry broken down by tier (Redis vs Local).",
         ],
         note:
-          "If the Redis server drops in the middle of the night, bedside TVs keep functioning without disruption using local memory cache.",
+          "Fallback reduces dependence on Redis, but memory belongs to each instance. Data validity and the capacity of this layer also need to be considered when evaluating failures.",
       },
       {
         id: "observabilidade",
@@ -311,7 +311,7 @@ const articles = {
         eyebrow: "06 · Security",
         title: "4-Tier RBAC Matrix and Audit Trail",
         intro:
-          "Access control is enforced via middleware (JWTMiddleware and AuthorizeMiddleware) with strict roles and immutable audit logging.",
+          "JWTMiddleware and AuthorizeMiddleware enforce access control. Roles define permitted actions, and audit records support investigations into changes.",
         items: [
           "Admin session cookies (admin_token) protected with HttpOnly, Secure, SameSite, and signed via golang-jwt/jwt/v5.",
           "4-tier RBAC matrix (Dev, Support, Manager, Analyst) with technical guardrails preventing managers from escalating privileges.",
@@ -324,12 +324,12 @@ const articles = {
         eyebrow: "07 · Incidents",
         title: "Practical lessons learned in production",
         intro:
-          "Every bottleneck encountered during hospital operations led to a definitive architectural refactoring.",
+          "Production incidents informed changes to request limits, caching, and instrumentation. These are the issues and responses that shaped the service.",
         items: [
-          "Prometheus metric cardinality explosion -> Solution: strict endpoint normalization middleware.",
-          "Redis network blips -> Solution: transparent hybrid cache with instant sync.Map local fallback.",
-          "Unbounded ESB retries -> Solution: encapsulated FastHTTP client with exponential backoff and finite attempts.",
-          "Bedside TV swap race conditions -> Solution: atomic MAC validation against IPTV middleware API prior to DB persistence.",
+          "Prometheus metric cardinality explosion → Solution: strict endpoint normalization middleware.",
+          "Redis network blips → Solution: transparent hybrid cache with automatic sync.Map local fallback.",
+          "Unbounded ESB retries → Solution: encapsulated FastHTTP client with exponential backoff and finite attempts.",
+          "Inconsistencies when replacing a TV → response: check the MAC address before persisting the device in the database.",
         ],
       },
       {
@@ -337,7 +337,7 @@ const articles = {
         eyebrow: "08 · Checklist",
         title: "What to verify before the next deployment",
         intro:
-          "Maintaining a Go API running at 6ms latency requires engineering discipline and continuous automated verification.",
+          "Before release, we review operational limits, simulate failures, and check behavior under load. Average latency alone does not describe every service condition.",
         items: [
           "pgxpool and Redis connection limits tuned against available CPU container cores.",
           "Cache fallback mechanism verified under fault injection (simulated Redis outage).",
@@ -355,14 +355,14 @@ const articles = {
   },
   es: {
     seo: {
-      title: "Go en Producción: Arquitectura de Alto Rendimiento y Resiliencia Hospitalaria",
+      title: "Go en producción: arquitectura, caché y operación",
       description:
         "Decisiones de arquitectura, caché híbrida (Redis + sync.Map), RBAC de 4 niveles, observabilidad y resiliencia en el backend Go (Fiber/FastHTTP) del Hospital Sírio-Libanês que procesa más de 20M de peticiones al mes.",
     },
     eyebrow: "Caso Técnico · Ingeniería Backend",
-    title: "Go en producción: lo que nadie te cuenta",
+    title: "Go en producción: arquitectura, caché y operación",
     subtitle:
-      "Cómo diseñamos el backend Go (Fiber v2 / FastHTTP) del Hospital Sírio-Libanês para operar bajo carga real con 6ms de latencia media, caché híbrida resiliente y cero downtime.",
+      "Decisiones de arquitectura, caché y observabilidad en el backend Go de Hospital Sírio-Libanês, que registra más de 20 millones de solicitudes al mes.",
     backLabel: "Volver a insights",
     publishedLabel: "Publicado el",
     publishedDate: sharedDate,
@@ -379,18 +379,18 @@ const articles = {
       traceCoordinateLabel: "traza",
     },
     intro:
-      "Este backend fue diseñado para sostener el ecosistema de IPTV y habitaciones del Hospital Sírio-Libanês (unidades SP y Brasília). Conectando Smart TVs de habitación, el ERP hospitalario TASY (vía ESB HSL) y el middleware de streaming IPTV, la plataforma debía responder en milisegundos sin tolerar fallos sistémicos. El resultado se logró mediante Fiber v2/FastHTTP, caché híbrida de dos capas con fallback degradado, pool de conexiones optimizado (pgxpool + sqlc) y una estricta matriz de seguridad RBAC.",
+      "El backend conecta las TVs de las habitaciones, el ERP Tasy y la infraestructura de streaming en São Paulo y Brasília. Este artículo describe decisiones para limitar el costo de las solicitudes, tratar fallos en las integraciones y observar el servicio en producción. La respuesta media de 6 ms corresponde a la API, no a toda la experiencia de navegación o reproducción en la TV.",
     metricsLabel: "Escala observada en producción",
     metrics: [
       { value: "20M+", label: "peticiones por mes" },
-      { value: "6 ms", label: "latencia media de respuesta" },
+      { value: "6 ms", label: "respuesta media de la API" },
       { value: "92%", label: "tasa de acierto de caché sostenida" },
       { value: "1k+", label: "commits de ingeniería backend" },
     ],
     architectureLabel: "Visión del sistema",
     architectureTitle: "Una arquitectura con degradación controlada",
     architectureDescription:
-      "Cada dependencia tiene timeout, límite de concurrencia y alternativa operativa. Si Redis falla, la memoria local asume el tráfico; si el ERP hospitalario oscila, los retries con backoff protegen el sistema.",
+      "Los timeouts y los límites de reintentos acotan el tiempo dedicado a las integraciones. La caché combina Redis y memoria local para reducir la dependencia de una sola capa durante fallos.",
     architectureNodes: [
       "Borde HTTP (Fiber v2)",
       "API Go Core",
@@ -405,7 +405,7 @@ const articles = {
         eyebrow: "01 · Contexto",
         title: "Desafíos reales del ecosistema hospitalario",
         intro:
-          "En un entorno hospitalario crítico, la inestabilidad en la TV de habitación genera incidencias inmediatas e impacta la experiencia del paciente. El backend debía integrar el ERP TASY y el middleware de streaming IPTV garantizando la máxima previsibilidad.",
+          "La inestabilidad en la TV de la habitación genera trabajo de soporte y afecta la experiencia del paciente. El backend debía integrar Tasy y el streaming IPTV con un uso de recursos y un comportamiento ante fallos previsibles.",
         items: [
           "Integración bidireccional con ERP TASY vía ESB HSL para activación, inactivación y cambio de habitaciones.",
           "Orquestación del middleware IPTV con generación dinámica de tokens MD5 con salt.",
@@ -418,25 +418,25 @@ const articles = {
         eyebrow: "02 · Arquitectura",
         title: "Bootstrap predecible y límites estrictos",
         intro:
-          "Elegimos Fiber v2 (FastHTTP) por su altísimo rendimiento y bajísima asignación de memoria. Todo el ciclo de vida de la aplicación se configura de forma determinista antes de aceptar conexiones.",
+          "Elegimos Fiber v2 y FastHTTP con foco en el rendimiento y el uso de memoria. La configuración de la aplicación se establece al iniciar, antes de aceptar tráfico.",
         items: [
-          "Fiber v2 sobre FastHTTP aprovechando técnicas de zero-allocation y reutilización de buffers.",
+          "Fiber v2 y FastHTTP con reutilización de buffers para reducir asignaciones innecesarias.",
           "Acceso a PostgreSQL de alta concurrencia vía pgx/v5 y pgxpool, usando sqlc para consultas type-safe y GORM en admin.",
           "Timeouts explícitos en todas las capas (HTTP Read/Write, vida útil de conexiones DB y timeouts de dial).",
           "Readiness probes verificando la salud de PostgreSQL y Redis antes de enviar tráfico a las nuevas instancias.",
         ],
         note:
-          "Rechazar peticiones rápidamente bajo sobrecarga extrema es infinitamente superior a acumular goroutines hasta el OOM kill del contenedor.",
+          "Rechazar solicitudes rápidamente bajo sobrecarga limita la acumulación de goroutines y ayuda a controlar el uso de memoria del contenedor.",
       },
       {
         id: "performance",
         eyebrow: "03 · Rendimiento",
-        title: "Zero-allocation en la ruta crítica",
+        title: "Menos trabajo en la ruta principal",
         intro:
-          "La ruta rápida de lectura (entregar catálogo y perfil de habitación a las Smart TVs) opera en sub-10ms al eliminar asignaciones de memoria en el heap y reutilizar conexiones.",
+          "La ruta que entrega el catálogo y los datos de la habitación concentra el esfuerzo de optimización. Redujimos asignaciones de memoria, reutilizamos conexiones y seguimos la latencia para evaluar el resultado.",
         items: [
           "Cliente HTTP de alto rendimiento (FastHTTP) encapsulado con pools por host y límite de 3 reintentos.",
-          "Parsing JSON optimizado con Sonic JSON y generadores de código de sqlc para evitar reflexión en runtime.",
+          "Procesamiento de JSON con Sonic JSON y consultas tipadas generadas por sqlc, reduciendo trabajo repetitivo en la ruta de la solicitud.",
           "Soporte para compresión selectiva y cabeceras ETag para ahorrar ancho de banda en la red hospitalaria.",
           "Dashboard de monitoreo y plantillas HTML integrados directamente en el binario Go mediante embed.FS.",
         ],
@@ -446,7 +446,7 @@ const articles = {
         eyebrow: "04 · Caché",
         title: "Caché híbrida en dos capas (Redis + sync.Map)",
         intro:
-          "Redis actúa como capa primaria, pero la caída de Redis nunca debe tumbar la aplicación. Diseñamos un sistema de caché híbrida de dos capas con fallback local instantáneo.",
+          "Redis es la capa principal de caché. Para tratar caídas o respuestas lentas, la aplicación también utiliza memoria local, con reglas de expiración y limpieza.",
         items: [
           "Capa primaria en Redis (v8) con TTLs ajustados por volatilidad (ej. 4 min para caché de login MAC).",
           "Fallback automático a sync.Map local con rutina janitor de TTL cuando Redis falla o supera los 500ms.",
@@ -454,7 +454,7 @@ const articles = {
           "Métricas en tiempo real de aciertos, fallos y errores segregadas por capa (Redis vs Local).",
         ],
         note:
-          "Si el servidor Redis cae en mitad de la noche, las TVs de habitación siguen funcionando sin interrupción gracias a la caché local en memoria.",
+          "El fallback reduce la dependencia de Redis, pero la memoria pertenece a cada instancia. La validez de los datos y la capacidad de esta capa también deben considerarse al evaluar fallos.",
       },
       {
         id: "observabilidade",
@@ -474,14 +474,14 @@ const articles = {
       {
         id: "seguranca",
         eyebrow: "06 · Seguridad",
-        title: "Matriz RBAC de 4 niveles y Trilogía de Auditoría",
+        title: "Control de acceso por roles y registros de auditoría",
         intro:
-          "El control de acceso se aplica mediante middlewares (JWTMiddleware y AuthorizeMiddleware) con roles estrictos e historial inmutable de acciones.",
+          "JWTMiddleware y AuthorizeMiddleware aplican el control de acceso. Los roles definen las acciones permitidas y los registros de auditoría ayudan a investigar cambios.",
         items: [
           "Cookies de sesión admin_token protegidas con HttpOnly, Secure, SameSite y firmadas con golang-jwt/jwt/v5.",
           "Matriz RBAC en 4 niveles (Dev, Soporte, Gestor, Analista) con restricciones técnicas para impedir elevación de privilegios.",
           "Historial de auditoría (activity_log) en PostgreSQL registrando colaborador, acción (CREATE/UPDATE/DELETE), entidad y deltas.",
-          "Contraseñas de colaboradores cifradas con Bcrypt (golang.org/x/crypto/bcrypt) y políticas de rotación de claves.",
+          "Contraseñas almacenadas como hashes bcrypt (golang.org/x/crypto/bcrypt), con políticas de rotación de claves para los demás secretos.",
         ],
       },
       {
@@ -489,12 +489,12 @@ const articles = {
         eyebrow: "07 · Incidentes",
         title: "Lecciones prácticas extraídas de producción",
         intro:
-          "Cada cuello de botella encontrado durante la operación del sistema hospitalario resultó en una refactorización arquitectónica definitiva.",
+          "Los incidentes en producción orientaron cambios en los límites de solicitudes, la caché y la instrumentación. Estos son los problemas y las respuestas que dieron forma al servicio.",
         items: [
-          "Explosión de cardinalidad en Prometheus -> Solución: middleware de normalización estricta de endpoints.",
-          "Caídas de red en Redis -> Solución: caché híbrida transparente con fallback instantáneo a sync.Map local.",
-          "Reintentos desordenados en el ESB -> Solución: cliente FastHTTP encapsulado con backoff exponencial y límite finito.",
-          "Conflictos en cambio de TV -> Solución: validación atómica de MACs en el middleware de streaming previa a la persistencia.",
+          "Explosión de cardinalidad en Prometheus → Solución: middleware de normalización estricta de endpoints.",
+          "Caídas de red en Redis → Solución: caché híbrida transparente con fallback automático a sync.Map local.",
+          "Reintentos desordenados en el ESB → Solución: cliente FastHTTP encapsulado con backoff exponencial y límite finito.",
+          "Inconsistencias al cambiar una TV → respuesta: verificar la dirección MAC antes de guardar el dispositivo en la base de datos.",
         ],
       },
       {
@@ -502,7 +502,7 @@ const articles = {
         eyebrow: "08 · Lista de Verificación",
         title: "Qué validar antes del próximo despliegue",
         intro:
-          "Mantener una API Go operando a 6ms de latencia requiere disciplina e ingeniería de verificación automatizada continua.",
+          "Antes de publicar, revisamos los límites operativos, simulamos fallos y verificamos el comportamiento bajo carga. La latencia media, por sí sola, no describe todos los escenarios del servicio.",
         items: [
           "Límites de pgxpool y conexiones Redis ajustados al número de núcleos CPU disponibles en el contenedor.",
           "Mecanismo de fallback de caché verificado mediante inyección de fallos (caída de Redis simulada).",

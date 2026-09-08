@@ -25,6 +25,53 @@ function nextIndex(current: number, length: number, direction: -1 | 1) {
   return (current + direction + length) % length
 }
 
+function GalleryMedia({
+  image,
+  modal = false,
+}: {
+  image: ProjectGalleryImage
+  modal?: boolean
+}) {
+  const [failed, setFailed] = useState(false)
+
+  if (failed) {
+    const aspectRatio = `${image.width} / ${image.height}`
+    const modalWidth = `min(90vw, ${image.width}px, calc(80vh * ${image.width / image.height}))`
+
+    return (
+      <div
+        className={`${modal ? styles.modalImage : styles.galleryImage} grid place-items-center bg-[var(--color-structure)] px-6 text-center text-[var(--color-text-secondary)]`}
+        style={modal ? { aspectRatio, display: "grid", width: modalWidth } : { display: "grid" }}
+        role="img"
+        aria-label={image.alt}
+      >
+        <span aria-hidden="true">
+          <svg className="mx-auto mb-3 h-8 w-8 text-[var(--color-signal)]" viewBox="0 0 24 24" fill="none">
+            <path d="M4 5.75A1.75 1.75 0 0 1 5.75 4h12.5A1.75 1.75 0 0 1 20 5.75v12.5A1.75 1.75 0 0 1 18.25 20H5.75A1.75 1.75 0 0 1 4 18.25V5.75Z" stroke="currentColor" strokeWidth="1.5" />
+            <path d="m5 17 4.2-4.2 2.8 2.8 2.2-2.2L19 18M15.8 9.2h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="line-clamp-3 text-sm leading-relaxed">{image.alt}</span>
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      placeholder="blur"
+      blurDataURL={image.blurDataURL}
+      className={modal ? styles.modalImage : styles.galleryImage}
+      loading={modal ? undefined : "lazy"}
+      sizes={modal ? "90vw" : "(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw"}
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
 export function ProjectGalleryCarousel({
   images,
   labels,
@@ -185,7 +232,7 @@ export function ProjectGalleryCarousel({
             <h2 className={styles.storyLabel}>{title}</h2>
 
             <div className={styles.galleryControls}>
-              {allowsMotion && images.length > 1 ? (
+              {images.length > 1 ? (
                 <button
                   type="button"
                   className={styles.galleryMotionBtn}
@@ -260,17 +307,7 @@ export function ProjectGalleryCarousel({
                     aria-hidden={isActive ? undefined : true}
                     tabIndex={isActive ? 0 : -1}
                   >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={image.width}
-                      height={image.height}
-                      placeholder="blur"
-                      blurDataURL={image.blurDataURL}
-                      className={styles.galleryImage}
-                      loading="lazy"
-                      sizes="(min-width: 1200px) 38vw, (min-width: 768px) 50vw, 70vw"
-                    />
+                    <GalleryMedia image={image} />
                     <span
                       className={styles.galleryExpandBadge}
                       aria-hidden="true"
@@ -341,16 +378,7 @@ export function ProjectGalleryCarousel({
           </button>
 
           <div className={styles.modalContent}>
-            <Image
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              width={selectedImage.width}
-              height={selectedImage.height}
-              placeholder="blur"
-              blurDataURL={selectedImage.blurDataURL}
-              className={styles.modalImage}
-              sizes="90vw"
-            />
+            <GalleryMedia key={selectedImage.src} image={selectedImage} modal />
             <p id={captionId} className={styles.modalCaption}>
               {selectedImage.alt}
             </p>

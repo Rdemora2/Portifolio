@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect, useRef } from "react"
+
 import "./fallback.css"
 
 export default function GlobalError({
@@ -9,13 +11,28 @@ export default function GlobalError({
   error: Error & { digest?: string }
   unstable_retry: () => void
 }) {
+  const mainRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const focusFrame = requestAnimationFrame(() => {
+      mainRef.current?.focus({ preventScroll: true })
+    })
+
+    return () => cancelAnimationFrame(focusFrame)
+  }, [error])
+
   return (
     <html lang="pt">
       <head>
         <title>Falha inesperada | Roberto Moraes</title>
       </head>
       <body className="fallback-body">
-        <main className="fallback-shell">
+        <main
+          ref={mainRef}
+          className="fallback-shell"
+          role="alert"
+          tabIndex={-1}
+        >
           <div className="fallback-grid" aria-hidden="true" />
           <section className="fallback-card" aria-labelledby="global-error-title">
             <p className="fallback-eyebrow">Falha temporária</p>
@@ -32,12 +49,6 @@ export default function GlobalError({
             <button className="fallback-action" onClick={unstable_retry}>
               Tentar novamente
             </button>
-            {process.env.NODE_ENV === "development" ? (
-              <pre className="fallback-debug">
-                {error.message}
-                {error.stack}
-              </pre>
-            ) : null}
           </section>
         </main>
       </body>

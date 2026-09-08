@@ -1,0 +1,20 @@
+[
+  {
+    "width": 384,
+    "status": 200,
+    "bytes": 16738,
+    "format": "image/webp"
+  },
+  {
+    "width": 640,
+    "status": 200,
+    "bytes": 37694,
+    "format": "image/webp"
+  },
+  {
+    "width": 750,
+    "status": 200,
+    "bytes": 49384,
+    "format": "image/webp"
+  }
+]
