@@ -28,7 +28,7 @@ CMD ["sh", "-c", "node scripts/dev-workspace.mjs && exec npm run dev -- -H 0.0.0
 # metadata and license, so vulnerability scanners retain full provenance.
 FROM gcr.io/distroless/nodejs24-debian13:nonroot@sha256:ffab599740d4aaa66029d02b9e6d3de4f622fefb7410081c5ef69c86430f364d AS runtime-libs
 
-FROM gcr.io/distroless/base-nossl-debian13:nonroot@sha256:5cab74e7f8a5e7c5f1c8a9e6268b1f352f053c36c656f493308340bcecbc636c AS runner
+FROM gcr.io/distroless/base-nossl-debian13:nonroot@sha256:8c563c1fb5e120606f0d85733049775faed6192e2bd2223ef283a5393eec22b9 AS runner
 WORKDIR /app
 ARG NEXT_PUBLIC_SITE_URL=https://robertomoraes.vercel.app
 ENV NODE_ENV=production
