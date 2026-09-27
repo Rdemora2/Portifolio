@@ -47,7 +47,7 @@
   "About": {
     "title": "About",
     "mainTitle": "Software engineering, from backend to production",
-    "bio": "I work as a Senior Backend Software Engineer at Volix PriceTech, developing APIs and services in Python. My previous experience spans architecture, cloud, infrastructure, and technical leadership.",
+    "bio": "I work as a Senior Backend Software Engineer at Volix, developing APIs and services in Python. My previous experience spans architecture, cloud, infrastructure, and technical leadership.",
     "bioExtended": "My work includes systems for Hospital Sírio-Libanês, Grupo Bandeirantes portals, and TV platforms for hotel groups. Across these contexts, I follow software from requirements through delivery and ongoing operation.",
     "location": "São Paulo, Brazil",
     "pillars": {
@@ -399,7 +399,7 @@
     "present": "Present",
     "items": {
       "volix-backend": {
-        "company": "Volix PriceTech",
+        "company": "Volix",
         "role": "Senior Backend Software Engineer",
         "period": "Sep 2026 · Present",
         "description": "I work on Python backend APIs and services, implementing business rules and system integrations. The role covers databases, automated testing, code review, documentation, participation in technical and architectural decisions, monitoring, and production issue resolution in collaboration with Frontend, Data, and DevOps teams.",
@@ -612,7 +612,7 @@
           },
           "volix": {
             "period": "2026—present",
-            "title": "Volix PriceTech",
+            "title": "Volix",
             "description": "Senior backend engineering with Python, APIs, and integrations."
           }
         },
@@ -699,7 +699,7 @@
       "eyebrow": "About",
       "title": "Engineering across product and operations.",
       "description": "I work on Python backend engineering, APIs, and integrations. My experience in architecture, cloud, and IT management helps connect technical decisions to product needs and production operations.",
-      "bridge": "At Volix PriceTech, I focus on backend services, their quality, security, and reliability.",
+      "bridge": "At Volix, I focus on backend services, their quality, security, and reliability.",
       "motionPause": "Pause motion",
       "motionResume": "Resume motion",
       "principlesEyebrow": "Working principles",

@@ -324,7 +324,7 @@ export const techStack: TechItem[] = [
 export const experience: ExperienceEntry[] = [
   {
     id: "volix-backend",
-    company: "Volix PriceTech",
+    company: "Volix",
     role: "Engenheiro de Software Backend Sênior",
     period: "Set 2026 · Presente",
     current: true,

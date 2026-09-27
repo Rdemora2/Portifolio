@@ -47,7 +47,7 @@
   "About": {
     "title": "Sobre mí",
     "mainTitle": "Ingeniería de software, del backend a producción",
-    "bio": "Trabajo como Ingeniero de Software Backend Sénior en Volix PriceTech, desarrollando APIs y servicios en Python. Mi experiencia anterior abarca arquitectura, cloud, infraestructura y liderazgo técnico.",
+    "bio": "Trabajo como Ingeniero de Software Backend Sénior en Volix, desarrollando APIs y servicios en Python. Mi experiencia anterior abarca arquitectura, cloud, infraestructura y liderazgo técnico.",
     "bioExtended": "Mi experiencia incluye sistemas para Hospital Sírio-Libanês, portales de Grupo Bandeirantes y plataformas de TV para cadenas hoteleras. En cada contexto, acompaño el software desde los requisitos hasta la entrega y su operación continua.",
     "location": "São Paulo, Brasil",
     "pillars": {
@@ -399,7 +399,7 @@
     "present": "Actualidad",
     "items": {
       "volix-backend": {
-        "company": "Volix PriceTech",
+        "company": "Volix",
         "role": "Ingeniero de Software Backend Sénior",
         "period": "Sep 2026 · Actualidad",
         "description": "Trabajo en la evolución de APIs y servicios backend en Python, implementando reglas de negocio e integraciones entre sistemas. El puesto incluye bases de datos, pruebas automatizadas, revisión de código, documentación, participación en decisiones técnicas y de arquitectura, monitoreo y resolución de problemas en producción, en colaboración con los equipos de Frontend, Datos y DevOps.",
@@ -612,7 +612,7 @@
           },
           "volix": {
             "period": "2026—actual",
-            "title": "Volix PriceTech",
+            "title": "Volix",
             "description": "Ingeniería backend sénior con Python, APIs e integraciones."
           }
         },
@@ -699,7 +699,7 @@
       "eyebrow": "Sobre mí",
       "title": "Ingeniería con visión de producto y operación.",
       "description": "Trabajo con ingeniería backend en Python, APIs e integraciones. Mi experiencia en arquitectura, cloud y gestión de TI ayuda a conectar las decisiones técnicas con las necesidades del producto y la operación en producción.",
-      "bridge": "En Volix PriceTech, profundizo mi trabajo en backend, con foco en la calidad, seguridad y confiabilidad de los servicios.",
+      "bridge": "En Volix, profundizo mi trabajo en backend, con foco en la calidad, seguridad y confiabilidad de los servicios.",
       "motionPause": "Pausar movimiento",
       "motionResume": "Reanudar movimiento",
       "principlesEyebrow": "Principios de trabajo",

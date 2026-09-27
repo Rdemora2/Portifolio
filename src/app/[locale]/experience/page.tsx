@@ -48,7 +48,7 @@ export default async function ExperiencePage({
         navigation={{
           label: t("contents"),
           links: [
-            { href: "#experience-volix-backend", label: "Volix PriceTech" },
+            { href: "#experience-volix-backend", label: "Volix" },
             { href: "#experience-valiant-gti", label: "Valiant Group" },
             { href: "#experience-weber-dev", label: "Weber Technologies" },
             { href: "#experience-buser-dev", label: "Buser Brasil" },

@@ -263,7 +263,7 @@ export default async function LocaleLayout({
         },
         worksFor: {
           "@type": "Organization",
-          name: "Volix PriceTech",
+          name: "Volix",
         },
         address: {
           "@type": "PostalAddress",

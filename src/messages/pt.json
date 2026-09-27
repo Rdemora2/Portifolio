@@ -47,7 +47,7 @@
   "About": {
     "title": "Sobre",
     "mainTitle": "Engenharia de software, do backend à produção",
-    "bio": "Atuo como Engenheiro de Software Backend Sênior na Volix PriceTech, desenvolvendo APIs e serviços em Python. Minha experiência anterior reúne arquitetura, cloud, infraestrutura e liderança técnica.",
+    "bio": "Atuo como Engenheiro de Software Backend Sênior na Volix, desenvolvendo APIs e serviços em Python. Minha experiência anterior reúne arquitetura, cloud, infraestrutura e liderança técnica.",
     "bioExtended": "Essa experiência inclui sistemas para o Hospital Sírio-Libanês, portais do Grupo Bandeirantes e plataformas de TV para redes hoteleiras. Em cada contexto, acompanho o caminho entre o requisito, a entrega e a sustentação do software.",
     "location": "São Paulo, Brasil",
     "pillars": {
@@ -399,7 +399,7 @@
     "present": "Presente",
     "items": {
       "volix-backend": {
-        "company": "Volix PriceTech",
+        "company": "Volix",
         "role": "Engenheiro de Software Backend Sênior",
         "period": "Set 2026 · Presente",
         "description": "Atuo na evolução de APIs e serviços backend em Python, implementando regras de negócio e integrações entre sistemas. O escopo inclui bancos de dados, testes automatizados, revisão de código, documentação, participação em soluções técnicas e arquitetura, monitoramento e resolução de problemas em produção, em colaboração com as equipes de Front-end, Dados e DevOps.",
@@ -612,7 +612,7 @@
           },
           "volix": {
             "period": "2026—atual",
-            "title": "Volix PriceTech",
+            "title": "Volix",
             "description": "Engenharia backend sênior com Python, APIs e integrações."
           }
         },
@@ -699,7 +699,7 @@
       "eyebrow": "Sobre",
       "title": "Engenharia com visão de produto e operação.",
       "description": "Trabalho com engenharia backend em Python, APIs e integrações. Minha experiência em arquitetura, cloud e gestão de TI ajuda a conectar decisões técnicas às necessidades do produto e à operação em produção.",
-      "bridge": "Na Volix PriceTech, aprofundo minha atuação em backend, trabalhando com qualidade, segurança e confiabilidade dos serviços.",
+      "bridge": "Na Volix, aprofundo minha atuação em backend, trabalhando com qualidade, segurança e confiabilidade dos serviços.",
       "motionPause": "Pausar movimento",
       "motionResume": "Retomar movimento",
       "principlesEyebrow": "Princípios de trabalho",

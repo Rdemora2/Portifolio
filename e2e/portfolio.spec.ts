@@ -120,7 +120,7 @@ test("keeps the hero identity exact and the home deliberately concise", async ({
   ).toBeVisible()
   await expect(page.locator("[data-home-section]")).toHaveCount(7)
   await expect(page.locator('[data-home-section="trajectory"]')).toContainText(
-    "Volix PriceTech",
+    "Volix",
   )
   await expect(page.locator('[data-home-section="trajectory"]')).toContainText(
     "2026—present",
@@ -500,7 +500,7 @@ test("preserves the complete professional chronology and company progression", a
   ).toEqual(expectedRoles)
 
   const expectedCompanies = [
-    "Volix PriceTech",
+    "Volix",
     "Valiant Group do Brasil",
     "Valiant Group do Brasil",
     "Valiant Group do Brasil",
