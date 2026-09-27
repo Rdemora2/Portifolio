@@ -46,8 +46,8 @@
   },
   "About": {
     "title": "Sobre mí",
-    "mainTitle": "De la implementación a la gestión de tecnología",
-    "bio": "Comencé en desarrollo full stack y avancé hasta liderar el área de tecnología en Valiant Group. Hoy combino la gestión de personas y productos con programación, revisión técnica e infraestructura en la nube.",
+    "mainTitle": "Ingeniería de software, del backend a producción",
+    "bio": "Trabajo como Ingeniero de Software Backend Sénior en Volix PriceTech, desarrollando APIs y servicios en Python. Mi experiencia anterior abarca arquitectura, cloud, infraestructura y liderazgo técnico.",
     "bioExtended": "Mi experiencia incluye sistemas para Hospital Sírio-Libanês, portales de Grupo Bandeirantes y plataformas de TV para cadenas hoteleras. En cada contexto, acompaño el software desde los requisitos hasta la entrega y su operación continua.",
     "location": "São Paulo, Brasil",
     "pillars": {
@@ -398,11 +398,24 @@
     "title_small": "Donde he trabajado",
     "present": "Actualidad",
     "items": {
+      "volix-backend": {
+        "company": "Volix PriceTech",
+        "role": "Ingeniero de Software Backend Sénior",
+        "period": "Sep 2026 · Actualidad",
+        "description": "Trabajo en la evolución de APIs y servicios backend en Python, implementando reglas de negocio e integraciones entre sistemas. El puesto incluye bases de datos, pruebas automatizadas, revisión de código, documentación, participación en decisiones técnicas y de arquitectura, monitoreo y resolución de problemas en producción, en colaboración con los equipos de Frontend, Datos y DevOps.",
+        "highlights": [
+          "APIs, servicios e integraciones en Python",
+          "Reglas de negocio y trabajo con bases de datos",
+          "Calidad, rendimiento, seguridad y escalabilidad de las aplicaciones",
+          "Pruebas automatizadas, revisión de código y documentación técnica",
+          "Monitoreo y resolución de problemas en producción"
+        ]
+      },
       "valiant-gti": {
         "company": "Valiant Group do Brasil",
         "role": "Ingeniero de Software & Gerente de TI",
-        "period": "Ene 2026 · Actualidad",
-        "description": "Lidero el área de tecnología de Valiant Group, que abarca ingeniería de software, infraestructura, seguridad y operación. Acompaño productos con más de 100 mil usuarios activos y proyectos internacionales, manteniendo participación directa en arquitectura e implementación.",
+        "period": "Ene 2026 · Sep 2026",
+        "description": "Lideré el área de tecnología de Valiant Group, que abarca ingeniería de software, infraestructura, seguridad y operación. Acompañé productos con más de 100 mil usuarios activos y proyectos internacionales, manteniendo participación directa en arquitectura e implementación.",
         "highlights": [
           "Prioridades técnicas y estándares de ingeniería",
           "Gestión del ciclo de vida de los productos y la operación",
@@ -580,7 +593,7 @@
       "trajectory": {
         "eyebrow": "Trayectoria",
         "title": "Crecer sin alejarse del código.",
-        "description": "Desde 2022, amplié mi actuación del desarrollo full stack a la gestión del área de tecnología, incorporando arquitectura, cloud, operaciones y liderazgo sin perder cercanía con el código.",
+        "description": "Desde 2022, pasé del desarrollo full stack por la gestión de tecnología hasta la ingeniería backend sénior. Llevo arquitectura, cloud y operaciones al trabajo directo con código.",
         "steps": {
           "buser": {
             "period": "2022—2023",
@@ -593,9 +606,14 @@
             "description": "Entrega full stack de punta a punta."
           },
           "valiant": {
-            "period": "2023—actual",
+            "period": "2023—2026",
             "title": "Valiant Group",
             "description": "Progresión de desarrollador a Ingeniero de Software & Gerente de TI."
+          },
+          "volix": {
+            "period": "2026—actual",
+            "title": "Volix PriceTech",
+            "description": "Ingeniería backend sénior con Python, APIs e integraciones."
           }
         },
         "cta": "Ver experiencia completa"
@@ -671,7 +689,7 @@
       "metaDescription": "Trayectoria completa de Roberto Moraes entre ingeniería de software, arquitectura, cloud, operación, liderazgo técnico y gestión de TI.",
       "eyebrow": "Experiencia",
       "title": "Del desarrollo al liderazgo técnico.",
-      "description": "Cinco puestos, con responsabilidades que crecieron desde el desarrollo web hasta la gestión de productos, equipos e infraestructura. Esta cronología explica el alcance de cada etapa.",
+      "description": "Seis puestos, desde el desarrollo web y la gestión de tecnología hasta la ingeniería backend sénior. Esta cronología explica el alcance de cada etapa.",
       "progression": "Progresión dentro de la empresa · 3 puestos",
       "contents": "En esta página"
     },
@@ -680,8 +698,8 @@
       "metaDescription": "Perfil técnico de Roberto Moraes: ingeniería de software de punta a punta, arquitectura, cloud, observabilidad, liderazgo técnico y gestión de TI.",
       "eyebrow": "Sobre mí",
       "title": "Ingeniería con visión de producto y operación.",
-      "description": "Trabajo entre arquitectura, implementación y gestión de TI. Mi enfoque es conectar las decisiones de ingeniería con las necesidades del producto, la capacidad del equipo y la operación en producción.",
-      "bridge": "Hoy amplío ese trabajo desde la gestión de TI, alineando personas, prioridades y riesgos sin perder cercanía con la ingeniería.",
+      "description": "Trabajo con ingeniería backend en Python, APIs e integraciones. Mi experiencia en arquitectura, cloud y gestión de TI ayuda a conectar las decisiones técnicas con las necesidades del producto y la operación en producción.",
+      "bridge": "En Volix PriceTech, profundizo mi trabajo en backend, con foco en la calidad, seguridad y confiabilidad de los servicios.",
       "motionPause": "Pausar movimiento",
       "motionResume": "Reanudar movimiento",
       "principlesEyebrow": "Principios de trabajo",

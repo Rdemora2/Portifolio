@@ -58,7 +58,7 @@ export function Experience() {
                       data-experience-card
                       data-experience-side="right"
                     >
-                      {index === 0 ? (
+                      {entry.id === "valiant-gti" ? (
                         <p
                           className={styles.progression}
                           data-company-progression

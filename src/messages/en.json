@@ -46,8 +46,8 @@
   },
   "About": {
     "title": "About",
-    "mainTitle": "From implementation to technology management",
-    "bio": "I started in full-stack development and grew into leading technology at Valiant Group. Today, I combine people and product management with writing code, reviewing technical decisions, and managing cloud infrastructure.",
+    "mainTitle": "Software engineering, from backend to production",
+    "bio": "I work as a Senior Backend Software Engineer at Volix PriceTech, developing APIs and services in Python. My previous experience spans architecture, cloud, infrastructure, and technical leadership.",
     "bioExtended": "My work includes systems for Hospital Sírio-Libanês, Grupo Bandeirantes portals, and TV platforms for hotel groups. Across these contexts, I follow software from requirements through delivery and ongoing operation.",
     "location": "São Paulo, Brazil",
     "pillars": {
@@ -398,11 +398,24 @@
     "title_small": "Where I've worked",
     "present": "Present",
     "items": {
+      "volix-backend": {
+        "company": "Volix PriceTech",
+        "role": "Senior Backend Software Engineer",
+        "period": "Sep 2026 · Present",
+        "description": "I work on Python backend APIs and services, implementing business rules and system integrations. The role covers databases, automated testing, code review, documentation, participation in technical and architectural decisions, monitoring, and production issue resolution in collaboration with Frontend, Data, and DevOps teams.",
+        "highlights": [
+          "Python APIs, services, and system integrations",
+          "Business rules and database work",
+          "Application quality, performance, security, and scalability",
+          "Automated tests, code review, and technical documentation",
+          "Monitoring and production issue resolution"
+        ]
+      },
       "valiant-gti": {
         "company": "Valiant Group do Brasil",
         "role": "Software Engineer & IT Manager",
-        "period": "Jan 2026 · Present",
-        "description": "I lead technology at Valiant Group, spanning software engineering, infrastructure, security, and operations. I oversee products serving more than 100,000 active users and international projects, while remaining involved in architecture and implementation.",
+        "period": "Jan 2026 · Sep 2026",
+        "description": "I led technology at Valiant Group, spanning software engineering, infrastructure, security, and operations. I oversaw products serving more than 100,000 active users and international projects, while remaining involved in architecture and implementation.",
         "highlights": [
           "Technical priorities and engineering standards",
           "Product lifecycle and operations management",
@@ -580,7 +593,7 @@
       "trajectory": {
         "eyebrow": "Career",
         "title": "Growing without leaving the code behind.",
-        "description": "Since 2022, I have expanded from full-stack development into leading the technology function, adding architecture, cloud, operations, and leadership without losing proximity to the code.",
+        "description": "Since 2022, I have moved from full-stack development through technology management into senior backend engineering. I bring architecture, cloud, and operations into hands-on coding.",
         "steps": {
           "buser": {
             "period": "2022—2023",
@@ -593,9 +606,14 @@
             "description": "End-to-end full-stack delivery."
           },
           "valiant": {
-            "period": "2023—present",
+            "period": "2023—2026",
             "title": "Valiant Group",
             "description": "Progression from developer to Software Engineer & IT Manager."
+          },
+          "volix": {
+            "period": "2026—present",
+            "title": "Volix PriceTech",
+            "description": "Senior backend engineering with Python, APIs, and integrations."
           }
         },
         "cta": "View complete experience"
@@ -671,7 +689,7 @@
       "metaDescription": "Roberto Moraes's complete career across software engineering, architecture, cloud, operations, technical leadership, and IT management.",
       "eyebrow": "Experience",
       "title": "From development to technical leadership.",
-      "description": "Five roles, with responsibilities growing from web development to managing products, teams, and infrastructure. This timeline explains the scope of each stage.",
+      "description": "Six roles, from web development through technology management to senior backend engineering. This timeline explains the scope of each stage.",
       "progression": "Progression within the company · 3 roles",
       "contents": "On this page"
     },
@@ -680,8 +698,8 @@
       "metaDescription": "Roberto Moraes's technical profile: end-to-end software engineering, architecture, cloud, observability, technical leadership, and IT management.",
       "eyebrow": "About",
       "title": "Engineering across product and operations.",
-      "description": "I work across architecture, implementation, and IT management. My focus is connecting engineering decisions to product needs, team capacity, and production operations.",
-      "bridge": "Today I extend that work through IT management, aligning people, priorities, and risk while staying close to engineering.",
+      "description": "I work on Python backend engineering, APIs, and integrations. My experience in architecture, cloud, and IT management helps connect technical decisions to product needs and production operations.",
+      "bridge": "At Volix PriceTech, I focus on backend services, their quality, security, and reliability.",
       "motionPause": "Pause motion",
       "motionResume": "Resume motion",
       "principlesEyebrow": "Working principles",

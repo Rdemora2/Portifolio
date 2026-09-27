@@ -52,7 +52,7 @@ test("renders the multipage portfolio without engine-specific regressions", asyn
   await expectNoContentClipping(page, "Work")
 
   await page.goto("/en/experience", { waitUntil: "networkidle" })
-  await expect(page.locator("[data-experience-list] > li")).toHaveCount(5)
+  await expect(page.locator("[data-experience-list] > li")).toHaveCount(6)
   await expectNoContentClipping(page, "Experience")
 
   expectNoRuntimeErrors(runtimeErrors, "Multipage portfolio")

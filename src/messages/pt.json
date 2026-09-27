@@ -46,8 +46,8 @@
   },
   "About": {
     "title": "Sobre",
-    "mainTitle": "Da implementação à gestão de tecnologia",
-    "bio": "Minha trajetória começou no desenvolvimento full stack e avançou para a liderança da área de tecnologia na Valiant Group. Hoje reúno gestão de pessoas e produtos com atuação em código, revisão técnica e infraestrutura em nuvem.",
+    "mainTitle": "Engenharia de software, do backend à produção",
+    "bio": "Atuo como Engenheiro de Software Backend Sênior na Volix PriceTech, desenvolvendo APIs e serviços em Python. Minha experiência anterior reúne arquitetura, cloud, infraestrutura e liderança técnica.",
     "bioExtended": "Essa experiência inclui sistemas para o Hospital Sírio-Libanês, portais do Grupo Bandeirantes e plataformas de TV para redes hoteleiras. Em cada contexto, acompanho o caminho entre o requisito, a entrega e a sustentação do software.",
     "location": "São Paulo, Brasil",
     "pillars": {
@@ -398,11 +398,24 @@
     "title_small": "Onde trabalhei",
     "present": "Presente",
     "items": {
+      "volix-backend": {
+        "company": "Volix PriceTech",
+        "role": "Engenheiro de Software Backend Sênior",
+        "period": "Set 2026 · Presente",
+        "description": "Atuo na evolução de APIs e serviços backend em Python, implementando regras de negócio e integrações entre sistemas. O escopo inclui bancos de dados, testes automatizados, revisão de código, documentação, participação em soluções técnicas e arquitetura, monitoramento e resolução de problemas em produção, em colaboração com as equipes de Front-end, Dados e DevOps.",
+        "highlights": [
+          "Desenvolvimento de APIs, serviços e integrações em Python",
+          "Implementação de regras de negócio e trabalho com bancos de dados",
+          "Qualidade, performance, segurança e escalabilidade das aplicações",
+          "Testes automatizados, code review e documentação técnica",
+          "Monitoramento e resolução de problemas em produção"
+        ]
+      },
       "valiant-gti": {
         "company": "Valiant Group do Brasil",
         "role": "Engenheiro de Software & Gerente de TI",
-        "period": "Jan 2026 · Presente",
-        "description": "Lidero a área de tecnologia da Valiant Group, reunindo engenharia de software, infraestrutura, segurança e operação. Acompanho produtos com mais de 100 mil usuários ativos e projetos internacionais, mantendo atuação direta em decisões de arquitetura e implementação.",
+        "period": "Jan 2026 · Set 2026",
+        "description": "Liderei a área de tecnologia da Valiant Group, reunindo engenharia de software, infraestrutura, segurança e operação. Acompanhei produtos com mais de 100 mil usuários ativos e projetos internacionais, mantendo atuação direta em decisões de arquitetura e implementação.",
         "highlights": [
           "Definição de prioridades técnicas e padrões de engenharia",
           "Gestão do ciclo de vida dos produtos e da operação",
@@ -580,7 +593,7 @@
       "trajectory": {
         "eyebrow": "Trajetória",
         "title": "Evoluir sem se afastar do código.",
-        "description": "Desde 2022, ampliei minha atuação do desenvolvimento full stack à gestão da área de tecnologia, incorporando arquitetura, cloud, operações e liderança sem perder proximidade com o código.",
+        "description": "Desde 2022, passei do desenvolvimento full stack pela gestão de tecnologia e cheguei à engenharia backend sênior. Levo arquitetura, cloud e operação para o trabalho direto com código.",
         "steps": {
           "buser": {
             "period": "2022—2023",
@@ -593,9 +606,14 @@
             "description": "Entrega full stack de ponta a ponta."
           },
           "valiant": {
-            "period": "2023—atual",
+            "period": "2023—2026",
             "title": "Valiant Group",
             "description": "Progressão de desenvolvedor a Engenheiro de Software & Gerente de TI."
+          },
+          "volix": {
+            "period": "2026—atual",
+            "title": "Volix PriceTech",
+            "description": "Engenharia backend sênior com Python, APIs e integrações."
           }
         },
         "cta": "Ver experiência completa"
@@ -671,7 +689,7 @@
       "metaDescription": "Trajetória completa de Roberto Moraes entre engenharia de software, arquitetura, cloud, operação, liderança técnica e gestão de TI.",
       "eyebrow": "Experiência",
       "title": "Do desenvolvimento à liderança técnica.",
-      "description": "Cinco posições, com responsabilidades que cresceram do desenvolvimento web à gestão de produtos, equipes e infraestrutura. A linha do tempo mostra o escopo de cada etapa.",
+      "description": "Seis posições, do desenvolvimento web à gestão de tecnologia e à engenharia backend sênior. A linha do tempo mostra o escopo de cada etapa.",
       "progression": "Progressão na empresa · 3 posições",
       "contents": "Nesta página"
     },
@@ -680,8 +698,8 @@
       "metaDescription": "Perfil técnico de Roberto Moraes: engenharia de software ponta a ponta, arquitetura, cloud, observabilidade, liderança técnica e gestão de TI.",
       "eyebrow": "Sobre",
       "title": "Engenharia com visão de produto e operação.",
-      "description": "Trabalho entre arquitetura, implementação e gestão de TI. Meu foco é conectar as decisões de engenharia às necessidades do produto, à capacidade do time e à operação em produção.",
-      "bridge": "Hoje amplio esse trabalho na gestão de TI, alinhando pessoas, prioridades e risco sem perder proximidade com a engenharia.",
+      "description": "Trabalho com engenharia backend em Python, APIs e integrações. Minha experiência em arquitetura, cloud e gestão de TI ajuda a conectar decisões técnicas às necessidades do produto e à operação em produção.",
+      "bridge": "Na Volix PriceTech, aprofundo minha atuação em backend, trabalhando com qualidade, segurança e confiabilidade dos serviços.",
       "motionPause": "Pausar movimento",
       "motionResume": "Retomar movimento",
       "principlesEyebrow": "Princípios de trabalho",

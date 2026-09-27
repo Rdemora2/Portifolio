@@ -163,7 +163,7 @@ test.describe("localized page navigation", () => {
         url.searchParams.get("source") === "legacy"
       )
     })
-    await expect(page.locator("[data-experience-list] > li")).toHaveCount(5)
+    await expect(page.locator("[data-experience-list] > li")).toHaveCount(6)
 
     await page.goto("/es#sites")
     await expect(page).toHaveURL(/\/es\/proyectos#web$/)

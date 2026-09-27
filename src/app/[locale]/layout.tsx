@@ -252,6 +252,7 @@ export default async function LocaleLayout({
           description: metadata("description"),
           occupationalCategory: "15-1252.00",
           skills: [
+            "Python",
             "Go (Golang)",
             "Next.js",
             "Cloud Architecture",
@@ -262,7 +263,7 @@ export default async function LocaleLayout({
         },
         worksFor: {
           "@type": "Organization",
-          name: "Valiant Group do Brasil",
+          name: "Volix PriceTech",
         },
         address: {
           "@type": "PostalAddress",

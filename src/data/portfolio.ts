@@ -323,12 +323,28 @@ export const techStack: TechItem[] = [
 
 export const experience: ExperienceEntry[] = [
   {
+    id: "volix-backend",
+    company: "Volix PriceTech",
+    role: "Engenheiro de Software Backend Sênior",
+    period: "Set 2026 · Presente",
+    current: true,
+    description: "Atuo na evolução de APIs e serviços backend em Python, implementando regras de negócio e integrações entre sistemas. O escopo inclui bancos de dados, testes automatizados, revisão de código, documentação, participação em soluções técnicas e arquitetura, monitoramento e resolução de problemas em produção, em colaboração com as equipes de Front-end, Dados e DevOps.",
+    highlights: [
+      "Desenvolvimento de APIs, serviços e integrações em Python",
+      "Implementação de regras de negócio e trabalho com bancos de dados",
+      "Qualidade, performance, segurança e escalabilidade das aplicações",
+      "Testes automatizados, code review e documentação técnica",
+      "Monitoramento e resolução de problemas em produção",
+    ],
+    stack: ["Python", "APIs", "Bancos de dados", "Testes automatizados"],
+  },
+  {
     id: "valiant-gti",
     company: "Valiant Group do Brasil",
     role: "Engenheiro de Software & Gerente de TI",
-    period: "Jan 2026 · Presente",
-    current: true,
-    description: "Lidero a área de tecnologia da Valiant Group, reunindo engenharia de software, infraestrutura, segurança e operação. Acompanho produtos com mais de 100 mil usuários ativos e projetos internacionais, mantendo atuação direta em decisões de arquitetura e implementação.",
+    period: "Jan 2026 · Set 2026",
+    current: false,
+    description: "Liderei a área de tecnologia da Valiant Group, reunindo engenharia de software, infraestrutura, segurança e operação. Acompanhei produtos com mais de 100 mil usuários ativos e projetos internacionais, mantendo atuação direta em decisões de arquitetura e implementação.",
     highlights: [
       "Definição de prioridades técnicas e padrões de engenharia",
       "Gestão do ciclo de vida dos produtos e da operação",
@@ -410,4 +426,3 @@ export const insights: Insight[] = [
     hasFullArticle: true,
   },
 ]
-

@@ -15,7 +15,7 @@ const practiceAreas = [
   "operations",
   "leadership",
 ] as const
-const trajectorySteps = ["buser", "weber", "valiant"] as const
+const trajectorySteps = ["buser", "weber", "valiant", "volix"] as const
 
 export async function HomeSections() {
   const t = await getTranslations("PortfolioPages.home")

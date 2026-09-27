@@ -119,6 +119,12 @@ test("keeps the hero identity exact and the home deliberately concise", async ({
     page.getByText("Software Engineer", { exact: true }),
   ).toBeVisible()
   await expect(page.locator("[data-home-section]")).toHaveCount(7)
+  await expect(page.locator('[data-home-section="trajectory"]')).toContainText(
+    "Volix PriceTech",
+  )
+  await expect(page.locator('[data-home-section="trajectory"]')).toContainText(
+    "2026—present",
+  )
   await expect(page.locator("[data-project-card]")).toHaveCount(3)
   await expect(page.locator("[data-experience-list]")).toHaveCount(0)
   await expect(page.locator("[data-website-showcase]")).toHaveCount(0)
@@ -475,12 +481,14 @@ test("preserves the complete professional chronology and company progression", a
   await page.goto("/en/experience", { waitUntil: "domcontentloaded" })
 
   const entries = page.locator("[data-experience-list] > li")
-  await expect(entries).toHaveCount(5)
+  await expect(entries).toHaveCount(6)
   await expect(page.locator("[data-company-progression]")).toHaveText(
     "Progression within the company · 3 roles",
   )
+  await expect(page.locator("#experience-valiant-gti [data-company-progression]")).toBeVisible()
 
   const expectedRoles = [
+    "Senior Backend Software Engineer",
     "Software Engineer & IT Manager",
     "IT Project Manager",
     "Full-Stack Web / Mobile Developer",
@@ -492,6 +500,7 @@ test("preserves the complete professional chronology and company progression", a
   ).toEqual(expectedRoles)
 
   const expectedCompanies = [
+    "Volix PriceTech",
     "Valiant Group do Brasil",
     "Valiant Group do Brasil",
     "Valiant Group do Brasil",
@@ -501,6 +510,12 @@ test("preserves the complete professional chronology and company progression", a
   expect(
     await page.locator("[data-experience-company]").allTextContents(),
   ).toEqual(expectedCompanies)
+  await expect(page.locator("#experience-volix-backend")).toContainText(
+    "Sep 2026 · Present",
+  )
+  await expect(page.locator("#experience-valiant-gti")).toContainText(
+    "Jan 2026 · Sep 2026",
+  )
 
   await page.setViewportSize({ width: 768, height: 1024 })
   await expect(page.locator("[data-experience-timeline]")).toBeVisible()

@@ -25,7 +25,7 @@ const staticPages: SitemapPage[] = [
   },
   {
     pathname: "/",
-    lastModified: "2026-07-29",
+    lastModified: "2026-09-27",
     changeFrequency: "monthly",
     priority: 1,
   },
@@ -37,13 +37,13 @@ const staticPages: SitemapPage[] = [
   },
   {
     pathname: "/experience",
-    lastModified: "2026-07-29",
+    lastModified: "2026-09-27",
     changeFrequency: "monthly",
     priority: 0.88,
   },
   {
     pathname: "/about",
-    lastModified: "2026-07-29",
+    lastModified: "2026-09-27",
     changeFrequency: "monthly",
     priority: 0.82,
   },
